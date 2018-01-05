@@ -1,0 +1,227 @@
+/*h1标题颜色，当前颜色白*/
+@hColor:#efeefd;
+/*文本内容颜色*/
+@textColor:#8687c0;
+@headerBackColor:#133596;
+@topBottomColor:#163387;
+@borderColor:#49d9fe;
+@borderLen: 18px;
+.border{
+    position:absolute;
+    width:100%;
+    height: 100%;
+    &:before {
+        position:absolute;
+        bottom: 0 ;
+        left: 0 ;
+        width: @borderLen;
+        height: @borderLen;
+        border-bottom:2px solid @borderColor ;
+        border-left:2px solid @borderColor ;
+        content: " ";
+    }
+    &:after {
+        position:absolute;
+        top: 0;
+        right: 0;
+        width: @borderLen;
+        height: @borderLen;
+        border-top:2px solid @borderColor;
+        border-right:2px solid @borderColor;
+        content: " ";
+    }
+}
+#apphome{
+    width:100%;
+    height: 96%;
+    background-color: #0d1f6d;
+    position: relative;
+    .header{
+        position:fixed;
+        width: 100%;
+        height: 150/1080*100%;
+        background-color: @headerBackColor;
+        z-index: 1500;
+    }
+    .headmock{
+        width: 100%;
+        height: 20px;
+
+    }
+    .top{
+        position: relative;
+        width: auto;
+        height: 502/1080*100%;
+        margin-bottom: 10/1080*100%;
+        margin-left: 16/1920*100%;
+        margin-right: 16/1920*100%;
+        h1{
+            position:absolute;
+            top: 1.3rem;
+            left: 2rem;
+            z-index: 2;
+            color:@hColor;
+            font-size: 1.1rem;
+            font-weight: 590;
+            
+        }
+        span{
+            position:absolute;
+            top: 8px;
+            display: inline-block;
+            z-index: 2;
+            cursor: pointer;
+            width: 18/1920*100vw;
+            height: auto;
+            text-align: center;
+            img{                  
+                max-width: 100%;
+                max-height: 100%;
+                width: auto;
+                height: auto;
+            }
+            @media screen and(min-width: 801px){
+                right:8px;
+            }
+            @media screen and(max-width: 800px){
+                right:5%;
+            }
+        }
+        &>div{
+            background-color: @topBottomColor;
+            position:absolute;
+            &:before {
+              position:absolute;
+              top: 0;
+              left: 0;
+              width: @borderLen;
+              height: @borderLen;
+              border-top:2px solid @borderColor;
+              border-left:2px solid @borderColor;
+              content: " ";
+              }
+            &:after {
+              position:absolute;
+              bottom: 0;
+              right: 0;
+              width: @borderLen;
+              height: @borderLen;
+              border-bottom:2px solid @borderColor;
+              border-right:2px solid @borderColor;
+              content: " ";
+            }
+
+        }
+        .one{
+            width: 480/1920*100%;
+            height: 100%;
+            top:0;
+            left:0;
+        }
+        .two{
+            width: 939/1920*100%;
+            height: 100%;
+            top:0;
+            left:496/1920*100%;
+        }
+        .three{
+            width: 469/1920*100%;
+            height: 212/444*100%;
+            top:0;
+            right:0;
+        }
+        .four{
+            width: 469/1920*100%;
+            height: 212/444*100%;
+            top:228/444*100%;
+            right:0;
+        }
+    }
+    .bottom{
+        position: relative;
+        height: 539/1080*100%;
+        margin-left: 16/1920*100%;
+        h1{
+            position:absolute;
+            top: 1.2rem;
+            left: 2rem;
+            z-index: 2;
+            color:@hColor;
+            font-size: 1.1rem;
+        }
+        span{
+            position:absolute;
+            top: 8px;
+            display: inline-block;
+            z-index: 2;
+            cursor: pointer;
+            width: 18/1920*100vw;
+            height: auto;
+            text-align: center;
+            img{                  
+                max-width: 100%;
+                max-height: 100%;
+                width: auto;
+                height: auto;
+            }
+            @media screen and(min-width: 801px){
+                right:8px;
+            }
+            @media screen and(max-width: 800px){
+                right:5%;
+            }
+        }
+        &>div{
+            background-color: @topBottomColor;
+            margin-right: 16/1920*100%;
+            position:absolute;
+            &:before {
+              position:absolute;
+              top: 0;
+              left: 0;
+              width: @borderLen;
+              height: @borderLen;
+              border-top:2px solid @borderColor;
+              border-left:2px solid @borderColor;
+              content: " ";
+              }
+            &:after {
+              position:absolute;
+              bottom: 0;
+              right: 0;
+              width: @borderLen;
+              height: @borderLen;
+              border-bottom:2px solid @borderColor;
+              border-right:2px solid @borderColor;
+              content: " ";
+            }
+
+        }
+        .one{
+            height: 100%;
+            width: 550/1920*100%;
+            left: 0;
+        }
+        .two{
+            height: 100%;
+            width: 514/1920*100%;
+            left: 550/1920*100%+16/1920*100%;
+        }
+        .three{
+            height: 200/488*100%;
+            width: 327/1920*100%;
+            left: 514/1920*100%+550/1920*100%+32/1920*100%;
+        }
+        .four{
+            height: 272/488*100%;
+            width: 327/1920*100%;
+            left: 514/1920*100%+550/1920*100%+32/1920*100%;
+            top: 216/488*100%;
+        }
+        .five{
+            height: 100%;
+            width: 464/1920*100%;
+            right: 0;
+        }
+    }
+}

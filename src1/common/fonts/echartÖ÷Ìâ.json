@@ -1,0 +1,186 @@
+{
+    "version": 1,
+    "themeName": "macarons",
+    "theme": {
+        "seriesCnt": "4",//系列数颜色队列
+        "backgroundColor": "rgba(0,0,0,0)",//背景色
+        //基本配置
+        "titleColor": "#008acd",//标题颜色
+        "subtitleColor": "#aaaaaa",//副标题颜色
+        "textColorShow": false,
+        "textColor": "#333",//
+        "markTextColor": "#eeeeee",//标签文字
+        "color": [//颜色队列
+            "#67f0f0",
+            "#b6a2de",
+            "#5ab1ef",
+            "#ffb980",
+            "#d87a80",
+            "#8d98b3",
+            "#e5cf0d",
+            "#97b552",
+            "#95706d",
+            "#dc69aa",
+            "#07a2a4",
+            "#9a7fd1",
+            "#588dd5",
+            "#f5994e",
+            "#c05050",
+            "#59678c",
+            "#c9ab00"
+        ],
+        "borderColor": "#ccc",//描边
+        "borderWidth": 0,//描边粗细
+        "visualMapColor": [//视觉映射
+            "#35362b",
+            "#e0ffff"
+        ],
+        "legendTextColor": "#191517",//图例颜色legend
+        //K线图
+        "kColor": "#d87a80",//
+        "kColor0": "#2ec7c9",//
+        "kBorderColor": "#d87a80",//
+        "kBorderColor0": "#2ec7c9",//
+        "kBorderWidth": 1,//
+        //折线图
+        "lineWidth": 2,//线条宽度
+        "symbolSize": 3,//图形大小  折线转角处图标大小
+        "symbol": "emptyCircle",//图形形状，圆，方，正，三角，水滴，等
+        "symbolBorderWidth": 1,//图形描边宽度
+        "lineSmooth": true,//是否为平滑曲线
+        
+        //关系图
+        "graphLineWidth": 1,//
+        "graphLineColor": "#aaaaaa",//
+        //地图  末尾E表示悬停状态下
+        "mapLabelColor": "#d87a80",//标记文字颜色
+        "mapLabelColorE": "rgb(100,0,0)",//
+        "mapBorderColor": "#eeeeee",//边界线边框颜色
+        "mapBorderColorE": "#444444",//
+        "mapBorderWidth": 0.5,//边界线边框
+        "mapBorderWidthE": 1,//
+        "mapAreaColor": "#dddddd",//
+        "mapAreaColorE": "rgba(254,153,78,1)",//
+        "axes": [
+            {
+                "type": "all",
+                "name": "通用坐标轴",
+                "axisLineShow": true,
+                "axisLineColor": "#eeeeee",
+                "axisTickShow": true,
+                "axisTickColor": "#eeeeee",
+                "axisLabelShow": true,
+                "axisLabelColor": "#eeeeee",
+                "splitLineShow": true,
+                "splitLineColor": [
+                    "#aaaaaa"
+                ],
+                "splitAreaShow": false,
+                "splitAreaColor": [
+                    "#eeeeee"
+                ]
+            },
+            {
+                "type": "category",
+                "name": "类目坐标轴",
+                "axisLineShow": true,
+                "axisLineColor": "#082630",//轴线
+                "axisTickShow": true,
+                "axisTickColor": "#333",//刻度
+                "axisLabelShow": true,
+                "axisLabelColor": "#333",//刻度标记
+                "splitLineShow": true,
+                "splitLineColor": [//网格
+                    "#240505"
+                ],
+                "splitAreaShow": false,
+                "splitAreaColor": [//填充
+                    "rgba(250,250,250,0.3)",
+                    "rgba(200,200,200,0.3)"
+                ]
+            },
+            {
+                "type": "value",
+                "name": "数值坐标轴",
+                "axisLineShow": true,
+                "axisLineColor": "#008acd",
+                "axisTickShow": true,
+                "axisTickColor": "#333",
+                "axisLabelShow": true,
+                "axisLabelColor": "#333",
+                "splitLineShow": false,
+                "splitLineColor": [
+                    "#eee"
+                ],
+                "splitAreaShow": false,
+                "splitAreaColor": [
+                    "rgba(250,250,250,0.3)",
+                    "rgba(200,200,200,0.3)"
+                ]
+            },
+            {
+                "type": "log",
+                "name": "对数坐标轴",
+                "axisLineShow": true,
+                "axisLineColor": "#008acd",
+                "axisTickShow": true,
+                "axisTickColor": "#333",
+                "axisLabelShow": true,
+                "axisLabelColor": "#333",
+                "splitLineShow": true,
+                "splitLineColor": [
+                    "#eee"
+                ],
+                "splitAreaShow": true,
+                "splitAreaColor": [
+                    "rgba(250,250,250,0.3)",
+                    "rgba(200,200,200,0.3)"
+                ]
+            },
+            {
+                "type": "time",
+                "name": "时间坐标轴",
+                "axisLineShow": false,
+                "axisLineColor": "#008acd",
+                "axisTickShow": false,
+                "axisTickColor": "#333",
+                "axisLabelShow": false,
+                "axisLabelColor": "#333",
+                "splitLineShow": false,
+                "splitLineColor": [
+                    "#eee"
+                ],
+                "splitAreaShow": false,
+                "splitAreaColor": [
+                    "rgba(250,250,250,0.3)",
+                    "rgba(200,200,200,0.3)"
+                ]
+            }
+        ],
+        "axisSeperateSetting": true,
+        //工具箱
+        "toolboxColor": "#2ec7c9",//图标颜色
+        "toolboxEmpasisColor": "#18a4a6",//图标悬停时的颜色
+        "tooltipAxisColor": "#008acd",//指示线 悬停在坐标轴区间显示的一条垂直于XY轴的线
+        "tooltipAxisWidth": "1",//指示线宽度
+        //时间轴
+        "timelineLineColor": "#008acd",//
+        "timelineLineWidth": 1,
+        "timelineItemColor": "#008acd",//
+        "timelineItemColorE": "#a9334c",//
+        "timelineCheckColor": "#2ec7c9",//
+        "timelineCheckBorderColor": "rgba(46,199,201,0.4)",//
+        "timelineItemBorderWidth": 1,//
+        "timelineControlColor": "#008acd",//
+        "timelineControlBorderColor": "#008acd",//
+        "timelineControlBorderWidth": 0.5,//
+        "timelineLabelColor": "#008acd",//
+
+        "datazoomBackgroundColor": "rgba(47,69,84,0)",//
+        "datazoomDataColor": "rgba(239,239,255,1)",//
+        "datazoomFillColor": "rgba(182,162,222,0.2)",//
+        "datazoomHandleColor": "#008acd",//
+        "datazoomHandleWidth": "100",//
+        "datazoomLabelColor": "#333333"//
+    }
+}

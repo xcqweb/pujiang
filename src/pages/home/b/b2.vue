@@ -1,0 +1,154 @@
+<template>
+    <div class="b2">
+        <div id="pieB2"></div>
+        <div class="circle">
+            <img :src="imgacircle"/>
+        </div>
+        <span>{{persent}}</span>
+        <div class="text"><font>预警客流</font><font>{{this.set_config}}</font></div>
+    </div>
+</template>
+
+<script>
+import Vue from 'vue'
+import echarts_resize from '../../../common/js/echarts_resize.js'
+import echarts from 'echarts';
+import Start_end_class from '@/common/js/star_end_class.js'
+import {begindaytime} from '@/common/js/gtime.js'
+export default {
+  name: 'b2',
+  data () {
+    return {
+        imgacircle:require('../../../assets/images/home/b/circle.png'),
+        option:null,
+        nub:'',
+        set_config:''
+    }
+  },
+  computed: {
+    persent(){
+      let nub = parseInt(this.nub)|| 1;
+      let setconfig = parseInt(this.set_config) ||1;
+      return (nub/setconfig).toFixed(2)+"%";
+    }
+  },
+  methods:{
+      redom(id){
+          this.chart = echarts.init(document.getElementById(id));
+          this.chart.setOption(this.option);
+      },
+  request(){
+    let start_end_instance =  new Start_end_class('passengerwarning',begindaytime);
+    start_end_instance.get_response(this.$el).then(re => {
+      //设置默认值
+      this.nub = re.data.data.nub;
+      this.set_config = re.data.data.set_config;
+      let nub = this.nub;
+      let setconfig = tihs.set_config;
+      let option={
+        backgroundColor: 'rgba(0,0,0,0)',
+        series: [
+          {
+            name: '消费情况',
+            type: 'pie',
+            radius:  ['50%', '58%'],
+            center: ['50%', '55%'],
+            label: {
+              normal: {
+                position: 'inner'
+              }
+            },
+            labelLine: {
+              normal: {
+                show: false
+              }
+            },
+            data:[
+              {
+                value:setconfig,
+                name:'',
+                itemStyle:{
+                  normal:{
+                    color:'#1da7fe',
+
+
+                  }
+                }
+              },
+              {
+                value:nub,
+                name:'',
+                itemStyle:{
+                  normal:{
+                    color:'rgba(0,0,0,0)',
+                  }
+                }
+              },
+              ]
+          }
+          ]
+      };
+      this.option = option;
+      this.redom(this.$el);
+    }).catch( e =>{
+      console.log(e);
+    })
+  }
+  },
+  mounted() {
+    this.request();
+    this.$nextTick(echarts_resize('pieB2',this))
+  },
+  components:{
+  }
+}
+</script>
+
+<style lang="less" scoped>
+.b2{
+    height:100%;
+    width:100%;
+    position:relative;
+    span{
+        position:absolute;
+        top:55%;
+        left:50%;
+        color:#1da7fe;
+        transform: translate(-50%,-50%);
+        font-size:.8rem;
+    }
+    #pieB2{
+        height:100%;
+        width:100%;
+        position:absolute;
+    }
+    .circle{
+        height: auto;
+        width:110/223*100%;
+        text-align: center;
+        position:absolute;
+        top:55%;
+        left:50%;
+        transform: translate(-50%,-50%);
+    }
+    .text{
+        width:80%;
+        position:absolute;
+        bottom:5px;
+        left:50%;
+        transform: translateX(-50%);
+        font{
+            margin-left:10%;
+            color:#1da7fe;
+            font-size:1rem;
+        }
+    }
+    img{
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+    }
+}
+
+</style>

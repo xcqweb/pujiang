@@ -1,0 +1,370 @@
+@basesize:1490/1960px;
+ @media screen and (min-width: 600px){
+    #wrapper {
+            font-family: "Microsoft YaHei","SF Pro SC","HanHei SC","PingFang SC",Arial,Helvetica,sans-serif,"SimSun";
+          background-image: url('../images/leftbg.png'),
+                               url('../images/rightbg.png');
+          background-repeat: no-repeat,no-repeat;
+          background-position:left,right;
+          background-origin:content-box,content-box;
+          height: 100vh;
+          width: 100vw;
+          overflow: hidden;
+          color: #ffffff;
+          &:after {
+                    content: ".";
+                    display: block;
+                    height: 0;
+                    clear: both;
+                    visibility: hidden;
+                }
+          .header{
+                width: 100%;
+                height: 110/1080*100%;
+                margin-top: 23*@basesize;
+                background: rgba(0,0,0,0.2);
+                margin-bottom: 10/1080*100%;
+                &:after {
+                    content: ".";
+                    display: block;
+                    height: 0;
+                    clear: both;
+                    visibility: hidden;
+                }
+              .title{
+                  margin-left: 100*@basesize;
+                  margin-right: 100*@basesize;
+                  font-size: 36*@basesize;
+                  float: left;
+                  margin-top: 1.2%;
+              }
+              .info{
+                float: right;
+                margin-right: 120/1800*100%;
+                font-size: 30*@basesize;
+                &:after {
+                    content: ".";
+                    display: block;
+                    height: 0;
+                    clear: both;
+                    visibility: hidden;
+                }
+                p,span{
+                    float: left;
+                    margin-left: 10*@basesize;
+
+                }
+                span{
+                    height: 52*@basesize;
+                    width: 63*@basesize;
+                    /*background-image: url(../images/cloud@2.png);*/
+                    margin-top: -8*@basesize;
+                }
+              }
+
+              .signout{
+                position: absolute;
+                right: 40px;
+                cursor: pointer;
+                span{
+                  font-size: 12px;
+                }
+                .imgout{
+                  height: 35px;
+                  width: 30px;
+                  margin-left: 8px;
+                  margin-top: 10px;
+                  background-image: url(../images/signout.png);
+                  background-size:100% 100%;
+                }
+              } 
+          }
+          .num_now{
+            width: 1150/1920*100%;
+            float: left;
+            height: 900/1080*100%;
+            border: 1px solid rgba(0,222,255,0.2);
+            border-radius: 10px;
+            margin-left: 30/1990*100%;
+            background: rgba(0,0,0,0.2); 
+            position: static;
+            p{
+                  font-size: 1.2rem;
+                  float: left;
+                  margin-left: 5%;
+                  margin-top: 2%;
+                }
+            div{
+                    height: 100%;
+                    width: 100%;
+                }
+          }
+          .right_info{
+            width: 690/1920*100%;
+            float: right;
+            height: 900/1080*100%;
+            margin-right: 30/1990*100%;
+            .info_num{
+                height: 366/912*100%;
+                border: 1px solid rgba(0,222,255,0.2);
+                margin-bottom: 20/912*100%;
+                border-radius: 10px;
+                background: rgba(0,0,0,0.2); 
+                position: static; 
+                .num_title{
+                  float: left;
+                  width: 50%;
+                  height: 100%;
+
+                  div{
+                    height: 33%;
+                    width: 100%;
+                     position:relative;
+                    span{
+                      display: inline-block;
+                      position: absolute;
+                      top: 50%;
+                      left: 20%;
+                      transform: translateY(-50%);
+                      font-size: 1.5rem;
+                    }
+
+                  }
+                }
+                .num_data{
+                  float: left;
+                  width: 50%;
+                  height: 100%;
+                  &:after {
+                    content: ".";
+                    display: block;
+                    height: 0;
+                    clear: both;
+                    visibility: hidden;
+                }
+                  div{
+                    height: 33%;
+                    width: 100%;
+                     position:relative;
+                    span{
+                      display: inline-block;
+                      position: absolute;
+                      color: #00deff;
+                      top: 50%;
+                      left: 20%;
+                      transform: translateY(-50%);
+                      font-size: 1.8rem; 
+                      font{
+                        font-size: 1.5rem;
+                      }
+                    }
+                    .shuaxin{
+                      cursor: pointer
+                      }
+                    .imgg{
+                        display: inline-block;
+                        width: 30px;
+                        height: 30px !important;
+                        margin-left: 20px;
+                        background-image: url('../images/shuaxin.png');
+                        background-repeat: no-repeat;
+                        background-size:100% 100%;
+
+                    }
+                  }
+                }
+
+            }
+            .num_week{
+                height: 526/912*100%;
+                border: 3px #00deff;
+                border: 1px solid rgba(0,222,255,0.2);
+                border-radius: 10px;
+                background: rgba(0,0,0,0.2); 
+                position: relative;
+                p{
+                  font-size: 1.2rem;
+                  float: left;
+                  margin-left: 10%;
+                  margin-top: 5%;
+                }
+                
+            }
+          }
+        
+    }
+ }
+ @media screen and (max-width: 600px){
+    #wrapper {
+        font-family: "Microsoft YaHei","SF Pro SC","HanHei SC","PingFang SC",Arial,Helvetica,sans-serif,"SimSun";
+        background-image: url('../images/leftbg.png'),
+                               url('../images/rightbg.png');
+          background-repeat: no-repeat,no-repeat;
+          background-position:left,right;
+          width: 100%;
+          color: #ffffff;
+          &:after {
+                    content: ".";
+                    display: block;
+                    height: 0;
+                    clear: both;
+                    visibility: hidden;
+                }
+        .header{
+            width: 100%;
+            height: 110/1080*100%;
+            background: rgba(0,0,0,0.2);
+            margin-bottom: 10/1080*100%;
+            position: relative;
+        .title{
+              font-family: "Microsoft YaHei","SF Pro SC","HanHei SC","PingFang SC",Arial,Helvetica,sans-serif,"SimSun";
+              font-size: 1.2rem;
+              padding-top: 30px;
+
+        }
+        .info{
+                margin-top: 20px;
+                margin-left: 20px;
+                font-size: 20*@basesize;             
+                p,span{
+                    float: left;
+                    margin-left: 10*@basesize;
+
+                }
+                span{
+                    height: 52*@basesize;
+                    width: 63*@basesize;
+                    /*background-image: url(../images/cloud@2.png);*/
+                    margin-top: -8*@basesize;
+                }
+                &:after {
+                    content: ".";
+                    display: block;
+                    height: 0;
+                    clear: both;
+                    visibility: hidden;
+                }
+              }
+              .signout{
+                position: absolute;
+                right: 40px;
+                top: 3.5rem;
+                cursor: pointer;
+                span{
+                  font-size: 0.5rem;
+                }
+                .imgout{
+                  height: 25px;
+                  width: 20px;
+                  margin-left: 1rem;
+                  margin-top: 1.5rem;
+                  background-image: url(../images/signout.png);
+                  background-size:100% 100%;
+                }
+              }
+         }     
+        .num_now{
+            border: 1px solid rgba(0,222,255,0.2);
+            border-radius: 5px;
+            /*width: 100%;*/
+            height: 250px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            margin-right: 20px;
+            margin-left: 20px;
+            position: relative;
+                p{
+                  font-size: 1rem;
+                  float: left;
+                  margin-left: 5%;
+                }
+                div{
+                    height: 100%;
+                    width: 100%;
+                }
+        }
+        .right_info{
+            width: 100%;
+            float: right;
+            height: 600px;
+            margin-right: 20px;
+            margin-left: 20px;
+
+            .info_num{
+                height: 366/912*100%;
+                border: 1px solid rgba(0,222,255,0.2);
+                margin-bottom: 20/912*100%;
+                border-radius: 10px;
+                background: rgba(0,0,0,0.2); 
+                position: static; 
+                .num_title{
+                  float: left;
+                  width: 50%;
+                  height: 100%;
+
+                  div{
+                    height: 33%;
+                    width: 100%;
+                    position:relative;
+                    /*margin-top: 10px;*/
+                    span{
+                      display: inline-block;
+                      position: absolute;
+                      top: 50%;
+                      left: 20%;
+                      transform: translateY(-50%);
+                      font-size: 1.2rem; 
+                    }
+                  }
+                }
+                .num_data{
+                  float: left;
+                  width: 50%;
+                  height: 100%;
+                  div{
+                    height: 33%;
+                    width: 100%;
+                     position:relative;
+                     /*margin-top: 10px;*/
+                    span{
+                      display: inline-block;
+                      position: absolute;
+                      color: #00deff;
+                      top: 50%;
+                      left: 20%;
+                      transform: translateY(-50%);
+                      font-size: 1.5rem; 
+                    }
+                    .shuaxin{
+                      cursor: pointer
+                      }
+                    .imgg{
+                        display: inline-block;
+                        width: 30px;
+                        height: 30px !important;
+                        margin-left: 20px;
+                        background-image: url('../images/shuaxin.png');
+                        background-repeat: no-repeat;
+                        background-size:100% 100%;
+
+                    }
+                  }
+                }
+            }
+            .num_week{
+                height: 526/912*100%;
+                border: 3px #00deff;
+                border: 1px solid rgba(0,222,255,0.2);
+                border-radius: 10px;
+                background: rgba(0,0,0,0.2); 
+                position: relative;
+                p{
+                  font-size: 1.2rem;
+                  float: left;
+                  margin-left: 10%;
+                  margin-top: 5%;
+                }
+            }
+        }
+        }
+ }
