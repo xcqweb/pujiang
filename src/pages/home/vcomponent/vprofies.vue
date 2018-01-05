@@ -87,17 +87,52 @@ export default {
 		},
     option:null,
     nub:'',
-    set_config:'',
-    chart:null
+    set_config:''
 	}
 	},
+  watch:{
+	  nub:function(){
+      console.log(this.option)
+    }
+  },
 	methods:{
+  get_response(){
+    let start_end_instance =  new Start_end_class('profile',begindaytime);
+    start_end_instance.get_response(this.$el).then(re => {
+      //console.log(re);
+      let data = re.data.data;
+      this.profileData.all_nub = data.all_nub;
+      this.profileData.current_nub = data.current_nub;
+      this.profileData.week_income = data.week_income;
+      this.profileData.year_incom = data.year_incom;
+      this.profileData.yesterday_nub = data.yesterday_nub;
+      this.request();
+      $loading.close();
+    })
+      .catch( e =>{
+        //this.reloading=true;
+        console.log(e);
+      });
+  },
+  request(){
+    let start_end_instance =  new Start_end_class('passengerwarning',begindaytime);
+    start_end_instance.get_response(this.$el).then(re => {
+      //设置默认值
+      let data = re.data.data
+      this.nub = data.nub;
+      this.set_config = data.set_config;
+      this.redom(this.$el);
+    }).catch( e =>{
+      console.log(e);
+    })
+  },
 		showselect(){
 			this.selectlist.selectStatus=true;
 		},
 		redom(id){
 		  let setconfig = this.set_config;
       let nub = this.nub;
+      //alert(nub)
 		  $loading.open({el:this.$el,reload:false});
       this.chart = echarts.init(document.getElementById(id));
 			let option = {
@@ -196,45 +231,14 @@ export default {
         ]
       };
 			this.option = option;
-			this.chart.setOption(this.option);
-		},
-		get_response(){
-      let _self = this;
-      let start_end_instance =  new Start_end_class('profile',begindaytime);
-      start_end_instance.get_response(_self.$el).then(re => {
-          //console.log(re);
-          let data = re.data.data;
-          this.profileData.all_nub = data.all_nub;
-          this.profileData.current_nub = data.current_nub;
-          this.profileData.week_income = data.week_income;
-          this.profileData.year_incom = data.year_incom;
-          this.profileData.yesterday_nub = data.yesterday_nub;
-          _self.redom();
-           $loading.close();
-      })
-        .catch( e =>{
-          this.reloading=true;
-          console.log(e);
-        });
-		},
-    request(){
-      let start_end_instance =  new Start_end_class('passengerwarning',begindaytime);
-      start_end_instance.get_response(this.$el).then(re => {
-        //设置默认值
-        this.nub = re.data.data.nub;
-        this.set_config = re.data.data.set_config;
-        console.log(this.nub,this.set_config);
-        this.redom(this.$el);
-      }).catch( e =>{
-          console.log(e);
-        })
-    }
+			this.chart.setOption(option);
+		}
 	},
 	mounted() {
     this.get_response();
     this.request();
 		this.$nextTick( () => {
-      echarts_resize('vwarning',this);
+        echarts_resize('vwarning',this);
     })
 	},
 	components:{

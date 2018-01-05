@@ -1,5 +1,5 @@
 <template>
-  <div class="box" v-show="visiable">
+  <div class="box" v-show="loading">
     <div class="spinner">
       <div class="spinner-container container1">
         <div class="circle1"></div>
@@ -20,18 +20,17 @@
         <div class="circle4"></div>
       </div>
     </div>
-    <p class="txt">拼命加载中...</p>
+    <p class="txt">loading...</p>
   </div>
 </template>
 
 
 
 <script>
-var _ = require('lodash');
   export default {
     data() {
       return {
-        visiable: false,
+        visiable: true,
       }
     },
     props: {
@@ -41,7 +40,7 @@ var _ = require('lodash');
   }
 </script>
 
-<style>
+<style scoped>
   .box{
     position: absolute;
     top: 0;
@@ -52,7 +51,7 @@ var _ = require('lodash');
     justify-content: center;
     align-items: center;
     background: rgba(0, 0, 0, .2);
-    z-index: 30;
+    z-index: 30000;
   }
   .txt{
     text-align: center;
@@ -62,6 +61,7 @@ var _ = require('lodash');
     font-size: 16px;
    }
   .spinner {
+    position: absolute;
     margin: 100px auto;
     width: 36px;
     height: 36px;
@@ -72,7 +72,6 @@ var _ = require('lodash');
     width: 6px;
     height: 6px;
     background-color: #fff;
-
     border-radius: 100%;
     position: absolute;
     -webkit-animation: bouncedelay 1.2s infinite ease-in-out;

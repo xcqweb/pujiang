@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
-const LoadingConstructor = Vue.extend(require('./loading'))
+const LoadingConstructor = Vue.extend(require('./loading2'))
 
 let instance  = new LoadingConstructor({
     el: document.createElement('div')
@@ -23,16 +23,15 @@ LoadingConstructor.prototype.open = (obj) => {
             el: document.createElement('div')
         })
     }
-        if (instance.visiable) return
-        instance.reload =obj. reload
-        instance.message = obj.message
+        if (instance.visiable) return;
+        instance.reload =obj. reload;
+        instance.message = obj.message;
     if(obj.el){
-        obj.el.appendChild(instance.$el)
+        obj.el.appendChild(instance.$el);
             Vue.nextTick(() => {
             instance.visiable = true
         })
     }
-
         // pageScroll.lock();
 };
 

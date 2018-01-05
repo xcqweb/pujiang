@@ -230,7 +230,7 @@ export default {
         let start_end_instance =  new Start_end_class('passenger',begindaytime);
         start_end_instance.get_response(_self.$el).then(re => {
         _self.twoWeekMock = re.data.data;
-        _self.oneweekMock = re.data.data.substr(7);
+        _self.oneweekMock = re.data.data.slice(7,15);
         _self.redom7();
         $loading.close();
         })

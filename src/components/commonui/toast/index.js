@@ -7,7 +7,7 @@ let instance  = new LoadingConstructor({
 });
 LoadingConstructor.prototype.alert=(text)=>{
   if (instance.visiable) return
-  instance.text = text || '正在加载'
+  instance.text = text || 'loading...'
   document.body.appendChild(instance.$el)
   Vue.nextTick(() => {
     instance.visiable = true
@@ -39,7 +39,7 @@ LoadingConstructor.prototype.close = function () {
   })
 };
 
-window.$toast = instance 
+window.$toast = instance
 
 // export const toastInstance = (text) => {
 //   if (!instance) {

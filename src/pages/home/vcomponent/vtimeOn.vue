@@ -1,9 +1,8 @@
 <template>
   <div class="A5">
-    <div id="container"></div>
+      <Loading :loading="isloading"></Loading>
   </div>
 </template>
-
 <script>
 import Vue from 'vue'
 import echarts_listen_resize from '@/common/js/echarts_listen_resize.js'
@@ -11,10 +10,12 @@ import echarts from 'echarts';
 import Start_end_class from '@/common/js/star_end_class.js'
 import Rw from '@/common/js/until/index'
 import api from '@/api/moudles/tanzhenData'
+import Loading from '@/components/commonui/loading/loading^.vue'
 export default {
     name: 'a5',
     data () {
       return {
+        isloading:true,
         reTimer:null,
         data_arr:{},
         mins:20,
@@ -185,6 +186,7 @@ export default {
                 _self.$nextTick(echarts_listen_resize('container',_self));
                 _self.redom('container');
                   $loading.close();
+                  this.isloading = false;
             })
         },
     },
@@ -192,6 +194,7 @@ export default {
         this.get_respose();
       },
     components:{
+      Loading
     }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
     <transition name="fade">
-		<div class="load-box" v-show="visiable">
+		<div class="load-box" v-show="loading">
 			<div class="loading" v-bind:class="{reload:reload}"  @click.once='reload(reload)'>
 				{{message}}
 			</div>
@@ -15,15 +15,15 @@ var _ = require('lodash');
   export default {
     data() {
       return {
-        visiable: false,
+        //visiable: false,
       }
     },
     props: {
 	  loading:Boolean,
 	  reloading:Boolean,
-	  message:String,
+	  message:String
 	},
-	
+
     methods:{
         reload(reload){
 			if(reload){
@@ -31,7 +31,7 @@ var _ = require('lodash');
 				// Bus.$on('',data);
 				// Bus.$off("")
 			}
-            
+
         },
     },
     mounted(){
