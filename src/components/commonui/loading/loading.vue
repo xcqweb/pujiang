@@ -1,72 +1,175 @@
 <template>
-    <transition name="fade">
-		<div class="load-box" v-show="loading">
-			<div class="loading" v-bind:class="{reload:reload}"  @click.once='reload(reload)'>
-				{{message}}
-			</div>
-		</div>
-    </transition>
+  <div class="box" v-show="loading">
+    <div class="spinner">
+      <div class="spinner-container container1">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+      </div>
+      <div class="spinner-container container2">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+      </div>
+      <div class="spinner-container container3">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+      </div>
+    </div>
+    <p class="txt">loading...</p>
+  </div>
 </template>
 
+
+
 <script>
-/* $loading.open({el:_self.$el,loading:true,message:'正在加载中...',reloading:false}) */
-import Bus from '@/common/js/bus.js'
-var _ = require('lodash');
   export default {
     data() {
       return {
-        //visiable: false,
+        visiable: true,
       }
     },
     props: {
 	  loading:Boolean,
-	  reloading:Boolean,
-	  message:String
 	},
 
-    methods:{
-        reload(reload){
-			if(reload){
-				Bus.$emit('', data);
-				// Bus.$on('',data);
-				// Bus.$off("")
-			}
-
-        },
-    },
-    mounted(){
-    }
   }
 </script>
 
-<style lang="less" scoped>
-@borderColor:#49d9fe;
-@borderLen: 18px;
-.load-box{
-	position: absolute;
-	top: 0;
-	left: 0;
-	width:100%;
-	height:100%;
-	display: flex;
+<style scoped>
+  .box{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:100%;
+    height:100%;
+    display: flex;
     justify-content: center;
-	align-items: center;
-	background: rgba(0, 0, 0, .2);
-    z-index: 30;
+    align-items: center;
+    background: rgba(0, 0, 0, .2);
+    z-index: 30000;
+  }
+  .txt{
+    text-align: center;
+    position: absolute;
+    top: 60%;
+    color: #ccc;
+    font-size: 16px;
+   }
+  .spinner {
+    position: absolute;
+    margin: 100px auto;
+    width: 36px;
+    height: 36px;
+    position: relative;
+  }
 
-}
-.loading{
-	z-index: 399;
-}
-.reload{
-	cursor: pointer;
-	color: blue;
-	font-size: 16px;
-}
-.fade-enter-active, .fade-leave-active {
-    transition: 1s;
-}
-.fade-enter, .fade-leave-active {
-    opacity: 0;
-}
+  .container1 > div, .container2 > div, .container3 > div {
+    width: 6px;
+    height: 6px;
+    background-color: #fff;
+    border-radius: 100%;
+    position: absolute;
+    -webkit-animation: bouncedelay 1.2s infinite ease-in-out;
+    animation: bouncedelay 1.2s infinite ease-in-out;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+
+  .spinner .spinner-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  .container2 {
+    -webkit-transform: rotateZ(45deg);
+    transform: rotateZ(45deg);
+  }
+
+  .container3 {
+    -webkit-transform: rotateZ(90deg);
+    transform: rotateZ(90deg);
+  }
+
+  .circle1 { top: 0; left: 0; }
+  .circle2 { top: 0; right: 0; }
+  .circle3 { right: 0; bottom: 0; }
+  .circle4 { left: 0; bottom: 0; }
+
+  .container2 .circle1 {
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s;
+  }
+
+  .container3 .circle1 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+  }
+
+  .container1 .circle2 {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+  }
+
+  .container2 .circle2 {
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s;
+  }
+
+  .container3 .circle2 {
+    -webkit-animation-delay: -0.7s;
+    animation-delay: -0.7s;
+  }
+
+  .container1 .circle3 {
+    -webkit-animation-delay: -0.6s;
+    animation-delay: -0.6s;
+  }
+
+  .container2 .circle3 {
+    -webkit-animation-delay: -0.5s;
+    animation-delay: -0.5s;
+  }
+
+  .container3 .circle3 {
+    -webkit-animation-delay: -0.4s;
+    animation-delay: -0.4s;
+  }
+
+  .container1 .circle4 {
+    -webkit-animation-delay: -0.3s;
+    animation-delay: -0.3s;
+  }
+
+  .container2 .circle4 {
+    -webkit-animation-delay: -0.2s;
+    animation-delay: -0.2s;
+  }
+
+  .container3 .circle4 {
+    -webkit-animation-delay: -0.1s;
+    animation-delay: -0.1s;
+  }
+
+  @-webkit-keyframes bouncedelay {
+    0%, 80%, 100% { -webkit-transform: scale(0.0) }
+    40% { -webkit-transform: scale(1.0) }
+  }
+
+  @keyframes bouncedelay {
+    0%, 80%, 100% {
+      transform: scale(0.0);
+      -webkit-transform: scale(0.0);
+    } 40% {
+        transform: scale(1.0);
+        -webkit-transform: scale(1.0);
+      }
+  }
 </style>
+
+
