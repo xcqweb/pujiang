@@ -7,12 +7,14 @@
                 <img :src="cutoverImg"/>
             </span>
             <div class="border" v-if='topItem.show'>
+              <keep-alive>
                 <componet
                 :is='topItem.name'
                 :key="topItem.id"
                 :chosemMoudle='cutoverMoudle'
                 :lazyLoad='setLazy'
                 ></componet>
+              </keep-alive>
             </div>
         </div>
     </div>
@@ -23,6 +25,7 @@
                 <img :src="cutoverImg"/>
             </span>
             <div class="border" v-if='topItem.show'>
+              <keep-alive>
                 <componet
                 :is='topItem.name'
                 :key="topItem.id"
@@ -30,6 +33,7 @@
                 :lazyLoad='setLazy'
                 :placeName = 'placeName'
                 ></componet>
+              </keep-alive>
             </div>
         </div>
     </div>

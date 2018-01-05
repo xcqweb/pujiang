@@ -2,34 +2,38 @@
     <div class="box">
         <div class="leftSide" >
             <div class="item"
-                v-for='item in leftComponents' 
+                v-for='item in leftComponents'
                 :class="item.id">
                 <h1>{{item.title}}</h1>
                 <span @click='cutover(item,leftComponents)'>
                     <img :src="cutoverImg"/>
                 </span>
                 <div class="border" v-if='item.show'>
+                  <keep-alive>
                     <componet
-                    :is='item.name' 
-                    :key="item.id" 
+                    :is='item.name'
+                    :key="item.id"
                     :placeName = 'placeName'
                     ></componet>
+                  </keep-alive>
                 </div>
             </div>
         </div>
         <div class="rightSide">
-            <div class="item" 
-                v-for='item in rightComponents' 
+            <div class="item"
+                v-for='item in rightComponents'
                 :class="item.id">
                 <h1>{{item.title}}</h1>
                 <span @click='cutover(item,rightComponents)'>
                     <img :src="cutoverImg"/>
                 </span>
                 <div class="border" v-if='item.show'>
+                  <keep-alive>
                     <componet
-                    :is='item.name' 
-                    :key="item.id" 
+                    :is='item.name'
+                    :key="item.id"
                     ></componet>
+                  </keep-alive>
                 </div>
             </div>
         </div>
@@ -55,7 +59,7 @@ export default {
                     {name:'B3',title:'旅游营销分析',},
                     {name:'B4',title:'路况监控',},
                     {name:'B5',title:'拥堵指数',},
-                    {name:'B6',title:'实时天气',},  
+                    {name:'B6',title:'实时天气',},
                     {name:'B7',title:'省内游客来源地',},
                     {name:'B8',title:'村庄收益分析',},
                     {name:'B9',title:'旅游营业分析',},
@@ -65,7 +69,7 @@ export default {
                     {name:'B13',title:'3',},
                     {name:'B14',title:'4',},
                     {name:'B15',title:'5',},
-                    
+
                 ],
                 current:[
                     {name:'B16',title:'国内游客来源地'},
@@ -94,10 +98,10 @@ export default {
                     {name:'A9',id:'one',index:1,time:2400,show:false,title:'视频监控'},
                     {name:'B4',id:'two',index:2,time:2700,show:false,title:'路况监控'},
                 ],
-                
+
             }
         },
-    computed: { 
+    computed: {
     },
     methods: {
         update(){
@@ -137,7 +141,7 @@ export default {
                })
             },
         render: function(h) { // h 为 createElement 函数，接受三个参数
-            // tag 
+            // tag
             // data
             // children 具体看文档吧
             return h('div',this.allComponents.map(function(componentName) {
@@ -154,20 +158,20 @@ export default {
             $toast.open(item,this.current,this.moudle);
         },
         cutoverMoudle(moudle){
-            
+
 
         },
         setLazy(){
             // console.log(item)
             // window.setTimeout((item) => {
-                    
+
             //         item.show = true;
             //     }, item.time);
         },
         lazy(){
 
         }
-                    
+
     },
     components:{
         ...componetstatus,
@@ -181,12 +185,12 @@ export default {
             (
                 function(){
                     let n=j;
-                    window.setTimeout(() => {        
+                    window.setTimeout(() => {
                         arr[n].show=true
 
-                    }, arr[n].time); 
+                    }, arr[n].time);
                 }
-            )(j)  
+            )(j)
         }
     }
 }

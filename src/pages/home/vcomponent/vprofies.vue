@@ -98,7 +98,7 @@ export default {
 		redom(id){
 		  let setconfig = this.set_config;
       let nub = this.nub;
-		  //$loading.open({reload:false});
+		  $loading.open({el:this.$el,reload:false});
       this.chart = echarts.init(document.getElementById(id));
 			let option = {
         backgroundColor: 'rgba(0,0,0,0)',
@@ -202,8 +202,8 @@ export default {
       let _self = this;
       let start_end_instance =  new Start_end_class('profile',begindaytime);
       start_end_instance.get_response(_self.$el).then(re => {
-        console.log(re);
-        let data = re.data.data;
+          //console.log(re);
+          let data = re.data.data;
           this.profileData.all_nub = data.all_nub;
           this.profileData.current_nub = data.current_nub;
           this.profileData.week_income = data.week_income;

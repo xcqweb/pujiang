@@ -5,7 +5,7 @@
 //调用方式
 // let start_end_instance =  new Start_end_class('timeline',20,10);
 // start_end_instance.get_response().then(re =>{
-//     _self.data_arr = re ;                
+//     _self.data_arr = re ;
 // })
 import Set_arr_class from '@/common/js/set_arr_class.js'
 import api from '@/api/moudles/tanzhenData'
@@ -60,7 +60,7 @@ export default  class Start_end_class extends  Set_arr_class {
         return super.getDateDataArr(re)
     }
     get_timeline(loadingEl){
-        $loading.open({el:loadingEl,message:'正在加载...',reload:false})
+        $loading.open({el:loadingEl,message:'loading...',reload:false})
         let _self = this;
         // let token =window.localStorage.getItem('token')
         let pagram={
@@ -83,7 +83,7 @@ export default  class Start_end_class extends  Set_arr_class {
         return promise
     }
     get_response(loadingEl){
-        $loading.open({el:loadingEl,message:'正在加载...',reload:false})
+        $loading.open({el:loadingEl,message:'loading...',reload:false})
         let _self = this;
         let pagram={
             begintime:this.getBeginTime().beginDay,
@@ -95,7 +95,7 @@ export default  class Start_end_class extends  Set_arr_class {
             }
             //获取含有date,data，contrast（比例尺）三个数组的对象
             //返回Promise继续.then链式调用
-            
+
             $loading.close()
             return Promise.resolve(re)
         }).catch(e => {
@@ -103,4 +103,4 @@ export default  class Start_end_class extends  Set_arr_class {
         });
         return promise
     }
-} 
+}

@@ -2,36 +2,39 @@
     <div class="box">
         <div class="leftSide" >
             <div class="item"
-                v-for='item in leftComponents' 
+                v-for='item in leftComponents'
                 :class="item.id">
                 <h1>{{item.title}}</h1>
                 <span @click='cutover(item,leftComponents)'>
                     <img :src="cutoverImg"/>
                 </span>
                 <div class="border" v-if='item.show'>
+                  <keep-alive>
                     <componet
-                    :is='item.name' 
-                    :key="item.id" 
-                    :inItemsProps = 'inItems' 
-
+                    :is='item.name'
+                    :key="item.id"
+                    :inItemsProps = 'inItems'
                     ></componet>
+                  </keep-alive>
                 </div>
             </div>
         </div>
         <div class="rightSide">
-            <div class="item" 
-                v-for='item in rightComponents' 
+            <div class="item"
+                v-for='item in rightComponents'
                 :class="item.id">
                 <h1>{{item.title}}</h1>
                 <span @click='cutover(item,rightComponents)'>
                     <img :src="cutoverImg"/>
                 </span>
                 <div class="border" v-if='item.show'>
+                  <keep-alive>
                     <componet
-                    :is='item.name' 
-                    :key="item.id" 
+                    :is='item.name'
+                    :key="item.id"
                     :placeAttractionsProps = 'placeAttractions'
                     ></componet>
+                  </keep-alive>
                 </div>
             </div>
         </div>
@@ -99,13 +102,13 @@ export default {
                     {name:'C7',id:'one',index:1,time:2100,show:false,title:'景区游客排行'},
                     {name:'C8',id:'two',index:2,time:2400,show:false,title:'游客来源排行'},
                 ],
-                
+
             }
         },
-    computed: { 
+    computed: {
       ...mapGetters({
           inItems: 'version/inItems',
-          
+
         }),
     },
     methods: {
@@ -147,7 +150,7 @@ export default {
                            })
                         },
                     render: function(h) { // h 为 createElement 函数，接受三个参数
-                        // tag 
+                        // tag
                         // data
                         // children 具体看文档吧
                         return h('div',this.allComponents.map(function(componentName) {
@@ -185,20 +188,20 @@ export default {
                         $toast.open(item,this.current,this.moudle);
                     },
                     cutoverMoudle(moudle){
-                        
+
 
                     },
                     setLazy(){
                         // console.log(item)
                         // window.setTimeout((item) => {
-                                
+
                         //         item.show = true;
                         //     }, item.time);
                     },
                     lazy(){
 
                     }
-                    
+
     },
     components:{
         ...componetstatus,
@@ -211,11 +214,11 @@ export default {
             (
                 function(){
                     let n=j
-                    window.setTimeout(() => {        
+                    window.setTimeout(() => {
                         arr[n].show=true
-                    }, arr[n].time); 
+                    }, arr[n].time);
                 }
-            )()  
+            )()
         }
     }
 }

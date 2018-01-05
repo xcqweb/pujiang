@@ -9,37 +9,41 @@
         </div>
         <div class="topSide" >
             <div class="item"
-                v-for='item in topComponents' 
+                v-for='item in topComponents'
                 :class="item.id">
                 <h1>{{item.title}}</h1>
                 <span @click='cutover(item,topComponents)'>
                     <img :src="cutoverImg"/>
                 </span>
                 <div class="border" v-if='item.show'>
+                  <keep-alive>
                     <componet
-                    :is='item.name' 
-                    :key="item.id"  
-                    :place='place' 
+                    :is='item.name'
+                    :key="item.id"
+                    :place='place'
                     :commentProp = 'comment'
                     ></componet>
+                  </keep-alive>
                 </div>
             </div>
         </div>
         <div class="bottomSide">
-            <div class="item" 
-                v-for='item in bottomComponents' 
+            <div class="item"
+                v-for='item in bottomComponents'
                 :class="item.id">
                 <h1>{{item.title}}</h1>
                 <span @click='cutover(item,bottomComponents)'>
                     <img :src="cutoverImg"/>
                 </span>
                 <div class="border" v-if='item.show'>
+                  <keep-alive>
                     <componet
-                    :is='item.name' 
-                    :key="item.id"  
-                    :place='place' 
+                    :is='item.name'
+                    :key="item.id"
+                    :place='place'
                     :commentProp = 'comment'
                     ></componet>
+                  </keep-alive>
                 </div>
             </div>
         </div>
@@ -105,10 +109,10 @@ export default {
                     {name:'D5',id:'three',index:3,time:1800,show:false,title:'厕所使用率'},
                     {name:'D7',id:'four',index:4,time:2100,show:false,title:'游客支付方式'},
                 ],
-                
+
             }
         },
-    computed: { 
+    computed: {
         ...mapGetters({
             comment:'version/comment',
           }),
@@ -164,7 +168,7 @@ export default {
                })
             },
         render: function(h) { // h 为 createElement 函数，接受三个参数
-            // tag 
+            // tag
             // data
             // children 具体看文档吧
             return h('div',this.allComponents.map(function(componentName) {
@@ -202,20 +206,20 @@ export default {
             $toast.open(item,this.current,this.moudle);
         },
         cutoverMoudle(moudle){
-            
+
 
         },
         setLazy(){
             // console.log(item)
             // window.setTimeout((item) => {
-                    
+
             //         item.show = true;
             //     }, item.time);
         },
         lazy(){
 
         }
-                    
+
     },
     components:{
         ...componetstatus,
@@ -229,11 +233,11 @@ export default {
             (
                 function(){
                     let n=j
-                    window.setTimeout(() => {        
+                    window.setTimeout(() => {
                         arr[n].show=true
-                    }, arr[n].time); 
+                    }, arr[n].time);
                 }
-            )()  
+            )()
         }
     }
 }

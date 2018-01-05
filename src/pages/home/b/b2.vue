@@ -27,9 +27,13 @@ export default {
   },
   computed: {
     persent(){
-      let nub = parseInt(this.nub)|| 1;
-      let setconfig = parseInt(this.set_config) ||1;
-      return (nub/setconfig).toFixed(2)+"%";
+      let nub = parseInt(this.nub);
+      let setconfig = parseInt(this.set_config);
+      if(!nub && !setconfig){
+        return "loading...";
+      }else{
+        return (nub/setconfig).toFixed(2)+"%";
+      }
     }
   },
   methods:{

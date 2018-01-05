@@ -7,10 +7,10 @@ let instance  = new LoadingConstructor({
 });
 LoadingConstructor.prototype.alert=(text,id)=>{
     if (instance.visiable) return
-    instance.text = text || '正在加载'
-    
+    instance.text = text || 'loading...'
+
     let dom =document.getElementById(id)
-    
+
     dom.appendChild(instance.$el)
     Vue.nextTick(() => {
         instance.visiable = true
@@ -32,7 +32,7 @@ LoadingConstructor.prototype.open = (obj) => {
             instance.visiable = true
         })
     }
-    
+
         // pageScroll.lock();
 };
 
@@ -42,7 +42,7 @@ LoadingConstructor.prototype.close = function () {
   })
 };
 
-window.$loading = instance 
+window.$loading = instance
 
 // export const toastInstance = (text) => {
 //   if (!instance) {
