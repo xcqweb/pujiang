@@ -36,6 +36,7 @@
 		<span>{{profileData.all_nub}}</span>
 		<font>人</font>
 	</div>
+    <Loading v-show="isloading"></Loading>
   </div>
 </template>
 
@@ -48,11 +49,12 @@ import vSelect from '../../../components/commonui/dropdown/dropdown-menu.vue'
 import Rw from '@/common/js/until/index.js'
 import Start_end_class from '@/common/js/star_end_class.js'
 import {begindaytime} from '@/common/js/gtime.js'
-
+import Loading from '@/components/commonui/loading/loading.vue'
 export default {
 	name: 'a2',
 	data () {
 	return {
+	  isloading:false,
 		profileData:{
 			all_nub:'',
 			current_nub:'',
@@ -99,7 +101,7 @@ export default {
   get_response(){
     let start_end_instance =  new Start_end_class('profile',begindaytime);
     start_end_instance.get_response(this.$el).then(re => {
-      //console.log(re);
+      this.isloading=false;
       let data = re.data.data;
       this.profileData.all_nub = data.all_nub;
       this.profileData.current_nub = data.current_nub;
@@ -107,21 +109,22 @@ export default {
       this.profileData.year_incom = data.year_incom;
       this.profileData.yesterday_nub = data.yesterday_nub;
       this.request();
-      $loading.close();
     })
       .catch( e =>{
-        //this.reloading=true;
         console.log(e);
       });
   },
   request(){
+    this.isloading = true;
     let start_end_instance =  new Start_end_class('passengerwarning',begindaytime);
     start_end_instance.get_response(this.$el).then(re => {
       //设置默认值
+      this.isloading = false;
       let data = re.data.data
       this.nub = data.nub;
       this.set_config = data.set_config;
-      this.redom(this.$el);
+      this.redom();
+      this.isloading = false;
     }).catch( e =>{
       console.log(e);
     })
@@ -132,8 +135,6 @@ export default {
 		redom(id){
 		  let setconfig = this.set_config;
       let nub = this.nub;
-      //alert(nub)
-		  $loading.open({el:this.$el,reload:false});
       this.chart = echarts.init(document.getElementById(id));
 			let option = {
         backgroundColor: 'rgba(0,0,0,0)',
@@ -241,9 +242,11 @@ export default {
         echarts_resize('vwarning',this);
     })
 	},
+
 	components:{
-		vSelect
-	}
+		vSelect,
+    Loading
+  }
 }
 </script>
 

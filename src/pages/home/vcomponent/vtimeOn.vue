@@ -1,6 +1,6 @@
 <template>
   <div class="A5">
-      <Loading :loading="isloading"></Loading>
+      <Loading v-show="isloading"></Loading>
   </div>
 </template>
 <script>
@@ -10,12 +10,12 @@ import echarts from 'echarts';
 import Start_end_class from '@/common/js/star_end_class.js'
 import Rw from '@/common/js/until/index'
 import api from '@/api/moudles/tanzhenData'
-import Loading from '@/components/commonui/loading/loading^.vue'
+import Loading from '@/components/commonui/loading/loading.vue'
 export default {
     name: 'a5',
     data () {
       return {
-        isloading:true,
+        isloading:false,
         reTimer:null,
         data_arr:{},
         mins:20,
@@ -134,7 +134,6 @@ export default {
             let _self=this;
             var i = 8;
             let timerIndex = Math.round((_self.mins*60) / _self.btwsecends)-5;
-            $loading.open({el:_self.$el,reload:false});
             this.chart = echarts.init(document.getElementById(id));
             this.chart.setOption(this.option);
             if (this.reTimer) {
@@ -172,21 +171,23 @@ export default {
             }, _self.btwsecends*1000);
         },
         get_respose(){
+          this.isloading = true;
             let _self = this;
             _self.mins= 20;
             self.btwsecends = 5;
             let start_end_instance =  new Start_end_class('timeline',_self.mins,Math.round((_self.mins*60) / _self.btwsecends));
             start_end_instance.get_timeline(_self.$el).then(re =>{
                 _self.data_arr = re ;
-                console.log(re+'timeline ');
+
+                //console.log(re+'timeline ');
               _self.option.xAxis.data=re.date.reverse();
               _self.option.series.data=re.data.reverse();
               _self.option.yAxis.max = Math.max(...re.data);
                 Rw.judgment_until.typesof(_self.data_arr);
-                _self.$nextTick(echarts_listen_resize('container',_self));
                 _self.redom('container');
-                  $loading.close();
-                  this.isloading = false;
+                this.isloading = false;
+                _self.$nextTick(echarts_listen_resize('container',_self));
+
             })
         },
     },
@@ -202,9 +203,8 @@ export default {
 <style lang="less" scoped>
 .A5{
     width:100%;
-    height:80%;
+    height:100%;
   position: absolute;
-  top: 56px;
     #container{
         width:100%;
         height:100%;

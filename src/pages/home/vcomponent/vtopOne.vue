@@ -5,6 +5,7 @@
         <span class="oneweek " v-bind:class="{ chose: isActive }" @click='redom7'>7日</span>
         <span class="twoweek" v-bind:class="{ chose: !isActive }" @click='redom14'>14日</span>
     </div>
+    <Loading v-if="isloading"></Loading>
   </div>
 </template>
 <script>
@@ -19,11 +20,13 @@ import Start_end_class from '@/common/js/star_end_class.js'
 import Bus from '@/common/js/bus.js'
 import axios from 'axios'
 import {begindaytime} from '@/common/js/gtime.js'
+import Loading from '@/components/commonui/loading/loading.vue'
 export default {
     name:'a1',
     mixins: [timeMixin],
     data() {
       return {
+        isloading:false,
         chart: null,
         isActive:true,
         xnub:null,
@@ -69,6 +72,9 @@ export default {
     },
     store:store,
     computed:{
+
+    },
+  beforeCreate(){
 
     },
     methods: {
@@ -224,6 +230,7 @@ export default {
         this.chart.setOption(option)
       },
     request(){
+      this.isloading = true;
         let _self = this;
         // this.$router.push({ path: '/' });
       //请求数据
@@ -232,17 +239,18 @@ export default {
         _self.twoWeekMock = re.data.data;
         _self.oneweekMock = re.data.data.slice(7,15);
         _self.redom7();
-        $loading.close();
+          this.isloading=false;
         })
         .catch(e=>{
             console.log(e)
         })
     }
     },
-    components:{},
-    created() {
-          this.request();
-          this.redom7();
+    components:{
+      Loading
+    },
+    mounted() {
+      this.request();
     }
   }
 </script>

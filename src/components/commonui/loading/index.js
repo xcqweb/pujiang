@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
-const LoadingConstructor = Vue.extend(require('./loading2'))
+const LoadingConstructor = Vue.extend(require('./loading'))
 
 let instance  = new LoadingConstructor({
     el: document.createElement('div')
@@ -41,7 +41,7 @@ LoadingConstructor.prototype.close = function () {
   })
 };
 
-window.$loading = instance
+//window.$loading = instance
 
 // export const toastInstance = (text) => {
 //   if (!instance) {

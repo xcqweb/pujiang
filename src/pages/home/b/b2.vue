@@ -6,6 +6,7 @@
         </div>
         <span>{{persent}}</span>
         <div class="text"><font>预警客流</font><font>{{this.set_config}}</font></div>
+      <Loading v-show="isloading"></Loading>
     </div>
 </template>
 
@@ -15,10 +16,12 @@ import echarts_resize from '../../../common/js/echarts_resize.js'
 import echarts from 'echarts';
 import Start_end_class from '@/common/js/star_end_class.js'
 import {begindaytime} from '@/common/js/gtime.js'
+import Loading from '@/components/commonui/loading/loading.vue'
 export default {
   name: 'b2',
   data () {
     return {
+        isloading:false,
         imgacircle:require('../../../assets/images/home/b/circle.png'),
         option:null,
         nub:'',
@@ -30,7 +33,7 @@ export default {
       let nub = parseInt(this.nub);
       let setconfig = parseInt(this.set_config);
       if(!nub && !setconfig){
-        return "loading...";
+        return "";
       }else{
         return (nub/setconfig).toFixed(2)+"%";
       }
@@ -42,11 +45,13 @@ export default {
           this.chart.setOption(this.option);
       },
   request(){
+    this.isloading = true;
     let start_end_instance =  new Start_end_class('passengerwarning',begindaytime);
     start_end_instance.get_response(this.$el).then(re => {
       //设置默认值
       this.nub = re.data.data.nub;
       this.set_config = re.data.data.set_config;
+      this.isloading=false;
       let nub = this.nub;
       let setconfig = tihs.set_config;
       let option={
@@ -93,7 +98,7 @@ export default {
           ]
       };
       this.option = option;
-      this.redom(this.$el);
+      this.redom();
     }).catch( e =>{
       console.log(e);
     })
@@ -104,6 +109,7 @@ export default {
     this.$nextTick(echarts_resize('pieB2',this))
   },
   components:{
+    Loading
   }
 }
 </script>

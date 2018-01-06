@@ -1,5 +1,5 @@
 <template>
-  <div class="box" v-show="loading">
+  <div class="box">
     <div class="spinner">
       <div class="spinner-container container1">
         <div class="circle1"></div>
@@ -30,12 +30,8 @@
   export default {
     data() {
       return {
-        visiable: true,
       }
-    },
-    props: {
-	  loading:Boolean,
-	},
+    }
 
   }
 </script>
@@ -51,7 +47,7 @@
     justify-content: center;
     align-items: center;
     background: rgba(0, 0, 0, .2);
-    z-index: 30000;
+    z-index: 30;
   }
   .txt{
     text-align: center;
