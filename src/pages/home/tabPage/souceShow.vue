@@ -16,14 +16,14 @@
                     <img :src="cutoverImg"/>
                 </span>
                 <div class="border" v-if='item.show'>
-                  <!--<keep-alive>-->
+                  <keep-alive>
                     <componet
                     :is='item.name'
                     :key="item.id"
                     :place='place'
                     :commentProp = 'comment'
                     ></componet>
-                  <!--</keep-alive>-->
+                  </keep-alive>
                 </div>
             </div>
         </div>
@@ -36,14 +36,14 @@
                     <img :src="cutoverImg"/>
                 </span>
                 <div class="border" v-if='item.show'>
-                  <!--<keep-alive>-->
+                  <keep-alive>
                     <componet
                     :is='item.name'
                     :key="item.id"
                     :place='place'
                     :commentProp = 'comment'
                     ></componet>
-                  <!--</keep-alive>-->
+                  </keep-alive>
                 </div>
             </div>
         </div>

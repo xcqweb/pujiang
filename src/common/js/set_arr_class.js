@@ -18,7 +18,7 @@ export default class Set_arr_class  {
         };
         if(!response){
             console.log('response is undefine');
-            return 
+            return
         }
         let endtimea = response.config.params.endtime;
         let nub = response.data.data;
@@ -62,7 +62,7 @@ export default class Set_arr_class  {
                         beginh='0'+beginh
                         }
                     m='0'+m
-                    hm= beginh+''+beginm;      
+                    hm= beginh+''+beginm;
                 }
                 if(mon<10){
                     mon='0'+mon
@@ -77,27 +77,27 @@ export default class Set_arr_class  {
                 arr.data[i]=0;
                 arr.contrast[i] =parseInt(h+''+m+''+s)  ;
                 arr.date[i]= +h+':'+m+':'+s;
-                
+
             }
         }
-        
+
         this.random(arr,nub,this.times)
-        
+
         for(name in arr){
             arr[name] = arr[name].reverse()
         }
-        console.log(arr)
+        //console.log(arr)
         return arr
      }
      //随机分配数据
      random(arr,nub,times){
 
         for(var i = 0; i < nub; i++) {
-            
+
             var n=Math.round(Math.random()*times);
             if(n === times){
                 n = times - 1 ;
-            } 
+            }
             arr.data[n]++;
             nub--;
         }

@@ -1,9 +1,9 @@
 <template>
     <div class="video">
-        <video  src="../../../assets/video/baishizhou.mp4"  autoplay="autoplay"  loop="loop" style="">
+        <video controls="controls"  src="../../../assets/video/baishizhou.mp4"  autoplay="autoplay"  loop="loop" style="">
             您的浏览器不支持 video 标签。
         </video>
-        <video  src="../../../assets/video/kaiyuan.mp4"  autoplay="autoplay"  loop="loop" style="">
+        <video controls="controls"  src="../../../assets/video/kaiyuan.mp4"  autoplay="autoplay"  loop="loop" style="">
             您的浏览器不支持 video 标签。
         </video>
     </div>

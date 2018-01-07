@@ -9,9 +9,9 @@
             </div>
         </router-link>
         <router-view class='mockrouter'></router-view>
-        <div class="side-nav-container"> 
-            <ul class="nav-side"> 
-                  <li class='item' 
+        <div class="side-nav-container">
+            <ul class="nav-side">
+                  <li class='item'
                   v-for='item in items'>
                       <ul>
                           <li :class="item.status" @click='chosse(item)'><router-link v-bind:to={path:item.link}></router-link></li>
@@ -19,9 +19,9 @@
                           <li></li>
                           <li></li>
                       </ul>
-                  </li>  
-            </ul> 
-        </div> 
+                  </li>
+            </ul>
+        </div>
         <router-link v-bind:to={path:link} v-show='down' >
             <div class="next" @click='changelink'>
                 <div class="dot1"></div>
@@ -132,10 +132,9 @@ export default {
                 this.link='/login/pageseven'
                 break;
             }
-
             this.propDotStyle()
             },
-            
+
         },
         mounted() {
             Nest()
@@ -308,7 +307,7 @@ export default {
             display: inline-block;
             height: 140%;
             width: 44/1920*100vh;
-            
+
             transform: translateY(25%);
             background:url('../assets/images/login/logo.png') no-repeat  center;
             background-size: 100% 100%;
@@ -326,7 +325,7 @@ export default {
         bottom: 2px;
         z-index:77;
         cursor: pointer;
-        
+
         span{
             position:absolute;
             display: block;
@@ -350,7 +349,7 @@ export default {
 }
 a:link { text-decoration: none;}
 a:active { text-decoration:none}
-a:hover { text-decoration:none;} 
+a:hover { text-decoration:none;}
 a:visited { text-decoration: none;}
 a{
     display:inline-block;
@@ -428,7 +427,7 @@ a{
 
             }
         }
-    }  
+    }
 }
 
 </style>

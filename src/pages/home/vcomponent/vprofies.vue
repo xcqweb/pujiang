@@ -94,7 +94,7 @@ export default {
 	},
   watch:{
 	  nub:function(){
-      console.log(this.option)
+      this.redom("vwarning");
     }
   },
 	methods:{
@@ -108,7 +108,6 @@ export default {
       this.profileData.week_income = data.week_income;
       this.profileData.year_incom = data.year_incom;
       this.profileData.yesterday_nub = data.yesterday_nub;
-      this.request();
     })
       .catch( e =>{
         console.log(e);
@@ -123,7 +122,7 @@ export default {
       let data = re.data.data
       this.nub = data.nub;
       this.set_config = data.set_config;
-      this.redom();
+      this.redom("vwarning");
       this.isloading = false;
     }).catch( e =>{
       console.log(e);
@@ -238,9 +237,7 @@ export default {
 	mounted() {
     this.get_response();
     this.request();
-		this.$nextTick( () => {
-        echarts_resize('vwarning',this);
-    })
+    this.$nextTick(echarts_resize('vwarning',this));
 	},
 
 	components:{

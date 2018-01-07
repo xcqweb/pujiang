@@ -74,9 +74,6 @@ export default {
     computed:{
 
     },
-  beforeCreate(){
-
-    },
     methods: {
     redom7(){
         if(this.chart){
@@ -238,7 +235,7 @@ export default {
         start_end_instance.get_response(_self.$el).then(re => {
         _self.twoWeekMock = re.data.data;
         _self.oneweekMock = re.data.data.slice(7,15);
-        _self.redom7();
+        _self.redom7("righthz");
           this.isloading=false;
         })
         .catch(e=>{

@@ -23,7 +23,6 @@ export default {
     return {
         isloading:false,
         imgacircle:require('../../../assets/images/home/b/circle.png'),
-        option:null,
         nub:'',
         set_config:''
     }
@@ -53,7 +52,7 @@ export default {
       this.set_config = re.data.data.set_config;
       this.isloading=false;
       let nub = this.nub;
-      let setconfig = tihs.set_config;
+      let setconfig = this.set_config;
       let option={
         backgroundColor: 'rgba(0,0,0,0)',
         series: [
@@ -98,7 +97,8 @@ export default {
           ]
       };
       this.option = option;
-      this.redom();
+      this.redom("pieB2");
+      this.$nextTick(echarts_resize('pieB2',this));
     }).catch( e =>{
       console.log(e);
     })
@@ -106,7 +106,6 @@ export default {
   },
   mounted() {
     this.request();
-    this.$nextTick(echarts_resize('pieB2',this))
   },
   components:{
     Loading

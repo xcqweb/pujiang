@@ -59,8 +59,7 @@ export default  class Start_end_class extends  Set_arr_class {
     to_arr(re){
         return super.getDateDataArr(re)
     }
-    get_timeline(loadingEl){
-        $loading.open({el:loadingEl,message:'loading...',reload:false})
+    get_timeline(){
         let _self = this;
         // let token =window.localStorage.getItem('token')
         let pagram={
@@ -71,19 +70,17 @@ export default  class Start_end_class extends  Set_arr_class {
             if(re ===undefined){
                 return Promise.reject(re)
             }
-            console.log(re)
+            //console.log(re)
             //获取含有date,data，contrast（比例尺）三个数组的对象
             let date_data_arr = _self.to_arr(re);
             //返回Promise继续.then链式调用
-            $loading.close()
             return Promise.resolve(date_data_arr)
         }).catch(e => {
             console.log(e);
         });
         return promise
     }
-    get_response(loadingEl){
-        $loading.open({el:loadingEl,message:'loading...',reload:false})
+    get_response(){
         let _self = this;
         let pagram={
             begintime:this.getBeginTime().beginDay,
@@ -96,7 +93,6 @@ export default  class Start_end_class extends  Set_arr_class {
             //获取含有date,data，contrast（比例尺）三个数组的对象
             //返回Promise继续.then链式调用
 
-            $loading.close()
             return Promise.resolve(re)
         }).catch(e => {
             console.log(e);

@@ -4,11 +4,11 @@
         <p @click='triggle' class="dropdown-menu-p">{{selectList.title}}</p>
         <span :class="upDown"></span>
         <transition name="dropdown-fade">
-            <dropdownList 
-            :list='selectList.place'  
-            :status='menueshow' 
+            <dropdownList
+            :list='selectList.place'
+            :status='menueshow'
             v-on:itemtodo='outcrement'
-            v-if='selectList.selectStatus'>        
+            v-if='selectList.selectStatus'>
             </dropdownList>
         </transition>
     </div>
@@ -26,7 +26,7 @@ import Vue from 'vue'
         props: [
             'selectList',
         ],
-        computed:{    
+        computed:{
         },
         watch:{
             menueshow:function (val){
@@ -63,8 +63,8 @@ import Vue from 'vue'
             },
             showselect(){
                 this.selectList.selectStatus=true;
-                
-                
+
+
             },
         }
     }
@@ -94,7 +94,7 @@ import Vue from 'vue'
             hidelist(){
                 this.$emit('itemtodo');
             },
-                
+
         },
     }
 
@@ -121,6 +121,7 @@ import Vue from 'vue'
     margin-left:25px !important;
     color: white;
     box-shadow: 1px 0 30px  rgba(1,1,13,0.4);
+    padding-left: 20px;
     .up{
         display:inline-block;
         position: absolute;
@@ -185,7 +186,7 @@ import Vue from 'vue'
 
 .dropdown-menu-p{
     position: absolute;
-    left:0;
+    left:-10px;
     top:0;
     height: 100%;
     width: 100%;

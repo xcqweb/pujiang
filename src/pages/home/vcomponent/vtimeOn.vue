@@ -1,5 +1,6 @@
 <template>
   <div class="A5">
+      <div id="container"></div>
       <Loading v-show="isloading"></Loading>
   </div>
 </template>
@@ -169,6 +170,7 @@ export default {
                     }]
                 });
             }, _self.btwsecends*1000);
+          this.$nextTick(echarts_listen_resize('container',this));
         },
         get_respose(){
           this.isloading = true;
@@ -178,21 +180,19 @@ export default {
             let start_end_instance =  new Start_end_class('timeline',_self.mins,Math.round((_self.mins*60) / _self.btwsecends));
             start_end_instance.get_timeline(_self.$el).then(re =>{
                 _self.data_arr = re ;
-
-                //console.log(re+'timeline ');
               _self.option.xAxis.data=re.date.reverse();
               _self.option.series.data=re.data.reverse();
               _self.option.yAxis.max = Math.max(...re.data);
                 Rw.judgment_until.typesof(_self.data_arr);
                 _self.redom('container');
-                this.isloading = false;
-                _self.$nextTick(echarts_listen_resize('container',_self));
-
+               this.isloading = false;
             })
+          this.$nextTick(echarts_listen_resize('container',this));
         },
     },
     mounted() {
         this.get_respose();
+        this.$nextTick(echarts_listen_resize('container',this));
       },
     components:{
       Loading

@@ -8,7 +8,6 @@
             //解决resize,触发两次，使用setTimeout
           if (resizeTimer) clearTimeout(resizeTimer);
           resizeTimer = window.setTimeout(function() {
-            
             _self.redom(echart_id);
           }, 330);
         },false);
