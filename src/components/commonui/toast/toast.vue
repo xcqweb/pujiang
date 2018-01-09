@@ -62,7 +62,7 @@ var _ = require('lodash');
 
             item.name=this.numb.name
             item.title=this.numb.title
-
+						//bus传递选中,模块的数据 给homepage product .. 等模块
             Bus.$emit('cutoverMoudle', data);
             
         }

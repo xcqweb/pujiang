@@ -4,18 +4,18 @@
             <div class="item"
                 v-for='item in leftComponents'
                 :class="item.id">
-                <h1>{{item.title}}</h1>
+                <h1 :class="{a5:item.id==='three'}">{{item.title}}</h1>
                 <span @click='cutover(item,leftComponents)'>
                     <img :src="cutoverImg"/>
                 </span>
                 <div class="border" v-if='item.show'>
-                  <keep-alive>
+                  <!--<keep-alive>-->
                     <componet
                     :is='item.name'
                     :key="item.id"
                     :placeName = 'placeName'
                     ></componet>
-                  </keep-alive>
+                  <!--</keep-alive>-->
                 </div>
             </div>
         </div>
@@ -24,16 +24,17 @@
                 v-for='item in rightComponents'
                 :class="item.id">
                 <h1>{{item.title}}</h1>
+               <!--点击切换选中的模块--> 
                 <span @click='cutover(item,rightComponents)'>
                     <img :src="cutoverImg"/>
                 </span>
                 <div class="border" v-if='item.show'>
-                  <keep-alive>
+                  <!--<keep-alive>-->
                     <componet
                     :is='item.name'
                     :key="item.id"
                     ></componet>
-                  </keep-alive>
+                  <!--</keep-alive>-->
                 </div>
             </div>
         </div>
@@ -148,6 +149,7 @@ export default {
                 return h(componentName)
             }))
         },
+        //切换模块事件
         cutover(item,topOrBottom){
             this.cutoverStatus=topOrBottom;
             Bus.$on('cutoverMoudle', data => {

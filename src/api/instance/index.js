@@ -7,7 +7,7 @@ import {API_HZ} from '@/api/env.js'
 axios.defaults.timeout = 100000; //5000的超时验证
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
 //创建一个axios实例
-//console.log('axios创建实例')
+console.log('axios创建实例')
 const instance = axios.create();
 let token =window.localStorage.getItem('token');
 instance.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
@@ -28,6 +28,7 @@ instance.interceptors.request.use(
 );
 //respone拦截器
 instance.interceptors.response.use(
+	
     response => {
         if (response.data.code == 200) {
             return response;

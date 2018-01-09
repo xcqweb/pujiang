@@ -84,7 +84,7 @@
                         barMaxWidth:6,
                         type: 'category',
                         data: datax,
-                        fontSize: 6,
+                        fontSize: '90%',
                         scale: true,
                         lineStyle:2,
                         splitNumber:14,
@@ -98,7 +98,7 @@
                          axisLabel: {
                              textStyle: {
                                  color: '#ffffff',//x坐标轴标签字体颜色
-                                 fontSize: 12,
+                                 fontSize: '85%',
                              },
                         },
                         axisTick:{
@@ -127,7 +127,7 @@
                             showMinLabel:true,
                             textStyle:{
                                 color:'#ffffff',
-                                fontSize: 12,
+                                fontSize: '80%',
                             },
                             formatter: '{value} %'
                         },
@@ -158,6 +158,7 @@
                             position:'top',
                             textStyle:{
                                 color:'#2CC9E2',
+                                fontSize:"80%"
                             },
                             formatter: '{c}%'
                         }

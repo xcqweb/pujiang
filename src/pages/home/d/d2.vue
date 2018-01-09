@@ -9,7 +9,7 @@
     }
     h1{
         position:absolute;
-        top:1.3rem;
+        top: 0.8rem;
         left:2rem;
         font-size: 1.1rem;
         color:white;
@@ -120,7 +120,7 @@
                          axisLabel: {
                              textStyle: {
                                  color: '#ffffff',//x坐标轴标签字体颜色
-                                 fontSize: 10,
+                                 fontSize: "95%",
                              },
                         },
                         axisTick:{
@@ -149,7 +149,7 @@
                             showMinLabel:true,
                             textStyle:{
                                 color:'#ffffff',
-                                fontSize: 10,
+                                fontSize: '85%',
                             },
                             formatter: '{value}万元'
                         },
@@ -180,8 +180,9 @@
                             position:'top',
                             textStyle:{
                                 color:'#2CC9E2',
+                                fontSize:"90%"
                             },
-                            formatter: '{c}%'
+                            formatter: '{c}万'
                         }
                        },
                     }

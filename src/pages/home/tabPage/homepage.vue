@@ -3,29 +3,30 @@
     <div class="top">
         <div v-for='topItem in topComponents' :class='topItem.id'>
             <h1>{{topItem.title}}</h1>
+            <!--bus传值 处理toast模块选中的数据-->
             <span @click='cutover(topItem,topComponents)'>
                 <img :src="cutoverImg"/>
             </span>
             <div class="border" v-if='topItem.show'>
-              <keep-alive>
+              <!--<keep-alive>-->
                 <componet
                 :is='topItem.name'
                 :key="topItem.id"
                 :chosemMoudle='cutoverMoudle'
                 :lazyLoad='setLazy'
                 ></componet>
-              </keep-alive>
+              <!--</keep-alive>-->
             </div>
         </div>
     </div>
     <div class="bottom">
         <div v-for='topItem in bottomComponents' :class='topItem.id'>
-            <h1>{{topItem.title}}</h1>
+            <h1 :class="{a5:topItem.id==='one',a8:topItem.id==='four'}">{{topItem.title}}</h1>
             <span @click='cutover(topItem,bottomComponents)'>
                 <img :src="cutoverImg"/>
             </span>
             <div class="border" v-if='topItem.show'>
-              <keep-alive>
+              <!--<keep-alive>-->
                 <componet
                 :is='topItem.name'
                 :key="topItem.id"
@@ -33,7 +34,7 @@
                 :lazyLoad='setLazy'
                 :placeName = 'placeName'
                 ></componet>
-              </keep-alive>
+              <!--</keep-alive>-->
             </div>
         </div>
     </div>
@@ -184,6 +185,7 @@ export default {
                     return h(componentName)
                 }))
             },
+            //bus 传值事件处理函数
             cutover(item,topOrBottom){
                 this.cutoverStatus=topOrBottom;
                 Bus.$on('cutoverMoudle', data => {
@@ -230,6 +232,7 @@ export default {
             }
 
         },
+        
         mounted() {
             // var els = document.getElementsByTagName('canvas');
             // els.setAttribute('display', 'none');
@@ -262,5 +265,4 @@ export default {
 
 <style lang="less" type="text/less" scoped >
     @import '../../../assets/style/home.less';
-
 </style>

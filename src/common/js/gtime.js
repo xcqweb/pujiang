@@ -9,10 +9,11 @@ var m=date.getMinutes()< 10 ? '0'+date.getMinutes() : date.getMinutes(); //获�
 var s=date.getSeconds()< 10 ? '0'+date.getSeconds() : date.getSeconds(); //获取秒
 
 export var endtime=year+''+mon+''+da+''+h+''+m+''+s;
+export var enddaytime = year+''+mon+''+da;
 var endtDate=endtime.slice(0,4)+'/'+endtime.slice(4,6)+'/'+endtime.slice(6,8)+' '+endtime.slice(8,10)+':'+endtime.slice(10,12)+':'+endtime.slice(12,14);
 var dt = new Date(endtDate);
 var t_s=dt.getTime()
-dt.setTime(t_s-1000*differ*60)
+dt.setTime(t_s-100000*differ*60)
 var hm= '';
 var dt_year=dt.getFullYear(); //获取当前年份
 var dt_mon=dt.getMonth()+1< 10 ? '0'+(dt.getMonth()+1) : dt.getMonth()+1; //获取当前月份
@@ -24,3 +25,6 @@ var dt_s=dt.getSeconds()< 10 ? '0'+dt.getSeconds() : dt.getSeconds();; //获取�
 export var begintime= dt_year+dt_mon+dt_da+dt_h+dt_m+dt_s;
 export var begindaytime= dt_year+dt_mon+dt_da;
 export var  todaybegin=dt_year+dt_mon+dt_da+'000000';
+
+//暴露请求时间对象
+export var params = {begintime:begindaytime,endtime:enddaytime};

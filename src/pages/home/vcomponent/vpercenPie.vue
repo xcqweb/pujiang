@@ -1,16 +1,22 @@
+
+<!--y营销推广-->
 <template>
     <div class="content">
         <div id="percentA"></div>
-    </div>  
+        <Loading class='loading' v-show="isloading"></Loading>
+    </div>
 </template>
 
 <script type="text/javascript">
 import echarts_resize from '../../../common/js/echarts_resize.js'
 import echarts from 'echarts';
+import api from '@/api/index.js'
+import Loading from '@/components/commonui/loading/loading.vue'
 export default {
     name:'a8',
     data(){
         return{
+        	isloading:false,
             option:{
               backgroundColor: 'rgba(0, 0, 0, 0)',
               color: ['#f18790', '#75c774', '#5aa7fd','#f1c54b','#c184ff','6792fb'],
@@ -33,7 +39,7 @@ export default {
                     animationType:'expansion',
                     data:[
                         {
-                            value:20.5, 
+                            value:20.5,
                             name:'微信',
                             label:{
                                 normal:{
@@ -120,8 +126,8 @@ export default {
                                 },
                             }
                          },
-                         {
-                            value:5.5, 
+                        {
+                            value:5.5,
                             name:'其他',
                             label:{
                                 normal:{
@@ -166,11 +172,34 @@ export default {
             let w=this.chart.getWidth()
             let d=this.chart.getDom()
             this.chart.setOption(this.option);
-
-        }
+            //console.log(this.option.series[0].data[0].value);
+        },
+        //请求数据
+	  	getData(){
+	  		api.marketing(api.params).then( (re) =>{
+	    		let reData = re.data.Referrer;
+	    		if(re){
+	    			this.isloading = false;
+	    		}
+				reData.forEach( (item,index) => {
+					this.option.series[0].data[index].value = item.value;
+					//this.option.series[0].data[index].name = item.name;
+				});
+				 this.redom('percentA');
+		    }).catch( (e) => {
+		    	console.log(e);
+		    })
+	  	}
+    },
+    created(){
+    	this.isloading = true;
     },
     mounted() {
-          this.$nextTick($sheet.echartRL('percentA',this))
+    	this.getData();
+        this.$nextTick($sheet.echartRL('percentA',this))
+    },
+    components:{
+    	Loading
     }
 }
 </script>

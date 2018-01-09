@@ -1,3 +1,5 @@
+
+<!--游客满意度-->
 <template>
   <div>
     <div class="face"></div>
@@ -5,30 +7,52 @@
     <input type="range" id="r" min="0" max="100" step="1">
     <span class="value">{{value}}%</span>
     <span class="nub">{{nub}}<font>万人</font></span>
+    <Loading class='loading' v-show="isloading"></Loading>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
 import Rw from '@/common/js/until/index.js'
+import api from '@/api/index.js'
+import Loading from '@/components/commonui/loading/loading.vue'
 export default {
   name: 'a4',
   data () {
     return {
-        value:90,
-        people:6862,
+    		isloading:false,
+        value:'',
+        people:'',
     }
   },
   computed: {
     nub:function(){
-        return Rw.string_until.addPoint(this.people)
+    	//加上标点
+      return Rw.string_until.addPoint(this.people)
     }
   },
+  created(){
+  	this.isloading = true;
+  },
   methods: {
+  	//请求数据
+  	getData(){
+  		api.ouristSatisfaction(api.params).then( (re) =>{
+    		let reData = re.data.satisfation;
+				this.value = reData.value;
+				this.people = reData.nub;
+					this.isloading = false;
+	    }).catch( (e) => {
+	    	console.log(e);
+	    })
+  	}
   },
   components:{
+  	Loading
   },
   mounted(){
+  	this.getData();
+  	
     let _self = this;
      var canvas = document.getElementById('c');
         var ctx = canvas.getContext('2d');
@@ -51,7 +75,7 @@ export default {
         var sX = 0;
         var sY = mH / 2;
         var axisLength = mW; //轴长
-        var waveWidth = 0.015 ;   //波浪宽度,数越小越宽    
+        var waveWidth = 0.015 ;   //波浪宽度,数越小越宽
         var waveHeight = 6; //波浪高度,数越大越高
         var speed = 0.09; //波浪速度，数越大速度越快
         var xOffset = 0; //波浪x偏移量
@@ -87,7 +111,7 @@ export default {
                 var dY = mH * (1 - nowRange / 100 );
 
                 points.push([x, dY + y * waveHeight]);
-                ctx.lineTo(x, dY + y * waveHeight);     
+                ctx.lineTo(x, dY + y * waveHeight);
             }
 
             //封闭路径
@@ -119,7 +143,7 @@ export default {
             rangeValue = _self.value-10;
 
             if(IsdrawCircled == false){
-                drawCircle();   
+                drawCircle();
             }
 
             if(nowRange <= rangeValue){
@@ -133,13 +157,13 @@ export default {
             }
 
             drawSin(xOffset);
-            // drawText(); 
+            // drawText();
 
             xOffset += speed;
             requestAnimationFrame(render);
         }
 
-        render(); 
+        render();
   }
 }
 </script>
@@ -207,5 +231,5 @@ div{
     color: black;
     content: attr(max);
     padding-left: 10px;
-}       
+}
 </style>

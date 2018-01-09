@@ -34,7 +34,7 @@ export default {
                       normal: {
                           textStyle: {
                               color: '#999999',
-                              fontSize: 38
+                              fontSize: "280%"
                           },
                           position: 'center'
                       }
@@ -53,7 +53,7 @@ export default {
                       normal: {
                           textStyle: {
                               color: '#7460EE',
-                              fontSize: 30
+                              fontSize: "220%"
                           }
                       }
                   },
@@ -86,7 +86,7 @@ export default {
                       normal: {
                           textStyle: {
                               color: 'rgba(0,0,0,0)',
-                              fontSize: 30
+                              fontSize: "220%"
                           }
                       }
                   },
@@ -133,7 +133,7 @@ span{
     color:#6347ED;
     width:100%;
     left:0;
-    top:40%;
+    top:32%;
 }
 font{
     display:inline-block;

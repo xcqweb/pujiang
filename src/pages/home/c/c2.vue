@@ -1,7 +1,6 @@
 <template>
     <div class="content">
         <div id="c2"></div>
-
     </div>  
 </template>
 
@@ -28,35 +27,27 @@ export default {
                 itemWidth:15,
                 itemHeight:10,
                 textStyle:{
-                    color:'black',
+                    color:'#fff',
+                    fontSize:'90%'
                 },
                 data:[{
                     icon:'circle',
-                    name:'0-17'
+                    name:'19岁以下'
                 }, {
                     icon:'circle',
-                    name:'18-24'
+                    name:'19-25'
                 }, {
                     icon:'circle',
-                    name:'25-29'
+                    name:'26-35'
                 }, {
                     icon:'circle',
-                    name:'30-34'
+                    name:'36-45'
                 }, {
                     icon:'circle',
-                    name:'35-39'
+                    name:'46-55'
                 }, {
                     icon:'circle',
-                    name:'40-44'
-                }, {
-                    icon:'circle',
-                    name:'45-49'
-                }, {
-                    icon:'circle',
-                    name:'50-54'
-                }, {
-                    icon:'circle',
-                    name:'55以上'
+                    name:'55岁以上'
                 }],
             },
           series : [
@@ -80,6 +71,10 @@ export default {
                     normal:{
                             show: true,
                             position: 'inner',
+                            textStyle:{
+                            	fontSize:"90%",
+                            	color:'#eee'
+                            },
                             formatter: function(params){
                                 return Math.round(params.percent) === 0 ? '' : Math.round(params.percent)+"%"  ;
                             },
@@ -89,15 +84,12 @@ export default {
                         }
                 },
                 data:[
-            {value:335, name:'0-17'},
-            {value:231, name:'18-24'},
-            {value:174, name:'25-29'},
-            {value:135, name:'30-34'},
-            {value:237, name:'35-39'},
-            {value:432, name:'40-44'},
-            {value:135, name:'45-49'},
-            {value:93, name:'50-54'},
-            {value:111, name:'55以上'},
+            {value:335, name:'19岁以下'},
+            {value:231, name:'19-25'},
+            {value:174, name:'26-35'},
+            {value:135, name:'36-45'},
+            {value:237, name:'46-55'},
+            {value:111, name:'55岁以上'}
         ],
       }],
     }

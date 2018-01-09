@@ -1,7 +1,6 @@
 <template>
 <div class="content">
-  <div id="c9">
-  </div>
+  <div id="c9"></div>
 </div>  
 </template>
 
@@ -26,7 +25,7 @@ export default {
                 {
                     name:'面积模式',
                     type:'pie',
-                    radius : ['10%', '40%'],
+                    radius : ['0%', '50%'],
                     center : ['50%', '55%'],
                     roseType : 'area',
                     lableLine:{
@@ -41,13 +40,13 @@ export default {
                             show:false,
                             textStyle:{
                                 fontStyle:'italic',
-                                fontSize:10,
+                                fontSize:"100%",
                             }
                         },
                         emphasis:{
                             textStyle:{
                                 fontStyle:'italic',
-                                fontSize:10,
+                                fontSize:"100%",
                             }
                         },
 
@@ -66,7 +65,7 @@ export default {
                         {value: 18, name: '金融'},
                         {value: 24, name: '亲子'}
                     ],
-                }
+                } 
             ]
         },
     }

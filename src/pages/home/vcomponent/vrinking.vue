@@ -3,30 +3,43 @@
     <ul>
         <li v-for='(item, index) in items'>{{index+1}}、{{item.name}}</li>
     </ul>
+    <Loading class='loading' v-show="isloading"></Loading>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
+import Loading from '@/components/commonui/loading/loading.vue'
+import api from '@/api/index.js'
 export default {
   name: 'a7',
   data () {
     return {
-        items:[
-            {name:'广东省'},
-            {name:'上海'},
-            {name:'北京'},
-            {name:'湖北省'},
-            {name:'陕西省'},
-            {name:'江西省'},
-        ],
+    	isloading:false,
+        items:[]
     }
   },
-  computed: { 
+  created(){
+  	this.isloading = true;
+  },
+  mounted(){
+  	this.getData();
   },
   methods: {
+  	//请求数据
+  	getData(){
+  		api.originList(api.params).then( (re) =>{
+    		let reData = re.data.originList;
+    		this.items = reData;
+    			this.isloading = false;
+				
+	    }).catch( (e) => {
+	    	console.log(e);
+	    })
+  	}
   },
   components:{
+  	Loading
   }
 }
 </script>
@@ -39,7 +52,7 @@ div{
 }
 ul{
     height:80%;
-    width:80%;
+    width:85%;
     top:35%;
     left:12%;
     position:absolute;

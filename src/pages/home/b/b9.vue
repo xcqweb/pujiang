@@ -5,6 +5,7 @@
     </div>
     <div id="b9" style="width:100%;height:100%">
     </div>
+    <Loading class='loading' v-show="isloading"></Loading>
 </div>  
 </template>
 
@@ -12,7 +13,11 @@
 import echarts_resize from '../../../common/js/echarts_resize.js'
 import echarts from 'echarts';
 import adaptation from '@/common/js/mixin/adaptation.js'
+import api from '@/api/index.js'
+import Loading from '@/components/commonui/loading/loading.vue'
 export default {
+	changeModel:true,
+	isloading:false,
     name:'b9',
     mixins: [adaptation],
     data(){
@@ -78,7 +83,7 @@ export default {
                     },
                     axisLabel:{
                         textStyle:{
-                            fontSize: 12,
+                            fontSize: '100%',
                             color:'white'
                         }
                     },
@@ -92,9 +97,13 @@ export default {
                 yAxis: {
                     name: '(万)',
                     type: 'value',
+                    nameTextStyle:{
+                   		color:'#ffffff',
+                   		fontSize:'100%'
+                	},
                     axisLabel:{
                         textStyle: {
-                            fontSize: 12,
+                            fontSize: '100%',
                             color:'white'
                         }
                     },
@@ -105,7 +114,7 @@ export default {
                         },
                     },
                     splitLine:{
-                        show:false,
+                        //show:false,
                         lineStyle:{
                             color:'#20549f',
                             width:1,
@@ -202,14 +211,32 @@ export default {
       computed: {
 
       },
+      created(){
+      	this.isloading = true;
+      },
     methods:{
         redom(id){
             this.chart = echarts.init(document.getElementById(id));
             this.chart.setOption(this.option);
-        }
+        },
+        //请求数据
+	  	getData(){
+	  		api.congestion(api.params).then( (re) =>{
+	    		let reData = re;
+				this.percents = reData.data.num;
+					this.isloading = false;
+				//console.log(re.data)
+		    }).catch( (e) => {
+		    	console.log(e);
+		    })
+	  	}
     },
     mounted() {
-          this.$nextTick(echarts_resize('b9',this))
+    	this.getData();
+        this.$nextTick(echarts_resize('b9',this))
+    },
+    components:{
+    	Loading
     }
 }
 </script>

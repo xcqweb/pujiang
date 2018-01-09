@@ -53,10 +53,12 @@ export default {
                        shadowColor:'#05a1cd',
                    },
                },
-               axisLabel: {
+               axisLabel: { 
+               		 margin: 6,
                    textStyle: {
                        color: '#05a1cd',//x坐标轴标签字体颜色
-                       fontSize: 15,
+                       fontSize: '80%',
+                      
                    },
                },
                axisTick:{
@@ -67,7 +69,8 @@ export default {
                type: 'value',
                name:'单位：人',
                nameTextStyle:{
-                          color:'#ffffff'
+                   color:'#ffffff',
+                   fontSize:'90%'
                 },
                min: 0,
                minInterval: 1,
@@ -87,7 +90,7 @@ export default {
                axisLabel: {
                    textStyle: {
                        color: '#ffffff',
-                       fontSize: 12,
+                       fontSize: '90%',
                    },
                },
                axisTick:{

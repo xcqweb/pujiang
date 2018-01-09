@@ -115,7 +115,7 @@ import Vue from 'vue'
     height:1.8rem;
     position: absolute;
     border: 1px solid #1b44ba;
-    top: 1rem;
+    top: 0.8rem;
     left: 13%;
     width:13%;
     margin-left:25px !important;

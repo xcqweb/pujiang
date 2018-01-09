@@ -4,55 +4,86 @@
         <div class="header" v-show = 'changeModel' >
             <div class="headerLeft">
                 <font>2017年富民指数</font>
-                <span>28271</span>
+                <span>{{currentYearNum}}</span>
             </div>
             <div class="headerRight">
                 <font>2016年全年富民指数</font>
-                <span>81871</span>
+                <span>{{preYearNum}}</span>
             </div>
         </div>
         <div class="middle">
           <font>7月当前</font>
-          <span>2871</span>
+          <span>{{currentMonthNum}}</span>
         </div>
         <div class="footer" v-show = 'changeModel' >
           <div class='footerLeft'>
             <div class='num'>
                 <span class='footerRise' :class='riaseLeft'></span>
-                <span class='footerCotext'>+1320</span>
+                <span class='footerCotext'>+{{growquantity}}</span>
                 <span class='footertit'>月增长</span>
             </div>
           </div>
           <div class='footerRight'>
             <div class='num'>
                 <span class='footerRise' :class='riaseRight'></span>
-                <span class='footerCotext'>+12</span>
+                <span class='footerCotext'>-{{growRatio}}</span>
                 <span class='footerUnit'>%</span>
-                <span class='footertit'>月增长</span>
+                <span class='footertit'>月下降</span>
             </div>
           </div>
         </div>
       </div>
+      <Loading v-show="isloading"></Loading>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
 import adaptation from '@/common/js/mixin/adaptation.js'
+import api from '@/api/index.js'
+import Loading from '@/components/commonui/loading/loading.vue'
 export default {
     name: 'b1',
     mixins: [adaptation],
     data () {
     return {
+    		isloading:false,
         riaseLeft:'up',
-        riaseRight:'down'
+        riaseRight:'down',
+        currentYearNum:'',
+        preYearNum:'',
+        currentMonthNum:'',
+        growRatio:'',
+        growquantity:''
     }
+    },
+    created(){
+    	this.isloading=true;
     },
     computed: { 
     },
     methods: {
+    	//请求数据
+	  	getData(){
+	  		api.richNum(api.params).then( (re) =>{
+	    		let reData = re.data;
+	    		this.currentYearNum = reData.currentYear.num;
+	    		this.preYearNum = reData.preYear.num;
+	    		this.currentMonthNum = reData.currentMonth.num;
+	    		this.growRatio = reData.currentMonth.growRatio;
+	    		this.growquantity = reData.currentMonth.growquantity;
+	    			this.isloading=false;
+	    		
+		    }).catch( (e) => {
+		    	console.log(e);
+		    })
+	  	}
+    },
+    mounted(){
+    	this.getData();
     },
     components:{
+    	Loading
     }
 }
 </script>

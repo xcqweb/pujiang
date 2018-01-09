@@ -52,21 +52,21 @@
   .txt{
     text-align: center;
     position: absolute;
-    top: 60%;
-    color: #ccc;
-    font-size: 16px;
+    top: 62%;
+    color: rgba(250,250,250,0.8);
+    font-size: 1rem;
    }
   .spinner {
     position: absolute;
-    margin: 100px auto;
-    width: 36px;
-    height: 36px;
+    margin: 8.2rem auto;
+    width: 2.6rem;
+    height: 2.6rem;
     position: relative;
   }
 
   .container1 > div, .container2 > div, .container3 > div {
-    width: 6px;
-    height: 6px;
+    width: 0.5rem;
+    height: 0.5rem;
     background-color: #fff;
     border-radius: 100%;
     position: absolute;

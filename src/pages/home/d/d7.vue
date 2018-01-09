@@ -87,7 +87,8 @@ export default {
                                 position:'outside',
                                 align:'right',
                                 textStyle:{
-                                    color:'#368df7'
+                                    color:'#368df7',
+                                    fontSize:"100%"
                                 }
                             }
                         },
@@ -123,7 +124,8 @@ export default {
                                 position:'outside',
                                 align:'right',
                                 textStyle:{
-                                    color:'#75cf65'
+                                    color:'#75cf65',
+                                    fontSize:"100%"
                                 }
                             }
                         },
@@ -151,7 +153,8 @@ export default {
                                 show:true,
                                 position:'outside',
                                 textStyle:{
-                                    color:'#fe6e40'
+                                    color:'#fe6e40',
+                                    fontSize:"100%"
                                 }
                             }
                         },

@@ -8,27 +8,54 @@
             <p :style="{ 'background-color': item.color }"></p>
         </li>
     </ul>
+    <Loading class='loading' v-show="isloading"></Loading>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
+import api from '@/api/index.js'
+import Loading from '@/components/commonui/loading/loading.vue'
 export default {
   name: 'a3',
   data () {
     return {
+    		isloading:false,
         items:[
-            {title:'客流总数',nub:'6902',font:'万人',color:'#6dffeb'},
-            {title:'经济贡献',nub:'15,801',font:'万元',color:'#ffe86e'},
-            {title:'富民指数',nub:'32986',font:'万点',color:'#ff719c'},
+//          {title:'客流总数',nub:'',font:'万人',color:'#6dffeb'},
+//          {title:'经济贡献',nub:'',font:'万元',color:'#ffe86e'},
+//          {title:'富民指数',nub:'',font:'万点',color:'#ff719c'}
         ],
     }
   },
-  computed: { 
+  created(){
+  	this.isloading = true;
   },
   methods: {
+  	//请求数据
+  	getData(){
+  		api.topThree(api.params).then( (re) =>{
+    		let reData = re.data.topThree;
+      		this.items = reData;
+//  		reData.forEach( (item,index) => {
+//  			console.log(item)
+//  			this.items.nub=reData.nub;
+//  			this.items.title=reData.title;
+//  			this.items.font=reData.font;
+//  			this.items.color=reData.color;
+//  		})
+    		//console.log(reData)
+    			this.isloading = false;
+	    }).catch( (e) => {
+	    	console.log(e);
+	    })
+  	}
+  },
+  created(){
+  	this.getData();
   },
   components:{
+  	Loading
   }
 }
 </script>

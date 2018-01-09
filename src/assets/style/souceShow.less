@@ -4,6 +4,14 @@
 @screen-lg:                  1200px;
 @screen-xl:                  1400px;
 /** item**/
+    
+@textColor:#8687c0;
+@headerBackColor:#133596;
+@topBottomColor:#163387;
+@borderColor:#49d9fe;
+@borderLen: 18px;    
+    
+    
 .item{
     height: auto;
     text-align: center;
@@ -12,18 +20,41 @@
     .border{
         height: 100%;
         width: 100%;
+        &:before {
+            position:absolute;
+            bottom: 0 ;
+            left: 0 ;
+            width: @borderLen;
+            height: @borderLen;
+            border-bottom:2px solid @borderColor ;
+            border-left:2px solid @borderColor ;
+            content: " ";
+        }
+        &:after {
+            position:absolute;
+            top: 0;
+            right: 0;
+            width: @borderLen;
+            height: @borderLen;
+            border-top:2px solid @borderColor;
+            border-right:2px solid @borderColor;
+            content: " ";
+        }        
     }
 }
 h1{
     position:absolute;
-    top: 1.3rem;
-    left: 2rem;
+    top: 0.8rem;
+    left: 1rem;
     z-index: 2;
     color:#efeefd;
     font-size: 1.1rem;
-    font-weight: 590;
-    
+    font-weight: 590;   
 }
+.a8{
+    top: 0.8rem;
+    left: 1rem;
+    }
 span{
     position:absolute;
     top: 8px;

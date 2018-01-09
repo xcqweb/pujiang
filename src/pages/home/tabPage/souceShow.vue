@@ -16,14 +16,14 @@
                     <img :src="cutoverImg"/>
                 </span>
                 <div class="border" v-if='item.show'>
-                  <keep-alive>
+                  <!--<keep-alive>-->
                     <componet
                     :is='item.name'
                     :key="item.id"
                     :place='place'
                     :commentProp = 'comment'
                     ></componet>
-                  </keep-alive>
+                  <!--</keep-alive>-->
                 </div>
             </div>
         </div>
@@ -31,19 +31,19 @@
             <div class="item"
                 v-for='item in bottomComponents'
                 :class="item.id">
-                <h1>{{item.title}}</h1>
+                <h1 :class="{a8:item.id==='one'}">{{item.title}}</h1>
                 <span @click='cutover(item,bottomComponents)'>
                     <img :src="cutoverImg"/>
                 </span>
                 <div class="border" v-if='item.show'>
-                  <keep-alive>
+                  <!--<keep-alive>-->
                     <componet
                     :is='item.name'
                     :key="item.id"
                     :place='place'
                     :commentProp = 'comment'
                     ></componet>
-                  </keep-alive>
+                  <!--</keep-alive>-->
                 </div>
             </div>
         </div>
@@ -67,7 +67,6 @@ export default {
                 cutoverImg:require('../../../assets/切换.png'),
                 moudle:[
                     {name:'D1',styleDlass:'游客餐饮消费分析',},
-                    {name:'D2',styleDlass:'游客餐饮消费分析',},
                     {name:'D3',styleDlass:'',},
                     {name:'D4',title:'景区收益分析',},
                     {name:'D5',styleDlass:'厕所使用率',},
@@ -101,7 +100,7 @@ export default {
                     {name:'D1',id:'one',index:1,time:100,show:false,title:'景区客流热力图与视频监控'},
                     {name:'D6',id:'two',index:2,time:300,show:false,title:'景区当前客流'},
                     {name:'D8',id:'three',index:3,time:600,show:false,title:'拥堵指数'},
-                    {name:'D3',id:'four',index:4,time:900,show:false,title:''},
+                    {name:'D3',id:'four',index:4,time:900,show:false,title:'满意度'},
                 ],
                 bottomComponents:[
                     {name:'D2',id:'one',index:1,time:1200,show:false,title:'游客餐饮消费分析'},

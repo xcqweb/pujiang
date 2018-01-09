@@ -112,9 +112,9 @@ export default {
         li{
             float:left;
             height:100%;
-            width:30px;
+            width:3rem;
             color:white;
-            font-size:10px;
+            font-size:0.8rem;
             position:relative;
             span{
                 display:inline-block;
@@ -131,8 +131,8 @@ export default {
             font{
                 display:inline-block;
                 position:absolute;
-                bottom:-13px;
-                left:10%;
+                bottom:-36%;
+                left:0%;
             }
         }
     }

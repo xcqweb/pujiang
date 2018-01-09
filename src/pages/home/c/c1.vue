@@ -114,7 +114,7 @@ export default {
                         axisLabel: {
                                  textStyle: {
                                      color: '#ffffff',//x坐标轴标签字体颜色
-                                     fontSize: 12,
+                                     fontSize: '100%',
                                  },
                             },
                         splitLine:{
@@ -141,7 +141,7 @@ export default {
                             showMinLabel:true,
                             textStyle:{
                                 color:'#ffffff',
-                                fontSize: 10,
+                                fontSize: "90%",
                             },
                             formatter: '{value}人'
                         },
@@ -161,37 +161,37 @@ export default {
                         name:'江南第一家',
                         type:'bar',
                         data:series[0]
-                        ,barMaxWidth:'5%',               
+                        ,barMaxWidth:'10%',               
                     },
                     {
                         name:'白石湾风景区',
                         type:'bar',
                         data:series[1]
-                        ,barMaxWidth:'5%',   
+                        ,barMaxWidth:'10%',   
                     },
                     {
                         name:'官岩山',
                         type:'bar',
                         data:series[2]
-                        ,barMaxWidth:'5%',   
+                        ,barMaxWidth:'10%',   
                     },
                     {
                         name:'神丽峡',
                         type:'bar',
                         data:series[3],
-                        barMaxWidth:'5%',   
+                        barMaxWidth:'10%',   
                     },
                     {
                         name:'水竹湾森林公园',
                         type:'bar',
                         data:series[4],
-                        barMaxWidth:'5%',   
+                        barMaxWidth:'10%',   
                     },
                     {
                         name:'仙华山',
                         type:'bar',
                         data:series[5],
-                        barMaxWidth:'5%',   
+                        barMaxWidth:'10%',   
                     },
 
                 ]

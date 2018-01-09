@@ -28,8 +28,7 @@
 <template>
     <div class="d8">
         <div class="box">
-            <vcircle class='item'></vcircle>
-            
+            <vcircle class='item'></vcircle>     
         </div>
         <span>{{text}}</span>
     </div>

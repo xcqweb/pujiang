@@ -18,7 +18,7 @@
 			if(_self.chart){
 				_self.chart.dispose();
 			}
-			_self.redom(echart_id,12,datax,datay);
+				_self.redom(echart_id,12,datax,datay);
 		}, 330);
 	},false);
 	}

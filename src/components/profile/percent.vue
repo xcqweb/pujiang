@@ -56,7 +56,8 @@ export default {
                                 show:true,
                                 position:'inside',
                                 textStyle:{
-                                    color:'#FFFFFF'
+                                    color:'#FFFFFF',
+                                    fontSize:"100%"
                                 }
                             }
                         },
@@ -81,7 +82,8 @@ export default {
                                 show:true,
                                 position:'inside',
                                 textStyle:{
-                                    color:'#FFFFFF'
+                                    color:'#FFFFFF',
+                                    fontSize:"100%"
                                 }
                             }
                         },
@@ -99,7 +101,8 @@ export default {
                                 show:true,
                                 position:'inside',
                                 textStyle:{
-                                    color:'#FFFFFF'
+                                    color:'#FFFFFF',
+                                    fontSize:"100%"
                                 }
                             }
                         },

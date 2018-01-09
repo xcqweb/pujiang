@@ -7,7 +7,7 @@
         position:absolute;
         width:10rem;
         top:1.3rem;
-        left:5%;
+        left:25%;
         text-align:left;
         font-size: 1.1rem;
         color:white;
@@ -57,7 +57,7 @@
                 top:50%;
                 left:50%;
                 transform: translate(-50% ,-95%);
-                font-size:.8rem;
+                font-size:0.8rem;
             }
         }
         .imgright{
@@ -70,7 +70,7 @@
                 top:50%;
                 left:50%;
                 transform: translate(-50% ,-95%);
-                font-size:.8rem;
+                font-size:0.8rem;
             }
         }
         .titleleft{
@@ -113,9 +113,10 @@
     }
     .msg{
         position:relative;
-        margin-top:5%;
+        margin-top:3%;
         margin-left: 5%;
         width:90%;
+        font-size: 0.6rem;
         color:white;
         .title{
             display:block;

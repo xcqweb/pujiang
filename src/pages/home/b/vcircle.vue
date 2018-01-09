@@ -13,7 +13,7 @@
             <div class=" line">
                 <img :src="line"/>
             </div>
-            <font>{{percent}}</font>
+            <font v-show='percents'>{{percents}}%</font>
         </div>
     </div>
 </template>
@@ -28,21 +28,12 @@ export default {
         cut:require('../../../assets/images/circle/violet/cut.png'),
         half:require('../../../assets/images/circle/violet/half.png'),
         line:require('../../../assets/images/circle/violet/line.png'),
-        percent:'80%',
+        percent:'',
         text:'较为拥堵',
     }
   },
-  computed: { 
-  },
-  methods: {
-    getwidth(){
-        
-    }
-  },
-  mounted(){
-    
-    },
-  components:{
+  props:{
+  	percents:Number
   }
 }
 </script>
@@ -117,12 +108,12 @@ font{
     color: white;
     position: absolute;
     display: inline-block;
-    top: 43%;
+    top: 50%;
     transform: translateY(-50%);
     left: 50%;
     transform: translateX(-50%);
-    height: 20px;
-    width: 40px;
+    height: 50%;
+    width: 50%;
     font-size:1.3rem;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="headertext">
-    <p>{{title}}</p>
+    <p v-show="showTitle">{{title}}</p>
     <ul>
         <li v-for='(item, index) in items' :class='item.status' @click='toggle(item,index)'>
             <router-link v-bind:to={path:item.link}>
@@ -30,6 +30,7 @@ export default {
         {name:'应急指挥平台',link:'/souceShow',status:'chose'},
       ],
       hash:'',
+      wid:window.innerWidth
     }
   },
   watch:{
@@ -41,6 +42,16 @@ export default {
     ...mapGetters({
         title: 'version/title',
       }),
+      
+      //手机屏幕时去掉标题
+      showTitle(){
+      	let wid = this.wid;
+      	if(wid<768){
+      		return false;
+      	}else{
+      		return true;
+      	}
+      }
   },
   methods: {
     toggle(item,index){
@@ -104,9 +115,11 @@ a:visited { text-decoration: none;}
     height:100%;
     position:relative;
     box-shadow: 0 2px 25px black;
+    padding-bottom: 2%;
+    background-color: #133596;
     p{  
         position: absolute;
-        top: 30%;
+        top: 32%;
         left: 2%;
         font-size: 1.8rem;
         color:#85e6ff;
@@ -115,10 +128,11 @@ a:visited { text-decoration: none;}
     ul{
         position: absolute;
         top: 20%;
-        right: 40px;
+        bottom: 10%;
+        right: 1rem;
         li{
             float: left;
-            margin-left: 20px;
+            margin-left: 1rem;
             cursor: pointer;
             a{
                 display:inline-block;
@@ -132,7 +146,7 @@ a:visited { text-decoration: none;}
             }
             font{
                 display: block;
-                font-size: 11px;
+                font-size: 1rem;
                 margin-top:7px;
             }
             &.chose{

@@ -5,7 +5,7 @@
             <h2>2017年当前消费总额度</h2>
         </div>
         <div class="percent">
-            <percent></percent>
+            <percent></percent>  
             <h2>历史消费占比</h2>
         </div>
     </div>
@@ -64,18 +64,18 @@ export default {
       float:left;
       width:42%;
       height:65%;
-      margin-top:15%;
+      margin-top: 8%;
     }
     .percent{
       position:relative;
       float:left;
       width:57%;
       height:65%;
-      margin-top:15%;
+      margin-top: 8%;
     }
     h2{
         color:white;
-        margin-top:20px;
+        margin-bottom:10px;
     }
   }
 </style>

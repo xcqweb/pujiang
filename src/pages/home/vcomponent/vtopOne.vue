@@ -137,11 +137,11 @@ export default {
                         barMaxWidth:2,
                         type: 'category',
                         data: datax,
-                        fontSize: 6,
+                        fontSize: "50%",
                         scale: true,
                         lineStyle:2,
-                        splitNumber:14,
-                        minInterval:7,
+                        splitNumber:6,
+                        minInterval:1,
                         axisLine: { //坐标轴轴线相关设置。就是数学上的x轴
                              show: true,
                                 lineStyle: {
@@ -151,7 +151,7 @@ export default {
                          axisLabel: {
                              textStyle: {
                                  color: '#ffffff',//x坐标轴标签字体颜色
-                                 fontSize: xyfonsiz,
+                                 fontSize: "80%",
                              },
                         },
                         axisTick:{
@@ -180,7 +180,7 @@ export default {
                             showMinLabel:true,
                           textStyle:{
                             color:'rgba(0,0,0,0)',
-                            fontSize: xyfonsiz,
+                            fontSize: "100%",
                           }
                         },
                         axisLine: { //坐标轴轴线相关设置。就是数学上的y轴
@@ -217,6 +217,7 @@ export default {
                             position:'top',
                             textStyle:{
                                 color:'#2CC9E2',
+                                fontSize:"100%"
                             }
                         }
                        },
@@ -265,9 +266,9 @@ export default {
 }
 .loading{
     margin-top: 30%;
-    height: 50px;
+    height: 3.6rem;
     color: #05a1cd;
-     font-size: 30px;
+     font-size: 2.2rem;
   }
   .reload{
   width: 100%;
@@ -277,10 +278,10 @@ export default {
 }
 .reloading{
     margin-top: 30%;
-    height: 150px;
-    width: 200px;
+    height: 10.8rem;
+    width: 14.3rem;
     margin-left: 37%;
-    font-size: 30px;
+    font-size: 2.2rem;
   }
 #righthz{
   width: 100%;

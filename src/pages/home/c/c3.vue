@@ -94,8 +94,9 @@ export default {
             visualMap: {
                 min: 0,
                 max: 1500,
-                left: 'left',
-                top: 'bottom',
+                left: 10,
+                //top: 'bottom',
+                bottom:10,
                 itemHeight:'80%',
                 itemWidth:'15%',
                 text: ['高','低'],           // 文本，默认为数值文本
@@ -103,6 +104,7 @@ export default {
                 realtime:true,
                 textStyle:{
                     color:'white',
+                    fontSize:'100%'
                 }
             },
             geo: {
