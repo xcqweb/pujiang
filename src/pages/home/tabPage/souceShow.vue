@@ -115,6 +115,7 @@ export default {
         ...mapGetters({
             comment:'version/comment',
           }),
+          //tab数组
         tablistCom:function(){
             let arrb = [];
             _.forEach(this.placeAttractions,function(value,key){

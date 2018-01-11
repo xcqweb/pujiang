@@ -1,6 +1,7 @@
 <template>
   <div class="main_content">
     <div id="c6"></div>
+    <Loading v-show="isloading"></Loading>
   </div>
 </template>
 <script>
@@ -11,11 +12,14 @@
   import { mapActions } from 'vuex'
   import timeMixin from '@/common/js/mixin/timeMixin.js'
   import Vue from 'vue'
+  import api from '@/api/index.js'
+	import Loading from '@/components/commonui/loading/loading.vue'
   export default {
     name:'c6',
     mixins: [timeMixin],
     data() {
       return {
+      	isloading:false,
         chart: null,
         isActive:true,
         xnub:null,
@@ -23,18 +27,17 @@
         loading:true,
         reloading:false,
         oneweekMock:[
-            {"nub":50,"date":"交通"},
-            {"nub":33,"date":"住宿"},
-            {"nub":60,"date":"餐饮"},
-            {"nub":39,"date":"游玩"},
-            {"nub":52,"date":"环境"},
-            {"nub":42,"date":"消费"},
+//          {"nub":50,"date":"交通"},
+//          {"nub":33,"date":"住宿"},
+//          {"nub":60,"date":"餐饮"},
+//          {"nub":39,"date":"游玩"},
+//          {"nub":52,"date":"环境"},
+//          {"nub":42,"date":"消费"},
         ],
       }
     },
     store:store,
     computed:{
-
       isCase:{
         get: function(){
           return window.location.hash.length > 3 ? true :false;
@@ -42,6 +45,20 @@
       },
     },
     methods: {
+    	//请求数据
+	  	getData(){
+	  		api.touristFocus(api.params).then( (re) =>{
+	  				let reData = re.data.data;
+	  				console.log(reData);
+	  				this.oneweekMock = reData;
+					if(re.status===200){
+						this.isloading = false;
+					}
+					this.redom7();
+		    }).catch( (e) => {
+		    	console.log(e);
+		    })
+	  	},
     redom7(){
         if(this.chart){
             this.chart.dispose();
@@ -55,7 +72,7 @@
       }
       this.$nextTick(echarts_resize('c6',this,dataX,dataY))
     },
-      redom (id,xyfonsiz,datax,datay) {
+    redom (id,xyfonsiz,datax,datay) {
         var _self= this;
         _self.loading=false;
         this.chart = echarts.init(document.getElementById(id))
@@ -170,8 +187,14 @@
         this.chart.setOption(option)
       }
     },
-    components:{},
+    components:{
+    	Loading
+    },
+    created(){
+    	this.isloading = true;
+    },
     mounted() {
+    	this.getData();
       this.redom7();
     }
   }

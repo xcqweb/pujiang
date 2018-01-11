@@ -39,12 +39,12 @@ require('../../../common/js/baidumap/TrafficControl_min.js')
                 // 向地图添加标注
                 for( var i = 0;i < points.length; i++){
                 //定义新图标
-                var myIcon = new BMap.Icon(require("../../../assets/images/wifi.png"), new BMap.Size(44, 44), {
+//              var myIcon = new BMap.Icon(require("../../../assets/images/wifi.png"), new BMap.Size(44, 44), {
                 // 指定定位位置
-                offset: new BMap.Size(10, 25),
+//              offset: new BMap.Size(10, 25),
                 // 当需要从一幅较大的图片中截取某部分作为标注图标时，需要指定大图的偏移位置 
                 //imageOffset: new BMap.Size(0, 0 - i * 25)  设置图片偏移 
-                });
+//              });
                 var point = new BMap.Point(points[i][0],points[i][1]);
                 // 创建标注对象并添加到地图 
                 var marker = new BMap.Marker(point,{icon: myIcon});
@@ -58,7 +58,6 @@ require('../../../common/js/baidumap/TrafficControl_min.js')
             },
             addMenu(map){
                 var menu = new BMap.ContextMenu();
-
                 var txtMenuItem = [
                     {
                         text:'放大',

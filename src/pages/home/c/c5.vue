@@ -26,35 +26,51 @@
                 <font>{{item.name}}</font>
             </li>
         </ul>
+        <Loading v-show="isloading"></Loading>
     </div>
 </template>
 
 <script>
 import Vue from 'vue'
+import api from '@/api/index.js'
+import Loading from '@/components/commonui/loading/loading.vue'
 export default {
     name: 'c5',
     props:['inItemsProps',],
     data () {
     return {
+    	isloading:false,
         marginLeft:3,
-        outItems:[
-            {outProvince:80,name:'上海',},
-            {outProvince:60,name:'北京',},
-            {outProvince:50,name:'陕西',},
-            {outProvince:30,name:'四川',},
-            {outProvince:20,name:'湖南',},
-            {outProvince:10,name:'江苏',},
-            {outProvince:10,name:'湖北',},
-            {outProvince:10,name:'江西',},
-        ],
+        outItems:[],
         inItems:this.inItemsProps,
     }
+    },
+    created(){
+    	this.isloading = true;
     },
     computed: { 
     },
     methods: {
+    	//请求数据
+	  	getData(){
+	  		api.touristOriginsource(api.params).then( (re) =>{
+	  				let reData = re.data;
+	  				//console.log(reData);
+	  				this.outItems = reData.outItem;
+	  				this.inItems = reData.inItem;
+					if(re.status===200){
+						this.isloading = false;
+					}
+		    }).catch( (e) => {
+		    	console.log(e);
+		    })
+	  	},
+    },
+    mounted(){
+    	this.getData();
     },
     components:{
+    	Loading
     }
 }
 </script>
@@ -64,14 +80,14 @@ export default {
     position:absolute;
     height:90%;
     width:100%;
-    top:26%;
+    
     .title{
         position:absolute;
         top:-2%;
         left:5%;
         width:8%;
         height:78%;
-        color:white;
+        color:#fff;
         font-size:.8rem;
         div{
             width:100%;
@@ -79,6 +95,7 @@ export default {
         }
         .top{
             background-color:#6792fb;
+            margin-top: 95%;
         }
         .bottom{
             background-color:#606bff;
@@ -98,6 +115,7 @@ export default {
         left:5%;
         width:90%;
         height:24%;
+        top: 24%;
         .line{
             position:absolute;
             width:80%;
@@ -113,7 +131,7 @@ export default {
             float:left;
             height:100%;
             width:3rem;
-            color:white;
+            color:#fff;
             font-size:0.8rem;
             position:relative;
             span{
@@ -139,7 +157,7 @@ export default {
     ul:nth-of-type(2){
         position:absolute;
         left:5%;
-        top:39%;
+        top:68%;
         width:90%;
         height:29%;
         .title{

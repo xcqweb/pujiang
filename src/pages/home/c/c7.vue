@@ -20,26 +20,52 @@
                 {{item.numb}}<font>人</font>
             </div>
             <div class="cell3">
-                <span class='footerCotext'>{{item.percent}}</span>
-                <span class='footerRise' :class='item.rise'></span>
+                <span class='footerCotext'>{{item.percent}}%</span>
+                <span v-show="item.rise" class='footerRise up'></span>
+                <span v-show="!item.rise" class='footerRise down'></span>
             </div>
         </li>
     </ul>
+    <Loading v-show="isloading"></Loading>
   </div>
 </template>
 
 <script type="text/javascript">
+	import api from '@/api/index.js'
+	import Loading from '@/components/commonui/loading/loading.vue'
 export default {
     name:'c7',
     props:['placeAttractionsProps'],
     data(){
         return{
+        isloading:false,
         msg:'Hello Vue 来自App.vue',
         items:this.placeAttractionsProps,
       }
     },
-    components:{},
+    components:{
+    	Loading
+    },
+    methods:{
+    	//请求数据
+	  	getData(){
+	  		api.scenicRanking(api.params).then( (re) =>{
+	  				let reData = re.data.data;
+	  				//console.log(reData);
+	  				this.items = reData;
+					if(re.status===200){
+						this.isloading = false; 
+					}
+		    }).catch( (e) => {
+		    	console.log(e);
+		    })
+	  	}
+    },
+    created(){
+    	this.isloading = true;
+    },
     mounted(){
+    	this.getData();
     }
 }
 </script>

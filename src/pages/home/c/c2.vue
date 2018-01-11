@@ -1,6 +1,7 @@
 <template>
     <div class="content">
         <div id="c2"></div>
+        <Loading v-show="isloading"></Loading>
     </div>  
 </template>
 
@@ -8,12 +9,36 @@
 import echarts_resize from '../../../common/js/echarts_resize.js'
 import echarts from 'echarts'
 import adaptation from '@/common/js/mixin/adaptation.js'
+import api from '@/api/index.js'
+import Loading from '@/components/commonui/loading/loading.vue'
 export default {
     name:'c2',
     // mixins: [adaptation],
     data(){
     return{
-        option:{
+    	isloading:false,
+    	series:[]
+    }
+    },
+    methods:{
+    	//请求数据
+	  	getData(){
+	  		api.ageAnalyse(api.params).then( (re) =>{
+	  				let reData = re.data.data;
+	  				this.series = reData;
+					if(re.status===200){
+						this.isloading = false;
+					}
+					this.redom("c2");
+		    }).catch( (e) => {
+		    	console.log(e);
+		    })
+	  	},
+        redom(id){
+            this.chart = echarts.init(document.getElementById(id));
+            let w=this.chart.getWidth();
+            let d=this.chart.getDom();
+            let option = {
           backgroundColor: 'rgba(0, 0, 0, 0)',
           color:['#FF8885','#57ABFE', '#368DF7', '#7E6AF6', '#E39A50','#FFCD38',  '#4EBBFC', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD'],
           legend:{
@@ -83,29 +108,21 @@ export default {
                             show: false
                         }
                 },
-                data:[
-            {value:335, name:'19岁以下'},
-            {value:231, name:'19-25'},
-            {value:174, name:'26-35'},
-            {value:135, name:'36-45'},
-            {value:237, name:'46-55'},
-            {value:111, name:'55岁以上'}
-        ],
+                data:this.series,
       }],
-    }
-    }
-    },
-    methods:{
-        redom(id){
-            this.chart = echarts.init(document.getElementById(id));
-            let w=this.chart.getWidth()
-            let d=this.chart.getDom()
-            this.chart.setOption(this.option);
-
+    };
+            this.chart.setOption(option);
         }
     },
+    created(){
+    	this.isloading = true;
+    },
     mounted() {
-          this.$nextTick($sheet.echartRL('c2',this))
+    	this.getData();
+        this.$nextTick($sheet.echartRL('c2',this))
+    },
+    components:{
+    	Loading
     }
 }
 </script>

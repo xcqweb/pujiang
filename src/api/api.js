@@ -3,7 +3,7 @@ import {params} from '@/common/js/gtime.js';
 
 export {params};
 //模拟数据公共地址
-let base = 'http://rap.taobao.org/mockjsdata/30946';
+let base = 'https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example';
 
 
 
@@ -40,4 +40,26 @@ export const marketing = params => { return axios.get(`${base}/marketing`,{ para
 //客流总数，经济分析，富民指数
 export const topThree = params => { return axios.get(`${base}/topThree`,{ params: params });};
 //游客满意度
-export const ouristSatisfaction = params => { return axios.get(`${base}/ouristSatisfaction`,{ params: params });};
+export const touristSatisfaction = params => { return axios.get(`${base}/touristSatisfaction`,{ params: params });};
+//国内游客来源地
+export const touristOrigin = params => { return axios.get(`${base}/touristOrigin`,{params:params});};
+//旅游营业分析
+export const tourBusiness = rparams => { return axios.get(`${base}/tourBusiness`,{params:params});};
+//出行方式
+export const tripMode = rparams => { return axios.get(`${base}/tripMode`,{params:params});};
+//年龄分析
+export const ageAnalyse = rparams => { return axios.get(`${base}/ageAnalyse`,{params:params});};
+//游客关注点
+export const touristFocus = rparams => { return axios.get(`${base}/touristFocus`,{params:params});};
+//浦江县客流属性分析
+export const touristAttr = rparams => { return axios.get(`${base}/touristAttr`,{params:params});};
+//游客男女比率
+export const touristSexRatio = rparams => { return axios.get(`${base}/touristSexRatio`,{params:params});};
+//游客详细来源地
+export const touristOriginsource = rparams => { return axios.get(`${base}/touristOriginsource`,{params:params});};
+//浦江县客流热地图
+export const thermalMap  = rparams => { return axios.get(`${base}/thermalMap`,{params:params});};
+//景区排行榜
+export const scenicRanking  = rparams => { return axios.get(`${base}/scenicRanking`,{params:params});};
+//游客来源排行
+export const touristOriginRanking  = rparams => { return axios.get(`${base}/touristOriginRanking`,{params:params});};

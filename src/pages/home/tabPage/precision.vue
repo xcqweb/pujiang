@@ -9,13 +9,13 @@
                     <img :src="cutoverImg"/>
                 </span>
                 <div class="border" v-if='item.show'>
-                  <!--<keep-alive>-->
+                  <keep-alive>
                     <componet
                     :is='item.name'
                     :key="item.id"
                     :inItemsProps = 'inItems'
                     ></componet>
-                  <!--</keep-alive>-->
+                  </keep-alive>
                 </div>
             </div>
         </div>
@@ -28,13 +28,13 @@
                     <img :src="cutoverImg"/>
                 </span>
                 <div class="border" v-if='item.show'>
-                  <!--<keep-alive>-->
+                  <keep-alive>
                     <componet
                     :is='item.name'
                     :key="item.id"
                     :placeAttractionsProps = 'placeAttractions'
                     ></componet>
-                  <!--</keep-alive>-->
+                  </keep-alive>
                 </div>
             </div>
         </div>
@@ -106,9 +106,8 @@ export default {
             }
         },
     computed: {
-      ...mapGetters({
+      ...mapGetters({ 
           inItems: 'version/inItems',
-
         }),
     },
     methods: {
@@ -130,7 +129,7 @@ export default {
             this.barChartOption = Object.assign({}, this.barChartOption, )
         },
         console(){
-                        console.log(this.components)
+                    console.log(this.components)
                     },
                     headerEnter(){
                         this.headerStatus=true;

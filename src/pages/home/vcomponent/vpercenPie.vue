@@ -172,18 +172,18 @@ export default {
             let w=this.chart.getWidth()
             let d=this.chart.getDom()
             this.chart.setOption(this.option);
-            //console.log(this.option.series[0].data[0].value);
         },
         //请求数据
 	  	getData(){
 	  		api.marketing(api.params).then( (re) =>{
-	    		let reData = re.data.Referrer;
-	    		if(re){
+	  			console.log(re.data.data);
+	    		let reData = re.data.data;
+	    		if(re.status){
 	    			this.isloading = false;
 	    		}
 				reData.forEach( (item,index) => {
 					this.option.series[0].data[index].value = item.value;
-					//this.option.series[0].data[index].name = item.name;
+					this.option.series[0].data[index].name = item.name;
 				});
 				 this.redom('percentA');
 		    }).catch( (e) => {

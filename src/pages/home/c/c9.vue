@@ -1,17 +1,41 @@
 <template>
 <div class="content">
   <div id="c9"></div>
+  <Loading v-show="isloading"></Loading>
 </div>  
 </template>
 
 <script type="text/javascript">
 import echarts_resize from '@/common/js/echarts_resize.js'
 import echarts from 'echarts';
+import api from '@/api/index.js'
+import Loading from '@/components/commonui/loading/loading.vue'
 export default {
     name:'c9',
     data(){
     return{
-        option: {
+    		isloading:false,
+    		series:[]
+    }
+    },
+    methods:{
+    	//请求数据
+	  	getData(){
+	  		api.touristAttr(api.params).then( (re) =>{
+	  				let reData = re.data.data;
+	  				//console.log(reData);
+	  				this.series = reData;
+					if(re.status===200){
+						this.isloading = false;
+					}
+					this.redom("c9");
+		    }).catch( (e) => {
+		    	console.log(e);
+		    })
+	  	},
+        redom(id){
+            this.chart = echarts.init(document.getElementById(id));
+            let option = {
             color:['#4EBBFC','#57ABFE', '#368DF7', '#7E6AF6', '#FF8885','#FFCD38',  '#E39A50', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD'],
             calculable : true,
             grid: {
@@ -51,33 +75,22 @@ export default {
                         },
 
                     },
-                    data: [
-                        {value: 22, name: '服饰鞋帽'},
-                        {value: 29, name: '大众品牌'},
-                        {value: 16, name: '奢侈品牌'},
-                        {value: 46, name: '生活服务'},
-                        {value: 20, name: '母婴用品'},
-                        {value: 35, name: '数码'},
-                        {value: 17, name: '珠宝手表'},
-                        {value: 31, name: '化妆品'},
-                        {value: 42, name: '休闲娱乐'},
-                        {value: 23, name: '汽车服务'},
-                        {value: 18, name: '金融'},
-                        {value: 24, name: '亲子'}
-                    ],
+                    data: this.series,
                 } 
             ]
-        },
-    }
-    },
-    methods:{
-        redom(id){
-            this.chart = echarts.init(document.getElementById(id));
-            this.chart.setOption(this.option);
+        };
+            this.chart.setOption(option);
         }
     },
+    created(){
+    	this.isloading = true;
+    },
     mounted() {
-          this.$nextTick(echarts_resize('c9',this))
+    	this.getData();
+      this.$nextTick(echarts_resize('c9',this))
+    },
+    components:{
+    	Loading
     }
 }
 </script>

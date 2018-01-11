@@ -4,19 +4,22 @@
             <li v-for='item in men'>
                 <img :src="item.img">
             </li>
-            <font>{{menPercent}}</font>
+            <font>{{menPercent}}%</font>
         </ul>
         <ul>
             <li v-for='item in women'>
                 <img :src="item.img">
             </li>
-            <font>{{womenPercent}}</font>
+            <font>{{womenPercent}}%</font>
         </ul>
+        <Loading v-show="isloading"></Loading>
     </div>
 </template>
 
 <script>
 import Vue from 'vue'
+import api from '@/api/index.js'
+import Loading from '@/components/commonui/loading/loading.vue'
 let men = require('../../../assets/images/home/men.png')
 let menE= require('../../../assets/images/home/menE.png')
 let women= require('../../../assets/images/home/women.png')
@@ -26,43 +29,61 @@ export default {
   data () {
     
     return {
+    	isloading:false,
         womenPercent:'40%',
         menPercent:'60%',
-        men:[
-            {img:menE},
-            {img:menE},
-            {img:menE},
-            {img:menE},
-            {img:menE},
-            {img:menE},
-            {img:menE},
-            {img:men},
-            {img:men},
-            {img:men},
-            {img:men},
-        ],
-        women:[
-            {img:womenE},
-            {img:womenE},
-            {img:womenE},
-            {img:womenE},
-            {img:womenE},
-            {img:womenE},
-            {img:womenE},
-            {img:women},
-            {img:women},
-            {img:women},
-            {img:women},
-        ]
+        men:[],
+        women:[]
     }
+  },
+  created(){
+  	this.isloading = true;
   },
   computed: { 
   },
   methods: {
+  	//请求数据
+  	getData(){
+  		api.touristSexRatio(api.params).then( (re) =>{
+  				let reData = re.data.data;
+    			this.menPercent = reData.menPercent;
+    			this.womenPercent = 100-reData.menPercent;
+				
+				let menlen = Math.round(this.menPercent/10);
+				let womenlen = Math.round(this.womenPercent/10);
+				
+					for(let i=0; i<menlen+1; ++i){
+						this.men.push({img:menE})
+					}
+					
+					for(let i=0; i<10-menlen; ++i){
+						this.men.push({img:men})
+					}
+					
+					for(let i=0; i<womenlen+1; ++i){
+						this.women.push({img:womenE})
+					}
+					
+					for(let i=0; i<10-womenlen; ++i){
+						this.women.push({img:women})
+					}
+					
+				console.log(this.men)
+				//for(let i=0; i<){}
+				
+				if(re.status===200){
+					this.isloading = false;
+				}
+	    }).catch( (e) => {
+	    	console.log(e);
+	    })
+  	}
   },
     mounted(){
+    	this.getData();
     },
   components:{
+  	Loading
   }
 }
 </script>
@@ -70,9 +91,9 @@ export default {
 <style lang="less" scoped>
 .c4{
     position:absolute;
-    height:90%;
+    height:100%;
     width:100%;
-    top:26%;
+    padding-top: 10%;
     img{                  
         max-width: 100%;
         max-height: 100%;

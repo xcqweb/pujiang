@@ -4,6 +4,7 @@
     height: 100%;
 }
 .week{
+	z-index: 200;
     height: 1.5rem !important;
     width: 7rem !important;
     position: absolute;
@@ -58,11 +59,12 @@
 <template>
 <div class="c1">
     <div class="week">
-        <span class="oneweek " v-bind:class="{ chose: isActive }" @click=''>7日</span>
-        <span class="twoweek" v-bind:class="{ chose: !isActive }" @click=''>14日</span>
+        <span class="oneweek " v-bind:class="{ chose: isActive }" @click='redom("c1",0)'>7日</span>
+        <span class="twoweek" v-bind:class="{ chose: !isActive }" @click='redom("c1",1)'>14日</span>
     </div>
     <div id="c1" style="width:100%;height:100%">
     </div>
+    <Loading v-show="isloading"></Loading>
 </div>  
 </template>
 
@@ -70,23 +72,65 @@
 import echarts_resize from '../../../common/js/echarts_resize.js'
 import echarts from 'echarts'
 import adaptation from '@/common/js/mixin/adaptation.js'
+import api from '@/api/index.js'
+import Loading from '@/components/commonui/loading/loading.vue'
 export default {
     mixins: [adaptation],
     name:'c1',
     data(){
-        let series=[
-                [320, 332, 301, 334,232, 301 ,],
-                [120, 132, 101, 134,120, 232, ],
-                [120, 232, 301, 134, 320, 332,],
-                [62, 82, 91, 84,320, 332 ,],
-                [62, 118, 64, 106,232, 301 ,],
-                [120, 232, 301, 234,120, 232 ,],
-            ]
-        let date14=['6/13','6/14','6/15','6/16','6/17','6/18','6/19','6/20','6/21','6/22','6/23','6/24','6/25','6/26']
-        let date7=['6/13','6/14','6/15','6/16','6/17','6/18',]
         return{
+        	isloading:false,
             isActive:true,
-            option:{
+            responseData7:{
+            	series:[],
+            	date:[]
+            },
+            responseData14:{
+            	series:[],
+            	date:[]
+            }
+        }
+      },
+      computed: {
+		
+      },
+      created(){
+      	this.isloading = true;
+      },
+    methods:{
+    	//请求数据
+	  	getData(){
+	  		api.tripMode(api.params).then( (re) =>{
+	    		let reData7= re.data.data7;
+	    		let reData14 = re.data.data14;
+	    		this.responseData7.series = reData7.series;
+	    		this.responseData7.date = reData7.date;
+	    		this.responseData14.series = reData14.series;
+	    		this.responseData14.date = reData14.date;
+					if(re.status===200){
+						this.isloading = false;
+					}
+					this.redom("c1",0);
+		    }).catch( (e) => {
+		    	console.log(e);
+		    })
+	  	},
+        redom(id,i){
+        	let date=[];
+        	let series=[];
+        	if(i){
+        		this.isActive = false;
+        		date = this.responseData14.date;
+        		series = this.responseData14.series;
+        	}else{
+        		this.isActive = true;
+        		date = this.responseData7.date;
+        		series = this.responseData7.series;
+        	}
+        	
+        	
+            this.chart = echarts.init(document.getElementById(id));
+            let option = {
                 tooltip : {
                     trigger: 'axis',
                     axisPointer : {            // 坐标轴指示器，坐标轴触发有效
@@ -104,7 +148,7 @@ export default {
                 xAxis : [
                     {
                         type : 'category',
-                        data : date7,
+                        data : date,
                         axisLine: { //坐标轴轴线相关设置。就是数学上的y轴
                                 show: true,
                                 lineStyle: {
@@ -161,54 +205,50 @@ export default {
                         name:'江南第一家',
                         type:'bar',
                         data:series[0]
-                        ,barMaxWidth:'10%',               
+                        ,barMaxWidth:'8%',               
                     },
                     {
                         name:'白石湾风景区',
                         type:'bar',
                         data:series[1]
-                        ,barMaxWidth:'10%',   
+                        ,barMaxWidth:'8%',   
                     },
                     {
                         name:'官岩山',
                         type:'bar',
                         data:series[2]
-                        ,barMaxWidth:'10%',   
+                        ,barMaxWidth:'8%',   
                     },
                     {
                         name:'神丽峡',
                         type:'bar',
                         data:series[3],
-                        barMaxWidth:'10%',   
+                        barMaxWidth:'8%',   
                     },
                     {
                         name:'水竹湾森林公园',
                         type:'bar',
                         data:series[4],
-                        barMaxWidth:'10%',   
+                        barMaxWidth:'8%',   
                     },
                     {
                         name:'仙华山',
                         type:'bar',
                         data:series[5],
-                        barMaxWidth:'10%',   
-                    },
+                        barMaxWidth:'8%',   
+                    }
 
                 ]
-            },
-        }
-      },
-      computed: {
-
-      },
-    methods:{
-        redom(id){
-            this.chart = echarts.init(document.getElementById(id));
-            this.chart.setOption(this.option);
+            };
+            this.chart.setOption(option);
         }
     },
     mounted() {
-          this.$nextTick(echarts_resize('c1',this))
+    	this.getData();
+        this.$nextTick(echarts_resize('c1',this));
+    },
+    components:{
+    	Loading
     }
 }
 </script>

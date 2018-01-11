@@ -19,6 +19,7 @@ import 'echarts/map/js/china.js';
 import zhejiangJson from 'echarts/map/json/province/zhejiang.json'
 import { mapGetters } from 'vuex'
 import Loading from '@/components/commonui/loading/loading.vue'
+import api from '@/api/index.js'
 export default {
     name: 'a6',
     props:['placeName',],
@@ -153,6 +154,32 @@ export default {
     computed: {
     },
     methods: {
+    //请求数据
+  	getData(){
+  		api.touristOrigin(api.params).then( (re) =>{
+    		let reData = re.data.data;
+			this.BJData = reData.cityData.BJData;
+			this.GUANG = reData.cityData.GUANG;
+			this.SHData = reData.cityData.SHData;
+			this.SHENZHEN = reData.cityData.SHENZHEN;
+			this.XIAN = reData.cityData.XIAN;
+			this.FENGD = reData.cityData.FENGD;	
+			
+			this.zhejiang.BJData = reData.zhejiang.BJData;
+			this.zhejiang.GUANG = reData.zhejiang.GUANG;
+			this.zhejiang.SHData = reData.zhejiang.SHData;
+			this.zhejiang.SHENZHEN = reData.zhejiang.SHENZHEN;
+			this.zhejiang.XIAN = reData.zhejiang.XIAN;
+			this.zhejiang.FENGD = reData.zhejiang.FENGD;
+			
+				if(re.status===200){
+					this.isloading = false;
+				}
+				this.redom();
+	    }).catch( (e) => {
+	    	console.log(e);
+	    })
+  	},
     redom7(){
         this.isActive=true;
     },
@@ -175,6 +202,7 @@ export default {
             }
             return res;
     },
+    //国内游客来源
     redom(){
         let _self=this;
         const target = this.placeName;
@@ -309,7 +337,8 @@ export default {
            this.chart.setOption(option, true);
         }
     },
-    redomaa(){
+    //省内游客来源
+    redomaa(datas){
         if(this.chart){
             this.chart.dispose();
         }
@@ -447,7 +476,8 @@ export default {
     }
     },
     mounted(){
-    this.$nextTick(echarts_resize('fromEchart',this))
+    	this.getData();
+    	this.$nextTick(echarts_resize('fromEchart',this))
     },
     components:{
     	Loading

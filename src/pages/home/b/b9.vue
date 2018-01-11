@@ -1,7 +1,7 @@
 <template>
 <div class="content" v-bind:class="{ fullScreen: full }">
     <div class="text" v-show = 'changeModel' >
-        <font>2017</font>年，<font>3月</font>消费最高，年度酒店占<font>18%</font>，景区占<font>51%</font>，民宿占<font>16%</font>，餐饮占<font>15%</font>
+        <font>{{nowYear}}</font>年，<font>3月</font>消费最高，年度酒店占<font>18%</font>，景区占<font>51%</font>，民宿占<font>16%</font>，餐饮占<font>15%</font>
     </div>
     <div id="b9" style="width:100%;height:100%">
     </div>
@@ -16,34 +16,59 @@ import adaptation from '@/common/js/mixin/adaptation.js'
 import api from '@/api/index.js'
 import Loading from '@/components/commonui/loading/loading.vue'
 export default {
-	changeModel:true,
-	isloading:false,
     name:'b9',
     mixins: [adaptation],
     data(){
-        var aageZeroTsev=[182, 202, 154, 254, 320];
-        var aageEightTtwinF=[122, 202, 182, 122,122];
-        var aageTwinTtwinni=[254, 254, 390, 380, 286];
-        var aageThrTthrfour=[268, 254, 254, 410, 286];
-        var aageThrTthrni=[268, 160, 80, 160, 368];
-        var aageFourTfourf=[366, 202, 290, 365, 354];
-        var aageFourfTfourni=[386, 367, 376, 342, 330];
-        var aageFiveTfivef=[256, 309, 158, 324, 311];
-        var aageFiveFive=[287, 372, 254, 378, 202];
+//      var aageZeroTsev=[182, 202, 154, 254, 320];
+//      var aageEightTtwinF=[122, 202, 182, 122,122];
+//      var aageTwinTtwinni=[254, 254, 390, 380, 286];
+//      var aageThrTthrfour=[268, 254, 254, 410, 286];
+//      var aageThrTthrni=[268, 160, 80, 160, 368];
+//      var aageFourTfourf=[366, 202, 290, 365, 354];
+//      var aageFourfTfourni=[386, 367, 376, 342, 330];
+//      var aageFiveTfivef=[256, 309, 158, 324, 311];
+//      var aageFiveFive=[287, 372, 254, 378, 202];
 
-        var aconsume=[
-                {value: 950000, name: '酒店', selected: true},
-                {value: 2790000, name: '景区'},
-                {value: 848000, name: '民宿'},
-                {value: 748000, name: '餐饮'}
-            ];
-
-        var amonth=[{value: 2600000, name: '1月'},
-              {value: 3700000, name: '2月'},
-              {value: 3850000, name: '3月'},
-              {value: 1850000, name: '4月'}]
+//      var aconsume=[
+//              {value: 950000, name: '酒店', selected: true},
+//              {value: 2790000, name: '景区'},
+//              {value: 848000, name: '民宿'},
+//              {value: 748000, name: '餐饮'}
+//          ];
+//
+//      var amonth=[{value: 2600000, name: '1月'},
+//	              {value: 3700000, name: '2月'},
+//	              {value: 3850000, name: '3月'},
+//	              {value: 1850000, name: '4月'}]
+        var nowYear = new Date().getFullYear();
         return{
-            option:{
+        	isloading:false,
+        	nowYear:nowYear,
+        	resData:{
+        		aageZeroTsev:[],
+	        	aageEightTtwinF:[],
+	        	aageTwinTtwinni:[],
+	        	aageThrTthrfour:[],
+	        	aageThrTthrni:[],
+	        	aageFourTfourf:[],
+	        	aageFourfTfourni:[],
+	        	aageFiveTfivef:[],
+	        	aageFiveFive:[]
+        	},
+        	aconsume:[],
+        	amonth:[],
+        }
+      },
+      computed: {
+
+      },
+      created(){
+        this.isloading = true;
+      },
+    methods:{
+        redom(id){
+            this.chart = echarts.init(document.getElementById(id));
+            let option = {
                 color: ['#4bcedd', '#368df7', '#7e6af6','#ff8885','#ffcd38','#e39a50','#75cf65','#b8e986','#86e9e8'],
                 backgroundColor: 'rgba(0,0,0,0)',
                 textStyle: {
@@ -57,9 +82,9 @@ export default {
                 },
                 legend:{
                     show:this.changeModel,
-                    top:'50%',
-                    right:'5%',
-                    width:'70%',
+                    top:'37%',
+                    right:'2%',
+                    width:'50%',
                     itemWidth:12,
                     itemHeight:10,
                     textStyle:{
@@ -77,7 +102,7 @@ export default {
                 },
                 xAxis: {
                     type: 'category',
-                    data: ['2016年', '2015年', '2014年', '2013年', '2012年', ],
+                    data: [this.nowYear+'年',this.nowYear-1+'年',this.nowYear-2+'年',this.nowYear-3+'年',this.nowYear-4+'年', ],
                     axisTick: {
                          alignWithLabel: true
                     },
@@ -99,7 +124,9 @@ export default {
                     type: 'value',
                     nameTextStyle:{
                    		color:'#ffffff',
-                   		fontSize:'100%'
+                   		fontSize:'100%',
+                   		padding:[0,40,0,0],
+                   		align:'left'
                 	},
                     axisLabel:{
                         textStyle: {
@@ -126,47 +153,47 @@ export default {
                     {
                         name: '0-17',
                         type: 'bar', 
-                        data: aageZeroTsev
+                        data: this.resData.aageZeroTsev
                     },
                     {
                         name: '18-24',
                         type: 'bar', 
-                        data: aageEightTtwinF
+                        data: this.resData.aageEightTtwinF
                     },
                     {
                         name: '25-29',
                         type: 'bar', 
-                        data: aageTwinTtwinni
+                        data: this.resData.aageTwinTtwinni
                     },
                     {
                         name: '30-34',
                         type: 'bar', 
-                        data: aageThrTthrfour
+                        data: this.resData.aageThrTthrfour
                     },
                     {
                         name: '35-39',
                         type: 'bar', 
-                        data: aageThrTthrni
+                        data: this.resData.aageThrTthrni
                     },
                     {
                         name: '40-44',
                         type: 'bar', 
-                        data: aageFourTfourf
+                        data: this.resData.aageFourTfourf
                     },
                     {
                         name: '45-49',
                         type: 'bar', 
-                        data: aageFourfTfourni
+                        data: this.resData.aageFourfTfourni
                     },
                     {
                         name: '50-54',
                         type: 'bar', 
-                        data: aageFiveTfivef
+                        data: this.resData.aageFiveTfivef
                     },
                     {
                         name: '55以上',
                         type: 'bar', 
-                        data: aageFiveFive
+                        data: this.resData.aageFiveFive
                     },
                     {
                         name: '支付方式',
@@ -185,7 +212,7 @@ export default {
                                 show: false
                             }
                         },
-                        data: aconsume
+                        data: this.aconsume
                     },
                     {
                         name: '消费情况',
@@ -202,30 +229,31 @@ export default {
                                 show: false
                             }
                         },
-                        data: amonth
+                        data: this.amonth
                     }
                 ]
-            },
-        }
-      },
-      computed: {
-
-      },
-      created(){
-      	this.isloading = true;
-      },
-    methods:{
-        redom(id){
-            this.chart = echarts.init(document.getElementById(id));
-            this.chart.setOption(this.option);
+            };
+            this.chart.setOption(option);
         },
         //请求数据
 	  	getData(){
-	  		api.congestion(api.params).then( (re) =>{
-	    		let reData = re;
-				this.percents = reData.data.num;
-					this.isloading = false;
-				//console.log(re.data)
+	  		api.tourBusiness(api.params).then( (re) =>{
+	  			console.log(re)
+	    		let reData = re.data.data;
+	    		let ageData = reData.ageData;
+				for(let i in ageData){
+					this.resData[i] = ageData[i];
+				}
+		    		
+	    		this.aconsume = reData.aconsume;
+	    		this.amonth = reData.amonth;
+	    		console.log(this.aageZeroTsev,this.aageEightTtwinF,this.aageTwinTtwinni);
+	    		this.redom("b9");
+	    		if(re.status===200){
+	    			this.isloading = false;
+	    		}
+				
+//				console.log(re.data.data)
 		    }).catch( (e) => {
 		    	console.log(e);
 		    })
@@ -251,15 +279,15 @@ div{
         height: 100%;  
     }
     .text{
-        font-size:1.5rem;
+        font-size:1.2rem;
         text-align: left;
         letter-spacing:.4rem;
         line-height:2.3rem;
         color:#05a1cd;
         position:absolute;
         width:389/736*100%;
-        right:3%;
-        top:17%;
+        right:2%;
+        top:5%;
         font{
             color:white;
         }

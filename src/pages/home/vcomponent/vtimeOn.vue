@@ -56,8 +56,8 @@ export default {
                axisLabel: { 
                		 margin: 6,
                    textStyle: {
-                       color: '#05a1cd',//x坐标轴标签字体颜色
-                       fontSize: '80%',
+                       color: '#fff',//x坐标轴标签字体颜色
+                       fontSize: '85%',
                       
                    },
                },
@@ -150,16 +150,16 @@ export default {
             this.reTimer=setInterval(function () {
                 i++;
                 if(i > timerIndex){
-//                    let start_end_instance1 =  new Start_end_class('timeline',20,50);
-//                    start_end_instance1.get_timeline(_self.$el).then(re =>{
-//                        _self.data_arr = Rw.array_until.remove_common(_self.data_arr,re);
-//                        i=8;
-//                        console.log(re);
-//                      _self.option.xAxis.data=re.date;
-//                      _self.option.series.data=re.data;
-//                      console.log(_self.option.xAxis.data)
-//                      _self.option.yAxis.max = Math.max(...re.data);
-//                    })
+                      let start_end_instance1 =  new Start_end_class('timeline',20,50);
+                      start_end_instance1.get_timeline(_self.$el).then(re =>{
+                          _self.data_arr = Rw.array_until.remove_common(_self.data_arr,re);
+                          i=8;
+                          console.log(re);
+                        _self.option.xAxis.data=re.date;
+                        _self.option.series.data=re.data;
+                        console.log(_self.option.xAxis.data)
+                        _self.option.yAxis.max = Math.max(...re.data);
+                      })
                 };
                _self.addData(i,date,data,_self.data_arr.date,_self.data_arr.data);
 

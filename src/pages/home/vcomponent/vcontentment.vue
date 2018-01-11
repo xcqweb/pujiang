@@ -7,7 +7,7 @@
     <input type="range" id="r" min="0" max="100" step="1">
     <span class="value">{{value}}%</span>
     <span class="nub">{{nub}}<font>万人</font></span>
-    <Loading class='loading' v-show="isloading"></Loading>
+    <Loading v-show="isloading"></Loading>
   </div>
 </template>
 
@@ -37,11 +37,14 @@ export default {
   methods: {
   	//请求数据
   	getData(){
-  		api.ouristSatisfaction(api.params).then( (re) =>{
-    		let reData = re.data.satisfation;
-				this.value = reData.value;
-				this.people = reData.nub;
+  		api.touristSatisfaction(api.params).then( (re) =>{
+    		let reData = re.data.data;
+				if(re.status===200){
 					this.isloading = false;
+				}
+					console.log(reData)
+					this.value = reData.value;
+					this.people = reData.nub;
 	    }).catch( (e) => {
 	    	console.log(e);
 	    })
@@ -127,13 +130,11 @@ export default {
         //写百分比文本函数
         var drawText = function(){
             ctx.save();
-
             var size = 0.4*cR;
             ctx.font = size + 'px Microsoft Yahei';
             ctx.textAlign = 'center';
             ctx.fillStyle = "rgba(06, 85, 128, 0.8)";
             ctx.fillText(~~_self.value + '%', r, r + size / 2);
-
             ctx.restore();
         };
 

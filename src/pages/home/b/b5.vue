@@ -30,11 +30,12 @@ export default {
   	//请求数据
   	getData(){
   		api.congestion(api.params).then( (re) =>{
-    		let reData = re;
-			this.percents = reData.data.num;
-			this.isloading = false;
-			
-			//console.log(re.data)
+    		let reData = re.data;
+			this.percents = reData.data.num;		
+			if(re.status===200){
+				this.isloading = false;
+			}
+			//console.log(typeof reData.status)
 	    }).catch( (e) => {
 	    	console.log(e);
 	    })

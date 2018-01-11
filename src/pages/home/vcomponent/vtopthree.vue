@@ -35,17 +35,12 @@ export default {
   	//请求数据
   	getData(){
   		api.topThree(api.params).then( (re) =>{
-    		let reData = re.data.topThree;
+    		let reData = re.data.data;
       		this.items = reData;
-//  		reData.forEach( (item,index) => {
-//  			console.log(item)
-//  			this.items.nub=reData.nub;
-//  			this.items.title=reData.title;
-//  			this.items.font=reData.font;
-//  			this.items.color=reData.color;
-//  		})
-    		//console.log(reData)
-    			this.isloading = false;
+      		//console.log(reData)
+      		if(re.status===200){
+      			this.isloading = false;
+      		}
 	    }).catch( (e) => {
 	    	console.log(e);
 	    })

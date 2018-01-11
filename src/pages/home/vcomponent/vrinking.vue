@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul>
-        <li v-for='(item, index) in items'>{{index+1}}、{{item.name}}</li>
+        <li v-for='(item, index) in items'>{{index+1}}、{{item.province}}</li>
     </ul>
     <Loading class='loading' v-show="isloading"></Loading>
   </div>
@@ -29,9 +29,12 @@ export default {
   	//请求数据
   	getData(){
   		api.originList(api.params).then( (re) =>{
-    		let reData = re.data.originList;
+    		let reData = re.data.data;
     		this.items = reData;
+    		if(re.status===200){
     			this.isloading = false;
+    		}
+    		//console.log(re.data.data)
 				
 	    }).catch( (e) => {
 	    	console.log(e);

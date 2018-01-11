@@ -46,7 +46,7 @@ export default {
         img1:"",
         state:"",
         temperature:0,
-        status
+        status:0
     }
   },
   created(){
@@ -131,12 +131,14 @@ export default {
   	//请求数据
   	getData(){
   		api.weather(api.params).then( (re) =>{
-    		let reData = re.data;
-    		this.temperature = reData.template;
+    		let reData = re.data.data;
+    		this.temperature = reData.temperature;
     		this.state = reData.state;
     		this.status = reData.status;
-    		this.isloading = false;
-      		
+    		if(re.status===200){
+    			this.isloading = false;
+    		}
+      		console.log(re.data);
 	    }).catch( (e) => {
 	    	console.log(e);
 	    })

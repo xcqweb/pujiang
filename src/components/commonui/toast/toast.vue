@@ -47,21 +47,21 @@ var _ = require('lodash');
         },
         choose:function(item){
             this.visiable=false;
-            var _self=this
+            var _self=this;
             //点击切换前的两个数据保存下来，切换前的
-            let jItem=JSON.stringify(item)
-            let jNumb=JSON.stringify(this.numb)
+            let jItem=JSON.stringify(item);
+            let jNumb=JSON.stringify(this.numb);
             let data ={
                 item:JSON.parse(jItem),
                 numb:this.numb
             }
             let currentIndex=_.findIndex(_self.current, function(o) { return o.name == JSON.parse(jNumb).name; })
             //将之前的数据录入当前的状态
-            _self.current[currentIndex].name = JSON.parse(jItem).name
-            _self.current[currentIndex].title = JSON.parse(jItem).title
+            _self.current[currentIndex].name = JSON.parse(jItem).name;
+            _self.current[currentIndex].title = JSON.parse(jItem).title;
 
-            item.name=this.numb.name
-            item.title=this.numb.title
+            item.name=this.numb.name;
+            item.title=this.numb.title;
 						//bus传递选中,模块的数据 给homepage product .. 等模块
             Bus.$emit('cutoverMoudle', data);
             

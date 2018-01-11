@@ -2,7 +2,7 @@
   <div class="c8">
     <ul>
         <li for='item in items'>
-            <div class="cell1">
+            <div class="cell1 title">
                 景区
             </div>
             <div class="cell2">
@@ -20,19 +20,24 @@
                 {{item.numb}}<font>人</font>
             </div>
             <div class="cell3">
-                <span class='footerCotext'>{{item.percent}}</span>
-                <span class='footerRise' :class='item.rise'></span>
+                <span class='footerCotext'>{{item.percent}}%</span>
+                <span v-show="item.rise" class='footerRise up'></span>
+                <span v-show="!item.rise" class='footerRise down'></span>
             </div>
         </li>
     </ul>
+    <Loading v-show="isloading"></Loading>
   </div>
 </template>
 
 <script type="text/javascript">
+	import api from '@/api/index.js'
+	import Loading from '@/components/commonui/loading/loading.vue'
 export default {
     name:'c8',
     data(){
         return{
+        isloading:false,
         msg:'Hello Vue 来自App.vue',
         items:[
                 {
@@ -56,7 +61,30 @@ export default {
             ],
       }
     },
-    components:{}
+    created(){
+    	this.isloading = true;
+    },
+    methods:{
+    	//请求数据
+	  	getData(){
+	  		api.touristOriginRanking(api.params).then( (re) =>{
+	  				let reData = re.data.data;
+	  				//console.log(reData);
+	  				this.items = reData;
+					if(re.status===200){
+						this.isloading = false;
+					}
+		    }).catch( (e) => {
+		    	console.log(e);
+		    })
+	  	}
+    },
+    mounted(){
+    	this.getData();
+    },
+    components:{
+    	Loading
+    }
 }
 </script>
 
@@ -67,6 +95,9 @@ export default {
     color: white;
     font{
         font-size: 0.6rem;
+    }
+    .title{
+    	margin-left: 8%;
     }
 }
 ul{
@@ -89,21 +120,20 @@ ul{
 }
 .cell1{
     float:left;
-    width:35%;
+   	flex: 5;
+   	margin-left: 2%;
     text-align: left;
-    margin-left: 6%;
+    box-sizing: border-box;
 }
 .cell2{
     float:left;
-    width:31%;
-    text-align: center;
+    flex: 4;
 }
 .cell3{
     float:left;
-    width:33%;
+   flex: 3;
     .footerRise{
         display: inline-block;
-         transform: translateY(10%);
     }
 }
 .up{
@@ -120,16 +150,6 @@ width: 8px;
 }
 li:nth-of-type(1){
     text-align: center !important;
-    .cell1{
-        width:31%;
-        margin-left:12%;
-    }
-    .cell2{
-        width:22%;
-    }
-    .cell3{
-        width:33%;
-    }
 }
 li:nth-of-type(2n){
     background-color:#163387;

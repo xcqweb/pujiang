@@ -2,7 +2,9 @@
   <div id="mainhome">
     <transition name="slide-fade">
         <div class="header" v-show='headerStatus' v-on:mouseenter="headerEnter" v-on:mouseleave="headerLeave">
-            <headerBody ></headerBody>
+        	<keep-alive>
+            <headerBody></headerBody>
+        	</keep-alive>
         </div>
     </transition>
     <!-- <vmask ></vmask> -->
@@ -79,13 +81,13 @@ export default {
 @borderColor:#49d9fe;
 @borderLen: 18px;
 .slide-fade-enter-active {
-  transition: all .11s linear;
+  transition: all 0.2s cubic-bezier(0,0,.12,1.06);
 }
 .slide-fade-leave-active {
-  transition: all .1s linear;
+  transition: all 0.2s cubic-bezier(0,0,.12,1.06);
 }
 .slide-fade-enter, .slide-fade-leave-to {
-  transform: translateY(-10px);
+  transform: translateY(-100%);
 
 }
 #mainhome{
@@ -97,7 +99,7 @@ export default {
         position:fixed;
         width: 100%;
         height: 120/1080*100%;
-        background-color: @headerBackColor;
+        background-color: rgba(19,53,150,0.1);
         z-index: 2500;
     }
     .headmock{

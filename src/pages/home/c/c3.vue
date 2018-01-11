@@ -1,6 +1,7 @@
 <template>
     <div class="map_content">
         <div id="c3"></div>
+        <Loading v-show="isloading"></Loading>
     </div>
 </template>
 
@@ -9,11 +10,13 @@ import Vue from 'vue'
 import echarts_resize from '../../../common/js/echarts_resize.js'
 import echarts from 'echarts';
 import pujiangJson from '../../../common/echarts/map/pujiang.json'
-
+import api from '@/api/index.js'
+import Loading from '@/components/commonui/loading/loading.vue'
 export default {
   name: 'c3',
   data () {
     return {
+    	isloading:false,
         isActive:true,
         geoCoordMap:{
             '江南第一家': [120.018874, 29.486721],
@@ -59,6 +62,7 @@ export default {
         WENZ:[
             [{name: '浦江县'}, {name: '温州', value: 20}]
         ],
+        seriesData:[],
         planePath:'path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z',
 
     }
@@ -66,6 +70,29 @@ export default {
   computed: { 
   },
   methods: {
+  	//请求数据
+  	getData(){
+  		api.thermalMap(api.params).then( (re) =>{
+  				let reData = re.data.data;
+  				
+  				this.BJData = reData.BJData;
+  				this.GUANG = reData.GUANG;
+  				this.SHData = reData.SHData;
+  				this.SHENZHEN = reData.SHENZHEN;
+  				this.XIAN = reData.XIAN;
+  				this.FENGD = reData.FENGD;
+  				this.WENZ = reData.WENZ;
+  				this.seriesData = reData.seriesData;
+  				
+  				this.redom("c3");
+    			//console.log(reData,this.seriesData);
+				if(re.status===200){
+					this.isloading = false;
+				}
+	    }).catch( (e) => {
+	    	console.log(e);
+	    })
+  	},
     redom7(){
         this.isActive=true;
     },
@@ -77,7 +104,6 @@ export default {
             for (var i = 0; i < data.length; i++) {
                 var geoCoord = this.geoCoordMap[data[i].name];
                 if (geoCoord) {
-                    
                     res.push(geoCoord.concat(data[i].value));
                 }
             }
@@ -129,21 +155,7 @@ export default {
                     name: 'AQI',
                     type: 'heatmap',
                     coordinateSystem: 'geo',
-                    data: this.convertData([
-                        {name: "江南第一家", value: 677},
-                        {name: "神丽峡", value: 1112},
-                        {name: "泡泡水上乐园", value: 312},
-                        {name: "官岩山", value: 112},
-                        {name: "浦江火车站", value: 114},
-                        {name: "逸境民宿", value: 435},
-                        {name: "巴厘岛", value: 727},
-                        {name: "松月楼农家乐", value: 1112},
-                        {name: "国际开元大酒店", value: 312},
-                        {name: "湖上民宿", value: 1412},
-                        {name: "水竹湾森林公园", value: 214},
-                        {name: "白石湾风景区", value: 135},
-
-                    ])
+                    data: this.convertData(this.seriesData)
                 }]
         };
         if (option && typeof option === "object") {
@@ -152,10 +164,15 @@ export default {
     },
    
   },
+  created(){
+  	this.isloading = true;
+  },
   mounted(){
+  	this.getData();
     this.$nextTick(echarts_resize('c3',this)) 
   },
   components:{
+  	Loading
   }
 }
 </script>

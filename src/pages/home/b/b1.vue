@@ -66,14 +66,17 @@ export default {
     	//请求数据
 	  	getData(){
 	  		api.richNum(api.params).then( (re) =>{
-	    		let reData = re.data;
-	    		this.currentYearNum = reData.currentYear.num;
-	    		this.preYearNum = reData.preYear.num;
-	    		this.currentMonthNum = reData.currentMonth.num;
+	    		let reData = re.data.data;
+	    		this.currentYearNum = reData.currentYearNum;
+	    		this.preYearNum = reData.preYearNum;
+	    		this.currentMonthNum = reData.currentMonth.currentMonthNum;
 	    		this.growRatio = reData.currentMonth.growRatio;
 	    		this.growquantity = reData.currentMonth.growquantity;
+	    		if(re.status===200){
 	    			this.isloading=false;
-	    		
+	    		}
+	    			
+	    		console.log(re)
 		    }).catch( (e) => {
 		    	console.log(e);
 		    })

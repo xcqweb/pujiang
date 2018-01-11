@@ -19,15 +19,15 @@ const state = {
                 {outProvince:20,name:'温州',},
                 {outProvince:10,name:'义马',},
                 {outProvince:10,name:'绍兴',},
-                {outProvince:10,name:'温岭',},
+                {outProvince:10,name:'温岭',}
             ],
             placeAttractions:[
-                {numb:'2001',place:'江南第一家',rise:'up',percent:'423',},
-                {numb:'902',place:'仙华山',rise:'down',percent:'423',},
-                {numb:'1003',place:'神丽峡',rise:'up',percent:'423',},
-                {numb:'2304',place:'官岩山',rise:'up',percent:'423',},
-                {numb:'1405',place:'白石洲风景区',rise:'up',percent:'423',},
-                {numb:'1326',place:'金狮湖',rise:'up',percent:'423',}
+                {numb:'2001',place:'江南第一家',rise:'up',percent:'423'},
+                {numb:'902',place:'仙华山',rise:'down',percent:'423'},
+                {numb:'1003',place:'神丽峡',rise:'up',percent:'423'},
+                {numb:'2304',place:'官岩山',rise:'up',percent:'423'},
+                {numb:'1405',place:'白石洲风景区',rise:'up',percent:'423'},
+                {numb:'1326',place:'金狮湖',rise:'up',percent:'423'}
             ],
             comment:{
                 name:'静静',

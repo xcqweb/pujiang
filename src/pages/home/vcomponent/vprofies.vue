@@ -101,13 +101,13 @@ export default {
   get_response(){
     let start_end_instance =  new Start_end_class('profile',begindaytime);
     start_end_instance.get_response(this.$el).then(re => {
-      this.isloading=false;
       let data = re.data.data;
       this.profileData.all_nub = data.all_nub;
       this.profileData.current_nub = data.current_nub;
       this.profileData.week_income = data.week_income;
       this.profileData.year_incom = data.year_incom;
       this.profileData.yesterday_nub = data.yesterday_nub;
+      this.isloading=false;
     })
       .catch( e =>{
         console.log(e);
@@ -118,7 +118,6 @@ export default {
     let start_end_instance =  new Start_end_class('passengerwarning',begindaytime);
     start_end_instance.get_response(this.$el).then(re => {
       //设置默认值
-      this.isloading = false;
       let data = re.data.data
       this.nub = data.nub;
       this.set_config = data.set_config;
