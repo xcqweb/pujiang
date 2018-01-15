@@ -22,6 +22,7 @@ export default {
   },
   created(){
 	this.isloading = true;
+	this.getData();
   },
   computed:{
 
@@ -35,14 +36,13 @@ export default {
 			if(re.status===200){
 				this.isloading = false;
 			}
-			//console.log(typeof reData.status)
 	    }).catch( (e) => {
 	    	console.log(e);
 	    })
   	}
   },
   mounted(){
-    this.getData();
+    
     },
   components:{
     vcircle,
@@ -55,9 +55,7 @@ export default {
 .b5{
     height: 100%;
     width: 100%;
-    position: relative;
-    
-
+    position: relative;  
 }
 .box{
         position: absolute;

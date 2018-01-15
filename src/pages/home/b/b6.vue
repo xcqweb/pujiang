@@ -51,6 +51,7 @@ export default {
   },
   created(){
   	this.isloading = true;
+  	this.getData();
   },
   computed: { 
   	//根据状态转换图片
@@ -138,14 +139,13 @@ export default {
     		if(re.status===200){
     			this.isloading = false;
     		}
-      		console.log(re.data);
 	    }).catch( (e) => {
 	    	console.log(e);
 	    })
   	}
   },
   mounted(){
-  	this.getData();
+  	
   },
   components:{
   	Loading

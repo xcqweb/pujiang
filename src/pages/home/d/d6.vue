@@ -39,37 +39,74 @@
 <template>
     <div class="b6">
         <div class="b6__top">
-            <span>68，288<font>人次</font></span>
+            <span>{{currentNums}}<font>人次</font></span>
             <font>当前客流总数</font>
         </div>
         <div class="b6__bottom">
-            <span>86，188<font>人次</font></span>
+            <span>{{yestodayNums}}<font>人次</font></span>
             <font>昨日客流总数</font>
         </div>
+        <Loading v-show="isloading"></Loading>
     </div>
 </template>
 
 <script>
 import Vue from 'vue'
+import api from '@/api/index.js'
+import Loading from '@/components/commonui/loading/loading.vue'
+import until from '@/common/js/until/index.js'
 export default {
     name:'d6',
     name: '',
     data () {
         return {
-
+			isloading:false,
+			currentNum:0,
+			yestodayNum:0,
+			allData:{}
         }
     },
+    props:{
+    	place:String
+    },
     components:{
-
+		Loading
     },
     computed: { 
-
+    	//给数据加上分隔符
+		yestodayNums(){
+			return until.string_until.addPoint(this.yestodayNum);
+		},
+		currentNums(){
+			return until.string_until.addPoint(this.currentNum);
+		}
+    },
+    //观察景点的变化来响应数据
+    watch:{
+    	place:function(){
+    		this.currentNum = this.allData[this.place].currentNum;
+	  		this.yestodayNum = this.allData[this.place].yestodayNum;
+    	}
     },
     methods: {
-
+		//请求数据
+	  	getData(){
+	  		api.currentTourist(api.params).then( (re) =>{
+	  				let reData = re.data.data;
+	  				this.allData = reData;
+	  				this.currentNum = reData[this.place].currentNum;
+	  				this.yestodayNum = reData[this.place].yestodayNum;
+					if(re.status===200){
+						this.isloading = false;
+					}
+		    }).catch( (e) => {
+		    	console.log(e);
+		    })
+	  	}
     },
-    mounted(){
-    
+    created(){
+    	this.isloading = true;
+    	this.getData();
     },
 }
 </script>

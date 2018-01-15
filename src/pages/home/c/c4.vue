@@ -38,6 +38,7 @@ export default {
   },
   created(){
   	this.isloading = true;
+  	this.getData();
   },
   computed: { 
   },
@@ -68,8 +69,6 @@ export default {
 						this.women.push({img:women})
 					}
 					
-				console.log(this.men)
-				//for(let i=0; i<){}
 				
 				if(re.status===200){
 					this.isloading = false;
@@ -80,7 +79,6 @@ export default {
   	}
   },
     mounted(){
-    	this.getData();
     },
   components:{
   	Loading

@@ -116,7 +116,7 @@ export default {
   request(){
     this.isloading = true;
     let start_end_instance =  new Start_end_class('passengerwarning',begindaytime);
-    start_end_instance.get_response(this.$el).then(re => {
+    start_end_instance.get_response().then(re => {
       //设置默认值
       let data = re.data.data
       this.nub = data.nub;
@@ -233,9 +233,11 @@ export default {
 			this.chart.setOption(option);
 		}
 	},
-	mounted() {
-    this.get_response();
+	created(){
+		this.get_response();
     this.request();
+	},
+	mounted() {
     this.$nextTick(echarts_resize('vwarning',this));
 	},
 

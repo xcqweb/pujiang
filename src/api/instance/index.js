@@ -7,7 +7,7 @@ import {API_HZ} from '@/api/env.js'
 axios.defaults.timeout = 100000; //5000的超时验证
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
 //创建一个axios实例
-console.log('axios创建实例')
+//console.log('axios创建实例')
 const instance = axios.create();
 let token =window.localStorage.getItem('token');
 instance.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
@@ -42,7 +42,7 @@ instance.interceptors.response.use(
             //     query: { redirect: router.currentRoute.fullPath } // 将跳转的路由path作为参数，登录成功后跳转到该路由
             // })
         }
-        console.log(`error:${error.message},code:${error.status}`)
+        //console.log(`error:${error.message},code:${error.status}`)
         return Promise.reject(error.response.data);
     }
 );

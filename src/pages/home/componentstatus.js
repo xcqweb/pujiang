@@ -66,7 +66,7 @@ let C10 = resolve => {require.ensure(['@/pages/home/c/c10.vue'], () => {resolve(
 //餐饮排行
 let C15 = resolve => {require.ensure(['@/pages/home/c/c15.vue'], () => {resolve(require('@/pages/home/c/c15.vue'))})}
 //热敏图与视频监控
-let D1 =resolve => {require.ensure(['@/pages/home/d/d01.vue'], () => {resolve(require('@/pages/home/d/d01.vue'))})}
+let D1 =resolve => {require.ensure(['@/pages/home/d/d1.vue'], () => {resolve(require('@/pages/home/d/d1.vue'))})}
 //游客餐饮消费分析
 let D2 = resolve => {require.ensure(['@/pages/home/d/d2.vue'], () => {resolve(require('@/pages/home/d/d2.vue'))})}
 //游客舆论

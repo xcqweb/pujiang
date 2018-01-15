@@ -21,15 +21,12 @@ export default {
   data () {
     return {
     		isloading:false,
-        items:[
-//          {title:'客流总数',nub:'',font:'万人',color:'#6dffeb'},
-//          {title:'经济贡献',nub:'',font:'万元',color:'#ffe86e'},
-//          {title:'富民指数',nub:'',font:'万点',color:'#ff719c'}
-        ],
+        items:[]
     }
   },
   created(){
   	this.isloading = true;
+  	this.getData();
   },
   methods: {
   	//请求数据
@@ -37,7 +34,6 @@ export default {
   		api.topThree(api.params).then( (re) =>{
     		let reData = re.data.data;
       		this.items = reData;
-      		//console.log(reData)
       		if(re.status===200){
       			this.isloading = false;
       		}
@@ -45,9 +41,6 @@ export default {
 	    	console.log(e);
 	    })
   	}
-  },
-  created(){
-  	this.getData();
   },
   components:{
   	Loading

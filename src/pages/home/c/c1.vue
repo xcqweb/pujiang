@@ -96,6 +96,7 @@ export default {
       },
       created(){
       	this.isloading = true;
+      	this.getData();
       },
     methods:{
     	//请求数据
@@ -244,7 +245,6 @@ export default {
         }
     },
     mounted() {
-    	this.getData();
         this.$nextTick(echarts_resize('c1',this));
     },
     components:{

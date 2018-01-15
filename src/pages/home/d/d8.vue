@@ -22,40 +22,94 @@
         color: #c7c8f9;
         
     }
+    .loading{
+    	position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0%;
+		left: 0%;
+    }
 
 }
 </style>
 <template>
     <div class="d8">
-        <div class="box">
-            <vcircle class='item'></vcircle>     
-        </div>
-        <span>{{text}}</span>
-    </div>
+    	<div>
+	        <div class="box">
+	            <vcircle :percents="percent" class='item'></vcircle>     
+	        </div>
+	        <span>{{txt}}</span>
+	    </div>
+	    <Loading v-show="isloading" class="loading"></Loading>
+	</div>
 </template>
 
 <script>
 import Vue from 'vue'
 import vcircle from '../b/vcircle.vue'
+import api from '@/api/index.js'
+import Loading from '@/components/commonui/loading/loading.vue'
 export default {
     name: 'd8',
     data () {
     return {
+    	allData:{},
+    	percent:0,
+    	isloading:false,
         text:'一般'
     }
     },
-    computed: { 
+    props:['place'],
+    watch: { 
+    	place:function(){
+    		this.percent = this.allData[this.place].num;
+    	}
+    },
+    computed:{
+    	txt(){
+    		let num = this.percent;
+    		if(num<30){
+    			return '畅通';
+    		}else if(num<50){
+    			return '良好';
+    		}else if(num<70){
+    			return '拥堵';
+    		}else if(num<90){
+    			return '较拥堵';
+    		}else{
+    			return "严重拥堵"
+    		}
+    	}
     },
     methods: {
     getwidth(){
 
     }
     },
+    created(){
+    	this.isloading = true;
+    	this.getData();
+    },
+    methods:{
+    	//请求数据
+	  	getData(){
+	  		api.scenicCongestion(api.params).then( (re) =>{
+	    		let reData = re.data.data;
+	    		this.allData = reData;
+	    		this.percent = this.allData[this.place].num;
+				if(re.status===200){
+					this.isloading = false;
+				}
+		    }).catch( (e) => {
+		    	console.log(e);
+		    })
+	  	}
+    },
     mounted(){
-
     },
     components:{
-    vcircle
+    vcircle,
+    Loading
     }
 }
 </script>

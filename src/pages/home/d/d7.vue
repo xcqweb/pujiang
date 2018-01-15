@@ -34,16 +34,22 @@
   <ul>
       <li v-for='item in items' :style="{color:item.color}"><span class="circle" :style="{backgroundColor: item.color}"></span>{{item.year}}</li>
   </ul>
+  <Loading v-show="isloading"></Loading>
 </div>  
 </template>
 
 <script type="text/javascript">
 import echarts_resize from '../../../common/js/echarts_resize.js'
 import echarts from 'echarts';
+import api from '@/api/index.js'
+import Loading from '@/components/commonui/loading/loading.vue'
 export default {
     name:'d7',
     data(){
     return{
+    	isloading:false,
+    	currentDat:{},
+    	allData:{},
         items:[{
                 year:'支付宝',
                 color:'#368df7',
@@ -180,14 +186,55 @@ export default {
       },
     }
     },
+    props:['place'],
+    watch:{
+    	place:function(){
+    		this.currentData = this.allData[this.place];
+    		this.option.series[0].data[0].value = this.currentData['支付宝'].value;
+    		this.option.series[0].data[0].name = this.currentData['支付宝'].percent+"%";
+    		this.option.series[0].data[1].value = this.currentData['微信'].value;
+    		this.option.series[0].data[1].name = this.currentData['微信'].percent+"%";
+    		this.option.series[0].data[2].value = this.currentData['现金'].value;
+    		this.option.series[0].data[2].name = 100-this.currentData['支付宝'].percent-this.currentData['微信'].percent+"%";
+    		
+    		this.redom('d7');
+    	}
+    },
     methods:{
+    	//请求数据
+	  	getData(){
+	  		api.touristPayway(api.params).then( (re) =>{
+	  				let reData = re.data.data;
+	  				this.allData = reData;
+	  				this.currentData = reData[this.place];
+	  				this.option.series[0].data[0].value = this.currentData['支付宝'].value;
+		    		this.option.series[0].data[0].name = this.currentData['支付宝'].percent+"%";
+		    		this.option.series[0].data[1].value = this.currentData['微信'].value;
+		    		this.option.series[0].data[1].name = this.currentData['微信'].percent+"%";
+		    		this.option.series[0].data[2].value = this.currentData['现金'].value;
+		    		this.option.series[0].data[2].name = 100-this.currentData['支付宝'].percent-this.currentData['微信'].percent+"%";
+		    		this.redom('d7');
+					if(re.status===200){
+						this.isloading = false;
+					}
+		    }).catch( (e) => {
+		    	console.log(e);
+		    })
+	  	},
         redom(id){
             this.chart = echarts.init(document.getElementById(id));
             this.chart.setOption(this.option);
         }
     },
+    created(){
+    	this.isloading =true;
+    	this.getData();
+    },
     mounted() {
           this.$nextTick(echarts_resize('d7',this))
+    },
+    components:{
+    	Loading
     }
 }
 </script>

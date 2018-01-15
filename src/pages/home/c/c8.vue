@@ -39,37 +39,18 @@ export default {
         return{
         isloading:false,
         msg:'Hello Vue 来自App.vue',
-        items:[
-                {
-                numb:'32,001',place:'广东省 ',rise:'up',percent:'423',
-                },
-                {
-                numb:'26,102',place:'上海 ',rise:'down',percent:'423',
-                },
-                {
-                numb:'13,003',place:'北京 ',rise:'up',percent:'423',
-                },
-                {
-                numb:'10,304',place:'湖北省',rise:'up',percent:'423',
-                },
-                {
-                numb:'8,405',place:'陕西省',rise:'up',percent:'423',
-                },
-                {
-                numb:'6,326',place:'江西省 ',rise:'up',percent:'423',
-                }
-            ],
+        items:[],
       }
     },
     created(){
     	this.isloading = true;
+    	this.getData();
     },
     methods:{
     	//请求数据
 	  	getData(){
 	  		api.touristOriginRanking(api.params).then( (re) =>{
 	  				let reData = re.data.data;
-	  				//console.log(reData);
 	  				this.items = reData;
 					if(re.status===200){
 						this.isloading = false;
@@ -80,7 +61,6 @@ export default {
 	  	}
     },
     mounted(){
-    	this.getData();
     },
     components:{
     	Loading

@@ -247,8 +247,11 @@ export default {
     components:{
       Loading
     },
+    created(){
+    	this.request();
+    },
     mounted() {
-      this.request();
+      
     }
   }
 </script>

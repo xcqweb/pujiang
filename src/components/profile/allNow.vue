@@ -2,7 +2,7 @@
   <div class="content">
     <div id="allNow">
     </div>
-    <span>614</span><font>万元</font>
+    <span>{{currentYear.num}}</span><font>万元</font>
   </div>
 </template>
 
@@ -12,6 +12,7 @@ import echarts from 'echarts';
 export default {
   data(){
     return{
+    		
         option:{
           backgroundColor: 'rgba(0,0,0,0)',
           series: [{
@@ -28,10 +29,12 @@ export default {
               animation:false,
               hoverAnimation:false,
               data: [{
-                  value:60 ,
+                  value: 50,
                   name: '',
+                  show:true,
                   label: {
                       normal: {
+                      	
                           textStyle: {
                               color: '#999999',
                               fontSize: "280%"
@@ -48,7 +51,7 @@ export default {
                       }
                   }
               }, {
-                  value: 120,
+                  value: 100,
                   label: {
                       normal: {
                           textStyle: {
@@ -68,42 +71,52 @@ export default {
                   hoverAnimation: false
               }]
           },
-          {
-              name: '饼图二',
-              type: 'pie',
-              radius: ['60%', '70%'],
-              label: {
-                  normal: {
-                      position: 'center'
-                  }
-              },
-
-              center:['50%','55%'],
-              hoverAnimation:false,
-              data: [ {
-                  value: 80,
-                  label: {
-                      normal: {
-                          textStyle: {
-                              color: 'rgba(0,0,0,0)',
-                              fontSize: "220%"
-                          }
-                      }
-                  },
-                  itemStyle: {
-                      normal: {
-                          color: 'rgba(0,0,0,0)'
-                      },
-                      emphasis: {
-                          color: 'rgba(0,0,0,0)'
-                      }
-                  },
-                  hoverAnimation: false
-              }]
-          }
+//        {
+//            name: '饼图二',
+//            type: 'pie',
+//            radius: ['60%', '70%'],
+//            label: {
+//                normal: {
+//                    position: 'center'
+//                }
+//            },
+//
+//            center:['50%','55%'],
+//            hoverAnimation:false,
+//            data: [ {
+//                value: 10,
+//                label: {
+//                    normal: {
+//                        textStyle: {
+//                            color: 'rgba(0,0,0,0)',
+//                            fontSize: "220%"
+//                        }
+//                    }
+//                },
+//                itemStyle: {
+//                    normal: {
+//                        color: 'rgba(0,0,0,0)'
+//                    },
+//                    emphasis: {
+//                        color: 'rgba(0,0,0,0)'
+//                    }
+//                },
+//                hoverAnimation: false
+//            }]
+//        }
           ]
       },
     }
+  },
+  props:{
+  	currentYear:Object
+  },
+  watch:{
+  	currentYear:function(){
+  		 this.option.series[0].data[0].value = this.currentYear.front;
+  		 this.option.series[0].data[0].value = this.currentYear.reverse;
+  		 this.redom('allNow');
+  	}
   },
 methods:{
     redom(id){
@@ -112,7 +125,8 @@ methods:{
     }
 },
 mounted() {
-      this.$nextTick(echarts_resize('allNow',this))
+			this.redom('allNow');
+      this.$nextTick(echarts_resize('allNow',this));
 }
 }
 </script>

@@ -176,7 +176,6 @@ export default {
         //请求数据
 	  	getData(){
 	  		api.marketing(api.params).then( (re) =>{
-	  			console.log(re.data.data);
 	    		let reData = re.data.data;
 	    		if(re.status){
 	    			this.isloading = false;
@@ -193,9 +192,9 @@ export default {
     },
     created(){
     	this.isloading = true;
+    	this.getData();
     },
     mounted() {
-    	this.getData();
         this.$nextTick($sheet.echartRL('percentA',this))
     },
     components:{

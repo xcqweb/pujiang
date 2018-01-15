@@ -26,14 +26,7 @@
         ynub:null,
         loading:true,
         reloading:false,
-        oneweekMock:[
-//          {"nub":50,"date":"交通"},
-//          {"nub":33,"date":"住宿"},
-//          {"nub":60,"date":"餐饮"},
-//          {"nub":39,"date":"游玩"},
-//          {"nub":52,"date":"环境"},
-//          {"nub":42,"date":"消费"},
-        ],
+        oneweekMock:[],
       }
     },
     store:store,
@@ -49,7 +42,6 @@
 	  	getData(){
 	  		api.touristFocus(api.params).then( (re) =>{
 	  				let reData = re.data.data;
-	  				console.log(reData);
 	  				this.oneweekMock = reData;
 					if(re.status===200){
 						this.isloading = false;
@@ -192,9 +184,9 @@
     },
     created(){
     	this.isloading = true;
+    	this.getData();
     },
     mounted() {
-    	this.getData();
       this.redom7();
     }
   }

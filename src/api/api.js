@@ -41,10 +41,16 @@ export const marketing = params => { return axios.get(`${base}/marketing`,{ para
 export const topThree = params => { return axios.get(`${base}/topThree`,{ params: params });};
 //游客满意度
 export const touristSatisfaction = params => { return axios.get(`${base}/touristSatisfaction`,{ params: params });};
+
+
+
 //国内游客来源地
 export const touristOrigin = params => { return axios.get(`${base}/touristOrigin`,{params:params});};
 //旅游营业分析
 export const tourBusiness = rparams => { return axios.get(`${base}/tourBusiness`,{params:params});};
+
+
+
 //出行方式
 export const tripMode = rparams => { return axios.get(`${base}/tripMode`,{params:params});};
 //年龄分析
@@ -63,3 +69,21 @@ export const thermalMap  = rparams => { return axios.get(`${base}/thermalMap`,{p
 export const scenicRanking  = rparams => { return axios.get(`${base}/scenicRanking`,{params:params});};
 //游客来源排行
 export const touristOriginRanking  = rparams => { return axios.get(`${base}/touristOriginRanking`,{params:params});};
+
+//景区当前客流
+export const currentTourist  = rparams => { return axios.get(`${base}/currentTourist`,{params:params});};
+//拥堵指数
+export const scenicCongestion  = rparams => { return axios.get(`${base}/scenicCongestion`,{params:params});};
+
+//游客餐饮消费分析
+export const touristCustom  = rparams => { return axios.get(`${base}/touristCustom`,{params:params});};
+//消费数据分析
+export const customAnalyse  = rparams => { return axios.get(`${base}/customAnalyse`,{params:params});};
+//厕所使用率
+export const toiletUseRatio  = rparams => { return axios.get(`${base}/toiletUseRatio`,{params:params});};
+//游客支付方式
+export const touristPayway  = rparams => { return axios.get(`${base}/touristPayway`,{params:params});};
+//景区客流热力图与视频监控
+export const scenicHot  = rparams => { return axios.get(`${base}/scenicHot`,{params:params});};
+//满意度
+export const contentRatio  = rparams => { return axios.get(`${base}/contentRatio`,{params:params});};

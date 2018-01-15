@@ -32,7 +32,7 @@ export default {
                bottom: '10%',
                borderWidth: 0,
                borderColor: 'rgba(170,172,178,0.33)',
-               backgroundColor: 'rgba(0,0,0,0)',
+               backgroundColor: 'rgba(0,0,0,0)'
            },
            calculable: true,
            xAxis: [{
@@ -143,7 +143,6 @@ export default {
             if (this.reTimer) {
                 window.clearInterval(this.reTimer)
             }
-            //console.log(_self.data_arr);
             let date=_self.data_arr.date.slice(0,8);
             let data=_self.data_arr.data.slice(0,8);
 
@@ -154,10 +153,10 @@ export default {
                       start_end_instance1.get_timeline(_self.$el).then(re =>{
                           _self.data_arr = Rw.array_until.remove_common(_self.data_arr,re);
                           i=8;
-                          console.log(re);
+                          //console.log(re);
                         _self.option.xAxis.data=re.date;
                         _self.option.series.data=re.data;
-                        console.log(_self.option.xAxis.data)
+                        //console.log(_self.option.xAxis.data)
                         _self.option.yAxis.max = Math.max(...re.data);
                       })
                 };
@@ -193,8 +192,10 @@ export default {
           this.$nextTick(echarts_listen_resize('container',this));
         },
     },
+    created(){
+    	this.get_respose();
+    },
     mounted() {
-        this.get_respose();
         this.$nextTick(echarts_listen_resize('container',this));
       },
     components:{

@@ -172,16 +172,22 @@
                 </span>
             </div>
         </div>
+        <Loading v-show="isloading"></Loading>
     </div>
 </template>
 
 <script>
 import Vue from 'vue'
+import api from '@/api/index.js'
+import Loading from '@/components/commonui/loading/loading.vue'
 export default {
     name: 'd3',
-    props:['commentProp', 'place'],
+    props:['place'],
     data () {
         return {
+        	commentProp:{},
+        	isloading:false,
+        	allData:{},
             topStar:{
                 numb:5,
                 width:'30%',
@@ -229,16 +235,59 @@ export default {
             
         }
     },
+    watch:{
+    	place:function(){
+    		this.oneprogressbar.leftProcess = this.allData[this.place].oneprogressbar.leftProcess;
+			this.oneprogressbar.rightProcess = 100-this.allData[this.place].oneprogressbar.leftProcess;
+			this.twoprogressbar.leftProcess = this.allData[this.place].twoprogressbar.leftProcess;
+			this.twoprogressbar.rightProcess = 100-this.allData[this.place].twoprogressbar.leftProcess;
+			this.threeprogressbar.leftProcess = this.allData[this.place].threeprogressbar.leftProcess;
+			this.threeprogressbar.rightProcess = 100-this.allData[this.place].threeprogressbar.leftProcess;
+			
+			this.commentProp = this.allData[this.place].comment;
+    	}
+    },
     components:{
     },
     computed: { 
-
+		commentProps(){
+			return this.allData[this.place].comment;
+		}
     },
     methods: {
-
+		//请求数据
+	  	getData(){
+	  		api.contentRatio(api.params).then( (re) =>{
+	  				let reData = re.data.data;
+	  				this.allData = reData;
+	  				
+	  				//console.log(reData)
+	  				
+	  				this.oneprogressbar.leftProcess = reData[this.place].oneprogressbar.leftProcess;
+	  				this.oneprogressbar.rightProcess = 100-reData[this.place].oneprogressbar.leftProcess;
+	  				this.twoprogressbar.leftProcess = reData[this.place].twoprogressbar.leftProcess;
+	  				this.twoprogressbar.rightProcess = 100-reData[this.place].twoprogressbar.leftProcess;
+	  				this.threeprogressbar.leftProcess = reData[this.place].threeprogressbar.leftProcess;
+	  				this.threeprogressbar.rightProcess = 100-reData[this.place].threeprogressbar.leftProcess;
+	  				
+	  				this.commentProp = reData[this.place].comment;
+					if(re.status===200){
+						this.isloading = false;
+					}
+		    }).catch( (e) => {
+		    	console.log(e);
+		    })
+	  	}
+    },
+    created(){
+    	this.isloading = true;
+    	this.getData();
     },
     mounted(){
     },
+    components:{
+    	Loading
+    }
 }
 Vue.component('vstar',{
         props:['star'],

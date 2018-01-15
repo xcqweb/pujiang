@@ -33,6 +33,7 @@ export default {
   },
   created(){
   	this.isloading = true;
+  	this.getData();
   },
   methods: {
   	//请求数据
@@ -42,7 +43,6 @@ export default {
 				if(re.status===200){
 					this.isloading = false;
 				}
-					console.log(reData)
 					this.value = reData.value;
 					this.people = reData.nub;
 	    }).catch( (e) => {
@@ -54,8 +54,6 @@ export default {
   	Loading
   },
   mounted(){
-  	this.getData();
-  	
     let _self = this;
      var canvas = document.getElementById('c');
         var ctx = canvas.getContext('2d');

@@ -62,6 +62,7 @@
 import Vue from 'vue'
 import vmap from '../vcomponent/vchart_map.vue'
 import adaptation from '@/common/js/mixin/adaptation.js'
+import api from '@/api/index.js'
 export default {
     name: 'b16',
     mixins: [adaptation],

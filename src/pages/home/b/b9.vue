@@ -64,6 +64,7 @@ export default {
       },
       created(){
         this.isloading = true;
+        this.getData();
       },
     methods:{
         redom(id){
@@ -238,7 +239,6 @@ export default {
         //请求数据
 	  	getData(){
 	  		api.tourBusiness(api.params).then( (re) =>{
-	  			console.log(re)
 	    		let reData = re.data.data;
 	    		let ageData = reData.ageData;
 				for(let i in ageData){
@@ -247,20 +247,17 @@ export default {
 		    		
 	    		this.aconsume = reData.aconsume;
 	    		this.amonth = reData.amonth;
-	    		console.log(this.aageZeroTsev,this.aageEightTtwinF,this.aageTwinTtwinni);
 	    		this.redom("b9");
 	    		if(re.status===200){
 	    			this.isloading = false;
 	    		}
 				
-//				console.log(re.data.data)
 		    }).catch( (e) => {
 		    	console.log(e);
 		    })
 	  	}
     },
     mounted() {
-    	this.getData();
         this.$nextTick(echarts_resize('b9',this))
     },
     components:{

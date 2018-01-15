@@ -47,6 +47,7 @@ export default {
     },
     created(){
     	this.isloading = true;
+    	this.getData();
     },
     computed: { 
     },
@@ -55,7 +56,6 @@ export default {
 	  	getData(){
 	  		api.touristOriginsource(api.params).then( (re) =>{
 	  				let reData = re.data;
-	  				//console.log(reData);
 	  				this.outItems = reData.outItem;
 	  				this.inItems = reData.inItem;
 					if(re.status===200){
@@ -67,7 +67,7 @@ export default {
 	  	},
     },
     mounted(){
-    	this.getData();
+    	
     },
     components:{
     	Loading

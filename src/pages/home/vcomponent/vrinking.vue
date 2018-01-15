@@ -21,9 +21,10 @@ export default {
   },
   created(){
   	this.isloading = true;
+  	this.getData();
   },
   mounted(){
-  	this.getData();
+  	
   },
   methods: {
   	//请求数据
@@ -34,7 +35,6 @@ export default {
     		if(re.status===200){
     			this.isloading = false;
     		}
-    		//console.log(re.data.data)
 				
 	    }).catch( (e) => {
 	    	console.log(e);

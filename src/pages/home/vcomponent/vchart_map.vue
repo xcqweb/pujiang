@@ -22,7 +22,7 @@ import Loading from '@/components/commonui/loading/loading.vue'
 import api from '@/api/index.js'
 export default {
     name: 'a6',
-    props:['placeName',],
+    props:['placeName'],
     data () {
     return {
     	isloading:false,
@@ -148,9 +148,6 @@ export default {
 
     }
     },
-    created(){
-    	this.isloading = true;
-    },
     computed: {
     },
     methods: {
@@ -204,6 +201,7 @@ export default {
     },
     //国内游客来源
     redom(){
+    	this.isActive=true;
         let _self=this;
         const target = this.placeName;
         if(this.chart){
@@ -339,6 +337,7 @@ export default {
     },
     //省内游客来源
     redomaa(datas){
+    	this.isActive=false;
         if(this.chart){
             this.chart.dispose();
         }
@@ -475,8 +474,11 @@ export default {
 
     }
     },
-    mounted(){
+    created(){
+    	this.isloading = true;
     	this.getData();
+    },
+    mounted(){
     	this.$nextTick(echarts_resize('fromEchart',this))
     },
     components:{

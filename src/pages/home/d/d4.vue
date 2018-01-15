@@ -1,13 +1,14 @@
 <template>
     <div class='allIncome'>
         <div class="allNow">
-            <allNow></allNow>
-            <h2>2017年当前消费总额度</h2>
+            <allNow :currentYear="currentYear"></allNow>
+            <h2>2018年当前消费总额度</h2>
         </div>
         <div class="percent">
-            <percent></percent>  
+            <percent :history="history"></percent>  
             <h2>历史消费占比</h2>
         </div>
+        <Loading v-show="isloading"></Loading>
     </div>
 </template>
 
@@ -17,10 +18,16 @@ import allNow from '@/components/profile/allNow.vue'
 import percent from '@/components/profile/percent.vue'
 import { mapActions } from 'vuex'
 import { mapGetters } from 'vuex'
+import api from '@/api/index.js'
+import Loading from '@/components/commonui/loading/loading.vue'
 export default {
   name: 'd4',
   data () {
     return {
+    	isloading:false,
+    	allData:{},
+    	currentYear:{},
+    	history:{},
         chartOption:{
             top:{
                 id:'outInfoUnil',
@@ -43,12 +50,46 @@ export default {
         }
     }
   },
+  props:[
+  	'place'
+  ],
   computed: { 
+  	current(){
+  		return this.allData[this.place].currentYear;
+  	}
+  },
+  created(){
+  	this.isloading = true;
+  	this.getData();
+  },
+  mounted(){
+  },
+  watch:{
+  	place:function(){
+  		this.history = this.allData[this.place].history;
+  		this.currentYear = this.allData[this.place].currentYear;
+  	}
   },
   methods: {
+  	//请求数据
+  	getData(){
+  		api.customAnalyse(api.params).then( (re) =>{
+  				let reData = re.data.data;
+  				this.allData = reData;
+  				this.history = reData[this.place].history;
+  				this.currentYear = reData[this.place].currentYear;
+				if(re.status===200){
+					this.isloading = false;
+				}
+	    }).catch( (e) => {
+	    	console.log(e);
+	    })
+  	}
   },
   components:{
-    allNow,percent
+    allNow,
+    percent,
+    Loading
   }
 }
 </script>

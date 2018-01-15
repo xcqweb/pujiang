@@ -71,25 +71,41 @@ display:none !important;
         <canvas class="lineVideo" v-show='videoToast'></canvas>
         <div class="toast-video" v-if='videoToast'>
             <h2>{{videoName}}</h2>
-            <video controls="controls"  src="../../../assets/video/kaiyuan.mp4"  autoplay="autoplay"  loop="loop" style="">
+            <video controls="controls" src="../../../assets/video/xhs.mp4" autoplay="autoplay"  loop="loop" style="">
                 您的浏览器不支持 video 标签。
             </video>
         </div>
+        <Loading v-show="isloading"></Loading>
     </div>
     
 </template>
 
 
 <script>
-require('../../../common/js/baidumap/TrafficControl_min.js')
-require('../../../common/js/baidumap/heatmap.js')
+//import '@/common/js/baidumap/TrafficControl_min.js'
+//require('../../../common/js/baidumap/TrafficControl_min.js')
+//require('../../../common/baidumap/heatmap.js')
+
+import api from '@/api/index.js'
+import Loading from '@/components/commonui/loading/loading.vue'
 
     export default {
         name:'d1',
         data () {
             return {
+            	isloading:false,
                 videoName:'摄像头1',
                 videoToast:false,
+                vsrc:"",
+                videoSrc:[
+                	"../../../assets/video/xhs.mp4",
+                	"../../../assets/video/gys.mp4",
+                	"../../../assets/video/slx.mp4",
+                	"../../../assets/video/xhs.mp4",
+                	"../../../assets/video/yjms.mp4",
+                	"../../../assets/video/bld.mp4",
+                	"../../../assets/video/hsms.mp4"
+                ]
             }
         },
         props:[
@@ -148,7 +164,7 @@ require('../../../common/js/baidumap/heatmap.js')
                         [119.925621,29.512494],
                         [119.931621,29.511494],
                         [119.924621,29.514494],
-                        [119.912621,29.515494],
+                        [119.912621,29.515494]
                     ];
                 // 向地图添加标注
                 for( let i = 0;i < points.length; i++){
@@ -173,6 +189,15 @@ require('../../../common/js/baidumap/heatmap.js')
                             map.centerAndZoom(new BMap.Point(p.lng+lenY*0.25,p.lat+lenY*0.25), 16);
                             _self.videoToast=true;
                             
+                            let len = points.length;
+                            for(let i=0; i<len; ++i){
+                            	let point = points[i][0];
+                            	if(p.lng === point){
+                            		console.log(_self.vsrc)
+                              		_self.vsrc = _self.videoSrc[i];
+                            		console.log(_self.vsrc)
+                            	}
+                            }
                             window.event?window.event.cancelBubble=true:event.stopPropagation();
                         },false);
                     })(i);
@@ -291,18 +316,18 @@ require('../../../common/js/baidumap/heatmap.js')
                 ctrl.setAnchor(BMAP_ANCHOR_BOTTOM_RIGHT);  
             },
             addHot(map){
-                    var points =[];
+                      var points =[];
                     let makeMap = function(){
                         let minX = 119.919801;
                         let minY = 29.512922;
                         let lenX = 119.913692 - 119.932808;
                         let lenY = 29.518155 - 29.510533;
-                        for (var i = 0; i < 80; i++) {
+                        for (var i = 0; i < 180; i++) {
                             let lng = Math.abs(Math.random()-0.7)*Math.abs(lenX)+minX
                             let lat = Math.abs(Math.random()-0.7)*Math.abs(lenY)+minY
                             let count = Math.random()*150
                             let point = {"lng":lng,"lat":lat,"count":count}
-                            points.push(point)
+                            points.push(point);
                         }
                     }
                     makeMap();
@@ -326,11 +351,14 @@ require('../../../common/js/baidumap/heatmap.js')
                             value 为颜色值. 
                      */
                         
-                    let heatmapOverlay = new BMapLib.HeatmapOverlay({"radius":20});
-                    map.addOverlay(heatmapOverlay);
-                    heatmapOverlay.setDataSet({data:points,max:100});
+                      let heatmapOverlay = new BMapLib.HeatmapOverlay({"radius":20});
+                      map.addOverlay(heatmapOverlay);
+                      //设置热力图数据
+                      heatmapOverlay.setDataSet({data:points,max:100});
+                      
+                      
                     //是否显示热力图
-                     heatmapOverlay.show();
+                       heatmapOverlay.show();
                     function closeHeatmap(){
                         heatmapOverlay.hide();
                     }
@@ -355,7 +383,23 @@ require('../../../common/js/baidumap/heatmap.js')
                         var elem = document.createElement('canvas');
                         return !!(elem.getContext && elem.getContext('2d'));
                     }
-            }
+            },
+            //请求数据
+		  	getData(){
+		  		api.scenicHot(api.params).then( (re) =>{
+	  				let reData = re.data.data;
+	  				//console.log(reData);
+					if(re.status===200){
+						this.isloading = false;
+					}
+			    }).catch( (e) => {
+			    	console.log(e);
+			    })
+		  	}
+        },
+        created(){
+        	this.isloading = true;
+        	this.getData();
         },
         mounted() {
             // 百度地图API功能
@@ -409,6 +453,11 @@ require('../../../common/js/baidumap/heatmap.js')
             给地图添加右键菜单
             *************************************************/
             _self.addMenu(map);
-        } 
+           // _self.addLoad(map);
+            
+        },
+        components:{
+        	Loading
+        }
     }
 </script>

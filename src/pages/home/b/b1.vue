@@ -59,6 +59,7 @@ export default {
     },
     created(){
     	this.isloading=true;
+    	this.getData();
     },
     computed: { 
     },
@@ -75,15 +76,13 @@ export default {
 	    		if(re.status===200){
 	    			this.isloading=false;
 	    		}
-	    			
-	    		console.log(re)
 		    }).catch( (e) => {
 		    	console.log(e);
 		    })
 	  	}
     },
     mounted(){
-    	this.getData();
+    	
     },
     components:{
     	Loading

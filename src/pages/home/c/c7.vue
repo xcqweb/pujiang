@@ -51,7 +51,6 @@ export default {
 	  	getData(){
 	  		api.scenicRanking(api.params).then( (re) =>{
 	  				let reData = re.data.data;
-	  				//console.log(reData);
 	  				this.items = reData;
 					if(re.status===200){
 						this.isloading = false; 
@@ -63,9 +62,9 @@ export default {
     },
     created(){
     	this.isloading = true;
+    	this.getData();
     },
     mounted(){
-    	this.getData();
     }
 }
 </script>

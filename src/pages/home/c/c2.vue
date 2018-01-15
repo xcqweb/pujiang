@@ -116,9 +116,9 @@ export default {
     },
     created(){
     	this.isloading = true;
+    	this.getData();
     },
     mounted() {
-    	this.getData();
         this.$nextTick($sheet.echartRL('c2',this))
     },
     components:{

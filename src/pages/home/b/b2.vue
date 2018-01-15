@@ -46,7 +46,7 @@ export default {
   request(){
     this.isloading = true;
     let start_end_instance =  new Start_end_class('passengerwarning',begindaytime);
-    start_end_instance.get_response(this.$el).then(re => {
+    start_end_instance.get_response().then(re => {
       //设置默认值
       this.nub = re.data.data.nub;
       this.set_config = re.data.data.set_config;
@@ -104,7 +104,7 @@ export default {
     })
   }
   },
-  mounted() {
+  created() {
     this.request();
   },
   components:{

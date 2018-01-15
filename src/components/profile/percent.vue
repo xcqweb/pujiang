@@ -15,15 +15,15 @@ export default {
   data(){
     return{
         items:[{
-                year:'2014年',
+                year:'2015年',
                 color:'#368DF7',
             },
             {
-                year:'2015年',
+                year:'2016年',
                 color:'#6F5DDA',
             },
             {
-                year:'2016年',
+                year:'2017年',
                 color:'#75CF65',
             }
             ],
@@ -36,7 +36,7 @@ export default {
                 type:'pie',
                 radius : '75%',
                 center: ['35%', '50%'],
-                // selecteMode:'single',
+                   selecteMode:'single',
                 // selectedOffset:30,
                 // roseType:"area",
                 startAngle:90,
@@ -45,19 +45,18 @@ export default {
                         show: false
                     }
                 },
-                // animation:false,
                 animationType:'expansion',
                 data:[
                     {
                         value:20.5, 
-                        name:'39%',
+                        name:'36%',
                         label:{
                             normal:{
                                 show:true,
                                 position:'inside',
                                 textStyle:{
                                     color:'#FFFFFF',
-                                    fontSize:"100%"
+                                    fontSize:"85%"
                                 }
                             }
                         },
@@ -76,14 +75,14 @@ export default {
                     },
                     {
                         value:16.0,
-                         name:'26%',
+                         name:'32%',
                          label:{
                             normal:{
                                 show:true,
                                 position:'inside',
                                 textStyle:{
                                     color:'#FFFFFF',
-                                    fontSize:"100%"
+                                    fontSize:"85%"
                                 }
                             }
                         },
@@ -95,14 +94,14 @@ export default {
                      },
                     {
                         value:19.8,
-                         name:'33%',
+                         name:'32%',
                          label:{
                             normal:{
                                 show:true,
                                 position:'inside',
                                 textStyle:{
                                     color:'#FFFFFF',
-                                    fontSize:"100%"
+                                    fontSize:"85%"
                                 }
                             }
                         },
@@ -118,6 +117,22 @@ export default {
       },
     }
   },
+  props:{
+  	history:Object
+  },
+  watch:{
+  	history:function(){
+    		this.option.series[0].data[0].value = this.history[2015].value;
+    		this.option.series[0].data[1].value = this.history[2016].value;
+    		this.option.series[0].data[2].value = this.history[2017].value;
+    		let total = this.history[2015].value+this.history[2016].value+this.history[2017].value;
+    		
+    		this.option.series[0].data[0].name = (this.history[2015].value*100/total).toFixed(0)+"%";
+    		this.option.series[0].data[1].name = (this.history[2016].value*100/total).toFixed(0)+"%";
+    		this.option.series[0].data[2].name = (this.history[2017].value*100/total).toFixed(0)+"%";
+  			this.redom('percent');
+  	}
+  },
 methods:{
     redom(id){
         this.chart = echarts.init(document.getElementById(id));
@@ -125,7 +140,7 @@ methods:{
     }
 },
 mounted() {
-      this.$nextTick(echarts_resize('percent',this))
+      this.$nextTick(echarts_resize('percent',this));
 }
 }
 </script>

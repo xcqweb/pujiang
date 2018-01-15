@@ -41,7 +41,6 @@
                     :is='item.name'
                     :key="item.id"
                     :place='place'
-                    :commentProp = 'comment'
                     ></componet>
                   <!--</keep-alive>-->
                 </div>
@@ -63,7 +62,7 @@ export default {
     name: 'souceShow',
         data () {
             return {
-                place:'连州地下河',
+                place:'江南第一家',
                 cutoverImg:require('../../../assets/切换.png'),
                 moudle:[
                     {name:'D1',styleDlass:'游客餐饮消费分析',},
@@ -147,7 +146,7 @@ export default {
             this.barChartOption = Object.assign({}, this.barChartOption, )
         },
         console(){
-                        console.log(this.components)
+            //console.log(this.components)
         },
         chose(item){
             this.tablistCom.forEach(function(list){
@@ -222,11 +221,11 @@ export default {
 
     },
     components:{
-        ...componetstatus,
+        ...componetstatus
     },
     mounted(){
         let _self=this;
-        console.log(this.comment)
+        //console.log(this.comment)
         let arr = _self.topComponents.concat(_self.bottomComponents)
         var lentop=arr.length
         for (var j = 0 ; j < lentop; j++) {

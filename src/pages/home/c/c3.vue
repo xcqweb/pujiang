@@ -85,7 +85,6 @@ export default {
   				this.seriesData = reData.seriesData;
   				
   				this.redom("c3");
-    			//console.log(reData,this.seriesData);
 				if(re.status===200){
 					this.isloading = false;
 				}
@@ -166,9 +165,9 @@ export default {
   },
   created(){
   	this.isloading = true;
+  	this.getData();
   },
   mounted(){
-  	this.getData();
     this.$nextTick(echarts_resize('c3',this)) 
   },
   components:{

@@ -21,6 +21,7 @@
     <div class="main_content">
         <h1>{{place}}</h1>
         <div id="d2"></div>
+        <Loading v-show="isloading"></Loading>
     </div>
 </template>
 <script>
@@ -31,32 +32,35 @@
   import { mapActions } from 'vuex'
   import timeMixin from '@/common/js/mixin/timeMixin.js'
   import Vue from 'vue'
+  import api from '@/api/index.js'
+  import Loading from '@/components/commonui/loading/loading.vue'
   export default {
     name:'d2',
     mixins: [timeMixin],
     data() {
       return {
+      	isloading:false,
         chart: null,
         isActive:true,
         xnub:null,
         ynub:null,
         loading:true,
         reloading:false,
-        oneweekMock:[
-            {"nub":50,"date":"东坡腊肉"},
-            {"nub":33,"date":"阳山淮山"},
-            {"nub":60,"date":"连山大米"},
-            {"nub":39,"date":"瑶山茶油"},
-            {"nub":52,"date":"清远麻鸡"},
-        ],
+        oneweekMock:[],
+        allData:{}
       }
     },
     store:store,
     props:[
-            'place'
+         'place'
     ],
+    watch:{
+    	place:function(){
+    		this.oneweekMock = this.allData[this.place];
+    		this.redom7();
+    	}
+    },
     computed:{
-
       isCase:{
         get: function(){
           return window.location.hash.length > 3 ? true :false;
@@ -64,19 +68,34 @@
       },
     },
     methods: {
-    redom7(){
-        if(this.chart){
-            this.chart.dispose();
-        }
-      this.isActive=true;
-      let dataY=[];
-      let dataX=[];
-      for (var i = 0; i < this.oneweekMock.length; i++) {
-          dataY.push(this.oneweekMock[i].nub);
-          dataX.push(this.oneweekMock[i].date)
-      }
-      this.$nextTick(echarts_resize('d2',this,dataX,dataY))
-    },
+    	//请求数据
+	  	getData(){
+	  		api.touristCustom(api.params).then( (re) =>{
+	  				let reData = re.data.data;
+	  				this.allData = reData;
+	  				this.oneweekMock = reData[this.place];
+	  				
+					if(re.status===200){
+						this.isloading = false;
+					}
+					this.redom7();
+		    }).catch( (e) => {
+		    	console.log(e);
+		    })
+	  	},
+	    redom7(){
+	        if(this.chart){
+	            this.chart.dispose();
+	        }
+	      this.isActive=true;
+	      let dataY=[];
+	      let dataX=[];
+	      for (var i = 0; i < this.oneweekMock.length; i++) {
+	          dataY.push(this.oneweekMock[i].nub);
+	          dataX.push(this.oneweekMock[i].date)
+	      }
+	      this.$nextTick(echarts_resize('d2',this,dataX,dataY))
+	    },
       redom (id,xyfonsiz,datax,datay) {
         var _self= this;
         _self.loading=false;
@@ -193,8 +212,15 @@
       }
     },
     components:{},
+    created(){
+    	this.isloading = true;
+    	this.getData();
+    },
     mounted() {
       this.redom7();
+    },
+    components:{
+    	Loading
     }
   }
 </script>

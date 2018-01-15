@@ -23,7 +23,6 @@ export default {
 	  	getData(){
 	  		api.touristAttr(api.params).then( (re) =>{
 	  				let reData = re.data.data;
-	  				//console.log(reData);
 	  				this.series = reData;
 					if(re.status===200){
 						this.isloading = false;
@@ -84,9 +83,9 @@ export default {
     },
     created(){
     	this.isloading = true;
+    	this.getData();
     },
     mounted() {
-    	this.getData();
       this.$nextTick(echarts_resize('c9',this))
     },
     components:{
