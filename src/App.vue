@@ -1,17 +1,19 @@
 <template>
   <div id="app" >
     <div class="content">
-    <!-- <keep-alive> -->
-        <router-view ></router-view>
-    <!-- </keep-alive> -->
+     <keep-alive> 
+        <router-view></router-view>
+     </keep-alive> 
     </div>
   </div>
 </template>
+
 <script type="text/javascript">
 import store from './vuex/index' 
 import router from './router'
 import echarts from 'echarts';
 import Vue from 'vue'
+
 Vue.mixin({
   mounted: function () {
     var myOption = this.$options.myOption

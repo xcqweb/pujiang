@@ -50,11 +50,14 @@ import Rw from '@/common/js/until/index.js'
 import Start_end_class from '@/common/js/star_end_class.js'
 import {begindaytime} from '@/common/js/gtime.js'
 import Loading from '@/components/commonui/loading/loading.vue'
+import Bus from '@/common/js/bus.js'
 export default {
 	name: 'a2',
 	data () {
 	return {
 	  isloading:false,
+	  allData:[],
+	  currentPlace:'',
 		profileData:{
 			all_nub:'',
 			current_nub:'',
@@ -65,13 +68,12 @@ export default {
 		selectlist:{
 			title:'江南第一家 ',
 			selectStatus:false,
-
 			place:[
 				{
-					name:'江南第一家 ',value:'江南第一家 '
+					name:'江南第一家',value:'江南第一家'
 				},
 				{
-					name:'仙华山 ',value:'仙华山 '
+					name:'仙华山',value:'仙华山'
 				},
 				{
 					name:'神丽峡',value:'神丽峡'
@@ -87,27 +89,167 @@ export default {
         }
 			]
 		},
-    option:null,
-    nub:'',
-    set_config:''
+//  option:{
+//      backgroundColor: 'rgba(0,0,0,0)',
+//        legend: {
+//        data: ['饼图二']
+//      },
+//      series: [{
+//        name: '',
+//        type: 'pie',
+//        radius: ['45%', '60%'],
+//        label: {
+//          normal: {
+//            position: 'center'
+//          }
+//        },
+//        animationType:'expansion',
+//        animation:false,
+//        hoverAnimation:false,
+//        data: [
+//          {
+//            value: 0,
+//            name:"",
+//            label: {
+//              normal: {
+//                textStyle: {
+//                  color: '#7460EE',
+//                  fontSize: 30
+//                }
+//              }
+//            },
+//            itemStyle: {
+//              normal: {
+//                color: '#f2f2f2'
+//              },
+//              emphasis: {
+//                color: '#f2f2f2'
+//              }
+//            },
+//            hoverAnimation: false
+//          },
+//          ]
+//      },
+//        
+//      ]
+//    },
+			
+			
+				option : {
+					
+			    backgroundColor: 'rgba(0,0,0,0)',
+			    color: ['#7460EE'],
+			    z:1000,
+			    tooltip: {
+			        show: true,//鼠标移入提示
+			        //formatter: "{a} <br/>{b} : {c}%"
+			        formatter:function(params){
+			        	return params.name+":"+"<br/>"+params.percent.toFixed(2)+"%"
+			        },
+			    },
+			    legend: {
+			        show: false,
+			        itemGap: 12,
+			        data: ['01']
+			    },
+			    series: [
+			    {
+			            name: '',
+			            type: 'pie',
+			            clockWise: false,
+			            radius: ['54%', '60%'],
+			            itemStyle:  {
+									    normal: {
+									        label: {
+									            show: false
+									        },
+									        labelLine: {
+									            show: false
+									        },
+									        shadowBlur: 40,
+									        shadowColor: 'rgba(40, 40, 40, 0.5)',
+									    }
+									},
+			            hoverAnimation: false,
+			
+			            data: [{
+			                    value: 0,
+			                    name: '客流占最大客流比率'
+			                },
+			                {
+			                    value: 100,
+			                    name: '剩余占比',
+			                    itemStyle: {
+													    normal: {
+													        color: 'rgba(255,255,255,1)',//未完成的圆环的颜色
+													        label: {
+													            show: false
+													        },
+													    },
+													}
+			                }
+			
+			            ]
+			        }, 
+			    ]
+			},
+      nub:0,
+      set_config:0
 	}
 	},
   watch:{
-	  nub:function(){
+    //观察景区变化更新数据
+    currentPlace:function(){
+    	this.nub = this.allData[this.currentPlace].all_nub;
+    	this.profileData.all_nub = this.allData[this.currentPlace].all_nub;
+      this.profileData.current_nub = this.allData[this.currentPlace].current_nub;
+      this.profileData.week_income = this.allData[this.currentPlace].week_income;
+      this.profileData.year_incom = this.allData[this.currentPlace].year_incom;
+      this.profileData.yesterday_nub = this.allData[this.currentPlace].yesterday_nub;
+    	
+    },
+    
+    nub:function(){
+    	let percent = this.nub*100/3000000;
+          this.option.series[0].data[0].value = percent;
+          this.option.series[0].data[1].value = 100-percent;
+          console.log(percent);
+      let Ratio = this.nub/3000000;
+      let setColor = '';
+      //console.log(Ratio)
+      if(Ratio<0.3){
+      	setColor='#0af94a'
+      }else if(Ratio<0.5){
+      	setColor='#7460EE'
+      }else if(Ratio<0.7){
+      	setColor='#eee716'
+      }else if(Ratio<0.9){
+      	setColor='#cb1f1f'
+      }else{
+      	setColor='#f00'
+      }
+      
+        this.option.color[0] = setColor;
+      //console.log(this.option.series[0].data[0].itemStyle.normal.color);
       this.redom("vwarning");
-    }
+    },
   },
 	methods:{
   get_response(){
     let start_end_instance =  new Start_end_class('profile',begindaytime);
-    start_end_instance.get_response(this.$el).then(re => {
-      let data = re.data.data;
+    start_end_instance.get_response().then(re => {
+      let data = re.data.data.data['江南第一家'];
+        
+      this.allData = re.data.data.data;
+      //初始化数据
       this.profileData.all_nub = data.all_nub;
       this.profileData.current_nub = data.current_nub;
       this.profileData.week_income = data.week_income;
       this.profileData.year_incom = data.year_incom;
       this.profileData.yesterday_nub = data.yesterday_nub;
-      this.isloading=false;
+      if(re.code===200){
+      	this.isloading=false;
+      }
     })
       .catch( e =>{
         console.log(e);
@@ -121,7 +263,6 @@ export default {
       let data = re.data.data
       this.nub = data.nub;
       this.set_config = data.set_config;
-      this.redom("vwarning");
       this.isloading = false;
     }).catch( e =>{
       console.log(e);
@@ -131,109 +272,25 @@ export default {
 			this.selectlist.selectStatus=true;
 		},
 		redom(id){
-		  let setconfig = this.set_config;
-      let nub = this.nub;
       this.chart = echarts.init(document.getElementById(id));
-			let option = {
-        backgroundColor: 'rgba(0,0,0,0)',
-          legend: {
-          data: ['饼图二', '饼图三']
-        },
-        series: [{
-          name: '',
-          type: 'pie',
-          radius: ['45%', '60%'],
-          label: {
-            normal: {
-              position: 'center'
-            }
-          },
-          animationType:'expansion',
-          animation:false,
-          hoverAnimation:false,
-          data: [
-            {
-              value: nub,
-              name:"",
-              label: {
-                normal: {
-                  textStyle: {
-                    color: '#7460EE',
-                    fontSize: 30
-                  }
-                }
-              },
-              itemStyle: {
-                normal: {
-                  color: '#f2f2f2'
-                },
-                emphasis: {
-                  color: '#f2f2f2'
-                }
-              },
-              hoverAnimation: false
-            },{
-              value: setconfig,
-              name:'',
-              label: {
-                normal: {
-                  textStyle: {
-                    color: '#999999',
-                    fontSize: 38
-                  },
-                  position: 'center'
-                }
-              },
-              itemStyle:{
-                normal:{
-                  color:'#7460EE'
-                },
-                emphasis:{
-                  color:'#7460EE'
-                }
-              }
-            }, ]
-        },
-          {
-            name: '',
-            type: 'pie',
-            radius: ['45%', '60%'],
-            label: {
-              normal: {
-                position: 'center'
-              }
-            },
-
-            center:['50%','55%'],
-            hoverAnimation:false,
-            data: [ {
-              value: 2000,
-              label: {
-                normal: {
-                  textStyle: {
-                    color: 'rgba(0,0,0,0)',
-                    fontSize: 30
-                  }
-                }
-              },
-              itemStyle: {
-                normal: {
-                  color: 'rgba(0,0,0,0)'
-                },
-                emphasis: {
-                  color: 'rgba(0,0,0,0)'
-                }
-              },
-              hoverAnimation: false
-            }]
-          },
-        ]
-      };
-			this.option = option;
-			this.chart.setOption(option);
+			this.chart.setOption(this.option);
+		},
+		getScenic(scenic){
+			console.log(secnic)
+			this.selectlist.title = secnic;
+		}
+	},
+	computed:{
+		transformColor(){
+			return '#f00';
 		}
 	},
 	created(){
+		Bus.$on('itemtodo', target => {  
+            this.selectlist.title = target;
+            this.currentPlace = target;
+        });  
+        
 		this.get_response();
     this.request();
 	},
@@ -255,7 +312,7 @@ export default {
 	position:relative;
 	.flowtourist{
 		position:absolute;
-		bottom:5%;
+		bottom:3%;
 		left:45.5%;
 		font-size:1.1rem;
 		color:white;
@@ -339,7 +396,7 @@ export default {
 		left: 33%;
 		height:309/1920*100vw;
 		width:309/1920*100vw;
-
+		z-index: 100;
 
 	}
 	.vwarningImg{
@@ -350,18 +407,18 @@ export default {
 		width:309/1920*100vw;
 		background-image:url('../../../assets/vwarning.png');
 		background-size: 100% 100%;
-		color:#fa678f;
 		span{
+			color:#f5781f;
 			position: absolute;
 			display: inline-block;
 			top: 40%;
 			transform: translateY(-50%);
 			left: 50%;
 			transform: translateX(-50%);
-		 	color:#fa678f;
 		 	font-size:1.3rem;
 		}
 		font{
+			color:#f5781f;
 			position: absolute;
 			display: inline-block;
 			top: 55%;

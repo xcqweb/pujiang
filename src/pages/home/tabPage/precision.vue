@@ -6,7 +6,8 @@
                 :class="item.id">
                 <h1>{{item.title}}</h1>
                 <span @click='cutover(item,leftComponents)'>
-                    <img :src="cutoverImg"/>
+                    <!--切换按钮-->
+                    <!--<img :src="cutoverImg"/>-->
                 </span>
                 <div class="border" v-if='item.show'>
                   <keep-alive>
@@ -25,7 +26,7 @@
                 :class="item.id">
                 <h1>{{item.title}}</h1>
                 <span @click='cutover(item,rightComponents)'>
-                    <img :src="cutoverImg"/>
+                    <!--<img :src="cutoverImg"/>-->
                 </span>
                 <div class="border" v-if='item.show'>
                   <keep-alive>
@@ -43,9 +44,7 @@
 
 <script>
 import Vue from 'vue'
-import echarts from 'echarts';
 import componetstatus from '@/pages/home/componentstatus.js'
-import headerBody from '@/pages/home/header.vue'
 import { mapGetters } from 'vuex'
 import Bus from '@/common/js/bus.js'
 export default {

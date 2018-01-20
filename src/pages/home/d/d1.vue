@@ -67,7 +67,7 @@ display:none !important;
 <template>
     <div class="d1">
         <h1>{{place}}</h1>
-        <div id="XSDFXPage" class="XSDFXPage"></div>
+        <div id="XSDFXPages" class="XSDFXPage"></div>
         <canvas class="lineVideo" v-show='videoToast'></canvas>
         <div class="toast-video" v-if='videoToast'>
             <h2>{{videoName}}</h2>
@@ -80,21 +80,20 @@ display:none !important;
     
 </template>
 
-
+ 
 <script>
-//import '@/common/js/baidumap/TrafficControl_min.js'
-//require('../../../common/js/baidumap/TrafficControl_min.js')
-//require('../../../common/baidumap/heatmap.js')
-
+import echarts from 'echarts'
 import api from '@/api/index.js'
 import Loading from '@/components/commonui/loading/loading.vue'
 
+// import BMapLib from '../../../common/js/baidumap/Heatmap.min.js'
+   require('../../../common/js/baidumap/heatmap.js?fdwe')
     export default {
         name:'d1',
         data () {
             return {
             	isloading:false,
-                videoName:'摄像头1',
+                videoName:'摄像头',
                 videoToast:false,
                 vsrc:"",
                 videoSrc:[
@@ -112,6 +111,7 @@ import Loading from '@/components/commonui/loading/loading.vue'
             'place'
         ],
         methods:{
+        	
             addLineVideo(){
                 var canvas = document.getElementsByClassName('lineVideo')[0];
                 //简单地检测当前浏览器是否支持Canvas对象，以免在一些不支持html5的浏览器中提示语法错误
@@ -350,9 +350,9 @@ import Loading from '@/components/commonui/loading/loading.vue'
                         其中 key 表示插值的位置, 0~1. 
                             value 为颜色值. 
                      */
-                        
                       let heatmapOverlay = new BMapLib.HeatmapOverlay({"radius":20});
                       map.addOverlay(heatmapOverlay);
+                      
                       //设置热力图数据
                       heatmapOverlay.setDataSet({data:points,max:100});
                       
@@ -395,19 +395,23 @@ import Loading from '@/components/commonui/loading/loading.vue'
 			    }).catch( (e) => {
 			    	console.log(e);
 			    })
-		  	}
-        },
-        created(){
-        	this.isloading = true;
-        	this.getData();
-        },
-        mounted() {
-            // 百度地图API功能
-            // 创建Map实例
-            const _self= this;
+		  	},
+		  	//多个地方使用会造成冲突,需动态添加热力图,且需在地图构建前将热力图引入进来
+		  	addScript(){
+                let _self = this;
+                var oS=document.createElement('script');
+                oS.src='https://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js?'+Math.random();
+                this.$el.appendChild(oS)
+                oS.onload=function(){
+                    _self.rodomMap();
+                }
+                this.$el.removeChild(oS);
+            },
+            rodomMap(){
+            	const _self= this;
             //绘制牵引线
             _self.addLineVideo();
-            var map = new BMap.Map("XSDFXPage",{enableMapClick:true});
+            var map = new BMap.Map("XSDFXPages",{enableMapClick:true});
             map.addEventListener("mousedown",function(e){
                 _self.videoToast=false;
             },false)
@@ -454,7 +458,18 @@ import Loading from '@/components/commonui/loading/loading.vue'
             *************************************************/
             _self.addMenu(map);
            // _self.addLoad(map);
-            
+            //})
+            }
+        },
+        created(){
+          	this.isloading = true;
+          	this.getData();
+        },
+        mounted() {
+        	//this.$nextTick( () => {
+        	this.addScript()
+            // 百度地图API功能
+            // 创建Map实例
         },
         components:{
         	Loading

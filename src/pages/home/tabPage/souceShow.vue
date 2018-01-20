@@ -13,17 +13,18 @@
                 :class="item.id">
                 <h1>{{item.title}}</h1>
                 <span @click='cutover(item,topComponents)'>
-                    <img :src="cutoverImg"/>
+                    <!--切换按钮-->
+                    <!--<img :src="cutoverImg"/>-->
                 </span>
                 <div class="border" v-if='item.show'>
-                  <!--<keep-alive>-->
+                  <keep-alive>
                     <componet
                     :is='item.name'
                     :key="item.id"
                     :place='place'
                     :commentProp = 'comment'
                     ></componet>
-                  <!--</keep-alive>-->
+                  </keep-alive>
                 </div>
             </div>
         </div>
@@ -33,16 +34,16 @@
                 :class="item.id">
                 <h1 :class="{a8:item.id==='one'}">{{item.title}}</h1>
                 <span @click='cutover(item,bottomComponents)'>
-                    <img :src="cutoverImg"/>
+                    <!--<img :src="cutoverImg"/>-->
                 </span>
                 <div class="border" v-if='item.show'>
-                  <!--<keep-alive>-->
+                  <keep-alive>
                     <componet
                     :is='item.name'
                     :key="item.id"
                     :place='place'
                     ></componet>
-                  <!--</keep-alive>-->
+                  </keep-alive>
                 </div>
             </div>
         </div>
@@ -51,12 +52,12 @@
 
 <script>
 import Vue from 'vue'
-import echarts from 'echarts';
+import echarts from 'echarts'
 import componetstatus from '@/pages/home/componentstatus.js'
-import headerBody from '@/pages/home/header.vue'
 import Bus from '@/common/js/bus.js'
 import _ from 'lodash'
 import { mapGetters } from 'vuex'
+
 export default {
     props:['placeName','placeAttractions'],
     name: 'souceShow',
@@ -103,9 +104,12 @@ export default {
                 ],
                 bottomComponents:[
                     {name:'D2',id:'one',index:1,time:1200,show:false,title:'游客餐饮消费分析'},
-                    {name:'D4',id:'two',index:2,time:1500,show:false,title:'总消费数据分析'},
-                    {name:'D5',id:'three',index:3,time:1800,show:false,title:'厕所使用率'},
-                    {name:'D7',id:'four',index:4,time:2100,show:false,title:'游客支付方式'},
+                    {name:'C2',id:'two',index:2,time:600,show:false,title:'年龄分析'},
+                    //{name:'D4',id:'two',index:2,time:1500,show:false,title:'总消费数据分析'},
+                    {name:'B6',id:'three',index:3,time:1200,show:false,title:'实时天气'},
+                    {name:'B2',id:'four',index:4,time:1800,show:false,title:'客流预警'},
+//                  {name:'D5',id:'three',index:3,time:1800,show:false,title:'厕所使用率'},
+//                  {name:'D7',id:'four',index:4,time:2100,show:false,title:'游客支付方式'},
                 ],
 
             }
@@ -225,7 +229,6 @@ export default {
     },
     mounted(){
         let _self=this;
-        //console.log(this.comment)
         let arr = _self.topComponents.concat(_self.bottomComponents)
         var lentop=arr.length
         for (var j = 0 ; j < lentop; j++) {

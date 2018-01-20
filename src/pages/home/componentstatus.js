@@ -27,7 +27,7 @@ let B1 = resolve => {require.ensure(['@/pages/home/b/b1.vue'], () => {resolve(re
 //客流预警
 let B2 = resolve => {require.ensure(['@/pages/home/b/b2.vue'], () => {resolve(require('@/pages/home/b/b2.vue'))})}
 //路况监控
-let B4 = resolve => {require.ensure(['@/pages/home/b/b04.vue'], () => {resolve(require('@/pages/home/b/b04.vue'))})}
+let B4 = resolve => {require.ensure(['@/pages/home/b/b4.vue'], () => {resolve(require('@/pages/home/b/b4.vue'))})}
 
 //拥堵指数
 let B5 = resolve => {require.ensure(['@/pages/home/b/b5.vue'], () => {resolve(require('@/pages/home/b/b5.vue'))})}
@@ -66,7 +66,16 @@ let C10 = resolve => {require.ensure(['@/pages/home/c/c10.vue'], () => {resolve(
 //餐饮排行
 let C15 = resolve => {require.ensure(['@/pages/home/c/c15.vue'], () => {resolve(require('@/pages/home/c/c15.vue'))})}
 //热敏图与视频监控
-let D1 =resolve => {require.ensure(['@/pages/home/d/d1.vue'], () => {resolve(require('@/pages/home/d/d1.vue'))})}
+//let D1 =resolve => {require.ensure(['@/pages/home/d/d1.vue'], () => {resolve(require('@/pages/home/d/d1.vue'))})}
+
+let D1 = () => import('@/pages/home/d/d1.vue');
+
+//let D1 = function(resolve){
+//	return require.ensure('@/pages/home/d/d1.vue',function(){
+//		return resolve(require('@/pages/home/d/d1.vue'))
+//	})
+//}
+
 //游客餐饮消费分析
 let D2 = resolve => {require.ensure(['@/pages/home/d/d2.vue'], () => {resolve(require('@/pages/home/d/d2.vue'))})}
 //游客舆论

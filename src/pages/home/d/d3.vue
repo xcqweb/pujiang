@@ -324,11 +324,11 @@ Vue.component('vline',{
         <div class='linebox'>
             <span class='title'>{{progressbar.title}}</span>
             <div class='imgleft' 
-                :style="{left:progressbar.leftProcess-20+'%'}">
+                :style="{left:progressbar.leftProcess-15+'%'}">
                 <span>{{progressbar.leftProcess}}%</span>
                 <img :src="progressbar.leftimg"/></div>
             <div class='imgright' 
-                :style="{right:progressbar.rightProcess-20+'%'}">
+                :style="{right:progressbar.rightProcess-10+'%'}">
                 <span v-show='progressbar.rightimg'>{{progressbar.rightProcess}}%</span>
                 <img :src="progressbar.rightimg"/></div>
             <font class='titleleft' :style="{color:progressbar.leftColor}">{{progressbar.leftTitle}}</font>

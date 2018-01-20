@@ -19,7 +19,7 @@ instance.interceptors.request.use(
         if (token) {  // 判断是否存在token，如果存在的话，则每个http header都加上token
             config.headers.token = token;
         }
-        // console.log(config)
+          // console.log(config.headers.token)
         return config;
     },
     err => {
@@ -30,6 +30,7 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
 	
     response => {
+    	//console.log(response)
         if (response.data.code == 200) {
             return response;
           }
@@ -37,12 +38,12 @@ instance.interceptors.response.use(
     },
     error => { //默认除了2XX之外的都是错误的，就会走这里
         if(error.response ===undefined){
-            // router.replace({ //跳转到登录页面
-            //     path: 'login',
-            //     query: { redirect: router.currentRoute.fullPath } // 将跳转的路由path作为参数，登录成功后跳转到该路由
-            // })
+//             router.replace({ //跳转到登录页面
+//                 path: 'login',
+//                 query: { redirect: router.currentRoute.fullPath } // 将跳转的路由path作为参数，登录成功后跳转到该路由
+//             })
         }
-        //console.log(`error:${error.message},code:${error.status}`)
+//        console.log(`error:${error.message},code:${error.status}`)
         return Promise.reject(error.response.data);
     }
 );

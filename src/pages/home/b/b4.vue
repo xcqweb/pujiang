@@ -15,6 +15,7 @@ require('../../../common/js/baidumap/TrafficControl_min.js')
 
             }
         },
+       
         methods:{
             mapMoveSelf(map){
                 console.log(map)
@@ -169,6 +170,8 @@ require('../../../common/js/baidumap/TrafficControl_min.js')
             },
         },
         mounted() {
+        	
+        	
             // 百度地图API功能
             // 创建Map实例
             const _self= this;

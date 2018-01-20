@@ -5,17 +5,18 @@
             <h1>{{topItem.title}}</h1>
             <!--bus传值 处理toast模块选中的数据-->
             <span @click='cutover(topItem,topComponents)'>
-                <img :src="cutoverImg"/>
+            	<!--切换按钮-->
+                <!--<img :src="cutoverImg"/>-->
             </span>
             <div class="border" v-if='topItem.show'>
-              <keep-alive>
+              <!--<keep-alive>-->
                 <componet
                 :is='topItem.name'
                 :key="topItem.id"
                 :chosemMoudle='cutoverMoudle'
                 :lazyLoad='setLazy'
                 ></componet>
-              </keep-alive>
+              <!--</keep-alive>-->
             </div>
         </div>
     </div>
@@ -23,10 +24,11 @@
         <div v-for='topItem in bottomComponents' :class='topItem.id'>
             <h1 :class="{a5:topItem.id==='one',a8:topItem.id==='four'}">{{topItem.title}}</h1>
             <span @click='cutover(topItem,bottomComponents)'>
-                <img :src="cutoverImg"/>
+            	<!--切换按钮-->
+                <!--<img :src="cutoverImg"/>-->
             </span>
             <div class="border" v-if='topItem.show'>
-              <keep-alive>
+              <!--<keep-alive>-->
                 <componet
                 :is='topItem.name'
                 :key="topItem.id"
@@ -34,7 +36,7 @@
                 :lazyLoad='setLazy'
                 :placeName = 'placeName'
                 ></componet>
-              </keep-alive>
+              <!--</keep-alive>-->
             </div>
         </div>
     </div>
@@ -43,10 +45,7 @@
 <script type="text/javascript">
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
-import echarts from 'echarts';
-import vmask from '@/components/commonui/mask.vue'
 import componetstatus from '@/pages/home/componentstatus.js'
-import headerBody from '@/pages/home/header.vue'
 import Bus from '@/common/js/bus.js'
 export default {
         props:['placeName',],
@@ -150,10 +149,7 @@ export default {
                 cutoverStatus:null,
             }
         },
-
         components: {
-                vmask,
-                headerBody,
                 ...componetstatus,
         },
         methods: {

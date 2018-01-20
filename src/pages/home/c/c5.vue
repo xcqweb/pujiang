@@ -113,7 +113,7 @@ export default {
     ul{
         position:absolute;
         left:5%;
-        width:90%;
+        width:100%;
         height:24%;
         top: 24%;
         .line{
@@ -158,7 +158,7 @@ export default {
         position:absolute;
         left:5%;
         top:68%;
-        width:90%;
+        width:100%;
         height:29%;
         .title{
             background-color:#606bff;

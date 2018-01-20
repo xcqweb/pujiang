@@ -16,6 +16,7 @@
 </template>
 <script >
 import Vue from 'vue'
+import Bus from '@/common/js/bus.js'
     export default{
         data(){
             return{
@@ -76,8 +77,14 @@ import Vue from 'vue'
                  showstatus:true,
             }
         },
-        template:`<div class='listdiv'><div class="overlay" v-if='status' @click.stop='hidelist'></div><ul v-if='status'><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item.name}}
-    </li></ul></div>`,
+        template:`<div class='listdiv'>
+        <div class="overlay" v-if='status' @click.stop='hidelist'>
+        	</div>
+        	<ul v-if='status'>
+       		 	<li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item.name}}
+		    	</li>
+		    </ul>
+	    </div>`,
         methods:{
             chosen:function(){
             },
@@ -87,6 +94,8 @@ import Vue from 'vue'
             increment:function(item){
                 this.showstatus= !this.showstatus;
                 this.$emit('itemtodo',item.value);
+                Bus.$emit('itemtodo',item.value);
+                //console.log(item.value)
             },
             test:function(){
 

@@ -145,11 +145,12 @@ import api from '@/api/moudles/tanzhenData'
             // JSON.stringify()
             api.userLogin(params)
                 .then((data ) => {
+                	console.log(data);
                     this.logintext='登录中'; 
                     if(data.data.code=200){
                         if(data.data.message==='验证码错误'){
                             this.logintext='登录';
-                            alert(data.data.message)
+                            alert(data.data.data.message)
                         }else{
                             let token = data.data.data.token;
                             window.localStorage.setItem('token', token);

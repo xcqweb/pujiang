@@ -12,14 +12,16 @@
 
 <script>
 import Vue from 'vue'
-import echarts_resize from '../../../common/js/echarts_resize.js'
+import { mapGetters } from 'vuex'
 import echarts from 'echarts';
-import 'echarts/lib/chart/map';
+import Loading from '@/components/commonui/loading/loading.vue'
+
+import api from '@/api/index.js'
+import echarts_resize from '../../../common/js/echarts_resize.js'
+
+//import 'echarts/lib/chart/map';
 import 'echarts/map/js/china.js';
 import zhejiangJson from 'echarts/map/json/province/zhejiang.json'
-import { mapGetters } from 'vuex'
-import Loading from '@/components/commonui/loading/loading.vue'
-import api from '@/api/index.js'
 export default {
     name: 'a6',
     props:['placeName'],

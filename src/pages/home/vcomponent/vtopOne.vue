@@ -132,7 +132,6 @@ export default {
                           show:true,
                         barGap: 0,
                       //  boundaryGap: false,
-
                         padding:0,
                         barMaxWidth:2,
                         type: 'category',
@@ -176,6 +175,16 @@ export default {
                         splitLine:{
                           show:false,
                         },
+                         axisPointer:{
+                          show:true,
+
+                          lineStyle:{
+                            type:"dashed"
+                          },
+                          label:{
+                          	precision:0
+                          }
+                        },
                         axisLabel:{
                             showMinLabel:true,
                           textStyle:{
@@ -217,7 +226,7 @@ export default {
                             position:'top',
                             textStyle:{
                                 color:'#2CC9E2',
-                                fontSize:"100%"
+                                fontSize:"80%"
                             }
                         }
                        },
@@ -234,6 +243,7 @@ export default {
       //请求数据
         let start_end_instance =  new Start_end_class('passenger',begindaytime);
         start_end_instance.get_response(_self.$el).then(re => {
+        	//console.log(re.data.data)
         _self.twoWeekMock = re.data.data;
         _self.oneweekMock = re.data.data.slice(7,15);
         _self.redom7("righthz");

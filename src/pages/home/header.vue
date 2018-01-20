@@ -115,7 +115,7 @@ a:visited { text-decoration: none;}
     height:100%;
     position:relative;
     box-shadow: 0 2px 25px black;
-    padding-bottom: 2%;
+    padding-bottom: 5px;
     background-color: #133596;
     p{  
         position: absolute;
@@ -127,8 +127,7 @@ a:visited { text-decoration: none;}
     }
     ul{
         position: absolute;
-        top: 20%;
-        bottom: 10%;
+        top: 12%;
         right: 1rem;
         li{
             float: left;

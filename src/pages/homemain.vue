@@ -2,12 +2,9 @@
   <div id="mainhome">
     <transition name="slide-fade">
         <div class="header" v-show='headerStatus' v-on:mouseenter="headerEnter" v-on:mouseleave="headerLeave">
-        	<keep-alive>
             <headerBody></headerBody>
-        	</keep-alive>
         </div>
     </transition>
-    <!-- <vmask ></vmask> -->
     <div class="headmock" v-on:mouseenter="headerEnter"></div>
     <router-view class='mockrouter' 
     :placeName = 'placeName' 
@@ -18,8 +15,6 @@
 <script type="text/javascript">
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
-import echarts from 'echarts/lib/echarts';
-import vmask from '../components/commonui/mask.vue'
 import headerBody from '@/pages/home/header.vue'
 export default {
         data() {
@@ -44,7 +39,6 @@ export default {
             }
         },
         components: {
-                vmask,
                 headerBody,
         },
         computed: { 
@@ -81,7 +75,7 @@ export default {
 @borderColor:#49d9fe;
 @borderLen: 18px;
 .slide-fade-enter-active {
-  transition: all 0.2s cubic-bezier(0,0,.12,1.06);
+  transition: all 0.36s cubic-bezier(0,0,.12,1.06);
 }
 .slide-fade-leave-active {
   transition: all 0.2s cubic-bezier(0,0,.12,1.06);

@@ -8,11 +8,14 @@ export default {
     //可在组件处调用api请求，
     //登录
     userLogin:function(params){
-        return instance.post(`http://210.75.20.143:5068/api/login`, params);
+          return instance.post(`http://210.75.20.143:5068/api/login`, params);
+//      return instance.post(`https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/login`, params);
     },
     //客流人数监测
     passenger:function(paramsObj){
-        return instance.get(`http://120.55.190.57/api/passenger.auth`, {params:paramsObj});
+    	
+        return instance.get(`https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/passenger`, {params:paramsObj});
+        //return instance.get(`http://120.55.190.57/api/passenger.auth`, {params:paramsObj});
     },
     //实时客流量
     timeline:function(paramsObj){
@@ -20,7 +23,8 @@ export default {
     },
     //概况
     profile:function(paramsObj){
-        return instance.get(`http://120.55.190.57/api/profile.auth`, {params:paramsObj});
+        return instance.get(`https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/profile`, {params:paramsObj});
+        //return instance.get(`http://120.55.190.57/api/profile.auth`, {params:paramsObj});
     },
     //客流预警
     passengerwarning:function(paramsObj){

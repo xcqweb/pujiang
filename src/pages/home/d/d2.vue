@@ -27,16 +27,13 @@
 <script>
   import echarts_resize from '../../../common/js/echarts_resize.js'
   import echarts from 'echarts';
-  import { mapGetters } from 'vuex'
+  import { mapGetters,mapActions } from 'vuex'
   import store from '../../../vuex/index' 
-  import { mapActions } from 'vuex'
-  import timeMixin from '@/common/js/mixin/timeMixin.js'
   import Vue from 'vue'
   import api from '@/api/index.js'
   import Loading from '@/components/commonui/loading/loading.vue'
   export default {
     name:'d2',
-    mixins: [timeMixin],
     data() {
       return {
       	isloading:false,
