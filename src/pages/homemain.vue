@@ -6,9 +6,9 @@
         </div>
     </transition>
     <div class="headmock" v-on:mouseenter="headerEnter"></div>
-    <router-view class='mockrouter' 
-    :placeName = 'placeName' 
-    :placeAttractions = 'placeAttractions' 
+    <router-view class='mockrouter'
+    :placeName = 'placeName'
+    :placeAttractions = 'placeAttractions'
     ></router-view>
   </div>
 </template>
@@ -41,7 +41,7 @@ export default {
         components: {
                 headerBody,
         },
-        computed: { 
+        computed: {
           ...mapGetters({
               placeName: 'version/name',
               placeAttractions:'version/placeAttractions',
@@ -58,7 +58,7 @@ export default {
             headerLeave(){
                 this.headerStatus=false;
             },
-            
+
         },
         mounted() {
         }
@@ -92,7 +92,7 @@ export default {
     .header{
         position:fixed;
         width: 100%;
-        height: 120/1080*100%;
+        height: 100/1080*100%;
         background-color: rgba(19,53,150,0.1);
         z-index: 2500;
     }
