@@ -90,10 +90,10 @@ export default {
                 cutoverStatus:null,
                 leftComponents:[
                     {name:'C1',id:'one',index:1,time:100,show:false,title:'出行方式分析'},
-                    {name:'C3',id:'two',index:2,time:300,show:false,title:`${this.placeName}客流热地图`},
+                    {name:'A8',id:'two',index:2,time:300,show:false,title:`营销推广`},
                     {name:'C2',id:'three',index:3,time:600,show:false,title:'年龄分析'},
                     {name:'C6',id:'four',index:4,time:900,show:false,title:'游客关注点'},
-                    {name:'C9',id:'five',index:5,time:1200,show:false,title:`${this.placeName}客流属性分析`},
+                    {name:'C9',id:'five',index:5,time:1200,show:false,title:`客流属性分析`},
                     {name:'C4',id:'six',index:6,time:1500,show:false,title:'游客男女比例'},
                     {name:'C5',id:'seven',index:7,time:1800,show:false,title:'游客详细客源地分布'},
                 ],

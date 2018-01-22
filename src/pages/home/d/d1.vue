@@ -71,7 +71,7 @@ display:none !important;
         <canvas class="lineVideo" v-show='videoToast'></canvas>
         <div class="toast-video" v-if='videoToast'>
             <h2>{{videoName}}</h2>
-            <video controls="controls" src="../../../assets/video/xhs.mp4" autoplay="autoplay"  loop="loop" style="">
+            <video controls="controls" src="@/assets/video/xhs.mp4" autoplay="autoplay"  loop="loop" style="">
                 您的浏览器不支持 video 标签。
             </video>
         </div>
@@ -97,13 +97,13 @@ import Loading from '@/components/commonui/loading/loading.vue'
                 videoToast:false,
                 vsrc:"",
                 videoSrc:[
-                	"../../../assets/video/xhs.mp4",
-                	"../../../assets/video/gys.mp4",
-                	"../../../assets/video/slx.mp4",
-                	"../../../assets/video/xhs.mp4",
-                	"../../../assets/video/yjms.mp4",
-                	"../../../assets/video/bld.mp4",
-                	"../../../assets/video/hsms.mp4"
+                	"@/assets/video/xhs.mp4",
+                	"@/assets/video/gys.mp4",
+                	"@/assets/video/slx.mp4",
+                	"@/assets/video/xhs.mp4",
+                	"@/assets/video/yjms.mp4",
+                	"@/assets/video/bld.mp4",
+                	"@/assets/video/hsms.mp4"
                 ]
             }
         },
