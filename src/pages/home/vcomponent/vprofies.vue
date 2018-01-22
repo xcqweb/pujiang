@@ -1,9 +1,9 @@
 <template>
   <div class="v-profile">
-	<vSelect class='vSelect'
-			:selectList="selectlist"
-			>
-	</vSelect>
+	<!--<vSelect class='vSelect'-->
+			<!--:selectList="selectlist"-->
+			<!--&gt;-->
+	<!--</vSelect>-->
 	<div class='shuaxin'></div>
 
 	<div class="leftprofile">
@@ -130,13 +130,13 @@ export default {
 //          },
 //          ]
 //      },
-//        
+//
 //      ]
 //    },
-			
-			
+
+
 				option : {
-					
+
 			    backgroundColor: 'rgba(0,0,0,0)',
 			    color: ['#7460EE'],
 			    z:1000,
@@ -171,7 +171,7 @@ export default {
 									    }
 									},
 			            hoverAnimation: false,
-			
+
 			            data: [{
 			                    value: 0,
 			                    name: '客流占最大客流比率'
@@ -188,9 +188,9 @@ export default {
 													    },
 													}
 			                }
-			
+
 			            ]
-			        }, 
+			        },
 			    ]
 			},
       nub:0,
@@ -206,9 +206,9 @@ export default {
       this.profileData.week_income = this.allData[this.currentPlace].week_income;
       this.profileData.year_incom = this.allData[this.currentPlace].year_incom;
       this.profileData.yesterday_nub = this.allData[this.currentPlace].yesterday_nub;
-    	
+
     },
-    
+
     nub:function(){
     	let percent = this.nub*100/3000000;
           this.option.series[0].data[0].value = percent;
@@ -228,7 +228,7 @@ export default {
       }else{
       	setColor='#f00'
       }
-      
+
         this.option.color[0] = setColor;
       //console.log(this.option.series[0].data[0].itemStyle.normal.color);
       this.redom("vwarning");
@@ -239,7 +239,7 @@ export default {
     let start_end_instance =  new Start_end_class('profile',begindaytime);
     start_end_instance.get_response().then(re => {
       let data = re.data.data.data['江南第一家'];
-        
+      console.log(re)
       this.allData = re.data.data.data;
       //初始化数据
       this.profileData.all_nub = data.all_nub;
@@ -260,6 +260,7 @@ export default {
     let start_end_instance =  new Start_end_class('passengerwarning',begindaytime);
     start_end_instance.get_response().then(re => {
       //设置默认值
+
       let data = re.data.data
       this.nub = data.nub;
       this.set_config = data.set_config;
@@ -286,11 +287,11 @@ export default {
 		}
 	},
 	created(){
-		Bus.$on('itemtodo', target => {  
+		Bus.$on('itemtodo', target => {
             this.selectlist.title = target;
             this.currentPlace = target;
-        });  
-        
+        });
+
 		this.get_response();
     this.request();
 	},

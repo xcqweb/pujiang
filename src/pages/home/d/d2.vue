@@ -6,6 +6,7 @@
     #d2{
         width: 100%;
         height: 100%;
+        margin-top: 2%;
     }
     h1{
         position:absolute;
@@ -28,7 +29,7 @@
   import echarts_resize from '../../../common/js/echarts_resize.js'
   import echarts from 'echarts';
   import { mapGetters,mapActions } from 'vuex'
-  import store from '../../../vuex/index' 
+  import store from '../../../vuex/index'
   import Vue from 'vue'
   import api from '@/api/index.js'
   import Loading from '@/components/commonui/loading/loading.vue'
@@ -61,7 +62,7 @@
       isCase:{
         get: function(){
           return window.location.hash.length > 3 ? true :false;
-        } 
+        }
       },
     },
     methods: {
@@ -71,7 +72,7 @@
 	  				let reData = re.data.data;
 	  				this.allData = reData;
 	  				this.oneweekMock = reData[this.place];
-	  				
+
 					if(re.status===200){
 						this.isloading = false;
 					}
@@ -111,13 +112,13 @@
                      },
                     xAxis: [
                         {
-                        axisLabel :{  
-                            interval:0   
+                        axisLabel :{
+                            interval:0
                         }  ,
                         show:true,
                         barGap: 0,
                       //  boundaryGap: false,
-                        
+
                         padding:0,
                         barMaxWidth:6,
                         type: 'category',
@@ -202,7 +203,7 @@
                         }
                        },
                     }
-                
+
                 ]
             }//option
         this.chart.setOption(option)

@@ -2,7 +2,7 @@
     <div class="content">
         <div id="c2"></div>
         <Loading v-show="isloading"></Loading>
-    </div>  
+    </div>
 </template>
 
 <script type="text/javascript">
@@ -48,7 +48,7 @@ export default {
                 left:'53%',
                 width:'20%',
                 height:'45%',
-                itemGap:10,
+                itemGap:32,
                 itemWidth:15,
                 itemHeight:10,
                 textStyle:{

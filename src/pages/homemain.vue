@@ -78,7 +78,7 @@ export default {
   transition: all 0.36s cubic-bezier(0,0,.12,1.06);
 }
 .slide-fade-leave-active {
-  transition: all 0.2s cubic-bezier(0,0,.12,1.06);
+  transition: all 0.36s cubic-bezier(0,0,.12,1.06);
 }
 .slide-fade-enter, .slide-fade-leave-to {
   transform: translateY(-100%);

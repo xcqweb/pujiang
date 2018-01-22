@@ -27,11 +27,11 @@ let womenE= require('../../../assets/images/home/womenE.png')
 export default {
   name: 'c4',
   data () {
-    
+
     return {
     	isloading:false,
-        womenPercent:'40%',
-        menPercent:'60%',
+        womenPercent:'40',
+        menPercent:'60',
         men:[],
         women:[]
     }
@@ -40,7 +40,7 @@ export default {
   	this.isloading = true;
   	this.getData();
   },
-  computed: { 
+  computed: {
   },
   methods: {
   	//请求数据
@@ -49,27 +49,27 @@ export default {
   				let reData = re.data.data;
     			this.menPercent = reData.menPercent;
     			this.womenPercent = 100-reData.menPercent;
-				
+
 				let menlen = Math.round(this.menPercent/10);
 				let womenlen = Math.round(this.womenPercent/10);
-				
+
 					for(let i=0; i<menlen+1; ++i){
 						this.men.push({img:menE})
 					}
-					
+
 					for(let i=0; i<10-menlen; ++i){
 						this.men.push({img:men})
 					}
-					
+
 					for(let i=0; i<womenlen+1; ++i){
 						this.women.push({img:womenE})
 					}
-					
+
 					for(let i=0; i<10-womenlen; ++i){
 						this.women.push({img:women})
 					}
-					
-				
+
+
 				if(re.status===200){
 					this.isloading = false;
 				}
@@ -92,7 +92,7 @@ export default {
     height:100%;
     width:100%;
     padding-top: 10%;
-    img{                  
+    img{
         max-width: 100%;
         max-height: 100%;
         width: auto;
@@ -120,7 +120,7 @@ export default {
         font{
             display:inline-block;
             position:absolute;
-            
+
         }
     }
     ul:nth-of-type(1){

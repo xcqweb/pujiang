@@ -6,7 +6,7 @@
     <canvas id="c"></canvas>
     <input type="range" id="r" min="0" max="100" step="1">
     <span class="value">{{value}}%</span>
-    <span class="nub">{{nub}}<font>万人</font></span>
+    <!--<span class="nub">{{nub}}<font>万人</font></span>-->
     <Loading v-show="isloading"></Loading>
   </div>
 </template>
