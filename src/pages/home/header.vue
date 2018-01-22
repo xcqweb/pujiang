@@ -81,6 +81,9 @@ export default {
             case '#/souceShow' :
             this.items[3].status = 'unchose'
             break;
+            case '#/iframeMap' :
+            this.items[4].status = 'unchose'
+            break;
         }
 
     },
@@ -128,7 +131,7 @@ a:visited { text-decoration: none;}
     }
     ul{
         position: absolute;
-        top: 12%;
+        top: 20%;
         right: 1rem;
         li{
             float: left;
@@ -141,8 +144,8 @@ a:visited { text-decoration: none;}
             }
             span{
                 display:inline-block;
-                width: 36px;
-                height: 34px;
+                width: 30px;
+                height: 28px;
             }
             font{
                 display: block;
@@ -199,6 +202,16 @@ a:visited { text-decoration: none;}
             }
             .chose{
                 background-image:url('../../assets/images/home/资源展示平台2.png');
+                background-size: 100% 100%;
+            }
+        }
+        li:nth-of-type(5){
+            .unchose{
+                background-image:url('../../assets/images/home/2171516605538.jpg');
+                background-size: 100% 100%;
+            }
+            .chose{
+                background-image:url('../../assets/images/home/2161516605424.jpg');
                 background-size: 100% 100%;
             }
         }

@@ -20,6 +20,26 @@
     text-align: center;
     background-color: #163387;
     position: relative;
+        &:before {
+          position:absolute;
+          top: 0;
+          left: 0;
+          width: @borderLen;
+          height: @borderLen;
+          border-top:2px solid @borderColor;
+          border-left:2px solid @borderColor;
+          content: " ";
+          }
+        &:after {
+          position:absolute;
+          bottom: 0;
+          right: 0;
+          width: @borderLen;
+          height: @borderLen;
+          border-bottom:2px solid @borderColor;
+          border-right:2px solid @borderColor;
+          content: " ";
+        }
     .border{
         height: 100%;
         width: 100%;
@@ -90,6 +110,7 @@ span{
     }
     .rightSide{
         position: relative;
+        
         .one{
             position: absolute;
             top:0;
