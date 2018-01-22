@@ -36,6 +36,7 @@ import img18 from '../../../assets/images/weather-blue/yejianqing.png'
 import img19 from '../../../assets/images/weather-blue/yujiaxue.png'
 import img20 from '../../../assets/images/weather-blue/zhongxue.png'
 import img21 from '../../../assets/images/weather-blue/zhongyu.png'
+import img22 from '../../../assets/images/weather-blue/zhongyu.png'
 export default {
   name: 'b6',
   data () {

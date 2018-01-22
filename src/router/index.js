@@ -15,6 +15,7 @@ const homepage = resolve => {require.ensure(['@/pages/home/tabPage/homepage.vue'
 const Precision = resolve => {require.ensure(['@/pages/home/tabPage/precision.vue'], () => {resolve(require('@/pages/home/tabPage/precision.vue'))})}
 const prodcut = resolve => {require.ensure(['@/pages/home/tabPage/prodcut.vue'], () => {resolve(require('@/pages/home/tabPage/prodcut.vue'))})}
 const souceShow = resolve => {require.ensure(['@/pages/home/tabPage/souceShow.vue'], () => {resolve(require('@/pages/home/tabPage/souceShow.vue'))})}
+const iframeMap = resolve => {require.ensure(['@/pages/home/tabPage/iframeMap.vue'], () => {resolve(require('@/pages/home/tabPage/iframeMap.vue'))})}
 const homemain = resolve => {require.ensure(['@/pages/homemain.vue'], () => {resolve(require('@/pages/homemain.vue'))})}
 const loginmain = resolve => {require.ensure(['@/pages/loginmain.vue'], () => {resolve(require('@/pages/loginmain.vue'))})}
 
@@ -53,6 +54,7 @@ const router= new Router({
             { path: 'prodcut', component: prodcut, name: 'prodcut' },
             { path: 'precision', component: Precision, name: 'Precision' },
             { path: 'souceShow', component: souceShow, name: 'souceShow' },
+            { path: 'iframeMap', component: iframeMap, name: 'iframeMap' },
         ]
     },
   ]

@@ -28,6 +28,7 @@ export default {
         {name:'产业监测平台',link:'/prodcut',status:'chose'},
         {name:'精准营销平台',link:'/precision',status:'chose'},
         {name:'应急指挥平台',link:'/souceShow',status:'chose'},
+        {name:'地图',link:'/iframeMap',status:'chose'},
       ],
       hash:'',
       wid:window.innerWidth
@@ -201,7 +202,7 @@ a:visited { text-decoration: none;}
                 background-size: 100% 100%;
             }
         }
-        li:nth-of-type(5){
+        li:last-child{
             span{
                 background-image:url('../../assets/images/home/退出登录.png');
                 background-size: 100% 100%;
