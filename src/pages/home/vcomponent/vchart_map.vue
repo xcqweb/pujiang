@@ -30,8 +30,7 @@ export default {
     	isloading:false,
         chart:null,
         isActive:false,
-        zhejiang:{
-            geoCoordMap:{
+        geoCoordLocal:{
             '浦江县': [120.105537,29.508488],
             '清远': [113.064193,23.68823],
             '江山': [118.639502,28.757867],
@@ -44,8 +43,9 @@ export default {
             '台州': [121.425361,28.670242],
             '温州': [120.698668,28.015083],
             '丹山':[122.216445,29.992188],
-
         },
+        zhejiang:{
+            
         BJData:[
             [{name: '浦江县'}, {name: '江山', value: 95}],
 
@@ -62,7 +62,7 @@ export default {
             [{name: '浦江县'}, {name: '宁波', value: 10}],
         ],
         XIAN:[
-            [{name: '浦江县'}, {name: '台州', value: 95}],
+            [{name: '浦江县'}, {name: '台州', value: 98}],
         ],
         FENGD:[
             [{name: '浦江县'}, {name: '丹山', value: 20}]
@@ -156,7 +156,9 @@ export default {
     //请求数据
   	getData(){
   		api.touristOrigin(api.params).then( (re) =>{
+  			
     		let reData = re.data.data;
+    		console.log(reData)
 			this.BJData = reData.cityData.BJData;
 			this.GUANG = reData.cityData.GUANG;
 			this.SHData = reData.cityData.SHData;
@@ -164,12 +166,12 @@ export default {
 			this.XIAN = reData.cityData.XIAN;
 			this.FENGD = reData.cityData.FENGD;	
 			
-			this.zhejiang.BJData = reData.zhejiang.BJData;
-			this.zhejiang.GUANG = reData.zhejiang.GUANG;
-			this.zhejiang.SHData = reData.zhejiang.SHData;
-			this.zhejiang.SHENZHEN = reData.zhejiang.SHENZHEN;
-			this.zhejiang.XIAN = reData.zhejiang.XIAN;
-			this.zhejiang.FENGD = reData.zhejiang.FENGD;
+			this.zhejiang.BJData = reData.localData.BJData;
+			this.zhejiang.GUANG = reData.localData.GUANG;
+			this.zhejiang.SHData = reData.localData.SHData;
+			this.zhejiang.SHENZHEN = reData.localData.SHENZHEN;
+			this.zhejiang.XIAN = reData.localData.XIAN;
+			this.zhejiang.FENGD = reData.localData.FENGD;
 			
 				if(re.status===200){
 					this.isloading = false;
@@ -435,7 +437,7 @@ export default {
                     data: item[1].map(function (dataItem) {
                         return {
                             name: dataItem[1].name,
-                            value: _self.zhejiang.geoCoordMap[dataItem[1].name].concat([dataItem[1].value])
+                            value: _self.geoCoordLocal[dataItem[1].name].concat([dataItem[1].value])
                         };
                     })
                 });

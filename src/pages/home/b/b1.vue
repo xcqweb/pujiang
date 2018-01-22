@@ -133,6 +133,7 @@ export default {
           font-size: 1.3rem;
           font-weight: 400;
           color:#ffd800;
+          font-family:numberFont;
         }
         font{
           display:block;
@@ -150,6 +151,7 @@ export default {
           font-size: 2.4rem;
           font-weight: 400;
           color:#ffd800;
+          font-family:numberFont;
         }
         font{
           display:block;
@@ -180,6 +182,7 @@ export default {
             .footerCotext{
               font-size: 1.2rem;
               font-weight: 400;
+              font-family:numberFont;
             }
             .footerUnit{
               font-size: 0.8rem;
@@ -196,6 +199,7 @@ export default {
             .footerCotext{
               font-size: 1.2rem;
               font-weight: 400;
+              font-family:numberFont;
             }
             .footerUnit{
               font-size: 0.8rem;

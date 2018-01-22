@@ -108,10 +108,14 @@ ul{
 .cell2{
     float:left;
     flex: 4;
+    font-family:numberFont;
 }
 .cell3{
     float:left;
    flex: 3;
+   .footerCotext{
+   		 font-family:numberFont;
+   }
     .footerRise{
         display: inline-block;
     }

@@ -85,10 +85,6 @@ export default {
             	series:[],
             	date:[]
             },
-            responseData14:{
-            	series:[],
-            	date:[]
-            }
         }
       },
       computed: {
@@ -103,11 +99,8 @@ export default {
 	  	getData(){
 	  		api.tripMode(api.params).then( (re) =>{
 	    		let reData7= re.data.data7;
-	    		let reData14 = re.data.data14;
 	    		this.responseData7.series = reData7.series;
 	    		this.responseData7.date = reData7.date;
-	    		this.responseData14.series = reData14.series;
-	    		this.responseData14.date = reData14.date;
 					if(re.status===200){
 						this.isloading = false;
 					}
@@ -119,16 +112,9 @@ export default {
         redom(id,i){
         	let date=[];
         	let series=[];
-        	if(i){
-        		this.isActive = false;
-        		date = this.responseData14.date;
-        		series = this.responseData14.series;
-        	}else{
         		this.isActive = true;
         		date = this.responseData7.date;
         		series = this.responseData7.series;
-        	}
-        	
         	
             this.chart = echarts.init(document.getElementById(id));
             let option = {
@@ -136,10 +122,15 @@ export default {
                     trigger: 'axis',
                     
                     axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-                        type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                        type : 'shadow',// 默认为直线，可选为：'line' | 'shadow'
+                        label:{
+                        	formatter:function(params){
+                        		return params.value
+                        	}
+                        }
                     }
                 },
-                color:['#7460EE','#438AFF ','#02C753','#6AEDD9','#FC6ACB ','#FB7C7D'],
+                color:['#FB7C7D','#7460EE','#6AEDD9','#438AFF ','#02C753','#FC6ACB '],
                 grid: {
                     left: '5%',
                     right: '10%',
@@ -204,41 +195,41 @@ export default {
                 series : [
 
                     {
-                        name:'江南第一家',
+                        name:'自驾游',
                         type:'bar',
                         data:series[0]
-                        ,barMaxWidth:'8%',               
+                        ,barMaxWidth:'16%',               
                     },
                     {
-                        name:'白石湾风景区',
+                        name:'公共交通',
                         type:'bar',
                         data:series[1]
-                        ,barMaxWidth:'8%',   
+                        ,barMaxWidth:'16%',   
                     },
                     {
-                        name:'官岩山',
+                        name:'团队游',
                         type:'bar',
                         data:series[2]
-                        ,barMaxWidth:'8%',   
+                        ,barMaxWidth:'16%',   
                     },
-                    {
-                        name:'神丽峡',
-                        type:'bar',
-                        data:series[3],
-                        barMaxWidth:'8%',   
-                    },
-                    {
-                        name:'水竹湾森林公园',
-                        type:'bar',
-                        data:series[4],
-                        barMaxWidth:'8%',   
-                    },
-                    {
-                        name:'仙华山',
-                        type:'bar',
-                        data:series[5],
-                        barMaxWidth:'8%',   
-                    }
+//                  {
+//                      name:'飞机',
+//                      type:'bar',
+//                      data:series[3],
+//                      barMaxWidth:'8%',   
+//                  },
+//                  {
+//                      name:'长途汽车',
+//                      type:'bar',
+//                      data:series[4],
+//                      barMaxWidth:'8%',   
+//                  },
+//                  {
+//                      name:'骑行',
+//                      type:'bar',
+//                      data:series[5],
+//                      barMaxWidth:'8%',   
+//                  }
 
                 ]
             };

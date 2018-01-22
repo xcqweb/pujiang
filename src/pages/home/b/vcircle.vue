@@ -105,15 +105,16 @@ animation: rotation 3s linear infinite;
     top: 0;
 }
 font{
+    font-family: numberFont;
     color: white;
     position: absolute;
     display: inline-block;
-    top: 50%;
+    top: 40%;
     transform: translateY(-50%);
     left: 50%;
     transform: translateX(-50%);
     height: 50%;
     width: 50%;
-    font-size:1.3rem;
+    font-size:2rem;
 }
 </style>

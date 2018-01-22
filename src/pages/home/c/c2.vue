@@ -98,7 +98,8 @@ export default {
                             position: 'inner',
                             textStyle:{
                             	fontSize:"90%",
-                            	color:'#eee'
+                            	color:'#eee',
+                            	fontFamily:'Courier New'
                             },
                             formatter: function(params){
                                 return Math.round(params.percent) === 0 ? '' : Math.round(params.percent)+"%"  ;

@@ -287,6 +287,7 @@ div{
         top:5%;
         font{
             color:white;
+            font-family:numberFont;
         }
     }
 }

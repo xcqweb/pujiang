@@ -13,7 +13,7 @@
 		</div>
 
 		<div class='bottom'>
-			<p>{{profileData.week_income}}<font>元</font></p>
+			<p>{{profileData.week_income}}<font>人次</font></p>
 			<span>本月客流总数</span>
 		</div>
 
@@ -24,7 +24,7 @@
 			<span>昨日客流总数</span>
 		</div>
 		<div class='bottom'>
-			<p>{{profileData.year_incom}}<font>元</font></p>
+			<p>{{profileData.year_incom}}<font>人次</font></p>
 			<span>本年客流总数</span>
 		</div>
 
@@ -340,6 +340,7 @@ export default {
 	p{
 		color:#ffd800;
 		font-size:1.8rem;
+		font-family:numberFont;
 		font{
 			font-size: .9rem;
 		}
@@ -416,6 +417,7 @@ export default {
 			left: 50%;
 			transform: translateX(-50%);
 		 	font-size:1.5rem;
+		 	font-family:numberFont;
 		}
 	}
 }

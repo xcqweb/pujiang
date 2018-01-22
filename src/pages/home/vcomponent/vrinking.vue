@@ -6,7 +6,7 @@
                 景区
             </div>
             <div class="cell3">
-                同比
+                	占比
             </div>
         </li>
         <li v-for='(item,index) in items'>
@@ -96,7 +96,7 @@ ul{
 }
 .cell1{
     float:left;
-    width:45%;
+    width:48%;
     text-align: left;
     margin-left: 1%;
     display:flex;

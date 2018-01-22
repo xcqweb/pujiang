@@ -58,6 +58,7 @@
                 left:50%;
                 transform: translate(-50% ,-95%);
                 font-size:0.8rem;
+                font-family: numberFont;
             }
         }
         .imgright{
@@ -65,7 +66,9 @@
             bottom:12px;
             height:auto;
             width:10%;
+        		
             span{
+            	font-family: numberFont;
                 position:absolute;
                 top:50%;
                 left:50%;

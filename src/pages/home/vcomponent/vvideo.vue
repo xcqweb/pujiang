@@ -1,10 +1,13 @@
 <template>
     <div class="video">
-        <video controls="controls"  src="../../../assets/video/baishizhou.mp4"  autoplay="autoplay"  loop="loop" style="">
-            您的浏览器不支持 video 标签。
-        </video>
         <video controls="controls"  src="../../../assets/video/kaiyuan.mp4"  autoplay="autoplay"  loop="loop" style="">
             您的浏览器不支持 video 标签。
+        </video>
+        <video controls="controls" autoplay="autoplay"  loop="loop" style="">
+            您的浏览器不支持 video 标签。
+            <!--视频接口-->
+            <!--http://192.168.1.75:10800/play2.html?channel=3-->
+            <source src="../../../assets/video/kaiyuan.mp4" type="audio/mp4"/>
         </video>
     </div>
 </template>

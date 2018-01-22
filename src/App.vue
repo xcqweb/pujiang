@@ -40,6 +40,7 @@ export default {
   }
 }
 </script>
+<!--全局样式-->
 <style lang="less">
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126

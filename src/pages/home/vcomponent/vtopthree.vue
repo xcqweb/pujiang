@@ -81,6 +81,7 @@ ul{
                 display: table-cell;
                 vertical-align:middle;
                 text-align:center;
+                font-family:numberFont;
             }
         }
         p:nth-of-type(2){

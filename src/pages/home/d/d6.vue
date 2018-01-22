@@ -8,6 +8,7 @@
         display:block;
         color:#ffd800;
         font-size:2rem;
+        font-family: numberFont;
         font{
             margin-left: .3rem;
             display: inline-block;

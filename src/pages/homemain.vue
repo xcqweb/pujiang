@@ -74,16 +74,17 @@ export default {
 @topBottomColor:#163387;
 @borderColor:#49d9fe;
 @borderLen: 18px;
+
 .slide-fade-enter-active {
-  transition: all 0.36s cubic-bezier(0,0,.12,1.06);
+  transition: all .11s linear;
 }
 .slide-fade-leave-active {
-  transition: all 0.36s cubic-bezier(0,0,.12,1.06);
+  transition: all .1s linear;
 }
 .slide-fade-enter, .slide-fade-leave-to {
-  transform: translateY(-100%);
-
+  transform: translateY(-10px);
 }
+
 #mainhome{
     width:100vw;
     height: 100vh;
