@@ -40,7 +40,7 @@
     <div class="b6">
         <div class="b6__top">
             <span>{{currentNums}}<font>人次</font></span>
-            <font>当前客流总数</font>
+            <font>当前客流人数</font>
         </div>
         <div class="b6__bottom">
             <span>{{yestodayNums}}<font>人次</font></span>

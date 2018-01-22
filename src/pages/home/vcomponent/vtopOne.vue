@@ -1,10 +1,10 @@
 <template>
   <div class="main_content" v-show='show' id="A1loding">
     <div id="righthz"></div>
-    <div class="week">
-        <span class="oneweek " v-bind:class="{ chose: isActive }" @click='redom7'>7日</span>
-        <span class="twoweek" v-bind:class="{ chose: !isActive }" @click='redom14'>14日</span>
-    </div>
+    <!--<div class="week">-->
+        <!--<span class="oneweek " v-bind:class="{ chose: isActive }" @click='redom7'>7日</span>-->
+        <!--<span class="twoweek" v-bind:class="{ chose: !isActive }" @click='redom14'>14日</span>-->
+    <!--</div>-->
     <Loading v-if="isloading"></Loading>
   </div>
 </template>
@@ -168,6 +168,10 @@ export default {
                         }
                     ],
                     yAxis:{
+                    		name:"单位 : 人",
+                    		nameTextStyle:{
+                    			fontSize:16,
+                    		},
                         show:true,
                         nameTextStyle:{
                           color:'#ffffff'

@@ -10,13 +10,13 @@
                     <!--<img :src="cutoverImg"/>-->
                 </span>
                 <div class="border" v-if='item.show'>
-                  <keep-alive>
+                  <!--<keep-alive>-->
                     <componet
                     :is='item.name'
                     :key="item.id"
                     :placeName = 'placeName'
                     ></componet>
-                  </keep-alive>
+                  <!--</keep-alive>-->
                 </div>
             </div>
         </div>
@@ -30,12 +30,12 @@
                     <!--<img :src="cutoverImg"/>-->
                 </span>
                 <div class="border" v-if='item.show'>
-                  <keep-alive>
+                  <!--<keep-alive>-->
                     <componet
                     :is='item.name'
                     :key="item.id"
                     ></componet>
-                  </keep-alive>
+                  <!--</keep-alive>-->
                 </div>
             </div>
         </div>
@@ -53,7 +53,7 @@ export default {
             return {
                 cutoverImg:require('../../../assets/切换.png'),
                 moudle:[
-                    {name:'B16',title:'国内游客来源地',},
+                    {name:'B16',title:'游客来源地',},
                     {name:'B1',title:'富民指数分析',},
                     {name:'B2',title:'客流预警',},
                     {name:'B3',title:'旅游营销分析',},
@@ -72,7 +72,7 @@ export default {
 
                 ],
                 current:[
-                    {name:'B16',title:'国内游客来源地'},
+                    {name:'B16',title:'游客来源地'},
                     {name:'A1',title:'客流人数分析'},
                     {name:'A5',title:'实时客流监测'},
                     {name:'B1',title:'富民指数'},
@@ -85,7 +85,7 @@ export default {
                 ],
                 cutoverStatus:null,
                 leftComponents:[
-                    {name:'B16',id:'one',index:1,time:100,show:false,title:'国内游客来源地'},
+                    {name:'B16',id:'one',index:1,time:100,show:false,title:'游客来源地'},
                     {name:'A1',id:'two',index:2,time:300,show:false,title:'客流人数分析'},
                     {name:'A5',id:'three',index:3,time:600,show:false,title:'实时客流监测'},
                     {name:'B1',id:'four',index:4,time:900,show:false,title:'富民指数'},

@@ -3,13 +3,13 @@
     <ul>
         <li for='item in items'>
             <div class="cell1 title">
-                景区
+                	地区
             </div>
             <div class="cell2">
                 人数
             </div>
             <div class="cell3">
-                同比
+              	  占比
             </div>
         </li>
         <li v-for='(item,index) in items'>

@@ -199,7 +199,7 @@ div{
     display: block;
     position:absolute;
     top:50%;
-    right:25%;
+    right:12%;
     font-size:1.8rem;
     color:#6dffeb;
 }

@@ -17,14 +17,14 @@
                     <!--<img :src="cutoverImg"/>-->
                 </span>
                 <div class="border" v-if='item.show'>
-                  <keep-alive>
+                  <!--<keep-alive>-->
                     <componet
                     :is='item.name'
                     :key="item.id"
                     :place='place'
                     :commentProp = 'comment'
                     ></componet>
-                  </keep-alive>
+                  <!--</keep-alive>-->
                 </div>
             </div>
         </div>
@@ -32,18 +32,18 @@
             <div class="item"
                 v-for='item in bottomComponents'
                 :class="item.id">
-                <h1 :class="{a8:item.id==='one'}">{{item.title}}</h1>
+                <h1>{{item.title}}</h1>
                 <span @click='cutover(item,bottomComponents)'>
                     <!--<img :src="cutoverImg"/>-->
                 </span>
                 <div class="border" v-if='item.show'>
-                  <keep-alive>
+                  <!--<keep-alive>-->
                     <componet
                     :is='item.name'
                     :key="item.id"
                     :place='place'
                     ></componet>
-                  </keep-alive>
+                  <!--</keep-alive>-->
                 </div>
             </div>
         </div>
@@ -66,11 +66,11 @@ export default {
                 place:'江南第一家',
                 cutoverImg:require('../../../assets/切换.png'),
                 moudle:[
-                    {name:'D1',styleDlass:'游客餐饮消费分析',},
+                    {name:'D1',styleDlass:'餐饮偏好',},
                     {name:'D3',styleDlass:'',},
                     {name:'D4',title:'景区收益分析',},
                     {name:'D5',styleDlass:'厕所使用率',},
-                    {name:'D6',styleDlass:'景区当前客流',},
+                    {name:'D6',styleDlass:'景区客流',},
                     {name:'D7',styleDlass:'游客支付方式',},
                     {name:'D8',styleDlass:'拥堵指数',},
                     {name:'D9',styleDlass:'9',},
@@ -87,10 +87,10 @@ export default {
                 tablist:this.tablistCom,
                 current:[
                     {name:'D1',title:'景区客流热力图与视频监控'},
-                    {name:'D6',title:'景区当前客流'},
+                    {name:'D6',title:'景区客流'},
                     {name:'D8',title:'拥堵指数'},
                     {name:'D3',title:''},
-                    {name:'D2',title:'游客餐饮消费分析'},
+                    {name:'D2',title:'餐饮偏好'},
                     {name:'D4',title:'总消费数据分析'},
                     {name:'D5',title:'厕所使用率'},
                     {name:'D7',title:'游客支付方式'},
@@ -98,12 +98,12 @@ export default {
                 cutoverStatus:null,
                 topComponents:[
                     {name:'D1',id:'one',index:1,time:100,show:false,title:'景区客流热力图与视频监控'},
-                    {name:'D6',id:'two',index:2,time:300,show:false,title:'景区当前客流'},
+                    {name:'D6',id:'two',index:2,time:300,show:false,title:'景区客流'},
                     {name:'D8',id:'three',index:3,time:600,show:false,title:'拥堵指数'},
                     {name:'D3',id:'four',index:4,time:900,show:false,title:'满意度'},
                 ],
                 bottomComponents:[
-                    {name:'D2',id:'one',index:1,time:1200,show:false,title:'游客餐饮消费分析'},
+                    {name:'D2',id:'one',index:1,time:1200,show:false,title:'餐饮偏好'},
                     {name:'C2',id:'two',index:2,time:600,show:false,title:'年龄分析'},
                     //{name:'D4',id:'two',index:2,time:1500,show:false,title:'总消费数据分析'},
                     {name:'B6',id:'three',index:3,time:1200,show:false,title:'实时天气'},

@@ -9,12 +9,12 @@
 	<div class="leftprofile">
 		<div class='top'>
 			<p>{{profileData.current_nub}}<font>人次</font></p>
-			<span>当前客流总数</span>
+			<span>当前客流人数</span>
 		</div>
 
 		<div class='bottom'>
 			<p>{{profileData.week_income}}<font>元</font></p>
-			<span>当前景区本周收益</span>
+			<span>本月客流总数</span>
 		</div>
 
 	</div>
@@ -25,7 +25,7 @@
 		</div>
 		<div class='bottom'>
 			<p>{{profileData.year_incom}}<font>元</font></p>
-			<span>当前景区年收益</span>
+			<span>本年客流总数</span>
 		</div>
 
 	</div>
@@ -33,8 +33,7 @@
 	<span class="flowtourist">客流预警</span>
 	<div id="vwarning"></div>
 	<div class="vwarningImg">
-		<span>{{profileData.all_nub}}</span>
-		<font>人</font>
+		<span>66%</span>
 	</div>
     <Loading v-show="isloading"></Loading>
   </div>
@@ -412,20 +411,11 @@ export default {
 			color:#f5781f;
 			position: absolute;
 			display: inline-block;
-			top: 40%;
+			top: 45%;
 			transform: translateY(-50%);
 			left: 50%;
 			transform: translateX(-50%);
-		 	font-size:1.3rem;
-		}
-		font{
-			color:#f5781f;
-			position: absolute;
-			display: inline-block;
-			top: 55%;
-			transform: translateY(-50%);
-			left: 50%;
-			transform: translateX(-50%);
+		 	font-size:1.5rem;
 		}
 	}
 }

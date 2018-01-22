@@ -68,16 +68,17 @@ export default {
     computed:{
     	txt(){
     		let num = this.percent;
-    		if(num<30){
-    			return '畅通';
-    		}else if(num<50){
-    			return '良好';
-    		}else if(num<70){
-    			return '拥堵';
-    		}else if(num<90){
-    			return '较拥堵';
-    		}else{
-    			return "严重拥堵"
+    		switch(num){
+    			case 1:return '畅通';
+    			break;
+    			case 2:return '良好';
+    			break;
+    			case 3:return '拥堵';
+    			break;
+    			case 4:return '较拥堵';
+    			break;
+    			case 5:return "严重拥堵"
+    			break;
     		}
     	}
     },

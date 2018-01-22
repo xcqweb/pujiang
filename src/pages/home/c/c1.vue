@@ -58,10 +58,10 @@
 
 <template>
 <div class="c1">
-    <div class="week">
-        <span class="oneweek " v-bind:class="{ chose: isActive }" @click='redom("c1",0)'>7日</span>
-        <span class="twoweek" v-bind:class="{ chose: !isActive }" @click='redom("c1",1)'>14日</span>
-    </div>
+    <!--<div class="week">-->
+        <!--<span class="oneweek " v-bind:class="{ chose: isActive }" @click='redom("c1",0)'>7日</span>-->
+        <!--<span class="twoweek" v-bind:class="{ chose: !isActive }" @click='redom("c1",1)'>14日</span>-->
+    <!--</div>-->
     <div id="c1" style="width:100%;height:100%">
     </div>
     <Loading v-show="isloading"></Loading>
@@ -134,6 +134,7 @@ export default {
             let option = {
                 tooltip : {
                     trigger: 'axis',
+                    
                     axisPointer : {            // 坐标轴指示器，坐标轴触发有效
                         type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
                     }

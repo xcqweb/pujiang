@@ -13,7 +13,7 @@
             <div class=" line">
                 <img :src="line"/>
             </div>
-            <font v-show='percents'>{{percents}}%</font>
+            <font v-show='percents'>{{percents}}</font>
         </div>
     </div>
 </template>

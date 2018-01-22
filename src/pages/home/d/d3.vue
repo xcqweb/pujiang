@@ -40,7 +40,7 @@
         margin-top:5%;
         margin-left: 5%;
         width:90%;
-        height:13%;
+        height:20%;
         .title{
             position:absolute;
             top:0;
@@ -149,7 +149,6 @@
 
 <template>
     <div class="d3">
-        <h1>{{place}}</h1>
         <vstar 
         class='title-star'
         :star='topStar.numb' 
@@ -158,7 +157,7 @@
         <vline :progressbar='oneprogressbar' class='progress'></vline>
         <vline :progressbar='twoprogressbar'></vline>
         <vline :progressbar='threeprogressbar'></vline>
-        <div class="msg">
+        <!--<div class="msg">
             <span class="title">评论</span>
             <div class="comment">
                 <span class="name">{{commentProp.name}}</span>
@@ -171,7 +170,7 @@
                     {{commentProp.context}}
                 </span>
             </div>
-        </div>
+        </div>-->
         <Loading v-show="isloading"></Loading>
     </div>
 </template>

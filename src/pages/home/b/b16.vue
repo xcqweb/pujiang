@@ -46,11 +46,11 @@
      v-show = 'changeModel' 
     >
         <div>
-            <span>2017年累计接待游客(人)</span>
+            <span>{{nowYear}}年累计接待游客(人)</span>
             <font>{{yearNumb}}</font>
         </div>
         <div>
-            <span>6月份持续接待游客(人)</span>
+            <span>{{mowMonth}}月份持续接待游客(人)</span>
             <font>{{mouthNumb}}</font>
         </div>
     </div>
@@ -63,6 +63,9 @@ import Vue from 'vue'
 import vmap from '../vcomponent/vchart_map.vue'
 import adaptation from '@/common/js/mixin/adaptation.js'
 import api from '@/api/index.js'
+let date = new Date()
+let nowYear = date.getFullYear()
+let mowMonth = date.getMonth()+1
 export default {
     name: 'b16',
     mixins: [adaptation],
@@ -71,6 +74,8 @@ export default {
         return {
             yearNumb:32603958,
             mouthNumb:11952186,
+            nowYear:nowYear,
+            mowMonth:mowMonth
         }
     },
     components:{

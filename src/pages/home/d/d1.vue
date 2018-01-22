@@ -7,7 +7,6 @@
     h1{
         position:absolute;
         top:1.3rem;
-        left:2rem;
         font-size: 1.1rem;
         color:white;
     }
@@ -66,7 +65,6 @@ display:none !important;
 </style>
 <template>
     <div class="d1">
-        <h1>{{place}}</h1>
         <div id="XSDFXPages" class="XSDFXPage"></div>
         <canvas class="lineVideo" v-show='videoToast'></canvas>
         <div class="toast-video" v-if='videoToast'>

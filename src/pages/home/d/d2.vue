@@ -20,7 +20,6 @@
 </style>
 <template>
     <div class="main_content">
-        <h1>{{place}}</h1>
         <div id="d2"></div>
         <Loading v-show="isloading"></Loading>
     </div>
