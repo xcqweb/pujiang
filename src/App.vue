@@ -102,7 +102,8 @@ html{
   height: 200px;
   overflow-x: hidden;
   background: #F2F7FA;
-  font-family: "Microsoft YaHei","SF Pro SC","HanHei SC","PingFang SC",Arial,Helvetica,sans-serif,"SimSun";
+  //  font-family:;
+  font-family:numberFont, "Microsoft YaHei","SF Pro SC","HanHei SC","PingFang SC",Arial,Helvetica,sans-serif,"SimSun",;
 }
 .clearfix:after {
     visibility: hidden;
@@ -157,5 +158,8 @@ html{
   z-index: 999;
   cursor: pointer;
 }
-
+@font-face{
+font-family: numberFont;
+src: url('./assets/style/QuiverItalRegular.ttf'),
+}
 </style>

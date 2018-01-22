@@ -1,7 +1,22 @@
 <template>
   <div>
     <ul>
-        <li v-for='(item, index) in items'>{{index+1}}、{{item.province}}</li>
+        <li for='item in items'>
+            <div class="cell1">
+                景区
+            </div>
+            <div class="cell3">
+                同比
+            </div>
+        </li>
+        <li v-for='(item,index) in items'>
+            <div class="cell1">
+                {{index+1}}、{{item.place}}
+            </div>
+            <div class="cell3">
+               <font>{{item.percent}}%</font>
+            </div>
+        </li>
     </ul>
     <Loading class='loading' v-show="isloading"></Loading>
   </div>
@@ -29,12 +44,12 @@ export default {
   methods: {
   	//请求数据
   	getData(){
-  		api.originList(api.params).then( (re) =>{
+  		api.scenicRanking(api.params).then( (re) =>{
     		let reData = re.data.data;
-    		this.items = reData;
-    		if(re.status===200){
-    			this.isloading = false;
-    		}
+	  				this.items = reData;
+					if(re.status===200){
+						this.isloading = false; 
+					}
 				
 	    }).catch( (e) => {
 	    	console.log(e);
@@ -53,37 +68,75 @@ div{
     width:100%;
     position:relative;
 }
-ul{
-    height:80%;
-    width:85%;
-    top:35%;
-    left:12%;
-    position:absolute;
-    color:#b6baec;
-    li{
-        position:absolute;
-    }
-    li:nth-of-type(1){
 
+ul{
+    margin-top:20%;
+    height:90%;
+    width:100%;
+    li{
+        height:13.8%;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        color: white;
+        &:after {
+            content: ".";
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden;
+        }
+        div{
+            
+        }
+        font{
+             font-family:numberFont;
+        }
     }
-    li:nth-of-type(2){
-        top:25%;
-    }
-    li:nth-of-type(3){
-         top:50%;
-    }
-    li:nth-of-type(4){
-        right:10%;
-    }
-    li:nth-of-type(5){
-        right:10%;
-        top:25%;
-    }
-    li:nth-of-type(6){
-        right:10%;
-        top:50%;
+}
+.cell1{
+    float:left;
+    width:45%;
+    text-align: left;
+    margin-left: 1%;
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+}
+.cell2{
+    float:left;
+    width:31%;
+    text-align: center;
+}
+.cell3{
+    float:left;
+    width:40%;
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    font-family:numberFont;
+    .footerRise{
+        display: inline-block;
+         transform: translateY(10%);
     }
 }
 
-
+.up{
+  background-image: url('../../../assets/images/up.png');
+  background-size: 100% 100%;
+  width: 8px;
+  height: 12.8px;
+}
+.down{
+background-image: url('../../../assets/images/down.png');
+background-size: 100% 100%;
+width: 8px;
+  height: 12.8px;
+}
+li:nth-of-type(2n){
+    background-color:#163387;
+}
+li:nth-of-type(2n+1){
+    background-color:#1f3f9d;
+}
 </style>
