@@ -10,7 +10,15 @@
 @topBottomColor:#163387;
 @borderColor:#49d9fe;
 @borderLen: 18px;    
-    
+.qylable{
+    height:1.8rem;
+    line-height: 1.8rem;
+    position: absolute;
+    top: 50%;
+    transform: translate(0,-50%);
+    left: 10%;
+    font-size: 16px;
+}
 .fullScreen{
     height:100vh;
     width:100vw;
@@ -105,6 +113,27 @@ span{
     background-color: #0a1e64;
     position: relative;
     display: flex;
+    .tabList{
+        position: absolute;
+        width:362.5/1470*100%;
+        height: 80/1048*100%;
+        left: 0;
+        top:2px;
+        font-size: 1.3rem;
+        color:white;
+    }
+    .dateItem{
+        position: absolute;
+        width:346/1470*100%;
+        height: 80/1048*100%;
+        left: 378.5/1470*100%;
+        top:2px;
+        font-size: 1.3rem;
+        color:white;
+        .border{
+            
+        }
+    }
     .leftSide{
         position: relative;
     }
@@ -142,61 +171,37 @@ span{
                position: absolute; 
             }
             .one{
-                height: 588/1046*100%;
-                width: 464/1470*100%;
-                top: 0;
+                height: 535/1046*100%;
+                width: 725/1470*100%;
+                top:96/1048*100%;
                 left: 0;
             }
             .two{
-                height: 444/1046*100%;
-                width: 464/1470*100%;
-                left: 0;
-                bottom: 0;
+                height: 629/1046*100%;
+                width: 736/1470*100%;
+                top: 0;
+                right: 0;
             }
             .three{
-                top: 0;
-                left: 476/1470*100%;
-                height: 350/1046*100%;
-                width: 560/1470*100%;
+               bottom:0;
+                left: 0;
+                height: 401/1046*100%;
+                width: 725/1470*100%;
             }
             .four{
-                top: 0;
-                right: 0;
-                height: 350/1046*100%;
-                width: 422/1470*100%;
+                bottom: 0;
+                right: 372/1470*100%;
+                height: 401/1046*100%;
+                width: 363/1470*100%;
             }
             .five{
-                top: 360/1046*100%;
-                height: 164/1046*100%;
-                width: 239/1470*100%;
-                left: 476/1470*100%;
-            }
-
-
-            .six{
-                top:539/1046*100%;
-                left: 476/1470*100%;
-                height: 260/1046*100%;
-                width: 239/1470*100%;
-            }
-            .seven{
                 bottom: 0;
-                left: 476/1470*100%;
-                height: 234/1046*100%;
-                width: 239/1470*100%; 
-            }
-            .eight{
-                bottom: 0;
+                height: 401/1046*100%;
+                width: 360/1470*100%;
                 right: 0;
-                height: 682/1046*100%;
-                width: 997/1470*100%; 
             }
-        }
-        // .rightSide{
-        //     width: 421/1920*100%;
-        //     position: relative;
 
-        // }
+        }
     }
     
 }

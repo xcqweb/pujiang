@@ -1,6 +1,20 @@
 <template>
     <div class="box">
         <div class="leftSide" >
+            <div class="tabList item">
+                <div class="border">
+                    <div class="qylable">景区：</div>
+                    <sleckte 
+                    :selectList="qyselectlist" 
+                    v-on:listenAtparent="catchmsg1"
+                    ></sleckte>
+                </div>
+            </div>
+            <div class="dateItem item">
+                <div class="border">
+                    <clock></clock>
+                </div>
+            </div>
             <div class="item"
                 v-for='item in leftComponents'
                 :class="item.id">
@@ -48,11 +62,21 @@ import componetstatus from '@/pages/home/componentstatus.js'
 import { mapGetters } from 'vuex'
 import Bus from '@/common/js/bus.js'
 export default {
-    props:['placeName','placeAttractions'],
+    props:['placeName','placeAttractions','turistArr'],
     name: 'barChartOption',
         data () {
             return {
                 cutoverImg:require('../../../assets/切换.png'),
+                qyselectlist:{
+                    width:'55%',
+                    left:'30%',
+                    title:'全部',
+                    selectStatus:false,
+                    place:this.turistArr
+                },
+                updateData:{
+                    place:'全部',
+                },
                 moudle:[
                     {name:'C1',title:'出行方式分析'},
                     {name:'C3',title:`${this.placeName}客流热地图`},
@@ -126,6 +150,9 @@ export default {
                 }
             }
             this.barChartOption = Object.assign({}, this.barChartOption, )
+        },
+        catchmsg1(data){
+            console.log(data)
         },
         console(){
                     console.log(this.components)

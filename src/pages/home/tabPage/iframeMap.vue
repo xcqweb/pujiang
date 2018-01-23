@@ -12,7 +12,7 @@ div{
 
 <template>
     <div>
-        <iframe src="https://www.baidu.com/" ></iframe>
+        <iframe src="http://daoyou.worldmaipu.com/upload_resource/mpweb/pujiang/map.html" ></iframe>
     </div>
 </template>
 

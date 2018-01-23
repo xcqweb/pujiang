@@ -1,6 +1,20 @@
 <template>
     <div class="box">
         <div class="leftSide" >
+            <div class="tabList item">
+                <div class="border">
+                    <div class="qylable">景区：</div>
+                    <sleckte 
+                    :selectList="qyselectlist" 
+                    v-on:listenAtparent="catchmsg1"
+                    ></sleckte>
+                </div>
+            </div>
+            <div class="dateItem item">
+                <div class="border">
+                    <clock></clock>
+                </div>
+            </div>
             <div class="item"
                 v-for='item in leftComponents'
                 :class="item.id">
@@ -48,10 +62,21 @@ import componetstatus from '@/pages/home/componentstatus.js'
 import Bus from '@/common/js/bus.js'
 export default {
     name: 'barChartOption',
-    props:['placeName',],
+    props:['placeName','turistArr'],
         data () {
             return {
                 cutoverImg:require('../../../assets/切换.png'),
+                qyselectlist:{
+                    width:'55%',
+                    left:'30%',
+                    title:'全部',
+                    selectStatus:false,
+                    place:this.turistArr
+                },
+
+                updateData:{
+                    place:'全部',
+                },
                 moudle:[
                     {name:'B16',title:'国内游客来源地',},
                     {name:'B1',title:'富民指数分析',},
@@ -85,14 +110,12 @@ export default {
                 ],
                 cutoverStatus:null,
                 leftComponents:[
-                    {name:'B16',id:'one',index:1,time:100,show:false,title:'国内游客来源地'},
-                    {name:'A1',id:'two',index:2,time:300,show:false,title:'客流人数分析'},
-                    {name:'A5',id:'three',index:3,time:600,show:false,title:'实时客流监测'},
-                    {name:'B1',id:'four',index:4,time:900,show:false,title:'富民指数'},
-                    // {name:'B6',id:'five',index:5,time:1200,show:false,title:'实时天气'},
-                    // {name:'B5',id:'six',index:6,time:1500,show:false,title:'拥堵指数'},
-                    // {name:'B2',id:'seven',index:7,time:1800,show:false,title:'客流预警'},
-                    {name:'B9',id:'eight',index:8,time:2100,show:false,title:'旅游营业分析'},
+                    {name:'B17',id:'one',index:1,time:100,show:false,title:'产业分析'},
+                    {name:'B16',id:'two',index:2,time:600,show:false,title:'国内游客来源地'},
+                    {name:'A5',id:'three',index:3,time:900,show:false,title:'实时客流监测'},
+                    {name:'A1',id:'four',index:4,time:1200,show:false,title:'客流人数分析'},
+                    {name:'B1',id:'five',index:5,time:1500,show:false,title:'富民指数'},
+                    
                 ],
                 rightComponents:[
                     // {name:'A9',id:'one',index:1,time:2400,show:false,title:'视频监控'},
@@ -121,6 +144,9 @@ export default {
             }
             this.barChartOption = Object.assign({}, this.barChartOption, )
         },
+        catchmsg1(data){
+            console.log(data)
+        },
         console(){
         },
         headerEnter(){
@@ -148,6 +174,8 @@ export default {
                 return h(componentName)
             }))
         },
+        //时间
+
         //切换模块事件
         cutover(item,topOrBottom){
             this.cutoverStatus=topOrBottom;

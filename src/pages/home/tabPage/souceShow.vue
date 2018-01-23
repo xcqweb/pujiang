@@ -1,13 +1,20 @@
 <template>
     <div class="box">
-        <div class="tabList">
-            <ul>
-                <li v-for='item in tablistCom' @click='chose(item)' :class='item.status'>
-                    <font>{{item.name}}</font>
-                </li>
-            </ul>
-        </div>
         <div class="topSide" >
+            <div class="tabLists item">
+                <div class="border">
+                    <div class="qylable">景区：</div>
+                    <sleckte 
+                    :selectList="qyselectlist" 
+                    v-on:listenAtparent="catchmsg1"
+                    ></sleckte>
+                </div>
+            </div>
+            <div class="dateItem item">
+                <div class="border">
+                    <clock></clock>
+                </div>
+            </div>
             <div class="item"
                 v-for='item in topComponents'
                 :class="item.id">
@@ -59,12 +66,22 @@ import _ from 'lodash'
 import { mapGetters } from 'vuex'
 
 export default {
-    props:['placeName','placeAttractions'],
+    props:['placeName','placeAttractions','turistArr'],
     name: 'souceShow',
         data () {
             return {
                 place:'江南第一家',
                 cutoverImg:require('../../../assets/切换.png'),
+                qyselectlist:{
+                    width:'55%',
+                    left:'30%',
+                    title:'全部',
+                    selectStatus:false,
+                    place:this.turistArr
+                },
+                updateData:{
+                    place:'全部',
+                },
                 moudle:[
                     {name:'D1',styleDlass:'游客餐饮消费分析',},
                     {name:'D3',styleDlass:'',},
@@ -148,6 +165,9 @@ export default {
                 }
             }
             this.barChartOption = Object.assign({}, this.barChartOption, )
+        },
+        catchmsg1(data){
+            console.log(data)
         },
         console(){
             //console.log(this.components)
