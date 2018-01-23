@@ -163,4 +163,8 @@ html{
 font-family: numberFont;
 src: url('./assets/style/QuiverItalRegular.ttf'),
 }
+
+div,font,span{
+	font-family: numberFont;
+}
 </style>
