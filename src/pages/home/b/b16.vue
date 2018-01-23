@@ -21,6 +21,7 @@
                 display: block;
                 color: #ffe200;
                 font-size: 1.2rem;
+                font-family: numberFont;
             }
         }
         div:nth-of-type(1){

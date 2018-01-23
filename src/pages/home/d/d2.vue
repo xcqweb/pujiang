@@ -11,7 +11,7 @@
     h1{
         position:absolute;
         top: 0.8rem;
-        left:2rem;
+        left:1rem !important;
         font-size: 1.1rem;
         color:white;
     }
@@ -167,7 +167,7 @@
                                 color:'#ffffff',
                                 fontSize: '85%',
                             },
-                            formatter: '{value}万元'
+                            formatter: '{value}%'
                         },
                         axisLine: { //坐标轴轴线相关设置。就是数学上的y轴
                             show: false,

@@ -44,7 +44,7 @@ export default {
   methods: {
   	//请求数据
   	getData(){
-  		api.scenicRanking(api.params).then( (re) =>{
+  		api.touristOriginRanking(api.params).then( (re) =>{
     		let reData = re.data.data;
 	  				this.items = reData;
 					if(re.status===200){
@@ -90,7 +90,7 @@ ul{
             
         }
         font{
-             font-family:numberFont;
+             /*font-family:numberFont;*/
         }
     }
 }
@@ -114,7 +114,7 @@ ul{
     display:flex;
     align-items:center;
     justify-content:flex-end;
-    font-family:numberFont;
+    /*font-family:numberFont;*/
     .footerRise{
         display: inline-block;
          transform: translateY(10%);

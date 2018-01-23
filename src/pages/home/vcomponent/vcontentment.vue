@@ -202,7 +202,7 @@ div{
     right:12%;
     font-size:1.8rem;
     color:#6dffeb;
-    font-family:numberFont;
+    /*font-family:numberFont;*/
 }
 .nub{
     width:50%;

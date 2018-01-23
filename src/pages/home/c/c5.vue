@@ -108,7 +108,7 @@ export default {
         font{
             display:block;
             margin-top:20%;
-            font-family: numberFont;
+            /*font-family: numberFont;*/
         }
     }
     ul{
@@ -139,7 +139,7 @@ export default {
                 display:inline-block;
                 position:absolute;
                 left:0%;
-                font-family: numberFont;
+                /*font-family: numberFont;*/
             }
             div{
                 background-color:#6792fb;

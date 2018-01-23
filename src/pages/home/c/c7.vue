@@ -106,13 +106,13 @@ ul{
     float:left;
     width:31%;
     text-align: center;
-    font-family:numberFont;
+    /*font-family:numberFont;*/
 }
 .cell3{
     float:left;
     width:33%;
     .footerCotext{
-    	font-family:numberFont;
+    	/*font-family:numberFont;*/
     }
     .footerRise{
         display: inline-block;
