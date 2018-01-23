@@ -28,7 +28,7 @@ export default {
         {name:'产业监测平台',link:'/prodcut',status:'chose'},
         {name:'精准营销平台',link:'/precision',status:'chose'},
         {name:'应急指挥平台',link:'/souceShow',status:'chose'},
-        {name:'地图',link:'/iframeMap',status:'chose'},
+        {name:'旅游资源平台',link:'/iframeMap',status:'chose'},
       ],
       hash:'',
       wid:window.innerWidth
