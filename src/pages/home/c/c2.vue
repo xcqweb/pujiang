@@ -41,19 +41,23 @@ export default {
             let option = {
           backgroundColor: 'rgba(0, 0, 0, 0)',
           color:['#FF8885','#57ABFE', '#368DF7', '#7E6AF6', '#E39A50','#FFCD38',  '#4EBBFC', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD'],
+          tooltip : {
+		        trigger: 'item',
+		        formatter: "{a} <br/>{b} : {c} ({d}%)"
+		   },
           legend:{
                 show:true,
                 orient: 'vertical',
-                top:'40%' ,
-                left:'53%',
-                width:'20%',
+                top:'30%' ,
+                left:'50%',
+                width:'26',
                 height:'45%',
-                itemGap:32,
+                itemGap:20,
                 itemWidth:15,
                 itemHeight:10,
                 textStyle:{
                     color:'#fff',
-                    fontSize:'90%'
+                    fontSize:'82%'
                 },
                 data:[{
                     icon:'circle',
@@ -77,7 +81,7 @@ export default {
             },
           series : [
               {
-                name:'访问来源',
+                name:'年龄段',
                 type:'pie',
                 radius : '70%',
                 center: ['27%', '60%'],

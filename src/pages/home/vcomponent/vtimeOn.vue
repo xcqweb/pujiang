@@ -37,7 +37,7 @@ export default {
            calculable: true,
            xAxis: [{
                type: 'category',
-               boundaryGap: false,
+               boundaryGap: ['10%','10%'],
                //在（type: 'category'）中设置data有效
                splitLine: { //坐标轴在 grid 区域中的分隔线；
                    show: false,
@@ -47,6 +47,7 @@ export default {
                },
                axisLine: { //坐标轴轴线相关设置。就是数学上的x轴
                    show: true,
+                   margin:12,
                    lineStyle: {
                        color: '#05a1cd',
                        shadowBlur:50,
@@ -57,8 +58,7 @@ export default {
                		 margin: 6,
                    textStyle: {
                        color: '#fff',//x坐标轴标签字体颜色
-                       fontSize: '85%',
-                      
+                       fontSize: '75%',
                    },
                },
                axisTick:{
@@ -70,7 +70,8 @@ export default {
                name:'单位：人',
                nameTextStyle:{
                    color:'#ffffff',
-                   fontSize:'90%'
+                   fontSize:'75%',
+                   padding:[0,20,0,0]
                 },
                min: 0,
                minInterval: 1,
@@ -120,6 +121,12 @@ export default {
                                opacity:0,
                            }
                        },
+//                      markLine: {
+//					                data: [
+//					                    {type: 'max', name: '最大值'},
+//					                    {type: 'min', name: '最小值'}
+//					                ]
+//					            },
                    }
 
                ] //series结束
@@ -143,8 +150,8 @@ export default {
             if (this.reTimer) {
                 window.clearInterval(this.reTimer)
             }
-            let date=_self.data_arr.date.slice(0,8);
-            let data=_self.data_arr.data.slice(0,8);
+            let date=_self.data_arr.date.slice(0,6);
+            let data=_self.data_arr.data.slice(0,6);
 
             this.reTimer=setInterval(function () {
                 i++;
@@ -153,7 +160,7 @@ export default {
                       start_end_instance1.get_timeline(_self.$el).then(re =>{
                           _self.data_arr = Rw.array_until.remove_common(_self.data_arr,re);
                           i=8;
-                          //console.log(re);
+                            //console.log(re);
                         _self.option.xAxis.data=re.date;
                         _self.option.series.data=re.data;
                         //console.log(_self.option.xAxis.data)
@@ -177,11 +184,12 @@ export default {
         get_respose(){
           this.isloading = true;
             let _self = this;
-            _self.mins= 20;
+            _self.mins= 30;
             self.btwsecends = 5;
             let start_end_instance =  new Start_end_class('timeline',_self.mins,Math.round((_self.mins*60) / _self.btwsecends));
             start_end_instance.get_timeline(_self.$el).then(re =>{
-                _self.data_arr = re ;
+                _self.data_arr = re;
+                //console.log(re.data)
               _self.option.xAxis.data=re.date.reverse();
               _self.option.series.data=re.data.reverse();
               _self.option.yAxis.max = Math.max(...re.data);

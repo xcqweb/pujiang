@@ -73,8 +73,8 @@ export default {
                 ],
                 current:[
                     {name:'B16',title:'游客来源地'},
-                    {name:'A1',title:'客流人数分析'},
-                    {name:'A5',title:'实时客流监测'},
+                    {name:'A1',title:'历史客流'},
+                    {name:'A5',title:'实时客流'},
                     {name:'B1',title:'富民指数'},
                     {name:'B6',title:'实时天气'},
                     {name:'B5',title:'拥堵指数'},
@@ -86,8 +86,8 @@ export default {
                 cutoverStatus:null,
                 leftComponents:[
                     {name:'B16',id:'one',index:1,time:100,show:false,title:'游客来源地'},
-                    {name:'A1',id:'two',index:2,time:300,show:false,title:'客流人数分析'},
-                    {name:'A5',id:'three',index:3,time:600,show:false,title:'实时客流监测'},
+                    {name:'A1',id:'two',index:2,time:300,show:false,title:'历史客流'},
+                    {name:'A5',id:'three',index:3,time:600,show:false,title:'实时客流'},
                     {name:'B1',id:'four',index:4,time:900,show:false,title:'富民指数'},
                     // {name:'B6',id:'five',index:5,time:1200,show:false,title:'实时天气'},
                     // {name:'B5',id:'six',index:6,time:1500,show:false,title:'拥堵指数'},

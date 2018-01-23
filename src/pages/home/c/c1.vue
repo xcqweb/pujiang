@@ -151,7 +151,7 @@ export default {
                         axisLabel: {
                                  textStyle: {
                                      color: '#ffffff',//x坐标轴标签字体颜色
-                                     fontSize: '100%',
+                                     fontSize: '85%',
                                  },
                             },
                         splitLine:{
@@ -180,7 +180,7 @@ export default {
                                 color:'#ffffff',
                                 fontSize: "90%",
                             },
-                            formatter: '{value}人'
+                            formatter: '{value}%'
                         },
                         splitLine:{
                                 show:false,

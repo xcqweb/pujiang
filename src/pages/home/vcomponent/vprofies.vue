@@ -33,7 +33,7 @@
 	<span class="flowtourist">客流预警</span>
 	<div id="vwarning"></div>
 	<div class="vwarningImg">
-		<span>66%</span>
+		<span>{{percent}}%</span>
 	</div>
     <Loading v-show="isloading"></Loading>
   </div>
@@ -44,12 +44,12 @@ import Vue from 'vue'
 import echarts_resize from '../../../common/js/echarts_resize.js'
 import echarts from 'echarts';
 import api from '@/api/moudles/tanzhenData'
-import vSelect from '../../../components/commonui/dropdown/dropdown-menu.vue'
+//import vSelect from '../../../components/commonui/dropdown/dropdown-menu.vue'
 import Rw from '@/common/js/until/index.js'
 import Start_end_class from '@/common/js/star_end_class.js'
 import {begindaytime} from '@/common/js/gtime.js'
 import Loading from '@/components/commonui/loading/loading.vue'
-import Bus from '@/common/js/bus.js'
+//import Bus from '@/common/js/bus.js'
 export default {
 	name: 'a2',
 	data () {
@@ -64,74 +64,31 @@ export default {
 			year_incom:'',
 			yesterday_nub:''
 		},
-		selectlist:{
-			title:'江南第一家 ',
-			selectStatus:false,
-			place:[
-				{
-					name:'江南第一家',value:'江南第一家'
-				},
-				{
-					name:'仙华山',value:'仙华山'
-				},
-				{
-					name:'神丽峡',value:'神丽峡'
-				},
-        {
-          name:'官岩山',value:'官岩山'
-        },
-        {
-          name:'白石洲风景区',value:'白石洲风景区'
-        },
-        {
-          name:'金狮湖',value:'金狮湖'
-        }
-			]
-		},
-//  option:{
-//      backgroundColor: 'rgba(0,0,0,0)',
-//        legend: {
-//        data: ['饼图二']
+//		selectlist:{
+//			title:'江南第一家 ',
+//			selectStatus:false,
+//			place:[
+//				{
+//					name:'江南第一家',value:'江南第一家'
+//				},
+//				{
+//					name:'仙华山',value:'仙华山'
+//				},
+//				{
+//					name:'神丽峡',value:'神丽峡'
+//				},
+//      {
+//        name:'官岩山',value:'官岩山'
 //      },
-//      series: [{
-//        name: '',
-//        type: 'pie',
-//        radius: ['45%', '60%'],
-//        label: {
-//          normal: {
-//            position: 'center'
-//          }
-//        },
-//        animationType:'expansion',
-//        animation:false,
-//        hoverAnimation:false,
-//        data: [
-//          {
-//            value: 0,
-//            name:"",
-//            label: {
-//              normal: {
-//                textStyle: {
-//                  color: '#7460EE',
-//                  fontSize: 30
-//                }
-//              }
-//            },
-//            itemStyle: {
-//              normal: {
-//                color: '#f2f2f2'
-//              },
-//              emphasis: {
-//                color: '#f2f2f2'
-//              }
-//            },
-//            hoverAnimation: false
-//          },
-//          ]
+//      {
+//        name:'白石洲风景区',value:'白石洲风景区'
 //      },
-//
-//      ]
-//    },
+//      {
+//        name:'金狮湖',value:'金狮湖'
+//      }
+//			]
+//		},
+
 
 
 				option : {
@@ -140,7 +97,7 @@ export default {
 			    color: ['#7460EE'],
 			    z:1000,
 			    tooltip: {
-			        show: true,//鼠标移入提示
+			        show: false,//鼠标移入提示
 			        //formatter: "{a} <br/>{b} : {c}%"
 			        formatter:function(params){
 			        	return params.name+":"+"<br/>"+params.percent.toFixed(2)+"%"
@@ -192,28 +149,28 @@ export default {
 			        },
 			    ]
 			},
-      nub:0,
-      set_config:0
+	      nub:0,
+	      set_config:0,
+	      percent:0
 	}
 	},
   watch:{
     //观察景区变化更新数据
-    currentPlace:function(){
-    	this.nub = this.allData[this.currentPlace].all_nub;
-    	this.profileData.all_nub = this.allData[this.currentPlace].all_nub;
-      this.profileData.current_nub = this.allData[this.currentPlace].current_nub;
-      this.profileData.week_income = this.allData[this.currentPlace].week_income;
-      this.profileData.year_incom = this.allData[this.currentPlace].year_incom;
-      this.profileData.yesterday_nub = this.allData[this.currentPlace].yesterday_nub;
-
-    },
+//  currentPlace:function(){
+//  	this.nub = this.allData[this.currentPlace].all_nub;
+//  	this.profileData.all_nub = this.allData[this.currentPlace].all_nub;
+//    this.profileData.current_nub = this.allData[this.currentPlace].current_nub;
+//    this.profileData.week_income = this.allData[this.currentPlace].week_income;
+//    this.profileData.year_incom = this.allData[this.currentPlace].year_incom;
+//    this.profileData.yesterday_nub = this.allData[this.currentPlace].yesterday_nub;
+//
+//  },
 
     nub:function(){
-    	let percent = this.nub*100/3000000;
-          this.option.series[0].data[0].value = percent;
-          this.option.series[0].data[1].value = 100-percent;
-          console.log(percent);
-      let Ratio = this.nub/3000000;
+    	this.percent = (this.nub*100/this.set_config).toFixed(0);
+          this.option.series[0].data[0].value = this.percent;
+          this.option.series[0].data[1].value = 100-this.percent;
+      let Ratio = this.nub/this.set_config;
       let setColor = '';
       //console.log(Ratio)
       if(Ratio<0.3){
@@ -237,9 +194,8 @@ export default {
   get_response(){
     let start_end_instance =  new Start_end_class('profile',begindaytime);
     start_end_instance.get_response().then(re => {
-      let data = re.data.data.data['江南第一家'];
+      let data = re.data.data;
       console.log(re)
-      this.allData = re.data.data.data;
       //初始化数据
       this.profileData.all_nub = data.all_nub;
       this.profileData.current_nub = data.current_nub;
@@ -286,10 +242,10 @@ export default {
 		}
 	},
 	created(){
-		Bus.$on('itemtodo', target => {
-            this.selectlist.title = target;
-            this.currentPlace = target;
-        });
+//		Bus.$on('itemtodo', target => {
+//          this.selectlist.title = target;
+//          this.currentPlace = target;
+//      });
 
 		this.get_response();
     this.request();
@@ -299,7 +255,7 @@ export default {
 	},
 
 	components:{
-		vSelect,
+		//vSelect,
     Loading
   }
 }

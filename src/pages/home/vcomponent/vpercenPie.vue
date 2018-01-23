@@ -20,9 +20,13 @@ export default {
             option:{
               backgroundColor: 'rgba(0, 0, 0, 0)',
               color: ['#f18790', '#75c774', '#5aa7fd','#f1c54b','#c184ff','6792fb'],
+              tooltip : {
+		        trigger: 'item',
+		        formatter: "{a} <br/>{b} : {c} ({d}%)"
+		      },
               series : [
                   {
-                    name:'访问来源',
+                    name:'营销渠道',
                     type:'pie',
                     radius : '55%',
                     center: ['50%', '55%'],
@@ -46,7 +50,8 @@ export default {
                                     show:true,
                                     position:'outside',
                                     textStyle:{
-                                        color:'#f18790'
+                                        color:'#f18790',
+                                        fontSize:'100%'
                                     }
                                 }
                             },
@@ -80,7 +85,8 @@ export default {
                                     show:true,
                                     position:'outside',
                                     textStyle:{
-                                        color:'#75c774'
+                                        color:'#75c774',
+                                        fontSize:'100%'
                                     }
                                 }
                             },
@@ -107,7 +113,8 @@ export default {
                                     show:true,
                                     position:'outside',
                                     textStyle:{
-                                        color:'#5aa7fd'
+                                        color:'#5aa7fd',
+                                        fontSize:'100%'
                                     }
                                 }
                             },
@@ -134,7 +141,8 @@ export default {
                                     show:true,
                                     position:'outside',
                                     textStyle:{
-                                        color:'#c184ff'
+                                        color:'#c184ff',
+                                        fontSize:'100%'
                                     }
                                 }
                             },

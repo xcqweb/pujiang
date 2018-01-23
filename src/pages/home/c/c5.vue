@@ -13,16 +13,16 @@
         <ul>
             <div class="line"></div>
             <li v-for='item in outItems' v-bind:style="{ marginLeft: marginLeft +'%'}">
-                <span v-bind:style="{  bottom:10+item.outProvince +'%'}">{{item.outProvince}}%</span>
-                <div v-bind:style="{  height: item.outProvince +'%'}"></div>
+                <span v-bind:style="{  bottom:18+item.outProvince +'%'}">{{item.outProvince}}%</span>
+                <div v-bind:style="{  height: item.outProvince+10+'%'}"></div>
                 <font>{{item.name}}</font>
             </li>
         </ul>
         <ul>
             <div class="line"></div>
             <li v-for='item in inItems' v-bind:style="{ marginLeft: marginLeft +'%'}">
-                <span v-bind:style="{  bottom:10+item.outProvince +'%'}">{{item.outProvince}}%</span>
-                <div v-bind:style="{  height: item.outProvince +'%'}"></div>
+                <span v-bind:style="{  bottom:18+item.outProvince +'%'}">{{item.outProvince}}%</span>
+                <div v-bind:style="{  height: item.outProvince+10 +'%'}"></div>
                 <font>{{item.name}}</font>
             </li>
         </ul>

@@ -352,6 +352,7 @@ export default {
         this.chart = echarts.init(dom);
         var color =['#5aa7fd', '#5aa7fd', '#5aa7fd','#5aa7fd','#5aa7fd','5aa7fd','5aa7fd'];
         var series = [];
+        var planePath = 'path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z';
         [['浦江县', _self.zhejiang.BJData], ['浦江县', _self.zhejiang.GUANG],['浦江县', _self.zhejiang.SHData],['浦江县', _self.zhejiang.SHENZHEN],['浦江县', _self.zhejiang.XIAN],['浦江县', _self.zhejiang.FENGD],['浦江县',_self.zhejiang.WENZ]].forEach(function (item, i) {
             series.push(
                 {
@@ -379,7 +380,7 @@ export default {
                     data: _self.convertData(item[1])
                 },
                 {
-                    //name: item[0],
+                    name: item[0],
                     type: 'lines',
                     zlevel: 2,
                     symbol: ['none', 'arrow'],
@@ -392,7 +393,7 @@ export default {
                         //小飞机
                         //symbol: planePath,
                         //移动点大小
-                        symbolSize: 1
+                        symbolSize: 5
                     },
                     progressiveThreshold: 500,
                     progressive: 200,

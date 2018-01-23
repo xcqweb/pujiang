@@ -56,7 +56,7 @@ export default  class Start_end_class extends  Set_arr_class {
         }
         return timeData
     }
-    to_arr(re){
+    to_arr(re){//继承父类的获取随机数字的方法 
         return super.getDateDataArr(re)
     }
     get_timeline(){
@@ -72,7 +72,7 @@ export default  class Start_end_class extends  Set_arr_class {
             }
             //console.log(re)
             //获取含有date,data，contrast（比例尺）三个数组的对象
-            let date_data_arr = _self.to_arr(re);
+            let date_data_arr = _self.to_arr(re);//返回随机数
             //返回Promise继续.then链式调用
             return Promise.resolve(date_data_arr)
         }).catch(e => {

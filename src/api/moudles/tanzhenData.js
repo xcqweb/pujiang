@@ -19,7 +19,8 @@ export default {
     },
     //实时客流量
     timeline:function(paramsObj){
-        return instance.get(`http://120.55.190.57/api/timeline.auth`, {params:paramsObj});
+        //return instance.get(`http://120.55.190.57/api/timeline.auth`, {params:paramsObj});
+        return instance.get(`https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/timeline`, {params:paramsObj});
     },
     //概况
     profile:function(paramsObj){
@@ -28,7 +29,9 @@ export default {
     },
     //客流预警
     passengerwarning:function(paramsObj){
-        return instance.get(`http://120.55.190.57/api/passengerwarning.auth`, {params:paramsObj});
+    	
+        //return instance.get(`http://120.55.190.57/api/passengerwarning.auth`, {params:paramsObj});
+        return instance.get(`https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/passengerwarning`, {params:paramsObj});
     },
     //游客热力图
     passengertg:function(paramsObj){

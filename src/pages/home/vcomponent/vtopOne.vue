@@ -11,9 +11,8 @@
 <script>
 import echarts_resize from '../../../common/js/echarts_resize.js'
  import echarts from 'echarts';
-import { mapGetters } from 'vuex'
+import { mapGetters,mapActions } from 'vuex'
 import store from '../../../vuex/index'
-import { mapActions } from 'vuex'
 import timeMixin from '@/common/js/mixin/timeMixin.js'
 import Vue from 'vue'
 import Start_end_class from '@/common/js/star_end_class.js'
@@ -42,22 +41,22 @@ export default {
             {"nub":"2122","date":"6/19"},
             {"nub":"1789","date":"6/20"}
         ],
-        twoWeekMock:[
-            {"nub":"1293","date":"6/14"},
-            {"nub":"2331","date":"6/15"},
-            {"nub":"1012","date":"6/16"},
-            {"nub":"999","date":"6/17"},
-            {"nub":"2458","date":"6/18"},
-            {"nub":"2122","date":"6/19"},
-            {"nub":"1789","date":"6/20"},
-            {"nub":"1293","date":"6/21"},
-            {"nub":"2331","date":"6/22"},
-            {"nub":"1012","date":"6/23"},
-            {"nub":"999","date":"6/24"},
-            {"nub":"2458","date":"6/25"},
-            {"nub":"2122","date":"6/26"},
-            {"nub":"1789","date":"6/27"}
-        ],
+//      twoWeekMock:[
+//          {"nub":"1293","date":"6/14"},
+//          {"nub":"2331","date":"6/15"},
+//          {"nub":"1012","date":"6/16"},
+//          {"nub":"999","date":"6/17"},
+//          {"nub":"2458","date":"6/18"},
+//          {"nub":"2122","date":"6/19"},
+//          {"nub":"1789","date":"6/20"},
+//          {"nub":"1293","date":"6/21"},
+//          {"nub":"2331","date":"6/22"},
+//          {"nub":"1012","date":"6/23"},
+//          {"nub":"999","date":"6/24"},
+//          {"nub":"2458","date":"6/25"},
+//          {"nub":"2122","date":"6/26"},
+//          {"nub":"1789","date":"6/27"}
+//      ],
         opinion: ['学习氛围差', '学习氛围一般', '学习氛围很好'],
         opinionData1: [
 
@@ -88,19 +87,19 @@ export default {
       }
       this.$nextTick(echarts_resize('righthz',this,dataX,dataY))
     },
-    redom14(){
-        if(this.chart){
-            this.chart.dispose();
-        }
-        let dataY=[];
-        let dataX=[];
-        for (var i = 0; i < this.twoWeekMock.length; i++) {
-            dataY.push(this.twoWeekMock[i].nub);
-            dataX.push(this.twoWeekMock[i].date)
-        }
-    this.isActive=false;
-    this.$nextTick(echarts_resize('righthz',this,dataX,dataY))
-    },
+//  redom14(){
+//      if(this.chart){
+//          this.chart.dispose();
+//      }
+//      let dataY=[];
+//      let dataX=[];
+//      for (var i = 0; i < this.twoWeekMock.length; i++) {
+//          dataY.push(this.twoWeekMock[i].nub);
+//          dataX.push(this.twoWeekMock[i].date)
+//      }
+//  this.isActive=false;
+//  this.$nextTick(echarts_resize('righthz',this,dataX,dataY))
+//  },
       redom (id,xyfonsiz,datax,datay) {
         var _self= this;
         this.chart = echarts.init(document.getElementById(id))
@@ -157,7 +156,7 @@ export default {
                                 show:false,
                         },
                         splitLine:{
-                            show:true,
+                            //show:true,
                             lineStyle:{
                                 color:'#20549f',
                                 width:1,
@@ -170,7 +169,7 @@ export default {
                     yAxis:{
                     		name:"单位 : 人",
                     		nameTextStyle:{
-                    			fontSize:16,
+                    			fontSize:'100%',
                     		},
                         show:true,
                         nameTextStyle:{
@@ -197,7 +196,7 @@ export default {
                           }
                         },
                         axisLine: { //坐标轴轴线相关设置。就是数学上的y轴
-                            show: false,
+                            show: true,
                             lineStyle: {
                                 color: 'rgba(170,172,178,0.53)'
                             },
@@ -248,8 +247,7 @@ export default {
         let start_end_instance =  new Start_end_class('passenger',begindaytime);
         start_end_instance.get_response(_self.$el).then(re => {
         	//console.log(re.data.data)
-        _self.twoWeekMock = re.data.data;
-        _self.oneweekMock = re.data.data.slice(7,15);
+        _self.oneweekMock = re.data.data;
         _self.redom7("righthz");
           this.isloading=false;
         })

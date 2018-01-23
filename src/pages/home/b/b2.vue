@@ -5,7 +5,7 @@
             <img :src="imgacircle"/>
         </div>
         <span>{{persent}}</span>
-        <div class="text"><font>预警客流</font><font>{{this.set_config}}</font></div>
+        <div class="text"><font>预警客流</font><font>{{this.set_config}}人</font></div>
       <Loading v-show="isloading"></Loading>
     </div>
 </template>
@@ -34,7 +34,7 @@ export default {
       if(!nub && !setconfig){
         return "";
       }else{
-        return (nub/setconfig).toFixed(2)+"%";
+        return (nub*100/setconfig).toFixed(0)+"%";
       }
     }
   },
@@ -51,10 +51,13 @@ export default {
       this.nub = re.data.data.nub;
       this.set_config = re.data.data.set_config;
       this.isloading=false;
-      let nub = this.nub;
-      let setconfig = this.set_config;
+      let nub = ((this.nub/this.set_config)*100).toFixed(0);
+      let setconfig = 100-nub;
+      console.log(nub)
+      
       let option={
         backgroundColor: 'rgba(0,0,0,0)',
+        
         series: [
           {
             name: '消费情况',
@@ -73,7 +76,7 @@ export default {
             },
             data:[
               {
-                value:setconfig,
+                value:nub,
                 name:'',
                 itemStyle:{
                   normal:{
@@ -84,7 +87,7 @@ export default {
                 }
               },
               {
-                value:nub,
+                value:setconfig,
                 name:'',
                 itemStyle:{
                   normal:{
@@ -124,7 +127,8 @@ export default {
         left:50%;
         color:#1da7fe;
         transform: translate(-50%,-50%);
-        font-size:.8rem;
+        font-size: 1rem;
+        font-family: numberFont;
     }
     #pieB2{
         height:100%;
@@ -150,6 +154,7 @@ export default {
             margin-left:10%;
             color:#1da7fe;
             font-size:1rem;
+            font-family: numberFont;
         }
     }
     img{
