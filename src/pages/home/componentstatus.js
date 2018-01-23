@@ -2,6 +2,9 @@
 let headerBody = resolve => {require.ensure(['@/pages/home/header.vue'], () => {resolve(require('@/pages/home/header.vue'))})}
 let topBody = resolve => {require.ensure(['@/pages/home/topBody.vue'], () => {resolve(require('@/pages/home/topBody.vue'))})}
 let bottomBody = resolve => {require.ensure(['@/pages/home/bottomBody.vue'], () => {resolve(require('@/pages/home/bottomBody.vue'))})}
+let sleckte = resolve => {require.ensure(['@/components/commonui/dropdown/dropdown-menu.vue'], () => {resolve(require('@/components/commonui/dropdown/dropdown-menu.vue'))})}
+let clock = resolve => {require.ensure(['@/components/commonui/clock.vue'], () => {resolve(require('@/components/commonui/clock.vue'))})}
+
 //客流分析__bar
 let A1 = resolve => {require.ensure(['@/pages/home/vcomponent/vtopOne.vue'], () => {resolve(require('@/pages/home/vcomponent/vtopOne.vue'))})}
 //概况
@@ -43,6 +46,9 @@ let B9 = resolve => {require.ensure(['@/pages/home/b/b9.vue'], () => {resolve(re
 let B10 = resolve => {require.ensure(['@/pages/home/b/b10.vue'], () => {resolve(require('@/pages/home/b/b10.vue'))})}
 //
 let B16 = resolve => {require.ensure(['@/pages/home/b/b16.vue'], () => {resolve(require('@/pages/home/b/b16.vue'))})}
+//产业数据
+let B17 = resolve => {require.ensure(['@/pages/home/b/b17.vue'], () => {resolve(require('@/pages/home/b/b17.vue'))})}
+
 //出行方式
 let C1 = resolve => {require.ensure(['@/pages/home/c/c1.vue'], () => {resolve(require('@/pages/home/c/c1.vue'))})}
 //游客年龄分析
@@ -93,6 +99,8 @@ let D8 = resolve => {require.ensure(['@/pages/home/d/d8.vue'], () => {resolve(re
 
 //存放当前模块状态，数组字符串
 let status =[
+    'sleckte',
+    'clock',
     'A1',
     'A2',
     'A3',
@@ -112,6 +120,7 @@ let status =[
     'B9',
     'B10',
     'B16',
+    'B17',
     'C1',
     'C2',
     'C3',

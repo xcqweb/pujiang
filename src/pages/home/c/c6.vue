@@ -13,6 +13,7 @@
   import timeMixin from '@/common/js/mixin/timeMixin.js'
   import Vue from 'vue'
   import api from '@/api/index.js'
+  const QuiverItalRegular = require('../../../assets/style/QuiverItalRegular.ttf');
 	import Loading from '@/components/commonui/loading/loading.vue'
   export default {
     name:'c6',
@@ -127,7 +128,8 @@
                     yAxis:{
                         show:true,
                         nameTextStyle:{
-                          color:'#ffffff'
+                          color:'#ffffff',
+                          fontFamily:QuiverItalRegular,
                         },
                         splitLine:{
                           show:false,
@@ -167,7 +169,7 @@
                             position:'top',
                             textStyle:{
                                 color:'#2CC9E2',
-                                fontSize:"80%"
+                                fontSize:"80%",
                             },
                             formatter: '{c}%'
                         }
@@ -176,6 +178,7 @@
                 
                 ]
             }//option
+            option.series[0].label.normal.textStyle.fontFamily = require('../../../assets/style/QuiverItalRegular.ttf');
         this.chart.setOption(option)
       }
     },
@@ -202,5 +205,4 @@
         margin-top: 2%;
     }
 }
-
 </style>
