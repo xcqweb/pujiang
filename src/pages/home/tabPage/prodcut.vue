@@ -6,7 +6,7 @@
                     <div class="qylable">景区：</div>
                     <sleckte 
                     :selectList="qyselectlist" 
-                    v-on:listenAtparent="catchmsg1"
+                    v-on:listenAtparent="catchMsg"
                     ></sleckte>
                 </div>
             </div>
@@ -29,6 +29,7 @@
                     :is='item.name'
                     :key="item.id"
                     :placeName = 'placeName'
+                    :touristProp = "updateData.turist"
                     ></componet>
                   </keep-alive>
                 </div>
@@ -48,6 +49,7 @@
                     <componet
                     :is='item.name'
                     :key="item.id"
+                    :touristProp = "updateData.turist"
                     ></componet>
                   </keep-alive>
                 </div>
@@ -75,7 +77,7 @@ export default {
                 },
 
                 updateData:{
-                    place:'全部',
+                    turist:'全部',
                 },
                 moudle:[
                     {name:'B16',title:'游客来源地',},
@@ -144,8 +146,8 @@ export default {
             }
             this.barChartOption = Object.assign({}, this.barChartOption, )
         },
-        catchmsg1(data){
-            console.log(data)
+        catchMsg(data){
+           this.updateData.turist = data
         },
         console(){
         },
