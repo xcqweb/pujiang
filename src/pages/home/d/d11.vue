@@ -52,27 +52,11 @@ require('echarts-wordcloud');
                     "value": 4
                 },
                 {
-                    "name": "多米",
+                    "name": "风景",
                     "value": 4
-                },
-                {
-                    "name": "地下河",
-                    "value": 4
-                },
-                {
-                    "name": "山中",
-                    "value": 3
-                },
-                {
-                    "name": "北江",
-                    "value": 3
                 },
                 {
                     "name": "体验",
-                    "value": 3
-                },
-                {
-                    "name": "名族风情多米",
                     "value": 3
                 },
                 {
@@ -84,27 +68,11 @@ require('echarts-wordcloud');
                     "value": 3
                 },
                 {
-                    "name": "岩壁",
-                    "value": 3
-                },
-                {
-                    "name": "禅宗",
-                    "value": 3
-                },
-                {
                     "name": "溶洞",
                     "value": 3
                 },
                 {
                     "name": "风光",
-                    "value": 2
-                },
-                {
-                    "name": "漂流",
-                    "value": 2
-                },
-                {
-                    "name": "温泉",
                     "value": 2
                 },
                 {

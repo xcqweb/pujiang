@@ -105,6 +105,7 @@ export default {
             },
             headerLeave(){
                 this.headerStatus=false;
+                console.log(this.headerStatus)
             },
 
         },
@@ -127,13 +128,17 @@ export default {
   transition: all .11s linear;
 }
 .slide-fade-leave-active {
-  transition: all .1s linear;
+  transition: all 0.1s linear;
 }
 .slide-fade-enter, .slide-fade-leave-to {
-  transform: translateY(-10px);
+  transform: translateY(0px);
 }
 
 #mainhome{
+    -webkit-transform: translate3d(0, 0, 0);
+   -moz-transform: translate3d(0, 0, 0);
+   -ms-transform: translate3d(0, 0, 0);
+   transform: translate3d(0, 0, 0);
     width:100vw;
     height: 100vh;
     position: relative;
