@@ -96,6 +96,8 @@ let D6 = resolve => {require.ensure(['@/pages/home/d/d6.vue'], () => {resolve(re
 let D7 = resolve => {require.ensure(['@/pages/home/d/d7.vue'], () => {resolve(require('@/pages/home/d/d7.vue'))})}
 //景区周边交通拥堵指数
 let D8 = resolve => {require.ensure(['@/pages/home/d/d8.vue'], () => {resolve(require('@/pages/home/d/d8.vue'))})}
+//旅游关键字
+let D11 = resolve => {require.ensure(['@/pages/home/d/d11.vue'], () => {resolve(require('@/pages/home/d/d11.vue'))})}
 
 //存放当前模块状态，数组字符串
 let status =[
@@ -140,6 +142,7 @@ let status =[
     'D6',
     'D7',
     'D8',
+    'D11'
     ]
 let conponets={}
 //字符串转对象变量
