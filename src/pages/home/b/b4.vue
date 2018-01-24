@@ -8,8 +8,10 @@
 
 <script>
 require('../../../common/js/baidumap/TrafficControl_min.js')
+import optionProps from '@/common/js/mixin/optionProps.js'
     export default {
         name:'b4',
+        mixins: [optionProps],
         data () {
             return {
 

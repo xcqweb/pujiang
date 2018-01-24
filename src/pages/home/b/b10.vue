@@ -20,8 +20,10 @@
 
 <script>
 import Vue from 'vue'
+import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
   name: 'b2',
+  mixins: [optionProps],
   data () {
     return {
         circle:require('../../../assets/images/circle/red/item-circle.png'),

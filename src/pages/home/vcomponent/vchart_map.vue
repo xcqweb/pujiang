@@ -22,9 +22,11 @@ import echarts_resize from '../../../common/js/echarts_resize.js'
 //import 'echarts/lib/chart/map';
 import 'echarts/map/js/china.js';
 import zhejiangJson from 'echarts/map/json/province/zhejiang.json'
+import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
     name: 'a6',
     props:['placeName'],
+    mixins: [optionProps],
     data () {
     return {
     	isloading:false,

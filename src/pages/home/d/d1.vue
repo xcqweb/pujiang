@@ -83,11 +83,12 @@ display:none !important;
 import echarts from 'echarts'
 import api from '@/api/index.js'
 import Loading from '@/components/commonui/loading/loading.vue'
-
+import optionProps from '@/common/js/mixin/optionProps.js'
 // import BMapLib from '../../../common/js/baidumap/Heatmap.min.js'
    require('../../../common/js/baidumap/heatmap.js?fdwe')
     export default {
         name:'d1',
+        mixins: [optionProps],
         data () {
             return {
             	isloading:false,

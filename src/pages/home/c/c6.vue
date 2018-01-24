@@ -12,12 +12,13 @@
   import { mapActions } from 'vuex'
   import timeMixin from '@/common/js/mixin/timeMixin.js'
   import Vue from 'vue'
+  import optionProps from '@/common/js/mixin/optionProps.js'
   import api from '@/api/index.js'
   const QuiverItalRegular = require('../../../assets/style/QuiverItalRegular.ttf');
 	import Loading from '@/components/commonui/loading/loading.vue'
   export default {
     name:'c6',
-    mixins: [timeMixin],
+    mixins: [timeMixin,optionProps],
     data() {
       return {
       	isloading:false,

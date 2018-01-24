@@ -12,8 +12,10 @@ import Start_end_class from '@/common/js/star_end_class.js'
 import Rw from '@/common/js/until/index'
 import api from '@/api/moudles/tanzhenData'
 import Loading from '@/components/commonui/loading/loading.vue'
+import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
     name: 'a5',
+    mixins: [optionProps],
     data () {
       return {
         isloading:false,

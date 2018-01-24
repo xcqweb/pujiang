@@ -7,8 +7,10 @@
 <script type="text/javascript">
 import echarts_resize from '../../../common/js/echarts_resize.js'
 import echarts from 'echarts';
+import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
     name:'c10',
+    mixins: [optionProps],
     data(){
     return{
         option:{

@@ -16,8 +16,10 @@ import Vue from 'vue'
 import Rw from '@/common/js/until/index.js'
 import api from '@/api/index.js'
 import Loading from '@/components/commonui/loading/loading.vue'
+import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
   name: 'a4',
+  mixins: [optionProps],
   data () {
     return {
     		isloading:false,

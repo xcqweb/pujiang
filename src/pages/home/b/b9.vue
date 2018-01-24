@@ -15,9 +15,10 @@ import echarts from 'echarts';
 import adaptation from '@/common/js/mixin/adaptation.js'
 import api from '@/api/index.js'
 import Loading from '@/components/commonui/loading/loading.vue'
+import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
     name:'b9',
-    mixins: [adaptation],
+    mixins: [adaptation,optionProps],
     data(){
 //      var aageZeroTsev=[182, 202, 154, 254, 320];
 //      var aageEightTtwinF=[122, 202, 182, 122,122];
