@@ -1,185 +1,215 @@
 <template>
     <div class="b6">
-        <div class="img">
-            <img :src="changeImg"/>
-        </div>
-        <div class="weather">{{state}}</div>
-        <div class="temperature" v-show='temperature'>{{temperature}}&#8451;</div>
-         <Loading v-show="isloading"></Loading>
+        <div v-bind:class='weaImg' class="weatherImg"></div>
+        <div class="weather">{{nowRes.text}}</div>
+        <div class="temperature">{{nowRes.temperature}}℃</div>
     </div>
 </template>
 
 <script>
 import Vue from 'vue'
-import api from '@/api/index.js'
-import Loading from '@/components/commonui/loading/loading.vue'
-//晴天
-import img1 from '../../../assets/images/weather-blue/qing.png'
-//阴天
-import img2 from '../../../assets/images/weather-blue/yin.png'
-import img3 from '../../../assets/images/weather-blue/baoyu.png'
-import img4 from '../../../assets/images/weather-blue/bingbao.png'
-import img5 from '../../../assets/images/weather-blue/dafeng.png'
-import img6 from '../../../assets/images/weather-blue/daxue.png'
-import img7 from '../../../assets/images/weather-blue/dayu.png'
-import img8 from '../../../assets/images/weather-blue/duoyun.png'
-import img9 from '../../../assets/images/weather-blue/leizhenyu.png'
-import img10 from '../../../assets/images/weather-blue/shachenbao.png'
-import img11 from '../../../assets/images/weather-blue/weifeng.png'
-import img12 from '../../../assets/images/weather-blue/taifeng.png'
-import img13 from '../../../assets/images/weather-blue/wu.png'
-import img14 from '../../../assets/images/weather-blue/wumai.png'
-import img15 from '../../../assets/images/weather-blue/xiaoxue.png'
-import img16 from '../../../assets/images/weather-blue/xiaoyu.png'
-import img17 from '../../../assets/images/weather-blue/yejianduoyun.png'
-import img18 from '../../../assets/images/weather-blue/yejianqing.png'
-import img19 from '../../../assets/images/weather-blue/yujiaxue.png'
-import img20 from '../../../assets/images/weather-blue/zhongxue.png'
-import img21 from '../../../assets/images/weather-blue/zhongyu.png'
-import img22 from '../../../assets/images/weather-blue/zhongyu.png'
+import vAjax from '@/common/js/v-ajax.js'
+Vue.use(vAjax);
+
 export default {
   name: 'b6',
   data () {
     return {
-    	isloading:false,
-    	//天气图片
-        img1:"",
-        state:"",
-        temperature:0,
-        status:0
+        currentIndex: 0,
+                timer:[],
+                lifegroup:[
+                    {part:'car_washing',text:'洗车',show:true},
+                    {part:'dressing',text:'穿衣',show:true},
+                    {part:'flu',text:'感冒',show:true},
+                    {part:'sport',text:'运动',show:true},
+                    {part:'travel',text:'旅游',show:false},
+                    {part:'uv',text:'紫外线强度',show:true}
+                ],
+                apiData:{
+                  nowurl:"http://api.seniverse.com/v3/weather/now.json",
+                  lifeurl:"https://api.seniverse.com/v3/life/suggestion.json",
+                  dailyurl:"https://api.seniverse.com/v3/weather/daily.json",
+                  uid:"U780C8ABAA",
+                  key:"s2iqikevs0vffmvy",
+                  location:"jinhua",
+                  curPage:1
+                },
+                nowRes:{
+                     code:"13",
+                    temperature:"...",
+                    text:"...",
+                },
+                lifeRes:{
+                    
+                },
+                dailyRes:{}
+              
     }
   },
-  created(){
-  	this.isloading = true;
-  	this.getData();
-  },
   computed: { 
-  	//根据状态转换图片
-  	changeImg(){
-  		switch(this.status)
-		{
-		case 1:
-		   return img1;
-		  break;
-		case 2:
-		  return img2
-		  break;
-		case 3:
-		  return img3
-		  break;
-		case 4:
-		  return img4
-		  break;
-		case 5:
-		  return img5
-		  break;
-		case 6:
-		  return img6
-		  break;
-		case 7:
-		  return img7
-		  break;
-		case 8:
-		  return img8
-		  break;
-		case 9:
-		  return img9
-		  break;		  
-		case 10:
-		  return img10
-		  break;
-		case 11:
-		  return img11
-		  break;
-		case 12:
-		  return img12
-		  break;	  
-		case 13:
-		  return img13
-		  break;
-		case 14:
-		  return img14
-		  break;
-		case 15:
-		  return img15
-		  break;
-		case 16:
-		  return img16
-		  break;
-		case 17:
-		  return img17
-		  break;	  
-		case 18:
-		  return img18
-		  break;
-		case 19:
-		  return img19
-		  break;
-		case 20:
-		  return img20
-		  break;
-		case 21:
-		  return img21
-		  break;
-		case 22:
-		  return img22
-		  break;		
-		default:
-		}
-  	}
+      weaImg:function(){
+            return  this.switchWea(this.nowRes.code);
+        },
   },
   methods: {
-  	//请求数据
-  	getData(){
-  		api.weather(api.params).then( (re) =>{
-    		let reData = re.data.data;
-    		this.temperature = reData.temperature;
-    		this.state = reData.state;
-    		this.status = reData.status;
-    		if(re.status===200){
-    			this.isloading = false;
-    		}
-	    }).catch( (e) => {
-	    	console.log(e);
-	    })
-  	}
-  },
-  mounted(){
-  	
+      switchWea(s){
+            if(s==='-1'){
+                    return 'redom'
+                }else if(s==='0'||s==='2'){
+                    return 'yejianqing'
+                }else if(s==='1'||s==='3'){
+                    return 'yejianqing'
+                }else if(s==='4'){
+                    return 'duoyun'
+                }else if(s==='5'||s==='8'||s==='9'){
+                    return 'yin'
+                }else if(s=== '5'||s==='7'){
+                    return 'yejianduoyun'
+                }else if(s==='10'||s==='11'||s==='12'){
+                    return 'leizhenyu'
+                }else if(s==='13'||s==='14'){
+                    return 'xiaoyu'
+                }else if(s==='15'||s==='16'){
+                    return 'zhongyu'
+                }else if(s==='17'||s==='18'){
+                    return 'dayu'
+                }else if(s==='19'||s==='20'){
+                    return 'yujiaxue'
+                }else if(s==='21'||s==='22'){
+                    return 'xiaoxue'
+                }else if(s==='23'||s==='24'){
+                    return 'zhongxue'
+                }else if(s==='25'||s==='14'){
+                    return 'daxue'
+                }else if(s==='26'||s==='27'||s==='28'||s==='29'){
+                    return 'shachenbao'
+                }else if(s==='30'){
+                    return 'wu'
+                }else if(s==='31'){
+                    return 'wumai'
+                }
+                else if(s==='32'){
+                    return 'weifeng'
+                }else if(s==='33'||s==='34'){
+                    return 'dafeng'
+                }else if(s==='35'||s==='36'){
+                    return 'taifeng'
+                }
+        },
+      getLife(){
+                var _self= this
+                this.$ajax({
+                    type:'GET',
+                    url:this.apiData.lifeurl,
+                    dataType:'jsonp',
+                    jsonp:'jsonpcallback',
+                    data:{
+                      uid : this.apiData.uid,
+                      sig : this.apiData.key,
+                      location : this.apiData.location,
+                    },
+                    success:function(res){
+                      _self.$nextTick(function () {
+                          console.log(res)
+                        _self.lifeRes = res.results[0].suggestion;
+                      });
+                    },
+                    error:function(err){
+                      console.log(err);
+                    }
+                })
+            },
+            getNow(){
+                var _self= this
+                this.$ajax({
+                    type:'GET',
+                    url:this.apiData.nowurl,
+                    dataType:'jsonp',
+                    jsonp:'jsonpcallback',
+                    data:{
+                      uid : this.apiData.uid,
+                      sig : this.apiData.key,
+                      location : this.apiData.location,
+                    },
+                    success:function(res){
+						console.log(res)
+                      _self.$nextTick(function () {
+                        _self.nowRes = res.results[0].now;
+                      });
+                    },
+                    error:function(err){
+                      console.log(err);
+                    }
+                })
+            },
+            getDaily(){
+                var _self= this
+                this.$ajax({
+                    type:'GET',
+                    url:this.apiData.dailyurl,
+                    dataType:'jsonp',
+                    jsonp:'jsonpcallback',
+                    data:{
+                      uid : this.apiData.uid,
+                      sig : this.apiData.key,
+                      location : this.apiData.location,
+                    },
+                    success:function(res){
+                      _self.$nextTick(function () {
+                        _self.dailyRes = res.results[0].daily;
+                      });
+                    },
+                    error:function(err){
+                      console.log(err);
+                    }
+                })
+            },
   },
   components:{
-  	Loading
+  },
+  created(){
+
+  },
+  mounted(){
+     this.getNow()
   }
 }
 </script>
 
 <style lang="less" scoped>
 .b6{
-    
+    .weatherImg{
+        width:4rem;
+        height:4rem;
+        left: 50%;
+        position: absolute;
+        transform: translate(-50%,-50%);
+        top: 50%;
+        width: 30%;
+    }
     width: 100%;
     height: 100%;
     font-size: 1.2rem;
     color:#1da7fe;
-    div{
-        position: absolute;
-        /*transform: translate(-50%,-50%);*/
-        /*top: 60%;*/
-        /*width: 30%;*/
-    }
     .img{
         width:20%;
         text-align: center;
         height: auto;   
-        left: 10%;
-        top: 45%;
+        left: 20%;
     }
     .weather{
-        left: 40%;
-        top: 50%;
+        left: 30%;
+        position: absolute;
+        transform: translate(-50%,-50%);
+        top: 80%;
+        width: 30%;
     }
     .temperature{
-        right: 8%;
-        top: 50%;
+        right: 10%;
+        position: absolute;
+        transform: translate(-50%,-50%);
+        top: 80%;
+        width: 30%;
     }
     img{                  
         max-width: 100%;
@@ -188,5 +218,121 @@ export default {
         height: auto;
     } 
 }
+.car_washing{
+        background-image: url(../../../assets/images/life/xiche.png);
+         background-size:100% 100%;
+    }
+    .dressing{
+         background-size:100% 100%;
+         background-image: url(../../../assets/images/life/chuanyi.png);
+    }
+    .uv{
+         background-image: url(../../../assets/images/life/ziwaixianqiangdu.png);
+          background-size:100% 100%;
+    }
+    .sport{
+         background-image: url(../../../assets/images/life/yundong.png);
+          background-size:100% 100%;
+    }
+    .travel{
+         background-image: url(../../../assets/images/life/lvyou.png);
+          background-size:100% 100%;
+    }
+    .flu{
+         background-image: url(../../../assets/images/life/ganmao.png);
+          background-size:100% 100%;
+    }
+    .baoyu{
+        background-image: url(../../../assets/images/weather-blue/baoyu.png);
+         background-size:100% 100%;
 
+    }
+    .bingbao{
+        background-image: url(../../../assets/images/weather-blue/bingbao.png);
+        background-size:100% 100%;
+    }
+    .dafeng{
+        background-image: url(../../../assets/images/weather-blue/dafeng.png);
+         background-size:100% 100%;
+    }
+    .daxue{
+        background-image: url(../../../assets/images/weather-blue/daxue.png);
+         background-size:100% 100%;
+    }
+    .dayu{
+        background-image: url(../../../assets/images/weather-blue/dayu.png);
+         background-size:100% 100%;
+    }
+    .leizhenyu{
+        background-image: url(../../../assets/images/weather-blue/leizhenyu.png);
+         background-size:100% 100%;
+    }
+    .qing{
+        background-image: url(../../../assets/images/weather-blue/qing.png);
+         background-size:100% 100%;
+    }
+    .redom{
+        background-image: url(../../../assets/images/weather-blue/redom.png);
+         background-size:100% 100%;
+    }
+    .shachenbao{
+        background-image: url(../../../assets/images/weather-blue/shachenbao.png);
+         background-size:100% 100%;
+    }
+    .taifeng{
+         background-size:100% 100%;
+        background-image: url(../../../assets/images/weather-blue/taifeng.png);
+    }
+    .wait{
+        background-image: url(../../../assets/images/weather-blue/wait.png);
+         background-size:100% 100%;
+    }
+    .weifeng{
+        background-image: url(../../../assets/images/weather-blue/weifeng.png);
+         background-size:100% 100%;
+    }
+    .wu{
+        background-image: url(../../../assets/images/weather-blue/wu.png);
+         background-size:100% 100%;
+    }
+    .wumai{
+        background-image: url(../../../assets/images/weather-blue/wumai.png);
+         background-size:100% 100%;
+    }
+    .xiaoxue{
+        background-image: url(../../../assets/images/weather-blue/xiaoxue.png);
+         background-size:100% 100%;
+    }
+    .xiaoyu{
+        background-image: url(../../../assets/images/weather-blue/xiaoyu.png);
+         background-size:100% 100%;
+    }
+    .yejianqing{
+        background-image: url(../../../assets/images/weather-blue/yejianqing.png);
+         background-size:100% 100%;
+    }
+    .yejianduoyun{
+        background-image: url(../../../assets/images/weather-blue/yejianduoyun.png);
+         background-size:100% 100%;
+    }
+    .duoyun{
+        background-image: url(../../../assets/images/weather-blue/duoyun.png);
+         background-size:100% 100%;
+    }
+    .yin{
+        background-image: url(../../../assets/images/weather-blue/yin.png);
+         background-size:100% 100%;
+    }
+    .yujiaxue{
+        background-image: url(../../../assets/images/weather-blue/yujiaxue.png);
+         background-size:100% 100%;
+    }
+    .zhongxue{
+        background-image: url(../../../assets/images/weather-blue/zhongxue.png);
+         background-size:100% 100%;
+    }
+    .zhongyu{
+        background-image: url(../../../assets/images/weather-blue/zhongyu.png);
+         background-size:100% 100%;
+    }
 </style>

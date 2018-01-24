@@ -271,7 +271,7 @@ export default {
                 this.chart.dispose();
             }
             let _self=this
-            this.isActive = false;
+            this.isActive = true;
             this.$nextTick(()=>{
                 var dom = document.getElementById("fromEchart");
                 this.chart = echarts.init(dom);
@@ -298,7 +298,7 @@ export default {
                 }
             }
             )
-            
+            this.redomaaData();
         
         },
     //国内游客来源
