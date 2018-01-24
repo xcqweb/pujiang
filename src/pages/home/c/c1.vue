@@ -120,11 +120,19 @@ export default {
             let option = {
                 tooltip : {
                     trigger: 'axis',
+                    show:true,
+                    formatter:function(params){
+                        		console.log(params)
+                        		var text = params[0].seriesName+" : "+params[0].value +"%<br>"+params[1].seriesName+" : "+params[1].value +"%<br>"
+                        		+params[2].seriesName+" : "+params[2].value +"%<br>"
+                          		 return text
+                        },
                     axisPointer : {            // 坐标轴指示器，坐标轴触发有效
                         type : 'shadow',// 默认为直线，可选为：'line' | 'shadow'
                         label:{
                         	formatter:function(params){
-                          		 return params.value+' '+'(百分比)'
+                        		
+                          		 return "展示"
                         	}
                         }
                     }

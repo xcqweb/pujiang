@@ -124,15 +124,15 @@ export default {
     data () {
         return {
             items:[
-                {name:'景点',value:39,img:require('../../../assets/images/chanye/1.png')},
-                {name:'酒店',value:374,img:require('../../../assets/images/chanye/2.png')},
-                {name:'农家乐',value:752,img:require('../../../assets/images/chanye/3.png')},
-                {name:'餐饮',value:926,img:require('../../../assets/images/chanye/4.png')},
-                {name:'购物点',value:94,img:require('../../../assets/images/chanye/5.png')},
-                {name:'休闲娱乐',value:553,img:require('../../../assets/images/chanye/6.png')},
-                {name:'旅行社',value:72,img:require('../../../assets/images/chanye/7.png')},
-                {name:'公共设施',value:1384,img:require('../../../assets/images/chanye/8.png')},
-                {name:'厕所',value:297,img:require('../../../assets/images/chanye/9.png')},
+                {name:'景点',value:42,img:require('../../../assets/images/chanye/1.png')},
+                {name:'酒店',value:114,img:require('../../../assets/images/chanye/2.png')},
+                {name:'农家乐',value:107,img:require('../../../assets/images/chanye/3.png')},
+                {name:'餐饮',value:343,img:require('../../../assets/images/chanye/4.png')},
+                {name:'购物点',value:242,img:require('../../../assets/images/chanye/5.png')},
+                {name:'休闲娱乐',value:198,img:require('../../../assets/images/chanye/6.png')},
+                {name:'旅行社',value:14,img:require('../../../assets/images/chanye/7.png')},
+                {name:'公共设施',value:120,img:require('../../../assets/images/chanye/8.png')},
+                {name:'厕所',value:63,img:require('../../../assets/images/chanye/9.png')},
             ],
         }
     },

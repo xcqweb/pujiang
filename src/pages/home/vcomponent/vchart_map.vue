@@ -3,8 +3,8 @@
         <div id="fromEchart"></div>
 
         <div class="week">
-             <span class="oneweek " v-bind:class="{ chose: isActive }" @click='redomaa'>省内</span> 
-             <span class="twoweek" v-bind:class="{ chose: !isActive }" @click='redom'>国内</span> 
+             <span class="oneweek " v-bind:class="{ chose: isActive }" @click='redomaaData'>省内</span> 
+             <span class="twoweek" v-bind:class="{ chose: !isActive }" @click='redomData'>国内</span> 
         </div>
         <Loading v-show="isloading"></Loading>
     </div>

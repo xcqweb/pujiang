@@ -3,7 +3,7 @@
     <ul>
         <li for='item in items'>
             <div class="cell1">
-                景区
+               	 地区
             </div>
             <div class="cell3">
                 	占比

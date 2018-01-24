@@ -39,7 +39,7 @@ export default {
             calculable : true,
             tooltip : {
 		        trigger: 'item',
-		        	formatter: "{a} <br/>{b} : {c} ({d}%)"
+		        	formatter: "{a} <br/>{d}%"
 		        },
             grid: {
                 left: '15%',

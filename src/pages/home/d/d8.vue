@@ -69,7 +69,7 @@ export default {
     	txt(){
     		let num = this.percent;
     		switch(num){
-    			case 1:return '畅通';
+    			case 1.2:return '畅通';
     			break;
     			case 2:return '良好';
     			break;

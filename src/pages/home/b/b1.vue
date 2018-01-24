@@ -15,7 +15,7 @@
           <font>7月当前</font>
           <span>{{currentMonthNum}}</span>
         </div>
-        <div class="footer" v-show = 'changeModel' >
+        <!--<div class="footer" v-show = 'changeModel' >
           <div class='footerLeft'>
             <div class='num'>
                 <span class='footerRise' :class='riaseLeft'></span>
@@ -31,7 +31,7 @@
                 <span class='footertit'>月下降</span>
             </div>
           </div>
-        </div>
+        </div>-->
       </div>
       <Loading v-show="isloading"></Loading>
   </div>
@@ -99,6 +99,8 @@ export default {
       width:100%;
       height:100%;
       position: relative;
+      /*临时*/
+      top:10%;
       list-style: none;
       height:100%;
       box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);

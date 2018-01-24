@@ -76,7 +76,7 @@ export default class Set_arr_class  {
                     s='0'+s
                 }
                 arr.date[i] = '';
-                arr.data[i]= Math.ceil(8*Math.random());
+                arr.data[i]= Math.ceil(500*Math.random());
                 arr.contrast[i] =parseInt(h+''+m+''+s)  ;
                 arr.date[i]= +h+':'+m+':'+s;
 

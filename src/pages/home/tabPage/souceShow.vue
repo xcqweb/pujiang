@@ -117,7 +117,7 @@ export default {
                     {name:'D1',id:'one',index:1,time:100,show:false,title:'景区客流热力图与视频监控'},
                     {name:'D6',id:'two',index:2,time:300,show:false,title:'景区客流'},
                     {name:'D8',id:'three',index:3,time:600,show:false,title:'拥堵指数'},
-                    {name:'D3',id:'four',index:4,time:900,show:false,title:'满意度'},
+                    {name:'D3',id:'four',index:4,time:900,show:false,title:'网评数据'},
                 ],
                 bottomComponents:[
                     {name:'D2',id:'one',index:1,time:1200,show:false,title:'餐饮偏好'},
