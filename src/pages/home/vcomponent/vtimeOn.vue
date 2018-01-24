@@ -37,7 +37,7 @@ export default {
            calculable: true,
            xAxis: [{
                type: 'category',
-               boundaryGap: ['10%','10%'],
+               //boundaryGap: ['0%','0%'],
                //在（type: 'category'）中设置data有效
                splitLine: { //坐标轴在 grid 区域中的分隔线；
                    show: false,
@@ -189,7 +189,7 @@ export default {
             let start_end_instance =  new Start_end_class('timeline',_self.mins,Math.round((_self.mins*60) / _self.btwsecends));
             start_end_instance.get_timeline(_self.$el).then(re =>{
                 _self.data_arr = re;
-                //console.log(re.data)
+                console.log(re.date)
               _self.option.xAxis.data=re.date.reverse();
               _self.option.series.data=re.data.reverse();
               _self.option.yAxis.max = Math.max(...re.data);
@@ -219,7 +219,8 @@ export default {
   position: absolute;
     #container{
         width:100%;
-        height:100%;
+        height:92%;
+        margin-top: 1.6rem;
     }
 }
 </style>

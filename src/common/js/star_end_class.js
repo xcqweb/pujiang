@@ -42,6 +42,7 @@ export default  class Start_end_class extends  Set_arr_class {
     }
     getEndTime(){
         let date=new Date();
+        
         let year=date.getFullYear(); //获取当前年份
         let mon=date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1; //获取当前月份
         let da=date.getDate() < 10 ? '0'+date.getDate() : date.getDate(); //获取当前日
@@ -61,6 +62,7 @@ export default  class Start_end_class extends  Set_arr_class {
     }
     get_timeline(){
         let _self = this;
+        console.log(this.getEndTime().endTime);
         // let token =window.localStorage.getItem('token')
         let pagram={
             begintime:this.getBeginTime().beginTime,

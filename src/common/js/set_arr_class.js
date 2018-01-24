@@ -38,6 +38,8 @@ export default class Set_arr_class  {
                 var h=dt.getHours(); //获取小时
                 var m=dt.getMinutes(); //获取分
                 var s=dt.getSeconds(); //获取秒
+                
+                
                 //处理时间格式00:00:01
                 if (m>=5) {
                     var endm =m-5;

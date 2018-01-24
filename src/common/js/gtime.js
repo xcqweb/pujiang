@@ -1,6 +1,7 @@
 var differ=25
 var hm= '';
 var date=new Date();
+
 var year=date.getFullYear(); //获取当前年份
 var mon=date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1; //获取当前月份
 var da=date.getDate() < 10 ? '0'+date.getDate() : date.getDate(); //获取当前日
@@ -9,6 +10,7 @@ var m=date.getMinutes()< 10 ? '0'+date.getMinutes() : date.getMinutes(); //获�
 var s=date.getSeconds()< 10 ? '0'+date.getSeconds() : date.getSeconds(); //获取秒
 
 export var endtime=year+''+mon+''+da+''+h+''+m+''+s;
+
 export var enddaytime = year+''+mon+''+da;
 var endtDate=endtime.slice(0,4)+'/'+endtime.slice(4,6)+'/'+endtime.slice(6,8)+' '+endtime.slice(8,10)+':'+endtime.slice(10,12)+':'+endtime.slice(12,14);
 var dt = new Date(endtDate);

@@ -4,7 +4,8 @@
 			<!--:selectList="selectlist"-->
 			<!--&gt;-->
 	<!--</vSelect>-->
-	<div class='shuaxin'></div>
+	<!--刷新-->
+	<!--<div class='shuaxin'></div>-->
 
 	<div class="leftprofile">
 		<div class='top'>
@@ -167,10 +168,12 @@ export default {
 //  },
 
     nub:function(){
-    	this.percent = (this.nub*100/this.set_config).toFixed(0);
+    	//this.percent = (this.nub*100/this.set_config).toFixed(0);
+    	this.percent = 5;
           this.option.series[0].data[0].value = this.percent;
           this.option.series[0].data[1].value = 100-this.percent;
-      let Ratio = this.nub/this.set_config;
+     // let Ratio = this.nub/this.set_config;
+      let Ratio = 0.1;
       let setColor = '';
       //console.log(Ratio)
       if(Ratio<0.3){
