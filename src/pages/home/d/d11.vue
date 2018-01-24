@@ -21,8 +21,10 @@ import echarts_resize from '../../../common/js/echarts_resize.js'
 // import d11sJson from '@/pages/home/showMore/bigComponent/json/d11s.json'
 import echarts from 'echarts'
 require('echarts-wordcloud');
+import optionProps from '@/common/js/mixin/optionProps.js'
   export default {
     name:'d11',
+    mixins: [optionProps],
     data() {
         return {
             chart:null,

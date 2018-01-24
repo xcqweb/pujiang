@@ -12,8 +12,10 @@ import echarts from 'echarts';
 import pujiangJson from '../../../common/echarts/map/pujiang.json'
 import api from '@/api/index.js'
 import Loading from '@/components/commonui/loading/loading.vue'
+import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
   name: 'c3',
+  mixins: [optionProps],
   data () {
     return {
     	isloading:false,

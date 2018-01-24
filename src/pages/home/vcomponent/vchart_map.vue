@@ -22,9 +22,11 @@ import echarts_resize from '../../../common/js/echarts_resize.js'
 //import 'echarts/lib/chart/map';
 import 'echarts/map/js/china.js';
 import zhejiangJson from 'echarts/map/json/province/zhejiang.json'
+import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
     name: 'a6',
     props:['placeName'],
+    mixins: [optionProps],
     data () {
     return {
     	isloading:false,
@@ -269,7 +271,7 @@ export default {
                 this.chart.dispose();
             }
             let _self=this
-            this.isActive = false;
+            this.isActive = true;
             this.$nextTick(()=>{
                 var dom = document.getElementById("fromEchart");
                 this.chart = echarts.init(dom);
@@ -296,7 +298,7 @@ export default {
                 }
             }
             )
-            
+            this.redomaaData();
         
         },
     //国内游客来源

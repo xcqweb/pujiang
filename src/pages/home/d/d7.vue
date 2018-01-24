@@ -43,8 +43,10 @@ import echarts_resize from '../../../common/js/echarts_resize.js'
 import echarts from 'echarts';
 import api from '@/api/index.js'
 import Loading from '@/components/commonui/loading/loading.vue'
+import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
     name:'d7',
+    mixins: [optionProps],
     data(){
     return{
     	isloading:false,

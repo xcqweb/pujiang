@@ -20,12 +20,14 @@
 import Vue from 'vue'
 import api from '@/api/index.js'
 import Loading from '@/components/commonui/loading/loading.vue'
+import optionProps from '@/common/js/mixin/optionProps.js'
 let men = require('../../../assets/images/home/men.png')
 let menE= require('../../../assets/images/home/menE.png')
 let women= require('../../../assets/images/home/women.png')
 let womenE= require('../../../assets/images/home/womenE.png')
 export default {
   name: 'c4',
+  mixins: [optionProps],
   data () {
 
     return {

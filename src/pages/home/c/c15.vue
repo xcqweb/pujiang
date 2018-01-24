@@ -29,8 +29,10 @@
 </template>
 
 <script type="text/javascript">
+import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
     name:'c15',
+    mixins: [optionProps],
     data(){
         return{
         msg:'Hello Vue 来自App.vue',

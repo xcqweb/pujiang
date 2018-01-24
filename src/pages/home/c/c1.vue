@@ -74,8 +74,9 @@ import echarts from 'echarts'
 import adaptation from '@/common/js/mixin/adaptation.js'
 import api from '@/api/index.js'
 import Loading from '@/components/commonui/loading/loading.vue'
+import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
-    mixins: [adaptation],
+    mixins: [adaptation,optionProps],
     name:'c1',
     data(){
         return{

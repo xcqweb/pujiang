@@ -20,9 +20,10 @@ import Bus from '@/common/js/bus.js'
 import axios from 'axios'
 import {begindaytime} from '@/common/js/gtime.js'
 import Loading from '@/components/commonui/loading/loading.vue'
+import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
     name:'a1',
-    mixins: [timeMixin],
+    mixins: [timeMixin,optionProps],
     data() {
       return {
         isloading:false,

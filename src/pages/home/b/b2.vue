@@ -17,8 +17,10 @@ import echarts from 'echarts';
 import Start_end_class from '@/common/js/star_end_class.js'
 import {begindaytime} from '@/common/js/gtime.js'
 import Loading from '@/components/commonui/loading/loading.vue'
+import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
   name: 'b2',
+  mixins: [optionProps],
   data () {
     return {
         isloading:false,

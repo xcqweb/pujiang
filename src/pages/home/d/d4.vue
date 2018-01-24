@@ -20,8 +20,10 @@ import { mapActions } from 'vuex'
 import { mapGetters } from 'vuex'
 import api from '@/api/index.js'
 import Loading from '@/components/commonui/loading/loading.vue'
+import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
   name: 'd4',
+  mixins: [optionProps],
   data () {
     return {
     	isloading:false,

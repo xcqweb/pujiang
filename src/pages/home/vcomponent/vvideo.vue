@@ -26,9 +26,10 @@
 
 <script>
 import Vue from 'vue'
-import Loading from '@/components/commonui/loading/loading.vue'
+import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
     name: 'a9',
+    mixins: [optionProps],
     data () {
       return {
       }

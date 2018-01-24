@@ -56,9 +56,10 @@ import Vue from 'vue'
 import api from '@/api/index.js'
 import Loading from '@/components/commonui/loading/loading.vue'
 import until from '@/common/js/until/index.js'
+import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
     name:'d6',
-    name: '',
+    mixins: [optionProps],
     data () {
         return {
 			isloading:false,

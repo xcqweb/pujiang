@@ -64,12 +64,13 @@ import Vue from 'vue'
 import vmap from '../vcomponent/vchart_map.vue'
 import adaptation from '@/common/js/mixin/adaptation.js'
 import api from '@/api/index.js'
+import optionProps from '@/common/js/mixin/optionProps.js'
 let date = new Date()
 let nowYear = date.getFullYear()
 let mowMonth = date.getMonth()+1
 export default {
     name: 'b16',
-    mixins: [adaptation],
+    mixins: [adaptation,optionProps],
     props:['placeName',],
     data () {
         return {

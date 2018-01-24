@@ -32,9 +32,11 @@
 
 <script type="text/javascript">
 	import api from '@/api/index.js'
-	import Loading from '@/components/commonui/loading/loading.vue'
+    import Loading from '@/components/commonui/loading/loading.vue'
+    import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
     name:'c8',
+    mixins: [optionProps],
     data(){
         return{
         isloading:false,

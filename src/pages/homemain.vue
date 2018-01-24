@@ -105,7 +105,6 @@ export default {
             },
             headerLeave(){
                 this.headerStatus=false;
-                console.log(this.headerStatus)
             },
 
         },
