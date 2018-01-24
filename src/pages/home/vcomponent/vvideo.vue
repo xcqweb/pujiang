@@ -11,13 +11,13 @@
         </video>-->
         <section>
         	<!--<span class="time">2018-01-25 10:26:45</span>-->
-        	<img src="../../../assets/images/videoImg/video1.jpg"/>
+        	<!--<img src="../../../assets/images/videoImg/video1.jpg"/>-->
         	<Loading class='video' v-show='true'></Loading>
         	<span>仙华山监控1</span>
         </section>
         <section>
         	<!--<span class="time">2018-01-25 10:26:45</span>-->
-        	<img src="../../../assets/images/videoImg/video2.jpg"/>
+        	<!--<img src="../../../assets/images/videoImg/video2.jpg"/>-->
         	<Loading class='video' v-show='true'></Loading>
         	<span>仙华山监控2</span>
         </section>

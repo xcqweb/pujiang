@@ -24,7 +24,10 @@ export default {
               color: ['#f18790', '#75c774', '#5aa7fd','#f1c54b','#c184ff','6792fb'],
               tooltip : {
 		        trigger: 'item',
-		        formatter: "{a} <br/>{d}%"
+		        formatter: function(params){
+		        	let text = params.data.name+"<br>"+params.percent+"%";
+		        	return text
+		        }
 		      },
               series : [
                   {
