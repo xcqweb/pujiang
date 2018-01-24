@@ -40,7 +40,7 @@
         margin-top:5%;
         margin-left: 5%;
         width:90%;
-        height:20%;
+        height:15%;
         .title{
             position:absolute;
             top:0;
@@ -160,20 +160,20 @@
         <vline :progressbar='oneprogressbar' class='progress'></vline>
         <vline :progressbar='twoprogressbar'></vline>
         <vline :progressbar='threeprogressbar'></vline>
-        <!--<div class="msg">
+        <div class="msg">
             <span class="title">评论</span>
             <div class="comment">
                 <span class="name">{{commentProp.name}}</span>
                 <span class="place">来自：{{commentProp.palce}}</span>
-                <vstar 
+                <!--<vstar 
                 class='comment-star'
                 :star='topStar.numb'>
-                </vstar>
+                </vstar>-->
                 <span class="text">
                     {{commentProp.context}}
                 </span>
             </div>
-        </div>-->
+        </div>
         <Loading v-show="isloading"></Loading>
     </div>
 </template>

@@ -1,19 +1,32 @@
 <template>
     <div class="video">
-        <video controls="controls"  src="../../../assets/video/kaiyuan.mp4"  autoplay="autoplay"  loop="loop" style="">
+        <!--<video controls="controls"  src="../../../assets/video/kaiyuan.mp4"  autoplay="autoplay"  loop="loop" style="">
             您的浏览器不支持 video 标签。
         </video>
-        <video controls="controls" autoplay="autoplay"  loop="loop" style="">
+        <video controls="controls" poster="" autoplay="autoplay"  loop="loop" style="">
             您的浏览器不支持 video 标签。
-            <!--视频接口-->
-            <!--http://192.168.1.75:10800/play2.html?channel=3-->
+            视频接口
+            http://192.168.1.75:10800/play2.html?channel=3
             <source src="../../../assets/video/kaiyuan.mp4" type="audio/mp4"/>
-        </video>
+        </video>-->
+        <section>
+        	<!--<span class="time">2018-01-25 10:26:45</span>-->
+        	<img src="../../../assets/images/videoImg/video1.jpg"/>
+        	<Loading class='video' v-show='true'></Loading>
+        	<span>仙华山监控1</span>
+        </section>
+        <section>
+        	<!--<span class="time">2018-01-25 10:26:45</span>-->
+        	<img src="../../../assets/images/videoImg/video2.jpg"/>
+        	<Loading class='video' v-show='true'></Loading>
+        	<span>仙华山监控2</span>
+        </section>
     </div>
 </template>
 
 <script>
 import Vue from 'vue'
+import Loading from '@/components/commonui/loading/loading.vue'
 export default {
     name: 'a9',
     data () {
@@ -23,6 +36,7 @@ export default {
     methods: {
     },
     components:{
+    	Loading
     }
 }
 </script>
@@ -31,7 +45,7 @@ export default {
 .video{
     width:100%;
     height:80%;
-    margin-top:10%;
+    margin-top:12%;
     video{
         width:95%;
         height:50%;
@@ -42,5 +56,33 @@ export default {
     }
     video:nth-of-type(1){
     }
+    
+    
+     section{
+        width:95%;
+        height:50%;
+        margin-top:12px;
+        margin-left: 8px;
+        position: relative;
+        img{
+        	width: 100%;
+        	height: 100%;
+        }
+        span{
+        	color:#fff;
+        	font-size: 12px;
+        	position: absolute;
+        	bottom: 10px;
+        	left: 10px;
+        }
+        .time{
+        	color:#fff;
+        	font-size: 12px;
+        	position: absolute;
+        	top: 10px;
+        	right: -200px;
+        }
+    }
+    
 }
 </style>

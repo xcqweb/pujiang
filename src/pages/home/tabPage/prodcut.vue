@@ -24,14 +24,14 @@
                     <!--<img :src="cutoverImg"/>-->
                 </span>
                 <div class="border" v-if='item.show'>
-                  <keep-alive>
+                  <!--<keep-alive>-->
                     <componet
                     :is='item.name'
                     :key="item.id"
                     :placeName = 'placeName'
                     :touristProp = "updateData.turist"
                     ></componet>
-                  </keep-alive>
+                  <!--</keep-alive>-->
                 </div>
             </div>
         </div>
@@ -45,13 +45,13 @@
                     <!--<img :src="cutoverImg"/>-->
                 </span>
                 <div class="border" v-if='item.show'>
-                  <keep-alive>
+                  <!--<keep-alive>-->
                     <componet
                     :is='item.name'
                     :key="item.id"
                     :touristProp = "updateData.turist"
                     ></componet>
-                  </keep-alive>
+                  <!--</keep-alive>-->
                 </div>
             </div>
         </div>

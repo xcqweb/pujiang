@@ -52,7 +52,7 @@ export default {
                 {
                     name:'消费偏好',
                     type:'pie',
-                    radius : ['0%', '50%'],
+                    radius : ['0%', '55%'],
                     center : ['50%', '55%'],
                     roseType : 'area',
                     lableLine:{
@@ -67,13 +67,13 @@ export default {
                             show:false,
                             textStyle:{
                                 fontStyle:'italic',
-                                fontSize:"100%",
+                                fontSize:"85%",
                             }
                         },
                         emphasis:{
                             textStyle:{
                                 fontStyle:'italic',
-                                fontSize:"100%",
+                                fontSize:"85%",
                             }
                         },
 

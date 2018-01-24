@@ -37,6 +37,8 @@
 </script>
 
 <style scoped>
+	
+
   .box{
     position: absolute;
     top: 0;
@@ -52,15 +54,15 @@
   .txt{
     text-align: center;
     position: absolute;
-    top: 62%;
+    top: 52%;
     color: rgba(250,250,250,0.8);
     font-size: 1rem;
    }
   .spinner {
     position: absolute;
-    margin: 8.2rem auto;
-    width: 2.6rem;
-    height: 2.6rem;
+    margin: 4.2rem auto;
+    width: 2rem;
+    height: 2rem;
     position: relative;
   }
 
@@ -80,6 +82,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
+    margin-top: -80%;
   }
 
   .container2 {
@@ -91,6 +94,8 @@
     -webkit-transform: rotateZ(90deg);
     transform: rotateZ(90deg);
   }
+
+	
 
   .circle1 { top: 0; left: 0; }
   .circle2 { top: 0; right: 0; }
@@ -166,6 +171,16 @@
         -webkit-transform: scale(1.0);
       }
   }
+  
+  
+  .video{
+		 .spinner {
+		 margin: 8.2rem auto;
+    width: 2rem;
+    height: 2rem;
+    }
+
+	}
 </style>
 
 

@@ -62,7 +62,6 @@ export default  class Start_end_class extends  Set_arr_class {
     }
     get_timeline(){
         let _self = this;
-        console.log(this.getEndTime().endTime);
         // let token =window.localStorage.getItem('token')
         let pagram={
             begintime:this.getBeginTime().beginTime,

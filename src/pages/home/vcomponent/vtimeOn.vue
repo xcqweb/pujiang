@@ -19,7 +19,7 @@ export default {
         isloading:false,
         reTimer:null,
         data_arr:{},
-        mins:20,
+        mins:60,
         btwsecends:5,
         option: {
             backgroundColor: 'rgba(0,0,0,0)',
@@ -55,7 +55,7 @@ export default {
                    },
                },
                axisLabel: { 
-               		 margin: 6,
+               		 margin: 4,
                    textStyle: {
                        color: '#fff',//x坐标轴标签字体颜色
                        fontSize: '75%',
@@ -152,7 +152,7 @@ export default {
             }
             let date=_self.data_arr.date.slice(0,6);
             let data=_self.data_arr.data.slice(0,6);
-
+						alert(timerIndex)
             this.reTimer=setInterval(function () {
                 i++;
                 if(i > timerIndex){
@@ -184,7 +184,7 @@ export default {
         get_respose(){
           this.isloading = true;
             let _self = this;
-            _self.mins= 30;
+            _self.mins= 60;
             self.btwsecends = 5;
             let start_end_instance =  new Start_end_class('timeline',_self.mins,Math.round((_self.mins*60) / _self.btwsecends));
             start_end_instance.get_timeline(_self.$el).then(re =>{

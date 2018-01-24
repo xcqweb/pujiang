@@ -4,7 +4,7 @@
         <div class="circle">
             <img :src="imgacircle"/>
         </div>
-        <span>{{persent}}</span>
+        <span>5%</span>
         <div class="text"><font>预警客流</font><font>{{this.set_config}}人</font></div>
       <Loading v-show="isloading"></Loading>
     </div>
@@ -29,8 +29,8 @@ export default {
   },
   computed: {
     persent(){
-      let nub = parseInt(this.nub);
-      let setconfig = parseInt(this.set_config);
+      let nub = 1||parseInt(this.nub);
+      let setconfig = 20||parseInt(this.set_config);
       if(!nub && !setconfig){
         return "";
       }else{
@@ -53,7 +53,7 @@ export default {
       this.isloading=false;
       let nub = ((this.nub/this.set_config)*100).toFixed(0);
       let setconfig = 100-nub;
-      console.log(nub)
+      //console.log(nub)
       
       let option={
         backgroundColor: 'rgba(0,0,0,0)',
@@ -128,7 +128,7 @@ export default {
         color:#1da7fe;
         transform: translate(-50%,-50%);
         font-size: 1rem;
-        font-family: numberFont;
+        /*font-family: numberFont;*/
     }
     #pieB2{
         height:100%;
@@ -154,7 +154,7 @@ export default {
             margin-left:10%;
             color:#1da7fe;
             font-size:1rem;
-            font-family: numberFont;
+            /*font-family: numberFont;*/
         }
     }
     img{

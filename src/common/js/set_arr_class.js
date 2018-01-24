@@ -88,7 +88,6 @@ export default class Set_arr_class  {
         for(name in arr){
             arr[name] = arr[name].reverse()
         }
-        //console.log(arr)
         return arr
      }
      //随机分配数据

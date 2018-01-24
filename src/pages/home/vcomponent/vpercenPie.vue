@@ -220,5 +220,6 @@ export default {
 #percentA{
     width:100%;
     height:100%;
+    margin-top: 3%;
 }
 </style>
