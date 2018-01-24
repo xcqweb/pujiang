@@ -9,9 +9,9 @@
         width: auto;
         height: auto;
     }
-    // font{
+    /*// font{
     //     box-shadow: inset 0 0 126rem rgba(0,28 ,201 ,0.06);
-    // }
+    // }*/
     .d17_item{
         height: 45%;
         float: left;

@@ -152,7 +152,6 @@ export default {
             }
             let date=_self.data_arr.date.slice(0,6);
             let data=_self.data_arr.data.slice(0,6);
-						alert(timerIndex)
             this.reTimer=setInterval(function () {
                 i++;
                 if(i > timerIndex){
@@ -189,7 +188,7 @@ export default {
             let start_end_instance =  new Start_end_class('timeline',_self.mins,Math.round((_self.mins*60) / _self.btwsecends));
             start_end_instance.get_timeline(_self.$el).then(re =>{
                 _self.data_arr = re;
-                console.log(re.date)
+                //console.log(re.date)
               _self.option.xAxis.data=re.date.reverse();
               _self.option.series.data=re.data.reverse();
               _self.option.yAxis.max = Math.max(...re.data);
