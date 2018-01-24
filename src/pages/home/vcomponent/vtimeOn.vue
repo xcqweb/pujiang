@@ -15,11 +15,8 @@ import Loading from '@/components/commonui/loading/loading.vue'
 import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
     name: 'a5',
-<<<<<<< .mine
     //mixins: [loading],
-=======
     mixins: [optionProps],
->>>>>>> .theirs
     data () {
       return {
         isloading:false,
