@@ -28,11 +28,11 @@ require('echarts-wordcloud');
             chart:null,
             yunData:[
                 {
-                    "name": "清远",
+                    "name": "浦江",
                     "value": 8
                 },
                 {
-                    "name": "文化",
+                    "name": "旅游",
                     "value": 6
                 },
                 {
@@ -44,11 +44,11 @@ require('echarts-wordcloud');
                     "value": 5
                 },
                 {
-                    "name": "连州",
+                    "name": "仙华山",
                     "value": 5
                 },
                 {
-                    "name": "市区",
+                    "name": "汽车站",
                     "value": 4
                 },
                 {
@@ -80,18 +80,6 @@ require('echarts-wordcloud');
                     "value": 3
                 },
                 {
-                    "name": "英德",
-                    "value": 3
-                },
-                {
-                    "name": "凤凰台",
-                    "value": 3
-                },
-                {
-                    "name": "飞来峡",
-                    "value": 3
-                },
-                {
                     "name": "长湖",
                     "value": 3
                 },
@@ -117,10 +105,6 @@ require('echarts-wordcloud');
                 },
                 {
                     "name": "温泉",
-                    "value": 2
-                },
-                {
-                    "name": "清新",
                     "value": 2
                 },
                 {
@@ -153,10 +137,6 @@ require('echarts-wordcloud');
                 },
                 {
                     "name": "打造",
-                    "value": 2
-                },
-                {
-                    "name": "广东",
                     "value": 2
                 },
                 {
@@ -193,10 +173,6 @@ require('echarts-wordcloud');
                 },
                 {
                     "name": "通天",
-                    "value": 2
-                },
-                {
-                    "name": "清远市",
                     "value": 2
                 },
                 {
@@ -284,10 +260,14 @@ require('echarts-wordcloud');
         }
     },
     created () {
-        
+        var paramsObj = {
+                area:"全部",
+                name:"全部",
+            }
+    //    this.getResponse(paramsObj);
     },
     mounted(){
-        this.$nextTick(echarts_resize('chartId',this))
+       this.$nextTick(echarts_resize('chartId',this))
     }
   }
 </script>

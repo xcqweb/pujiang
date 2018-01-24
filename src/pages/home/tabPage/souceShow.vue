@@ -121,7 +121,7 @@ export default {
                 ],
                 bottomComponents:[
                     {name:'D2',id:'one',index:1,time:1200,show:false,title:'餐饮偏好'},
-                    {name:'C2',id:'two',index:2,time:600,show:false,title:'年龄'},
+                    {name:'D11',id:'two',index:2,time:600,show:false,title:'关键词'},
                     //{name:'D4',id:'two',index:2,time:1500,show:false,title:'总消费数据分析'},
                     {name:'B6',id:'three',index:3,time:1200,show:false,title:'实时天气'},
                     {name:'B2',id:'four',index:4,time:1800,show:false,title:'客流预警'},
