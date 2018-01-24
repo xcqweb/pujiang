@@ -117,8 +117,10 @@
 
 <script>
 import Vue from 'vue'
+import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
-    name: '',
+    name: 'B17',
+    mixins: [optionProps],
     data () {
         return {
             items:[
@@ -141,7 +143,9 @@ export default {
 
     },
     methods: {
-
+        watchTouristFn(val){
+            console.log(val)
+        }
     },
     mounted(){
     
