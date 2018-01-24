@@ -22,7 +22,6 @@ export default {
   mixins: [optionProps],
   data () {
     return {
-    		isloading:false,
         value:'',
         people:'',
     }
@@ -34,7 +33,6 @@ export default {
     }
   },
   created(){
-  	this.isloading = true;
   	this.getData();
   },
   methods: {

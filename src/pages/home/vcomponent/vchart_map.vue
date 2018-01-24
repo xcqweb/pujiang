@@ -29,7 +29,6 @@ export default {
     mixins: [optionProps],
     data () {
     return {
-    	isloading:false,
         chart:null,
         isActive:false,
         color:['#f18790', '#75c774', '#5aa7fd','#f1c54b','#c184ff','6792fb'],
@@ -520,7 +519,6 @@ export default {
     }
     },
     created(){
-    	this.isloading = true;
     	this.getData();
     },
     mounted(){

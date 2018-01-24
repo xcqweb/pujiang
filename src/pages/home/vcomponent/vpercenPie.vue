@@ -18,7 +18,6 @@ export default {
     mixins: [optionProps],
     data(){
         return{
-        	isloading:false,
             option:{
               backgroundColor: 'rgba(0, 0, 0, 0)',
               color: ['#f18790', '#75c774', '#5aa7fd','#f1c54b','#c184ff','6792fb'],
@@ -204,7 +203,6 @@ export default {
 	  	}
     },
     created(){
-    	this.isloading = true;
     	this.getData();
     },
     mounted() {

@@ -32,12 +32,10 @@ export default {
   mixins: [optionProps],
   data () {
     return {
-    	isloading:false,
         items:[]
     }
   },
   created(){
-  	this.isloading = true;
   	this.getData();
   },
   mounted(){

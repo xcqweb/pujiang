@@ -15,11 +15,9 @@ import Loading from '@/components/commonui/loading/loading.vue'
 import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
     name: 'a5',
-    //mixins: [loading],
     mixins: [optionProps],
     data () {
       return {
-        isloading:false,
         reTimer:null,
         data_arr:{},
         mins:60,
@@ -184,7 +182,6 @@ export default {
           this.$nextTick(echarts_listen_resize('container',this));
         },
         get_respose(){
-          this.isloading = true;
             let _self = this;
             _self.mins= 60;
             self.btwsecends = 5;

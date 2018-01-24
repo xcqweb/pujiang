@@ -57,7 +57,6 @@ export default {
 	mixins: [optionProps],
 	data () {
 	return {
-	  isloading:false,
 	  allData:[],
 	  currentPlace:'',
 		profileData:{
@@ -200,7 +199,7 @@ export default {
     let start_end_instance =  new Start_end_class('profile',begindaytime);
     start_end_instance.get_response().then(re => {
       let data = re.data.data;
-      console.log(re)
+      //console.log(re)
       //初始化数据
       this.profileData.all_nub = data.all_nub;
       this.profileData.current_nub = data.current_nub;
@@ -216,7 +215,6 @@ export default {
       });
   },
   request(){
-    this.isloading = true;
     let start_end_instance =  new Start_end_class('passengerwarning',begindaytime);
     start_end_instance.get_response().then(re => {
       //设置默认值

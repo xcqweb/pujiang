@@ -17,6 +17,7 @@ let optionProps =  {
     },
     data () {
         return {
+        	isloading: false,
             nameToCode:{
                 '全部':0,
                 '仙华山':1,
@@ -70,6 +71,9 @@ let optionProps =  {
     },
     methods:{
         	
+    },
+    created(){
+    	this.isloading=true;
     },
     mounted () {
         

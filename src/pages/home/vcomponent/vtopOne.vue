@@ -26,7 +26,6 @@ export default {
     mixins: [timeMixin,optionProps],
     data() {
       return {
-        isloading:false,
         chart: null,
         isActive:true,
         xnub:null,
@@ -241,7 +240,6 @@ export default {
         this.chart.setOption(option)
       },
     request(){
-      this.isloading = true;
         let _self = this;
         // this.$router.push({ path: '/' });
       //请求数据
