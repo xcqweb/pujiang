@@ -30,6 +30,37 @@ export default {
     	isloading:false,
         chart:null,
         isActive:false,
+        color:['#f18790', '#75c774', '#5aa7fd','#f1c54b','#c184ff','6792fb'],
+        option : {
+            backgroundColor: 'rgba(0,0,0,0)',
+            tooltip: {
+                trigger: 'item'
+            },
+            geo: {
+                map: 'zhejiang',
+                label: {
+                    emphasis: {
+                        show: false
+                    }
+                },
+                roam: true,
+                itemStyle: {
+                        normal: {
+                            color:'#163387',
+                            areaColor: '#163387',
+                            borderColor:'white',
+                            borderWidth:0.5,
+                            shadowColor: 'rgba(0, 0, 0, 0.1)',
+                            shadowBlur:10,
+                            opacity:0.3,
+                        },
+                        emphasis: {
+                            areaColor: '#2a333d'
+                        }
+                    }
+            },
+
+        },
         geoCoordLocal:{
             '浦江县': [120.105537,29.508488],
             '清远': [113.064193,23.68823],
@@ -70,6 +101,36 @@ export default {
         WENZ:[
             [{name: '浦江县'}, {name: '温州', value: 20}]
         ],
+        },
+        optionChina : {
+            backgroundColor: 'rgba(0,0,0,0)',
+            tooltip: {
+                trigger: 'item'
+            },
+            geo: {
+                map: 'china',
+                label: {
+                    emphasis: {
+                        show: false
+                    }
+                },
+                roam: true,
+                itemStyle: {
+                        normal: {
+                            color:'#163387',
+                            areaColor: '#163387',
+                            borderColor:'white',
+                            borderWidth:0.5,
+                            shadowColor: 'rgba(0, 0, 0, 0.1)',
+                            shadowBlur:10,
+                            opacity:0.3,
+                        },
+                        emphasis: {
+                            areaColor: '#2a333d'
+                        }
+                    }
+            },
+            series: []
         },
         geoCoordMap:{
             '上海': [121.4648, 31.2891],
@@ -203,8 +264,43 @@ export default {
             }
             return res;
     },
-    //国内游客来源
     redom(){
+            if(this.chart){
+                this.chart.dispose();
+            }
+            let _self=this
+            this.isActive = false;
+            this.$nextTick(()=>{
+                var dom = document.getElementById("fromEchart");
+                this.chart = echarts.init(dom);
+                if (this.optionChina && typeof this.optionChina === "object") {
+                this.chart.setOption(this.optionChina, true);
+                }
+            }
+            )
+            
+        
+        },
+        redomaa(){
+            if(this.chart){
+                this.chart.dispose();
+            }
+            let _self=this
+            echarts.registerMap('zhejiang', zhejiangJson);
+            this.isActive = true;
+            this.$nextTick(()=>{
+                var dom = document.getElementById("fromEchart");
+                this.chart = echarts.init(dom);
+                if (this.option && typeof this.option === "object") {
+                this.chart.setOption(this.option, true);
+                }
+            }
+            )
+            
+        
+        },
+    //国内游客来源
+    redomData(){
     	this.isActive=true;
         let _self=this;
         const target = this.placeName;
@@ -259,7 +355,7 @@ export default {
                     },
                     lineStyle: {
                         normal: {
-                            color: color[i],
+                            color: _self.color[i],
                             width: 2,
                             opacity: 0.6,
                             curveness: 0.2
@@ -292,7 +388,7 @@ export default {
                     },
                     itemStyle: {
                         normal: {
-                            color: color[i]
+                            color: _self.color[i]
                         }
                     },
                     progressiveThreshold: 500,
@@ -305,42 +401,13 @@ export default {
                     })
                 });
         });
-        var option = {
-            backgroundColor: 'rgba(0,0,0,0)',
-            tooltip: {
-                trigger: 'item'
-            },
-            geo: {
-                map: 'china',
-                label: {
-                    emphasis: {
-                        show: false
-                    }
-                },
-                roam: true,
-                itemStyle: {
-                        normal: {
-                            color:'#163387',
-                            areaColor: '#163387',
-                            borderColor:'white',
-                            borderWidth:0.5,
-                            shadowColor: 'rgba(0, 0, 0, 0.1)',
-                            shadowBlur:10,
-                            opacity:0.3,
-                        },
-                        emphasis: {
-                            areaColor: '#2a333d'
-                        }
-                    }
-            },
-            series: series
-        };
-        if (option && typeof option === "object") {
-           this.chart.setOption(option, true);
+        this.optionChina.series = series;
+        if (this.optionChina && typeof this.optionChina === "object") {
+           this.chart.setOption(this.optionChina, true);
         }
     },
     //省内游客来源
-    redomaa(datas){
+    redomaaData(){
     	this.isActive=false;
         if(this.chart){
             this.chart.dispose();
@@ -399,7 +466,7 @@ export default {
                     progressive: 200,
                     lineStyle: {
                         normal: {
-                            color: color[i],
+                            color: _self.color[i],
                             width: 2,
                             opacity: 0.6,
                             curveness: 0.2
@@ -430,7 +497,7 @@ export default {
                     },
                     itemStyle: {
                         normal: {
-                            color: color[i]
+                            color: _self.color[i]
                         }
                     },
                     progressiveThreshold: 500,
@@ -443,38 +510,9 @@ export default {
                     })
                 });
         });
-        var option = {
-            backgroundColor: 'rgba(0,0,0,0)',
-            tooltip: {
-                trigger: 'item'
-            },
-            geo: {
-                map: 'zhejiang',
-                label: {
-                    emphasis: {
-                        show: false
-                    }
-                },
-                roam: true,
-                itemStyle: {
-                        normal: {
-                            color:'#163387',
-                            areaColor: '#163387',
-                            borderColor:'white',
-                            borderWidth:0.5,
-                            shadowColor: 'rgba(0, 0, 0, 0.1)',
-                            shadowBlur:10,
-                            opacity:0.3,
-                        },
-                        emphasis: {
-                            areaColor: '#2a333d'
-                        }
-                    }
-            },
-            series: series
-        };
-        if (option && typeof option === "object") {
-           this.chart.setOption(option, true);
+        this.option.series = series;
+        if (this.option && typeof this.option === "object") {
+           this.chart.setOption(this.option, true);
         }
 
     }
@@ -484,8 +522,12 @@ export default {
     	this.getData();
     },
     mounted(){
-    	this.$nextTick(echarts_resize('fromEchart',this))
+        this.$nextTick(echarts_resize('fromEchart',this))
+        setTimeout(()=>{
+            this.redomData()
+        },500)
     },
+    
     components:{
     	Loading
     }
