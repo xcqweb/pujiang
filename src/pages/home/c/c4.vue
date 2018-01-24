@@ -120,7 +120,7 @@ export default {
         font{
             display:inline-block;
             position:absolute;
-            font-family: numberFont;
+            /*font-family: numberFont;*/
 
         }
     }

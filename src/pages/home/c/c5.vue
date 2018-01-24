@@ -3,11 +3,11 @@
         <div class="title">
             <div class="top">
                 <span>省外城市</span>
-                <font>55%</font>
+                <!--<font>55%</font>-->
             </div>
             <div class="bottom">
                 <span>省内城市</span>
-                <font>45%</font>
+                <!--<font>45%</font>-->
             </div>
         </div>
         <ul>
@@ -101,7 +101,7 @@ export default {
             background-color:#606bff;
         }
         span{
-            margin-top:20%;
+            margin-top:32%;
             display:inline-block;
             width:70%;
         }
