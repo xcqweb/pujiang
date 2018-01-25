@@ -18,6 +18,7 @@ export default {
     mixins: [optionProps],
     data () {
       return {
+				code:0,
         reTimer:null,
         data_arr:{},
         mins:60,
@@ -156,13 +157,13 @@ export default {
             this.reTimer=setInterval(function () {
                 i++;
                 if(i > timerIndex){
-                      let start_end_instance1 =  new Start_end_class('timeline',20,50);
-                      start_end_instance1.get_timeline(_self.$el).then(re =>{
+                      let start_end_instance1 =  new Start_end_class('timeline',20,50,this.code);
+                      start_end_instance1.get_timeline().then(re =>{
                           _self.data_arr = Rw.array_until.remove_common(_self.data_arr,re);
                           i=8;
-                            //console.log(re);
-                        _self.option.xAxis.data=re.date;
-                        _self.option.series.data=re.data;
+                            console.log(re);
+                        _self.option.xAxis.data=re.arr.date;
+                        _self.option.series.data=re,arr.data;
                         //console.log(_self.option.xAxis.data)
                         _self.option.yAxis.max = Math.max(...re.data);
                       })
@@ -183,21 +184,35 @@ export default {
         },
         get_respose(){
             let _self = this;
+            if(this.chart){
+            	this.chart.dispose();
+            }
             _self.mins= 60;
             self.btwsecends = 5;
-            let start_end_instance =  new Start_end_class('timeline',_self.mins,Math.round((_self.mins*60) / _self.btwsecends));
-            start_end_instance.get_timeline(_self.$el).then(re =>{
-                _self.data_arr = re;
-                //console.log(re.date)
-              _self.option.xAxis.data=re.date.reverse();
-              _self.option.series.data=re.data.reverse();
-              _self.option.yAxis.max = Math.max(...re.data);
+            let start_end_instance =  new Start_end_class('timeline',_self.mins,Math.round((_self.mins*60) / _self.btwsecends),this.code);
+            start_end_instance.get_timeline().then(re =>{
+                _self.data_arr = re.arr;
+              _self.option.xAxis.data=re.arr.date;
+              _self.option.series.data=re.arr.data;
+              _self.option.yAxis.max = Math.max(...re.arr.data);
                 Rw.judgment_until.typesof(_self.data_arr);
                 _self.redom('container');
-               this.isloading = false;
+                if(re.code===200){
+                	this.isloading = false;
+                }
             })
           this.$nextTick(echarts_listen_resize('container',this));
         },
+        //获取景区名称
+        watchTouristFn(val){
+            this.code = val;
+        }
+    },
+    watch:{
+    	code:function(){
+    		this.isloading = true;
+    		this.get_respose();
+    	}
     },
     created(){
     	this.get_respose();

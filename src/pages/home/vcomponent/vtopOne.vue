@@ -26,6 +26,7 @@ export default {
     mixins: [timeMixin,optionProps],
     data() {
       return {
+      	code:0,//景区编码
         chart: null,
         isActive:true,
         xnub:null,
@@ -41,22 +42,7 @@ export default {
             {"nub":"2122","date":"6/19"},
             {"nub":"1789","date":"6/20"}
         ],
-//      twoWeekMock:[
-//          {"nub":"1293","date":"6/14"},
-//          {"nub":"2331","date":"6/15"},
-//          {"nub":"1012","date":"6/16"},
-//          {"nub":"999","date":"6/17"},
-//          {"nub":"2458","date":"6/18"},
-//          {"nub":"2122","date":"6/19"},
-//          {"nub":"1789","date":"6/20"},
-//          {"nub":"1293","date":"6/21"},
-//          {"nub":"2331","date":"6/22"},
-//          {"nub":"1012","date":"6/23"},
-//          {"nub":"999","date":"6/24"},
-//          {"nub":"2458","date":"6/25"},
-//          {"nub":"2122","date":"6/26"},
-//          {"nub":"1789","date":"6/27"}
-//      ],
+
         opinion: ['学习氛围差', '学习氛围一般', '学习氛围很好'],
         opinionData1: [
 
@@ -73,7 +59,17 @@ export default {
     computed:{
 
     },
+    watch:{
+    	code:function(){
+    		this.isloading = true;
+    		this.request();
+    	}
+    },
     methods: {
+    //获取景区名称
+		watchTouristFn(val){
+        this.code = val;
+   },
     redom7(){
         if(this.chart){
             this.chart.dispose();
@@ -82,24 +78,20 @@ export default {
       let dataY=[];
       let dataX=[];
       for (var i = 0; i < this.oneweekMock.length; i++) {
-          dataY.push(this.oneweekMock[i].nub);
-          dataX.push(this.oneweekMock[i].date)
+      	//console.log(this.oneweekMock[i]._id.indexOf(0))
+      	if(this.oneweekMock[i]._id.indexOf(0)){
+      		this.oneweekMock[i]._id = this.oneweekMock[i]._id.substring(5,6)+"/"+this.oneweekMock[i]._id.substr(6)
+          dataY.push(this.oneweekMock[i].total);
+          dataX.push(this.oneweekMock[i]._id)
+      	}else{
+      		this.oneweekMock[i]._id = this.oneweekMock[i]._id.substring(4,6)+"/"+this.oneweekMock[i]._id.substr(6)
+          dataY.push(this.oneweekMock[i].total);
+          dataX.push(this.oneweekMock[i]._id)
+      	}
+      		
       }
       this.$nextTick(echarts_resize('righthz',this,dataX,dataY))
     },
-//  redom14(){
-//      if(this.chart){
-//          this.chart.dispose();
-//      }
-//      let dataY=[];
-//      let dataX=[];
-//      for (var i = 0; i < this.twoWeekMock.length; i++) {
-//          dataY.push(this.twoWeekMock[i].nub);
-//          dataX.push(this.twoWeekMock[i].date)
-//      }
-//  this.isActive=false;
-//  this.$nextTick(echarts_resize('righthz',this,dataX,dataY))
-//  },
       redom (id,xyfonsiz,datax,datay) {
         var _self= this;
         this.chart = echarts.init(document.getElementById(id))
@@ -243,9 +235,9 @@ export default {
         let _self = this;
         // this.$router.push({ path: '/' });
       //请求数据
-        let start_end_instance =  new Start_end_class('passenger',begindaytime);
+        let start_end_instance =  new Start_end_class('passenger',begindaytime,'',this.code);
         start_end_instance.get_response(_self.$el).then(re => {
-        	//console.log(re.data.data)
+        	//console.log(re.data)
         _self.oneweekMock = re.data.data;
         _self.redom7("righthz");
           this.isloading=false;

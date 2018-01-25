@@ -16,12 +16,15 @@ export default class Set_arr_class  {
             data:[],
             contrast:[],
         };
+        var resobj={};
         if(!response){
             console.log('response is undefine');
             return
         }
-        let endtimea = response.config.params.endtime;
-        let nub = response.data.data;
+        //let endtimea = response.config.params.endtime;
+        let nub = response.data;
+        let endtimea = nub.data.endTime.replace(/[-:" "]+/g,"");
+        //console.log(response.data,endtimea,nub)
         //兼容IE,需'/'连接
         var endtDate=endtimea.slice(0,4)+'/'+endtimea.slice(4,6)+'/'+endtimea.slice(6,8)+' '+endtimea.slice(8,10)+':'+endtimea.slice(10,12)+':'+endtimea.slice(12,14);
         var dt = new Date(endtDate);
@@ -76,19 +79,21 @@ export default class Set_arr_class  {
                     s='0'+s
                 }
                 arr.date[i] = '';
-                arr.data[i]= Math.ceil(500*Math.random());
+                arr.data[i]= Math.ceil(nub.data.num*Math.random());
                 arr.contrast[i] =parseInt(h+''+m+''+s)  ;
                 arr.date[i]= +h+':'+m+':'+s;
-
+				
             }
+            resobj.code = nub.code;
         }
 
         this.random(arr,nub,this.times)
 
-        for(name in arr){
-            arr[name] = arr[name].reverse()
-        }
-        return arr
+//      for(name in arr){
+//          arr[name] = arr[name].reverse()
+//      }
+        resobj.arr = arr;
+        return resobj
      }
      //随机分配数据
      random(arr,nub,times){

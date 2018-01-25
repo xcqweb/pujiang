@@ -9,23 +9,23 @@
 
 	<div class="leftprofile">
 		<div class='top'>
-			<p>{{profileData.current_nub}}<font>人次</font></p>
+			<p>{{profileData.curSum}}<font>人次</font></p>
 			<span>当前客流人数</span>
 		</div>
 
 		<div class='bottom'>
-			<p>{{profileData.week_income}}<font>人次</font></p>
+			<p>{{profileData.curMonthSum}}<font>人次</font></p>
 			<span>本月客流总数</span>
 		</div>
 
 	</div>
 	<div class="rightprofile">
 		<div class='top'>
-			<p>{{profileData.yesterday_nub}}<font>人次</font></p>
+			<p>{{profileData.yesterdaySum}}<font>人次</font></p>
 			<span>昨日客流总数</span>
 		</div>
 		<div class='bottom'>
-			<p>{{profileData.year_incom}}<font>人次</font></p>
+			<p>{{profileData.curYearSum}}<font>人次</font></p>
 			<span>本年客流总数</span>
 		</div>
 
@@ -34,7 +34,7 @@
 	<span class="flowtourist">客流预警</span>
 	<div id="vwarning"></div>
 	<div class="vwarningImg">
-		<span>{{percent}}%</span>
+		<span>{{profileData.warnRate}}%</span>
 	</div>
     <Loading v-show="isloading"></Loading>
   </div>
@@ -60,39 +60,12 @@ export default {
 	  allData:[],
 	  currentPlace:'',
 		profileData:{
-			all_nub:'',
-			current_nub:'',
-			week_income:'',
-			year_incom:'',
-			yesterday_nub:''
+			warnRate:'',
+			curSum:'',
+			curMonthSum:'',
+			curYearSum:'',
+			yesterdaySum:''
 		},
-//		selectlist:{
-//			title:'江南第一家 ',
-//			selectStatus:false,
-//			place:[
-//				{
-//					name:'江南第一家',value:'江南第一家'
-//				},
-//				{
-//					name:'仙华山',value:'仙华山'
-//				},
-//				{
-//					name:'神丽峡',value:'神丽峡'
-//				},
-//      {
-//        name:'官岩山',value:'官岩山'
-//      },
-//      {
-//        name:'白石洲风景区',value:'白石洲风景区'
-//      },
-//      {
-//        name:'金狮湖',value:'金狮湖'
-//      }
-//			]
-//		},
-
-
-
 				option : {
 
 			    backgroundColor: 'rgba(0,0,0,0)',
@@ -157,26 +130,26 @@ export default {
 	}
 	},
   watch:{
-    //观察景区变化更新数据
-//  currentPlace:function(){
-//  	this.nub = this.allData[this.currentPlace].all_nub;
-//  	this.profileData.all_nub = this.allData[this.currentPlace].all_nub;
-//    this.profileData.current_nub = this.allData[this.currentPlace].current_nub;
-//    this.profileData.week_income = this.allData[this.currentPlace].week_income;
-//    this.profileData.year_incom = this.allData[this.currentPlace].year_incom;
-//    this.profileData.yesterday_nub = this.allData[this.currentPlace].yesterday_nub;
-//
-//  },
-
-    nub:function(){
-    	//this.percent = (this.nub*100/this.set_config).toFixed(0);
-    	this.percent = 5;
-          this.option.series[0].data[0].value = this.percent;
-          this.option.series[0].data[1].value = 100-this.percent;
-     // let Ratio = this.nub/this.set_config;
+  },
+	methods:{
+  get_response(){
+    let start_end_instance =  new Start_end_class('profile',begindaytime);
+    start_end_instance.get_response().then(re => {
+    	
+      let data = re.data.data;
+       //console.log(re)
+      //初始化数据
+      this.profileData.warnRate = data.warnRate;
+      this.profileData.curSum = data.curSum;
+      this.profileData.curMonthSum = data.curMonthSum;
+      this.profileData.curYearSum = data.curYearSum;
+      this.profileData.yesterdaySum = data.yesterdaySum;
+      
+      //设置百分比
+      this.option.series[0].data[0].value = this.profileData.warnRate;
+      this.option.series[0].data[1].value = 100-this.profileData.warnRate;
       let Ratio = 0.1;
       let setColor = '';
-      //console.log(Ratio)
       if(Ratio<0.3){
       	setColor='#0af94a'
       }else if(Ratio<0.5){
@@ -189,43 +162,17 @@ export default {
       	setColor='#f00'
       }
 
-        this.option.color[0] = setColor;
-      //console.log(this.option.series[0].data[0].itemStyle.normal.color);
+      this.option.color[0] = setColor;
       this.redom("vwarning");
-    },
-  },
-	methods:{
-  get_response(){
-    let start_end_instance =  new Start_end_class('profile',begindaytime);
-    start_end_instance.get_response().then(re => {
-      let data = re.data.data;
-      //console.log(re)
-      //初始化数据
-      this.profileData.all_nub = data.all_nub;
-      this.profileData.current_nub = data.current_nub;
-      this.profileData.week_income = data.week_income;
-      this.profileData.year_incom = data.year_incom;
-      this.profileData.yesterday_nub = data.yesterday_nub;
-      if(re.code===200){
+      
+      
+      if(re.data.code===200){
       	this.isloading=false;
       }
     })
       .catch( e =>{
         console.log(e);
       });
-  },
-  request(){
-    let start_end_instance =  new Start_end_class('passengerwarning',begindaytime);
-    start_end_instance.get_response().then(re => {
-      //设置默认值
-
-      let data = re.data.data
-      this.nub = data.nub;
-      this.set_config = data.set_config;
-      this.isloading = false;
-    }).catch( e =>{
-      console.log(e);
-    })
   },
 		showselect(){
 			this.selectlist.selectStatus=true;
@@ -234,10 +181,6 @@ export default {
       this.chart = echarts.init(document.getElementById(id));
 			this.chart.setOption(this.option);
 		},
-		getScenic(scenic){
-			console.log(secnic)
-			this.selectlist.title = secnic;
-		}
 	},
 	computed:{
 		transformColor(){
@@ -251,7 +194,6 @@ export default {
 //      });
 
 		this.get_response();
-    this.request();
 	},
 	mounted() {
     this.$nextTick(echarts_resize('vwarning',this));

@@ -10,11 +10,12 @@
 import Set_arr_class from '@/common/js/set_arr_class.js'
 import api from '@/api/moudles/tanzhenData'
 export default  class Start_end_class extends  Set_arr_class {
-    constructor(apiName,differ,times) {
+    constructor(apiName,differ,times,code) {
         //apiName 接口属性名，differ时间间隔，times分割成多少段
         super(differ,times);
         this.differ = differ;
         this.apiName = apiName;
+        this.code = code;
         return this;
     }
     getBeginTime(){
@@ -62,10 +63,12 @@ export default  class Start_end_class extends  Set_arr_class {
     }
     get_timeline(){
         let _self = this;
+        let code = this.code;
         // let token =window.localStorage.getItem('token')
         let pagram={
             begintime:this.getBeginTime().beginTime,
             endtime:this.getEndTime().endTime,
+            code:code,
           }
         let promise  = api[this.apiName](pagram).then(function(re){
             if(re ===undefined){
@@ -83,9 +86,11 @@ export default  class Start_end_class extends  Set_arr_class {
     }
     get_response(){
         let _self = this;
+        let code = this.code;
         let pagram={
             begintime:this.getBeginTime().beginDay,
             endtime:this.getEndTime().endDay,
+            code:code,
           }
         let promise  = api[this.apiName](pagram).then(function(re){
             if(re ===undefined){

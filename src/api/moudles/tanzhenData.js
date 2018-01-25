@@ -11,21 +11,18 @@ export default {
           return instance.post(`http://210.75.20.143:5068/api/login`, params);
 //      return instance.post(`https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/login`, params);
     },
-    //客流人数监测
+    //历史客流
     passenger:function(paramsObj){
-    	
-        return instance.get(`https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/passenger`, {params:paramsObj});
-        //return instance.get(`http://120.55.190.57/api/passenger.auth`, {params:paramsObj});
+        return instance.get(`http://114.55.237.138/pj/api/zl/geHistoryDayData`, {params:paramsObj});
     },
     //实时客流量
     timeline:function(paramsObj){
-        //return instance.get(`http://120.55.190.57/api/timeline.auth`, {params:paramsObj});
-        return instance.get(`https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/timeline`, {params:paramsObj});
+        //return instance.get(`https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/timeline`, {params:paramsObj});
+        return instance.get(`http://114.55.237.138/pj/api/zl/getPassengerCount`, {params:paramsObj});
     },
     //概况
     profile:function(paramsObj){
-        return instance.get(`https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/profile`, {params:paramsObj});
-        //return instance.get(`http://120.55.190.57/api/profile.auth`, {params:paramsObj});
+        return instance.get(`http://114.55.237.138/pj/api/zl/getScenicGereral`, {params:paramsObj});
     },
     //客流预警
     passengerwarning:function(paramsObj){

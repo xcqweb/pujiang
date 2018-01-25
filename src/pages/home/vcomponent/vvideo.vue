@@ -10,13 +10,13 @@
             <source src="../../../assets/video/kaiyuan.mp4" type="audio/mp4"/>
         </video>-->
         <section>
-        	<!--<span class="time">2018-01-25 10:26:45</span>-->
+        	<span class="time1">2018-01-25 10:26:45</span>
         	<img src="../../../assets/images/videoImg/video1.jpg"/>
         	<Loading class='video' v-show='true'></Loading>
         	<span>仙华山监控1</span>
         </section>
         <section>
-        	<!--<span class="time">2018-01-25 10:26:45</span>-->
+        	<span class="time2">2018-01-25 10:26:45</span>
         	<img src="../../../assets/images/videoImg/video2.jpg"/>
         	<Loading class='video' v-show='true'></Loading>
         	<span>仙华山监控2</span>
@@ -77,12 +77,20 @@ export default {
         	bottom: 10px;
         	left: 10px;
         }
-        .time{
+        .time2{
         	color:#fff;
         	font-size: 12px;
         	position: absolute;
         	top: 10px;
         	right: -200px;
+        }
+        .time1{
+        	color:#fff;
+        	font-size: 12px;
+        	position: absolute;
+        	text-align: right;
+        	top: 10px;
+        	right: 10px;
         }
     }
     
