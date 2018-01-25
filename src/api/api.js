@@ -1,4 +1,5 @@
-import axios from 'axios';
+//import axios from 'axios';
+import axios from '@/api/instance'
 import {params} from '@/common/js/gtime.js';
 
 export {params};

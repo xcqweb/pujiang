@@ -30,7 +30,7 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
 	
     response => {
-    	//console.log(response)
+    	console.log(response)
         if (response.data.code == 200) {
             return response;
           }
