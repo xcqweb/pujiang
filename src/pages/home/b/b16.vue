@@ -74,8 +74,8 @@ export default {
     props:['placeName',],
     data () {
         return {
-            yearNumb:690695,
-            mouthNumb:690695,
+            yearNumb:1727227,
+            mouthNumb:1727227,
             nowYear:nowYear,
             mowMonth:mowMonth
         }
