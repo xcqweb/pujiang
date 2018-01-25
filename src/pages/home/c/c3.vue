@@ -18,7 +18,6 @@ export default {
   mixins: [optionProps],
   data () {
     return {
-    	isloading:false,
         isActive:true,
         geoCoordMap:{
             '江南第一家': [120.018874, 29.486721],
@@ -166,7 +165,6 @@ export default {
    
   },
   created(){
-  	this.isloading = true;
   	this.getData();
   },
   mounted(){

@@ -43,7 +43,6 @@ export default {
 //	              {value: 1850000, name: '4月'}]
         var nowYear = new Date().getFullYear();
         return{
-        	isloading:false,
         	nowYear:nowYear,
         	resData:{
         		aageZeroTsev:[],
@@ -64,7 +63,6 @@ export default {
 
       },
       created(){
-        this.isloading = true;
         this.getData();
       },
     methods:{

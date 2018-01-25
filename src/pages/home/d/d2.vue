@@ -38,7 +38,6 @@
     mixins: [optionProps],
     data() {
       return {
-      	isloading:false,
         chart: null,
         isActive:true,
         xnub:null,
@@ -212,7 +211,6 @@
     },
     components:{},
     created(){
-    	this.isloading = true;
     	this.getData();
     },
     mounted() {

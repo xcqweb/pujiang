@@ -21,7 +21,6 @@ export default {
     	currentData:{},
     	allData:{},
     	percent:0,
-    	isloading:false,
         option:{
         	title: {
 		        "text": '',
@@ -162,7 +161,6 @@ export default {
         }
     },
     created(){
-    	this.isloading = true;
     	this.getData();
     },
     mounted() {

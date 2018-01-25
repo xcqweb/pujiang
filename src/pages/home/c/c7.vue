@@ -40,7 +40,6 @@ export default {
     props:['placeAttractionsProps'],
     data(){
         return{
-        isloading:false,
         msg:'Hello Vue 来自App.vue',
         items:this.placeAttractionsProps,
       }
@@ -63,7 +62,6 @@ export default {
 	  	}
     },
     created(){
-    	this.isloading = true;
     	this.getData();
     },
     mounted(){

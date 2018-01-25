@@ -80,7 +80,6 @@ export default {
     name:'c1',
     data(){
         return{
-        	isloading:false,
             isActive:true,
             responseData7:{
             	series:[],
@@ -92,7 +91,6 @@ export default {
 		
       },
       created(){
-      	this.isloading = true;
       	this.getData();
       },
     methods:{

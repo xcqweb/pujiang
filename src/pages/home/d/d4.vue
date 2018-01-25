@@ -26,7 +26,6 @@ export default {
   mixins: [optionProps],
   data () {
     return {
-    	isloading:false,
     	allData:{},
     	currentYear:{},
     	history:{},
@@ -61,7 +60,6 @@ export default {
   	}
   },
   created(){
-  	this.isloading = true;
   	this.getData();
   },
   mounted(){

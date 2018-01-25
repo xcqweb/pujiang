@@ -91,7 +91,6 @@ import optionProps from '@/common/js/mixin/optionProps.js'
         mixins: [optionProps],
         data () {
             return {
-            	isloading:false,
                 videoName:'摄像头',
                 videoToast:false,
                 vsrc:"",
@@ -461,7 +460,6 @@ import optionProps from '@/common/js/mixin/optionProps.js'
             }
         },
         created(){
-          	this.isloading = true;
           	this.getData();
         },
         mounted() {

@@ -39,13 +39,11 @@ export default {
     mixins: [optionProps],
     data(){
         return{
-        isloading:false,
         msg:'Hello Vue 来自App.vue',
         items:[],
       }
     },
     created(){
-    	this.isloading = true;
     	this.getData();
     },
     methods:{

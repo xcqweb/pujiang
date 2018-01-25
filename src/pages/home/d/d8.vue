@@ -57,7 +57,6 @@ export default {
     return {
     	allData:{},
     	percent:0,
-    	isloading:false,
         text:'一般'
     }
     },
@@ -90,7 +89,6 @@ export default {
     }
     },
     created(){
-    	this.isloading = true;
     	this.getData();
     },
     methods:{

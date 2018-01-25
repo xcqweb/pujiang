@@ -213,7 +213,6 @@ export default {
     data () {
         return {
         	commentProp:{},
-        	isloading:false,
         	allData:{},
             topStar:{
                 numb:3,
@@ -307,7 +306,6 @@ export default {
 	  	}
     },
     created(){
-    	this.isloading = true;
     	this.getData();
     },
     mounted(){

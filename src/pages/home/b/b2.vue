@@ -23,7 +23,6 @@ export default {
   mixins: [optionProps],
   data () {
     return {
-        isloading:false,
         imgacircle:require('../../../assets/images/home/b/circle.png'),
         nub:'',
         set_config:''
@@ -46,7 +45,6 @@ export default {
           this.chart.setOption(this.option);
       },
   request(){
-    this.isloading = true;
     let start_end_instance =  new Start_end_class('passengerwarning',begindaytime);
     start_end_instance.get_response().then(re => {
       //设置默认值

@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="middle">
-          <font>7月当前</font>
+          <font>上月</font>
           <span>{{currentMonthNum}}</span>
         </div>
         <!--<div class="footer" v-show = 'changeModel' >
@@ -48,7 +48,6 @@ export default {
     mixins: [adaptation,optionProps],
     data () {
     return {
-    		isloading:false,
         riaseLeft:'up',
         riaseRight:'down',
         currentYearNum:'',
@@ -59,7 +58,6 @@ export default {
     }
     },
     created(){
-    	this.isloading=true;
     	this.getData();
     },
     computed: { 

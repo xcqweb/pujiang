@@ -49,7 +49,6 @@ export default {
     mixins: [optionProps],
     data(){
     return{
-    	isloading:false,
     	currentDat:{},
     	allData:{},
         items:[{
@@ -229,7 +228,6 @@ export default {
         }
     },
     created(){
-    	this.isloading =true;
     	this.getData();
     },
     mounted() {

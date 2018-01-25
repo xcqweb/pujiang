@@ -54,7 +54,7 @@
   .txt{
     text-align: center;
     position: absolute;
-    top: 52%;
+    top: 62%;
     color: rgba(250,250,250,0.8);
     font-size: 1rem;
    }

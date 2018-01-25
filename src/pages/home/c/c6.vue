@@ -21,7 +21,6 @@
     mixins: [timeMixin,optionProps],
     data() {
       return {
-      	isloading:false,
         chart: null,
         isActive:true,
         xnub:null,
@@ -187,7 +186,6 @@
     	Loading
     },
     created(){
-    	this.isloading = true;
     	this.getData();
     },
     mounted() {

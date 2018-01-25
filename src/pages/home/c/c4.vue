@@ -31,7 +31,6 @@ export default {
   data () {
 
     return {
-    	isloading:false,
         womenPercent:'40',
         menPercent:'60',
         men:[],
@@ -39,7 +38,6 @@ export default {
     }
   },
   created(){
-  	this.isloading = true;
   	this.getData();
   },
   computed: {

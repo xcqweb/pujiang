@@ -62,7 +62,6 @@ export default {
     mixins: [optionProps],
     data () {
         return {
-			isloading:false,
 			currentNum:0,
 			yestodayNum:0,
 			allData:{}
@@ -107,7 +106,6 @@ export default {
 	  	}
     },
     created(){
-    	this.isloading = true;
     	this.getData();
     },
 }

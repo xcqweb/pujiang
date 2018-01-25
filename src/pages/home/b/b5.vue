@@ -18,12 +18,10 @@ export default {
   mixins: [optionProps],
   data () {
     return {
-    	isloading:false,
     	percents:0
     }
   },
   created(){
-	this.isloading = true;
 	this.getData();
   },
   computed:{

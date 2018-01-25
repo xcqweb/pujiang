@@ -41,14 +41,12 @@ export default {
     mixins: [optionProps],
     data () {
     return {
-    	isloading:false,
         marginLeft:3,
         outItems:[],
         inItems:this.inItemsProps,
     }
     },
     created(){
-    	this.isloading = true;
     	this.getData();
     },
     computed: { 
