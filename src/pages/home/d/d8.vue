@@ -94,6 +94,7 @@ export default {
     methods:{
     	//请求数据
 	  	getData(){
+	  		//api.params.code = 2;
 	  		api.scenicCongestion(api.params).then( (re) =>{
 	    		let reData = re.data.data;
 	    		this.allData = reData;
