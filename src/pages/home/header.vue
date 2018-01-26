@@ -25,7 +25,7 @@ export default {
     return {
       items:[
 //      {name:'总览',link:'/',status:'unchose'},
-        {name:'总览',link:'/two',status:'unchose'},
+        {name:'总览',link:'/',status:'unchose'},
         {name:'产业监测平台',link:'/prodcut',status:'chose'},
         {name:'精准营销平台',link:'/precision',status:'chose'},
         {name:'应急指挥平台',link:'/souceShow',status:'chose'},
@@ -74,9 +74,6 @@ export default {
             case '#/' :
             this.items[0].status = 'unchose'
             break; 
-            case '#/two' :
-            this.items[0].status = 'unchose'
-            break;
             case '#/prodcut' :
             this.items[1].status = 'unchose'
             break;
