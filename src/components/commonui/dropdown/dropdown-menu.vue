@@ -180,7 +180,7 @@ import Vue from 'vue'
     transform: translate(0,-50%);
     color: white;
     box-shadow: 1px 0 30px  rgba(1,1,13,0.4);
-    z-index: 30;
+    z-index: 320;
     white-space: nowrap;
     .up{
         display:inline-block;

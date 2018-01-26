@@ -5,8 +5,8 @@ import {params} from '@/common/js/gtime.js';
 export {params};
 //模拟数据公共地址
 let base1 = 'https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example';
-//let base = 'http://114.55.237.138/pj/api'
-
+let base = 'http://114.55.237.138/pj/api'
+//http://114.55.237.138/pj/api/zl/getScenicGereral
 
 export const requestLogin = params => { return axios.post(`${base1}/login`, params).then(res => res.data); };
 
@@ -45,8 +45,12 @@ export const touristSatisfaction = params => { return axios.get(`${base1}/touris
 
 
 
-//国内游客来源地
+//游客来源地
 export const touristOrigin = params => { return axios.get(`${base1}/touristOrigin`,{params:params});};
+
+export const touristSum = params => {return axios.get(`${base}/zl/getScenicGereral`,{params:params})}
+
+
 //旅游营业分析
 export const tourBusiness = rparams => { return axios.get(`${base1}/tourBusiness`,{params:params});};
 
@@ -72,7 +76,9 @@ export const scenicRanking  = rparams => { return axios.get(`${base1}/scenicRank
 export const touristOriginRanking  = rparams => { return axios.get(`${base1}/touristOriginRanking`,{params:params});};
 
 //景区当前客流
-export const currentTourist  = rparams => { return axios.get(`${base1}/currentTourist`,{params:params});};
+//export const currentTourist  = rparams => { return axios.get(`${base1}/currentTourist`,{params:params});};
+export const currentTourist  = rparams => { return axios.get(`${base}/zl/getScenicGereral`,{params:params});};
+
 //拥堵指数
 export const scenicCongestion  = rparams => { return axios.get(`${base1}/scenicCongestion`,{params:params});};
 

@@ -1,0 +1,232 @@
+@screen-xs:                  480px;
+@screen-sm:                  768px;
+@screen-md:                  992px;
+@screen-lg:                  1200px;
+@screen-xl:                  1400px;
+/** item**/
+    
+@textColor:#8687c0;
+@headerBackColor:#133596;
+@topBottomColor:#163387;
+@borderColor:#49d9fe;
+@borderLen: 18px;    
+.qylable{
+    height:1.8rem;
+    line-height: 1.8rem;
+    position: absolute;
+    top: 50%;
+    transform: translate(0,-50%);
+    left: 10%;
+    font-size: 16px;
+}
+.fullScreen{
+    height:100vh;
+    width:100vw;
+}
+.item{
+    height: auto;
+    text-align: center;
+    background-color: #163387;
+    position: relative;
+        &:before {
+          position:absolute;
+          top: 0;
+          left: 0;
+          width: @borderLen;
+          height: @borderLen;
+          border-top:2px solid @borderColor;
+          border-left:2px solid @borderColor;
+          content: " ";
+          }
+        &:after {
+          position:absolute;
+          bottom: 0;
+          right: 0;
+          width: @borderLen;
+          height: @borderLen;
+          border-bottom:2px solid @borderColor;
+          border-right:2px solid @borderColor;
+          content: " ";
+        }
+    .border{
+        height: 100%;
+        width: 100%;
+            &:before {
+            position:absolute;
+            bottom: 0 ;
+            left: 0 ;
+            width: @borderLen;
+            height: @borderLen;
+            border-bottom:2px solid @borderColor ;
+            border-left:2px solid @borderColor ;
+            content: " ";
+        }
+        &:after {
+            position:absolute;
+            top: 0;
+            right: 0;
+            width: @borderLen;
+            height: @borderLen;
+            border-top:2px solid @borderColor;
+            border-right:2px solid @borderColor;
+            content: " ";
+        }
+    }
+}
+h1{
+    position:absolute;
+    top: 0.8rem;
+    left: 1rem;
+    z-index: 2;
+    color:#efeefd;
+    font-size: 1.1rem;
+    font-weight: 590;
+    
+}
+
+.a5{
+    left: 5rem;
+  }
+span{
+    position:absolute;
+    top: 8px;
+    display: inline-block;
+    z-index: 2;
+    cursor: pointer;
+    width: 18/1920*100vw;
+    height: auto;
+    text-align: center;
+    img{                  
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+    }
+    @media screen and(min-width: 801px){
+        right:8px;
+    }
+    @media screen and(max-width: 800px){
+        right:5%;
+    }
+}
+.box{
+    background-color: #0a1e64;
+    position: relative;
+    display: flex;
+    .tabList{
+        position: absolute;
+        width:445/1470*100%;
+        height: 80/1048*100%;
+        left: 0;
+        top:2px;
+        font-size: 1.3rem;
+        color:white;
+    }
+    .dateItem{
+        position: absolute;
+        width:430/1470*100%;
+        height: 80/1048*100%;
+        left: 467.5/1470*100%;
+        top:2px;
+        font-size: 1.3rem;
+        color:white;
+        .border{
+            
+        }
+    }
+    .leftSide{
+        position: relative;
+    }
+    .rightSide{
+        position: relative;
+        
+        .one{
+            position: absolute;
+            top:0;
+            width: 100%;
+            height: 668/1080*100%;
+        }
+        .two{
+            width: 100%;
+            height: 394/1080*100%;
+            position: absolute;
+            bottom: 0;
+        }
+}
+}
+@media screen and(min-width: 801px){
+    .box{
+        height: 95vh;
+        width: 99vw;
+        overflow: hidden;
+        margin-left: .5vw;
+        min-height: 500px;
+        flex-direction: row;
+        justify-content: space-around;
+        flex-wrap: nowrap;
+        .leftSide{
+            // width: 1470/1920*100%;左右布局修改删除右边原有布局
+            width:100%;
+            div{
+               position: absolute; 
+            }
+            .one{
+                height: 950/1046*100%;
+                width: 900/1470*100%;
+                top:96/1048*100%;
+                left: 0;
+            }
+            .two{
+                height: 629/1046*100%;
+                width: 561/1470*100%;
+                top: 0;
+                right: 0;
+            }
+//          .three{
+//              bottom:0;
+//              left: 0;
+//              height: 401/1046*100%;
+//              width: 725/1470*100%;
+//              h1{
+//                  left:1rem;
+//              }
+//              
+//          }
+//          .four{
+//              bottom: 0;
+//              right: 372/1470*100%;
+//              height: 401/1046*100%;
+//              width: 363/1470*100%;
+//          }
+            .five{
+                bottom: 0;
+                height: 401/1046*100%;
+                width: 561/1470*100%;
+                right: 0;
+            }
+
+        }
+    }
+    
+}
+@media screen and(max-width: 800px){
+    .box{
+        height: auto;
+        width: 100vw;
+        flex-direction: column;
+        flex-wrap: wrap;
+        .leftSide{
+            width: 100%;
+            .item{
+                height: 300px;
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+        .rightSide{
+            margin-top: 10px;
+            width: 100%;
+            height: 800px;
+        }
+    }
+}

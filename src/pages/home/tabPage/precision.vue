@@ -29,6 +29,7 @@
                     :is='item.name'
                     :key="item.id"
                     :inItemsProps = 'inItems'
+                    :touristProp = "updateData.turist"
                     ></componet>
                   <!--</keep-alive>-->
                 </div>
@@ -48,6 +49,7 @@
                     :is='item.name'
                     :key="item.id"
                     :placeAttractionsProps = 'placeAttractions'
+                    :touristProp = "updateData.turist"
                     ></componet>
                   <!--</keep-alive>-->
                 </div>
@@ -75,7 +77,7 @@ export default {
                     place:this.turistArr
                 },
                 updateData:{
-                    place:'全部',
+                    turist:'全部',
                 },
                 moudle:[
                     {name:'C1',title:'出行方式'},
@@ -152,7 +154,7 @@ export default {
             this.barChartOption = Object.assign({}, this.barChartOption, )
         },
         catchmsg1(data){
-            console.log(data)
+            this.updateData.turist = data
         },
         console(){
                     console.log(this.components)

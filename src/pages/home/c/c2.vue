@@ -21,6 +21,7 @@ export default {
     }
     },
     methods:{
+    	
     	//请求数据
 	  	getData(){
 	  		api.ageAnalyse(api.params).then( (re) =>{

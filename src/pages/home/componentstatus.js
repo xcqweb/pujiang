@@ -23,6 +23,8 @@ let A7 = resolve => {require.ensure(['@/pages/home/vcomponent/vrinking.vue'], ()
 let A8 = resolve => {require.ensure(['@/pages/home/vcomponent/vpercenPie.vue'], () => {resolve(require('@/pages/home/vcomponent/vpercenPie.vue'))})}
 //视频监控
 let A9 = resolve => {require.ensure(['@/pages/home/vcomponent/vvideo.vue'], () => {resolve(require('@/pages/home/vcomponent/vvideo.vue'))})}
+
+let A10 = resolve => {require.ensure(['@/pages/home/vcomponent/vvideo2.vue'], () => {resolve(require('@/pages/home/vcomponent/vvideo2.vue'))})}
 //消费属性分析
 
 //富民指数
@@ -112,6 +114,7 @@ let status =[
     'A7',
     'A8',
     'A9',
+    'A10',
     'B1',
     'B2',
     'B4',

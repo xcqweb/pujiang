@@ -2,6 +2,7 @@
   <div class="A5">
       <div id="container"></div>
       <Loading v-show="isloading"></Loading>
+      <span>{{currentNum}}<font>人</font></span>
   </div>
 </template>
 <script>
@@ -18,7 +19,7 @@ export default {
     mixins: [optionProps],
     data () {
       return {
-				code:0,
+      	currentNum:0,
         reTimer:null,
         data_arr:{},
         mins:60,
@@ -142,6 +143,8 @@ export default {
             data.push(bigData[i]);
             date.shift();
             data.shift();
+            //console.log(data);
+            this.currentNum = data[5];
         },
         redom(id){
             let _self=this;
@@ -161,7 +164,7 @@ export default {
                       start_end_instance1.get_timeline().then(re =>{
                           _self.data_arr = Rw.array_until.remove_common(_self.data_arr,re);
                           i=8;
-                            console.log(re);
+                            //console.log(re);
                         _self.option.xAxis.data=re.arr.date;
                         _self.option.series.data=re,arr.data;
                         //console.log(_self.option.xAxis.data)
@@ -203,14 +206,11 @@ export default {
             })
           this.$nextTick(echarts_listen_resize('container',this));
         },
-        //获取景区名称
-        watchTouristFn(val){
-            this.code = val;
-        }
     },
     watch:{
     	code:function(){
     		this.isloading = true;
+    		this.currentNum=0;
     		this.get_respose();
     	}
     },
@@ -235,6 +235,20 @@ export default {
         width:100%;
         height:92%;
         margin-top: 1.6rem;
+    }
+    span{
+    	position: absolute;
+    	top: 8%;
+    	right: 6%;
+    	color: #ffe200;
+    	border: 2px solid #375FFF;
+    	padding: 0.3rem 0.6rem;
+    	border-radius: 0.4rem;
+    	font-family: numberFont;
+    	font{
+    		font-size: 0.6rem;
+    		margin-left: 0.2rem;
+    	}
     }
 }
 </style>

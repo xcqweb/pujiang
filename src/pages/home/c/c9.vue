@@ -20,6 +20,7 @@ export default {
     }
     },
     methods:{
+    	
     	//请求数据
 	  	getData(){
 	  		api.touristAttr(api.params).then( (re) =>{

@@ -39,6 +39,7 @@
       },
     },
     methods: {
+    	
     	//请求数据
 	  	getData(){
 	  		api.touristFocus(api.params).then( (re) =>{

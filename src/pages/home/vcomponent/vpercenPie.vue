@@ -179,6 +179,7 @@ export default {
         }
     },
     methods:{
+    	
         redom(id){
             this.chart = echarts.init(document.getElementById(id));
             let w=this.chart.getWidth()

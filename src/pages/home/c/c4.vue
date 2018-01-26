@@ -43,6 +43,7 @@ export default {
   computed: {
   },
   methods: {
+  	
   	//请求数据
   	getData(){
   		api.touristSexRatio(api.params).then( (re) =>{

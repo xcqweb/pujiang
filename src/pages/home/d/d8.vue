@@ -84,9 +84,6 @@ export default {
     	}
     },
     methods: {
-    getwidth(){
-
-    }
     },
     created(){
     	this.getData();

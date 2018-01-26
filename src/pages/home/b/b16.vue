@@ -74,6 +74,7 @@ export default {
     props:['placeName',],
     data () {
         return {
+        	code:0,
             yearNumb:1727227,
             mouthNumb:1727227,
             nowYear:nowYear,
@@ -87,7 +88,23 @@ export default {
 
     },
     methods: {
-        
+        //请求数据
+	  	getData(){
+	  		api.touristSum(api.params).then( (re) =>{
+	    		let reData = re.data.data;
+	    		this.yearNumb = reData.curYearSum;
+	    		this.mouthNumb = reData.curMonthSum;
+	    		console.log(reData);
+	    		if(re.status===200){
+	    			this.isloading=false;
+	    		}
+		    }).catch( (e) => {
+		    	console.log(e);
+		    })
+	  	}
+    },
+    created(){
+    	this.getData();
     },
     mounted(){
     

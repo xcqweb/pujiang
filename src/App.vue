@@ -161,7 +161,7 @@ html{
 }
 @font-face{
 font-family: numberFont;
-src: url('./assets/style/QuiverItalRegular.ttf'),
+src: url('./assets/style/fonts/lcddd.ttf'),
 }
 
 /*div,font,span,p{*/

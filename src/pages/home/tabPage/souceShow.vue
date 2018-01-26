@@ -30,6 +30,7 @@
                     :key="item.id"
                     :place='place'
                     :commentProp = 'comment'
+                    :touristProp = "updateData.turist"
                     ></componet>
                   <!--</keep-alive>-->
                 </div>
@@ -48,7 +49,8 @@
                     <componet
                     :is='item.name'
                     :key="item.id"
-                    :place='place'
+                    :place="place"
+                    :touristProp = "updateData.turist"
                     ></componet>
                   <!--</keep-alive>-->
                 </div>
@@ -80,7 +82,7 @@ export default {
                     place:this.turistArr
                 },
                 updateData:{
-                    place:'全部',
+                    turist:'全部',
                 },
                 moudle:[
                     {name:'D1',styleDlass:'餐饮偏好',},
@@ -149,6 +151,7 @@ export default {
         }
     },
     methods: {
+    	
         update(){
              this.barChartOption.series[0].data[3]={
                 symbolSize:15,
@@ -167,7 +170,8 @@ export default {
             this.barChartOption = Object.assign({}, this.barChartOption, )
         },
         catchmsg1(data){
-            console.log(data)
+            //console.log(data)
+             this.updateData.turist = data
         },
         console(){
             //console.log(this.components)

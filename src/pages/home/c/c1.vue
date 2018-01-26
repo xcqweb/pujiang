@@ -94,6 +94,7 @@ export default {
       	this.getData();
       },
     methods:{
+    	
     	//请求数据
 	  	getData(){
 	  		api.tripMode(api.params).then( (re) =>{
@@ -121,7 +122,7 @@ export default {
                     trigger: 'axis',
                     show:true,
                     formatter:function(params){
-                        		console.log(params)
+                        		//console.log(params)
                         		var text = params[0].seriesName+" : "+params[0].value +"%<br>"+params[1].seriesName+" : "+params[1].value +"%<br>"
                         		+params[2].seriesName+" : "+params[2].value +"%<br>"
                           		 return text

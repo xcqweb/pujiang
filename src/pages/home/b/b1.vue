@@ -78,7 +78,11 @@ export default {
 		    }).catch( (e) => {
 		    	console.log(e);
 		    })
-	  	}
+	  	},
+	  	//获取景区名称
+	  	watchTouristFn(val){
+            //console.log(val)
+        }
     },
     mounted(){
     	

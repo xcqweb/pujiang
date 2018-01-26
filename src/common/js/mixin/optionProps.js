@@ -17,6 +17,7 @@ let optionProps =  {
     },
     data () {
         return {
+        	code:0,//景区编码
         	isloading: false,
             nameToCode:{
                 '全部':0,
@@ -70,7 +71,10 @@ let optionProps =  {
         };
     },
     methods:{
-        	
+        watchTouristFn(val){
+            //console.log(val)
+            this.code = val;
+        },	
     },
     created(){
     	this.isloading=true;

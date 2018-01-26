@@ -24,11 +24,13 @@ export default {
   data () {
     return {
       items:[
-        {name:'总览',link:'/',status:'unchose'},
+//      {name:'总览',link:'/',status:'unchose'},
+        {name:'总览',link:'/two',status:'unchose'},
         {name:'产业监测平台',link:'/prodcut',status:'chose'},
         {name:'精准营销平台',link:'/precision',status:'chose'},
         {name:'应急指挥平台',link:'/souceShow',status:'chose'},
         {name:'旅游资源平台',link:'/iframeMap',status:'chose'},
+
       ],
       hash:'',
       wid:window.innerWidth
@@ -70,6 +72,9 @@ export default {
         }
         switch(location.hash){
             case '#/' :
+            this.items[0].status = 'unchose'
+            break; 
+            case '#/two' :
             this.items[0].status = 'unchose'
             break;
             case '#/prodcut' :
@@ -222,6 +227,16 @@ a:visited { text-decoration: none;}
             }
             font{
                 color:#ff719c !important;
+            }
+        }
+        li:nth-of-type(6){
+            .unchose{
+                background-image:url('../../assets/images/home/总览.png');
+                background-size: 100% 100%;
+            }
+            .chose{
+                background-image:url('../../assets/images/home/总览2.png');
+                background-size: 100% 100%;
             }
         }
 

@@ -220,7 +220,7 @@ export default {
   		api.touristOrigin(api.params).then( (re) =>{
   			
     		let reData = re.data.data;
-    		console.log(reData)
+    		//console.log(reData)
 			this.BJData = reData.cityData.BJData;
 			this.GUANG = reData.cityData.GUANG;
 			this.SHData = reData.cityData.SHData;

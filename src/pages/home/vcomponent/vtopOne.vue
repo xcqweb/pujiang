@@ -26,7 +26,6 @@ export default {
     mixins: [timeMixin,optionProps],
     data() {
       return {
-      	code:0,//景区编码
         chart: null,
         isActive:true,
         xnub:null,
@@ -66,10 +65,6 @@ export default {
     	}
     },
     methods: {
-    //获取景区名称
-		watchTouristFn(val){
-        this.code = val;
-   },
     redom7(){
         if(this.chart){
             this.chart.dispose();
