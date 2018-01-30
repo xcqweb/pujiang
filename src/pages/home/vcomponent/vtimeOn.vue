@@ -22,7 +22,7 @@ export default {
       	currentNum:0,
         reTimer:null,
         data_arr:{},
-        mins:60,
+        mins:1,
         btwsecends:5,
         option: {
             backgroundColor: 'rgba(0,0,0,0)',
@@ -143,33 +143,37 @@ export default {
             data.push(bigData[i]);
             date.shift();
             data.shift();
-            //console.log(data);
             this.currentNum = data[5];
         },
         redom(id){
             let _self=this;
             var i = 8;
+            
             let timerIndex = Math.round((_self.mins*60) / _self.btwsecends)-5;
             this.chart = echarts.init(document.getElementById(id));
             this.chart.setOption(this.option);
             if (this.reTimer) {
-                window.clearInterval(this.reTimer)
+                  window.clearInterval(this.reTimer)
             }
             let date=_self.data_arr.date.slice(0,6);
             let data=_self.data_arr.data.slice(0,6);
             this.reTimer=setInterval(function () {
                 i++;
+                //console.log(i,timerIndex,_self)
                 if(i > timerIndex){
-                      let start_end_instance1 =  new Start_end_class('timeline',20,50,this.code);
-                      start_end_instance1.get_timeline().then(re =>{
-                          _self.data_arr = Rw.array_until.remove_common(_self.data_arr,re);
-                          i=8;
-                            //console.log(re);
-                        _self.option.xAxis.data=re.arr.date;
-                        _self.option.series.data=re,arr.data;
-                        //console.log(_self.option.xAxis.data)
-                        _self.option.yAxis.max = Math.max(...re.data);
+                			
+                        let start_end_instance1 =  new Start_end_class('timeline',_self.mins,Math.round((_self.mins*60) / _self.btwsecends),this.code);
+                        start_end_instance1.get_timeline().then(re =>{
+                            _self.data_arr = Rw.array_until.remove_common(_self.data_arr,re.arr);
+                            i=8;
+							            	
+                          _self.option.xAxis.data=re.arr.date;
+               					 _self.option.series.data=re.arr.data;
+               					 _self.option.yAxis.max = Math.max(...re.arr.data);
+               					 _self.chart = echarts.init(document.getElementById('container'));
+              						_self.chart.setOption(_self.option);
                       })
+								
                 };
                _self.addData(i,date,data,_self.data_arr.date,_self.data_arr.data);
 
@@ -183,7 +187,7 @@ export default {
                     }]
                 });
             }, _self.btwsecends*1000);
-          this.$nextTick(echarts_listen_resize('container',this));
+          _self.$nextTick(echarts_listen_resize('container',_self));
         },
         get_respose(){
             let _self = this;
@@ -195,6 +199,7 @@ export default {
             let start_end_instance =  new Start_end_class('timeline',_self.mins,Math.round((_self.mins*60) / _self.btwsecends),this.code);
             start_end_instance.get_timeline().then(re =>{
                 _self.data_arr = re.arr;
+                //console.log(re);
               _self.option.xAxis.data=re.arr.date;
               _self.option.series.data=re.arr.data;
               _self.option.yAxis.max = Math.max(...re.arr.data);

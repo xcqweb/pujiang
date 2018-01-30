@@ -83,7 +83,6 @@ export default {
             isActive:true,
             responseData7:{
             	series:[],
-            	date:[]
             },
         }
       },
@@ -98,45 +97,48 @@ export default {
     	//请求数据
 	  	getData(){
 	  		api.tripMode(api.params).then( (re) =>{
-	    		let reData7= re.data.data7;
+	  			console.log(re)
+	    		let reData7= re.data.data;
+	    		//console.log(reData7.series)
 	    		this.responseData7.series = reData7.series;
-	    		this.responseData7.date = reData7.date;
 					if(re.status===200){
 						this.isloading = false;
 					}
-					this.redom("c1",0);
+					this.redom("c1");
 		    }).catch( (e) => {
 		    	console.log(e);
 		    })
 	  	},
         redom(id,i){
-        	let date=[];
-        	let series=[];
+        		//let series=[];
         		this.isActive = true;
-        		date = this.responseData7.date;
-        		series = this.responseData7.series;
-        	
+	        	let dataY=[];
+	     		 let dataX=[];
+		      for (var i = 0; i < this.responseData7.series.length; i++) {
+		          dataY.push(this.responseData7.series[i].nub);
+		          dataX.push(this.responseData7.series[i].date)
+		      }
+		      console.log(this.responseData7.series)
             this.chart = echarts.init(document.getElementById(id));
             let option = {
-                tooltip : {
-                    trigger: 'axis',
-                    show:true,
-                    formatter:function(params){
-                        		//console.log(params)
-                        		var text = params[0].seriesName+" : "+params[0].value +"%<br>"+params[1].seriesName+" : "+params[1].value +"%<br>"
-                        		+params[2].seriesName+" : "+params[2].value +"%<br>"
-                          		 return text
-                        },
-                    axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-                        type : 'shadow',// 默认为直线，可选为：'line' | 'shadow'
-                        label:{
-                        	formatter:function(params){
-                        		
-                          		 return "展示"
-                        	}
-                        }
-                    }
-                },
+//              tooltip : {
+//                  trigger: 'axis',
+//                  show:true,
+//                  formatter:function(params){
+//                      		//console.log(params)
+//                      		var text = params[0].seriesName+" : "+params[0].value +"%<br>"+params[1].seriesName+" : "+params[1].value +"%<br>"
+//                      		+params[2].seriesName+" : "+params[2].value +"%<br>"
+//                        		 return text
+//                      },
+//                  axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+//                      type : 'shadow',// 默认为直线，可选为：'line' | 'shadow'
+//                      label:{
+//                      	formatter:function(params){
+//                        		 return "展示"
+//                      	}
+//                      }
+//                  }
+//              },
                 color:['#FB7C7D','#7460EE','#6AEDD9','#438AFF ','#02C753','#FC6ACB '],
                 grid: {
                     left: '5%',
@@ -148,7 +150,7 @@ export default {
                 xAxis : [
                     {
                         type : 'category',
-                        data : date,
+                        data : dataX,
                         axisLine: { //坐标轴轴线相关设置。就是数学上的y轴
                                 show: true,
                                 lineStyle: {
@@ -161,6 +163,7 @@ export default {
                                      fontSize: '85%',
                                  },
                             },
+                            
                         splitLine:{
                                 show:false,
                                 lineStyle:{
@@ -200,44 +203,28 @@ export default {
                     }
                 ],
                 series : [
-
-                    {
-                        name:'自驾游',
+                	{
+                        name:'计划',
                         type:'bar',
-                        data:series[0]
-                        ,barMaxWidth:'16%',               
-                    },
-                    {
-                        name:'公共交通',
-                        type:'bar',
-                        data:series[1]
-                        ,barMaxWidth:'16%',   
-                    },
-                    {
-                        name:'团队游',
-                        type:'bar',
-                        data:series[2]
-                        ,barMaxWidth:'16%',   
-                    },
-//                  {
-//                      name:'飞机',
-//                      type:'bar',
-//                      data:series[3],
-//                      barMaxWidth:'8%',   
-//                  },
-//                  {
-//                      name:'长途汽车',
-//                      type:'bar',
-//                      data:series[4],
-//                      barMaxWidth:'8%',   
-//                  },
-//                  {
-//                      name:'骑行',
-//                      type:'bar',
-//                      data:series[5],
-//                      barMaxWidth:'8%',   
-//                  }
-
+                        barMaxWidth:'30%',
+                        data:dataY,
+                        itemStyle:{
+                            normal: {
+                                color: '#57abfe'
+                            }
+                        },
+                        label:{
+                        normal:{
+                            show:true,
+                            position:'top',
+                            textStyle:{
+                                color:'#2CC9E2',
+                                fontSize:"80%",
+                            },
+                            formatter: '{c}%'
+                        }
+                       },
+                    }
                 ]
             };
             this.chart.setOption(option);

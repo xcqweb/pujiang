@@ -23,16 +23,18 @@ export default class Set_arr_class  {
         }
         //let endtimea = response.config.params.endtime;
         let nub = response.data;
+        let currentNum = nub.data.num;
         let endtimea = nub.data.endTime.replace(/[-:" "]+/g,"");
-        //console.log(response.data,endtimea,nub)
+		
         //兼容IE,需'/'连接
         var endtDate=endtimea.slice(0,4)+'/'+endtimea.slice(4,6)+'/'+endtimea.slice(6,8)+' '+endtimea.slice(8,10)+':'+endtimea.slice(10,12)+':'+endtimea.slice(12,14);
         var dt = new Date(endtDate);
+            //console.log(new Date().getTime()-new Date(endtDate).getTime())
         var interval = Math.round((this.differ*60) / this.times);
         if (endtimea) {
             for (var i = 0; i < this.times; i++) {
                 var t_s=dt.getTime()
-                dt.setTime(t_s+1000*interval)
+                dt.setTime(t_s+1000*5)
                 var hm= '';
                 var year=dt.getFullYear(); //获取当前年份
                 var mon=dt.getMonth()+1; //获取当前月份
@@ -79,7 +81,10 @@ export default class Set_arr_class  {
                     s='0'+s
                 }
                 arr.date[i] = '';
-                arr.data[i]= Math.ceil(nub.data.num*Math.random());
+                
+                let rangeNum = (currentNum*2/3+Math.random()*currentNum/3)
+                
+                arr.data[i]= Math.ceil(rangeNum);
                 arr.contrast[i] =parseInt(h+''+m+''+s)  ;
                 arr.date[i]= +h+':'+m+':'+s;
 				

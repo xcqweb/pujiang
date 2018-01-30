@@ -2,6 +2,12 @@
 <div class="content">
   <div id="c9"></div>
   <Loading v-show="isloading"></Loading>
+  <!--<ul class="legend">
+  	<li v-for="(item,i) in series">
+  		<p :style="{color:color[i]}">{{item.value}}%</p>
+  		<p>{{item.name}}</p>
+  	</li>
+  </ul>-->
 </div>  
 </template>
 
@@ -16,7 +22,9 @@ export default {
     mixins: [optionProps],
     data(){
     return{
-    		series:[]
+    		series:[],
+        color:['#4EBBFC','#57ABFE', '#368DF7', '#7E6AF6', '#FF8885','#FFCD38',  '#E39A50', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD'],
+    		
     }
     },
     methods:{
@@ -39,6 +47,53 @@ export default {
             let option = {
             color:['#4EBBFC','#57ABFE', '#368DF7', '#7E6AF6', '#FF8885','#FFCD38',  '#E39A50', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD'],
             calculable : true,
+            legend:{
+            	  show:true,
+                orient: 'vertical',
+                top:'10%' ,
+                right:'10%',
+                width:'26',
+                height:'80%',
+                itemGap:20,
+                itemWidth:10,
+                itemHeight:10,
+                textStyle:{
+                    color:'#fff',
+                    fontSize:'82%'
+                },
+            		//width:'50%',
+            		data:[
+            			{name:'亲子',icon:'circle'},
+            			{name:'金融',icon:'circle'},
+            			{name:'汽车服务',icon:'circle'},
+            			{name:'休闲娱乐',icon:'circle'},
+            			{name:'化妆品',icon:'circle'},
+            			{name:'珠宝手表',icon:'circle'},
+            			{name:'数码',icon:'circle'},
+            			{name:'母婴用品',icon:'circle'},
+            			{name:'生活服务',icon:'circle'},
+            			{name:'奢侈品牌',icon:'circle'},
+            			{name:'大众品牌',icon:'circle'},
+            			{name:'服饰鞋帽',icon:'circle'},
+            		],
+            	//data:['亲子','金融','汽车服务','休闲娱乐','化妆品','珠宝手表','数码','母婴用品','生活服务','奢侈品牌','大众品牌','服饰鞋帽'],
+            	 formatter:function(name){
+            	 	
+	        	var oa = option.series[0].data;
+	        	console.log(oa)
+	        	let num =0;
+	        	for(let i=0; i<oa.length; ++i){
+	        		num += oa[i].value
+	        	}
+	        	
+	        	for(var i = 0; i < option.series[0].data.length; i++){
+                    if(name==oa[i].name){
+                    	let text = (oa[i].value/num * 100).toFixed(2) + '%'+ '  ' +  name ;
+                    	return text
+                    }
+	        	}
+	        }
+            },
             tooltip : {
 		        formatter: function(params){
 		        	let text = params.data.name+"<br>"+params.percent+"%";
@@ -57,11 +112,12 @@ export default {
                     name:'消费偏好',
                     type:'pie',
                     radius : ['0%', '55%'],
-                    center : ['50%', '55%'],
+                    center : ['26%', '55%'],
                     roseType : 'area',
                     lableLine:{
+                    		show:false,
                         normal:{
-                            show:true,
+                            show:false,
                             length:1,
                             length2:1,
                         }
@@ -75,12 +131,12 @@ export default {
                             }
                         },
                         emphasis:{
+                        	show:false,
                             textStyle:{
                                 fontStyle:'italic',
                                 fontSize:"85%",
                             }
                         },
-
                     },
                     data: this.series,
                 } 
@@ -106,6 +162,26 @@ export default {
     width:100%;
     height:100%;
 }
+.legend{
+	width: 36%;
+	height: 80%;
+	color: #fff;
+	font-size: 0.8rem;
+	position: absolute;
+	top: 1.5rem;
+	li{
+		width: 33%;
+		line-height: 0.8rem;
+		float: left;
+		p:first-child{
+			font-weight: bold;
+		}
+		p:last-child{
+			margin-top: 0.5rem;
+		}
+	}
+}
+
 .content{
     width:100%;
     height:100%;

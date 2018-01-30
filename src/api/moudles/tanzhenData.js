@@ -18,7 +18,7 @@ export default {
     //实时客流量
     timeline:function(paramsObj){
         //return instance.get(`https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/timeline`, {params:paramsObj});
-        return instance.get(`http://114.55.237.138/pj/api/zl/getPassengerCount`, {params:paramsObj});
+        return instance.get(`http://114.55.237.138/pj/api/cyjc/getPassengerCount`, {params:paramsObj});
     },
     //概况
     profile:function(paramsObj){

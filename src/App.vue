@@ -30,7 +30,7 @@ export default {
       // img: require('./assets/images/bg.png')
   }
   },
-  components:{ }
+  components:{}
   ,
   store:store,
 
@@ -164,7 +164,7 @@ font-family: numberFont;
 src: url('./assets/style/fonts/lcddd.ttf'),
 }
 
-/*div,font,span,p{*/
-	/*font-family: numberFont;*/
-/*}*/
+/*div,font,span,p{
+	font-family: numberFont;
+}*/
 </style>

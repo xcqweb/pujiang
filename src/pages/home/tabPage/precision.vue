@@ -115,11 +115,11 @@ export default {
                 ],
                 cutoverStatus:null,
                 leftComponents:[
-                    {name:'C1',id:'one',index:1,time:100,show:false,title:'出行方式'},
+                	{name:'C9',id:'one',index:5,time:1200,show:false,title:'消费偏好'},
                     {name:'A8',id:'two',index:2,time:300,show:false,title:`营销推广`},
                     {name:'C2',id:'three',index:3,time:600,show:false,title:'年龄'},
                     {name:'C6',id:'four',index:4,time:900,show:false,title:'关注点'},
-                    {name:'C9',id:'five',index:5,time:1200,show:false,title:'消费偏好'},
+                    {name:'C1',id:'five',index:1,time:100,show:false,title:'出行方式'},
                     {name:'C4',id:'six',index:6,time:1500,show:false,title:'性别'},
                     {name:'C5',id:'seven',index:7,time:1800,show:false,title:'游客来源城市'},
                 ],

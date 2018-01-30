@@ -55,7 +55,7 @@ export default {
                                     position:'outside',
                                     textStyle:{
                                         color:'#f18790',
-                                        fontSize:'100%'
+                                        fontSize:'85%'
                                     }
                                 }
                             },
