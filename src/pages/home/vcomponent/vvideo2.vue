@@ -82,13 +82,13 @@ export default {
         position: absolute;
         img{
         	width: 100%;
-        	height: 100%;
+        	height: 120%;
         }
         span{
         	color:#fff;
         	font-size: 1rem;
         	position: absolute;
-        	bottom: -20%;
+        	bottom: -35%;
         	left: 38%;
         }
         .time2{
@@ -116,11 +116,11 @@ export default {
       right:1rem;
     }
     section:nth-of-type(3){
-      bottom:5rem;
+      bottom:5.5rem;
       left:1rem;
     }
     section:nth-of-type(4){
-      bottom:5rem;
+      bottom:5.5rem;
       right:1rem;
     }
     

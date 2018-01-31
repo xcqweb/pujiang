@@ -54,13 +54,13 @@
   .txt{
     text-align: center;
     position: absolute;
-    top: 62%;
+    top: 70%;
     color: rgba(250,250,250,0.8);
     font-size: 1rem;
    }
   .spinner {
     position: absolute;
-    margin: 4.2rem auto;
+    top: 20%;
     width: 2rem;
     height: 2rem;
     position: relative;

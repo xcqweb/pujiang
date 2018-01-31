@@ -13,10 +13,10 @@
     //     box-shadow: inset 0 0 126rem rgba(0,28 ,201 ,0.06);
     // }*/
     .d17_item{
-        height: 45%;
+        height: 43%;
         float: left;
-        width: 17%;
-        margin-left: 2.8%;
+        width: 21%;
+        margin-left: 3.1%;
         margin-top: 3%;
         border-radius: 5px;
         div{
@@ -46,7 +46,7 @@
                 text-shadow: 2px 3px 3px #252121;
             }
         }
-        &:nth-child(1) {
+        /*&:nth-child(1) {
             width: 36.8%;
             div{
                 width:49%;
@@ -68,7 +68,7 @@
                      font-size: 4.8rem;
                 }
             }
-        }
+        }*/
         &:nth-of-type(1){
             background: linear-gradient(75deg, #0084ec, #34caf7);
         }
@@ -84,18 +84,19 @@
         &:nth-of-type(5){
             background: linear-gradient(75deg, #2bba75, #39e9d2);
         }
+        
         &:nth-of-type(6){
-            background: linear-gradient(75deg, #2994bc, #39e9b1);
-        }
-        &:nth-of-type(7){
             background: linear-gradient(75deg, #4751cf, #7ba0fe);
         } 
-        &:nth-of-type(8){
+        &:nth-of-type(7){
             background: linear-gradient(75deg, #7447cf, #c87bfe);
         }
-        &:nth-of-type(9){
-            background: linear-gradient(75deg, #ea5f44, #ffa955);
+        &:nth-of-type(8){
+            background: linear-gradient(75deg, #EB5F44, #FCA855);
         }
+        /*&:nth-of-type(9){
+            background: linear-gradient(75deg, #ea5f44, #ffa955);
+        }*/
     }
 }
 </style>
@@ -132,7 +133,7 @@ export default {
                 {name:'休闲娱乐',value:198,img:require('../../../assets/images/chanye/6.png')},
                 {name:'旅行社',value:14,img:require('../../../assets/images/chanye/7.png')},
                 {name:'公共设施',value:120,img:require('../../../assets/images/chanye/8.png')},
-                {name:'厕所',value:63,img:require('../../../assets/images/chanye/9.png')},
+//              {name:'厕所',value:63,img:require('../../../assets/images/chanye/9.png')},
             ],
         }
     },

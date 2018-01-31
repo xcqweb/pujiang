@@ -2,12 +2,12 @@
 <div class="content">
   <div id="c9"></div>
   <Loading v-show="isloading"></Loading>
-  <!--<ul class="legend">
+  <ul class="legend">
   	<li v-for="(item,i) in series">
-  		<p :style="{color:color[i]}">{{item.value}}%</p>
+  		<p :style="{color:color[i]}">{{percents[i]}}%</p>
   		<p>{{item.name}}</p>
   	</li>
-  </ul>-->
+  </ul>
 </div>  
 </template>
 
@@ -34,6 +34,7 @@ export default {
 	  		api.touristAttr(api.params).then( (re) =>{
 	  				let reData = re.data.data;
 	  				this.series = reData;
+	  				//console.log(reData,this.series)
 					if(re.status===200){
 						this.isloading = false;
 					}
@@ -48,10 +49,10 @@ export default {
             color:['#4EBBFC','#57ABFE', '#368DF7', '#7E6AF6', '#FF8885','#FFCD38',  '#E39A50', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD'],
             calculable : true,
             legend:{
-            	  show:true,
+            	  show:false,
                 orient: 'vertical',
                 top:'10%' ,
-                right:'10%',
+                right:'5%',
                 width:'26',
                 height:'80%',
                 itemGap:20,
@@ -88,7 +89,7 @@ export default {
 	        	
 	        	for(var i = 0; i < option.series[0].data.length; i++){
                     if(name==oa[i].name){
-                    	let text = (oa[i].value/num * 100).toFixed(2) + '%'+ '\n' +  name ;
+                    	let text = (oa[i].value/num * 100).toFixed(2) + '%'+ '\n\n' +  name ;
                     	return text
                     }
 	        	}
@@ -148,6 +149,19 @@ export default {
     created(){
     	this.getData();
     },
+    computed:{
+    	percents(){
+    		let arr=[];
+    		let sum=0;
+    		for(let i=0; i<this.series.length; ++i){
+    			sum += this.series[i].value;
+    		}
+    		for(let i=0; i<this.series.length; ++i){
+    			arr[i] = (this.series[i].value*100/sum).toFixed(2);
+    		}
+    		return arr
+    	}
+    },
     mounted() {
       this.$nextTick(echarts_resize('c9',this))
     },
@@ -168,12 +182,13 @@ export default {
 	color: #fff;
 	font-size: 0.8rem;
 	position: absolute;
-	top: 1.5rem;
+	top: 10%;
 	li{
 		width: 33%;
 		line-height: 0.8rem;
 		float: left;
 		p:first-child{
+			font-size: 0.9rem;
 			font-weight: bold;
 		}
 		p:last-child{
@@ -194,7 +209,7 @@ export default {
 @media screen and (min-width: 1400px){
   ul{
     position:absolute;
-    right:30px;
+    right:10%;
     top:30%;
     li{
         margin-top:10px;
@@ -213,8 +228,8 @@ export default {
 @media screen and (max-width: 1400px){
   ul{
     position:absolute;
-    left:30px;
-    top:5%;
+    right:10%;
+    top:15%;
     li{
         float:left;
         display:inline-block;

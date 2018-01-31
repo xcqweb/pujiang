@@ -94,7 +94,7 @@ export default {
 	    		let reData = re.data.data;
 	    		this.yearNumb = reData.curYearSum;
 	    		this.mouthNumb = reData.curMonthSum;
-	    		console.log(reData);
+	    		//console.log(reData);
 	    		if(re.status===200){
 	    			this.isloading=false;
 	    		}

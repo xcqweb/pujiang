@@ -88,7 +88,7 @@ export default {
                 name:'年龄段',
                 type:'pie',
                 radius : '70%',
-                center: ['27%', '60%'],
+                center: ['27%', '50%'],
                 // selecteMode:'single',
                 // selectedOffset:30,
                 // roseType:"area",
