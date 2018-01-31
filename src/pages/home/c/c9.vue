@@ -88,7 +88,7 @@ export default {
 	        	
 	        	for(var i = 0; i < option.series[0].data.length; i++){
                     if(name==oa[i].name){
-                    	let text = (oa[i].value/num * 100).toFixed(2) + '%'+ '  ' +  name ;
+                    	let text = (oa[i].value/num * 100).toFixed(2) + '%'+ '\n' +  name ;
                     	return text
                     }
 	        	}
