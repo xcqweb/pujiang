@@ -22,7 +22,8 @@ export default {
       	currentNum:0,
         reTimer:null,
         data_arr:{},
-        mins:60,
+        mins:60
+        ,
         btwsecends:5,
         option: {
             backgroundColor: 'rgba(0,0,0,0)',
@@ -39,13 +40,13 @@ export default {
            },
            calculable: true,
            xAxis: [{
-               type: 'category',
+                 type: 'category',
                //boundaryGap: ['0%','0%'],
                //在（type: 'category'）中设置data有效
                splitLine: { //坐标轴在 grid 区域中的分隔线；
                    show: false,
                    lineStyle: { //分割线颜色，可设单个，也可以设置数组。
-                       color: 'rgba(170,172,178,0.33)'
+                       color: 'rgba(170,172,178,0.33)',
                    }
                },
                axisLine: { //坐标轴轴线相关设置。就是数学上的x轴
@@ -58,7 +59,7 @@ export default {
                    },
                },
                axisLabel: { 
-               		 margin: 4,
+               		 margin: 5,
                    textStyle: {
                        color: '#fff',//x坐标轴标签字体颜色
                        fontSize: '75%',
@@ -76,9 +77,8 @@ export default {
                    fontSize:'75%',
                    padding:[0,20,0,0]
                 },
-               min: 0,
                minInterval: 1,
-               splitNumber:4,
+               splitNumber:5,
                splitLine: {
                    show: false,
                    lineStyle: {
@@ -94,7 +94,7 @@ export default {
                axisLabel: {
                    textStyle: {
                        color: '#ffffff',
-                       fontSize: '90%',
+                       fontSize: '80%',
                    },
                },
                axisTick:{
@@ -155,23 +155,29 @@ export default {
             if (this.reTimer) {
                   window.clearInterval(this.reTimer)
             }
-            let date=_self.data_arr.date.slice(0,6);
-            let data=_self.data_arr.data.slice(0,6);
+            let date=_self.data_arr.date.slice(0,30);
+            let data=_self.data_arr.data.slice(0,30);
             this.reTimer=setInterval(function () {
                 i++;
-                //console.log(i,timerIndex,_self)
-                if(i > timerIndex){
-                			
+               // console.log(i,timerIndex,_self)
+		                if(i > timerIndex){
+		                	_self.isloading = true;
+		                	_self.chart.setOption({});
                         let start_end_instance1 =  new Start_end_class('timeline',_self.mins,Math.round((_self.mins*60) / _self.btwsecends),this.code);
                         start_end_instance1.get_timeline().then(re =>{
-                            _self.data_arr = Rw.array_until.remove_common(_self.data_arr,re.arr);
+                            //_self.data_arr = Rw.array_until.remove_common(_self.data_arr,re.arr);
+                            _self.data_arr = [];
+                            _self.data_arr = re.arr;
                             i=8;
-							            	//console.log(re)
+							            	console.log(re)
                           _self.option.xAxis.data=re.arr.date;
                					 _self.option.series.data=re.arr.data;
-               					 _self.option.yAxis.max = Math.max(...re.arr.data);
+               					// _self.option.yAxis.max = Math.max(...re.arr.data);
                					 _self.chart = echarts.init(document.getElementById('container'));
               						_self.chart.setOption(_self.option);
+              						if(re.code===200){
+					                	_self.isloading = false;
+					                }
                       })
 								
                 };
@@ -194,15 +200,15 @@ export default {
             if(this.chart){
             	this.chart.dispose();
             }
-            _self.mins= 60;
-            self.btwsecends = 5;
+            //_self.mins= 60;
+            //self.btwsecends = 5;
             let start_end_instance =  new Start_end_class('timeline',_self.mins,Math.round((_self.mins*60) / _self.btwsecends),this.code);
             start_end_instance.get_timeline().then(re =>{
                 _self.data_arr = re.arr;
-                  //console.log(re);
+                  console.log(re);
               _self.option.xAxis.data=re.arr.date;
               _self.option.series.data=re.arr.data;
-              _self.option.yAxis.max = Math.max(...re.arr.data);
+              //_self.option.yAxis.max = Math.max(...re.arr.data);
                 Rw.judgment_until.typesof(_self.data_arr);
                 _self.redom('container');
                 if(re.code===200){

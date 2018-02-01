@@ -12,9 +12,12 @@ import user from './modules/user'
 Vue.use(Vuex)
 
 const debug = process.env.NODE_ENV !== 'production'
-
+const state={
+	showToast:false
+}
 export default new Vuex.Store({
-    strict: debug,
+    //strict: debug,
+    state,
     modules: {
 
     global: {

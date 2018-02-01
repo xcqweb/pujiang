@@ -6,6 +6,7 @@
         </div>
         <span>5%</span>
         <div class="text"><font>预警客流</font><font>{{this.set_config}}人</font></div>
+        <p class="configBtn" @click="passagerConfig">设置</p>
       <Loading v-show="isloading"></Loading>
     </div>
 </template>
@@ -23,6 +24,7 @@ export default {
   mixins: [optionProps],
   data () {
     return {
+    	code:0,
         imgacircle:require('../../../assets/images/home/b/circle.png'),
         nub:'',
         set_config:''
@@ -40,6 +42,11 @@ export default {
     }
   },
   methods:{
+  	//客流设置
+  	passagerConfig(){
+  		this.$store.state.showToast = true;
+  		console.log(this.$store.state.showToast);
+  	},
       redom(id){
           this.chart = echarts.init(document.getElementById(id));
           this.chart.setOption(this.option);
@@ -129,6 +136,16 @@ export default {
         transform: translate(-50%,-50%);
         font-size: 1rem;
         /*font-family: numberFont;*/
+    }
+    .configBtn{
+    	position: absolute;
+    	right: 5%;
+    	top: 5%;
+    	color: #5798CC;
+    	font-weight: bold;
+    	border: 0.2rem solid #50A6D5;
+    	border-radius: 0.4rem;
+    	padding: 0.2rem 0.8rem
     }
     #pieB2{
         height:100%;
