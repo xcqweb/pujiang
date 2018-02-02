@@ -30,8 +30,11 @@ export default {
         set_config:''
     }
   },
+  watch:{
+  },
   computed: {
     persent(){
+    	this.set_config = this.$store.state.setConfigData.configNum;
       let nub = 1||parseInt(this.nub);
       let setconfig = 20||parseInt(this.set_config);
       if(!nub && !setconfig){
@@ -45,7 +48,8 @@ export default {
   	//客流设置
   	passagerConfig(){
   		this.$store.state.showToast = true;
-  		console.log(this.$store.state.showToast);
+  		this.$store.state.currentCode = this.code;
+  		//console.log(this.$store.state.currentCode,this.code);
   	},
       redom(id){
           this.chart = echarts.init(document.getElementById(id));

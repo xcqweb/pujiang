@@ -13,7 +13,12 @@ Vue.use(Vuex)
 
 const debug = process.env.NODE_ENV !== 'production'
 const state={
-	showToast:false
+	showToast:false,//控制预警设置蒙层
+	currentCode:0,//当前景区代码
+	setConfigData:{},
+	
+	editNum:0//临时 传递修改的参数
+	
 }
 export default new Vuex.Store({
     //strict: debug,

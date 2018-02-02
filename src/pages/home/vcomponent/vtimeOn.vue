@@ -139,15 +139,25 @@ export default {
     methods: {
       //添加数据
         addData(i,date,data,bigDate,bigData) {
+        		function getTime(){
+        			let date = new Date();
+        			let h=date.getHours()< 10 ? '0'+date.getHours() : date.getHours(); //获取小时
+							let m=date.getMinutes()< 10 ? '0'+date.getMinutes() : date.getMinutes(); //获取分
+							let s=date.getSeconds()< 10 ? '0'+date.getSeconds() : date.getSeconds(); //获取秒
+							return h+":"+m+":"+s
+        		}
+        		
+          		bigDate[i] = getTime();
+        		//console.log(i,bigDate[i],getTime())
             date.push(bigDate[i]);
             data.push(bigData[i]);
             date.shift();
             data.shift();
-            this.currentNum = data[5];
+            this.currentNum = data[31];
         },
         redom(id){
             let _self=this;
-            var i = 8;
+            var i = 32;
             
             let timerIndex = Math.round((_self.mins*60) / _self.btwsecends)-5;
             this.chart = echarts.init(document.getElementById(id));
@@ -155,8 +165,8 @@ export default {
             if (this.reTimer) {
                   window.clearInterval(this.reTimer)
             }
-            let date=_self.data_arr.date.slice(0,30);
-            let data=_self.data_arr.data.slice(0,30);
+            let date=_self.data_arr.date.slice(0,33);
+            let data=_self.data_arr.data.slice(0,33);
             this.reTimer=setInterval(function () {
                 i++;
                // console.log(i,timerIndex,_self)
@@ -168,8 +178,8 @@ export default {
                             //_self.data_arr = Rw.array_until.remove_common(_self.data_arr,re.arr);
                             _self.data_arr = [];
                             _self.data_arr = re.arr;
-                            i=8;
-							            	console.log(re)
+                            i=32;
+							            	//console.log(re)
                           _self.option.xAxis.data=re.arr.date;
                					 _self.option.series.data=re.arr.data;
                					// _self.option.yAxis.max = Math.max(...re.arr.data);
@@ -205,14 +215,17 @@ export default {
             let start_end_instance =  new Start_end_class('timeline',_self.mins,Math.round((_self.mins*60) / _self.btwsecends),this.code);
             start_end_instance.get_timeline().then(re =>{
                 _self.data_arr = re.arr;
-                  console.log(re);
+                  //console.log(re);
               _self.option.xAxis.data=re.arr.date;
               _self.option.series.data=re.arr.data;
               //_self.option.yAxis.max = Math.max(...re.arr.data);
                 Rw.judgment_until.typesof(_self.data_arr);
                 _self.redom('container');
                 if(re.code===200){
-                	this.isloading = false;
+                	setTimeout( () => {
+                		this.isloading = false;
+                	},5000)
+                	
                 }
             })
           this.$nextTick(echarts_listen_resize('container',this));

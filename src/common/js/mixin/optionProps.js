@@ -16,7 +16,7 @@ let optionProps =  {
         },
         scienceProps:{
         	handler:function(val, oldVal){
-               this.watchTouristFn2&&this.watchTouristFn2(this.nameToCode[val])
+               this.watchTouristFn&&this.watchTouristFn(this.nameToCode[val])
             },
             deep:true,
         }
@@ -79,13 +79,10 @@ let optionProps =  {
     },
     methods:{
         watchTouristFn(val){
-            console.log(val)
+            //console.log(val)
             this.code = val;
         },	
-        watchTouristFn2(val){
-            console.log(val)
-            this.code = val;
-        },	
+        
     },
     created(){
     	this.isloading=true;

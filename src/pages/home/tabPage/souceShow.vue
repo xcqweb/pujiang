@@ -56,7 +56,7 @@
                 </div>
             </div>
         </div>
-        <config v-show = "toast"></config>
+        
     </div>
 </template>
 
@@ -67,7 +67,7 @@ import componetstatus from '@/pages/home/componentstatus.js'
 import Bus from '@/common/js/bus.js'
 import _ from 'lodash'
 import { mapGetters } from 'vuex'
-import config from '@/components/commonui/config/scienceConfig.vue'
+
 export default {
     props:['placeName','placeAttractions','turistArr'],
     name: 'souceShow',
@@ -139,11 +139,7 @@ export default {
             comment:'version/comment',
           }),
           
-          //设置客流预警蒙层显示
-          toast(){
-          	let toast = this.$store.state.showToast;
-          	return toast
-          },
+          
           
           //tab数组
         tablistCom:function(){
@@ -258,7 +254,6 @@ export default {
     },
     components:{
         ...componetstatus,
-        config
     },
     mounted(){
         let _self=this;
