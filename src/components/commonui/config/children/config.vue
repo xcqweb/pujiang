@@ -15,7 +15,7 @@
 				<li v-if="i===editIndex"><input type="number" ref="load" :value="loadNum" /><span class="tip" v-show="tipShow">不能为空!</span></li>
 				
 				<li v-if="i!==editIndex">{{data.configNum}}</li>
-				<li v-if="i===editIndex"><input type="number" ref="config" :value="configNum" /><span class="tip" v-show="tipShow">不能为空!</span></li>
+				<li v-if="i===editIndex"><input type="number" ref="config" :value="configNum" /></li>
 				
 				<li v-if="i!==editIndex"><span class="edit" @click="edit(data,i)">修改</span></li>
 				<li v-if="i===editIndex">
