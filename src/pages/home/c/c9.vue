@@ -50,7 +50,7 @@ export default {
             legend:{
             	  show:true,
                 orient: 'vertical',
-                top:'10%' ,
+                top:'10%',
                 right:'10%',
                 width:'26',
                 height:'80%',
@@ -59,7 +59,9 @@ export default {
                 itemHeight:10,
                 textStyle:{
                     color:'#fff',
-                    fontSize:'82%'
+                    fontSize:'82%',
+                    lineHeight:36
+                    
                 },
             		//width:'50%',
             		data:[
@@ -88,7 +90,7 @@ export default {
 	        	
 	        	for(var i = 0; i < option.series[0].data.length; i++){
                     if(name==oa[i].name){
-                    	let text = (oa[i].value/num * 100).toFixed(2) + '%'+ '  ' +  name ;
+                    	let text = (oa[i].value/num * 100).toFixed(2) + '%'+ '\n' +  name ;
                     	return text
                     }
 	        	}
@@ -177,7 +179,7 @@ export default {
 			font-weight: bold;
 		}
 		p:last-child{
-			margin-top: 0.5rem;
+			margin-top: 0.8rem;
 		}
 	}
 }
@@ -186,10 +188,6 @@ export default {
     width:100%;
     height:100%;
     position:relative;
-}
-#percent{
-    width:100%;
-    height:100%;
 }
 @media screen and (min-width: 1400px){
   ul{

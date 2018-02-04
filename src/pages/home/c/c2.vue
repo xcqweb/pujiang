@@ -53,15 +53,16 @@ export default {
                 show:true,
                 orient: 'vertical',
                 top:'30%' ,
-                left:'50%',
+                right:'8%',
                 width:'26',
                 height:'45%',
                 itemGap:20,
-                itemWidth:15,
+                itemWidth:10,
                 itemHeight:10,
                 textStyle:{
                     color:'#fff',
-                    fontSize:'82%'
+                    fontSize:'82%',
+                    lineHeight:36
                 },
                 data:[{
                     icon:'circle',
@@ -88,10 +89,10 @@ export default {
                 name:'年龄段',
                 type:'pie',
                 radius : '70%',
-                center: ['27%', '60%'],
+                center: ['27%', '52%'],
                 // selecteMode:'single',
                 // selectedOffset:30,
-                // roseType:"area",
+//                 roseType:"area",
                 startAngle:90,
                 labelLine: {
                     normal: {

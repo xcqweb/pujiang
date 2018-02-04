@@ -239,6 +239,7 @@ export default {
 					this.isloading = false;
 				}
 				this.redom();
+				this.redomData();
 	    }).catch( (e) => {
 	    	console.log(e);
 	    })
