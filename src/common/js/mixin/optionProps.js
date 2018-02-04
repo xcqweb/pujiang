@@ -14,9 +14,16 @@ let optionProps =  {
             },
             deep:true,
         },
+        scienceProps:{
+        	handler:function(val, oldVal){
+               this.watchTouristFn&&this.watchTouristFn(this.nameToCode[val])
+            },
+            deep:true,
+        }
     },
     data () {
         return {
+        	scienceProps:'',
         	code:0,//景区编码
         	isloading: false,
             nameToCode:{
@@ -75,6 +82,7 @@ let optionProps =  {
             //console.log(val)
             this.code = val;
         },	
+        
     },
     created(){
     	this.isloading=true;

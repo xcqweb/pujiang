@@ -3,6 +3,7 @@
 //super.getEndTime()
 //super.getStartTime()
 import Start_end_class from '@/common/js/star_end_class.js'
+import {oldtime} from '@/common/js/gtime.js'
 export default class Set_arr_class  {
     constructor(differ,times) {
         //differ时间间隔，times分割成多少段
@@ -24,7 +25,8 @@ export default class Set_arr_class  {
         //let endtimea = response.config.params.endtime;
         let nub = response.data;
         let currentNum = nub.data.num;
-        let endtimea = nub.data.endTime.replace(/[-:" "]+/g,"");
+        //let endtimea = nub.data.endTime.replace(/[-:" "]+/g,"");
+        let endtimea = oldtime;
 		
         //兼容IE,需'/'连接
         var endtDate=endtimea.slice(0,4)+'/'+endtimea.slice(4,6)+'/'+endtimea.slice(6,8)+' '+endtimea.slice(8,10)+':'+endtimea.slice(10,12)+':'+endtimea.slice(12,14);
@@ -85,7 +87,7 @@ export default class Set_arr_class  {
                 let rangeNum = (currentNum*2/3+Math.random()*currentNum/3)
                 
                 arr.data[i]= Math.ceil(rangeNum);
-                arr.contrast[i] =parseInt(h+''+m+''+s)  ;
+                arr.contrast[i] =parseInt(h+''+m+''+s);
                 arr.date[i]= +h+':'+m+':'+s;
 				
             }

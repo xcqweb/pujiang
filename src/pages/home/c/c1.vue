@@ -97,7 +97,7 @@ export default {
     	//请求数据
 	  	getData(){
 	  		api.tripMode(api.params).then( (re) =>{
-	  			console.log(re)
+	  			//console.log(re)
 	    		let reData7= re.data.data;
 	    		//console.log(reData7.series)
 	    		this.responseData7.series = reData7.series;
@@ -118,7 +118,7 @@ export default {
 		          dataY.push(this.responseData7.series[i].nub);
 		          dataX.push(this.responseData7.series[i].date)
 		      }
-		      console.log(this.responseData7.series)
+		      //console.log(this.responseData7.series)
             this.chart = echarts.init(document.getElementById(id));
             let option = {
 //              tooltip : {

@@ -56,6 +56,7 @@
                 </div>
             </div>
         </div>
+        
     </div>
 </template>
 
@@ -137,6 +138,9 @@ export default {
         ...mapGetters({
             comment:'version/comment',
           }),
+          
+          
+          
           //tab数组
         tablistCom:function(){
             let arrb = [];
@@ -249,7 +253,7 @@ export default {
 
     },
     components:{
-        ...componetstatus
+        ...componetstatus,
     },
     mounted(){
         let _self=this;

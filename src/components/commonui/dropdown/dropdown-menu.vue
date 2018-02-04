@@ -21,7 +21,7 @@ selectlist:{
     <div class="v-dropdown-menu" 
 
         @click = 'showselect' 
-        v-bind:style="{ width:selectList.width ,left:selectList.left}" 
+        v-bind:style="{ width:selectList.width ,left:selectList.left,top:selectList.top}" 
         >
         <p @click='triggle' v-on:itemtodo2="sendMsgParent" class="dropdown-menu-p">{{selectList.title}}</p>
         <span :class="upDown"></span>
@@ -34,7 +34,6 @@ selectlist:{
             </dropdownList>
         </transition>
     </div>
-
 </template>
 <script >
 import Vue from 'vue'
@@ -213,6 +212,7 @@ import Vue from 'vue'
     box-shadow: 1px 0 30px  rgba(1,1,13,0.4);
     border: 1px solid #1b44ba;
     background-color: #193583;
+    z-index: 100002;
     &.more{
             &:after{
                 content: "";
