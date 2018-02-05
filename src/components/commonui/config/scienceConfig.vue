@@ -237,7 +237,7 @@
 		components:{
 			...componetstatus,
 			config,
-			history
+			history,
 		}
 	}
 </script>

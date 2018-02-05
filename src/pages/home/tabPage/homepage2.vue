@@ -168,7 +168,7 @@ export default {
                  text: text
                })
             },
-        render: function(h) { // h 为 createElement 函数，接受三个参数
+          render: function(h) { // h 为 createElement 函数，接受三个参数
             // tag
             // data
             // children 具体看文档吧
