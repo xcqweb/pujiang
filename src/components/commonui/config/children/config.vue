@@ -6,15 +6,15 @@
 			<li>预警人数</li>
 			<li></li>
 		</ul>
-		<ul class="content" v-for="(data,i) in dataList" :class="{'bc1':i%2===0,'bc2':i%2===1}">
+		<ul class="content" v-for="(data,i) in dataList" :class="{'bc1':i%2===0,'bc2':i%2===1}" :ref="i">
 			<template >
 				<li>{{i+1}}</li>
 				<li>{{data.name}}</li>
 				<li v-if="i!==editIndex">{{data.loadNum}}</li>
-				<li v-if="i===editIndex"><input type="number" ref="load" :value="loadNum" /><span class="tip" v-show="tipShow">不能为空!</span></li>
+				<li v-if="i===editIndex"><input type="number" class="load" :value="loadNum" /><span class="tip" v-show="tipShow">不能为空!</span></li>
 				
 				<li v-if="i!==editIndex">{{data.configNum}}</li>
-				<li v-if="i===editIndex"><input type="number" ref="config" :value="configNum" /></li>
+				<li v-if="i===editIndex"><input type="number" class="config" :value="configNum" /></li>
 				
 				<li v-if="i!==editIndex"><span class="edit" @click="edit(data,i)">修改</span></li>
 				<li v-if="i===editIndex">
@@ -47,6 +47,7 @@
 	export default {
 		data(){
 			return {
+				load:'load',
 				loadNum:0,
 				configNum:0,
 				showEdit:true,
@@ -74,8 +75,10 @@
 				this.editData = data;
 			},
 			//确认修改
-			confirm(){
-				if(this.$refs.load[this.editIndex].value==='' || this.$refs.config[this.editIndex].value===''){
+			confirm(i){
+				let editEle = document.getElementById('config').getElementsByClassName('content');
+				//console.log(editEle[i]);
+				if(editEle[i].getElementsByClassName('load')[0].value==='' || editEle[i].getElementsByClassName('config')[0].value===''){
 					this.tipShow = true;
 					setTimeout( () => {
 						this.tipShow = false;
@@ -87,13 +90,15 @@
 					
 					//修改时间
 					this.editData.editTime = editTime;
-					this.editData.loadNum =  this.$refs.load[this.editIndex].value;
-					this.editData.configNum =  this.$refs.config[this.editIndex].value;
+					this.editData.loadNum =  editEle[i].getElementsByClassName('load')[0].value;
+					this.editData.configNum =  editEle[i].getElementsByClassName('config')[0].value;
 					this.$store.state.setConfigData = this.editData;
 					
 					this.editIndex = '';
 					
-					console.log(this.$store.state.setConfigData)
+					//console.log(this.$store.state.setConfigData)
+				}else{
+					this.editIndex = '';
 				}
 			},
 			cancel(){
