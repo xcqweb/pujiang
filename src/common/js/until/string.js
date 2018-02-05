@@ -353,6 +353,10 @@ export default {
         }
         return _newPar;
     },
+    
+    transformNum:function(num){
+    	return Math.abs(Math.ceil(num));
+    }
    
    
 

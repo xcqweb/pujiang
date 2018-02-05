@@ -90,11 +90,7 @@ export default {
                 type:'pie',
                 radius : '70%',
                 center: ['27%', '60%'],
-<<<<<<< .mine
                 center: ['27%', '52%'],
-=======
-                center: ['27%', '50%'],
->>>>>>> .theirs
                 // selecteMode:'single',
                 // selectedOffset:30,
 //                 roseType:"area",

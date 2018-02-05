@@ -1,6 +1,7 @@
 <template>
 	<div id="config">
 		<ul class="title">
+			<li>序号</li>
 			<li>景区名称</li>
 			<li>游客承载量</li>
 			<li>预警人数</li>
@@ -11,10 +12,10 @@
 				<li>{{i+1}}</li>
 				<li>{{data.name}}</li>
 				<li v-if="i!==editIndex">{{data.loadNum}}</li>
-				<li v-if="i===editIndex"><input type="number" class="load" :value="loadNum" /><span class="tip" v-show="tipShow">不能为空!</span></li>
+				<li v-if="i===editIndex"><input type="number" class="load" v-model="loadNum" /><span class="tip" v-show="tipShow">输入有误!</span></li>
 				
 				<li v-if="i!==editIndex">{{data.configNum}}</li>
-				<li v-if="i===editIndex"><input type="number" class="config" :value="configNum" /></li>
+				<li v-if="i===editIndex"><input type="number" class="config" v-model="configNum" /></li>
 				
 				<li v-if="i!==editIndex"><span class="edit" @click="edit(data,i)">修改</span></li>
 				<li v-if="i===editIndex">
@@ -44,12 +45,12 @@
 
 <script>
 	import {editTime} from '@/common/js/gtime.js'
+	import Rw from '@/common/js/until/index.js'
 	export default {
 		data(){
 			return {
-				load:'load',
-				loadNum:0,
-				configNum:0,
+				loadNum:'',
+				configNum:'',
 				showEdit:true,
 				editIndex:'',
 				tipShow:false,
@@ -66,6 +67,7 @@
 		created(){
 		},
 		methods:{
+			
 			//编辑按钮
 			edit(data,i){
 				this.loadNum = data.loadNum;
@@ -90,8 +92,8 @@
 					
 					//修改时间
 					this.editData.editTime = editTime;
-					this.editData.loadNum =  editEle[i].getElementsByClassName('load')[0].value;
-					this.editData.configNum =  editEle[i].getElementsByClassName('config')[0].value;
+					this.editData.loadNum =  Rw.string_until.transformNum(editEle[i].getElementsByClassName('load')[0].value);
+					this.editData.configNum = Rw.string_until.transformNum(editEle[i].getElementsByClassName('config')[0].value) ;
 					this.$store.state.setConfigData = this.editData;
 					
 					this.editIndex = '';

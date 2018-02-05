@@ -149,7 +149,8 @@ export default {
     	font-weight: bold;
     	border: 0.2rem solid #50A6D5;
     	border-radius: 0.4rem;
-    	padding: 0.2rem 0.8rem
+    	padding: 0.2rem 0.8rem;
+    	cursor: pointer;
     }
     #pieB2{
         height:100%;
