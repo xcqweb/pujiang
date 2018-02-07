@@ -48,7 +48,7 @@ export default {
                     data:[
                         {
                             value:20.5,
-                            name:'微信',
+                            name:'微博',
                             label:{
                                 normal:{
                                     show:true,
@@ -83,7 +83,7 @@ export default {
                         },
                         {
                             value:16.0,
-                             name:'微博',
+                             name:'微信',
                              label:{
                                 normal:{
                                     show:true,
@@ -111,7 +111,7 @@ export default {
                          },
                         {
                             value:19.8,
-                             name:'公众号',
+                             name:'浏览器',
                              label:{
                                 normal:{
                                     show:true,
@@ -137,46 +137,51 @@ export default {
                                 },
                             }
                          },
-                        {
-                            value:5.5,
-                            name:'其他',
-                            label:{
-                                normal:{
-                                    show:true,
-                                    position:'outside',
-                                    textStyle:{
-                                        color:'#c184ff',
-                                        fontSize:'100%'
-                                    }
-                                }
-                            },
-                            labelLine:{
-                                normal:{
-                                    show:true,
-                                    lineStyle:{
-                                        color:'#c184ff'
-
-                                    },
-                                }
-                            },
-                            itemStyle:{
-                                normal:{
-                                    color:'#c184ff'
-                                },
-                                emphasis: {
-                                    color: '#c184ff',
-                                    shadowBlur: 10,
-                                    shadowOffsetX: 0,
-                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
-                                }
-                            }
-
-                        },
+//                      {
+//                          value:5.5,
+//                          name:'其他',
+//                          label:{
+//                              normal:{
+//                                  show:true,
+//                                  position:'outside',
+//                                  textStyle:{
+//                                      color:'#c184ff',
+//                                      fontSize:'100%'
+//                                  }
+//                              }
+//                          },
+//                          labelLine:{
+//                              normal:{
+//                                  show:true,
+//                                  lineStyle:{
+//                                      color:'#c184ff'
+//
+//                                  },
+//                              }
+//                          },
+//                          itemStyle:{
+//                              normal:{
+//                                  color:'#c184ff'
+//                              },
+//                              emphasis: {
+//                                  color: '#c184ff',
+//                                  shadowBlur: 10,
+//                                  shadowOffsetX: 0,
+//                                  shadowColor: 'rgba(0, 0, 0, 0.5)'
+//                              }
+//                          }
+//
+//                      },
                     ]
                 },
               ]
           },
         }
+    },
+    watch:{
+    	code:function(){
+    		this.getData();
+    	}
     },
     methods:{
     	
@@ -188,16 +193,16 @@ export default {
         },
         //请求数据
 	  	getData(){
+	  		api.params.code = this.code;
 	  		api.marketing(api.params).then( (re) =>{
 	    		let reData = re.data.data;
 	    		if(re.status){
 	    			this.isloading = false;
 	    		}
-				reData.forEach( (item,index) => {
-					this.option.series[0].data[index].value = item.value;
-					this.option.series[0].data[index].name = item.name;
-				});
-				 this.redom('percentA');
+					this.option.series[0].data[0].value = reData.weiBo;
+					this.option.series[0].data[1].value = reData.weixin;
+					this.option.series[0].data[2].value = reData.travelSite;
+				 	this.redom('percentA');
 		    }).catch( (e) => {
 		    	console.log(e);
 		    })

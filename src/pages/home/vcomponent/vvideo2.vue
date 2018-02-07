@@ -10,31 +10,41 @@
             <source src="../../../assets/video/kaiyuan.mp4" type="audio/mp4"/>
         </video>-->
         <section>
-        	<!--<span class="time1">2018-01-25 10:26:45</span>-->
-        	<img src="../../../assets/images/videoImg/video1.jpg"/>
-        	<!--<iframe src="http://192.168.1.75:10800/play2.html?channel=3" width="" height=""></iframe>-->
-        </video>-->
-        	<Loading class='video' v-show='true'></Loading>
+        	<iframe ref='v' src="http://192.168.1.75:10800/play.html?channel=2" width="100%" height="100%" frameborder="0" seamless="seamless" scrolling="no" allow-scripts='allow-same-origin allow-scripts'></iframe>
+        	<Loading class='video' v-show='false'></Loading>
         	<span>景区摄像头1</span>
         </section>
         <section>
-        	<!--<span class="time2">2018-01-25 10:26:45</span>-->
-        	<img src="../../../assets/images/videoImg/video2.jpg"/>
-        	<Loading class='video' v-show='true'></Loading>
+        	<iframe ref='v' src="http://192.168.1.75:10800/play.html?channel=1" width="100%" height="100%" frameborder="0" seamless="seamless" scrolling="no" allow-scripts='allow-same-origin allow-scripts'></iframe>
+        	<Loading class='video' v-show='false'></Loading>
         	<span>景区摄像头2</span>
         </section>
         <section>
-        	<!--<span class="time2">2018-01-25 10:26:45</span>-->
-        	<img src="../../../assets/images/videoImg/video2.jpg"/>
-        	<Loading class='video' v-show='true'></Loading>
+        	<iframe ref='v' src="http://192.168.1.75:10800/play.html?channel=2" width="100%" height="100%" frameborder="0" seamless="seamless" scrolling="no" allow-scripts='allow-same-origin allow-scripts'></iframe>
+        	<Loading class='video' v-show='false'></Loading>
         	<span>景区摄像头3</span>
         </section>
         <section>
-        	<!--<span class="time2">2018-01-25 10:26:45</span>-->
-        	<img src="../../../assets/images/videoImg/video2.jpg"/>
-        	<Loading class='video' v-show='true'></Loading>
+        	<iframe ref='v' src="http://192.168.1.75:10800/play.html?channel=1" width="100%" height="100%" frameborder="0" seamless="seamless" scrolling="no" allow-scripts='allow-same-origin allow-scripts'></iframe>
+        	<Loading class='video' v-show='false'></Loading>
         	<span>景区摄像头4</span>
         </section>
+       
+        <!--<section>
+        	<iframe src="http://192.168.1.75:10800/play.html?channel=1" width="100%" height="100%" frameborder="0"></iframe>
+        	<Loading class='video' v-show='false'></Loading>
+        	<span>景区摄像头2</span>
+        </section>
+        <section>
+        	<iframe src="http://192.168.1.75:10800/play.html?channel=1" width="100%" height="100%" frameborder="0"></iframe>
+        	<Loading class='video' v-show='false'></Loading>
+        	<span>景区摄像头3</span>
+        </section>
+        <section>
+        	<iframe src="http://192.168.1.75:10800/play.html?channel=1" width="100%" height="100%" frameborder="0"></iframe>
+        	<Loading class='video' v-show='false'></Loading>
+        	<span>景区摄像头4</span>
+        </section>-->
     </div>
 </template>
 
@@ -53,6 +63,12 @@ export default {
     },
     components:{
     	Loading
+    },
+    mounted(){
+    	this.$nextTick( () => {
+    		console.dir(document.getElementsByTagName('iframe')[0])
+    	})
+    	
     }
 }
 </script>
@@ -75,8 +91,8 @@ export default {
     
     
      section{
-        width:45%;
-        height:30%;
+        width:42%;
+        height:33%;
         margin-top:12px;
         margin-left: 8px;
         position: absolute;
@@ -88,7 +104,7 @@ export default {
         	color:#fff;
         	font-size: 1rem;
         	position: absolute;
-        	bottom: -35%;
+        	bottom: -20%;
         	left: 38%;
         }
         .time2{
@@ -110,17 +126,25 @@ export default {
     section:nth-of-type(1){
       top:3rem;
       left:1rem;
+      iframe{
+      	overflow: hidden;
+      	.video-inner{
+      		position: absolute;
+      		
+      	}
+      }
+      
     }
     section:nth-of-type(2){
       top:3rem;
       right:1rem;
     }
     section:nth-of-type(3){
-      bottom:5.5rem;
+      bottom:4rem;
       left:1rem;
     }
     section:nth-of-type(4){
-      bottom:5.5rem;
+      bottom:4rem;
       right:1rem;
     }
     

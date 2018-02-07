@@ -1,12 +1,20 @@
  <template>
     <div class="map_content">
+    	<div class="topTitle">
+            <span>{{nowYear}}年累计接待游客(人)</span>
+            <font>{{yearNumb}}</font>
+        </div>
+        <div class='topTitle'>
+            <span>{{mowMonth}}月份持续接待游客(人)</span>
+            <font>{{mouthNumb}}</font>
+        </div>
         <div id="fromEchart"></div>
 
         <div class="week">
              <span class="oneweek " v-bind:class="{ chose: isActive }" @click='redomaaData'>省内</span> 
              <span class="twoweek" v-bind:class="{ chose: !isActive }" @click='redomData'>国内</span> 
         </div>
-        <Loading v-show="isloading"></Loading>
+        
     </div>
 </template>
 
@@ -23,12 +31,23 @@ import echarts_resize from '../../../common/js/echarts_resize.js'
 import 'echarts/map/js/china.js';
 import zhejiangJson from 'echarts/map/json/province/zhejiang.json'
 import optionProps from '@/common/js/mixin/optionProps.js'
+
+let date = new Date()
+let nowYear = date.getFullYear()
+let mowMonth = date.getMonth()+1
+
 export default {
     name: 'a6',
     props:['placeName'],
-    mixins: [optionProps],
+    mixins: ['optionProps'],
     data () {
     return {
+    	range:2,
+        yearNumb:1727227,
+        mouthNumb:1727227,
+        nowYear:nowYear,
+        mowMonth:mowMonth,
+        topCity:[],
         chart:null,
         isActive:false,
         color:['#f18790', '#75c774', '#5aa7fd','#f1c54b','#c184ff','6792fb'],
@@ -76,33 +95,7 @@ export default {
             '温州': [120.698668,28.015083],
             '舟山':[122.216445,29.992188],
         },
-        zhejiang:{
-            
-        BJData:[
-            [{name: '浦江县'}, {name: '江山', value: 95}],
-
-        ],
-        GUANG:[
-            [{name: '浦江县'}, {name: '湖州', value: 40}],
-
-        ],
-        SHData:[
-            [{name: '浦江县'}, {name: '嘉兴', value: 10}],
-
-        ],
-        SHENZHEN:[
-            [{name: '浦江县'}, {name: '宁波', value: 10}],
-        ],
-        XIAN:[
-            [{name: '浦江县'}, {name: '台州', value: 98}],
-        ],
-        FENGD:[
-            [{name: '浦江县'}, {name: '舟山', value: 20}]
-        ],
-        WENZ:[
-            [{name: '浦江县'}, {name: '温州', value: 20}]
-        ],
-        },
+        zhejiang:[],
         optionChina : {
             backgroundColor: 'rgba(0,0,0,0)',
             tooltip: {
@@ -134,6 +127,18 @@ export default {
             series: []
         },
         geoCoordMap:{
+        	'浦江县': [120.105537,29.508488],
+            '清远': [113.064193,23.68823],
+            '江山': [118.639502,28.757867],
+            '湖州': [120.091557,30.904757],
+            '嘉兴': [120.763058,30.761869],
+            '宁波': [121.554142,29.89605],
+            '绍兴': [120.583685,30.048225],
+            '金华': [119.650022,29.095307],
+            '丽水':[119.930581,28.483471],
+            '台州': [121.425361,28.670242],
+            '温州': [120.698668,28.015083],
+            '舟山':[122.216445,29.992188],
             '上海': [121.4648, 31.2891],
             '浦江县': [120.105537,29.508488],
             '中山': [113.4229, 22.478],
@@ -208,6 +213,7 @@ export default {
         FENGD:[
 //          [{name: this.placeName}, {name: '重庆', value: 20}]
         ],
+        country:[],
         planePath:'path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z',
 
     }
@@ -216,33 +222,77 @@ export default {
     },
     methods: {
     //请求数据
+//	getData(){
+//		api.touristOrigin(api.params).then( (re) =>{
+//			
+//  		let reData = re.data.data;
+//  		//console.log(reData)
+//			this.BJData = reData.cityData.BJData;
+//			this.GUANG = reData.cityData.GUANG;
+//			this.SHData = reData.cityData.SHData;
+//			this.SHENZHEN = reData.cityData.SHENZHEN;
+//			this.XIAN = reData.cityData.XIAN;
+//			this.FENGD = reData.cityData.FENGD;	
+//			
+//			this.zhejiang.BJData = reData.localData.BJData;
+//			this.zhejiang.GUANG = reData.localData.GUANG;
+//			this.zhejiang.SHData = reData.localData.SHData;
+//			this.zhejiang.SHENZHEN = reData.localData.SHENZHEN;
+//			this.zhejiang.XIAN = reData.localData.XIAN;
+//			this.zhejiang.FENGD = reData.localData.FENGD;
+//			
+//				if(re.status===200){
+//					this.isloading = false;
+//				}
+//				this.redom();
+//				this.redomData();
+//	    }).catch( (e) => {
+//	    	console.log(e);
+//	    })
+//	},
+  	
   	getData(){
-  		api.touristOrigin(api.params).then( (re) =>{
-  			
-    		let reData = re.data.data;
-    		//console.log(reData)
-			this.BJData = reData.cityData.BJData;
-			this.GUANG = reData.cityData.GUANG;
-			this.SHData = reData.cityData.SHData;
-			this.SHENZHEN = reData.cityData.SHENZHEN;
-			this.XIAN = reData.cityData.XIAN;
-			this.FENGD = reData.cityData.FENGD;	
-			
-			this.zhejiang.BJData = reData.localData.BJData;
-			this.zhejiang.GUANG = reData.localData.GUANG;
-			this.zhejiang.SHData = reData.localData.SHData;
-			this.zhejiang.SHENZHEN = reData.localData.SHENZHEN;
-			this.zhejiang.XIAN = reData.localData.XIAN;
-			this.zhejiang.FENGD = reData.localData.FENGD;
-			
-				if(re.status===200){
-					this.isloading = false;
+			api.params.code = this.code;
+			api.params.range = this.range;
+	  		api.touristSum(api.params).then( (re) =>{
+	    		let reData = re.data.data;
+	    		this.yearNumb = reData.yearSum;
+	    		this.mouthNumb = reData.monthSum;
+	    		let topCity = reData.topCity;
+	    		
+	    		 //[{name:'北京'}, {name:'上海',value:95}],
+	    		//console.log(topCity)
+		  		
+				for(let i=0; i<topCity.length; ++i){
+					let name = topCity[i]._id;
+					let sum = topCity[i].sum;
+					//if(this.code===1){
+						//this.country[i] = [{"name": '浦江县'}, {"name": name}, {"value": sum}];
+					//}else{
+						this.zhejiang[i] = [{"name": '浦江县'}, {"name": name,"value": sum}];
+						console.log()
+						this.zhejiang.unshif('浦江县');
+						this.country[i] = [{"name": '浦江县'}, {"name": name,"value": sum}];
+					//}
+					
+		
 				}
+				//console.log(this.zhejiang)
+				this.redomaaData();
 				this.redom();
+				this.redomaa();
+	    		
+	    		
+	    		
+	    		if(re.status===200){
+	    			this.isloading=false;
+	    		}
+	    		this.redom();
 				this.redomData();
-	    }).catch( (e) => {
-	    	console.log(e);
-	    })
+		    }).catch( (e) => {
+		    	console.log(e);
+		    })
+		
   	},
     redom7(){
         this.isActive=true;
@@ -251,20 +301,22 @@ export default {
         this.isActive=false;
     },
     convertData(data){
-        var res = [];
-            for (var i = 0; i < data.length; i++) {
-                var dataItem = data[i];
-                var fromCoord = this.geoCoordMap[dataItem[1].name];
-                var toCoord = this.geoCoordMap[dataItem[0].name];
-                if (fromCoord && toCoord) {
-                    res.push({
-                        fromName: dataItem[1].name,
-                        toName: dataItem[0].name,
-                        coords: [fromCoord, toCoord]
-                    });
-                }
-            }
-            return res;
+         var res = [];
+         //console.log(data)
+	    for (var i = 0; i < data.length; i++) {
+	        var dataItem = data[i];
+	        //console.log(data[1])
+	        var fromCoord = this.geoCoordMap[dataItem[0].name];
+	        var toCoord = this.geoCoordMap[dataItem[1].name];
+	        if (fromCoord && toCoord) {
+	            res.push({
+	                fromName: dataItem[0].name,
+	                toName: dataItem[1].name,
+	                coords: [fromCoord, toCoord]
+	            });
+	        }
+	    }
+	    return res;
     },
     redom(){
             if(this.chart){
@@ -303,6 +355,8 @@ export default {
         },
     //国内游客来源
     redomData(){
+    	
+    	this.range = 1;
     	this.isActive=true;
         let _self=this;
         const target = this.placeName;
@@ -313,7 +367,9 @@ export default {
         this.chart = echarts.init(dom);
         var color =['#f18790', '#75c774', '#5aa7fd','#f1c54b','#c184ff','6792fb'];
         var series = [];
-        [[target, _self.BJData] , [target, _self.GUANG],[target, _self.SHData],[target, _self.SHENZHEN],[target, _self.XIAN],[target, _self.FENGD]].forEach(function (item, i) {
+        //[[target, _self.BJData] , [target, _self.GUANG],[target, _self.SHData],[target, _self.SHENZHEN],[target, _self.XIAN],[target, _self.FENGD]]
+        ['浦江',_self.country].forEach(function (item, i) {
+        	console.log(item)
             series.push(
                 {
                     name: item[0],
@@ -396,11 +452,11 @@ export default {
                     progressiveThreshold: 500,
                     progressive: 200,
                     data: item[1].map(function (dataItem) {
-                        return {
-                            name: dataItem[1].name,
-                            value: _self.geoCoordMap[dataItem[1].name].concat([dataItem[1].value])
-                        };
-                    })
+			            return {
+			                name: dataItem[1].name,
+			                value: geoCoordMap[dataItem[1].name].concat([dataItem[1].value])
+			            };
+			        })
                 });
         });
         this.optionChina.series = series;
@@ -410,7 +466,9 @@ export default {
     },
     //省内游客来源
     redomaaData(){
+    	this.range = 2;
     	this.isActive=false;
+    	 const target = this.placeName;
         if(this.chart){
             this.chart.dispose();
         }
@@ -422,7 +480,9 @@ export default {
         var color =['#5aa7fd', '#5aa7fd', '#5aa7fd','#5aa7fd','#5aa7fd','5aa7fd','5aa7fd'];
         var series = [];
         var planePath = 'path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z';
-        [['浦江县', _self.zhejiang.BJData], ['浦江县', _self.zhejiang.GUANG],['浦江县', _self.zhejiang.SHData],['浦江县', _self.zhejiang.SHENZHEN],['浦江县', _self.zhejiang.XIAN],['浦江县', _self.zhejiang.FENGD],['浦江县',_self.zhejiang.WENZ]].forEach(function (item, i) {
+        console.log(_self.zhejiang)
+        _self.zhejiang.forEach(function (item, i) {
+          	console.log(item)
             series.push(
                 {
                     name: item[0],
@@ -446,7 +506,7 @@ export default {
                     },
                     progressiveThreshold: 500,
                     progressive: 200,
-                    data: _self.convertData(item[1])
+                      data: _self.convertData(item[1])
                 },
                 {
                     name: item[0],
@@ -474,7 +534,7 @@ export default {
                             curveness: 0.2
                         }
                     },
-                    data: _self.convertData(item[1])
+                      data: _self.convertData(item[1])
                 },
                 {
                     name: item[0],
@@ -505,9 +565,10 @@ export default {
                     progressiveThreshold: 500,
                     progressive: 200,
                     data: item[1].map(function (dataItem) {
+                    	console.log(_self.geoCoordMap[dataItem[1].name])
                         return {
-                            name: dataItem[1].name,
-                            value: _self.geoCoordLocal[dataItem[1].name].concat([dataItem[1].value])
+                              name: dataItem.name,
+                              value: _self.geoCoordLocal[dataItem[1].name].concat([dataItem[1].value])
                         };
                     })
                 });
@@ -520,17 +581,19 @@ export default {
     }
     },
     created(){
-    	this.getData();
+    	
+    	
     },
     mounted(){
         this.$nextTick(echarts_resize('fromEchart',this))
         setTimeout(()=>{
-            this.redomData()
+            this.getData();
+            //console.log(this.topCity)
         },500)
     },
     
     components:{
-    	Loading
+    	
     }
 }
 </script>
@@ -540,17 +603,52 @@ export default {
   width: 100%;
   height: 100%;
   position: relative;
+  top: 5%;
+  .topTitle{
+            position: absolute;
+            span{
+                //display: block;
+                color: #43dbff;
+                font-size: .8rem;
+            }
+            font{
+                margin-top: 10px;
+                display: block;
+                color: #ffe200;
+                font-size: 1.2rem;
+                font-family: numberFont;
+            }
+        }
+        
+        .topTitle:nth-child(2){
+        	right: 30%;
+        	span{
+                color: #43dbff;
+                font-size: .8rem;
+                
+            }
+        }
+        
+        .topTitle:nth-child(1){
+        	left: 30%;
+        	span{
+                color: #43dbff;
+                font-size: .8rem;
+                
+            }
+        }
 }
 #fromEchart{
     width:100%;
     height:100%;
+    transform: scale(0.8);
 }
 .week{
     height: 1.5rem !important;
     width: 7rem !important;
     position: absolute;
-    bottom: 5%;
-    right: 35%;
+    bottom: 10%;
+    right: 40%;
     font-size:.8rem;
     &:after {
         content: ".";

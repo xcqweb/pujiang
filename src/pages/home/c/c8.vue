@@ -14,10 +14,10 @@
         </li>
         <li v-for='(item,index) in items'>
             <div class="cell1">
-                {{index+1}}、{{item.place}}
+                {{item.sort}}、{{item._id}}
             </div>
             <div class="cell2">
-                {{item.numb}}<font>人</font>
+                {{item.num}}<font>人</font>
             </div>
             <div class="cell3">
                 <span class='footerCotext'>{{item.percent}}%</span>
@@ -46,9 +46,15 @@ export default {
     created(){
     	this.getData();
     },
+    watch:{
+    	code:function(){
+    		this.getData();
+    	}
+    },
     methods:{
     	//请求数据
 	  	getData(){
+	  		api.params.code = this.code;
 	  		api.touristOriginRanking(api.params).then( (re) =>{
 	  				let reData = re.data.data;
 	  				this.items = reData;
@@ -100,14 +106,14 @@ ul{
 }
 .cell1{
     float:left;
-   	flex: 5;
-   	margin-left: 2%;
+   	flex: 3;
+   	margin-left: 6%;
     text-align: left;
     box-sizing: border-box;
 }
 .cell2{
     float:left;
-    flex: 4;
+    flex: 3;
     /*font-family:numberFont;*/
 }
 .cell3{

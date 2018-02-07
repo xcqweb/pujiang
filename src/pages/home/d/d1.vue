@@ -102,7 +102,8 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 	"../../../assets/video/yjms.mp4",
                 	"../../../assets/video/bld.mp4",
                 	"../../../assets/video/hsms.mp4"
-                ]
+                ],
+                points:[]
             }
         },
         props:[
@@ -314,21 +315,8 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 ctrl.setAnchor(BMAP_ANCHOR_BOTTOM_RIGHT);  
             },
             addHot(map){
-                      var points =[];
-                    let makeMap = function(){
-                        let minX = 119.919801;
-                        let minY = 29.512922;
-                        let lenX = 119.913692 - 119.932808;
-                        let lenY = 29.518155 - 29.510533;
-                        for (var i = 0; i < 180; i++) {
-                            let lng = Math.abs(Math.random()-0.7)*Math.abs(lenX)+minX
-                            let lat = Math.abs(Math.random()-0.7)*Math.abs(lenY)+minY
-                            let count = Math.random()*150
-                            let point = {"lng":lng,"lat":lat,"count":count}
-                            points.push(point);
-                        }
-                    }
-                    makeMap();
+                     var points =[];
+					 
                     map.enableScrollWheelZoom(); // 允许滚轮缩放
                    
                     if(!isSupportCanvas()){
@@ -350,7 +338,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                      */
                       let heatmapOverlay = new BMapLib.HeatmapOverlay({"radius":20});
                       map.addOverlay(heatmapOverlay);
-                      
+                         points = this.points;
                       //设置热力图数据
                       heatmapOverlay.setDataSet({data:points,max:100});
                       
@@ -386,6 +374,10 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 		  	getData(){
 		  		api.scenicHot(api.params).then( (re) =>{
 	  				let reData = re.data.data;
+	  				for(let i=0; i<reData.length; ++i){
+	  					this.points[i] = {"count":reData[i].count,"lat":reData[i].latitude,"lng":reData[i].longitude};
+	  				}
+	  				this.addScript();
 	  				//console.log(reData);
 					if(re.status===200){
 						this.isloading = false;
@@ -406,6 +398,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 this.$el.removeChild(oS);
             },
             rodomMap(){
+            	
             	const _self= this;
             //绘制牵引线
             _self.addLineVideo();
@@ -414,7 +407,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 _self.videoToast=false;
             },false)
             // 初始化地图,设置中心点坐标和地图级别
-            map.centerAndZoom(new BMap.Point(119.923671,29.514494), 16);
+              map.centerAndZoom(new BMap.Point(119.923671,29.506494),12);
             // 添加地图类型控件
             // map.addControl(new BMap.MapTypeControl());  
             // 设置地图显示的城市 此项是必须设置的
@@ -426,13 +419,14 @@ import optionProps from '@/common/js/mixin/optionProps.js'
             /************************************************
             添加折线
             *************************************************/
+
             var pointGZ = new BMap.Point(119.923671,29.514494);
             var pointHK = new BMap.Point(110.35,20.02);
             // setTimeout(function(){
             //     var polyline = new BMap.Polyline([pointGZ,pointHK],{strokeColor:"blue",strokeWeight:5,strokeOpacity:0.5});
             //     map.addOverlay(polyline);
             // },6000);
-            _self.addHot(map);
+            
             // _self.addControl(map);
             _self.addLocaPosition(map);
             /************************************************
@@ -454,7 +448,10 @@ import optionProps from '@/common/js/mixin/optionProps.js'
             /************************************************
             给地图添加右键菜单
             *************************************************/
-            _self.addMenu(map);
+           
+          	 
+          	 _self.addMenu(map);
+          	 _self.addHot(map);
            // _self.addLoad(map);
             //})
             }
@@ -463,8 +460,12 @@ import optionProps from '@/common/js/mixin/optionProps.js'
           	this.getData();
         },
         mounted() {
-        	//this.$nextTick( () => {
-        	this.addScript()
+          	this.$nextTick( () => {
+            	//console.log(this.points)
+          		
+        	})
+        	
+        	
             // 百度地图API功能
             // 创建Map实例
         },

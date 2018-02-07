@@ -81,9 +81,19 @@ export default {
     data(){
         return{
             isActive:true,
-            responseData7:{
-            	series:[],
-            },
+           series:[{
+	        	"nub": 24,
+		        "date": "自驾游"
+		      },
+		      {
+		        "nub": 36,
+		        "date": "公共交通"
+		      },
+		      {
+		        "nub": 40,
+		        "date": "团队游"
+		      },
+	   	 ],
         }
       },
       computed: {
@@ -92,15 +102,28 @@ export default {
       created(){
       	this.getData();
       },
+       watch:{
+    	code:function(){
+    		this.getData();
+    	}
+    },
     methods:{
     	
     	//请求数据
 	  	getData(){
+	  		api.params.code = this.code;
 	  		api.tripMode(api.params).then( (re) =>{
 	  			//console.log(re)
-	    		let reData7= re.data.data;
-	    		//console.log(reData7.series)
-	    		this.responseData7.series = reData7.series;
+	    		let reData= re.data.data;
+	    		//console.log(reData)
+	    			let arrData = [];
+	  				for(let i in reData){
+	  					arrData.push(reData[i])
+	  				}
+	  				for(let i=0; i<this.series.length; ++i){
+	  					this.series[i].nub = arrData[i]
+	  				}
+	    		
 					if(re.status===200){
 						this.isloading = false;
 					}
@@ -114,9 +137,9 @@ export default {
         		this.isActive = true;
 	        	let dataY=[];
 	     		 let dataX=[];
-		      for (var i = 0; i < this.responseData7.series.length; i++) {
-		          dataY.push(this.responseData7.series[i].nub);
-		          dataX.push(this.responseData7.series[i].date)
+		      for (var i = 0; i < this.series.length; i++) {
+		          dataY.push(this.series[i].nub);
+		          dataX.push(this.series[i].date)
 		      }
 		      //console.log(this.responseData7.series)
             this.chart = echarts.init(document.getElementById(id));
