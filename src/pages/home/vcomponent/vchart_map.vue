@@ -131,8 +131,16 @@ export default {
                         }
                     }
             },
-            series: []
+            series: [],
         },
+        allData:[
+	            ["浦江县", [[{name: "浦江县"}, {name: '北京', value: 95}]]],
+	            ["浦江县", [[{name: "浦江县"}, {name: '长春', value: 40}]]],
+	            ["浦江县", [[{name: "浦江县"}, {name: '深圳', value: 10}]]],
+	            ["浦江县", [[{name: "浦江县"}, {name: '成都', value: 10}]]],
+	            ["浦江县", [[{name: "浦江县"}, {name: '上海', value: 95}]]],
+	            ["浦江县", [[{name: "浦江县"}, {name: '重庆', value: 20}]]]
+	        ],
         geoCoordMap:{
             '上海': [121.4648, 31.2891],
             '浦江县': [120.105537,29.508488],
@@ -188,25 +196,25 @@ export default {
             '韶关': [113.7964, 24.7028]
         },
         BJData:[
-//          [{name: this.placeName}, {name: '北京', value: 95}],
+            [{name: this.placeName}, {name: '北京', value: 95}],
 //          [{name: this.placeName}, {name: this.placeName, value: 95}],
         ],
         GUANG:[
-//          [{name: this.placeName}, {name: '长春', value: 40}],
+            [{name: this.placeName}, {name: '长春', value: 40}],
 
         ],
         SHData:[
-//          [{name: this.placeName}, {name: '深圳', value: 10}],
+            [{name: this.placeName}, {name: '深圳', value: 10}],
 
         ],
         SHENZHEN:[
-//          [{name: this.placeName}, {name: '成都', value: 10}],
+            [{name: this.placeName}, {name: '成都', value: 10}],
         ],
         XIAN:[
-//          [{name: this.placeName}, {name: '上海', value: 95}],
+            [{name: this.placeName}, {name: '上海', value: 95}],
         ],
         FENGD:[
-//          [{name: this.placeName}, {name: '重庆', value: 20}]
+            [{name: this.placeName}, {name: '重庆', value: 20}]
         ],
         planePath:'path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z',
 
@@ -217,28 +225,46 @@ export default {
     methods: {
     //请求数据
   	getData(){
+  		console.log(this.allData)
+  		let d = [
+  			{name:'深圳',value:322},
+  			{name:'北京',value:132},
+  			{name:'武汉',value:231},
+  			{name:'南京',value:122},
+  			{name:'成都',value:192},
+  			{name:'上海',value:82},
+  		];
+  		for(let i=0; i<d.length; ++i){
+  			this.allData[i]=["浦江县", [[{name: "浦江县"}, {name: d[i].name, value: d[i].value}]]]
+  		}
+  		
+  		console.log(this.allData)
+  		
+  		
+  		this.isloading = false;
   		api.touristOrigin(api.params).then( (re) =>{
   			
     		let reData = re.data.data;
     		//console.log(reData)
-			this.BJData = reData.cityData.BJData;
-			this.GUANG = reData.cityData.GUANG;
-			this.SHData = reData.cityData.SHData;
-			this.SHENZHEN = reData.cityData.SHENZHEN;
-			this.XIAN = reData.cityData.XIAN;
-			this.FENGD = reData.cityData.FENGD;	
-			
-			this.zhejiang.BJData = reData.localData.BJData;
-			this.zhejiang.GUANG = reData.localData.GUANG;
-			this.zhejiang.SHData = reData.localData.SHData;
-			this.zhejiang.SHENZHEN = reData.localData.SHENZHEN;
-			this.zhejiang.XIAN = reData.localData.XIAN;
-			this.zhejiang.FENGD = reData.localData.FENGD;
-			
+//			this.BJData = reData.cityData.BJData;
+//			this.GUANG = reData.cityData.GUANG;
+//			this.SHData = reData.cityData.SHData;
+//			this.SHENZHEN = reData.cityData.SHENZHEN;
+//			this.XIAN = reData.cityData.XIAN;
+//			this.FENGD = reData.cityData.FENGD;	
+//			
+//			this.zhejiang.BJData = reData.localData.BJData;
+//			this.zhejiang.GUANG = reData.localData.GUANG;
+//			this.zhejiang.SHData = reData.localData.SHData;
+//			this.zhejiang.SHENZHEN = reData.localData.SHENZHEN;
+//			this.zhejiang.XIAN = reData.localData.XIAN;
+//			this.zhejiang.FENGD = reData.localData.FENGD;
+//			
 				if(re.status===200){
 					this.isloading = false;
 				}
 				this.redom();
+				this.redomaa();
 				this.redomData();
 	    }).catch( (e) => {
 	    	console.log(e);
@@ -298,7 +324,7 @@ export default {
                 }
             }
             )
-            this.redomaaData();
+            this.redomData();
         
         },
     //国内游客来源
@@ -313,7 +339,9 @@ export default {
         this.chart = echarts.init(dom);
         var color =['#f18790', '#75c774', '#5aa7fd','#f1c54b','#c184ff','6792fb'];
         var series = [];
-        [[target, _self.BJData] , [target, _self.GUANG],[target, _self.SHData],[target, _self.SHENZHEN],[target, _self.XIAN],[target, _self.FENGD]].forEach(function (item, i) {
+        let red =this.allData;
+        //console.log(red)
+        red.forEach(function (item, i) {
             series.push(
                 {
                     name: item[0],
