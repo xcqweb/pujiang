@@ -13,7 +13,9 @@
     ></router-view>
     <!--使用if 每次重新渲染 并传递筛选景区-->
         <config v-if = "toast"></config>
-        <div class="videoFull" v-show="videoFull"></div>
+        <transition name="fade">	
+        	<div class="videoFull" v-show="videoFull"></div>
+        </transition>
   </div>
 </template>
 <script type="text/javascript">
@@ -172,17 +174,32 @@ export default {
 			z-index: 1222222;
 			top: 0;
 			background-color: rgba(0,0,0,0.9);
-			animation: full 0.6s ease-in-out;
     }
-    
     @keyframes full{
-    	from{
-    		transform: scale(0.01);
-    	}
-    	to{
-    		transform: scale(1);
-    	}
-    }
+		from{
+			transform: scale(0);
+		}
+		to{
+			transform: scale(1);
+		}
+	}
+	
+	@keyframes out{
+		from{
+			transform: scale(1);
+		}
+		to{
+			transform: scale(0);
+		}
+	}
+	
+	.fade-enter-active,  {
+	  animation: full 0.5s ease-in-out;  
+	}
+	.fade-leave-active{
+		animation: out 0.5s ease-in-out; 
+	}
+    
     
     .headmock{
         width: 100%;

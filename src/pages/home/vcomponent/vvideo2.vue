@@ -258,7 +258,7 @@ export default {
     
     @keyframes scaleS{
     	from{
-    		transform: scale(0.1);
+    		transform: scale(0);
     	}
     	to{
     		transform: scale(1);
