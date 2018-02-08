@@ -183,7 +183,7 @@ export default {
                           _self.option.xAxis.data=re.arr.date;
                					 _self.option.series.data=re.arr.data;
                					// _self.option.yAxis.max = Math.max(...re.arr.data);
-               					 _self.chart = echarts.init(document.getElementById('container'));
+               					 //_self.chart = echarts.init(document.getElementById('container'));
               						_self.chart.setOption(_self.option);
               						if(re.code===200){
 					                	_self.isloading = false;
@@ -210,6 +210,7 @@ export default {
             if(this.chart){
             	this.chart.dispose();
             }
+            this.chart = echarts.init(document.getElementById('container'));
             //_self.mins= 60;
             //self.btwsecends = 5;
             let start_end_instance =  new Start_end_class('timeline',_self.mins,Math.round((_self.mins*60) / _self.btwsecends),this.code);
@@ -228,7 +229,7 @@ export default {
                 	
                 }
             })
-          this.$nextTick(echarts_listen_resize('container',this));
+          _self.$nextTick(echarts_listen_resize('container',_self));
         },
     },
     watch:{
@@ -239,10 +240,11 @@ export default {
     	}
     },
     created(){
-    	this.get_respose();
+    	
     },
     mounted() {
         this.$nextTick( () => {
+        	this.get_respose();
         	echarts_listen_resize('container',this)
         });
       },
@@ -256,7 +258,7 @@ export default {
 .A5{
     width:100%;
     height:100%;
-  position: absolute;
+  	position: absolute;
     #container{
         width:100%;
         height:92%;

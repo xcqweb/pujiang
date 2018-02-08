@@ -58,7 +58,7 @@ export default {
 	  		api.params.code = this.code;
 	  		api.scenicRanking(api.params).then( (re) =>{
 	  				let reData = re.data.data;
-	  				console.log(reData)
+	  				//console.log(reData)
 	  				this.items = reData;
 					if(re.status===200){
 						this.isloading = false; 

@@ -372,6 +372,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
             },
             //请求数据
 		  	getData(){
+		  		api.params.code = this.code;
 		  		api.scenicHot(api.params).then( (re) =>{
 	  				let reData = re.data.data;
 	  				for(let i=0; i<reData.length; ++i){
@@ -458,6 +459,11 @@ import optionProps from '@/common/js/mixin/optionProps.js'
         },
         created(){
           	this.getData();
+        },
+        watch:{
+        	code:function(){
+        		this.getData();
+        	}
         },
         mounted() {
           	this.$nextTick( () => {

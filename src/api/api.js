@@ -1,7 +1,7 @@
 //import axios from 'axios';
 import axios from '@/api/instance'
 //import {params} from '@/common/js/gtime.js';
-export var params={};
+export var params={code:0};
 //模拟数据公共地址
 let base1 = 'https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example';
 let base = 'http://114.55.237.138/pj/api'

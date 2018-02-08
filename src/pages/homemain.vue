@@ -13,6 +13,7 @@
     ></router-view>
     <!--使用if 每次重新渲染 并传递筛选景区-->
         <config v-if = "toast"></config>
+        <div class="videoFull" v-show="videoFull"></div>
   </div>
 </template>
 <script type="text/javascript">
@@ -104,6 +105,10 @@ export default {
 	          	let toast = this.$store.state.showToast;
 	          	return toast
 	          },
+	          videoFull(){
+	          	let toast = this.$store.state.videoFull;
+	          	return toast
+	          }
         },
         methods: {
         	
@@ -143,6 +148,7 @@ export default {
   transform: translateY(0px);
 }
 
+
 #mainhome{
     -webkit-transform: translate3d(0, 0, 0);
    -moz-transform: translate3d(0, 0, 0);
@@ -159,6 +165,25 @@ export default {
         background-color: rgba(19,53,150,0.1);
         z-index: 2500;
     }
+    .videoFull{
+    	width: 100%;
+			height: 100%;
+			position: absolute;
+			z-index: 1222222;
+			top: 0;
+			background-color: rgba(0,0,0,0.9);
+			animation: full 0.6s ease-in-out;
+    }
+    
+    @keyframes full{
+    	from{
+    		transform: scale(0.01);
+    	}
+    	to{
+    		transform: scale(1);
+    	}
+    }
+    
     .headmock{
         width: 100%;
         height: 20px;
