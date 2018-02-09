@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../vuex/index.js'
 import Axios from 'axios'
+import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
 const NotFound =resolve => require(['@/pages/404.vue'], resolve);
 const Login =resolve => require(['@/pages/login/login.vue'], resolve);
 const LoginTwo =resolve => require(['@/pages/login/logintwo.vue'], resolve);
@@ -66,7 +67,7 @@ const router= new Router({
 //注册全局钩子用来拦截导航
 router.beforeEach((to, from, next) => {
   //获取store里面的token
-  let token = window.localStorage.getItem('token');
+  let token = getCookie('token');
   
   //判断要去的路由有没有requiresAuth
   if(to.meta.requiresAuth){
@@ -75,7 +76,7 @@ router.beforeEach((to, from, next) => {
     }else{
       next({
         path: '/login',
-        // query: {redirect: to.fullPath}   将跳转的路由path作为参数，登录成功后跳转到该路由
+         query: {redirect: to.fullPath}  // 将跳转的路由path作为参数，登录成功后跳转到该路由
       });
     }
   }else{

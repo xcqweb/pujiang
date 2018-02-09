@@ -3,7 +3,7 @@
 let date = new Date();
 date.setDate(date.getDate()+30)
 
- export function setCookie(name,value,expires=date,path,domain="120.55.190.57",secure){
+ export function setCookie(name,value,expires=date,path,domain,secure){
 var cookieName = encodeURIComponent(name)+"="+encodeURIComponent(value);
 //失效时间 
 if(expires instanceof Date){
