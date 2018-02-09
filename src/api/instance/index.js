@@ -5,21 +5,21 @@ import To_md5 from '@/common/js/md5.js'
 import {API_HZ} from '@/api/env.js'
 //设置全局axios默认值
 axios.defaults.timeout = 100000; //5000的超时验证
-axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 //创建一个axios实例
 //console.log('axios创建实例')
 const instance = axios.create();
 let token =window.localStorage.getItem('token');
-instance.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
+instance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 axios.interceptors.request.use = instance.interceptors.request.use;
 
 //request拦截器
 instance.interceptors.request.use(
     config => {
         if (token) {  // 判断是否存在token，如果存在的话，则每个http header都加上token
-            config.headers.token = token;
+            ///config.headers.token = token;
         }
-             console.log(config)
+             //console.log(config)
         return config;
     },
     err => {
@@ -30,7 +30,7 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
 	
     response => {
-    	//console.log(response)
+      	console.log(response)
         if (response.data.code == 200) {
             return response;
           }

@@ -1,7 +1,7 @@
 var differ=25
 var hm= '';
 var date=new Date();
-var timeStamp = date.getTime().toString();
+var timeStamp = date.getTime()+'';
 var oldDate = new Date(date.getTime()-149*1000) 
 
 var year=date.getFullYear(); //获取当前年份
