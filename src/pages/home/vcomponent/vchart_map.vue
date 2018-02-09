@@ -128,16 +128,8 @@ export default {
                         }
                     }
             },
-            series: [],
+            series: []
         },
-        allData:[
-	            ["浦江县", [[{name: "浦江县"}, {name: '北京', value: 95}]]],
-	            ["浦江县", [[{name: "浦江县"}, {name: '长春', value: 40}]]],
-	            ["浦江县", [[{name: "浦江县"}, {name: '深圳', value: 10}]]],
-	            ["浦江县", [[{name: "浦江县"}, {name: '成都', value: 10}]]],
-	            ["浦江县", [[{name: "浦江县"}, {name: '上海', value: 95}]]],
-	            ["浦江县", [[{name: "浦江县"}, {name: '重庆', value: 20}]]]
-	        ],
         geoCoordMap:{
             '上海市': [121.4648, 31.2891],
             '浦江县': [120.105537,29.508488],
@@ -248,24 +240,6 @@ export default {
 						this.zhejiang[i]=["浦江县", [[{name: "浦江县"}, {name: topCity[i]._id, value: topCity[i].sum/200}]]]
 					}
 				}
-<<<<<<< .mine
-				this.redom();
-				this.redomaa();
-				this.redomData();
-	    }).catch( (e) => {
-	    	console.log(e);
-	    })
-
-
-
-
-
-
-
-
-
-
-=======
 				
 	    		if(re.status===200){
 	    			this.isloading=false;
@@ -282,7 +256,6 @@ export default {
 		    	console.log(e);
 		    })
 		
->>>>>>> .theirs
   	},
     redom7(){
         this.isActive=true;
@@ -338,7 +311,7 @@ export default {
                 }
             }
             )
-            this.redomData();
+            this.redomaaData();
         
         },
     //国内游客来源
@@ -354,15 +327,8 @@ export default {
         this.chart = echarts.init(dom);
         var color =['#f18790', '#75c774', '#5aa7fd','#f1c54b','#c184ff','6792fb'];
         var series = [];
-<<<<<<< .mine
-        let red =this.allData;
-        //console.log(red)
-        red.forEach(function (item, i) {
-=======
          
         this.allData.forEach(function (item, i) {
-
->>>>>>> .theirs
             series.push(
                 {
                     name: item[0],

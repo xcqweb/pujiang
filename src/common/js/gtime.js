@@ -45,4 +45,3 @@ export var  todaybegin=dt_year+dt_mon+dt_da+'000000';
 //export var params = {begintime:begindaytime,endtime:enddaytime};
 let token =window.localStorage.getItem('token');
 export var params = {timeStamp:timeStamp,token:token};
-alert(typeof timeStamp)
