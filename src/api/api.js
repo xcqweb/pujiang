@@ -1,7 +1,23 @@
-import axios from 'axios';
-//import axios from '@/api/instance'
-import {params} from '@/common/js/gtime.js';
-export {params};
+//import axios from 'axios';
+import axios from '@/api/instance'
+
+export {params} from '@/common/js/gtime.js';
+
+
+//import {Ajax} from '@/api/ajax.js'
+//
+//let ajax = new Ajax();
+//console.log(ajax)
+//ajax({
+//	dataType:'json',
+//	data:{username:'admin',password:'123456'},
+//	url:'http://114.55.237.138/pj/api/user/login',
+//	ok:function(data){
+//		console.log(data)
+//	}
+//})
+
+
 
 
 //转换post 请求参数
@@ -11,9 +27,15 @@ function tansParm(data){
     params.append('token', data.token);
     params.append('code', data.code);
     params.append('timeStamp',data.timeStamp);
-    //if(data.range){
-    	params.append('range',data.range);
-   // }
+    params.append('range',data.range);
+    
+    
+//  var params = new Object();
+//  params.token=data.token;
+//  params.code=data.code;
+//  params.timeStamp=data.timeStamp;
+//  params.range=data.range;
+    
     return params;
 }
 //console.log(tansParm(params))
