@@ -161,7 +161,7 @@ export default {
     }
     .headmock{
         width: 100%;
-        height: 20px;
+        height: 2%;
         visibility:unset;
         z-index:777;
     }

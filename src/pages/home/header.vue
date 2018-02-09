@@ -121,7 +121,7 @@ a:visited { text-decoration: none;}
     height:100%;
     position:relative;
     box-shadow: 0 2px 25px black;
-    padding-bottom: 5px;
+    padding-bottom: 1%;
     background-color: #133596;
     p{  
         position: absolute;
