@@ -8,21 +8,21 @@ export default {
     //可在组件处调用api请求，
     //登录
     userLogin:function(params){
-          return instance.post(`http://210.75.20.143:5068/api/login`, params);
+          return instance.post(`http://114.55.237.138/pj/api/user/login`, params);
 //      return instance.post(`https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/login`, params);
     },
     //历史客流
     passenger:function(paramsObj){
-        return instance.get(`http://114.55.237.138/pj/api/zl/geHistoryDayData`, {params:paramsObj});
+        return instance.post(`http://114.55.237.138/pj/api/zl/geHistoryDayData`,paramsObj);
     },
     //实时客流量
     timeline:function(paramsObj){
         //return instance.get(`https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/timeline`, {params:paramsObj});
-        return instance.get(`http://114.55.237.138/pj/api/cyjc/getPassengerCount`, {params:paramsObj});
+        return instance.post(`http://114.55.237.138/pj/api/cyjc/getPassengerCount`, paramsObj);
     },
     //概况
     profile:function(paramsObj){
-        return instance.get(`http://114.55.237.138/pj/api/zl/getScenicGereral`, {params:paramsObj});
+        return instance.post(`http://114.55.237.138/pj/api/zl/getScenicGereral`, paramsObj);
     },
     //客流预警
     passengerwarning:function(paramsObj){

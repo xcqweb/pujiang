@@ -1,6 +1,7 @@
 var differ=25
 var hm= '';
 var date=new Date();
+var timeStamp = date.getTime().toString();
 var oldDate = new Date(date.getTime()-149*1000) 
 
 var year=date.getFullYear(); //获取当前年份
@@ -41,4 +42,7 @@ export var begindaytime= dt_year+dt_mon+dt_da;
 export var  todaybegin=dt_year+dt_mon+dt_da+'000000';
 
 //暴露请求时间对象
-export var params = {begintime:begindaytime,endtime:enddaytime};
+//export var params = {begintime:begindaytime,endtime:enddaytime};
+let token =window.localStorage.getItem('token');
+export var params = {timeStamp:timeStamp,token:token};
+alert(typeof timeStamp)
