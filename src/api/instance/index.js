@@ -19,7 +19,7 @@ instance.interceptors.request.use(
         if (token) {  // 判断是否存在token，如果存在的话，则每个http header都加上token
             config.headers.token = token;
         }
-          // console.log(config.headers.token)
+             console.log(config)
         return config;
     },
     err => {

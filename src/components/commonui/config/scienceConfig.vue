@@ -1,22 +1,23 @@
 <template>
-	<div id="box">
-		
-		<div class="content">
-			<span class="science">景区:</span>
-			<sleckte
-			:selectList="qyselectlist" 
-	        v-on:listenAtparent="catchmsg1"
-			>
-			</sleckte>
-		<div class="title">
-			<span class="history" @click="history" :class="{'active':tab}">预警历史</span>
-			<span class="config" @click="waringConfig" :class="{'active':!tab}">预警设置</span>
-			<span class="close" @click="close">x</span>
+	 <transition name="fade">
+		<div id="box">
+			<div class="content">
+				<span class="science">景区:</span>
+				<sleckte
+				:selectList="qyselectlist" 
+		        v-on:listenAtparent="catchmsg1"
+				>
+				</sleckte>
+			<div class="title">
+				<span class="history" @click="history" :class="{'active':tab}">预警历史</span>
+				<span class="config" @click="waringConfig" :class="{'active':!tab}">预警设置</span>
+				<span class="close" @click="close">x</span>
+			</div>
+			<history :historyList="slectListHistory" v-show="tab"></history>
+			<config :dataList="slectList" :scienceProps="scienceProps" v-show="!tab"></config>
+			</div>
 		</div>
-		<history :historyList="slectListHistory" v-show="tab"></history>
-		<config :dataList="slectList" :scienceProps="scienceProps" v-show="!tab"></config>
-		</div>
-	</div>
+	</transition>
 </template>
 
 <script>
@@ -251,6 +252,7 @@
 		top: 0;
 		left: 0;
 		z-index: 10000;
+		
 		.content{
 			width: 50%;
 			height: 80%;
@@ -295,6 +297,7 @@
 					font-size: 2rem;
 					right: 2%;
 					top: 8%;
+					cursor: pointer;
 				}
 			}
 		}
@@ -320,5 +323,30 @@
 		    z-index: 320;
 		    white-space: nowrap;
 		}
+	}
+	
+	@keyframes full{
+		from{
+			transform: scale(0.1);
+		}
+		to{
+			transform: scale(1);
+		}
+	}
+	
+	@keyframes out{
+		from{
+			transform: scale(1);
+		}
+		to{
+			transform: scale(0);
+		}
+	}
+	
+	.fade-enter-active,  {
+	  animation: full 0.3s ease-out;  
+	}
+	.fade-leave-active{
+		animation: out 0.3s ease-out; 
 	}
 </style>

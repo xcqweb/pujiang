@@ -55,14 +55,14 @@
             <font>{{mouthNumb}}</font>
         </div>
     </div>
-    <vmap class='map' :placeName = 'placeName'></vmap>
+    <vmap class='map' :placeName = 'placeName' :topCity='topCity'></vmap>
     </div>
 </template>
 
 <script>
 import Vue from 'vue'
 import vmap from '../vcomponent/vchart_map.vue'
-import adaptation from '@/common/js/mixin/adaptation.js'
+//import adaptation from '@/common/js/mixin/adaptation.js'
 import api from '@/api/index.js'
 import optionProps from '@/common/js/mixin/optionProps.js'
 let date = new Date()
@@ -74,11 +74,11 @@ export default {
     props:['placeName',],
     data () {
         return {
-        	code:0,
             yearNumb:1727227,
             mouthNumb:1727227,
             nowYear:nowYear,
-            mowMonth:mowMonth
+            mowMonth:mowMonth,
+            topCity:[]
         }
     },
     components:{
@@ -87,14 +87,21 @@ export default {
     computed: { 
 
     },
+    watch:{
+    	code:function(){
+    		this.getData();
+    	}
+    },
     methods: {
         //请求数据
 	  	getData(){
+	  		api.params.code = this.code;
 	  		api.touristSum(api.params).then( (re) =>{
 	    		let reData = re.data.data;
-	    		this.yearNumb = reData.curYearSum;
-	    		this.mouthNumb = reData.curMonthSum;
-	    		//console.log(reData);
+	    		this.yearNumb = reData.yearSum;
+	    		this.mouthNumb = reData.monthSum;
+	    		this.topCity = reData.topCity;
+	    		console.log(re.status);
 	    		if(re.status===200){
 	    			this.isloading=false;
 	    		}

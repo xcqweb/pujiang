@@ -14,10 +14,10 @@
         </li>
         <li v-for='(item,index) in items'>
             <div class="cell1">
-                {{index+1}}、{{item.place}}
+                {{item.sort}}、{{item.name}}
             </div>
             <div class="cell2">
-                {{item.numb}}<font>人</font>
+                {{item.value}}<font>人</font>
             </div>
             <div class="cell3">
                 <span class='footerCotext'>{{item.percent}}%</span>
@@ -47,11 +47,18 @@ export default {
     components:{
     	Loading
     },
+    watch:{
+    	code:function(){
+    		this.getData();
+    	}
+    },
     methods:{
     	//请求数据
 	  	getData(){
+	  		api.params.code = this.code;
 	  		api.scenicRanking(api.params).then( (re) =>{
 	  				let reData = re.data.data;
+	  				//console.log(reData)
 	  				this.items = reData;
 					if(re.status===200){
 						this.isloading = false; 

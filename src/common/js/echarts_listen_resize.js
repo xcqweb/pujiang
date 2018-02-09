@@ -8,7 +8,17 @@
             //解决resize,触发两次，使用setTimeout
           if (resizeTimer) clearTimeout(resizeTimer);
           resizeTimer = window.setTimeout(function() {
-            _self.redom(echart_id);
+//        	if(_self.chrat){
+//        		_self.chrat.dispose();
+//        	}
+			if(echart_id==='container'){
+				_self.isloading = true;
+          		_self.currentNum=0;
+              _self.get_respose();
+			}else{
+				_self.redom(echart_id);
+			}
+          	
           }, 330);
         },false);
       }

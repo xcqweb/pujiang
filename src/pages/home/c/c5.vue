@@ -13,17 +13,17 @@
         <ul>
             <div class="line"></div>
             <li v-for='item in outItems' v-bind:style="{ marginLeft: marginLeft +'%'}">
-                <span v-bind:style="{  bottom:18+item.outProvince +'%'}">{{item.outProvince}}%</span>
-                <div v-bind:style="{  height: item.outProvince+10+'%'}"></div>
-                <font>{{item.name}}</font>
+                <span v-bind:style="{  bottom:18+item.percent +'%'}">{{item.percent}}%</span>
+                <div v-bind:style="{  height: item.percent+10+'%'}"></div>
+                <font>{{item._id}}</font>
             </li>
         </ul>
         <ul>
             <div class="line"></div>
             <li v-for='item in inItems' v-bind:style="{ marginLeft: marginLeft +'%'}">
-                <span v-bind:style="{  bottom:18+item.outProvince +'%'}">{{item.outProvince}}%</span>
-                <div v-bind:style="{  height: item.outProvince+10 +'%'}"></div>
-                <font>{{item.name}}</font>
+                <span v-bind:style="{  bottom:18+item.percent +'%'}">{{item.percent}}%</span>
+                <div v-bind:style="{  height: item.percent+10 +'%'}"></div>
+                <font>{{item._id}}</font>
             </li>
         </ul>
         <Loading v-show="isloading"></Loading>
@@ -41,9 +41,9 @@ export default {
     mixins: [optionProps],
     data () {
     return {
-        marginLeft:3,
+        marginLeft:2,
         outItems:[],
-        inItems:this.inItemsProps,
+        inItems:[],
     }
     },
     created(){
@@ -51,13 +51,20 @@ export default {
     },
     computed: { 
     },
+    watch:{
+    	code:function(){
+    		this.getData();
+    	}
+    },
     methods: {
     	//请求数据
 	  	getData(){
+	  		api.params.code = this.code;
 	  		api.touristOriginsource(api.params).then( (re) =>{
-	  				let reData = re.data;
-	  				this.outItems = reData.outItem;
-	  				this.inItems = reData.inItem;
+	  				let reData = re.data.data;
+	  				//console.log(reData)
+	  				this.inItems = reData.shengnei;
+	  				this.outItems = reData.shengwai;
 					if(re.status===200){
 						this.isloading = false;
 					}
@@ -126,19 +133,20 @@ export default {
             background-color:#368df7;
         }
         li:nth-of-type(1){
-            margin-left:80/700*100% !important;
+            margin-left:70/700*100% !important;
         }
         li{
             float:left;
             height:100%;
-            width:3rem;
+            width:2.6rem;
             color:#fff;
             font-size:0.8rem;
             position:relative;
             span{
                 display:inline-block;
                 position:absolute;
-                left:0%;
+                left:-2%;
+                font-size: 0.66rem;
                 /*font-family: numberFont;*/
             }
             div{
@@ -153,6 +161,7 @@ export default {
                 position:absolute;
                 bottom:-36%;
                 left:0%;
+                font-size: 0.66rem;
             }
         }
     }

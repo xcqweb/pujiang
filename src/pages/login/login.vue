@@ -47,6 +47,7 @@ import {askUrl,paramToSign} from '../../common/js/sign/param_to_sign.js'
 import Bus from '@/common/js/bus.js'
 import Start_end_class from '@/common/js/star_end_class.js'
 import api from '@/api/moudles/tanzhenData'
+
   export default {
     data(){
         return{
@@ -59,8 +60,8 @@ import api from '@/api/moudles/tanzhenData'
             data_arr:{},
             logintext:'登录',
             loginForm: {
-                password: '11',        //表单v-model的值
-                username: '11', 
+                password: '123456',        //表单v-model的值
+                username: 'admin', 
                 code:'',
             },
             busData:{
@@ -84,7 +85,7 @@ import api from '@/api/moudles/tanzhenData'
     methods:{
         getBack(){
             // console.log(this.$route.path);
-            this.$router.go(-1 );
+            this.$router.go(-1);
         },
         redom(){
             this.src='http://120.55.190.57/bigdata/servlet/validateCodeServlet?'+Math.random()
@@ -123,15 +124,17 @@ import api from '@/api/moudles/tanzhenData'
         
         logisn(){
             this.logintext='登录中';
-            // let params={
-            //     username: this.loginForm.username+'',
-            //     password: this.loginForm.password+'',
-            //     // code:this.loginForm.code,
-            // }
-            var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuaWNrTmFtZSI6IjExIiwibWVtSWQiOiIxMSIsImlzcyI6InFpbnNlbnQiLCJhdWQiOiJjbGllbnQiLCJleHAiOjE1MTI2NDAzNzQsIm5iZiI6MTUxMjYzNzM3NH0.TKGTMq9kWp15jQ2WQ8j5Wr45Rym9JRIIx-9FIVQiZj4'
-            var params = new URLSearchParams();
-            params.append('username', this.loginForm.username);
-            params.append('password', this.loginForm.password);
+               let params={
+                   username: this.loginForm.username,
+                   password: this.loginForm.password,
+                   //code:this.loginForm.code,
+               }
+               
+               console.log(params)
+           // var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuaWNrTmFtZSI6IjExIiwibWVtSWQiOiIxMSIsImlzcyI6InFpbnNlbnQiLCJhdWQiOiJjbGllbnQiLCJleHAiOjE1MTI2NDAzNzQsIm5iZiI6MTUxMjYzNzM3NH0.TKGTMq9kWp15jQ2WQ8j5Wr45Rym9JRIIx-9FIVQiZj4'
+            //var params = new URLSearchParams();
+            //params.append('username', this.loginForm.username);
+           // params.append('password', this.loginForm.password);
             // axios({
             //     method: 'post',
             //     url: 'http://210.75.20.143:5068/api/login',
@@ -143,8 +146,11 @@ import api from '@/api/moudles/tanzhenData'
             // })
             // .then(function(res){console.log(res)}).catch(function(err){console.log(err)});
             // JSON.stringify()
-            api.userLogin(params)
-                .then((data ) => {
+            
+            axios.get("http://114.55.237.138/pj/api/user/login",{
+            	params:params
+            })
+            		 .then((data ) => {
                 	console.log(data);
                     this.logintext='登录中'; 
                     if(data.data.code=200){
@@ -152,19 +158,43 @@ import api from '@/api/moudles/tanzhenData'
                             this.logintext='登录';
                             alert(data.data.data.message)
                         }else{
-                            let token = data.data.data.token;
-                            window.localStorage.setItem('token', token);
+                              let token = data.data.data.token;
+                              window.localStorage.setItem('token', token);
                             this.$router.push({ path: '/' });
                         }
-                    }else{
-                        alert(data.data.message);
-                        this.logintext='登录';
-                    }
-                })
-                .catch(error => {
-                  this.reloading=true;
-                  console.log(error)
-                });
+	                    }else{
+	                        alert(data.data.message);
+	                        this.logintext='登录';
+	                    }
+	                })
+	                .catch(error => {
+	                  this.reloading=true;
+	                  console.log(error)
+	                });
+            
+            
+//          api.userLogin(params)
+//              .then((data ) => {
+//              	console.log(data);
+//                  this.logintext='登录中'; 
+//                  if(data.data.code=200){
+//                      if(data.data.message==='验证码错误'){
+//                          this.logintext='登录';
+//                          alert(data.data.data.message)
+//                      }else{
+//                          let token = data.data.data.token;
+//                          window.localStorage.setItem('token', token);
+//                          this.$router.push({ path: '/' });
+//                      }
+//                  }else{
+//                      alert(data.data.message);
+//                      this.logintext='登录';
+//                  }
+//              })
+//              .catch(error => {
+//                this.reloading=true;
+//                console.log(error)
+//              });
         },
     },
     created(){

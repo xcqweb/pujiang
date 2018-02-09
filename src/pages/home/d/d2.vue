@@ -44,7 +44,39 @@
         ynub:null,
         loading:true,
         reloading:false,
-        oneweekMock:[],
+        oneweekMock: [{
+	        "nub": 0,
+	        "date": "川菜"
+	      },
+	      {
+	        "nub": 0,
+	        "date": "湘菜"
+	      },
+	      {
+	        "nub": 0,
+	        "date": "鲁菜"
+	      },
+	      {
+	        "nub": 0,
+	        "date": "粤菜"
+	      },
+	      {
+	        "nub": 0,
+	        "date": "浙菜"
+	      },
+	      {
+	        "nub": 0,
+	        "date": "苏菜"
+	      },
+	      {
+	        "nub": 0,
+	        "date": "闽菜"
+	      },
+	      {
+	        "nub": 0,
+	        "date": "徽菜"
+	      }
+	    ],
         allData:{}
       }
     },
@@ -53,9 +85,8 @@
          'place'
     ],
     watch:{
-    	place:function(){
-    		this.oneweekMock = this.allData[this.place];
-    		this.redom7();
+    	code:function(){
+    		this.getData();
     	}
     },
     computed:{
@@ -68,11 +99,19 @@
     methods: {
     	//请求数据
 	  	getData(){
+	  		api.params.code = this.code;
 	  		api.touristCustom(api.params).then( (re) =>{
 	  				let reData = re.data.data;
-	  				this.allData = reData;
-	  				this.oneweekMock = reData[this.place];
-
+	  				//this.allData = reData;
+	  				//console.log(reData)
+	  				let arrData = [];
+	  				for(let i in reData){
+	  					arrData.push(reData[i])
+	  				}
+	  				for(let i=0; i<this.oneweekMock.length; ++i){
+	  					this.oneweekMock[i].nub = arrData[i]
+	  				}
+					//console.log(arrData)
 					if(re.status===200){
 						this.isloading = false;
 					}

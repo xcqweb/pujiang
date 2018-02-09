@@ -17,16 +17,55 @@ export default {
     mixins: [optionProps],
     data(){
     return{
-    	series:[]
+    	series: [{
+		      "value": 0,
+		      name: '19岁以下'
+		    },
+		    {
+		      "value": 0,
+		      name: '19-25'
+		    },
+		    {
+		      "value": 0,
+		      name: '26-35'
+		    },
+		    {
+		      "value": 0,
+		      name: '36-45'
+		    },
+		    {
+		      "value": 0,
+		      name: '46-55'
+		    },
+		    {
+		      "value": 0,
+		      name: '55岁以上'
+		    }
+		  ]
     }
+    },
+    watch:{
+    	code:function(){
+    		this.getData();
+    	}
     },
     methods:{
     	
     	//请求数据
 	  	getData(){
+	  		api.params.code = this.code;
 	  		api.ageAnalyse(api.params).then( (re) =>{
 	  				let reData = re.data.data;
-	  				this.series = reData;
+	  				//console.log(reData)
+	  				let arrData = [];
+	  				for(let i in reData){
+	  					arrData.push(reData[i])
+	  				}
+	  				for(let i=0; i<this.series.length; ++i){
+	  					this.series[i].value = arrData[i]
+	  				}
+	  				//console.log(arrData)
+	  				//this.series = reData;
 					if(re.status===200){
 						this.isloading = false;
 					}

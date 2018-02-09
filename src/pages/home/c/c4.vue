@@ -42,18 +42,26 @@ export default {
   },
   computed: {
   },
+  watch:{
+  	code:function(){
+  		this.getData();
+  	}
+  },
   methods: {
   	
   	//请求数据
   	getData(){
+  		api.params.code = this.code;
   		api.touristSexRatio(api.params).then( (re) =>{
   				let reData = re.data.data;
-    			this.menPercent = reData.menPercent;
-    			this.womenPercent = 100-reData.menPercent;
+  				//console.log(reData)
+    			this.menPercent = reData.maleRate;
+    			this.womenPercent = reData.femaleRate;
 
 				let menlen = Math.round(this.menPercent/10);
 				let womenlen = Math.round(this.womenPercent/10);
-
+				this.men = [];
+				this.women = [];
 					for(let i=0; i<menlen+1; ++i){
 						this.men.push({img:menE})
 					}

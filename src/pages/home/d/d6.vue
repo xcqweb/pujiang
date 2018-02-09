@@ -87,7 +87,7 @@ export default {
     	code:function(){
     		//this.currentNum = this.allData[this.place].currentNum;
 	  		//this.yestodayNum = this.allData[this.place].yestodayNum;
-	  		// this.getData();
+	  		 this.getData();
     	}
     },
     methods: {

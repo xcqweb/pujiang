@@ -113,7 +113,7 @@ export default {
                 cutoverStatus:null,
                 leftComponents:[
                     {name:'B17',id:'one',index:1,time:100,show:false,title:'产业数据'},
-                    {name:'B16',id:'two',index:2,time:600,show:false,title:'游客来源地'},
+                    {name:'A6',id:'two',index:2,time:600,show:false,title:'游客来源地'},
                     {name:'A5',id:'three',index:3,time:900,show:false,title:'实时客流'},
                     {name:'A1',id:'four',index:4,time:1200,show:false,title:'历史客流'},
                     {name:'B1',id:'five',index:5,time:1500,show:false,title:'富民指数'},

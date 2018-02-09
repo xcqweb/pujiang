@@ -22,19 +22,77 @@ export default {
     mixins: [optionProps],
     data(){
     return{
-    		series:[],
+    		series:[
+    		 {
+		      "value": 0,
+		      name: '金融'
+		    },
+		    {
+		      "value": 0,
+		      name: '汽车服务'
+		    },
+		     {
+		      "value": 0,
+		      name: '化妆品'
+		    },
+    		{
+		      "value": 0,
+		      name: '服饰鞋帽'
+		    },
+		     {
+		      "value": 0,
+		      name: '休闲娱乐'
+		    },
+		    {
+		      "value": 0,
+		      name: '生活服务'
+		    },
+		    {
+		      "value": 0,
+		      name: '教育培训'
+		    },
+		     {
+		      "value": 0,
+		      name: '亲子'
+		    },
+		    
+		    {
+		      "value": 0,
+		      name: '母婴用品'
+		    },
+		    {
+		      "value": 0,
+		      name: '数码'
+		    },
+		    
+		   
+		   
+		  ],
         color:['#4EBBFC','#57ABFE', '#368DF7', '#7E6AF6', '#FF8885','#FFCD38',  '#E39A50', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD'],
     		
     }
+    },
+    watch:{
+    	code:function(){
+    		this.getData();
+    	}
     },
     methods:{
     	
     	//请求数据
 	  	getData(){
+	  		api.params.code = this.code;
 	  		api.touristAttr(api.params).then( (re) =>{
 	  				let reData = re.data.data;
-	  				this.series = reData;
-	  				//console.log(reData,this.series)
+	  				//console.log(reData)
+	  				let arrData = [];
+	  				for(let i in reData){
+	  					arrData.push(reData[i])
+	  				}
+	  				for(let i=0; i<this.series.length; ++i){
+	  					this.series[i].value = arrData[i]
+	  				}
+	  				//console.log(this.series)
 					if(re.status===200){
 						this.isloading = false;
 					}
@@ -154,12 +212,12 @@ export default {
     computed:{
     	percents(){
     		let arr=[];
-    		let sum=0;
+    		//let sum=0;
+    		//for(let i=0; i<this.series.length; ++i){
+    			//sum += this.series[i].value;
+    		//}
     		for(let i=0; i<this.series.length; ++i){
-    			sum += this.series[i].value;
-    		}
-    		for(let i=0; i<this.series.length; ++i){
-    			arr[i] = (this.series[i].value*100/sum).toFixed(2);
+    			arr[i] = this.series[i].value;
     		}
     		return arr
     	}

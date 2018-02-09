@@ -53,8 +53,6 @@ export default {
         currentYearNum:'',
         preYearNum:'',
         currentMonthNum:'',
-        growRatio:'',
-        growquantity:''
     }
     },
     created(){
@@ -62,16 +60,15 @@ export default {
     },
     computed: { 
     },
+    
     methods: {
     	//请求数据
 	  	getData(){
 	  		api.richNum(api.params).then( (re) =>{
 	    		let reData = re.data.data;
-	    		this.currentYearNum = reData.currentYearNum;
-	    		this.preYearNum = reData.preYearNum;
-	    		this.currentMonthNum = reData.currentMonth.currentMonthNum;
-	    		this.growRatio = reData.currentMonth.growRatio;
-	    		this.growquantity = reData.currentMonth.growquantity;
+	    		this.currentYearNum = reData.curYear;
+	    		this.preYearNum = reData.preYear;
+	    		this.currentMonthNum = reData.jjgx;
 	    		if(re.status===200){
 	    			this.isloading=false;
 	    		}
@@ -79,10 +76,7 @@ export default {
 		    	console.log(e);
 		    })
 	  	},
-	  	//获取景区名称
-	  	watchTouristFn(val){
-            //console.log(val)
-        }
+	  	
     },
     mounted(){
     	
