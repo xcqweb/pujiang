@@ -88,6 +88,7 @@ export default  class Start_end_class extends  Set_arr_class {
             return Promise.resolve(date_data_arr)
         }).catch(e => {
             console.log(e);
+            
         });
         return promise
     }

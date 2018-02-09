@@ -60,8 +60,8 @@ import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
             data_arr:{},
             logintext:'登录',
             loginForm: {
-                password: '123456',        //表单v-model的值
-                username: 'admin', 
+                password: '',        //表单v-model的值
+                username: '', 
                 code:'',
             },
             busData:{
@@ -147,7 +147,10 @@ import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
                         }else{
                               let token = data.data.data.token;
                               setCookie('token', token);
-                            this.$router.push({ path: '/' });
+                              this.$router.push({ path: '/' });
+                            //window.location.href = 'http://120.55.190.57/pujiang'
+                            
+                            
                         }
 	                    }else{
 	                        alert(data.data.message);

@@ -3,24 +3,24 @@
 let date = new Date();
 date.setDate(date.getDate()+30)
 
- export function setCookie(name,value,expires=date,path,domain,secure){
+ export function setCookie(name,value,expires=date){
 var cookieName = encodeURIComponent(name)+"="+encodeURIComponent(value);
 //失效时间 
 if(expires instanceof Date){
 	cookieName+=';expires='+expires;
 }
 //路径 存在 加入
-if(path){
-	cookieName+=';path='+path;
-}
-//限制域名访问
-if(domain){
-	cookieName+=';domain='+domian;
-}
-//设置安全访问
-if(secure){
-	cookieName+=';secure';
-} 
+//if(path){
+//	cookieName+=';path='+path;
+//}
+////限制域名访问
+//if(domain){
+//	cookieName+=';domain';
+//}
+////设置安全访问
+//if(secure){
+//	cookieName+=';secure';
+//} 
 //总体设置cookie
     document.cookie = cookieName;
 }

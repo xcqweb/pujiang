@@ -206,6 +206,7 @@ import Vue from 'vue'
 import api from '@/api/index.js'
 import Loading from '@/components/commonui/loading/loading.vue'
 import optionProps from '@/common/js/mixin/optionProps.js'
+import axios from 'axios'
 export default {
     name: 'd3',
     mixins: [optionProps],
@@ -283,7 +284,8 @@ export default {
     methods: {
 		//请求数据
 	  	getData(){
-	  		api.contentRatio(api.params).then( (re) =>{
+	  		//api.contentRatio(api.params).then( (re) =>{
+	  		axios.get('https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/contentRatio').then( (re) => {	
 	  				let reData = re.data.data;
 	  				this.allData = reData;
 	  				

@@ -82,7 +82,9 @@ export default {
     	//请求数据
 	  	getData(){
 	  		api.params.code = this.code;
-	  		api.touristAttr(api.params).then( (re) =>{
+	  		let data={code:0};
+	  		data.code = this.code;
+	  		api.touristAttr(data).then( (re) =>{
 	  				let reData = re.data.data;
 	  				//console.log(reData)
 	  				let arrData = [];

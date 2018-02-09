@@ -162,6 +162,7 @@
 			input[type=number]{
 				width: 60%;
 				line-height: 1.2rem;
+				height: 1.2rem;
 				text-align: left;
 			}
 			input[type=button]{

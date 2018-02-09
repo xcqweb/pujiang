@@ -19,6 +19,7 @@
 <script>
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
+import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
 export default {
   name: '',
   data () {
@@ -64,6 +65,7 @@ export default {
         item.status='unchose'
     },
     logout(){
+    	setCookie('token','',-1);
         this.$router.push({ path: '/login' })
     },
     changelink(){

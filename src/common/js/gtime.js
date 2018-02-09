@@ -44,6 +44,6 @@ export var  todaybegin=dt_year+dt_mon+dt_da+'000000';
 
 //暴露请求时间对象
 //export var params = {begintime:begindaytime,endtime:enddaytime};
-let token =getCookie('token');
-export var params = {timeStamp:timeStamp,token:token};
-
+//let token =getCookie('token');
+//export var params = {timeStamp:timeStamp,token:token};
+//export var params = {};
