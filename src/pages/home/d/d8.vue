@@ -50,6 +50,7 @@ import vcircle from '../b/vcircle.vue'
 import api from '@/api/index.js'
 import Loading from '@/components/commonui/loading/loading.vue'
 import optionProps from '@/common/js/mixin/optionProps.js'
+import axios from 'axios'
 export default {
 	name: 'd8',
 	mixins: [optionProps],
@@ -92,7 +93,8 @@ export default {
     	//请求数据
 	  	getData(){
 	  		//api.params.code = 2;
-	  		api.scenicCongestion(api.params).then( (re) =>{
+	  		//api.scenicCongestion(api.params).then( (re) =>{
+	  			axios.get('https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/scenicCongestion').then( (re) => {
 	    		let reData = re.data.data;
 	    		this.allData = reData;
 	    		this.percent = this.allData[this.place].num;

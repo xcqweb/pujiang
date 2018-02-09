@@ -15,10 +15,12 @@
 import Vue from 'vue'
 import echarts_resize from '../../../common/js/echarts_resize.js'
 import echarts from 'echarts';
-import Start_end_class from '@/common/js/star_end_class.js'
+//import Start_end_class from '@/common/js/star_end_class.js'
 import {begindaytime} from '@/common/js/gtime.js'
 import Loading from '@/components/commonui/loading/loading.vue'
 import optionProps from '@/common/js/mixin/optionProps.js'
+import api from '@/api/index.js'
+import axios from 'axios'
 export default {
   name: 'b2',
   mixins: [optionProps],
@@ -56,15 +58,16 @@ export default {
           this.chart.setOption(this.option);
       },
   request(){
-    let start_end_instance =  new Start_end_class('passengerwarning',begindaytime);
-    start_end_instance.get_response().then(re => {
+    //api.passengerwarning(api.params).then( (re) => {
+    	axios.get('https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/passengerwarning').then( (re) => {
       //设置默认值
+      //console.log(re)
       this.nub = re.data.data.nub;
       this.set_config = re.data.data.set_config;
       this.isloading=false;
       let nub = ((this.nub/this.set_config)*100).toFixed(0);
       let setconfig = 100-nub;
-      //console.log(nub)
+        
       
       let option={
         backgroundColor: 'rgba(0,0,0,0)',

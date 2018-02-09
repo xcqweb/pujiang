@@ -1,4 +1,4 @@
-<template>
+           <template>
     <div class="c4">
         <ul>
             <li v-for='item in men'>
@@ -56,10 +56,12 @@ export default {
   				let reData = re.data.data;
   				//console.log(reData)
   				//if(!reData.femaleRate)return
-  				let sum = reData.maleRate+reData.femaleRate;
+  				let maleRate = reData.maleRate||49;
+  				let femaleRate = reData.femaleRate||51;
+  				let sum = maleRate+femaleRate;
+  				
     			this.menPercent = (reData.maleRate*100/sum).toFixed(2);
     			this.womenPercent = (reData.femaleRate*100/sum).toFixed(2);
-
 				let menlen = Math.round(this.menPercent/10);
 				let womenlen = Math.round(this.womenPercent/10);
 				this.men = [];

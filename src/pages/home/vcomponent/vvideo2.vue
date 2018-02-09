@@ -148,7 +148,7 @@ export default {
     },
     mounted(){
     	this.$nextTick( () => {
-    		console.dir(document.getElementsByTagName('iframe')[0])
+    		//console.dir(document.getElementsByTagName('iframe')[0])
     	})
     	
     }

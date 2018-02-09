@@ -230,7 +230,7 @@ export default {
   	
   	getData(){
 			api.params.code = this.code;
-			console.log(this.code)
+			//console.log(this.code)
 			api.params.range = this.range;
 	  		api.touristSum(api.params).then( (re) =>{
 	    		let reData = re.data.data;
@@ -238,11 +238,11 @@ export default {
 	    		this.mouthNumb = reData.monthSum;
 	    		let topCity = reData.topCity;
 	    		
-	    		console.log(topCity)
+	    		//console.log(topCity)
 		  		
 				for(let i=0; i<topCity.length; ++i){
 					if(this.range===1){
-						this.allData[i]=["浦江县", [[{name: "浦江县"}, {name: topCity[i]._id, value: topCity[i].sum/200}]]]
+						this.allData[i]=["浦江县", [[{name: "浦江县"}, {name: topCity[i]._id, value: topCity[i].sum/40}]]]
 					}else{
 						this.zhejiang[i]=["浦江县", [[{name: "浦江县"}, {name: topCity[i]._id, value: topCity[i].sum/200}]]]
 					}
