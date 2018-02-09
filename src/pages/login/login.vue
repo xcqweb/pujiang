@@ -60,8 +60,8 @@ import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
             data_arr:{},
             logintext:'登录',
             loginForm: {
-                password: '123456',        //表单v-model的值
-                username: 'admin', 
+                password: '',        //表单v-model的值
+                username: '', 
                 code:'',
             },
             busData:{
