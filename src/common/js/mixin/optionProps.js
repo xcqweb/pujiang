@@ -85,7 +85,7 @@ let optionProps =  {
         
     },
     created(){
-    	this.isloading=true;
+    	this.isloading=false;
     },
     mounted () {
         

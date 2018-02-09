@@ -47,7 +47,7 @@ import {askUrl,paramToSign} from '../../common/js/sign/param_to_sign.js'
 import Bus from '@/common/js/bus.js'
 import Start_end_class from '@/common/js/star_end_class.js'
 import api from '@/api/moudles/tanzhenData'
-
+import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
   export default {
     data(){
         return{
@@ -135,7 +135,7 @@ import api from '@/api/moudles/tanzhenData'
               var params = new URLSearchParams();
               params.append('username', this.loginForm.username);
               params.append('password', this.loginForm.password);
-              console.log(params)
+              //console.log(params)
                axios.post('http://114.55.237.138/pj/api/user/login',params)
                 .then((data ) => {
                 	console.log(data);
@@ -146,7 +146,7 @@ import api from '@/api/moudles/tanzhenData'
                             alert(data.data.data.message)
                         }else{
                               let token = data.data.data.token;
-                              window.localStorage.setItem('token', token);
+                              setCookie('token', token);
                             this.$router.push({ path: '/' });
                         }
 	                    }else{
@@ -211,6 +211,7 @@ import api from '@/api/moudles/tanzhenData'
         },
     },
     created(){
+    	
     },
     mounted(){
         window.setTimeout(() => {

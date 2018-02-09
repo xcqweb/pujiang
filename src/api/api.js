@@ -1,27 +1,36 @@
-import axios from 'axios';
-//import axios from '@/api/instance'
-import {params} from '@/common/js/gtime.js';
-export {params};
+//import axios from 'axios';
+import axios from '@/api/instance'
+
+export {params} from '@/common/js/gtime.js';
 
 
+//if(window.navigator.userAgent.indexOf("MSIE") >= -1){ 
+//	alert("not ie"); 
 //转换post 请求参数
 function tansParm(data){
-	console.log(data)
 	var params = new URLSearchParams();
-    params.append('token', data.token);
+      //params.append('token', data.token);
     params.append('code', data.code);
-    params.append('timeStamp',data.timeStamp);
-    //if(data.range){
-    	params.append('range',data.range);
-   // }
+      //params.append('timeStamp',data.timeStamp);
+        params.append('range',data.range);
     return params;
 }
-//console.log(tansParm(params))
+	
+//}else{ 
+//	alert("ie"); 
+	
+//}
+
+
+
+
+
+    
+
 
 //模拟数据公共地址
 let base1 = 'https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example';
 let base = 'http://114.55.237.138/pj/api'
-//http://114.55.237.138/pj/api/zl/getScenicGereral
 
 export const requestLogin = params => { return axios.post(`${base1}/login`, params).then(res => res.data); };
 
@@ -48,7 +57,7 @@ export const congestion = params => { return axios.get(`${base1}/congestion`,{pa
 //天气
 export const weather = params => { return axios.get(`${base1}/weather`,{params:params});};
 //富民指数
-export const richNum = params => { return axios.post(`${base}/cyjc/getRickIndexMark`,tansParm(params));};
+export const richNum = params => { return axios.get(`${base}/cyjc/getRickIndexMark`,tansParm(params));};
 //游客来源地排行榜
 export const originList = params => { return axios.post(`${base1}/originList`,tansParm(params));};
 //营销推广
