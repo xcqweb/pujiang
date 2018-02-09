@@ -15,7 +15,7 @@ if(path){
 }
 //限制域名访问
 if(domain){
-	cookieName+=';domain='+domian;
+	cookieName+=';domain';
 }
 //设置安全访问
 if(secure){
