@@ -8,11 +8,13 @@ export default {
     //可在组件处调用api请求，
     //登录
     userLogin:function(params){
+    	
           return instance.post(`http://114.55.237.138/pj/api/user/login`, params);
 //      return instance.post(`https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/login`, params);
     },
     //历史客流
     passenger:function(paramsObj){
+    	console.log(paramsObj)
         return instance.post(`http://114.55.237.138/pj/api/zl/geHistoryDayData`,paramsObj);
     },
     //实时客流量

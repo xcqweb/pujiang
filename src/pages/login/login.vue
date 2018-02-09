@@ -124,33 +124,20 @@ import api from '@/api/moudles/tanzhenData'
         
         logisn(){
             this.logintext='登录中';
-               let params={
-                   username: this.loginForm.username,
-                   password: this.loginForm.password,
-                   //code:this.loginForm.code,
-               }
+//             let params={
+//                 username: this.loginForm.username,
+//                 password: this.loginForm.password,
+//                 //code:this.loginForm.code,
+//             }
                
-               console.log(params)
+//             console.log(params)
            // var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuaWNrTmFtZSI6IjExIiwibWVtSWQiOiIxMSIsImlzcyI6InFpbnNlbnQiLCJhdWQiOiJjbGllbnQiLCJleHAiOjE1MTI2NDAzNzQsIm5iZiI6MTUxMjYzNzM3NH0.TKGTMq9kWp15jQ2WQ8j5Wr45Rym9JRIIx-9FIVQiZj4'
-            //var params = new URLSearchParams();
-            //params.append('username', this.loginForm.username);
-           // params.append('password', this.loginForm.password);
-            // axios({
-            //     method: 'post',
-            //     url: 'http://210.75.20.143:5068/api/login',
-            //     data: {
-            //        username: this.loginForm.username,
-            //         password: this.loginForm.password,
-            //     },
-            //     headers: {'token': token}
-            // })
-            // .then(function(res){console.log(res)}).catch(function(err){console.log(err)});
-            // JSON.stringify()
-            
-            axios.get("http://114.55.237.138/pj/api/user/login",{
-            	params:params
-            })
-            		 .then((data ) => {
+              var params = new URLSearchParams();
+              params.append('username', this.loginForm.username);
+              params.append('password', this.loginForm.password);
+              console.log(params)
+               axios.post('http://114.55.237.138/pj/api/user/login',params)
+                .then((data ) => {
                 	console.log(data);
                     this.logintext='登录中'; 
                     if(data.data.code=200){
@@ -171,6 +158,32 @@ import api from '@/api/moudles/tanzhenData'
 	                  this.reloading=true;
 	                  console.log(error)
 	                });
+            // JSON.stringify()
+            
+//          axios.get("http://114.55.237.138/pj/api/user/login",{
+//          	params:params
+//          })
+//          		 .then((data ) => {
+//              	console.log(data);
+//                  this.logintext='登录中'; 
+//                  if(data.data.code=200){
+//                      if(data.data.message==='验证码错误'){
+//                          this.logintext='登录';
+//                          alert(data.data.data.message)
+//                      }else{
+//                            let token = data.data.data.token;
+//                            window.localStorage.setItem('token', token);
+//                          this.$router.push({ path: '/' });
+//                      }
+//	                    }else{
+//	                        alert(data.data.message);
+//	                        this.logintext='登录';
+//	                    }
+//	                })
+//	                .catch(error => {
+//	                  this.reloading=true;
+//	                  console.log(error)
+//	                });
             
             
 //          api.userLogin(params)

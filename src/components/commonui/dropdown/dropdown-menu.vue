@@ -273,7 +273,7 @@ import Vue from 'vue'
     left:0;
     top:0;
     height: 100%;
-    width: 80%;
+    width: 100%;
     color: white;
     cursor: pointer;
     text-align: center;

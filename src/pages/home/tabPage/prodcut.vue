@@ -80,7 +80,7 @@ export default {
                     turist:'全部',
                 },
                 moudle:[
-                    {name:'B16',title:'游客来源地',},
+                    {name:'A6',title:'游客来源地',},
                     {name:'B1',title:'富民指数分析',},
                     {name:'B2',title:'客流预警',},
                     {name:'B3',title:'旅游营销分析',},

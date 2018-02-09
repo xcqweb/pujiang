@@ -56,7 +56,7 @@ export default {
     }
     },
     created(){
-    	this.getData();
+      	this.getData();
     },
     computed: { 
     },
@@ -64,7 +64,16 @@ export default {
     methods: {
     	//请求数据
 	  	getData(){
+	  		console.log(api.params)
+	  		api.params.code = this.code; 
+	  			//var params = new URLSearchParams();
+	  			//let timeStamp = new Date().getTime()+'';
+    			//params.append('token', api.params.token);
+      		//params.append('code', 1);
+    			//params.append('timeStamp',timeStamp);
+    			//alert(timeStamp)
 	  		api.richNum(api.params).then( (re) =>{
+	  			console.log(re)
 	    		let reData = re.data.data;
 	    		this.currentYearNum = reData.curYear;
 	    		this.preYearNum = reData.preYear;
