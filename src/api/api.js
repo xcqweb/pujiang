@@ -6,10 +6,14 @@ export {params};
 
 //转换post 请求参数
 function tansParm(data){
+	console.log(data)
 	var params = new URLSearchParams();
     params.append('token', data.token);
     params.append('code', data.code);
     params.append('timeStamp',data.timeStamp);
+    //if(data.range){
+    	params.append('range',data.range);
+   // }
     return params;
 }
 //console.log(tansParm(params))
@@ -68,7 +72,7 @@ export const tourBusiness = params => { return axios.post(`${base1}/tourBusiness
 
 
 //出行方式
-export const tripMode = params => {console.log(params); return axios.post(`${base}/jzyx/getTravelWay`,tansParm(params));};
+export const tripMode = params => { return axios.post(`${base}/jzyx/getTravelWay`,tansParm(params));};
 //年龄分析
 export const ageAnalyse = params => { return axios.post(`${base}/jzyx/getAgeAnalysis`,tansParm(params));};
 //游客关注点

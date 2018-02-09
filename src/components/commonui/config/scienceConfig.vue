@@ -344,9 +344,9 @@
 	}
 	
 	.fade-enter-active,  {
-	  animation: full 0.3s ease-out;  
+	  animation: full 0.2s ease-out;  
 	}
 	.fade-leave-active{
-		animation: out 0.3s ease-out; 
+		animation: out 0.2s ease-out; 
 	}
 </style>

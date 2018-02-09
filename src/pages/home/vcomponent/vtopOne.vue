@@ -230,7 +230,7 @@ export default {
         let _self = this;
         // this.$router.push({ path: '/' });
       //请求数据
-        let start_end_instance =  new Start_end_class('passenger',begindaytime,'',this.code);
+        let start_end_instance =  new Start_end_class('passenger','','',this.code);
         start_end_instance.get_response(_self.$el).then(re => {
         	//console.log(re.data)
         _self.oneweekMock = re.data.data;

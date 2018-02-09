@@ -58,19 +58,25 @@ export default  class Start_end_class extends  Set_arr_class {
         }
         return timeData
     }
+    
+    //转换post 请求参数
+	tansParm(){
+		let token =window.localStorage.getItem('token');
+        let timeing = new Date().getTime()+'';
+		let params = new URLSearchParams();
+	    params.append('token', token);
+	    params.append('code', this.code);
+	    params.append('timeStamp',timeing);
+	    return params;
+	}
+    
     to_arr(re){//继承父类的获取随机数字的方法 
         return super.getDateDataArr(re)
     }
     get_timeline(){
         let _self = this;
-        let code = this.code;
-        // let token =window.localStorage.getItem('token')
-        let pagram={
-            begintime:this.getBeginTime().beginTime,
-            endtime:this.getEndTime().endTime,
-            code:code,
-          }
-        let promise  = api[this.apiName](pagram).then(function(re){
+        let params = this.tansParm();
+        let promise  = api[this.apiName](params).then(function(re){
             if(re ===undefined){
                 return Promise.reject(re)
             }
@@ -86,13 +92,8 @@ export default  class Start_end_class extends  Set_arr_class {
     }
     get_response(){
         let _self = this;
-        let code = this.code;
-        let pagram={
-            begintime:this.getBeginTime().beginDay,
-            endtime:this.getEndTime().endDay,
-            code:code,
-          }
-        let promise  = api[this.apiName](pagram).then(function(re){
+        let params = this.tansParm();
+        let promise  = api[this.apiName](params).then(function(re){
             if(re ===undefined){
                 return Promise.reject(re)
             }

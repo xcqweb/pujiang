@@ -14,7 +14,6 @@ export default {
     },
     //历史客流
     passenger:function(paramsObj){
-    	console.log(paramsObj)
         return instance.post(`http://114.55.237.138/pj/api/zl/geHistoryDayData`,paramsObj);
     },
     //实时客流量

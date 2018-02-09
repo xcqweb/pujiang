@@ -99,7 +99,7 @@ export default {
 
                 ],
                 current:[
-                    {name:'B16',title:'游客来源地'},
+                    {name:'A6',title:'游客来源地'},
                     {name:'A1',title:'历史客流'},
                     {name:'A5',title:'实时客流'},
                     {name:'B1',title:'富民指数'},
