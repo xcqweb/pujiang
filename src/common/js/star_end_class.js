@@ -9,6 +9,7 @@
 // })
 import Set_arr_class from '@/common/js/set_arr_class.js'
 import api from '@/api/moudles/tanzhenData'
+import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
 export default  class Start_end_class extends  Set_arr_class {
     constructor(apiName,differ,times,code) {
         //apiName 接口属性名，differ时间间隔，times分割成多少段
@@ -61,7 +62,7 @@ export default  class Start_end_class extends  Set_arr_class {
     
     //转换post 请求参数
 	tansParm(){
-		let token =window.localStorage.getItem('token');
+		let token =getCookie('token');
         let timeing = new Date().getTime()+'';
 		let params = new URLSearchParams();
 	    params.append('token', token);

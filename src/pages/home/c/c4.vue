@@ -55,8 +55,10 @@ export default {
   		api.touristSexRatio(api.params).then( (re) =>{
   				let reData = re.data.data;
   				//console.log(reData)
-    			this.menPercent = reData.maleRate;
-    			this.womenPercent = reData.femaleRate;
+  				//if(!reData.femaleRate)return
+  				let sum = reData.maleRate+reData.femaleRate;
+    			this.menPercent = (reData.maleRate*100/sum).toFixed(2);
+    			this.womenPercent = (reData.femaleRate*100/sum).toFixed(2);
 
 				let menlen = Math.round(this.menPercent/10);
 				let womenlen = Math.round(this.womenPercent/10);
