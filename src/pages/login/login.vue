@@ -17,10 +17,10 @@
         <div class="login_group clearfix">
             <h1></h1>
             <div class="user">
-                <input id="username" v-model.trim="loginForm.username" placeholder="请输入账号" type="text"/>  
+                <input id="username" autofocus="autofocus" checked="checked" v-model.trim="loginForm.username" placeholder="请输入账号" type="text"/>  
             </div>
             <div class="password">
-                <input id='password' v-model.trim="loginForm.password" placeholder="请输入密码"  type="password"/>  
+                <input id='password' class="warning" v-model.trim="loginForm.password" placeholder="请输入密码"  type="password"/>  
             </div>
             <!-- <div class="test">
                 <input id="trim" v-model.trim="loginForm.code" v-on:keyup.enter="login" placeholder="验证码" type="text"/>
@@ -123,20 +123,12 @@ import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
         },
         
         logisn(){
-            this.logintext='登录中';
-//             let params={
-//                 username: this.loginForm.username,
-//                 password: this.loginForm.password,
-//                 //code:this.loginForm.code,
-//             }
-               
-//             console.log(params)
-           // var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuaWNrTmFtZSI6IjExIiwibWVtSWQiOiIxMSIsImlzcyI6InFpbnNlbnQiLCJhdWQiOiJjbGllbnQiLCJleHAiOjE1MTI2NDAzNzQsIm5iZiI6MTUxMjYzNzM3NH0.TKGTMq9kWp15jQ2WQ8j5Wr45Rym9JRIIx-9FIVQiZj4'
-//            var params = new URLSearchParams();
-//            params.append('username', this.loginForm.username);
-//            params.append('password', this.loginForm.password);
+        		if(this.loginForm.username==='' || this.loginForm.password==='')
+        		alert('用户名和密码不能为空!')
+        		return;
+            	this.logintext='登录中';
               
-              const formData = new FormData()
+              const formData = new FormData()//post 传值需将传递的对象转换成字符串
               formData.append('username', this.loginForm.username);
               formData.append('password', this.loginForm.password);
               
@@ -146,16 +138,15 @@ import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
                 	console.log(data);
                     this.logintext='登录中'; 
                     if(data.data.code=200){
-                        if(data.data.message==='验证码错误'){
+                        if(data.data.message==="用户名密码错误"){
                             this.logintext='登录';
-                            alert(data.data.data.message)
+                            this.loginForm.password='';
+                            alert(data.data.message)
                         }else{
                               let token = data.data.data.token;
                               setCookie('token', token);
                               this.$router.push({ path: '/' });
                             //window.location.href = 'http://120.55.190.57/pujiang'
-                            
-                            
                         }
 	                    }else{
 	                        alert(data.data.message);
@@ -166,56 +157,6 @@ import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
 	                  this.reloading=true;
 	                  console.log(error)
 	                });
-            // JSON.stringify()
-            
-//          axios.get("http://114.55.237.138/pj/api/user/login",{
-//          	params:params
-//          })
-//          		 .then((data ) => {
-//              	console.log(data);
-//                  this.logintext='登录中'; 
-//                  if(data.data.code=200){
-//                      if(data.data.message==='验证码错误'){
-//                          this.logintext='登录';
-//                          alert(data.data.data.message)
-//                      }else{
-//                            let token = data.data.data.token;
-//                            window.localStorage.setItem('token', token);
-//                          this.$router.push({ path: '/' });
-//                      }
-//	                    }else{
-//	                        alert(data.data.message);
-//	                        this.logintext='登录';
-//	                    }
-//	                })
-//	                .catch(error => {
-//	                  this.reloading=true;
-//	                  console.log(error)
-//	                });
-            
-            
-//          api.userLogin(params)
-//              .then((data ) => {
-//              	console.log(data);
-//                  this.logintext='登录中'; 
-//                  if(data.data.code=200){
-//                      if(data.data.message==='验证码错误'){
-//                          this.logintext='登录';
-//                          alert(data.data.data.message)
-//                      }else{
-//                          let token = data.data.data.token;
-//                          window.localStorage.setItem('token', token);
-//                          this.$router.push({ path: '/' });
-//                      }
-//                  }else{
-//                      alert(data.data.message);
-//                      this.logintext='登录';
-//                  }
-//              })
-//              .catch(error => {
-//                this.reloading=true;
-//                console.log(error)
-//              });
         },
     },
     created(){
