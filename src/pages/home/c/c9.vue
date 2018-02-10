@@ -303,5 +303,27 @@ export default {
     }
 
 }
+	.legend{
+	width: 36%;
+	height: 80%;
+	color: #fff;
+	font-size: 0.8rem;
+	position: absolute;
+	top: 10%;
+	li{
+		width: 33%;
+		line-height: 0.8rem;
+		margin-top: 0.8rem;
+		float: left;
+		p:first-child{
+			font-size: 0.9rem;
+			font-weight: bold;
+		}
+		p:last-child{
+			margin-top: 0.4rem;
+		}
+	}
+}
+
 }
 </style>

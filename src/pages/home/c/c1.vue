@@ -1,5 +1,5 @@
 <style lang="less" scoped>
-.c1{
+.c1,#c1{
     width: 100%;
     height: 100%;
 }
@@ -62,7 +62,7 @@
         <!--<span class="oneweek " v-bind:class="{ chose: isActive }" @click='redom("c1",0)'>7日</span>-->
         <!--<span class="twoweek" v-bind:class="{ chose: !isActive }" @click='redom("c1",1)'>14日</span>-->
     <!--</div>-->
-    <div id="c1" style="width:100%;height:100%">
+    <div id="c1">
     </div>
     <Loading v-show="isloading"></Loading>
 </div>  
@@ -164,8 +164,8 @@ export default {
 //              },
                 color:['#FB7C7D','#7460EE','#6AEDD9','#438AFF ','#02C753','#FC6ACB '],
                 grid: {
-                    left: '5%',
-                    right: '10%',
+                    left: '10',
+                    right: '5%',
                     bottom: '5%',
                     top:'28%',
                     containLabel: true
