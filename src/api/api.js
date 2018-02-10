@@ -5,8 +5,7 @@ import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
 
 export var params={};
 let timeStamp = new Date().getTime()+'';
-//if(window.navigator.userAgent.indexOf("MSIE") >= -1){ 
-//	alert("not ie"); 
+
 //转换post 请求参数
 function tansParm(data){
 	var params = new FormData();
@@ -19,11 +18,12 @@ function tansParm(data){
        
     return params;
 }
+if(window.navigator.userAgent.indexOf("MSIE") !== -1){ 
+	alert("0 ie"); 	
+}else{ 
+	alert("not ie"); 
 	
-//}else{ 
-//	alert("ie"); 
-	
-//}
+}
 
 
 
