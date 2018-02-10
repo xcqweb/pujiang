@@ -140,6 +140,14 @@
         let option={
                     backgroundColor: 'rgba(0,0,0,0)',
                     color: ['#1F6ABB','#3897C5','#A4C5E6'],
+                    tooltip: {
+	                trigger: 'item',
+	                position: 'right',
+	                formatter:function(params){
+	                	console.log(params)
+	                	return params.name+' : '+params.data+'%';
+	                }
+	            	},
                     grid: {
                          show: true,
                          left: '15%',
@@ -232,13 +240,13 @@
                         },
                         label:{
                         normal:{
-                            show:false,
+                            show:true,
                             position:'top',
                             textStyle:{
                                 color:'#2CC9E2',
                                 fontSize:"90%"
                             },
-                            formatter: '{c}万'
+                            formatter: '{c}%'
                         }
                        },
                     }

@@ -14,7 +14,7 @@
              <span class="oneweek " v-bind:class="{ chose: isActive }" @click='redomaaData'>省内</span> 
              <span class="twoweek" v-bind:class="{ chose: !isActive }" @click='redomData'>国内</span> 
         </div>
-        
+        <Loading v-show='isloading'></Loading>
     </div>
 </template>
 
@@ -22,11 +22,11 @@
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import echarts from 'echarts';
-import Loading from '@/components/commonui/loading/loading.vue'
+
 
 import api from '@/api/index.js'
 import echarts_resize from '../../../common/js/echarts_resize.js'
-
+import Loading from '@/components/commonui/loading/loading.vue'
 //import 'echarts/lib/chart/map';
 import 'echarts/map/js/china.js';
 import zhejiangJson from 'echarts/map/json/province/zhejiang.json'
@@ -38,14 +38,16 @@ let mowMonth = date.getMonth()+1
 
 export default {
     name: 'a6',
-    props:['placeName'],
     mixins: ['optionProps'],
+    props:['placeName'],
+    
     data () {
     return {
+    	isloading:true,
     	code:0,
     	range:1,
-        yearNumb:1727227,
-        mouthNumb:1727227,
+        yearNumb:0,
+        mouthNumb:0,
         nowYear:nowYear,
         mowMonth:mowMonth,
         topCity:[],
@@ -56,7 +58,16 @@ export default {
         option : {
             backgroundColor: 'rgba(0,0,0,0)',
             tooltip: {
-                trigger: 'item'
+                trigger: 'item',
+                 formatter:function(params){
+                	console.log(params)
+                	if(params.seriesType==="effectScatter"){
+            			return params.data.name+' > '+params.seriesName;
+            		}else{
+            			let val = params.data.toName+' > '+params.data.fromName;
+            			return val;
+            		}	
+                }
             },
             geo: {
                 map: 'zhejiang',
@@ -104,7 +115,14 @@ export default {
         optionChina : {
             backgroundColor: 'rgba(0,0,0,0)',
             tooltip: {
-                trigger: 'item'
+                trigger: 'item',
+                formatter:function(params){
+                	console.log(params)
+                	if(params.seriesType==="effectScatter"){
+                		let val = params.name+' : '+params.value[2];
+                		return val;
+                	}
+                }
             },
             geo: {
                 map: 'china',
@@ -543,8 +561,10 @@ export default {
     }
     },
     created(){
-    	this.getData()
-    	this.$nextTick(this.getData());
+    	//this.getData();
+    	console.log(this.isloading)
+      		this.getData()
+      	
     },
     mounted(){
         this.$nextTick(echarts_resize('fromEchart',this))
@@ -554,7 +574,7 @@ export default {
     },
     
     components:{
-    	
+    	Loading
     }
 }
 </script>

@@ -25,7 +25,7 @@ instance.interceptors.request.use(
 	    	//	code:6
 	    	//	}
         }
-                 console.log(config)
+                 //console.log(config)
         return config;
     },
     err => {

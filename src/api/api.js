@@ -18,14 +18,9 @@ function tansParm(data){
        
     return params;
 }
-if(window.navigator.userAgent.indexOf("MSIE") !== -1){ 
-	alert("0 ie"); 	
-}else{ 
-	alert("not ie"); 
-	
-}
 
 
+//console.log(navigator.userAgent,window.navigator.userAgent.indexOf('Trident'))
 
 
 

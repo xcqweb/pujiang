@@ -25,7 +25,7 @@ let optionProps =  {
         return {
         	scienceProps:'',
         	code:0,//景区编码
-        	isloading: false,
+        	isloading: true,
             nameToCode:{
                 '全部':0,
                 '仙华山':1,
@@ -85,7 +85,7 @@ let optionProps =  {
         
     },
     created(){
-    	this.isloading=true;
+    	//this.isloading=true;
     },
     mounted () {
         

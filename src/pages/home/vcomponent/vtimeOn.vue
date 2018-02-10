@@ -14,6 +14,8 @@ import Rw from '@/common/js/until/index'
 import api from '@/api/moudles/tanzhenData'
 import Loading from '@/components/commonui/loading/loading.vue'
 import optionProps from '@/common/js/mixin/optionProps.js'
+
+let isIE = window.navigator.userAgent.indexOf('Trident');
 export default {
     name: 'a5',
     mixins: [optionProps],
@@ -153,20 +155,38 @@ export default {
             data.push(bigData[i]);
             date.shift();
             data.shift();
-            this.currentNum = data[31];
+            if(isIE>-1){ 
+            	this.currentNum = data[7];
+						}else{ 
+            	this.currentNum = data[31];
+							
+						}
+            
         },
         redom(id){
             let _self=this;
-            var i = 32;
-            
+            var i = 0;
+            if(isIE>-1){ 
+            	i=7;
+						}else{ 
+							i=32;
+						}
             let timerIndex = Math.round((_self.mins*60) / _self.btwsecends)-5;
             this.chart = echarts.init(document.getElementById(id));
             this.chart.setOption(this.option);
             if (this.reTimer) {
                   window.clearInterval(this.reTimer)
             }
-            let date=_self.data_arr.date.slice(0,33);
-            let data=_self.data_arr.data.slice(0,33);
+            let date=[];
+            let data=[];
+            if(isIE>-1){ 
+							 date=_self.data_arr.date.slice(0,8);
+            	 data=_self.data_arr.data.slice(0,8);
+						}else{ 
+							 date=_self.data_arr.date.slice(0,33);
+            	 data=_self.data_arr.data.slice(0,33);
+						}
+            
             this.reTimer=setInterval(function () {
                 i++;
                // console.log(i,timerIndex,_self)
@@ -178,7 +198,11 @@ export default {
                             //_self.data_arr = Rw.array_until.remove_common(_self.data_arr,re.arr);
                             _self.data_arr = [];
                             _self.data_arr = re.arr;
-                            i=32;
+                            if(isIE>-1){ 
+														 		i=7;
+															}else{ 
+																 i=32;
+															}
 							            	//console.log(re)
                           _self.option.xAxis.data=re.arr.date;
                					 _self.option.series.data=re.arr.data;

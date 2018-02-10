@@ -144,27 +144,17 @@ export default {
 		      //console.log(this.responseData7.series)
             this.chart = echarts.init(document.getElementById(id));
             let option = {
-//              tooltip : {
-//                  trigger: 'axis',
-//                  show:true,
-//                  formatter:function(params){
-//                      		//console.log(params)
-//                      		var text = params[0].seriesName+" : "+params[0].value +"%<br>"+params[1].seriesName+" : "+params[1].value +"%<br>"
-//                      		+params[2].seriesName+" : "+params[2].value +"%<br>"
-//                        		 return text
-//                      },
-//                  axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-//                      type : 'shadow',// 默认为直线，可选为：'line' | 'shadow'
-//                      label:{
-//                      	formatter:function(params){
-//                        		 return "展示"
-//                      	}
-//                      }
-//                  }
-//              },
+            	tooltip: {
+	                trigger: 'item',
+	                position: 'right',
+	                formatter:function(params){
+	                	console.log(params)
+	                	return params.name+' : '+params.data+'%';
+	                }
+	            },
                 color:['#FB7C7D','#7460EE','#6AEDD9','#438AFF ','#02C753','#FC6ACB '],
                 grid: {
-                    left: '10',
+                    left: '20',
                     right: '5%',
                     bottom: '5%',
                     top:'28%',
