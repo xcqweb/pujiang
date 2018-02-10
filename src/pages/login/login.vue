@@ -132,11 +132,16 @@ import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
                
 //             console.log(params)
            // var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuaWNrTmFtZSI6IjExIiwibWVtSWQiOiIxMSIsImlzcyI6InFpbnNlbnQiLCJhdWQiOiJjbGllbnQiLCJleHAiOjE1MTI2NDAzNzQsIm5iZiI6MTUxMjYzNzM3NH0.TKGTMq9kWp15jQ2WQ8j5Wr45Rym9JRIIx-9FIVQiZj4'
-              var params = new URLSearchParams();
-              params.append('username', this.loginForm.username);
-              params.append('password', this.loginForm.password);
+//            var params = new URLSearchParams();
+//            params.append('username', this.loginForm.username);
+//            params.append('password', this.loginForm.password);
+              
+              const formData = new FormData()
+              formData.append('username', this.loginForm.username);
+              formData.append('password', this.loginForm.password);
+              
               //console.log(params)
-               axios.post('http://114.55.237.138/pj/api/user/login',params)
+               axios.post('http://114.55.237.138/pj/api/user/login',formData)
                 .then((data ) => {
                 	console.log(data);
                     this.logintext='登录中'; 

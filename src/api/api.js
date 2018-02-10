@@ -9,7 +9,7 @@ let timeStamp = new Date().getTime()+'';
 //	alert("not ie"); 
 //转换post 请求参数
 function tansParm(data){
-	var params = new URLSearchParams();
+	var params = new FormData();
         params.append('token', getCookie('token'));
     	params.append('code', data.code);
         params.append('timeStamp',timeStamp);

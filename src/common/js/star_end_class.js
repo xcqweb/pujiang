@@ -64,7 +64,7 @@ export default  class Start_end_class extends  Set_arr_class {
 	tansParm(){
 		let token =getCookie('token');
         let timeing = new Date().getTime()+'';
-		let params = new URLSearchParams();
+		let params = new FormData();
 	    params.append('token', token);
 	    params.append('code', this.code);
 	    params.append('timeStamp',timeing);
