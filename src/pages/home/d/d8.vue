@@ -51,6 +51,8 @@ import api from '@/api/index.js'
 import Loading from '@/components/commonui/loading/loading.vue'
 import optionProps from '@/common/js/mixin/optionProps.js'
 import axios from 'axios'
+import vAjax from '@/common/js/v-ajax.js'
+Vue.use(vAjax);
 export default {
 	name: 'd8',
 	mixins: [optionProps],
@@ -70,41 +72,63 @@ export default {
     computed:{
     	txt(){
     		let num = this.percent;
-    		switch(num){
-    			case 1.2:return '畅通';
-    			break;
-    			case 2:return '良好';
-    			break;
-    			case 3:return '拥堵';
-    			break;
-    			case 4:return '较拥堵';
-    			break;
-    			case 5:return "严重拥堵"
-    			break;
-    		}
+    			if(num<=1)return '畅通';
+    			if(num>1&&num<=2)return '良好';
+    			if(num>2&&num<=3)return '拥堵';
+    			if(num>3&&num<=4)return '较拥堵';
+    			if(num>4&&num<=5)return "严重拥堵"
     	}
     },
     methods: {
+    	
     },
     created(){
-    	this.getData();
+    	this.$nextTick( () => {
+    		this.getData();
+    	})
+    	
     },
     methods:{
     	//请求数据
+//	  	getData(){
+//	  		//api.params.code = 2;
+//	  		//api.scenicCongestion(api.params).then( (re) =>{
+//	  			axios.get('http://jiaotong.baidu.com/trafficindex/city/details?cityCode=197&callback=jsonp_1515067577030_9847129').then( (re) => {
+//	    		console.log(re)
+//	    		//let reData = re.data.data;
+//	    		//this.allData = reData;
+//	    		//this.percent = this.allData[this.place].num;
+//				if(re.status===200){
+//					this.isloading = false;
+//				}
+//		    }).catch( (e) => {
+//		    	console.log(e);
+//		    })
+//	  	}
+	  	
+	  	
 	  	getData(){
-	  		//api.params.code = 2;
-	  		//api.scenicCongestion(api.params).then( (re) =>{
-	  			axios.get('https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/scenicCongestion').then( (re) => {
-	    		let reData = re.data.data;
-	    		this.allData = reData;
-	    		this.percent = this.allData[this.place].num;
-				if(re.status===200){
-					this.isloading = false;
-				}
-		    }).catch( (e) => {
-		    	console.log(e);
-		    })
-	  	}
+    		 var _self= this
+                this.$ajax({
+                    type:'GET',
+                    url:'http://jiaotong.baidu.com/trafficindex/city/details',
+                    dataType:'jsonp',
+                    jsonp:'jsonpcallback',
+                    data:{
+                      cityCode : 197,
+                    },
+                    success:function(res){
+                      	let num = Number(res.data.detail.index) 
+                          _self.percent=num;
+                      if(res.status===0){
+							_self.isloading = false;
+						}
+		           },
+                    error:function(err){
+                      console.log(err);
+                    }
+                })
+    	}
     },
     mounted(){
     },

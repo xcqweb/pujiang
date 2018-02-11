@@ -133,10 +133,10 @@ import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
               formData.append('username', this.loginForm.username);
               formData.append('password', this.loginForm.password);
               
-              console.log(formData)
+             // console.log(formData)
                axios.post('http://114.55.237.138/pj/api/user/login',formData)
                 .then((data ) => {
-                	console.log(data);
+                	//console.log(data);
                     this.logintext='登录中'; 
                     if(data.data.code=200){
                         if(data.data.message==="用户名密码错误"){

@@ -15,23 +15,6 @@
           <font>上月</font>
           <span>{{currentMonthNum}}</span>
         </div>
-        <!--<div class="footer" v-show = 'changeModel' >
-          <div class='footerLeft'>
-            <div class='num'>
-                <span class='footerRise' :class='riaseLeft'></span>
-                <span class='footerCotext'>+{{growquantity}}</span>
-                <span class='footertit'>月增长</span>
-            </div>
-          </div>
-          <div class='footerRight'>
-            <div class='num'>
-                <span class='footerRise' :class='riaseRight'></span>
-                <span class='footerCotext'>-{{growRatio}}</span>
-                <span class='footerUnit'>%</span>
-                <span class='footertit'>月下降</span>
-            </div>
-          </div>
-        </div>-->
       </div>
       <Loading v-show="isloading"></Loading>
   </div>

@@ -7,7 +7,7 @@
 			<li>预警人数</li>
 			<li></li>
 		</ul>
-		<ul class="content" v-for="(data,i) in dataList" :class="{'bc1':i%2===0,'bc2':i%2===1}" :ref="i">
+		<ul class="content" v-for="(data,i) in dataConfigList" :class="{'bc1':i%2===0,'bc2':i%2===1}" :ref="i">
 			<template >
 				<li>{{i+1}}</li>
 				<li>{{data.name}}</li>
@@ -46,6 +46,8 @@
 <script>
 	import {editTime} from '@/common/js/gtime.js'
 	import Rw from '@/common/js/until/index.js'
+	import { mapMutations,mapActions} from 'vuex'
+	
 	export default {
 		data(){
 			return {
@@ -54,7 +56,9 @@
 				showEdit:true,
 				editIndex:'',
 				tipShow:false,
-				editData:{}
+				editData:{},
+				
+				dataConfigList:[]
 			}
 		},
 		props:['dataList','scienceProps'],
@@ -65,8 +69,16 @@
 			}
 		},
 		created(){
+			this.dataConfigList = JSON.parse(window.localStorage.getItem('dataList'))||this.$store.state.dataList;
 		},
 		methods:{
+			
+			...mapMutations([
+				'SAVE_EDIT',
+				'SAVE_CONFIG',
+				'SAVE_EDIT'
+			]),
+			
 			
 			//编辑按钮
 			edit(data,i){
@@ -92,13 +104,19 @@
 					
 					//修改时间
 					this.editData.editTime = editTime;
+					this.editData.index = i;
 					this.editData.loadNum =  Rw.string_until.transformNum(editEle[i].getElementsByClassName('load')[0].value);
 					this.editData.configNum = Rw.string_until.transformNum(editEle[i].getElementsByClassName('config')[0].value) ;
 					this.$store.state.setConfigData = this.editData;
 					
 					this.editIndex = '';
+					//this.$store._mutations.config.ADD_HISTORY
+					this.$store.commit('SAVE_EDIT',this.editData);
+					this.$store.commit('SAVE_CONFIG',this.editData);
+					this.$store.commit('ADD_HISTORY',this.editData);
 					
-					//console.log(this.$store.state.setConfigData)
+					
+					console.log(this.$store.state)
 				}else{
 					this.editIndex = '';
 				}

@@ -148,7 +148,6 @@ export default {
 	                trigger: 'item',
 	                position: 'right',
 	                formatter:function(params){
-	                	console.log(params)
 	                	return params.name+' : '+params.data+'%';
 	                }
 	            },

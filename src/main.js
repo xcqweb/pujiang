@@ -10,6 +10,8 @@ import sheet from './common/js/until.js'
 import Toast from './components/commonui/toast/index.js'
 import loading from './components/commonui/loading/index.js'
 import Rw from '@/common/js/until/index'
+
+
 //自适应字体
 //import '@/common/js/rem.js'
 Vue.directive('echarts', require('./common/js/directives/vDirechartsE.js'));

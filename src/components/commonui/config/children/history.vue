@@ -6,7 +6,7 @@
 			<li>景区名称</li>
 			<li>预警人数</li>
 		</ul>
-		<ul class="content" v-for="(data,i) in historyList" :class="{'bc1':i%2===0,'bc2':i%2===1}" :key="i">
+		<ul class="content" v-for="(data,i) in hisArr" :class="{'bc1':i%2===0,'bc2':i%2===1}" :key="i">
 			<li>{{i+1}}</li>
 			<li>{{data.editTime}}</li>
 			<li>{{data.name}}</li>
@@ -19,10 +19,15 @@
 	export default {
 		data(){
 			return {
-				
+				hisArr:[]
 			}
 		},
-		props:['historyList']
+		props:['historyList'],
+		computed:{
+		},
+		created(){
+			this.hisArr =JSON.parse(window.localStorage.getItem('historyList')) || this.$store.state.historyList; 
+		}
 	}
 </script>
 

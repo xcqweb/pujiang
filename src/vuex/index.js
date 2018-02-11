@@ -7,25 +7,22 @@ import Vuex from 'vuex'
 import global from './modules/global'
 import version from './modules/version'
 import user from './modules/user'
+import state from './state'
+import mutations from './mutations'
+import actions from './actions'
 // import tanzhenData from './modules/tanzhenData'
 
 Vue.use(Vuex)
 
 const debug = process.env.NODE_ENV !== 'production'
-const state={
-	showToast:false,//控制预警设置蒙层
-	currentCode:0,//当前景区代码
-	setConfigData:{},
-	videoFull:false,//视频监控全屏
-	
-	editNum:0//临时 传递修改的参数
-	
-}
+
 export default new Vuex.Store({
     //strict: debug,
     state,
+    mutations,
+    actions,
     modules: {
-
+	
     global: {
         namespaced: true,
         ...global

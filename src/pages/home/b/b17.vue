@@ -113,12 +113,15 @@
             <div class="item_name"><font>{{item.name}}</font></div>
             <div class="item_num"><font>{{item.value}}</font></div>
         </div>
+        <Loading v-show="isloading"></Loading>
     </div>
 </template>
 
 <script>
 import Vue from 'vue'
 import optionProps from '@/common/js/mixin/optionProps.js'
+import api from '@/api/index.js'
+import Loading from '@/components/commonui/loading/loading.vue'
 export default {
     name: 'B17',
     mixins: [optionProps],
@@ -133,7 +136,6 @@ export default {
                 {name:'休闲娱乐',value:198,img:require('../../../assets/images/chanye/6.png')},
                 {name:'旅行社',value:14,img:require('../../../assets/images/chanye/7.png')},
                 {name:'公共设施',value:120,img:require('../../../assets/images/chanye/8.png')},
-//              {name:'厕所',value:63,img:require('../../../assets/images/chanye/9.png')},
             ],
         }
     },
@@ -143,14 +145,39 @@ export default {
     computed: { 
 
     },
+    watch:{
+    	code:function(){
+    		this.getData();
+    	}
+    },
     methods: {
-        watchTouristFn(val){
-            console.log(val)
-        }
+        //请求数据
+	  	getData(){
+	  		api.params.code = this.code; 
+	  		api.getProductData(api.params).then( (re) =>{
+	    		let reData = re.data.data;
+	    		
+	    		reData.forEach( (item,index) => {
+	    			this.items[index].value = item.num;
+	    		})
+	    		
+	    		if(re.status===200){
+	    			this.isloading=false;
+	    		}
+		    }).catch( (e) => {
+		    	console.log(e);
+		    })
+	  	},
+    },
+    created(){
+    	this.getData();
     },
     mounted(){
     
     },
+    components:{
+    	Loading
+    }
 }
 </script>
 

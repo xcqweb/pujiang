@@ -78,6 +78,8 @@ export const touristSum = params => {return axios.post(`${base}/cyjc/getTouristC
 //旅游营业分析
 export const tourBusiness = params => { return axios.post(`${base1}/tourBusiness`,tansParm(params));};
 
+//产业数据
+export const getProductData = params => { return axios.post(`${base}/cyjc/getProductData`,tansParm(params));};
 
 
 //出行方式
@@ -119,7 +121,19 @@ export const scenicHot  = params => { return axios.post(`${base}/zl/getReliData`
 //满意度
 export const contentRatio  = params => { return axios.get(`${base1}/contentRatio`,params);};
 
-//客流预警
 
-export const passengerwarning  = params => { return axios.get(`${base1}/passengerwarning`,params);};
+//关键词
+export const getKeywords  = params => { return axios.post(`${base}/yjzh/getKeywords`,tansParm(params));};
+//网评数据
+export const getComments  = params => { return axios.post(`${base}/yjzh/getComments`,tansParm(params));};
+
+
+//客流预警
+export const passengerwarning  = params => { return axios.post(`${base}/jzyx/getPassengerWarn`,tansParm(params));};
+//预警历史
+export const getPassengerWarnHistory  = params => { return axios.post(`${base}/jzyx/getPassengerWarnHistory`,tansParm(params));};
+//预警设置列表
+export const getPassengerWarnSetList  = params => { return axios.post(`${base}/jzyx/getPassengerWarnSetList`,tansParm(params));};
+//预警设置
+export const modifyPassengerWarnSet  = params => { return axios.post(`${base}/jzyx/modifyPassengerWarnSet`,tansParm(params));};
 

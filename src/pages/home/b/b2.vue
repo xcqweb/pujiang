@@ -5,7 +5,7 @@
             <img :src="imgacircle"/>
         </div>
         <span>5%</span>
-        <div class="text"><font>预警客流</font><font>{{this.set_config}}人</font></div>
+        <div class="text"><font>预警客流</font><font>{{configNumber}}人</font></div>
         <p class="configBtn" @click="passagerConfig">设置</p>
       <Loading v-show="isloading"></Loading>
     </div>
@@ -44,13 +44,25 @@ export default {
       }else{
         return (nub*100/setconfig).toFixed(0)+"%";
       }
+    },
+    
+    configNumber(){
+    	let data = JSON.parse(window.localStorage.getItem('dataList'))||this.$store.state.dataList;
+	    let num=0;
+	    data.forEach( (item,index) => {
+	    	num+=item.configNum;
+	    })
+	    
+	    return num;
     }
+    
   },
   methods:{
   	//客流设置
   	passagerConfig(){
   		this.$store.state.showToast = true;
   		this.$store.state.currentCode = this.code;
+  		
   		//console.log(this.$store.state.currentCode,this.code);
   	},
       redom(id){
@@ -58,10 +70,11 @@ export default {
           this.chart.setOption(this.option);
       },
   request(){
-    //api.passengerwarning(api.params).then( (re) => {
+//	  api.params.code= this.code;
+//    api.passengerwarning(api.params).then( (re) => {
     	axios.get('https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/passengerwarning').then( (re) => {
       //设置默认值
-      //console.log(re)
+        //console.log(re)
       this.nub = re.data.data.nub;
       this.set_config = re.data.data.set_config;
       this.isloading=false;

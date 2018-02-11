@@ -26,6 +26,7 @@
 	import history from '@/components/commonui/config/children/history.vue'
 	import config from '@/components/commonui/config/children/config.vue'
 	import optionProps from '@/common/js/mixin/optionProps.js'
+	import { mapMutations,mapActions} from 'vuex'
 	
 	export default{
 		mixins: [optionProps],
@@ -204,6 +205,7 @@
 			}
 		},
 		methods:{
+			
 			catchmsg1(data){
                 //console.log(data)
              	//this.updateData.turist = data;
@@ -227,7 +229,7 @@
 			//应急指挥平台选择景区
 			this.code = this.$store.state.currentCode;
 			this.qyselectlist.title = this.qyselectlist.place[this.$store.state.currentCode];
-			//console.log(this.qyselectlist.title,this.$store.state.currentCode)
+			
 		},
 		
 		mounted(){

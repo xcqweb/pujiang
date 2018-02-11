@@ -11,8 +11,8 @@
         <div id="fromEchart"></div>
 
         <div class="week">
-             <span class="oneweek " v-bind:class="{ chose: isActive }" @click='redomaaData'>省内</span> 
-             <span class="twoweek" v-bind:class="{ chose: !isActive }" @click='redomData'>国内</span> 
+             <span class="oneweek " v-bind:class="{ chose: isActive }" @click='redom7'>省内</span> 
+             <span class="twoweek" v-bind:class="{ chose: !isActive }" @click='redom14'>国内</span> 
         </div>
         <Loading v-show='isloading'></Loading>
     </div>
@@ -43,8 +43,10 @@ export default {
     
     data () {
     return {
+    	num1:0,
+    	num2:0,
     	isloading:true,
-    	code:0,
+    	code:'',
     	range:1,
         yearNumb:0,
         mouthNumb:0,
@@ -283,10 +285,10 @@ export default {
 		
   	},
     redom7(){
-        this.isActive=true;
+        this.range = 2;
     },
     redom14(){
-        this.isActive=false;
+        this.range = 1;
     },
     convertData(data){
          var res = [];
@@ -336,13 +338,16 @@ export default {
                 }
             }
             )
-            this.redomaaData();
+            //this.redomaaData();
         
         },
     //国内游客来源
     redomData(){
-    	if(this.range===1)return;
     	this.range = 1;
+    	this.num2++;
+    	this.num1=0;
+    	if(this.num2>1)return;
+    	
     	this.isActive=true;
         let _self=this;
         const target = this.placeName;
@@ -451,8 +456,12 @@ export default {
     },
     //省内游客来源
     redomaaData(){
-    	if(this.range===2)return;
     	this.range = 2;
+    	this.num1++;
+    	this.num2=0;
+    	console.log(this.num1)
+    	if(this.num1>1)return;
+    	console.log(this.num1)
     	this.isActive=false;
         if(this.chart){
             this.chart.dispose();
@@ -563,9 +572,7 @@ export default {
     }
     },
     created(){
-    	//this.getData();
-    	console.log(this.isloading)
-      		this.getData()
+      	this.getData()
       	
     },
     mounted(){
