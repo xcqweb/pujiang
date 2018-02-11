@@ -20,14 +20,14 @@
                 <input id="username" autofocus="autofocus" checked="checked" v-model.trim="loginForm.username" placeholder="请输入账号" type="text"/>  
             </div>
             <div class="password">
-                <input id='password' class="warning" v-model.trim="loginForm.password" placeholder="请输入密码"  type="password"/>  
+                <input id='password' class="warning" v-model.trim="loginForm.password"  @keyup.enter="logisn" placeholder="请输入密码" type="password"/>  
             </div>
             <!-- <div class="test">
                 <input id="trim" v-model.trim="loginForm.code" v-on:keyup.enter="login" placeholder="验证码" type="text"/>
             </div>
             <div class="testimg" ><img v-if='redome' @click='redom' v-bind:src="src" alt="验证码" /></div>
             <div class="changeImge" @click='redom'>换一张</div> -->
-            <div class="login" @click='logisn'>{{logintext}}</div>
+            <div class="login" @click='logisn($event)'>{{logintext}}</div>
         </div>
 
     </div>
@@ -121,7 +121,6 @@ import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
         resetForm(formName){
             this.$refs[formName].resetFields();
         },
-        
         logisn(){
         		if(this.loginForm.username==='' || this.loginForm.password==='')
         		alert('用户名和密码不能为空!')
