@@ -65,8 +65,9 @@ export default {
         item.status='unchose'
     },
     logout(){
-    	setCookie('token','',-1);
-        this.$router.push({ path: '/login' })
+    		setCookie('token','',-1);
+        this.$router.push({ path: '/login' });
+        
     },
     changelink(){
         for (var i = 0; i < this.items.length; i++) {
@@ -74,6 +75,9 @@ export default {
         }
         switch(location.hash){
             case '#/' :
+            this.items[0].status = 'unchose'
+            break; 
+            case '#/login' :
             this.items[0].status = 'unchose'
             break; 
             case '#/prodcut' :

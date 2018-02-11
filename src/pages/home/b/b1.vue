@@ -102,7 +102,6 @@ export default {
       top:10%;
       list-style: none;
       height:100%;
-      box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
       border-radius: 4px;
       &:after {
           content: ".";

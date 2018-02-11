@@ -1,5 +1,5 @@
 //封装设置cookie
-
+//cookie过期时间
 let date = new Date();
 date.setDate(date.getDate()+30)
 
