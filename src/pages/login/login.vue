@@ -122,9 +122,11 @@ import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
             this.$refs[formName].resetFields();
         },
         logisn(){
-        		if(this.loginForm.username==='' || this.loginForm.password==='')
-        		alert('用户名和密码不能为空!')
-        		return;
+        		if(this.loginForm.username==='' || this.loginForm.password===''){
+        			alert('用户名和密码不能为空!')
+        			return;
+        		}
+        		
             	this.logintext='登录中';
               
               const formData = new FormData()//post 传值需将传递的对象转换成字符串
