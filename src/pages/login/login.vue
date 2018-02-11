@@ -133,7 +133,7 @@ import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
               formData.append('username', this.loginForm.username);
               formData.append('password', this.loginForm.password);
               
-              //console.log(params)
+              console.log(formData)
                axios.post('http://114.55.237.138/pj/api/user/login',formData)
                 .then((data ) => {
                 	console.log(data);
@@ -147,7 +147,7 @@ import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
                               let token = data.data.data.token;
                               setCookie('token', token);
                               this.$router.push({ path: '/' });
-                            //window.location.href = 'http://120.55.190.57/pujiang'
+                              //window.location.href = 'http://localhost:8008'
                         }
 	                    }else{
 	                        alert(data.data.message);

@@ -341,6 +341,7 @@ export default {
         },
     //国内游客来源
     redomData(){
+    	if(this.range===1)return;
     	this.range = 1;
     	this.isActive=true;
         let _self=this;
@@ -450,6 +451,7 @@ export default {
     },
     //省内游客来源
     redomaaData(){
+    	if(this.range===2)return;
     	this.range = 2;
     	this.isActive=false;
         if(this.chart){
@@ -642,6 +644,9 @@ export default {
     .oneweek{
       cursor: pointer;
       float: left;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      -moz-user-select: none;
       height: 1.5rem;
       line-height:1.5rem;
       width: 47%;
@@ -657,6 +662,9 @@ export default {
     .twoweek{
       cursor: pointer;
       float: right;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      -moz-user-select: none;
       height: 1.5rem;
       line-height:1.5rem;
       width: 47%;
