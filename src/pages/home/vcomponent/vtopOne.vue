@@ -214,6 +214,7 @@ export default {
                         normal:{
                             show:true,
                             position:'top',
+                            distance:5,
                             textStyle:{
                                 color:'#2CC9E2',
                                 fontSize:"80%"

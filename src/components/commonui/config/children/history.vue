@@ -6,27 +6,55 @@
 			<li>景区名称</li>
 			<li>预警人数</li>
 		</ul>
-		<ul class="content" v-for="(data,i) in hisArr" :class="{'bc1':i%2===0,'bc2':i%2===1}" :key="i">
+		<ul class="content" v-for="(data,i) in transformHisArr" :class="{'bc1':i%2===0,'bc2':i%2===1}" :key="i">
 			<li>{{i+1}}</li>
-			<li>{{data.editTime}}</li>
+			<li>{{data.warnDate}}</li>
 			<li>{{data.name}}</li>
-			<li>{{data.configNum}}</li>
+			<li>{{data.warnSet}}</li>
 		</ul>
 	</div>
 </template>
 
 <script>
+	import api from '@/api/index.js'
+import optionProps from '@/common/js/mixin/optionProps.js'
+	
 	export default {
+		mixins: [optionProps],
 		data(){
 			return {
 				hisArr:[]
 			}
 		},
-		props:['historyList'],
+		props:[],
 		computed:{
+			transformHisArr(){
+				let arr=this.hisArr
+				arr.forEach( (item,index) => {
+					arr[index].warnDate = item.warnDate.substring(0,4)+'/'+item.warnDate.substring(4,6)+"/"+item.warnDate.substring(6,8)+" "+item.warnDate.substring(8,10)+':'+item.warnDate.substring(10,12)+':'+item.warnDate.substring(12,14)
+				})
+				return arr;
+			}
+		},
+		watch:{
+			code:function(){
+				this.getData();
+			}
+		},
+		methods:{
+			getData(){
+				api.params.code= this.code;
+				api.getPassengerWarnHistory(api.params).then( (re) => {
+					//console.log(re)
+					let reData = re.data.data;
+					this.hisArr = reData;
+				}).catch( e =>{
+				      console.log(e);
+				    })
+			}
 		},
 		created(){
-			this.hisArr =JSON.parse(window.localStorage.getItem('historyList')) || this.$store.state.historyList; 
+			this.getData();
 		}
 	}
 </script>

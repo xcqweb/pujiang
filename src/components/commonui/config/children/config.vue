@@ -11,10 +11,10 @@
 			<template >
 				<li>{{i+1}}</li>
 				<li>{{data.name}}</li>
-				<li v-if="i!==editIndex">{{data.loadNum}}</li>
+				<li v-if="i!==editIndex">{{data.setNum}}</li>
 				<li v-if="i===editIndex"><input type="number" class="load" v-model="loadNum" /><span class="tip" v-show="tipShow">输入有误!</span></li>
 				
-				<li v-if="i!==editIndex">{{data.configNum}}</li>
+				<li v-if="i!==editIndex">{{data.warnNum}}</li>
 				<li v-if="i===editIndex"><input type="number" class="config" v-model="configNum" /></li>
 				
 				<li v-if="i!==editIndex"><span class="edit" @click="edit(data,i)">修改</span></li>
@@ -46,9 +46,13 @@
 <script>
 	import {editTime} from '@/common/js/gtime.js'
 	import Rw from '@/common/js/until/index.js'
-	import { mapMutations,mapActions} from 'vuex'
+import optionProps from '@/common/js/mixin/optionProps.js'
 	
+	import { mapMutations,mapActions} from 'vuex'
+	import api from '@/api/index.js'
+	import axios from 'axios'
 	export default {
+		mixins: [optionProps],
 		data(){
 			return {
 				loadNum:'',
@@ -61,29 +65,55 @@
 				dataConfigList:[]
 			}
 		},
-		props:['dataList','scienceProps'],
+		props:[],
 		watch:{
-			scienceProps:function(){
-				//选择景区时清除编辑模式
-				this.editIndex = '';
+			code:function(){
+				this.getData()
 			}
 		},
 		created(){
-			this.dataConfigList = JSON.parse(window.localStorage.getItem('dataList'))||this.$store.state.dataList;
+			this.dataConfigList=this.$store.state.dataList 
 		},
 		methods:{
-			
+			//模拟数据
 			...mapMutations([
 				'SAVE_EDIT',
 				'SAVE_CONFIG',
 				'SAVE_EDIT'
 			]),
 			
+			//获取数据
+			getData(){
+				api.params.code= this.code;
+				api.getPassengerWarnSetList(api.params).then( (re) => {
+					//console.log(re)
+					let reData = re.data.data;
+					this.$store.state.dataList = reData;
+					this.dataConfigList = reData;
+				}).catch( e =>{
+				      console.log(e);
+				    })
+			},
+			
+			setData(data){
+				api.params.code= data.code;
+				api.params.setNum = data.loadNum;
+				api.params.warnNum = data.configNum;
+				api.modifyPassengerWarnSet(api.params).then( (re) => {
+					//console.log(re)
+					if(re.data.code===200){
+						alert('修改成功!')
+					}
+				}).catch( e =>{
+				      console.log(e);
+				    })
+				
+			},
 			
 			//编辑按钮
 			edit(data,i){
-				this.loadNum = data.loadNum;
-				this.configNum = data.configNum;
+				this.loadNum = data.setNum;
+				this.configNum = data.warnNum;
 				this.editIndex = i;
 				this.showEdit = true;
 				this.editData = data;
@@ -107,16 +137,17 @@
 					this.editData.index = i;
 					this.editData.loadNum =  Rw.string_until.transformNum(editEle[i].getElementsByClassName('load')[0].value);
 					this.editData.configNum = Rw.string_until.transformNum(editEle[i].getElementsByClassName('config')[0].value) ;
-					this.$store.state.setConfigData = this.editData;
+					//this.$store.state.setConfigData = this.editData;
 					
 					this.editIndex = '';
-					//this.$store._mutations.config.ADD_HISTORY
-					this.$store.commit('SAVE_EDIT',this.editData);
-					this.$store.commit('SAVE_CONFIG',this.editData);
-					this.$store.commit('ADD_HISTORY',this.editData);
 					
+					//this.$store.commit('SAVE_EDIT',this.editData);
+					//this.$store.commit('SAVE_CONFIG',this.editData);
+					//this.$store.commit('ADD_HISTORY',this.editData);
 					
-					console.log(this.$store.state)
+					this.setData(this.editData);
+					this.getData();
+					
 				}else{
 					this.editIndex = '';
 				}

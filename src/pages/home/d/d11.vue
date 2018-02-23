@@ -7,7 +7,7 @@
 #chartId{
     width:100%;
     height:90%;
-    margin-top: 10%;
+    margin-top: 3%;
 }
 </style>
 <template>

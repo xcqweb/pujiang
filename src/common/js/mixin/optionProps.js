@@ -6,6 +6,7 @@
 let optionProps =  {
     props: {
         touristProp:String,
+        scienceProp:String,
     },
     watch:{
         touristProp:{
@@ -14,7 +15,7 @@ let optionProps =  {
             },
             deep:true,
         },
-        scienceProps:{
+        scienceProp:{
         	handler:function(val, oldVal){
                this.watchTouristFn&&this.watchTouristFn(this.nameToCode[val])
             },
@@ -23,7 +24,7 @@ let optionProps =  {
     },
     data () {
         return {
-        	scienceProps:'',
+        	//scienceProps:'',
         	code:0,//景区编码
         	isloading: true,
             nameToCode:{

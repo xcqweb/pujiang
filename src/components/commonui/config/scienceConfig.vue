@@ -13,8 +13,8 @@
 				<span class="config" @click="waringConfig" :class="{'active':!tab}">预警设置</span>
 				<span class="close" @click="close">x</span>
 			</div>
-			<history :historyList="slectListHistory" v-show="tab"></history>
-			<config :dataList="slectList" :scienceProps="scienceProps" v-show="!tab"></config>
+			<history :scienceProp='scienceProps' v-show="tab"></history>
+			<config :scienceProp='scienceProps' v-show="!tab"></config>
 			</div>
 		</div>
 	</transition>
@@ -33,6 +33,7 @@
 		data(){
 			return {
 				tab:true,
+				scienceProps:'',
 				updateData:{
                     turist:'全部',
                 },
@@ -90,125 +91,13 @@
 		            '塔山宾馆',
 		            '月泉书院遗址公园'],
                 },
-                slectList:[],
-                slectListHistory:[],
-                dataList:[
-		            	{name:'仙华山',loadNum:12300,configNum:10000},
-		            	{name:'前吴村',loadNum:12500,configNum:10000},
-		            	{name:'塘波村',loadNum:12000,configNum:16000},
-		            	{name:'民生村',loadNum:12000,configNum:10000},
-		            	{name:'罗源村',loadNum:12000,configNum:10000},
-		            	{name:'白石湾',loadNum:12000,configNum:10000},
-		            	{name:'江南第一家',loadNum:12000,configNum:10000},
-		            	{name:'嵩溪村',loadNum:12000,configNum:10000},
-		            	{name:'宝掌幽谷',loadNum:12000,configNum:10000},
-		            	{name:'登高村',loadNum:12000,configNum:10000},
-		            	{name:'神丽峡',loadNum:12000,configNum:10000},
-		            	{name:'礼张村',loadNum:12000,configNum:10000},
-		            	{name:'农批市场',loadNum:12000,configNum:10000},
-		            	{name:'檀溪镇',loadNum:12000,configNum:10000},
-		            	{name:'冷坞村',loadNum:12000,configNum:10000},
-		            	{name:'上河村',loadNum:12000,configNum:10000},
-		            	{name:'汽车客运站',loadNum:12000,configNum:10000},
-		            	{name:'翠湖',loadNum:12000,configNum:10000},
-		            	{name:'马岭',loadNum:12000,configNum:10000},
-		            	{name:'利民村',loadNum:12000,configNum:10000},
-		            	{name:'下湾村',loadNum:12000,configNum:10000},
-		            	{name:'新光村',loadNum:12000,configNum:10000},
-		            	{name:'西山村',loadNum:12000,configNum:10000},
-		            	{name:'田后蓬',loadNum:12000,configNum:10000},
-		            	{name:'薛下庄村',loadNum:12000,configNum:10000},
-		            	{name:'下薛宅',loadNum:12000,configNum:10000},
-		            	{name:'金狮湖',loadNum:12000,configNum:10000},
-		            	{name:'高速路',loadNum:12000,configNum:10000},
-		            	{name:'官岩寺',loadNum:12000,configNum:10000},
-		            	{name:'上山遗址',loadNum:12000,configNum:10000},
-		            	{name:'渠南村',loadNum:12000,configNum:10000},
-		            	{name:'温泉',loadNum:12000,configNum:10000},
-		            	{name:'水晶城',loadNum:12000,configNum:10000},
-		            	{name:'水竹湾',loadNum:12000,configNum:10000},
-		            	{name:'平湖森林果园',loadNum:12000,configNum:10000},
-		            	{name:'三角潭林场',loadNum:12000,configNum:10000},
-		            	{name:'罗家村',loadNum:12000,configNum:10000},
-		            	{name:'白岩山前滑草基地',loadNum:12000,configNum:10000},
-		            	{name:'里黄宅村',loadNum:12000,configNum:10000},
-		            	{name:'善庆村',loadNum:12000,configNum:10000},
-		            	{name:'文化馆',loadNum:12000,configNum:10000},
-		            	{name:'通济桥水库大坝',loadNum:12000,configNum:10000},
-		            	{name:'三城山农庄',loadNum:12000,configNum:10000},
-		            	{name:'塔山宾馆',loadNum:12000,configNum:10000},
-		            	{name:'月泉书院遗址公园',loadNum:12000,configNum:10000},
-		            ],
-		             historyList:[
-		            	{name:'仙华山',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'前吴村',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'塘波村',editTime:'2018/02/02 13:12:45',configNum:16000},
-		            	{name:'民生村',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'罗源村',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'白石湾',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'江南第一家',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'嵩溪村',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'宝掌幽谷',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'登高村',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'神丽峡',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'礼张村',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'农批市场',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'檀溪镇',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'冷坞村',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'上河村',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'汽车客运站',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'翠湖',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'马岭',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'利民村',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'下湾村',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'新光村',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'西山村',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'田后蓬',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'薛下庄村',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'下薛宅',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'金狮湖',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'高速路',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'官岩寺',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'上山遗址',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'渠南村',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'温泉',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'水晶城',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'水竹湾',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'平湖森林果园',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'三角潭林场',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'罗家村',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'白岩山前滑草基地',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'里黄宅村',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'善庆村',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'文化馆',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'通济桥水库大坝',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'三城山农庄',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'塔山宾馆',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            	{name:'月泉书院遗址公园',editTime:'2018/02/02 13:12:45',configNum:10000},
-		            ]
 			}
 		},
 		watch:{
-			code:function(){
-				if(this.code===0){
-					this.slectList = this.dataList;
-					this.slectListHistory = this.historyList;
-				}else{
-					this.slectList = [];
-					this.slectList.push(this.dataList[this.code-1]);
-					
-					this.slectListHistory = [];
-					this.slectListHistory.push(this.historyList[this.code-1]);
-				}
-				this.updateData.turist = this.qyselectlist.place[this.code];
-				//console.log(this.updateData.turist)
-			}
 		},
 		methods:{
 			
 			catchmsg1(data){
-                //console.log(data)
-             	//this.updateData.turist = data;
              	this.scienceProps = data;
         	},
         	history(){
@@ -223,13 +112,7 @@
         	}
 		},
 		created(){
-			//初始化传值
-			this.slectList = this.dataList;
-			this.slectListHistory = this.historyList;
-			//应急指挥平台选择景区
-			this.code = this.$store.state.currentCode;
-			this.qyselectlist.title = this.qyselectlist.place[this.$store.state.currentCode];
-			
+			//console.log(this.nameToCode['仙华山'])
 		},
 		
 		mounted(){

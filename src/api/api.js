@@ -15,6 +15,10 @@ function tansParm(data){
         if(data.range){
         	 params.append('range',data.range);
         }
+        if(data.setNum || data.warnNum){
+        	params.append('setNum', data.setNum);
+        	params.append('warnNum', data.warnNum);
+        }
        
     return params;
 }
@@ -117,7 +121,7 @@ export const toiletUseRatio  = params => { return axios.post(`${base1}/toiletUse
 //营销推广
 export const touristPayway  = params => { return axios.post(`${base1}/touristPayway`,tansParm(params));};
 //景区客流热力图与视频监控
-export const scenicHot  = params => { return axios.post(`${base}/zl/getReliData`,tansParm(params));};
+export const scenicHot  = params => { return axios.post(`${base}/yjzh/getReliData`,tansParm(params));};
 //满意度
 export const contentRatio  = params => { return axios.get(`${base1}/contentRatio`,params);};
 
@@ -129,11 +133,11 @@ export const getComments  = params => { return axios.post(`${base}/yjzh/getComme
 
 
 //客流预警
-export const passengerwarning  = params => { return axios.post(`${base}/jzyx/getPassengerWarn`,tansParm(params));};
+export const passengerwarning  = params => { return axios.post(`${base}/yjzh/getPassengerWarn`,tansParm(params));};
 //预警历史
-export const getPassengerWarnHistory  = params => { return axios.post(`${base}/jzyx/getPassengerWarnHistory`,tansParm(params));};
+export const getPassengerWarnHistory  = params => { return axios.post(`${base}/yjzh/getPassengerWarnHistory`,tansParm(params));};
 //预警设置列表
-export const getPassengerWarnSetList  = params => { return axios.post(`${base}/jzyx/getPassengerWarnSetList`,tansParm(params));};
+export const getPassengerWarnSetList  = params => { return axios.post(`${base}/yjzh/getPassengerWarnSetList`,tansParm(params));};
 //预警设置
-export const modifyPassengerWarnSet  = params => { return axios.post(`${base}/jzyx/modifyPassengerWarnSet`,tansParm(params));};
+export const modifyPassengerWarnSet  = params => { return axios.post(`${base}/yjzh/modifyPassengerWarnSet`,tansParm(params));};
 

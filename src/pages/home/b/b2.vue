@@ -4,7 +4,7 @@
         <div class="circle">
             <img :src="imgacircle"/>
         </div>
-        <span>5%</span>
+        <span>{{percent}}%</span>
         <div class="text"><font>预警客流</font><font>{{configNumber}}人</font></div>
         <p class="configBtn" @click="passagerConfig">设置</p>
       <Loading v-show="isloading"></Loading>
@@ -27,6 +27,7 @@ export default {
   data () {
     return {
     	code:0,
+    	percent:0,
         imgacircle:require('../../../assets/images/home/b/circle.png'),
         nub:'',
         set_config:''
@@ -35,22 +36,12 @@ export default {
   watch:{
   },
   computed: {
-    persent(){
-    	this.set_config = this.$store.state.setConfigData.configNum;
-      let nub = 1||parseInt(this.nub);
-      let setconfig = 20||parseInt(this.set_config);
-      if(!nub && !setconfig){
-        return "";
-      }else{
-        return (nub*100/setconfig).toFixed(0)+"%";
-      }
-    },
     
     configNumber(){
-    	let data = JSON.parse(window.localStorage.getItem('dataList'))||this.$store.state.dataList;
+    	let data = this.$store.state.dataList;
 	    let num=0;
 	    data.forEach( (item,index) => {
-	    	num+=item.configNum;
+	    	num+=item.warnNum;
 	    })
 	    
 	    return num;
@@ -58,6 +49,19 @@ export default {
     
   },
   methods:{
+  	
+  	//获取数据
+	getData(){
+		api.params.code= 0;
+		api.getPassengerWarnSetList(api.params).then( (re) => {
+			//console.log(re)
+			let reData = re.data.data;
+			this.$store.state.dataList = reData;
+		}).catch( e =>{
+		      console.log(e);
+		    })
+	},
+  	
   	//客流设置
   	passagerConfig(){
   		this.$store.state.showToast = true;
@@ -70,17 +74,16 @@ export default {
           this.chart.setOption(this.option);
       },
   request(){
-//	  api.params.code= this.code;
-//    api.passengerwarning(api.params).then( (re) => {
-    	axios.get('https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/passengerwarning').then( (re) => {
+	  api.params.code= this.code;
+      api.passengerwarning(api.params).then( (re) => {
+//  	axios.get('https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/passengerwarning').then( (re) => {
       //设置默认值
-        //console.log(re)
-      this.nub = re.data.data.nub;
-      this.set_config = re.data.data.set_config;
+      this.nub = re.data.data.count;
+      this.set_config = 100000;
+      this.percent = re.data.data.warnPercent;
       this.isloading=false;
-      let nub = ((this.nub/this.set_config)*100).toFixed(0);
-      let setconfig = 100-nub;
-        
+         let nub = this.percent*100;
+      	let setconfig = 10000;
       
       let option={
         backgroundColor: 'rgba(0,0,0,0)',
@@ -136,6 +139,7 @@ export default {
   },
   created() {
     this.request();
+    this.getData();
   },
   components:{
     Loading
@@ -185,7 +189,7 @@ export default {
     .text{
         width:80%;
         position:absolute;
-        bottom:5px;
+        bottom:1rem;
         left:50%;
         transform: translateX(-50%);
         font{
