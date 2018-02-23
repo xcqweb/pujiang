@@ -100,7 +100,7 @@ export default {
                 itemHeight:10,
                 textStyle:{
                     color:'#fff',
-                    fontSize:'82%',
+                    fontSize:'75%',
                     lineHeight:36
                 },
                 data:[{
@@ -146,7 +146,7 @@ export default {
                             show: true,
                             position: 'inner',
                             textStyle:{
-                            	fontSize:"90%",
+                            	fontSize:"80%",
                             	color:'#eee',
                             	fontFamily:'Courier New'
                             },

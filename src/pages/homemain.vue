@@ -1,11 +1,11 @@
 <template>
   <div id="mainhome">
     <transition name="slide-fade">
-        <div class="header" v-show='headerStatus' v-on:mouseenter="headerEnter" v-on:mouseleave="headerLeave">
+        <div class="header" v-show='headerStatus' v-on:mouseenter="headerEnter" v-on:mouseleave="headerLeave" @click="headerLeave">
             <headerBody></headerBody>
         </div>
     </transition>
-    <div class="headmock" v-on:mouseenter="headerEnter"></div>
+    <div class="headmock" v-on:mouseenter="headerEnter" v-on:click="headerEnter"></div>
     <router-view class='mockrouter'
     :placeName = 'placeName'
     :placeAttractions = 'placeAttractions'

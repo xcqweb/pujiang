@@ -183,6 +183,9 @@ a:visited { text-decoration: none;}
                 
             }
         }
+        
+      
+        
         li:nth-of-type(1){
             .unchose{
                 background-image:url('../../assets/images/home/总览.png');
@@ -242,6 +245,9 @@ a:visited { text-decoration: none;}
                 color:#ff719c !important;
             }
         }
+        
+        
+        
         li:nth-of-type(6){
             .unchose{
                 background-image:url('../../assets/images/home/总览.png');
@@ -255,4 +261,37 @@ a:visited { text-decoration: none;}
 
     }
 }
+
+  @media screen and(max-width: 800px){
+  	.headertext{
+  		ul{
+  			top:12% !important;
+  			span{
+                display:inline-block;
+                width: 30px;
+                height: 28px;
+            }
+            font{
+                display: block;
+                font-size: 0.8rem !important;
+                margin-top:-0.5rem !important;
+                text-align: center;
+            }
+            
+            li .chose,li .unchose{
+            	
+                background-size: 80% 80% !important;
+                background-repeat: no-repeat;
+            }
+            li:last-child{
+            	span{
+            		background-size: 80% 80% !important;
+            	  background-repeat: no-repeat;
+            	}
+            	
+            }
+        }
+  		}
+  	}
+        	
 </style>

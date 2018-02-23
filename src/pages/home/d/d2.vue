@@ -245,7 +245,7 @@
                             position:'top',
                             textStyle:{
                                 color:'#2CC9E2',
-                                fontSize:"90%"
+                                fontSize:"80%"
                             },
                             formatter: '{c}%'
                         }

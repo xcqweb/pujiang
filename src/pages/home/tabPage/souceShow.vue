@@ -1,7 +1,7 @@
 <template>
     <div class="box">
         <div class="topSide" >
-            <div class="tabLists item">
+            <div class=" item tabLists">
                 <div class="border">
                     <div class="qylable">景区：</div>
                     <sleckte 
@@ -12,7 +12,7 @@
             </div>
             <div class="dateItem item">
                 <div class="border">
-                    <clock></clock>
+                    <clock class='clock'></clock>
                 </div>
             </div>
             <div class="item"

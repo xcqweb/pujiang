@@ -154,7 +154,7 @@ export default {
 	            },
                 color:['#FB7C7D','#7460EE','#6AEDD9','#438AFF ','#02C753','#FC6ACB '],
                 grid: {
-                      left: '10%',
+                      left: '3%',
                       right: '5%',
                    	  bottom: '5%',
                       top:'28%',
@@ -202,7 +202,7 @@ export default {
                             showMinLabel:true,
                             textStyle:{
                                 color:'#ffffff',
-                                fontSize: "90%",
+                                fontSize: "80%",
                             },
                             formatter: '{value}%'
                         },
@@ -244,6 +244,7 @@ export default {
             let isIE = window.navigator.userAgent.indexOf('Trident')
           if(isIE>-1){ 
             	option.series[0].label.normal.distance = 10;
+            	option.grid.left = '13%';
 						}
             this.chart.setOption(option);
         }

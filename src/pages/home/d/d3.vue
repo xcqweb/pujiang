@@ -153,16 +153,8 @@
 
 <template>
     <div class="d3">
-        <!--<vstar 
-        class='title-star'
-        :star='topStar.numb' 
-        :style="{width:topStar.width}">
-        </vstar>-->
         <vline :progressbar='oneprogressbar' class='progress'></vline>
-        <!--<vline :progressbar='twoprogressbar'></vline>-->
-        <!--<vline :progressbar='threeprogressbar'></vline>-->
         <div class="msg">
-            <!--<span class="title">评论</span>-->
             <div class="comment">
                 <span class="name">137****5565</span>
                 <span class="place">{{commentProp.palce}}</span>
@@ -216,12 +208,8 @@ export default {
         	commentProp:{},
         	allData:{},
             topStar:{
-                numb:3,
+                numb: 5,
                 width:'30%',
-            },
-            comment:{
-                place:'常州',
-                text:''
             },
             oneprogressbar:{
                 title:'满意度',
@@ -233,53 +221,16 @@ export default {
                 rightColor:'#4299b9',
                 leftTitle:'',
                 rightTitle:'',
- 
             },
-            twoprogressbar:{
-                title:'男女比例',
-                leftimg:require('../../../assets/images/home/d/men.png'),
-                rightimg:require('../../../assets/images/home/d/women.png'),
-                leftProcess:55,
-                rightProcess:45,
-                leftColor:'#7798ff',
-                rightColor:'#ff77dd',
-                leftTitle:'男',
-                rightTitle:'女',
-            },
-            threeprogressbar:{
-                title:'出行方式',
-                leftimg:require('../../../assets/images/home/d/driver.png'),
-                rightimg:require('../../../assets/images/home/d/team.png'),
-                leftProcess:55,
-                rightProcess:45,
-                leftColor:'#ffdd6c',
-                rightColor:'#ff719c',
-                leftTitle:'自驾游',
-                rightTitle:'团队游',
-            },
-            
-            
-            
         }
     },
     watch:{
-    	place:function(){
-    		this.oneprogressbar.leftProcess = this.allData[this.place].oneprogressbar.leftProcess;
-			this.oneprogressbar.rightProcess = 100-this.allData[this.place].oneprogressbar.leftProcess;
-			this.twoprogressbar.leftProcess = this.allData[this.place].twoprogressbar.leftProcess;
-			this.twoprogressbar.rightProcess = 100-this.allData[this.place].twoprogressbar.leftProcess;
-			this.threeprogressbar.leftProcess = this.allData[this.place].threeprogressbar.leftProcess;
-			this.threeprogressbar.rightProcess = 100-this.allData[this.place].threeprogressbar.leftProcess;
-			
-			this.commentProp = this.allData[this.place].comment;
+    	code:function(){
+    		this.getData()
     	}
     },
-    components:{
-    },
     computed: { 
-		commentProps(){
-			return this.allData[this.place].comment;
-		}
+		
     },
     methods: {
 		//请求数据
@@ -291,22 +242,16 @@ export default {
 	  				this.allData = reData;
 	  				
 	  				//console.log(reData)
-	  				
 	  				this.oneprogressbar.leftProcess = reData[this.place].oneprogressbar.leftProcess;
 	  				this.oneprogressbar.rightProcess = 100-reData[this.place].oneprogressbar.leftProcess;
-	  				this.twoprogressbar.leftProcess = reData[this.place].twoprogressbar.leftProcess;
-	  				this.twoprogressbar.rightProcess = 100-reData[this.place].twoprogressbar.leftProcess;
-	  				this.threeprogressbar.leftProcess = reData[this.place].threeprogressbar.leftProcess;
-	  				this.threeprogressbar.rightProcess = 100-reData[this.place].threeprogressbar.leftProcess;
-	  				
-	  				this.commentProp = reData[this.place].comment;
 					if(re.status===200){
 						this.isloading = false;
 					}
 		    }).catch( (e) => {
 		    	console.log(e);
 		    })
-	  	}
+	  	},
+	  	
     },
     created(){
     	this.getData();
@@ -315,7 +260,7 @@ export default {
     	
     },
     components:{
-    	Loading
+    	Loading,
     }
 }
 Vue.component('vstar',{
@@ -342,47 +287,6 @@ Vue.component('vstar',{
         },
     }
 )
-//Vue.component('vline',{
-//      props:['progressbar'],
-//      data(){
-//          return{
-//               imgStar:require('../../../assets/images/home/d/star.png'),
-//          }
-//      },
-//      template:`
-//      <div class='linebox'>
-//          <span class='title'>{{progressbar.title}}</span>
-//          <div class='imgleft' 
-//              :style="{left:progressbar.leftProcess-15+'%'}">
-//              <span>{{progressbar.leftProcess}}%</span>
-//              <img :src="progressbar.leftimg"/></div>
-//          <div class='imgright' 
-//              :style="{right:progressbar.rightProcess-10+'%'}">
-//              <span v-show='progressbar.rightimg'>{{progressbar.rightProcess}}%</span>
-//              <img :src="progressbar.rightimg"/></div>
-//          <font class='titleleft' :style="{color:progressbar.leftColor}">{{progressbar.leftTitle}}</font>
-//          <font class='titleright' :style="{color:progressbar.rightColor}">{{progressbar.rightTitle}}</font>
-//          <div class='line'>
-//              <div class='lineleft' :style="{width:progressbar.leftProcess+'%',backgroundColor:progressbar.leftColor}"></div>
-//              <div class='lineright' :style="{width:progressbar.rightProcess+'%',backgroundColor:progressbar.rightColor}"></div>
-//          </div>
-//      </div>`,
-//      computed: { 
-//          arr:function(){
-//              let arrstar=[]
-//              for (var i = 0; i < this.star; i++) {
-//                  arrstar.push(i)
-//              }
-//              return arrstar
-//          }
-//      },
-//      methods:{
-//          chosen:function(){
-//          },
-//              
-//      },
-//  }
-//)
 
 Vue.component('vline',{
         props:['progressbar'],

@@ -172,6 +172,7 @@ div{
     width:100%;
     height:100%;
     position:relative;
+   
 }
 .face{
     width:9%;
@@ -181,7 +182,7 @@ div{
     top:48.2%;
     left:23%;
     background-image:url('../../../assets/images/home/迷之笑脸.png');
-    background-size: 100% 100%;
+    background-size: 50% 50%;
         z-index:4;
 }
 #c{
