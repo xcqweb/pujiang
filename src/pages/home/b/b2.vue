@@ -48,6 +48,11 @@ export default {
     }
     
   },
+  watch:{
+  	code:function(){
+  		this.$store.state.currentCode = this.code;
+  	}
+  },
   methods:{
   	
   	//获取数据

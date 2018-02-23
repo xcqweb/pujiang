@@ -26,7 +26,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 				hisArr:[]
 			}
 		},
-		props:[],
+		props:['scienceProp'],
 		computed:{
 			transformHisArr(){
 				let arr=this.hisArr
@@ -54,6 +54,8 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 			}
 		},
 		created(){
+			//this.code = this.scienceProp;
+			//console.log(this.scienceProp)
 			this.getData();
 		}
 	}

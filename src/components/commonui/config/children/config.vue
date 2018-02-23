@@ -65,15 +65,17 @@
 				dataConfigList:[]
 			}
 		},
-		props:[],
+		props:['scienceProp'],
 		watch:{
 			code:function(){
 				this.getData()
 			}
 		},
 		created(){
+			//this.code = this.scienceProp;
+			this.getData();
 			this.dataConfigList=this.$store.state.dataList 
-			console.log(this.$store)
+			//console.log(this.$store)
 		},
 		methods:{
 			//模拟数据

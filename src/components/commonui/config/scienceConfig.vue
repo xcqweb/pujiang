@@ -22,10 +22,10 @@
 
 <script>
 	import componetstatus from '@/pages/home/componentstatus.js'
-	
+	import optionProps from '@/common/js/mixin/optionProps.js'
 	import history from '@/components/commonui/config/children/history.vue'
 	import config from '@/components/commonui/config/children/config.vue'
-	import optionProps from '@/common/js/mixin/optionProps.js'
+	
 	import { mapMutations,mapActions} from 'vuex'
 	
 	export default{
@@ -33,7 +33,7 @@
 		data(){
 			return {
 				tab:true,
-				scienceProps:'',
+				scienceProps:0,
 				updateData:{
                     turist:'全部',
                 },
@@ -109,6 +109,7 @@
         	//关闭蒙层
         	close(){
         		this.$store.state.showToast = false;
+        		this.code=0;
         	}
 		},
 		created(){
