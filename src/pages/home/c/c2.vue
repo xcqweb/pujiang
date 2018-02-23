@@ -94,7 +94,7 @@ export default {
                 top:'30%' ,
                 right:'8%',
                 width:'26',
-                height:'45%',
+                height:'50%',
                 itemGap:20,
                 itemWidth:10,
                 itemHeight:10,
@@ -161,6 +161,16 @@ export default {
                 data:this.series,
       }],
     };
+    		let isIE = window.navigator.userAgent.indexOf('Trident')
+         	 if(isIE>-1){ 
+            	option.legend.width = 60;
+            	option.legend.top = '10%';
+            	option.legend.left = '60%';
+            	option.legend.itemWidth = 36;
+            	option.legend.itemGap = 20;
+            	option.legend.orient = 'horizontal';
+            	option.legend.textStyle.fontSize = '100%';
+			}
             this.chart.setOption(option);
         }
     },

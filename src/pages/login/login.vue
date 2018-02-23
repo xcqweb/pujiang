@@ -147,6 +147,8 @@ import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
                               let token = data.data.data.token;
                               setCookie('token', token);
                               this.$router.push({ path: '/' });
+                              this.logintext='登录';
+                              this.loginForm.password='';
                               //window.location.href = 'http://localhost:8008'
                         }
 	                    }else{

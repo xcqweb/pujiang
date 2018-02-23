@@ -459,9 +459,8 @@ export default {
     	this.range = 2;
     	this.num1++;
     	this.num2=0;
-    	console.log(this.num1)
     	if(this.num1>1)return;
-    	console.log(this.num1)
+    	//console.log(this.num1)
     	this.isActive=false;
         if(this.chart){
             this.chart.dispose();

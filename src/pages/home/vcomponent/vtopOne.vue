@@ -136,7 +136,7 @@ export default {
                          axisLabel: {
                              textStyle: {
                                  color: '#ffffff',//x坐标轴标签字体颜色
-                                 fontSize: "80%",
+                                 fontSize: "75%",
                              },
                         },
                         axisTick:{
@@ -217,7 +217,7 @@ export default {
                             distance:5,
                             textStyle:{
                                 color:'#2CC9E2',
-                                fontSize:"80%"
+                                fontSize:"60%"
                             }
                         }
                        },
@@ -225,6 +225,10 @@ export default {
 
                 ]
             };
+            let isIE = window.navigator.userAgent.indexOf('Trident')
+          if(isIE>-1){ 
+            	option.series[0].label.normal.distance = 10;
+						}
         this.chart.setOption(option)
       },
     request(){

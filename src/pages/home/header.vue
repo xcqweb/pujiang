@@ -20,6 +20,7 @@
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
+import api from '@/api/index.js'
 export default {
   name: '',
   data () {
@@ -65,8 +66,17 @@ export default {
         item.status='unchose'
     },
     logout(){
-    		setCookie('token','',-1);
-        this.$router.push({ path: '/login' });
+    	api.loginOut(api.params).then( (re) => {
+    		//console.log(re.data)
+    		if(re.data.code===200){
+    			setCookie('token','',-1);
+        	this.$router.push({ path: '/login' });
+        	alert('退出成功!')
+    		}
+    	}).catch( (e) => {
+    		alert('退出失败!请重试!')
+    	})
+    		
         
     },
     changelink(){

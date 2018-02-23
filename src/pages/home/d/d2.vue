@@ -159,11 +159,12 @@
                     xAxis: [
                         {
                         axisLabel :{
+                        
                             interval:0
                         }  ,
                         show:true,
                         barGap: 0,
-                      //  boundaryGap: false,
+                        boundaryGap: true,
 
                         padding:0,
                         barMaxWidth:6,
@@ -176,6 +177,7 @@
                         minInterval:7,
                         axisLine: { //坐标轴轴线相关设置。就是数学上的x轴
                              show: true,
+                             margin:20,
                                 lineStyle: {
                                     color: '#368df7'
                              },
@@ -183,7 +185,7 @@
                          axisLabel: {
                              textStyle: {
                                  color: '#ffffff',//x坐标轴标签字体颜色
-                                 fontSize: "95%",
+                                 fontSize: "80%",
                              },
                         },
                         axisTick:{
@@ -252,6 +254,10 @@
 
                 ]
             }//option
+            let isIE = window.navigator.userAgent.indexOf('Trident')
+          if(isIE>-1){ 
+            	option.series[0].label.normal.distance = 10;
+						}
         this.chart.setOption(option)
       }
     },

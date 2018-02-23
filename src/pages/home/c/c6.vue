@@ -124,7 +124,7 @@
                     grid: {
                          show: true,
                          left: '15%',
-                         top: '20%',
+                         top: '26%',
                          right: '5%',
                          bottom: '20%',
                          borderWidth: 0,
@@ -132,6 +132,8 @@
                      },
                     xAxis: [
                         {
+                        	label:{
+                        	},
                         axisLabel :{  
                             interval:0   
                         }  ,
@@ -155,9 +157,10 @@
                              },
                         },
                          axisLabel: {
+                         	//magin:50,
                              textStyle: {
                                  color: '#ffffff',//x坐标轴标签字体颜色
-                                 fontSize: '85%',
+                                 fontSize: '70%',
                              },
                         },
                         axisTick:{
@@ -228,6 +231,10 @@
                 ]
             }//option
             option.series[0].label.normal.textStyle.fontFamily = require('../../../assets/style/QuiverItalRegular.ttf');
+          let isIE = window.navigator.userAgent.indexOf('Trident')
+          if(isIE>-1){ 
+            	option.series[0].label.normal.distance = 10;
+						}
         this.chart.setOption(option)
       }
     },

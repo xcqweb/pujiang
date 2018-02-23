@@ -99,12 +99,18 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 		/*定义滑块，内阴影及圆角*/
 		#history::-webkit-scrollbar-thumb{
 		    width: 10px;
-		    height: 15rem;
+		    height: 10rem;
 		    border-radius: 10px;
 		    -webkit-box-shadow: inset 0 0 6px #02275A;
 		    background-color: #0F2059;
 		}	
-		
+		/*ie*/
+		#history{
+				scrollbar-face-color: #0F2059;
+				scrollbar-highlight-color: ;
+				scrollbar-shadow-color: #02275A;
+				scrollbar-track-color: #263984;
+			}
 		#history::scrollbar{
 			    width: 0.45rem;
 			    height: 5rem;
@@ -117,7 +123,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 		/*定义滑块，内阴影及圆角*/
 		#history::scrollbar-thumb{
 		    width: 10px;
-		    height: 15rem;
+		    height: 10rem;
 		    border-radius: 10px;
 		    -webkit-box-shadow: inset 0 0 6px #02275A;
 		    background-color: #0F2059;

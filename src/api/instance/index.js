@@ -39,7 +39,11 @@ instance.interceptors.response.use(
       	//console.log(response)
         if (response.data.code == 200) {
             return response;
-          }else{
+            //拦截景区预警人数设置
+          }else if(response.data.code===201){
+          	alert(response.data.message)
+          }
+        else{
           	router.replace({ //跳转到登录页面
                    path: 'login',
                    query: { redirect: router.currentRoute.fullPath } // 将跳转的路由path作为参数，登录成功后跳转到该路由

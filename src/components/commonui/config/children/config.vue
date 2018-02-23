@@ -46,7 +46,7 @@
 <script>
 	import {editTime} from '@/common/js/gtime.js'
 	import Rw from '@/common/js/until/index.js'
-import optionProps from '@/common/js/mixin/optionProps.js'
+	import optionProps from '@/common/js/mixin/optionProps.js'
 	
 	import { mapMutations,mapActions} from 'vuex'
 	import api from '@/api/index.js'
@@ -73,6 +73,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 		},
 		created(){
 			this.dataConfigList=this.$store.state.dataList 
+			console.log(this.$store)
 		},
 		methods:{
 			//模拟数据
@@ -101,7 +102,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 				api.params.warnNum = data.configNum;
 				api.modifyPassengerWarnSet(api.params).then( (re) => {
 					//console.log(re)
-					if(re.data.code===200){
+					if(re && re.data.code===200){
 						alert('修改成功!')
 					}
 				}).catch( e =>{
@@ -240,17 +241,17 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 	
 			#config::-webkit-scrollbar{
 			    width: 0.45rem;
-			    height: 5rem;
+			    height: 3rem;
 			}
 			/*定义滚动条的轨道，内阴影及圆角*/
 			#config::-webkit-scrollbar-track{
-			    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+			    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.9);
 			    border-radius: 10px;
 			}
 			/*定义滑块，内阴影及圆角*/
-			#config::scrollbar-thumb{
+			#config::-webkit-scrollbar-thumb{
 			    width: 10px;
-			    height: 15rem;
+			    height: 10rem;
 			    border-radius: 10px;
 			    -webkit-box-shadow: inset 0 0 6px #02275A;
 			    background-color: #0F2059;
@@ -258,17 +259,25 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 			
 			#config::scrollbar{
 			    width: 0.45rem;
-			    height: 5rem;
+			    height: 3rem;
 			}
 			/*定义滚动条的轨道，内阴影及圆角*/
 			#config::scrollbar-track{
 			    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
 			    border-radius: 10px;
 			}
+			/*ie*/
+			#config{
+				scrollbar-face-color: #0F2059;
+				scrollbar-highlight-color: ;
+				scrollbar-shadow-color: #02275A;
+				scrollbar-track-color: #263984;
+			}
+			 
 			/*定义滑块，内阴影及圆角*/
 			#config::scrollbar-thumb{
 			    width: 10px;
-			    height: 15rem;
+			    height: 10rem;
 			    border-radius: 10px;
 			    -webkit-box-shadow: inset 0 0 6px #02275A;
 			    background-color: #0F2059;

@@ -285,12 +285,12 @@ export default {
 		//请求数据
 	  	getData(){ 
 	  		api.params.code = this.code;
-	  		api.getComments(api.params).then( (re) =>{
-//	  			axios.get('https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/contentRatio').then( (re) => {	
+//	  		api.getComments(api.params).then( (re) =>{
+	  			axios.get('https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/contentRatio').then( (re) => {	
 	  				let reData = re.data.data;
 	  				this.allData = reData;
 	  				
-	  				console.log(reData)
+	  				//console.log(reData)
 	  				
 	  				this.oneprogressbar.leftProcess = reData[this.place].oneprogressbar.leftProcess;
 	  				this.oneprogressbar.rightProcess = 100-reData[this.place].oneprogressbar.leftProcess;

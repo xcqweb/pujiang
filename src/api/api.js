@@ -10,8 +10,10 @@ let timeStamp = new Date().getTime()+'';
 function tansParm(data){
 	var params = new FormData();
         params.append('token', getCookie('token'));
-    	params.append('code', data.code);
         params.append('timeStamp',timeStamp);
+        if(data.code){
+        	params.append('code', data.code);
+        }
         if(data.range){
         	 params.append('range',data.range);
         }
@@ -36,21 +38,22 @@ let base1 = 'https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example';
 
 let base = 'http://114.55.237.138/pj/api'
 
-export const requestLogin = params => { return axios.post(`${base1}/login`, params).then(res => res.data); };
-
-export const getUserList = params => { return axios.post(`${base1}/user/list`, { params: params }); };
 
 export const getUserListPage = params => { return axios.post(`${base1}/user/listpage`, { params: params }); };
-
-export const removeUser = params => { return axios.post(`${base1}/user/remove`, { params: params }); };
-
 export const batchRemoveUser = params => { return axios.post(`${base1}/user/batchremove`, { params: params }); };
-
 export const editUser = params => { return axios.post(`${base1}/user/edit`, { params: params }); };
 
-export const addUser = params => { return axios.post(`${base1}/user/add`, { params: params }); };
 
-
+//用户登录
+export const requestLogin = params => { return axios.post(`${base}/user/login`, tansParm(params)); };
+//删除用户
+export const removeUser = params => { return axios.post(`${base}/user/delete`, tansParm(params)); };
+//获取用户列表
+export const getUserList = params => { return axios.post(`${base}/user/findUsers`, tansParm(params)); };
+//添加用户
+export const addUser = params => { return axios.post(`${base}/user/add`, tansParm(params)); };
+//退出登录
+export const loginOut = params => { return axios.post(`${base}/user/logout`, tansParm(params)); };
 
 
 

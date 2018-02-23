@@ -3,6 +3,7 @@
     width: 100%;
     height: 100%;
 }
+
 .week{
 	z-index: 200;
     height: 1.5rem !important;
@@ -153,11 +154,11 @@ export default {
 	            },
                 color:['#FB7C7D','#7460EE','#6AEDD9','#438AFF ','#02C753','#FC6ACB '],
                 grid: {
-                    left: '20',
-                    right: '5%',
-                    bottom: '5%',
-                    top:'28%',
-                    containLabel: true
+                      left: '10%',
+                      right: '5%',
+                   	  bottom: '5%',
+                      top:'28%',
+                      containLabel: true
                 },
                 xAxis : [
                     {
@@ -170,9 +171,10 @@ export default {
                                 },
                         },
                         axisLabel: {
+                        	margin:10,
                                  textStyle: {
                                      color: '#ffffff',//x坐标轴标签字体颜色
-                                     fontSize: '85%',
+                                     fontSize: '70%',
                                  },
                             },
                             
@@ -231,7 +233,7 @@ export default {
                             position:'top',
                             textStyle:{
                                 color:'#2CC9E2',
-                                fontSize:"80%",
+                                fontSize:"70%",
                             },
                             formatter: '{c}%'
                         }
@@ -239,6 +241,10 @@ export default {
                     }
                 ]
             };
+            let isIE = window.navigator.userAgent.indexOf('Trident')
+          if(isIE>-1){ 
+            	option.series[0].label.normal.distance = 10;
+						}
             this.chart.setOption(option);
         }
     },

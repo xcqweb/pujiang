@@ -57,32 +57,73 @@ img{
     width: auto;
     height: auto;
 }
-@-webkit-keyframes rotation{
-from {-webkit-transform: rotate(0deg);}
-to {-webkit-transform: rotate(360deg);}
+@keyframes rotation{
+from {
+	transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	}
+to {
+	-webkit-transform: rotate(360deg);
+	-ms-transform: rotate(360deg);
+	-moz-transform: rotate(360deg);
+	-o-transform: rotate(360deg);
+}
 }
 @keyframes rotation2{
-from {-webkit-transform: rotate(0deg);}
-to {-webkit-transform: rotate(-360deg);}
+from {
+	transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	}
+to {
+	transform: rotate(-360deg);
+	-webkit-transform: rotate(-360deg);
+	-ms-transform: rotate(-360deg);
+	-moz-transform: rotate(-360deg);
+	-o-transform: rotate(-360deg);
+	}
 }
 .Rotation1{
+transform: rotate(360deg);
 -webkit-transform: rotate(360deg);
+-ms-transform: rotate(360deg);
+-moz-transform: rotate(360deg);
+-o-transform: rotate(360deg);
+
 animation: rotation 3s linear infinite;
 -moz-animation: rotation 3s linear infinite;
 -webkit-animation: rotation 3s linear infinite;
+-ms-animation: rotation 3s linear infinite;
 -o-animation: rotation 3s linear infinite;
 }
 .Rotation2{
+transform: rotate(360deg);
 -webkit-transform: rotate(360deg);
+-ms-transform: rotate(360deg);
+-moz-transform: rotate(360deg);
+-o-transform: rotate(360deg);
+
 animation: rotation2 3s linear infinite;
 -moz-animation: rotation2 3s linear infinite;
+-ms-animation: rotation2 3s linear infinite;
 -webkit-animation: rotation2 3s linear infinite;
 -o-animation: rotation2 3s linear infinite;
 }
 .Rotation3{
+transform: rotate(360deg);
 -webkit-transform: rotate(360deg);
+-ms-transform: rotate(360deg);
+-moz-transform: rotate(360deg);
+-o-transform: rotate(360deg);
+
 animation: rotation 3s linear infinite;
 -moz-animation: rotation 3s linear infinite;
+-ms-animation: rotation 3s linear infinite;
 -webkit-animation: rotation 3s linear infinite;
 -o-animation: rotation 3s linear infinite;
 }
