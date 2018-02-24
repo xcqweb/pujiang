@@ -62,7 +62,7 @@ export default {
             tooltip: {
                 trigger: 'item',
                  formatter:function(params){
-                	console.log(params)
+                	//console.log(params)
                 	if(params.seriesType==="effectScatter"){
             			return params.data.name+' > '+params.seriesName;
             		}else{
@@ -119,7 +119,6 @@ export default {
             tooltip: {
                 trigger: 'item',
                 formatter:function(params){
-                	console.log(params)
                 	if(params.seriesType==="effectScatter"){
                 		let val = params.name+' : '+params.value[2];
                 		return val;

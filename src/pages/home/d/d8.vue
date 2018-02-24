@@ -76,7 +76,7 @@ export default {
     			if(num>1&&num<=2)return '良好';
     			if(num>2&&num<=3)return '拥堵';
     			if(num>3&&num<=4)return '较拥堵';
-    			if(num>4&&num<=5)return "严重拥堵"
+    			if(num>4&&num<=5)return "严重拥堵";
     	}
     },
     methods: {
@@ -86,7 +86,6 @@ export default {
     	this.$nextTick( () => {
     		this.getData();
     	})
-    	
     },
     methods:{
     	//请求数据
@@ -105,8 +104,6 @@ export default {
 //		    	console.log(e);
 //		    })
 //	  	}
-	  	
-	  	
 	  	getData(){
     		 var _self= this
                 this.$ajax({
@@ -133,8 +130,8 @@ export default {
     mounted(){
     },
     components:{
-    vcircle,
-    Loading
+    	vcircle,
+    	Loading
     }
 }
 </script>

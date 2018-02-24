@@ -9,9 +9,6 @@
         width: auto;
         height: auto;
     }
-    /*// font{
-    //     box-shadow: inset 0 0 126rem rgba(0,28 ,201 ,0.06);
-    // }*/
     .d17_item{
         height: 43%;
         float: left;
@@ -46,29 +43,6 @@
                 text-shadow: 2px 3px 3px #252121;
             }
         }
-        /*&:nth-child(1) {
-            width: 36.8%;
-            div{
-                width:49%;
-            }
-            .item_img{
-                height: 75%;
-                 transform: translate(0,0%);
-            }
-            .item_name{
-                height: 30%;
-                transform: translate(0,-20%);
-                font-size: 1.5rem;
-            }
-            .item_num{
-                float: right;
-                height: 100%;
-                transform: translate(0,-100%);
-                font{
-                     font-size: 4.8rem;
-                }
-            }
-        }*/
         &:nth-of-type(1){
             background: linear-gradient(75deg, #0084ec, #34caf7);
         }
@@ -94,9 +68,6 @@
         &:nth-of-type(8){
             background: linear-gradient(75deg, #EB5F44, #FCA855);
         }
-        /*&:nth-of-type(9){
-            background: linear-gradient(75deg, #ea5f44, #ffa955);
-        }*/
     }
 }
 </style>

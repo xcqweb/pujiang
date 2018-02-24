@@ -17,7 +17,7 @@
 
 <script>
 	import api from '@/api/index.js'
-import optionProps from '@/common/js/mixin/optionProps.js'
+	import optionProps from '@/common/js/mixin/optionProps.js'
 	
 	export default {
 		mixins: [optionProps],
@@ -54,8 +54,6 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 			}
 		},
 		created(){
-			//this.code = this.scienceProp;
-			//console.log(this.scienceProp)
 			this.getData();
 		}
 	}
@@ -90,9 +88,9 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 	}
 	
 		#history::-webkit-scrollbar{
-			    width: 0.45rem;
-			    height: 5rem;
-			}
+		    width: 0.45rem;
+		    height: 5rem;
+		}
 		/*定义滚动条的轨道，内阴影及圆角*/
 		#history::-webkit-scrollbar-track{
 		    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
@@ -108,15 +106,15 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 		}	
 		/*ie*/
 		#history{
-				scrollbar-face-color: #0F2059;
-				scrollbar-highlight-color: ;
-				scrollbar-shadow-color: #02275A;
-				scrollbar-track-color: #263984;
-			}
+			scrollbar-face-color: #0F2059;
+			scrollbar-highlight-color: ;
+			scrollbar-shadow-color: #02275A;
+			scrollbar-track-color: #263984;
+		}
 		#history::scrollbar{
-			    width: 0.45rem;
-			    height: 5rem;
-			}
+		    width: 0.45rem;
+		    height: 5rem;
+		}
 		/*定义滚动条的轨道，内阴影及圆角*/
 		#history::scrollbar-track{
 		    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);

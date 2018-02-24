@@ -243,7 +243,6 @@ export default {
         setLazy(){
             // console.log(item)
             // window.setTimeout((item) => {
-
             //         item.show = true;
             //     }, item.time);
         },

@@ -34,16 +34,14 @@
   </section>
 </template>
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters,mapActions } from 'vuex'
 import store from '../../vuex/index' 
-import { mapActions } from 'vuex'
 import Vue from 'vue'
 import axios from 'axios'
 import {timestamp} from '../../common/js/sign.md5.js'
 import {API_HZ} from '../../api/env.js'
-import getConfig from '../../common/js/sign/param_to_sign.js'
 import To_md5 from '../../common/js/md5.js'
-import {askUrl,paramToSign} from '../../common/js/sign/param_to_sign.js'
+import {askUrl,paramToSign,getConfig} from '../../common/js/sign/param_to_sign.js'
 import Bus from '@/common/js/bus.js'
 import Start_end_class from '@/common/js/star_end_class.js'
 import api from '@/api/moudles/tanzhenData'
@@ -253,7 +251,7 @@ import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
         line-height:40px;
         width:80px; 
         text-indent:32px;
-        color:white;  
+        color:#fff;  
         &:after {
                     content: ".";
                     display: block;

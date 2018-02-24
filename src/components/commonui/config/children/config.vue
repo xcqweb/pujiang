@@ -13,7 +13,6 @@
 				<li>{{data.name}}</li>
 				<li v-if="i!==editIndex">{{data.setNum}}</li>
 				<li v-if="i===editIndex"><input type="number" class="load" v-model="loadNum" /><span class="tip" v-show="tipShow">输入有误!</span></li>
-				
 				<li v-if="i!==editIndex">{{data.warnNum}}</li>
 				<li v-if="i===editIndex"><input type="number" class="config" v-model="configNum" /></li>
 				
@@ -23,23 +22,7 @@
 					<input type="button" id="cancelBtn" @click="cancel(i)" value="取 消" />
 				</li>
 			</template> 
-			<!--<template v-if="showEdit">
-				<li>{{i+1}}</li>
-				<li>{{data.name}}</li>
-				
-				
-				<li><input type="button" id="confirmBtn" @click="confirm" value="保 存" /></li>
-			</template>-->
 		</ul>
-		<!--<div class="editBox" v-show="showEdit">
-			<div>
-				<p class="txt">
-					<label for="one">游客承载量:</label><input type="text" ref="input1" id="one" :value="editVal1" />
-					<label class="two" for="two">预警人数:</label><input type="text" ref="input2" id="two" :value="editVal2" />
-					<p class="txt"><button @click="confirm">确认</button></p>
-				</p>
-			</div>
-		</div>-->
 	</div>
 </template>
 
@@ -61,21 +44,22 @@
 				editIndex:'',
 				tipShow:false,
 				editData:{},
-				
-				dataConfigList:[]
 			}
 		},
 		props:['scienceProp'],
 		watch:{
 			code:function(){
 				this.getData()
+				this.editIndex = '';
 			}
 		},
 		created(){
-			//this.code = this.scienceProp;
 			this.getData();
-			this.dataConfigList=this.$store.state.dataList 
-			//console.log(this.$store)
+		},
+		computed:{
+			dataConfigList(){
+				return this.$store.state.dataList 
+			}
 		},
 		methods:{
 			//模拟数据
@@ -92,7 +76,6 @@
 					//console.log(re)
 					let reData = re.data.data;
 					this.$store.state.dataList = reData;
-					this.dataConfigList = reData;
 				}).catch( e =>{
 				      console.log(e);
 				    })
@@ -105,12 +88,13 @@
 				api.modifyPassengerWarnSet(api.params).then( (re) => {
 					//console.log(re)
 					if(re && re.data.code===200){
+						this.getData();
 						alert('修改成功!')
+						
 					}
 				}).catch( e =>{
 				      console.log(e);
 				    })
-				
 			},
 			
 			//编辑按钮
@@ -140,7 +124,6 @@
 					this.editData.index = i;
 					this.editData.loadNum =  Rw.string_until.transformNum(editEle[i].getElementsByClassName('load')[0].value);
 					this.editData.configNum = Rw.string_until.transformNum(editEle[i].getElementsByClassName('config')[0].value) ;
-					//this.$store.state.setConfigData = this.editData;
 					
 					this.editIndex = '';
 					
@@ -149,7 +132,6 @@
 					//this.$store.commit('ADD_HISTORY',this.editData);
 					
 					this.setData(this.editData);
-					this.getData();
 					
 				}else{
 					this.editIndex = '';
