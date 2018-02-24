@@ -10,8 +10,6 @@
 <script>
 import Vue from 'vue'
 import vcircle from './vcircle.vue'
-import api from '@/api/index.js'
-import Loading from '@/components/commonui/loading/loading.vue'
 import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
   name: 'b5',
@@ -22,7 +20,6 @@ export default {
     }
   },
   created(){
-	this.getData();
   },
   computed:{
 
@@ -46,7 +43,6 @@ export default {
     },
   components:{
     vcircle,
-    Loading   
   }
 }
 </script>

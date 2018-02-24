@@ -24,9 +24,7 @@ import { mapGetters } from 'vuex'
 import echarts from 'echarts';
 
 
-import api from '@/api/index.js'
 import echarts_resize from '../../../common/js/echarts_resize.js'
-import Loading from '@/components/commonui/loading/loading.vue'
 //import 'echarts/lib/chart/map';
 import 'echarts/map/js/china.js';
 import zhejiangJson from 'echarts/map/json/province/zhejiang.json'
@@ -38,7 +36,7 @@ let mowMonth = date.getMonth()+1
 
 export default {
     name: 'a6',
-    mixins: ['optionProps'],
+    mixins: [optionProps],
     props:['placeName'],
     
     data () {
@@ -579,10 +577,6 @@ export default {
               //this.redom()
         },500)
     },
-    
-    components:{
-    	Loading
-    }
 }
 </script>
 

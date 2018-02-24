@@ -13,8 +13,6 @@
 import echarts_resize from '../../../common/js/echarts_resize.js'
 import echarts from 'echarts';
 import adaptation from '@/common/js/mixin/adaptation.js'
-import api from '@/api/index.js'
-import Loading from '@/components/commonui/loading/loading.vue'
 import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
     name:'b9',
@@ -63,7 +61,6 @@ export default {
 
       },
       created(){
-        this.getData();
       },
     methods:{
         redom(id){
@@ -259,9 +256,6 @@ export default {
     mounted() {
         this.$nextTick(echarts_resize('b9',this))
     },
-    components:{
-    	Loading
-    }
 }
 </script>
 

@@ -86,10 +86,12 @@ let optionProps =  {
         
     },
     created(){
-    	//this.isloading=true;
+      	this.getData();
     },
     mounted () {
-        
+    },
+    components:{
+    	Loading
     }
 }
 export default optionProps

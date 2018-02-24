@@ -10,8 +10,6 @@
 <script type="text/javascript">
 import echarts_resize from '../../../common/js/echarts_resize.js'
 import echarts from 'echarts';
-import api from '@/api/index.js'
-import Loading from '@/components/commonui/loading/loading.vue'
 import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
     name:'a8',
@@ -214,9 +212,6 @@ export default {
     mounted() {
         this.$nextTick($sheet.echartRL('percentA',this))
     },
-    components:{
-    	Loading
-    }
 }
 </script>
 

@@ -37,7 +37,6 @@
 import { mapGetters,mapActions } from 'vuex'
 import store from '../../vuex/index' 
 import Vue from 'vue'
-import axios from 'axios'
 import {timestamp} from '../../common/js/sign.md5.js'
 import {API_HZ} from '../../api/env.js'
 import To_md5 from '../../common/js/md5.js'

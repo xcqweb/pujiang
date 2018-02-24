@@ -49,7 +49,6 @@ import api from '@/api/moudles/tanzhenData'
 import Rw from '@/common/js/until/index.js'
 import Start_end_class from '@/common/js/star_end_class.js'
 import {begindaytime} from '@/common/js/gtime.js'
-import Loading from '@/components/commonui/loading/loading.vue'
 import optionProps from '@/common/js/mixin/optionProps.js'
 //import Bus from '@/common/js/bus.js'
 export default {
@@ -198,11 +197,6 @@ export default {
 	mounted() {
     this.$nextTick(echarts_resize('vwarning',this));
 	},
-
-	components:{
-		//vSelect,
-    Loading
-  }
 }
 </script>
 

@@ -19,10 +19,6 @@ export default {
         text:'较为拥堵',
     }
   },
-  computed: { 
-  },
-  methods: {
-  },
   components:{
     vcircle
   }

@@ -295,8 +295,6 @@ export default {
   mounted(){
     this.$nextTick(echarts_resize('b7',this)) 
   },
-  components:{
-  }
 }
 </script>
 

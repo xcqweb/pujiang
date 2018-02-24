@@ -14,7 +14,6 @@
 			if(echart_id==='container'){
 				_self.isloading = true;
           		_self.currentNum=0;
-              _self.get_respose();
 			}else{
 				_self.redom(echart_id);
 			}

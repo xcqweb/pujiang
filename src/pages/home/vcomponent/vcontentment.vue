@@ -14,8 +14,6 @@
 <script>
 import Vue from 'vue'
 import Rw from '@/common/js/until/index.js'
-import api from '@/api/index.js'
-import Loading from '@/components/commonui/loading/loading.vue'
 import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
   name: 'a4',
@@ -49,9 +47,6 @@ export default {
 	    	console.log(e);
 	    })
   	}
-  },
-  components:{
-  	Loading
   },
   mounted(){
     let _self = this;

@@ -44,11 +44,8 @@
 
 <script>
 import Vue from 'vue'
-import optionProps from '@/common/js/mixin/optionProps.js'
-import Loading from '@/components/commonui/loading/loading.vue'
 export default {
     name: 'a9',
-    mixins: [optionProps],
     data () {
       return {
       	bigCloseBtn:false,
@@ -147,29 +144,15 @@ export default {
     	Loading
     },
     mounted(){
-    	this.$nextTick( () => {
-    		//console.dir(document.getElementsByTagName('iframe')[0])
-    	})
-    	
     }
 }
 </script>
 
 <style lang="less" scoped>
 
-	/*.scale-enter-active, .scale-leave-active {
-	  transition: opacity 2s;
-	}
-	.scale-enter, .scale-leave-to{
-	  opacity: 0;
-	}*/
-
-
-
 .video{
     width:100%;
     height:100%;
-    /*padding-top:12%;*/
    .close{
 	position: absolute;
 	bottom: -4.5rem;
@@ -201,8 +184,6 @@ export default {
     }
     video:nth-of-type(1){
     }
-    
-    
      section{
         width:42%;
         height:33%;
@@ -268,12 +249,6 @@ export default {
     section:nth-of-type(1){
       top:3rem;
       left:1.5rem;
-      /*position: absolute;
-      top: -15%;
-      left: -5%;
-      z-index: 1212121212;
-      width: 170%;
-      height: 160%;*/
     }
     section:nth-of-type(2){
       top:3rem;

@@ -81,8 +81,6 @@ display:none !important;
  
 <script>
 import echarts from 'echarts'
-import api from '@/api/index.js'
-import Loading from '@/components/commonui/loading/loading.vue'
 import optionProps from '@/common/js/mixin/optionProps.js'
 // import BMapLib from '../../../common/js/baidumap/Heatmap.min.js'
    require('../../../common/js/baidumap/heatmap.js?fdwe')
@@ -458,7 +456,6 @@ import optionProps from '@/common/js/mixin/optionProps.js'
             }
         },
         created(){
-          	this.getData();
         },
         watch:{
         	code:function(){
@@ -475,8 +472,5 @@ import optionProps from '@/common/js/mixin/optionProps.js'
             // 百度地图API功能
             // 创建Map实例
         },
-        components:{
-        	Loading
-        }
     }
 </script>

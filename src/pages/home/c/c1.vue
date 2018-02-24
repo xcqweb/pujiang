@@ -73,8 +73,6 @@
 import echarts_resize from '../../../common/js/echarts_resize.js'
 import echarts from 'echarts'
 import adaptation from '@/common/js/mixin/adaptation.js'
-import api from '@/api/index.js'
-import Loading from '@/components/commonui/loading/loading.vue'
 import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
     mixins: [adaptation,optionProps],
@@ -101,7 +99,6 @@ export default {
 		
       },
       created(){
-      	this.getData();
       },
        watch:{
     	code:function(){
@@ -252,9 +249,6 @@ export default {
     mounted() {
         this.$nextTick(echarts_resize('c1',this));
     },
-    components:{
-    	Loading
-    }
 }
 </script>
 

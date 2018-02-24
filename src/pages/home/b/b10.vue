@@ -34,18 +34,6 @@ export default {
         text:'较为拥堵',
     }
   },
-  computed: { 
-  },
-  methods: {
-    getwidth(){
-        
-    }
-  },
-  mounted(){
-    
-    },
-  components:{
-  }
 }
 </script>
 

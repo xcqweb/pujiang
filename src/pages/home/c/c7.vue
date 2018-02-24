@@ -31,8 +31,6 @@
 </template>
 
 <script type="text/javascript">
-	import api from '@/api/index.js'
-    import Loading from '@/components/commonui/loading/loading.vue'
     import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
     name:'c7',
@@ -43,9 +41,6 @@ export default {
         msg:'Hello Vue 来自App.vue',
         items:this.placeAttractionsProps,
       }
-    },
-    components:{
-    	Loading
     },
     watch:{
     	code:function(){
@@ -69,7 +64,6 @@ export default {
 	  	}
     },
     created(){
-    	this.getData();
     },
     mounted(){
     }

@@ -19,7 +19,6 @@ import Start_end_class from '@/common/js/star_end_class.js'
 import Bus from '@/common/js/bus.js'
 import axios from 'axios'
 import {begindaytime} from '@/common/js/gtime.js'
-import Loading from '@/components/commonui/loading/loading.vue'
 import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
     name:'a1',
@@ -231,7 +230,7 @@ export default {
 						}
         this.chart.setOption(option)
       },
-    request(){
+    getData(){
         let _self = this;
         // this.$router.push({ path: '/' });
       //请求数据
@@ -247,11 +246,8 @@ export default {
         })
     }
     },
-    components:{
-      Loading
-    },
     created(){
-    	this.request();
+    	//this.request();
     },
     mounted() {
       

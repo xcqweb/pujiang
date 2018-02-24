@@ -31,8 +31,6 @@
 </template>
 
 <script type="text/javascript">
-	import api from '@/api/index.js'
-    import Loading from '@/components/commonui/loading/loading.vue'
     import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
     name:'c8',
@@ -44,7 +42,6 @@ export default {
       }
     },
     created(){
-    	this.getData();
     },
     watch:{
     	code:function(){
@@ -68,9 +65,6 @@ export default {
     },
     mounted(){
     },
-    components:{
-    	Loading
-    }
 }
 </script>
 

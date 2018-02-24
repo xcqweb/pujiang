@@ -23,8 +23,6 @@
 <script>
 import Vue from 'vue'
 import adaptation from '@/common/js/mixin/adaptation.js'
-import api from '@/api/index.js'
-import Loading from '@/components/commonui/loading/loading.vue'
 import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
     name: 'b1',
@@ -39,11 +37,7 @@ export default {
     }
     },
     created(){
-      	this.getData();
     },
-    computed: { 
-    },
-    
     methods: {
     	//请求数据
 	  	getData(){
@@ -60,15 +54,8 @@ export default {
 		    }).catch( (e) => {
 		    	console.log(e);
 		    })
-	  	},
-	  	
+	  	}
     },
-    mounted(){
-    	
-    },
-    components:{
-    	Loading
-    }
 }
 </script>
 

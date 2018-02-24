@@ -30,8 +30,6 @@
   import { mapGetters,mapActions } from 'vuex'
   import store from '../../../vuex/index'
   import Vue from 'vue'
-  import api from '@/api/index.js'
-  import Loading from '@/components/commonui/loading/loading.vue'
   import optionProps from '@/common/js/mixin/optionProps.js'
   export default {
     name:'d2',
@@ -263,13 +261,9 @@
     },
     components:{},
     created(){
-    	this.getData();
     },
     mounted() {
       this.redom7();
     },
-    components:{
-    	Loading
-    }
   }
 </script>

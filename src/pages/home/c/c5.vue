@@ -32,8 +32,6 @@
 
 <script>
 import Vue from 'vue'
-import api from '@/api/index.js'
-import Loading from '@/components/commonui/loading/loading.vue'
 import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
     name: 'c5',
@@ -47,7 +45,6 @@ export default {
     }
     },
     created(){
-    	this.getData();
     },
     computed: { 
     },
@@ -76,9 +73,6 @@ export default {
     mounted(){
     	
     },
-    components:{
-    	Loading
-    }
 }
 </script>
 

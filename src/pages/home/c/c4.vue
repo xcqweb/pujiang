@@ -13,8 +13,6 @@
 <script>
 import Vue from 'vue'
 import echarts_resize from '../../../common/js/echarts_resize.js'
-import api from '@/api/index.js'
-import Loading from '@/components/commonui/loading/loading.vue'
 import optionProps from '@/common/js/mixin/optionProps.js'
 import echarts from 'echarts'
 
@@ -33,7 +31,6 @@ export default {
     }
   },
   created(){
-  	this.getData();
   },
   computed: {
   },
@@ -285,9 +282,6 @@ export default {
     	//this.$nextTick(echarts_resize('c4',this));
     	//this.$nextTick(echarts_resize('c5',this));
     },
-  components:{
-  	Loading
-  }
 }
 </script>
 

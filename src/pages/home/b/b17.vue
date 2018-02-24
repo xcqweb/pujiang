@@ -91,8 +91,6 @@
 <script>
 import Vue from 'vue'
 import optionProps from '@/common/js/mixin/optionProps.js'
-import api from '@/api/index.js'
-import Loading from '@/components/commonui/loading/loading.vue'
 export default {
     name: 'B17',
     mixins: [optionProps],
@@ -141,14 +139,7 @@ export default {
 	  	},
     },
     created(){
-    	this.getData();
     },
-    mounted(){
-    
-    },
-    components:{
-    	Loading
-    }
 }
 </script>
 

@@ -17,9 +17,7 @@ import echarts_resize from '../../../common/js/echarts_resize.js'
 import echarts from 'echarts';
 //import Start_end_class from '@/common/js/star_end_class.js'
 import {begindaytime} from '@/common/js/gtime.js'
-import Loading from '@/components/commonui/loading/loading.vue'
 import optionProps from '@/common/js/mixin/optionProps.js'
-import api from '@/api/index.js'
 import axios from 'axios'
 export default {
   name: 'b2',
@@ -144,11 +142,7 @@ export default {
   },
   created() {
     this.request();
-    this.getData();
   },
-  components:{
-    Loading
-  }
 }
 </script>
 

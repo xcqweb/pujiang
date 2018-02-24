@@ -63,7 +63,6 @@
 import Vue from 'vue'
 import vmap from '../vcomponent/vchart_map.vue'
 import adaptation from '@/common/js/mixin/adaptation.js'
-import api from '@/api/index.js'
 import optionProps from '@/common/js/mixin/optionProps.js'
 let date = new Date()
 let nowYear = date.getFullYear()
@@ -111,7 +110,6 @@ export default {
 	  	}
     },
     created(){
-    	this.getData();
     },
     mounted(){
     

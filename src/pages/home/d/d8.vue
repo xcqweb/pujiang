@@ -47,10 +47,7 @@
 <script>
 import Vue from 'vue'
 import vcircle from '../b/vcircle.vue'
-import api from '@/api/index.js'
-import Loading from '@/components/commonui/loading/loading.vue'
 import optionProps from '@/common/js/mixin/optionProps.js'
-import axios from 'axios'
 import vAjax from '@/common/js/v-ajax.js'
 Vue.use(vAjax);
 export default {
@@ -83,27 +80,9 @@ export default {
     	
     },
     created(){
-    	this.$nextTick( () => {
-    		this.getData();
-    	})
     },
     methods:{
     	//请求数据
-//	  	getData(){
-//	  		//api.params.code = 2;
-//	  		//api.scenicCongestion(api.params).then( (re) =>{
-//	  			axios.get('http://jiaotong.baidu.com/trafficindex/city/details?cityCode=197&callback=jsonp_1515067577030_9847129').then( (re) => {
-//	    		console.log(re)
-//	    		//let reData = re.data.data;
-//	    		//this.allData = reData;
-//	    		//this.percent = this.allData[this.place].num;
-//				if(re.status===200){
-//					this.isloading = false;
-//				}
-//		    }).catch( (e) => {
-//		    	console.log(e);
-//		    })
-//	  	}
 	  	getData(){
     		 var _self= this
                 this.$ajax({
@@ -115,6 +94,7 @@ export default {
                       cityCode : 197,
                     },
                     success:function(res){
+                    	//console.log(res)
                       	let num = Number(res.data.detail.index) 
                           _self.percent=num;
                       if(res.status===0){
@@ -131,7 +111,6 @@ export default {
     },
     components:{
     	vcircle,
-    	Loading
     }
 }
 </script>

@@ -12,7 +12,6 @@ import echarts from 'echarts';
 import Start_end_class from '@/common/js/star_end_class.js'
 import Rw from '@/common/js/until/index'
 import api from '@/api/moudles/tanzhenData'
-import Loading from '@/components/commonui/loading/loading.vue'
 import optionProps from '@/common/js/mixin/optionProps.js'
 
 let isIE = window.navigator.userAgent.indexOf('Trident');
@@ -139,7 +138,7 @@ export default {
       }
     },
     methods: {
-      //添加数据
+        //添加数据
         addData(i,date,data,bigDate,bigData) {
         		function getTime(){
         			let date = new Date();
@@ -227,9 +226,10 @@ export default {
                     }]
                 });
             }, _self.btwsecends*1000);
-          _self.$nextTick(echarts_listen_resize('container',_self));
+            _self.$nextTick(echarts_listen_resize('container',_self));
         },
-        get_respose(){
+        getData(){},
+        getData1(){
             let _self = this;
             if(this.chart){
             	this.chart.dispose();
@@ -253,28 +253,24 @@ export default {
                 	
                 }
             })
-          _self.$nextTick(echarts_listen_resize('container',_self));
+            _self.$nextTick(echarts_listen_resize('container',_self));
         },
     },
     watch:{
     	code:function(){
     		this.isloading = true;
     		this.currentNum=0;
-    		this.get_respose();
+    		this.getData();
     	}
     },
     created(){
-    	
     },
     mounted() {
         this.$nextTick( () => {
-        	this.get_respose();
-        	echarts_listen_resize('container',this)
+            	this.getData1();
+            	echarts_listen_resize('container',this)
         });
       },
-    components:{
-      Loading
-    }
 }
 </script>
 
