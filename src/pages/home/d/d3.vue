@@ -1,15 +1,19 @@
 <style lang="less">
 .d3{
     width:100%;
-    height:100%;
+    height:90%;
     position:relative;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    top: 10%;
     h1{
         position:absolute;
-        width:10rem;
+        width:100%;
         top:1.3rem;
         left:25%;
         text-align:left;
         font-size: 1.1rem;
+        background-color: #163387;
         color:white;
     }
     img{                  
@@ -37,7 +41,7 @@
 
     .linebox{
         position:relative;
-        margin-top:5%;
+        margin-top:2%;
         margin-left: 5%;
         width:90%;
         height:11%;
@@ -112,7 +116,7 @@
         }
     }
     .progress{
-        margin-top:16%;
+        /*margin-top:16%;*/
     }
     .msg{
         position:relative;
@@ -128,12 +132,13 @@
         }
         .comment{
             text-align:left;
-            margin-top: 1.5rem;
+            margin-top: 0.8rem;
             .name{
 				font-size: 0.8rem;
             }
             .place{
                 margin-left:20px;
+                font-size: 0.8rem;
             }
             .comment-star{
                 display:inline-block;
@@ -142,6 +147,7 @@
             }
             .text{
             	text-indent: 2em;
+            	font-size: 0.6rem;
                 display:block;
                 margin-top:5px;
                 line-height:1.5rem;
@@ -149,43 +155,65 @@
         }
     }
 }
+
+	.d3::-webkit-scrollbar{
+			    width: 0.45rem;
+			    height: 3rem;
+			}
+			/*定义滚动条的轨道，内阴影及圆角*/
+			.d3::-webkit-scrollbar-track{
+			    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.9);
+			    border-radius: 10px;
+			}
+			/*定义滑块，内阴影及圆角*/
+			.d3::-webkit-scrollbar-thumb{
+			    width: 10px;
+			    height: 10rem;
+			    border-radius: 10px;
+			    -webkit-box-shadow: inset 0 0 6px #02275A;
+			    background-color: #eee;
+			}
+			
+			.d3::scrollbar{
+			    width: 0.45rem;
+			    height: 3rem;
+			}
+			/*定义滚动条的轨道，内阴影及圆角*/
+			.d3::scrollbar-track{
+			    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+			    border-radius: 10px;
+			}
+			/*ie*/
+			.d3{
+				scrollbar-face-color: #0F2059;
+				scrollbar-highlight-color: ;
+				scrollbar-shadow-color: #02275A;
+				scrollbar-track-color: #263984;
+			}
+			 
+			/*定义滑块，内阴影及圆角*/
+			.d3::scrollbar-thumb{
+			    width: 10px;
+			    height: 10rem;
+			    border-radius: 10px;
+			    -webkit-box-shadow: inset 0 0 6px #02275A;
+			    background-color: #0F2059;
+			}
 </style>
 
 <template>
     <div class="d3">
         <vline :progressbar='oneprogressbar' class='progress'></vline>
         <div class="msg">
-            <div class="comment">
-                <span class="name">137****5565</span>
-                <span class="place">{{commentProp.palce}}</span>
+            <div class="comment" v-for="comment in commentList">
+                <span class="name">{{comment.uid}}</span>
+                <span class="place">{{comment.name}}</span>
                 <vstar 
                 class='comment-star'
-                :star='topStar.numb'>
+                :star='comment.grade'>
                 </vstar>
                 <span class="text">
-                    仙华山又名仙姑山，景区地址位于浙江省金华市浦江县境内城北2公里处，总面积18万平方公里。主峰少女峰，仙华山以奇秀的闪点峰林为胜，有着“第一仙峰”之称，感觉这里风景秀美，挺不错的
-                </span>
-            </div>
-             <div class="comment">
-                <span class="name">181****1484</span>
-                <span class="place">{{commentProp.palce}}</span>
-                <vstar 
-                class='comment-star'
-                :star='topStar.numb'>
-                </vstar>
-                <span class="text">
-                   仙华山又名仙姑山，景区地址位于浙江省金华市浦江县境内城北2公里处，总面积18万平方公里。主峰少女峰，仙华山以奇秀的闪点峰林为胜，有着“第一仙峰”之称，感觉这里风景秀美，挺不错的
-                </span>
-            </div>
-             <div class="comment">
-                <span class="name">189****1244</span>
-                <span class="place">{{commentProp.palce}}</span>
-                <vstar 
-                class='comment-star'
-                :star='topStar.numb'>
-                </vstar>
-                <span class="text">
-                    风景很美！一路爬的腰酸背痛，下次来得有所准备，拍了很多风景照片回去做壁纸！
+                    {{comment.con}}
                 </span>
             </div>
         </div>
@@ -204,6 +232,7 @@ export default {
         return {
         	commentProp:{},
         	allData:{},
+        	comments:[],
             topStar:{
                 numb: 5,
                 width:'30%',
@@ -222,25 +251,26 @@ export default {
         }
     },
     watch:{
-    	code:function(){
-    		this.getData()
-    	}
     },
     computed: { 
-		
+		commentList(){
+			return this.comments
+		}
     },
     methods: {
 		//请求数据
 	  	getData(){ 
-	  		api.params.code = this.code;
-//	  		api.getComments(api.params).then( (re) =>{
-	  			axios.get('https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/contentRatio').then( (re) => {	
+	  		let params = {}; 
+	  		params.code = this.code;
+	  		params.limit = 100;
+	  		params.curPage = 1;
+	  		api.getComments(params).then( (re) =>{
 	  				let reData = re.data.data;
-	  				this.allData = reData;
+	  				this.comments = reData.comments;
 	  				
-	  				//console.log(reData)
-	  				this.oneprogressbar.leftProcess = reData[this.place].oneprogressbar.leftProcess;
-	  				this.oneprogressbar.rightProcess = 100-reData[this.place].oneprogressbar.leftProcess;
+	  				//console.log(this.comments)
+	  				this.oneprogressbar.leftProcess = reData.satisfyPercent;
+	  				this.oneprogressbar.rightProcess = 100-reData.satisfyPercent;
 					if(re.status===200){
 						this.isloading = false;
 					}

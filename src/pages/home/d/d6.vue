@@ -62,7 +62,6 @@ export default {
         return {
 			currentNum:0,
 			yestodayNum:0,
-			//allData:{}
         }
     },
     props:{
@@ -80,21 +79,16 @@ export default {
     //观察景点的变化来响应数据
     watch:{
     	code:function(){
-    		//this.currentNum = this.allData[this.place].currentNum;
-	  		//this.yestodayNum = this.allData[this.place].yestodayNum;
 	  		 this.getData();
     	}
     },
     methods: {
 		//请求数据
 	  	getData(){
-	  		//api.params.code = this.code;
-	  		api.currentTourist(api.params).then( (re) =>{
+	  		api.params.code = this.code;
+	  		api.getScenicKeliu(api.params).then( (re) =>{
 	  			//console.log(re.data.data)
   				let reData = re.data.data;
-  				//this.allData = reData;
-  				//this.currentNum = reData[this.place].currentNum;
-  				//this.yestodayNum = reData[this.place].yestodayNum;
   				this.currentNum = reData.curSum;
 				this.yestodayNum = reData.yesterdaySum;
 				if(re.data.code===200){

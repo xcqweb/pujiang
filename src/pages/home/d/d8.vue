@@ -55,16 +55,12 @@ export default {
 	mixins: [optionProps],
     data () {
     return {
-    	allData:{},
     	percent:0,
         text:'一般'
     }
     },
     props:['place'],
     watch: { 
-    	place:function(){
-    		this.percent = this.allData[this.place].num;
-    	}
     },
     computed:{
     	txt(){

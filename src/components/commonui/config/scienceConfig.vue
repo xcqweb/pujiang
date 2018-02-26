@@ -110,13 +110,15 @@
         	close(){
         		this.$store.state.showToast = false;
         		this.code=0;
-        	}
+        	},
+        	getData(){}
 		},
 		created(){
 			//console.log(this.nameToCode['仙华山'])
 		},
 		
 		mounted(){
+			
 		},
 		computed:{
 			

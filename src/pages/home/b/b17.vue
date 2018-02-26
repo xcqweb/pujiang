@@ -112,12 +112,8 @@ export default {
 
     },
     computed: { 
-
     },
     watch:{
-    	code:function(){
-    		this.getData();
-    	}
     },
     methods: {
         //请求数据

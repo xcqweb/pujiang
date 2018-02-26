@@ -107,6 +107,11 @@ import optionProps from '@/common/js/mixin/optionProps.js'
         props:[
             'place'
         ],
+        watch:{
+        	code:function(){
+        		 //this.getData();
+        	}
+        },
         methods:{
         	
             addLineVideo(){
@@ -147,7 +152,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                     map.panTo(new BMap.Point(119.906441,29.457793));
                 }, 1000);
                 setTimeout(function(){
-                    map.setZoom(14);
+                    map.setZoom(12);
                 },4000);
             },
             addIcon(map){
@@ -392,12 +397,11 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 oS.src='https://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js?'+Math.random();
                 this.$el.appendChild(oS)
                 oS.onload=function(){
-                    _self.rodomMap();
+                    _self.rodomMap([119.923671,29.513494]);
                 }
                 this.$el.removeChild(oS);
             },
             rodomMap(){
-            	
             	const _self= this;
             //绘制牵引线
             _self.addLineVideo();
@@ -406,7 +410,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 _self.videoToast=false;
             },false)
             // 初始化地图,设置中心点坐标和地图级别
-              map.centerAndZoom(new BMap.Point(119.923671,29.506494),12);
+                map.centerAndZoom(new BMap.Point(119.923671,29.506494),12);
             // 添加地图类型控件
             // map.addControl(new BMap.MapTypeControl());  
             // 设置地图显示的城市 此项是必须设置的
@@ -414,7 +418,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
             // 开启鼠标滚轮缩放      
             map.enableScrollWheelZoom(true);
             // 设置定时器，对地图进行自动移动
-            // this.mapMoveSelf
+             //this.mapMoveSelf
             /************************************************
             添加折线
             *************************************************/
@@ -456,11 +460,6 @@ import optionProps from '@/common/js/mixin/optionProps.js'
             }
         },
         created(){
-        },
-        watch:{
-        	code:function(){
-        		this.getData();
-        	}
         },
         mounted() {
           	this.$nextTick( () => {

@@ -28,26 +28,15 @@ export default {
     	percent:0,
         imgacircle:require('../../../assets/images/home/b/circle.png'),
         nub:'',
-        set_config:''
+        set_config:'',
+        configNumber:''
     }
-  },
-  watch:{
   },
   computed: {
-    
-    configNumber(){
-    	let data = this.$store.state.dataList;
-	    let num=0;
-	    data.forEach( (item,index) => {
-	    	num+=item.warnNum;
-	    })
-	    
-	    return num;
-    }
-    
   },
   watch:{
   	code:function(){
+  		this.request();
   		this.$store.state.currentCode = this.code;
   	}
   },
@@ -59,7 +48,7 @@ export default {
 		api.getPassengerWarnSetList(api.params).then( (re) => {
 			//console.log(re)
 			let reData = re.data.data;
-			this.$store.state.dataList = reData;
+			//this.$store.state.dataList = reData;
 		}).catch( e =>{
 		      console.log(e);
 		    })
@@ -84,6 +73,7 @@ export default {
       this.nub = re.data.data.count;
       this.set_config = 100000;
       this.percent = re.data.data.warnPercent;
+      this.configNumber = re.data.data.count;
       this.isloading=false;
          let nub = this.percent*100;
       	let setconfig = 10000;

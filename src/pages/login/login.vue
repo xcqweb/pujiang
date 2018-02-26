@@ -140,14 +140,15 @@ import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
                             this.logintext='登录';
                             this.loginForm.password='';
                             alert(data.data.message)
-                        }else{
-                              let token = data.data.data.token;
-                              setCookie('token', token);
-                              this.$router.push({ path: '/' });
-                              this.logintext='登录';
-                              this.loginForm.password='';
-                              //window.location.href = 'http://localhost:8008'
-                        }
+	                        }else{
+	                              let token = data.data.data.token;
+	                              setCookie('token', token);
+	                              this.$router.push({ path: '/' });
+	                              this.logintext='登录';
+	                              this.loginForm.password='';
+	                              window.location.href = API_HZ
+	                              
+	                        }
 	                    }else{
 	                        alert(data.data.message);
 	                        this.logintext='登录';

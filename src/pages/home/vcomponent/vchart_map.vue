@@ -62,11 +62,9 @@ export default {
                  formatter:function(params){
                 	//console.log(params)
                 	if(params.seriesType==="effectScatter"){
-            			return params.data.name+' > '+params.seriesName;
-            		}else{
-            			let val = params.data.toName+' > '+params.data.fromName;
-            			return val;
-            		}	
+                		let val = params.name+' : '+params.value[2];
+                		return val;
+                	}
                 }
             },
             geo: {
@@ -96,7 +94,6 @@ export default {
         },
         geoCoordLocal:{
             '浦江县': [120.105537,29.508488],
-            '清远市': [113.064193,23.68823],
             '江山市': [118.639502,28.757867],
             '湖州市': [120.091557,30.904757],
             '嘉兴市': [120.763058,30.761869],
@@ -151,13 +148,20 @@ export default {
         geoCoordMap:{
             '上海市': [121.4648, 31.2891],
             '浦江县': [120.105537,29.508488],
-            '金华市': [119.650022,29.095307],
+            '江山市': [118.639502,28.757867],
+            '湖州市': [120.091557,30.904757],
             '嘉兴市': [120.763058,30.761869],
+            '宁波市': [121.554142,29.89605],
+            '绍兴市': [120.583685,30.048225],
+            '金华市': [119.650022,29.095307],
+            '丽水市':[119.930581,28.483471],
+            '台州市': [121.425361,28.670242],
+            '温州市': [120.698668,28.015083],
+            '舟山市':[122.216445,29.992188],
+            '杭州市': [119.5313, 29.8773],
             '衢州市':[118.906032, 28.945182],
             '开封市':[114.334304, 34.78857],
-            '台州市': [121.425361,28.670242],
             '中山市': [113.4229, 22.478],
-            '丽水市': [119.5642, 28.1854],
             '乌鲁木齐市': [87.9236, 43.5883],
             '佛山市': [112.8955, 23.1097],
             '兰州市': [103.5901, 36.3043],
@@ -171,7 +175,6 @@ export default {
             '大连市': [122.2229, 39.4409],
             '天津市': [117.4219, 39.4189],
             '太原市': [112.3352, 37.9413],
-            '宁波市': [121.5967, 29.6466],
             '广州市': [113.5107, 23.2196],
             '徐州市': [117.5208, 34.3268],
             '惠州市': [114.6204, 23.1647],
@@ -192,14 +195,12 @@ export default {
             '海口市': [110.3893, 19.8516],
             '深圳市': [114.5435, 22.5439],
             '清远市': [112.9175, 24.3292],
-            '温州市': [120.498, 27.8119],
             '渭南市': [109.7864, 35.0299],
             '滨州市': [117.8174, 37.4963],
             '玉溪市': [101.9312, 23.8898],
             '珠海市': [113.7305, 22.1155],
             '石家庄市': [114.4995, 38.1006],
             '秦皇岛市': [119.2126, 40.0232],
-            '绍兴市': [120.564, 29.7565],
             '肇庆市': [112.1265, 23.5822],
             '苏州市': [120.6519, 31.3989],
             '西安市': [109.1162, 34.2004],
@@ -209,7 +210,47 @@ export default {
             '重庆市': [107.7539, 30.1904],
             '长春市': [125.8154, 44.2584],
             '长沙市': [113.0823, 28.2568],
-            '韶关市': [113.7964, 24.7028]
+            '韶关市': [113.7964, 24.7028],
+            '曲靖市':[103.807034, 25.479708],
+            '鄂州市':[114.910806, 30.376634],
+            '玉林市':[110.197652, 22.634215],
+            '咸阳市':[108.711973, 34.333091],
+            '芜湖市':[118.427358, 31.356563],
+            '临沂市':[118.361808, 35.107364],
+            '焦作市':[113.247973, 35.218604],
+            '莱芜市':[117.681825, 36.217608],
+            '潍坊市':[119.168953, 36.707097],
+            '锦州市':[121.130871, 41.102671],
+            '衡水市':[115.677131, 37.747474],
+            '滁州市':[118.333082, 32.285694],
+            '毕节市':[105.321355, 27.288686],
+            '抚顺市':[123.96265, 41.88554],
+            '南阳市':[112.527027, 32.995109],
+            '安顺市':[105.886577, 26.217253],
+            '扬州市':[119.369976, 32.395311],
+            '淮安市':[119.032407, 33.615333],
+            '桂林市':[110.20297, 25.240271],
+            '通化市':[125.945456, 41.731663],
+            '铁岭市':[123.73179, 42.227811],
+            '鹰潭市':[117.069251, 28.263751],
+            '盐城市':[120.164669, 33.354619],
+            '郴州市':[112.98754, 25.738675],
+            '泰州市':[119.911744, 32.510381],
+            '衡阳市':[112.59167, 26.893905],
+            '常州市':[119.976311, 31.814814],
+            '昭通市':[103.725237, 27.336382],
+            '定西市':[104.628396, 35.585894],
+            '菏泽市':[115.472022, 35.237992],
+            '新乡市':[113.913478, 35.301156],
+            '东莞市':[113.762444, 23.025712],
+            '漳州市':[117.656451, 24.514196],
+            '宿州市':[116.975718, 33.652095],
+            '贵阳市':[106.641751, 26.652808],
+            '亳州市':[115.779289, 33.848724],
+            '吕梁市':[111.141826, 37.522208],
+            '襄阳市':[112.130262, 32.012348],
+            '福州市':[119.302895, 26.077314],
+            '黔西南布依族苗族自治州':[104.947562, 25.145265],
         },
         BJData:[
             [{name: this.placeName}, {name: '北京', value: 95}],
@@ -241,6 +282,9 @@ export default {
     watch:{
     	range:function(){
     		this.getData();
+    	},
+    	code:function(){
+    		this.getData();
     	}
     },
     methods: {
@@ -254,14 +298,14 @@ export default {
 	    		this.yearNumb = reData.yearSum;
 	    		this.mouthNumb = reData.monthSum;
 	    		let topCity = reData.topCity;
-	    		
+	    		this.allData=[];
+	    		this.zhejiang=[];
 	    		//console.log(topCity)
-		  		
 				for(let i=0; i<topCity.length; ++i){
 					if(this.range===1){
-						this.allData[i]=["浦江县", [[{name: "浦江县"}, {name: topCity[i]._id, value: topCity[i].sum/40}]]]
+						this.allData[i]=["浦江县", [[{name: "浦江县"}, {name: topCity[i]._id, value: topCity[i].sum}]]]
 					}else{
-						this.zhejiang[i]=["浦江县", [[{name: "浦江县"}, {name: topCity[i]._id, value: topCity[i].sum/200}]]]
+						this.zhejiang[i]=["浦江县", [[{name: "浦江县"}, {name: topCity[i]._id, value: topCity[i].sum}]]]
 					}
 				}
 				
@@ -269,6 +313,7 @@ export default {
 	    			this.isloading=false;
 	    			delete api.params.range;
 	    		}
+	    		//console.log(this.range)
 	    		if(this.range===1){
 	    			this.redomData();
 	    		}else{
@@ -341,10 +386,6 @@ export default {
     //国内游客来源
     redomData(){
     	this.range = 1;
-    	this.num2++;
-    	this.num1=0;
-    	if(this.num2>1)return;
-    	
     	this.isActive=true;
         let _self=this;
         const target = this.placeName;
@@ -386,6 +427,8 @@ export default {
                     //name: item[0],
                     type: 'lines',
                     zlevel: 2,
+                    largeThreshold:200,
+                    large:true,
                     symbol: ['none', 'arrow'],
                     //箭头大小
                     symbolSize: 2,
@@ -429,7 +472,25 @@ export default {
                         }
                     },
                     symbolSize: function (val) {
-                        return val[2] / 8;
+                        //return val[2] / 200;
+                       
+                        
+                        
+                        if(val>=0&&val[2]<=20){
+                    		return val[2]
+                    	}else if(val[2]>20&&val[2]<=1000){
+                    		return val[2]/20
+                    	}else if(val[2]>1000 && val[2]<5000){
+                    		return val[2]/120
+                    	}else if(val[2]>=5000 && val[2]<10000){
+                    		return val[2]/160
+                    	}else if(val[2]>=10000&&val[2]<70000){
+                    		return val[2]/210
+                    	}else if(val[2]>=70000&&val[2]<100000){
+                    		return val[2]/200
+                    	}else{
+                    		return val[2]/300
+                    	}
                     },
                     itemStyle: {
                         normal: {
@@ -454,10 +515,6 @@ export default {
     //省内游客来源
     redomaaData(){
     	this.range = 2;
-    	this.num1++;
-    	this.num2=0;
-    	if(this.num1>1)return;
-    	//console.log(this.num1)
     	this.isActive=false;
         if(this.chart){
             this.chart.dispose();
@@ -543,14 +600,27 @@ export default {
                         }
                     },
                     symbolSize: function (val) {
-                        return val[2] / 8;
+                    	if(val>=0&&val[2]<=20){
+                    		return val[2]
+                    	}else if(val[2]>20&&val[2]<=1000){
+                    		return val[2]/20
+                    	}else if(val[2]>1000 && val[2]<10000){
+                    		return val[2]/400
+                    	}else if(val[2]>=10000&&val[2]<70000){
+                    		return val[2]/800
+                    	}else if(val[2]>=70000&&val[2]<100000){
+                    		return val[2]/1200
+                    	}else{
+                    		return val[2]/1000
+                    	}
+                        
                     },
                     itemStyle: {
                         normal: {
                             color: _self.color[i]
                         }
                     },
-                    progressiveThreshold: 500,
+                    progressiveThreshold: 50,
                     progressive: 200,
                     data: item[1].map(function (dataItem) {
                         return {
@@ -569,7 +639,6 @@ export default {
     },
     created(){
       	this.getData()
-      	
     },
     mounted(){
         this.$nextTick(echarts_resize('fromEchart',this))

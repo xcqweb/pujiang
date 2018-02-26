@@ -43,9 +43,6 @@ export default {
       }
     },
     watch:{
-    	code:function(){
-    		this.getData();
-    	}
     },
     methods:{
     	//请求数据

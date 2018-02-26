@@ -59,19 +59,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
             }
         }
     },
-    // props: {
-    //     mainContent: {
-    //         type: String,
-    //         default: function () {
-    //                 return 'D2S'
-    //         }
-    //     },
-    // },
     watch:{
-    	code:function(){
-    		this.getResponse();
-    	}
-    	
     },
     methods:{
         redom(id){

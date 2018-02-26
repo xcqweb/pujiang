@@ -60,7 +60,7 @@ export default {
     watch:{
     	code:function(){
     		this.isloading = true;
-    		this.request();
+    		this.getData();
     	}
     },
     methods: {

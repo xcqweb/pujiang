@@ -260,7 +260,7 @@ export default {
     	code:function(){
     		this.isloading = true;
     		this.currentNum=0;
-    		this.getData();
+    		this.getData1();
     	}
     },
     created(){

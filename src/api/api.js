@@ -17,13 +17,23 @@ function tansParm(data){
         if(data.range){
         	 params.append('range',data.range);
         }
+        if(data.limit){
+        	data.limit = data.limit>100?5:data.limit
+        	 params.append('limit',data.limit);
+        }
+        if(data.curPage){
+        	 params.append('curPage',data.curPage);
+        }
         if(data.setNum>=0 || data.warnNum>=0){
         	params.append('setNum', data.setNum);
         	params.append('warnNum', data.warnNum);
         }
        
-    return params;
+       let p = params;
+       params={};
+    return p;
 }
+
 
 
 //console.log(navigator.userAgent,window.navigator.userAgent.indexOf('Trident'))
@@ -73,10 +83,11 @@ export const touristOriginsource = params => { return axios.post(`${base}/jzyx/g
 export const scenicRanking  = params => { return axios.post(`${base}/jzyx/getTouristTop`,tansParm(params));};
 //游客来源排行
 export const touristOriginRanking  = params => { return axios.post(`${base}/jzyx/getTouristProvince`,tansParm(params));};
-//景区当前客流
-//export const currentTourist  = params => { return axios.post(`${base}/yjzh/getPassengerCount`,tansParm(params));};
+//景区概况
 export const currentTourist  = params => { return axios.post(`${base}/zl/getScenicGereral`,tansParm(params));};
 
+//景区客流
+export const getScenicKeliu  = params => { return axios.post(`${base}/yjzh/getScenicKeliu`,tansParm(params));};
 
 
 //游客餐饮消费分析
