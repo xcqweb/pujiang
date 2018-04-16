@@ -2,20 +2,20 @@
   <div>
     <ul>
         <li for='item in items'>
-            <div class="cell1">
+            <span class="cell1">
                	 地区
-            </div>
-            <div class="cell3">
+            </span>
+            <span class="cell3">
                 	占比
-            </div>
+            </span>
         </li>
         <li v-for='(item,index) in items'>
-            <div class="cell1">
+            <span class="cell1">
                 {{index+1}}、{{item.place}}
-            </div>
-            <div class="cell3">
+            </span>
+            <span class="cell3">
                <font>{{item.percent}}%</font>
-            </div>
+            </span>
         </li>
     </ul>
     <Loading class='loading' v-show="isloading"></Loading>
@@ -90,30 +90,14 @@ ul{
     }
 }
 .cell1{
-    float:left;
-    width:48%;
-    text-align: left;
-    margin-left: 1%;
-    display:flex;
-    align-items:center;
-    justify-content:flex-start;
+    flex: 1;
+    align-items: center;
 }
 .cell2{
-    float:left;
-    width:31%;
-    text-align: center;
+    flex: 1;
 }
 .cell3{
-    float:left;
-    width:40%;
-    display:flex;
-    align-items:center;
-    justify-content:flex-end;
-    /*font-family:numberFont;*/
-    .footerRise{
-        display: inline-block;
-         transform: translateY(10%);
-    }
+   flex: 1;
 }
 
 .up{

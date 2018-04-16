@@ -17,6 +17,7 @@ import {API_HZ} from '@/api/env'
 //import '@/common/js/rem.js'
 Vue.directive('echarts', require('./common/js/directives/vDirechartsE.js'));
 window.axios = axios; 
+Vue.prototype.$axios = axios; 
 window.api = api; 
 window.$sheet=sheet;
 window.Loading=Loading;

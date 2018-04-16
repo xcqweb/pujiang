@@ -1,10 +1,10 @@
  <template>
     <div class="map_content">
-    	<div class="topTitle">
+    	<div class="topTitle" v-show='istitle'>
             <span>{{nowYear}}年累计接待游客(人)</span>
             <font>{{yearNumb}}</font>
         </div>
-        <div class='topTitle'>
+        <div class='topTitle' v-show='istitle'>
             <span>{{mowMonth}}月份持续接待游客(人)</span>
             <font>{{mouthNumb}}</font>
         </div>
@@ -29,7 +29,8 @@ import echarts_resize from '../../../common/js/echarts_resize.js'
 import 'echarts/map/js/china.js';
 import zhejiangJson from 'echarts/map/json/province/zhejiang.json'
 import optionProps from '@/common/js/mixin/optionProps.js'
-
+import vAjax from '@/common/js/v-ajax.js'
+Vue.use(vAjax);
 let date = new Date()
 let nowYear = date.getFullYear()
 let mowMonth = date.getMonth()+1
@@ -37,7 +38,7 @@ let mowMonth = date.getMonth()+1
 export default {
     name: 'a6',
     mixins: [optionProps],
-    props:['placeName'],
+    props:['placeName','istitle'],
     
     data () {
     return {
@@ -183,6 +184,7 @@ export default {
             '无锡市': [120.3442, 31.5527],
             '杭州市': [119.5313, 29.8773],
             '武汉市': [114.3896, 30.6628],
+            '南昌市': [116.0046,28.6633],  
             '汕头市': [117.1692, 23.3405],
             '江门市': [112.6318, 22.1484],
             '济南市': [117.1582, 36.8701],
@@ -251,6 +253,8 @@ export default {
             '襄阳市':[112.130262, 32.012348],
             '福州市':[119.302895, 26.077314],
             '黔西南布依族苗族自治州':[104.947562, 25.145265],
+            '周口市':[114.704633,33.631829],
+            '黔南布依族苗族自治州':[107.516905,26.251284],
         },
         BJData:[
             [{name: this.placeName}, {name: '北京', value: 95}],
@@ -289,6 +293,36 @@ export default {
     },
     methods: {
   	
+  	//根据城市名转换成经纬度坐标
+  	transformAddress(){
+//		var params = {
+//			address : '深圳市',
+//			output: 'json',
+//			ak:'ak=sBUiZ29QLHjchFcs4l75XmtQXbklPSRT',
+//			
+//		}
+//		this.$axios.get('http://api.map.baidu.com/geocoder/v2',params).then( (r) => {
+//			console.log(r)
+//		})
+//		
+  		
+//	     var _self= this
+//          this.$ajax({
+//              type:'GET',
+//              url:'http://api.map.baidu.com/geocoder/v2/ak=sBUiZ29QLHjchFcs4l75XmtQXbklPSRT&address=深圳市',
+//              dataType:'jsonp',
+//              success:function(res){
+//                _self.$nextTick(function () {
+//                    console.log(res)
+//                });
+//              },
+//              error:function(err){
+//                console.log(err);
+//              }
+//          })
+  		
+  	},
+  	
   	getData(){
 			api.params.code = this.code;
 			//console.log(this.code)
@@ -302,11 +336,14 @@ export default {
 	    		this.zhejiang=[];
 	    		//console.log(topCity)
 				for(let i=0; i<topCity.length; ++i){
-					if(this.range===1){
-						this.allData[i]=["浦江县", [[{name: "浦江县"}, {name: topCity[i]._id, value: topCity[i].sum}]]]
-					}else{
-						this.zhejiang[i]=["浦江县", [[{name: "浦江县"}, {name: topCity[i]._id, value: topCity[i].sum}]]]
+					if(topCity[i]._id!=='missing' &&　topCity[i]._id!=='总计'){
+						if(this.range===1){
+							this.allData[i]=["浦江县", [[{name: "浦江县"}, {name: topCity[i]._id, value: topCity[i].sum}]]]
+						}else{
+							this.zhejiang[i]=["浦江县", [[{name: "浦江县"}, {name: topCity[i]._id, value: topCity[i].sum}]]]
+						}
 					}
+					
 				}
 				
 	    		if(re.status===200){
@@ -473,23 +510,20 @@ export default {
                     },
                     symbolSize: function (val) {
                         //return val[2] / 200;
-                       
-                        
-                        
                         if(val>=0&&val[2]<=20){
                     		return val[2]
                     	}else if(val[2]>20&&val[2]<=1000){
-                    		return val[2]/20
+                    		return val[2]/40
                     	}else if(val[2]>1000 && val[2]<5000){
-                    		return val[2]/120
+                    		return val[2]/150
                     	}else if(val[2]>=5000 && val[2]<10000){
-                    		return val[2]/160
-                    	}else if(val[2]>=10000&&val[2]<70000){
-                    		return val[2]/210
-                    	}else if(val[2]>=70000&&val[2]<100000){
                     		return val[2]/200
+                    	}else if(val[2]>=10000&&val[2]<70000){
+                    		return val[2]/260
+                    	}else if(val[2]>=70000&&val[2]<100000){
+                    		return val[2]/360
                     	}else{
-                    		return val[2]/300
+                    		return val[2]/660
                     	}
                     },
                     itemStyle: {
@@ -639,6 +673,7 @@ export default {
     },
     created(){
       	this.getData()
+      	this.transformAddress()
     },
     mounted(){
         this.$nextTick(echarts_resize('fromEchart',this))

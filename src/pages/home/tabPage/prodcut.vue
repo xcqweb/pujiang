@@ -30,6 +30,7 @@
                     :key="item.id"
                     :placeName = 'placeName'
                     :touristProp = "updateData.turist"
+                    :istitle=true
                     ></componet>
                   <!--</keep-alive>-->
                 </div>

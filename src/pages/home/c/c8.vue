@@ -14,7 +14,7 @@
         </li>
         <li v-for='(item,index) in items'>
             <div class="cell1">
-                {{item.sort}}、{{item._id}}
+                {{item.sort-1}}、{{item._id}}
             </div>
             <div class="cell2">
                 {{item.num}}<font>人</font>
@@ -54,7 +54,8 @@ export default {
 	  		api.params.code = this.code;
 	  		api.touristOriginRanking(api.params).then( (re) =>{
 	  				let reData = re.data.data;
-	  				this.items = reData;
+	  				this.items = reData.splice(1);
+	  				console.log(reData)
 					if(re.status===200){
 						this.isloading = false;
 					}

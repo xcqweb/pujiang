@@ -55,7 +55,7 @@ const router= new Router({
         name: '',
         iconCls: 'el-icon-message',//图标样式class
         children: [
-            { path: '', component: homepage2, name: 'homepage2' },
+            { path: '', component: homepage, name: 'homepage' },
             { path: 'prodcut', component: prodcut, name: 'prodcut' },
             { path: 'precision', component: Precision, name: 'Precision' },
             { path: 'souceShow', component: souceShow, name: 'souceShow' },

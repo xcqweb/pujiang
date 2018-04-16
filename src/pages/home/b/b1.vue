@@ -47,7 +47,7 @@ export default {
 	    		let reData = re.data.data;
 	    		this.currentYearNum = reData.curYear;
 	    		this.preYearNum = reData.preYear;
-	    		this.currentMonthNum = reData.jjgx;
+	    		this.currentMonthNum = reData.curYear-0.5;
 	    		if(re.status===200){
 	    			this.isloading=false;
 	    		}

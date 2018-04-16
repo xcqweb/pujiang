@@ -177,8 +177,9 @@ div{
     top:48.2%;
     left:23%;
     background-image:url('../../../assets/images/home/迷之笑脸.png');
-    background-size: 50% 50%;
-        z-index:4;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    z-index:4;
 }
 #c{
     width:25%;

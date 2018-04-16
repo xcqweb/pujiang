@@ -131,7 +131,7 @@ export default {
   watch:{
   },
 	methods:{
-  get_response(){
+  getData(){
     let start_end_instance =  new Start_end_class('profile',begindaytime);
     start_end_instance.get_response().then(re => {
     	
@@ -192,7 +192,7 @@ export default {
 //          this.currentPlace = target;
 //      });
 
-		this.get_response();
+		this.getData();
 	},
 	mounted() {
     this.$nextTick(echarts_resize('vwarning',this));

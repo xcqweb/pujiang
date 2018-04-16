@@ -8,7 +8,6 @@ import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
 axios.defaults.timeout = 100000; //5000的超时验证
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 //创建一个axios实例
-//console.log('axios创建实例')
 const instance = axios.create();
 let token = getCookie('token');
 instance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
@@ -37,7 +36,7 @@ instance.interceptors.response.use(
 	
     response => {
       	//console.log(response)
-        if (response.data.code == 200) {
+        if (response.data.code == 200 || response) {
             return response;
             //拦截景区预警人数设置
           }else if(response.data.code===201){
@@ -45,7 +44,7 @@ instance.interceptors.response.use(
           }
         else{
           	router.replace({ //跳转到登录页面
-                   path: 'login',
+                  path: 'login',
                    query: { redirect: router.currentRoute.fullPath } // 将跳转的路由path作为参数，登录成功后跳转到该路由
                })
           }

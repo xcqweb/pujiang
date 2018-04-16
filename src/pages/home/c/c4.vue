@@ -120,9 +120,9 @@ export default {
 		    type: 'pictorialBar',
 		    symbol: spirit1,
 		    symbolRepeat: 'fixed',
-		    symbolMargin: '5%',
+		    symbolMargin: '15%',
 		    symbolClip: true,
-		    symbolSize: 30,
+		    symbolSize: [26,36],
 		    symbolBoundingData: maxData,
 		    data: [{
 		    	value:data1
@@ -155,9 +155,9 @@ export default {
 		    
 		    animationDuration: 0,
 		    symbolRepeat: 'fixed',
-		    symbolMargin: '5%',
+		    symbolMargin: '15%',
 		        symbol: spirit1,
-		        symbolSize: 30,
+		        symbolSize: [26,36],
 		        symbolBoundingData: maxData,
 		        data: [{
 		        	value:data1
@@ -221,9 +221,9 @@ export default {
 		    type: 'pictorialBar',
 		    symbol: spirit2,
 		    symbolRepeat: 'fixed',
-		    symbolMargin: '5%',
+		    symbolMargin: '15%',
 		    symbolClip: true,
-		    symbolSize: 30,
+		    symbolSize: [26,36],
 		    symbolBoundingData: maxData,
 		    data: [{
 		    	value:data2
@@ -259,9 +259,9 @@ export default {
 		    
 		    animationDuration: 0,
 		    symbolRepeat: 'fixed',
-		    symbolMargin: '5%',
+		    symbolMargin: '15%',
 		        symbol: spirit2,
-		        symbolSize: 30,
+		        symbolSize: [26,36],
 		        symbolBoundingData: maxData,
 		        data: [{
 		        	value:data2
@@ -314,7 +314,7 @@ export default {
     		left: 5%;
     		position: absolute;
     		background: url('../../../assets/images/home/menE.png') no-repeat;
-    		background-size: 100%;
+    		background-size: 100% 90%;
     	}
     .wemen{
     		display: block;
@@ -324,7 +324,7 @@ export default {
     		left: 5%;
     		position: absolute;
     		background: url('../../../assets/images/home/womenE.png') no-repeat;
-    		background-size: 100%;
+    		background-size: 100% 90%;
     }
     
     .menP{

@@ -1,7 +1,5 @@
-//import axios from 'axios';
 import axios from '@/api/instance'
 import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
-//export {params} from '@/common/js/gtime.js';
 
 export var params={};
 let timeStamp = new Date().getTime()+'';
@@ -142,9 +140,9 @@ export const editUser = params => { return axios.post(`${base1}/user/edit`, { pa
 //游客来源地排行榜
 export const originList = params => { return axios.post(`${base1}/originList`,tansParm(params));};
 //客流总数，经济分析，富民指数
-export const topThree = params => { return axios.post(`${base1}/topThree`,{ params: params });};
+export const topThree = params => { return axios.get(`${base1}/topThree`,{ params: params });};
 //游客满意度
-export const touristSatisfaction = params => { return axios.post(`${base1}/touristSatisfaction`,{ params: params });};
+export const touristSatisfaction = params => { return axios.get(`${base1}/touristSatisfaction`,{ params: params });};
 //拥堵指数
 export const congestion = params => { return axios.get(`${base1}/congestion`,{params:params});};
 //天气

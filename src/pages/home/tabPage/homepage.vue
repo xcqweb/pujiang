@@ -35,6 +35,7 @@
                 :chosemMoudle='cutoverMoudle'
                 :lazyLoad='setLazy'
                 :placeName = 'placeName'
+                :istitle=false
                 ></componet>
               <!--</keep-alive>-->
             </div>

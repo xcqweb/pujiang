@@ -12,7 +12,7 @@
         </div>
         <ul>
             <div class="line"></div>
-            <li v-for='item in outItems' v-bind:style="{ marginLeft: marginLeft +'%'}">
+            <li v-for='item in outItemsCom' v-bind:style="{ marginLeft: marginLeft +'%'}">
                 <span v-bind:style="{  bottom:18+item.percent +'%'}">{{item.percent}}%</span>
                 <div v-bind:style="{  height: item.percent+10+'%'}"></div>
                 <font>{{item._id}}</font>
@@ -47,6 +47,13 @@ export default {
     created(){
     },
     computed: { 
+    	outItemsCom(){
+//  		this.outItems.forEach( (v,i) => {
+//  			if(v._id==='missing'){this.outItems.splice(i,1)}
+//  			if(v._id==='总计'){this.outItems.splice(i,1)}
+//  		})
+    		return this.outItems.splice(2)
+    	}
     },
     watch:{
     	code:function(){
@@ -151,10 +158,10 @@ export default {
 
             }
             font{
-                display:inline-block;
+                /*display:inline-block;*/
                 position:absolute;
-                bottom:-36%;
-                left:0%;
+                top:106%;
+                left:-5%;
                 font-size: 0.66rem;
             }
         }
