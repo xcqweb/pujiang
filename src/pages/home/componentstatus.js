@@ -4,6 +4,7 @@ let topBody = resolve => {require.ensure(['@/pages/home/topBody.vue'], () => {re
 let bottomBody = resolve => {require.ensure(['@/pages/home/bottomBody.vue'], () => {resolve(require('@/pages/home/bottomBody.vue'))})}
 let sleckte = resolve => {require.ensure(['@/components/commonui/dropdown/dropdown-menu.vue'], () => {resolve(require('@/components/commonui/dropdown/dropdown-menu.vue'))})}
 let clock = resolve => {require.ensure(['@/components/commonui/clock.vue'], () => {resolve(require('@/components/commonui/clock.vue'))})}
+let vdate = resolve => {require.ensure(['@/components/commonui/vueDate/app.vue'], () => {resolve(require('@/components/commonui/vueDate/app.vue'))})}
 
 //客流分析__bar
 let A1 = resolve => {require.ensure(['@/pages/home/vcomponent/vtopOne.vue'], () => {resolve(require('@/pages/home/vcomponent/vtopOne.vue'))})}
@@ -104,7 +105,7 @@ let D11 = resolve => {require.ensure(['@/pages/home/d/d11.vue'], () => {resolve(
 //存放当前模块状态，数组字符串
 let status =[
     'sleckte',
-    'clock',
+    'vdate',
     'A1',
     'A2',
     'A3',

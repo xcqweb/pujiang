@@ -171,7 +171,7 @@ export default {
                         	margin:10,
                                  textStyle: {
                                      color: '#ffffff',//x坐标轴标签字体颜色
-                                     fontSize: '70%',
+                                     fontSize: '80%',
                                  },
                             },
                             

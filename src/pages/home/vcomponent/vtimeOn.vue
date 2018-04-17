@@ -2,7 +2,7 @@
   <div class="A5">
       <div id="container"></div>
       <Loading v-show="isloading"></Loading>
-      <span>{{currentNum}}<font>人</font></span>
+      <span>{{currentNums}}<font></font></span>
   </div>
 </template>
 <script>
@@ -13,6 +13,7 @@ import Start_end_class from '@/common/js/star_end_class.js'
 import Rw from '@/common/js/until/index'
 import api from '@/api/moudles/tanzhenData'
 import optionProps from '@/common/js/mixin/optionProps.js'
+
 
 let isIE = window.navigator.userAgent.indexOf('Trident');
 export default {
@@ -31,9 +32,9 @@ export default {
             color: ['#00ffff', '#00ffa2', '#f0e750'],
             grid: {
                show: true,
-               left: '10%',
-               top: '15%',
-               right: '5%',
+               left: '15%',
+               top: '16%',
+               right: '8%',
                bottom: '10%',
                borderWidth: 0,
                borderColor: 'rgba(170,172,178,0.33)',
@@ -61,6 +62,7 @@ export default {
                },
                axisLabel: { 
                		 margin: 5,
+               		 align:'left',
                    textStyle: {
                        color: '#fff',//x坐标轴标签字体颜色
                        fontSize: '75%',
@@ -136,6 +138,11 @@ export default {
                ] //series结束
          },
       }
+    },
+    computed:{
+    	currentNums(){
+				return Rw.string_until.addPoint(this.currentNum)
+			},
     },
     methods: {
         //添加数据

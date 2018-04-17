@@ -40,12 +40,12 @@
 <template>
     <div class="b6">
         <div class="b6__top">
-            <span>{{currentNums}}<font>人次</font></span>
-            <font>当前客流人数</font>
+            <span>{{currentNums}}<font></font></span>
+            <font>当前客流总人数</font>
         </div>
         <div class="b6__bottom">
-            <span>{{yestodayNums}}<font>人次</font></span>
-            <font>昨日客流总数</font>
+            <span>{{yestodayNums}}<font></font></span>
+            <font>昨日客流总人数</font>
         </div>
         <Loading v-show="isloading"></Loading>
     </div>

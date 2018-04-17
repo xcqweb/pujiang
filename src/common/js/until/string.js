@@ -21,16 +21,18 @@ export default {
     */ 
     //给数字添加标点
     addPoint:function(nub){
-        var n= nub;
-        var m =n +'',
-        len= m.length
-        if (len>3) {
-        var aa=len-3
-        var bb=m.slice(aa,len)
-        var cc=m.slice(0,aa)
-        m=cc+','+bb
-        }
-        return m
+//      let n= nub;
+//      let m =n +'',
+//      len= m.length
+//      if (len>3) {
+//      let aa=len-3
+//      let bb=m.slice(aa,len)
+//      let cc=m.slice(0,aa)
+//      m=cc+','+bb
+		return nub.toLocaleString()
+        
+//      }
+        //return m
     },
     /*type
      1:首字母大写

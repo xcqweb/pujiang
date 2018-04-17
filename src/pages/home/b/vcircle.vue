@@ -2,16 +2,16 @@
     <div class="ta_c">
         <div class='rotImg'>
             <div class="Rotation1 img ">
-                <img :src="circle"/>
+                <img :src="circles"/>
             </div>
             <div class="Rotation2 img ">
-                <img :src="cut"/>
+                <img :src="cuts"/>
             </div>
             <div class="Rotation3 img ">
-                <img :src="half"/>
+                <img :src="halfs"/>
             </div>
             <div class=" line">
-                <img :src="line"/>
+                <img :src="lines"/>
             </div>
             <font v-show='percents'>{{percents}}</font>
         </div>
@@ -24,13 +24,63 @@ export default {
   name: '',
   data () {
     return {
-        circle:require('../../../assets/images/circle/violet/item-circle.png'),
-        cut:require('../../../assets/images/circle/violet/cut.png'),
-        half:require('../../../assets/images/circle/violet/half.png'),
-        line:require('../../../assets/images/circle/violet/line.png'),
+        circle1:require('../../../assets/images/circle/violet/畅通3.png'),
+        circle2:require('../../../assets/images/circle/violet/良好3.png'),
+        circle3:require('../../../assets/images/circle/violet/较拥堵3.png'),
+        circle4:require('../../../assets/images/circle/violet/拥堵3.png'),
+        circle5:require('../../../assets/images/circle/violet/严重拥堵3.png'),
+        cut1:require('../../../assets/images/circle/violet/畅通1.png'),
+        cut2:require('../../../assets/images/circle/violet/良好1.png'),
+        cut3:require('../../../assets/images/circle/violet/较拥堵1.png'),
+        cut4:require('../../../assets/images/circle/violet/拥堵1.png'),
+        cut5:require('../../../assets/images/circle/violet/严重拥堵1.png'),
+        half1:require('../../../assets/images/circle/violet/畅通2.png'),
+        half2:require('../../../assets/images/circle/violet/良好2.png'),
+        half3:require('../../../assets/images/circle/violet/较拥堵2.png'),
+        half4:require('../../../assets/images/circle/violet/拥堵2.png'),
+        half5:require('../../../assets/images/circle/violet/严重拥堵2.png'),
+        line1:require('../../../assets/images/circle/violet/畅通4.png'),
+        line2:require('../../../assets/images/circle/violet/良好4.png'),
+        line3:require('../../../assets/images/circle/violet/较拥堵4.png'),
+        line4:require('../../../assets/images/circle/violet/拥堵4.png'),
+        line5:require('../../../assets/images/circle/violet/严重拥堵4.png'),
         percent:'',
         text:'较为拥堵',
     }
+  },
+  computed:{
+  	circles(){
+  		let num = this.percent;
+  		if(num<=1)return this.circle1;
+		if(num>1&&num<=2)return this.circle2;
+		if(num>2&&num<=3)return this.circle3;
+		if(num>3&&num<=4)return this.circle4;
+		if(num>4&&num<=5)return this.circle5;
+  	},
+  	cuts(){
+  		let num = this.percent;
+  		if(num<=1)return this.cut1;
+		if(num>1&&num<=2)return this.cut2;
+		if(num>2&&num<=3)return this.cut3;
+		if(num>3&&num<=4)return this.cut4;
+		if(num>4&&num<=5)return this.cut5;
+  	},
+  	halfs(){
+  		let num = this.percent;
+  		if(num<=1)return this.half1;
+		if(num>1&&num<=2)return this.half2;
+		if(num>2&&num<=3)return this.half3;
+		if(num>3&&num<=4)return this.half4;
+		if(num>4&&num<=5)return this.half5;
+  	},
+  	lines(){
+  		let num = this.percent;
+  		if(num<=1)return this.line1;
+		if(num>1&&num<=2)return this.line2;
+		if(num>2&&num<=3)return this.line3;
+		if(num>3&&num<=4)return this.line4;
+		if(num>4&&num<=5)return this.line5;
+  	}
   },
   props:{
   	percents:Number

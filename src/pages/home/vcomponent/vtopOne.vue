@@ -96,8 +96,8 @@ export default {
                     grid: {
                          show: true,
                          left: '15%',
-                         top: '30%',
-                         right: '10%',
+                         top: '22%',
+                         right: '6%',
                          bottom: '10%',
                          borderWidth: 0,
                          backgroundColor: 'rgba(0,0,0,0)',
@@ -156,6 +156,9 @@ export default {
                     		name:"单位 : 人",
                     		nameTextStyle:{
                     			fontSize:'100%',
+                    			verticalAlign:'top',
+                    			align:'left',
+                    			margin:[60,60,60,60]
                     		},
                         show:true,
                         nameTextStyle:{
@@ -175,10 +178,10 @@ export default {
                           }
                         },
                         axisLabel:{
-                            showMinLabel:true,
+                           show:true,
                           textStyle:{
-                            color:'rgba(0,0,0,0)',
-                            fontSize: "100%",
+                            color:'#fff',
+                            fontSize: "75%",
                           }
                         },
                         axisLine: { //坐标轴轴线相关设置。就是数学上的y轴
@@ -195,7 +198,7 @@ export default {
                     {
                         name:'计划',
                         type:'bar',
-                        barMaxWidth:'50%',
+                        barMaxWidth:'36%',
                         data:datay,
                         itemStyle:{
                             normal: {
@@ -216,7 +219,7 @@ export default {
                             distance:5,
                             textStyle:{
                                 color:'#2CC9E2',
-                                fontSize:"60%"
+                                fontSize:"90%"
                             }
                         }
                        },

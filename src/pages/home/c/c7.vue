@@ -14,10 +14,10 @@
         </li>
         <li v-for='(item,index) in items'>
             <div class="cell1">
-                {{item.sort}}、{{item.name}}
+                {{item.sort}}. {{item.name}}
             </div>
             <div class="cell2">
-                {{item.value}}<font>人</font>
+                {{item.value}}<font></font>
             </div>
             <div class="cell3">
                 <span class='footerCotext'>{{item.percent}}%</span>

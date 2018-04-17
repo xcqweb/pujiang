@@ -14,8 +14,10 @@
 <script>
 import Vue from 'vue'
 import echarts_resize from '../../../common/js/echarts_resize.js'
+
 import echarts from 'echarts';
-//import Start_end_class from '@/common/js/star_end_class.js'
+//import  liquidFill from 'echarts-liquidfill';
+require('./echarts-liquidfill')
 import {begindaytime} from '@/common/js/gtime.js'
 import optionProps from '@/common/js/mixin/optionProps.js'
 import axios from 'axios'
@@ -62,66 +64,22 @@ export default {
   		//console.log(this.$store.state.currentCode,this.code);
   	},
       redom(id){
-          this.chart = echarts.init(document.getElementById(id));
-          this.chart.setOption(this.option);
+            this.chart = echarts.init(document.getElementById(id));
+            this.chart.setOption(this.option);
       },
   request(){
 	  api.params.code= this.code;
       api.passengerwarning(api.params).then( (re) => {
 //  	axios.get('https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/passengerwarning').then( (re) => {
       //设置默认值
-      this.nub = re.data.data.count;
-      this.set_config = 100000;
-      this.percent = re.data.data.warnPercent;
-      this.configNumber = re.data.data.count;
       this.isloading=false;
-         let nub = this.percent*100;
-      	let setconfig = 10000;
       
-      let option={
-        backgroundColor: 'rgba(0,0,0,0)',
-        
-        series: [
-          {
-            name: '消费情况',
-            type: 'pie',
-            radius:  ['50%', '58%'],
-            center: ['50%', '55%'],
-            label: {
-              normal: {
-                position: 'inner'
-              }
-            },
-            labelLine: {
-              normal: {
-                show: false
-              }
-            },
-            data:[
-              {
-                value:nub,
-                name:'',
-                itemStyle:{
-                  normal:{
-                    color:'#1da7fe',
-
-
-                  }
-                }
-              },
-              {
-                value:setconfig,
-                name:'',
-                itemStyle:{
-                  normal:{
-                    color:'rgba(0,0,0,0)',
-                  }
-                }
-              },
-              ]
-          }
-          ]
-      };
+      var option = {
+		    series: [{
+		        type: 'liquidFill',
+		        data: [0.6]
+		    }]
+		};
       this.option = option;
       this.redom("pieB2");
       this.$nextTick(echarts_resize('pieB2',this));

@@ -148,9 +148,9 @@
                     grid: {
                          show: true,
                          left: '15%',
-                         top: '20%',
+                         top: '18%',
                          right: '5%',
-                         bottom: '20%',
+                         bottom: '15%',
                          borderWidth: 0,
                          backgroundColor: 'rgba(0,0,0,0)',
                      },
@@ -165,7 +165,7 @@
                         boundaryGap: true,
 
                         padding:0,
-                        barMaxWidth:6,
+                        barMaxWidth:15,
                         type: 'category',
                         data: datax,
                         fontSize: 6,
@@ -230,7 +230,7 @@
                     {
                         name:'计划',
                         type:'bar',
-                        barMaxWidth:'20%',
+                        barMaxWidth:'45%',
                         data:datay,
                         itemStyle:{
                             normal: {

@@ -1,12 +1,12 @@
  <template>
     <div class="map_content">
     	<div class="topTitle" v-show='istitle'>
-            <span>{{nowYear}}年累计接待游客(人)</span>
-            <font>{{yearNumb}}</font>
+            <span>{{nowYear}}年累计接待游客总人数</span>
+            <font>{{yearNumbs}}</font>
         </div>
         <div class='topTitle' v-show='istitle'>
-            <span>{{mowMonth}}月份持续接待游客(人)</span>
-            <font>{{mouthNumb}}</font>
+            <span>{{mowMonth}}月份持续接待游客总人数</span>
+            <font>{{mouthNumbs}}</font>
         </div>
         <div id="fromEchart"></div>
 
@@ -22,7 +22,7 @@
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import echarts from 'echarts';
-
+import Rw from '@/common/js/until/index'
 
 import echarts_resize from '../../../common/js/echarts_resize.js'
 //import 'echarts/lib/chart/map';
@@ -282,6 +282,12 @@ export default {
     }
     },
     computed: {
+    	yearNumbs(){
+			return Rw.string_until.addPoint(this.yearNumb)
+		},
+		mouthNumbs(){
+			return Rw.string_until.addPoint(this.mouthNumb)
+		},
     },
     watch:{
     	range:function(){
@@ -637,15 +643,15 @@ export default {
                     	if(val>=0&&val[2]<=20){
                     		return val[2]
                     	}else if(val[2]>20&&val[2]<=1000){
-                    		return val[2]/20
+                    		return val[2]/50
                     	}else if(val[2]>1000 && val[2]<10000){
-                    		return val[2]/400
+                    		return val[2]/600
                     	}else if(val[2]>=10000&&val[2]<70000){
-                    		return val[2]/800
+                    		return val[2]/1800
                     	}else if(val[2]>=70000&&val[2]<100000){
-                    		return val[2]/1200
+                    		return val[2]/2600
                     	}else{
-                    		return val[2]/1000
+                    		return val[2]/3600
                     	}
                         
                     },
@@ -692,8 +698,8 @@ export default {
   top: 5%;
   .topTitle{
             position: absolute;
+            top:-6px;
             span{
-                //display: block;
                 color: #43dbff;
                 font-size: .8rem;
             }
@@ -707,7 +713,7 @@ export default {
         }
         
         .topTitle:nth-child(2){
-        	right: 30%;
+        	right: 26%;
         	span{
                 color: #43dbff;
                 font-size: .8rem;
@@ -716,7 +722,7 @@ export default {
         }
         
         .topTitle:nth-child(1){
-        	left: 30%;
+        	left: 26%;
         	span{
                 color: #43dbff;
                 font-size: .8rem;
@@ -727,13 +733,12 @@ export default {
 #fromEchart{
     width:100%;
     height:100%;
-    transform: scale(0.8);
 }
 .week{
     height: 1.5rem !important;
     width: 7rem !important;
     position: absolute;
-    bottom: 10%;
+    bottom: 8%;
     right: 40%;
     font-size:.8rem;
     &:after {

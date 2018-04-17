@@ -12,7 +12,9 @@
             </div>
             <div class="dateItem item">
                 <div class="border">
-                    <clock class='clock'></clock>
+                    <vdate
+                    	@pageDate='getDate'
+                    ></vdate>
                 </div>
             </div>
             <div class="item"
@@ -69,7 +71,7 @@ import _ from 'lodash'
 import { mapGetters } from 'vuex'
 
 export default {
-    props:['placeName','placeAttractions','turistArr'],
+    props:['placeName','placeAttractions'],
     name: 'souceShow',
         data () {
             return {
@@ -80,7 +82,52 @@ export default {
                     left:'30%',
                     title:'全部',
                     selectStatus:false,
-                    place:this.turistArr
+                    place:['全部',
+				            '仙华山',
+				            '前吴村',
+				            '塘波村',
+				            '民生村',
+				            '罗源村',
+				            '白石湾',
+				            '江南第一家',
+				            '嵩溪村',
+				            '宝掌幽谷',
+				            '登高村',
+				            '神丽峡',
+				            '礼张村',
+				            '农批市场',
+				            '檀溪镇',
+				            '冷坞村',
+				            '上河村',
+				            '汽车客运站',
+				            '翠湖',
+				            '马岭',
+				            '利民村',
+				            '下湾村',
+				            '新光村',
+				            '西山村',
+				            '田后蓬',
+				            '薛下庄村',
+				            '下薛宅',
+				            '金狮湖',
+				            '高速路',
+				            '官岩寺',
+				            '上山遗址',
+				            '渠南村',
+				            '温泉',
+				            '水晶城',
+				            '水竹湾',
+				            '平湖森林果园',
+				            '三角潭林场',
+				            '罗家村',
+				            '白岩山前滑草基地',
+				            '里黄宅村',
+				            '善庆村',
+				            '文化馆',
+				            '通济桥水库大坝',
+				            '三城山农庄',
+				            '塔山宾馆',
+				            '月泉书院遗址公园']
                 },
                 updateData:{
                     turist:'全部',
@@ -120,10 +167,10 @@ export default {
                     {name:'D1',id:'one',index:1,time:100,show:false,title:'景区客流热力图与视频监控'},
                     {name:'D6',id:'two',index:2,time:300,show:false,title:'景区客流'},
                     {name:'D8',id:'three',index:3,time:600,show:false,title:'拥堵指数'},
-                    {name:'D3',id:'four',index:4,time:900,show:false,title:'网评数据'},
+                    {name:'D3',id:'four',index:4,time:900,show:false,title:'游客评论'},
                 ],
                 bottomComponents:[
-                    {name:'D2',id:'one',index:1,time:1200,show:false,title:'餐饮偏好'},
+//                  {name:'D2',id:'one',index:1,time:1200,show:false,title:'餐饮偏好'},
                     {name:'D11',id:'two',index:2,time:600,show:false,title:'关键词'},
                     //{name:'D4',id:'two',index:2,time:1500,show:false,title:'总消费数据分析'},
                     {name:'B6',id:'three',index:3,time:1200,show:false,title:'实时天气'},
@@ -176,6 +223,9 @@ export default {
         catchmsg1(data){
             //console.log(data)
              this.updateData.turist = data
+        },
+        getDate(val){
+        	console.log(val)
         },
         console(){
             //console.log(this.components)

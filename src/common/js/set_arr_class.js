@@ -84,7 +84,7 @@ export default class Set_arr_class  {
                 }
                 arr.date[i] = '';
                 
-                let rangeNum = (currentNum*2/3+Math.random()*currentNum/3)
+                let rangeNum = (currentNum*7/8+Math.random()*currentNum/8)
                 
                 arr.data[i]= Math.ceil(rangeNum);
                 arr.contrast[i] =parseInt(h+''+m+''+s);

@@ -9,9 +9,9 @@
                 	占比
             </span>
         </li>
-        <li v-for='(item,index) in items'>
+        <li v-for='(item,index) in itemData'>
             <span class="cell1">
-                {{index+1}}、{{item.place}}
+                {{index+1}}、{{item._id}}
             </span>
             <span class="cell3">
                <font>{{item.percent}}%</font>
@@ -35,6 +35,16 @@ export default {
   },
   created(){
   	this.getData();
+  },
+  computed:{
+  	itemData(){
+  		this.items.forEach( (v,i) => {
+  			if(v._id==='missing'){
+  				this.items.splice(i,1)
+  			}
+  		})
+  		return this.items
+  	}
   },
   mounted(){
   	
@@ -65,11 +75,12 @@ div{
 }
 
 ul{
-    margin-top:20%;
+    margin-top:12%;
     height:90%;
     width:100%;
     li{
-        height:13.8%;
+        /*height:13.8%;*/
+        height:16%;
         display:flex;
         align-items:center;
         justify-content:center;
@@ -91,7 +102,6 @@ ul{
 }
 .cell1{
     flex: 1;
-    align-items: center;
 }
 .cell2{
     flex: 1;

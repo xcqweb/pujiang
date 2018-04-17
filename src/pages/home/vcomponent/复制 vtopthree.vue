@@ -3,7 +3,9 @@
     <ul>
         <li v-for="item in items">
             <p>{{item.title}}</p>
-            <div><p :style="{color:item.color}">{{item.nub}}</p></div>
+            <div><p>{{item.nub}}</p></div>
+            <p :style="{ 'color': item.color }">{{item.font}}</p>
+            <p :style="{ 'background-color': item.color }"></p>
         </li>
     </ul>
     <Loading class='loading' v-show="isloading"></Loading>
@@ -28,7 +30,6 @@ export default {
   	//请求数据
   	getData(){
   		api.topThree(api.params).then( (re) =>{
-  			console.log(re)
     		let reData = re.data.data;
       		this.items = reData;
       		if(re.status===200){
@@ -54,18 +55,17 @@ ul{
     margin-left:33/464*100%;
     li{
         float:left;
-        height:50%;
-        width:198/464*100%;
+        height:100%;
+        width:132/464*100%;
         margin-left:4%;
-        margin-top: 10%;
 
         p:nth-of-type(1){
-            font-size: 1rem;
-            color: #fff;
+            font-size: 1.1rem;
+            color: white;
         }
         div{
             display:table;
-            height:100%;
+            height:65%;
             width:100%;
             
             p{

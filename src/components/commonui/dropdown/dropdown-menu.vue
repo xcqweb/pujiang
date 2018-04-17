@@ -58,11 +58,14 @@ import Vue from 'vue'
                 }
             },
         },
+        mounted(){
+        },
         methods:{
             sendMsgParent:function(){
 
                 this.$emit('listenAtparent',selectList.title)
             },
+            
             outcrement:function(message){
                 
                 if (message) {
@@ -108,7 +111,7 @@ import Vue from 'vue'
                  isMore:true,
             }
         },
-        template:`<div class='listdiv'  v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }" v-bind:class="{ more: isMore }" v-if='status'><div class="overlay" v-if='status' @click.stop='hidelist'></div><ul @mousewheel='moreStatus'  v-if='status'><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
+        template:`<div class='listdiv' v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }" v-bind:class="{ more: isMore }" v-if='status'><div class="overlay" v-if='status' @click.stop='hidelist'></div><ul @mousewheel='moreStatus'><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
     </li></ul></div>`,
         computed:{
             maxHeight:function(){
@@ -134,6 +137,7 @@ import Vue from 'vue'
                 this.isMore = true;
                 this.$emit('itemtodo',item === undefined ? this.list[0] : item);
             },
+            
             test:function(){
 
             },
@@ -242,7 +246,6 @@ import Vue from 'vue'
         max-height: 10.8rem;
         overflow-y: auto;
         li {
-            // transform: translate(-20%,0);
             list-style: none;
             color: white;
             background-color: #193583;

@@ -23,7 +23,7 @@
                 <div class="calendar-info">
                     <!-- {{monthString}} -->
                     <div class="month">
-                        <div class="month-inner" :style="{'top':-(this.month*20)+'px'}">
+                        <div class="month-inner" :style="{'top':-(month*20)+'px'}">
                             <span v-for="m in months">{{m}}</span>
                         </div>
                     </div>
@@ -106,7 +106,7 @@ export default {
     data() {
         return {
             year: 0,
-            month: 0,
+            month: 3,
             day: 0,
             days: [],
             today: [],
@@ -241,7 +241,7 @@ export default {
                     if (parseInt(seletSplit[0]) == this.year && parseInt(seletSplit[1]) - 1 == this.month && parseInt(seletSplit[2]) == i) {
                         // console.log("匹配上次选中的日期",lunarYear,lunarMonth,lunarValue,lunarInfo)
                         temp[line].push(Object.assign(
-                            {day: i,selected: true},
+                            {day: i,selected: false},
                             this.getLunarInfo(this.year,this.month+1,i),
                             this.getEvents(this.year,this.month+1,i),
                         ))
@@ -344,7 +344,7 @@ export default {
             } else {
                 this.month = parseInt(this.month) + 1
             }
-            this.render(this.year, this.month)
+            	this.render(this.year, this.month)
         },
         // 选中日期
         select(k1, k2, e) {
@@ -356,7 +356,6 @@ export default {
                     this.rangeBeginTemp = this.rangeBegin
                     this.rangeEnd = [this.year, this.month, this.days[k1][k2].day]
                     this.rangeEndTemp = 0
-                    
                 } else {
                     this.rangeEnd = [this.year, this.month,this.days[k1][k2].day]
                     this.rangeEndTemp = 1
@@ -380,6 +379,12 @@ export default {
                     }else{
                         begin=this.rangeBegin
                         end=this.rangeEnd
+                    }
+                    
+                     let lev = new Date(end.join('/')).getTime()/1000-new Date(begin.join('/')).getTime()/1000
+                    if(new Date(end)>new Date()||new Date(begin)>new Date() ){
+                           alert('所选时间不能大于当前时间')
+                           return;
                     }
                     // console.log("选中日期",begin,end)
                     this.$emit('select',begin,end)

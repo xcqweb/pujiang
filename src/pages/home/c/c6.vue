@@ -122,9 +122,9 @@
                     grid: {
                          show: true,
                          left: '15%',
-                         top: '26%',
+                         top: '24%',
                          right: '5%',
-                         bottom: '20%',
+                         bottom: '22%',
                          borderWidth: 0,
                          backgroundColor: 'rgba(0,0,0,0)',
                      },
@@ -158,7 +158,7 @@
                          	//magin:50,
                              textStyle: {
                                  color: '#ffffff',//x坐标轴标签字体颜色
-                                 fontSize: '70%',
+                                 fontSize: '80%',
                              },
                         },
                         axisTick:{
@@ -219,7 +219,7 @@
                             position:'top',
                             textStyle:{
                                 color:'#2CC9E2',
-                                fontSize:"80%",
+                                fontSize:"90%",
                             },
                             formatter: '{c}%'
                         }

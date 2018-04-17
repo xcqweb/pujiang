@@ -14,10 +14,10 @@
         </li>
         <li v-for='(item,index) in items'>
             <div class="cell1">
-                {{item.sort-1}}、{{item._id}}
+                {{item.sort-1}}. {{item._id}}
             </div>
             <div class="cell2">
-                {{item.num}}<font>人</font>
+                {{item.num}}<font></font>
             </div>
             <div class="cell3">
                 <span class='footerCotext'>{{item.percent}}%</span>
@@ -86,7 +86,8 @@ ul{
     height:90%;
     width:100%;
     li{
-        height:14%;
+        /*height:14%;*/
+        height:16%;
         display:flex;
         align-items:center;
         justify-content:center;

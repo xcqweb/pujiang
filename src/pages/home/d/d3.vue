@@ -1,11 +1,11 @@
 <style lang="less">
 .d3{
     width:100%;
-    height:90%;
+    height:92%;
     position:relative;
     overflow-y: scroll;
     overflow-x: hidden;
-    top: 10%;
+    top: 5%;
     h1{
         position:absolute;
         width:100%;
@@ -156,13 +156,13 @@
     }
 }
 
-	.d3::-webkit-scrollbar{
-			    width: 0.45rem;
+			.d3::-webkit-scrollbar{
+			    width: 0.3rem;
 			    height: 3rem;
 			}
 			/*定义滚动条的轨道，内阴影及圆角*/
 			.d3::-webkit-scrollbar-track{
-			    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.9);
+			    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.09);
 			    border-radius: 10px;
 			}
 			/*定义滑块，内阴影及圆角*/
@@ -171,7 +171,7 @@
 			    height: 10rem;
 			    border-radius: 10px;
 			    -webkit-box-shadow: inset 0 0 6px #02275A;
-			    background-color: #eee;
+			    background-color: rgba(255,255,255,0.5);
 			}
 			
 			.d3::scrollbar{
@@ -180,7 +180,7 @@
 			}
 			/*定义滚动条的轨道，内阴影及圆角*/
 			.d3::scrollbar-track{
-			    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+			    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.01);
 			    border-radius: 10px;
 			}
 			/*ie*/
@@ -203,7 +203,7 @@
 
 <template>
     <div class="d3">
-        <vline :progressbar='oneprogressbar' class='progress'></vline>
+        <!--<vline :progressbar='oneprogressbar' class='progress'></vline>-->
         <div class="msg">
             <div class="comment" v-for="comment in commentList">
                 <span class="name">{{comment.uid}}</span>

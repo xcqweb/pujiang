@@ -38,7 +38,7 @@
 	        <div class="box">
 	            <vcircle :percents="percent" class='item'></vcircle>     
 	        </div>
-	        <span>{{txt}}</span>
+	        <span :style="{color:colorCom}">{{txt}}</span>
 	    </div>
 	    <Loading v-show="isloading" class="loading"></Loading>
 	</div>
@@ -67,9 +67,17 @@ export default {
     		let num = this.percent;
     			if(num<=1)return '畅通';
     			if(num>1&&num<=2)return '良好';
-    			if(num>2&&num<=3)return '拥堵';
-    			if(num>3&&num<=4)return '较拥堵';
+    			if(num>2&&num<=3)return '较拥堵';
+    			if(num>3&&num<=4)return '拥堵';
     			if(num>4&&num<=5)return "严重拥堵";
+    	},
+    	colorCom(){
+    		let num = this.percent;
+    			if(num<=1)return '#00FFA2';
+    			if(num>1&&num<=2)return '#17FF00';
+    			if(num>2&&num<=3)return '#F2FF00';
+    			if(num>3&&num<=4)return '#FFA200';
+    			if(num>4&&num<=5)return "#FF0000";
     	}
     },
     methods: {
