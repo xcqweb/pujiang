@@ -32,10 +32,10 @@ export default {
             color: ['#00ffff', '#00ffa2', '#f0e750'],
             grid: {
                show: true,
-               left: '15%',
+               left: 66,
                top: '16%',
                right: '8%',
-               bottom: '10%',
+               bottom: 36,
                borderWidth: 0,
                borderColor: 'rgba(170,172,178,0.33)',
                backgroundColor: 'rgba(0,0,0,0)'

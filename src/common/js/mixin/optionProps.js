@@ -7,6 +7,7 @@ let optionProps =  {
     props: {
         touristProp:String,
         scienceProp:String,
+        yearMonth:String
     },
     watch:{
         touristProp:{
@@ -20,13 +21,22 @@ let optionProps =  {
                this.watchTouristFn&&this.watchTouristFn(this.nameToCode[val])
             },
             deep:true,
+        },
+        yearMonth:{
+        	handler:function(val, oldVal){
+                let data={code:0};
+	  			data.code = this.code;
+	  		    data.monthId = this.yearMonth;
+	  		    this.getData(data)
+            },
+            deep:true,
         }
     },
     data () {
         return {
         	//scienceProps:'',
         	code:0,//景区编码
-        	isloading: true,
+        	isloading: false,
             nameToCode:{
                 '全部':0,
                 '仙华山':1,
@@ -86,7 +96,7 @@ let optionProps =  {
         
     },
     created(){
-      	this.getData();
+      	this.getData({code:0});
     },
     mounted () {
     },

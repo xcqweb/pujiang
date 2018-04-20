@@ -12,9 +12,14 @@ export default {
           return instance.post(`http://114.55.237.138/pj/api/user/login`, params);
 //      return instance.post(`https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/login`, params);
     },
-    //历史客流
+    //总览历史客流
     passenger:function(paramsObj){
         return instance.post(`http://114.55.237.138/pj/api/zl/geHistoryDayData`,paramsObj);
+    },
+    
+     //产业监测历史客流
+    passengers:function(paramsObj){
+        return instance.post(`http://114.55.237.138/pj/api/cyjc/geHistoryDayData`,paramsObj);
     },
     //实时客流量
     timeline:function(paramsObj){

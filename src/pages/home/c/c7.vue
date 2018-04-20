@@ -46,9 +46,9 @@ export default {
     },
     methods:{
     	//请求数据
-	  	getData(){
-	  		api.params.code = this.code;
-	  		api.scenicRanking(api.params).then( (re) =>{
+	  	getData(data){
+	  		//api.params.code = this.code;
+	  		api.scenicRanking(data).then( (re) =>{
 	  				let reData = re.data.data;
 	  				//console.log(reData)
 	  				this.items = reData;

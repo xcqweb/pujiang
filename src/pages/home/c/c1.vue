@@ -102,15 +102,18 @@ export default {
       },
        watch:{
     	code:function(){
-    		this.getData();
+    		let data={};
+  			  data.code = this.code;
+  		    data.monthId = this.yearMonth;
+  		    this.getData(data)
     	}
     },
     methods:{
     	
     	//请求数据
-	  	getData(){
-	  		api.params.code = this.code;
-	  		api.tripMode(api.params).then( (re) =>{
+	  	getData(data){
+	  		//api.params.code = this.code;
+	  		api.tripMode(data).then( (re) =>{
 	  			//console.log(re)
 	    		let reData= re.data.data;
 	    		//console.log(reData)

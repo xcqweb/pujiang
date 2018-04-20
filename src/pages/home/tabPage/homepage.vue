@@ -11,6 +11,8 @@
             <div class="border" v-if='topItem.show'>
               <!--<keep-alive>-->
                 <componet
+                :apiName='topItem.apiName'
+                :isdate=false
                 :is='topItem.name'
                 :key="topItem.id"
                 :chosemMoudle='cutoverMoudle'
@@ -134,7 +136,7 @@ export default {
                     {name:'',title:'视频监控'},
                 ],
                 topComponents:[
-                    {name:'A1',id:'one',index:1,time:100,show:false,title:'历史客流'},
+                    {name:'A1',id:'one',index:1,time:100,show:false,title:'历史客流',apiName:'passenger'},
                     {name:'A2',id:'two',index:2,time:300,show:false,title:'景区概况'},
                     {name:'A3',id:'three',index:3,time:600,show:false,title:''},
                     {name:'A4',id:'four',index:4,time:900,show:false,title:'游客满意度'},

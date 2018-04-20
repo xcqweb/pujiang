@@ -56,7 +56,7 @@ export default {
 
         //range控件信息
         var rangeValue = range.value;
-        var nowRange = 0;   //用于做一个临时的range
+        var nowRange = 50;   //用于做一个临时的range
 
         //画布属性
         var mW = canvas.width = 250;
@@ -154,7 +154,7 @@ export default {
             // drawText();
 
             xOffset += speed;
-            requestAnimationFrame(render);
+            //requestAnimationFrame(render);
         }
 
         render();

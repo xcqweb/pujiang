@@ -5,7 +5,7 @@ let bottomBody = resolve => {require.ensure(['@/pages/home/bottomBody.vue'], () 
 let sleckte = resolve => {require.ensure(['@/components/commonui/dropdown/dropdown-menu.vue'], () => {resolve(require('@/components/commonui/dropdown/dropdown-menu.vue'))})}
 let clock = resolve => {require.ensure(['@/components/commonui/clock.vue'], () => {resolve(require('@/components/commonui/clock.vue'))})}
 let vdate = resolve => {require.ensure(['@/components/commonui/vueDate/app.vue'], () => {resolve(require('@/components/commonui/vueDate/app.vue'))})}
-
+let dateSelect = resolve => {require.ensure(['@/components/commonui/vueDate/dateSelect.vue'], () => {resolve(require('@/components/commonui/vueDate/dateSelect.vue'))})}
 //客流分析__bar
 let A1 = resolve => {require.ensure(['@/pages/home/vcomponent/vtopOne.vue'], () => {resolve(require('@/pages/home/vcomponent/vtopOne.vue'))})}
 //概况
@@ -106,6 +106,8 @@ let D11 = resolve => {require.ensure(['@/pages/home/d/d11.vue'], () => {resolve(
 let status =[
     'sleckte',
     'vdate',
+    'clock',
+    'dateSelect',
     'A1',
     'A2',
     'A3',

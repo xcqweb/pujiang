@@ -36,15 +36,18 @@ export default {
   },
   watch:{
   	code:function(){
-  		this.getData();
+  		let data={};
+		  data.code = this.code;
+	    data.monthId = this.yearMonth;
+	    this.getData(data)
   	}
   },
   methods: {
   	
   	//请求数据
-  	getData(){
-  		api.params.code = this.code;
-  		api.touristSexRatio(api.params).then( (re) =>{
+  	getData(data){
+  		//api.params.code = this.code;
+  		api.touristSexRatio(data).then( (re) =>{
 			let reData = re.data.data;
 			let maleRate = reData.maleRate||49;
 			let femaleRate = reData.femaleRate||51;
@@ -320,7 +323,7 @@ export default {
     		display: block;
     		width: 2rem;
     		height: 3.5rem;
-    		bottom: 10%;
+    		bottom: 13%;
     		left: 5%;
     		position: absolute;
     		background: url('../../../assets/images/home/womenE.png') no-repeat;

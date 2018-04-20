@@ -69,7 +69,7 @@ display:none !important;
         <canvas class="lineVideo" v-show='videoToast'></canvas>
         <div class="toast-video" v-if='videoToast'>
             <h2>{{videoName}}</h2>
-            <!--<video controls="controls" src="../../../assets/video/xhs.mp4" autoplay="autoplay"  loop="loop" style="">-->
+            <video controls="controls" src="../../../assets/video/xhs.mp4" autoplay="autoplay"  loop="loop" style="">
                 您的浏览器不支持 video 标签。
             </video>
         </div>
@@ -169,7 +169,7 @@ import sciencePoints from './points.json'
 //                      [119.912621,29.515494]
 //                  ];
                 var points = sciencePoints;
-                console.log(points)
+                //console.log(points)
                 // 向地图添加标注
                 for( let i = 0;i < points.length; i++){
                     //定义新图标
@@ -356,11 +356,11 @@ import sciencePoints from './points.json'
                         其中 key 表示插值的位置, 0~1. 
                             value 为颜色值. 
                      */
-                      let heatmapOverlay = new BMapLib.HeatmapOverlay({"radius":20});
+                      let heatmapOverlay = new BMapLib.HeatmapOverlay({"radius":36});
                       map.addOverlay(heatmapOverlay);
                          points = this.points;
                       //设置热力图数据
-                      heatmapOverlay.setDataSet({data:points,max:100});
+                      heatmapOverlay.setDataSet({data:points,max:180});
                       
                       
                     //是否显示热力图

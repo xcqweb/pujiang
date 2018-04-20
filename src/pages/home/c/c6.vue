@@ -63,15 +63,18 @@
     },
     watch:{
     	code:function(){
-    		this.getData();
+    		let data={};
+		  data.code = this.code;
+	    data.monthId = this.yearMonth;
+	    this.getData(data)
     	}
     },
     methods: {
     	
     	//请求数据
-	  	getData(){
-	  		api.params.code = this.code;
-	  		api.touristFocus(api.params).then( (re) =>{
+	  	getData(data){
+	  		//api.params.code = this.code;
+	  		api.touristFocus(data).then( (re) =>{
 	  				let reData = re.data.data;
 	  				//console.log(reData)
 	  				//this.oneweekMock = reData;

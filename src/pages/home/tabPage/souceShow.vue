@@ -12,9 +12,7 @@
             </div>
             <div class="dateItem item">
                 <div class="border">
-                    <vdate
-                    	@pageDate='getDate'
-                    ></vdate>
+                    <clock></clock>
                 </div>
             </div>
             <div class="item"
@@ -223,12 +221,6 @@ export default {
         catchmsg1(data){
             //console.log(data)
              this.updateData.turist = data
-        },
-        getDate(val){
-        	console.log(val)
-        },
-        console(){
-            //console.log(this.components)
         },
         chose(item){
             this.tablistCom.forEach(function(list){

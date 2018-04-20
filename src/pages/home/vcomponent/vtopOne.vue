@@ -6,6 +6,11 @@
         <!--<span class="twoweek" v-bind:class="{ chose: !isActive }" @click='redom14'>14日</span>-->
     <!--</div>-->
     <Loading v-if="isloading"></Loading>
+    <div class="clock" v-if="isdate">
+    	<vdate
+    		@pageDate='getDate'
+    	></vdate>
+    </div>
   </div>
 </template>
 <script>
@@ -20,11 +25,15 @@ import Bus from '@/common/js/bus.js'
 import axios from 'axios'
 import {begindaytime} from '@/common/js/gtime.js'
 import optionProps from '@/common/js/mixin/optionProps.js'
+import vdate from '@/components/commonui/vueDate/app.vue'
+
+
 export default {
     name:'a1',
     mixins: [timeMixin,optionProps],
     data() {
       return {
+      	timeRange:{begin:[],end:[]},
         chart: null,
         isActive:true,
         xnub:null,
@@ -53,6 +62,7 @@ export default {
           ],
       }
     },
+    props:['isdate','apiName'],
     store:store,
     computed:{
 
@@ -61,9 +71,15 @@ export default {
     	code:function(){
     		this.isloading = true;
     		this.getData();
+    	},
+    	timeRange:function(val){
+    		this.request(val)
     	}
     },
     methods: {
+    	getDate(val){
+    		this.timeRange = val
+    	},
     redom7(){
         if(this.chart){
             this.chart.dispose();
@@ -95,10 +111,10 @@ export default {
                     color: ['#1F6ABB','#3897C5','#A4C5E6'],
                     grid: {
                          show: true,
-                         left: '15%',
-                         top: '22%',
+                         left: 66,
+                         top: 66,
                          right: '6%',
-                         bottom: '10%',
+                         bottom: 30,
                          borderWidth: 0,
                          backgroundColor: 'rgba(0,0,0,0)',
                      },
@@ -198,7 +214,7 @@ export default {
                     {
                         name:'计划',
                         type:'bar',
-                        barMaxWidth:'36%',
+                        barMaxWidth:'30%',
                         data:datay,
                         itemStyle:{
                             normal: {
@@ -233,11 +249,12 @@ export default {
 						}
         this.chart.setOption(option)
       },
-    getData(){
+      getData(){},
+    request(range){
         let _self = this;
         // this.$router.push({ path: '/' });
       //请求数据
-        let start_end_instance =  new Start_end_class('passenger','','',this.code);
+        let start_end_instance =  new Start_end_class(this.apiName,'','',this.code,range);
         start_end_instance.get_response(_self.$el).then(re => {
         	//console.log(re.data)
         _self.oneweekMock = re.data.data;
@@ -250,7 +267,10 @@ export default {
     }
     },
     created(){
-    	//this.request();
+    	this.request(this.timeRange);
+    },
+    components:{
+    	vdate
     },
     mounted() {
       
@@ -262,6 +282,18 @@ export default {
   width: 100%;
   height: 100%;
   position: relative;
+}
+
+.clock{
+	width: 30%;
+	height: 26px;
+	border: 1px solid #355bfa;
+	border-radius: 6px;
+	font-size: 0.8rem;
+	position: absolute;
+	top: 2%;
+	left:15%;
+	color: #fff;
 }
 .load{
   width: 100%;

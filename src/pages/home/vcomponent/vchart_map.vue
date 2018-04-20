@@ -678,7 +678,6 @@ export default {
     }
     },
     created(){
-      	this.getData()
       	this.transformAddress()
     },
     mounted(){

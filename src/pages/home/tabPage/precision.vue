@@ -12,9 +12,10 @@
             </div>
             <div class="dateItem item">
                 <div class="border">
-                    <vdate
-                    	@pageDate='getDate'
-                    ></vdate>
+                    <dateSelect 
+                    	:isStart=true
+                    	@turistDate='getDate'
+                    ></dateselect>
                 </div>
             </div>
             <div class="item"
@@ -32,6 +33,7 @@
                     :key="item.id"
                     :inItemsProps = 'inItems'
                     :touristProp = "updateData.turist"
+                    :yearMonth='dateMonth'
                     ></componet>
                   <!--</keep-alive>-->
                 </div>
@@ -48,6 +50,7 @@
                 <div class="border" v-if='item.show'>
                   <!--<keep-alive>-->
                     <componet
+                    :yearMonth='dateMonth'
                     :is='item.name'
                     :key="item.id"
                     :placeAttractionsProps = 'placeAttractions'
@@ -70,6 +73,7 @@ export default {
     name: 'barChartOption',
         data () {
             return {
+            	dateMonth:'',
                 cutoverImg:require('../../../assets/切换.png'),
                 qyselectlist:{
                     width:'55%',
@@ -181,7 +185,8 @@ export default {
     computed: {
       ...mapGetters({
           inItems: 'version/inItems',
-        }),
+        })
+       
     },
     methods: {
         update(){
@@ -205,7 +210,7 @@ export default {
             this.updateData.turist = data
         },
         getDate(val){
-        	console.log(val)
+        	this.dateMonth = val[0]+''+val[1]
         },
         console(){
                     console.log(this.components)
@@ -265,26 +270,12 @@ export default {
                         })
                         $toast.open(item,this.current,this.moudle);
                     },
-                    cutoverMoudle(moudle){
-
-
-                    },
-                    setLazy(){
-                        // console.log(item)
-                        // window.setTimeout((item) => {
-
-                        //         item.show = true;
-                        //     }, item.time);
-                    },
-                    lazy(){
-
-                    }
-
     },
     components:{
         ...componetstatus,
     },
     mounted(){
+    	
         let _self=this
         let arr = _self.leftComponents.concat(_self.rightComponents)
         var lentop=arr.length

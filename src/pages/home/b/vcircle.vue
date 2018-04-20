@@ -50,7 +50,7 @@ export default {
   },
   computed:{
   	circles(){
-  		let num = this.percent;
+  		let num = this.percents;
   		if(num<=1)return this.circle1;
 		if(num>1&&num<=2)return this.circle2;
 		if(num>2&&num<=3)return this.circle3;
@@ -58,7 +58,7 @@ export default {
 		if(num>4&&num<=5)return this.circle5;
   	},
   	cuts(){
-  		let num = this.percent;
+  		let num = this.percents;
   		if(num<=1)return this.cut1;
 		if(num>1&&num<=2)return this.cut2;
 		if(num>2&&num<=3)return this.cut3;
@@ -66,7 +66,7 @@ export default {
 		if(num>4&&num<=5)return this.cut5;
   	},
   	halfs(){
-  		let num = this.percent;
+  		let num = this.percents;
   		if(num<=1)return this.half1;
 		if(num>1&&num<=2)return this.half2;
 		if(num>2&&num<=3)return this.half3;
@@ -74,7 +74,7 @@ export default {
 		if(num>4&&num<=5)return this.half5;
   	},
   	lines(){
-  		let num = this.percent;
+  		let num = this.percents;
   		if(num<=1)return this.line1;
 		if(num>1&&num<=2)return this.line2;
 		if(num>2&&num<=3)return this.line3;
@@ -99,11 +99,20 @@ export default {
         top:0;
         left: 0;
         position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }
 img{                  
     max-width: 100%;
     max-height: 100%;
+    width: auto;
+    height: auto;
+}
+img:nth-child(1){                  
+    min-width: 100%;
+    min-height: 100%;
     width: auto;
     height: auto;
 }
@@ -188,7 +197,8 @@ animation: rotation 3s linear infinite;
 }
 
 .line{
-    height: auto;
+    max-height: 100%;
+    max-width: 100%;
     text-align: center;
     position: absolute;
     width: 100%;
@@ -197,15 +207,17 @@ animation: rotation 3s linear infinite;
 }
 font{
     font-family: numberFont;
-    color: white;
-    position: absolute;
-    display: inline-block;
-    top: 40%;
-    transform: translateY(-50%);
-    left: 50%;
+    color: #fff;
+    /*position: absolute;*/
+    /*display: inline-block;*/
+    /*top: 0;
+    transform: translateY(50%);
+    left: 0;
     transform: translateX(-50%);
-    height: 50%;
-    width: 50%;
+    height: 100%;
+    width: 100%;
+    text-align: center;*/
+    align-content: center;
     font-size:2rem;
 }
 </style>

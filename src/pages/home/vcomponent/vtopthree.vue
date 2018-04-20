@@ -22,13 +22,12 @@ export default {
     }
   },
   created(){
-  	this.getData();
   },
   methods: {
   	//请求数据
   	getData(){
   		api.topThree(api.params).then( (re) =>{
-  			console.log(re)
+  			//console.log(re)
     		let reData = re.data.data;
       		this.items = reData;
       		if(re.status===200){

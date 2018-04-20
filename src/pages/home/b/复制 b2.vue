@@ -2,7 +2,7 @@
     <div class="b2">
         <div id="pieB2"></div>
         <div class="circle">
-            <img :src="imgacircle"/>
+            <!--<img :src="imgacircle"/>-->
         </div>
         <span>{{percent}}%</span>
         <div class="text"><font>预警客流</font><font></font></div>
@@ -14,10 +14,8 @@
 <script>
 import Vue from 'vue'
 import echarts_resize from '../../../common/js/echarts_resize.js'
-
 import echarts from 'echarts';
-//import  liquidFill from 'echarts-liquidfill';
-require('./echarts-liquidfill')
+//import Start_end_class from '@/common/js/star_end_class.js'
 import {begindaytime} from '@/common/js/gtime.js'
 import optionProps from '@/common/js/mixin/optionProps.js'
 import axios from 'axios'
@@ -64,22 +62,83 @@ export default {
   		//console.log(this.$store.state.currentCode,this.code);
   	},
       redom(id){
-            this.chart = echarts.init(document.getElementById(id));
-            this.chart.setOption(this.option);
+          this.chart = echarts.init(document.getElementById(id));
+          this.chart.setOption(this.option);
       },
   request(){
 	  api.params.code= this.code;
       api.passengerwarning(api.params).then( (re) => {
 //  	axios.get('https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/passengerwarning').then( (re) => {
       //设置默认值
+      this.nub = re.data.data.count;
+      this.set_config = 100000;
+      this.percent = re.data.data.warnPercent;
+      this.configNumber = re.data.data.count;
       this.isloading=false;
-      
-      var option = {
-		    series: [{
-		        type: 'liquidFill',
-		        data: [0.6]
-		    }]
-		};
+      let nub = this.nub;
+  	  let setconfig = this.nub*100/this.percent;
+      	let Ratio = this.percent/100
+	      let setColor = '';
+	      if(Ratio<0.3){
+	      	setColor='#1da7fe'
+	      }else if(Ratio<0.5){
+	      	setColor='#7460EE'
+	      }else if(Ratio<0.7){
+	      	setColor='#eee716'
+	      }else if(Ratio<0.9){
+	      	setColor='#cb1f1f'
+	      }else{
+	      	setColor='#f00'
+	      }
+
+      //this.option.color[0] = setColor;
+      let option={
+          backgroundColor: 'rgba(0,0,0,0)',
+          color:["#fff"],
+          series: [
+			    {
+		            name: '',
+		            type: 'pie',
+		            clockWise: false,
+		            radius:  ['50%', '56%'],
+        			center: ['50%', '55%'],
+		            itemStyle:  {
+					    normal: {
+					        label: {
+					            show: false
+					        },
+					        labelLine: {
+					            show: false
+					        },
+					        shadowBlur: 60,
+					        shadowColor: 'rgba(40, 40, 40, 1)',
+					    }
+					},
+		            hoverAnimation: false,
+
+		            data: [
+		                {
+		                    value: setconfig,
+		                    name: '剩余占比',
+		                    itemStyle: {
+							    normal: {
+							        color: 'rgba(200,200,200,0.3)',//未完成的圆环的颜色
+							        label: {
+							            show: false
+							        },
+							    },
+							}
+		                },
+		                {
+		                    value: nub,
+		                    name: '客流占最大客流比率'
+		                }
+
+			            ]
+			        },
+			    ]
+      };
+      option.color[0] = setColor
       this.option = option;
       this.redom("pieB2");
       this.$nextTick(echarts_resize('pieB2',this));
@@ -105,8 +164,8 @@ export default {
         left:50%;
         color:#1da7fe;
         transform: translate(-50%,-50%);
-        font-size: 1rem;
-        /*font-family: numberFont;*/
+        font-size: 1.3rem;
+        font-family: numberFont;
     }
     .configBtn{
     	position: absolute;

@@ -385,12 +385,6 @@ export default {
                     if(new Date(end)>new Date()||new Date(begin)>new Date() ){
                            alert('所选时间不能大于当前时间')
                            return;
-                    }else{
-                    	if(lev>950400){
-//                        if(lev<0){
-                            alert('时间跨度不能大于十二天')
-                            return
-                           }
                     }
                     // console.log("选中日期",begin,end)
                     this.$emit('select',begin,end)

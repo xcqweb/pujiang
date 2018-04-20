@@ -45,17 +45,20 @@ export default {
     },
     watch:{
     	code:function(){
-    		this.getData();
+    		let data={};
+			  data.code = this.code;
+		    data.monthId = this.yearMonth;
+		    this.getData(data)
     	}
     },
     methods:{
     	//请求数据
-	  	getData(){
-	  		api.params.code = this.code;
-	  		api.touristOriginRanking(api.params).then( (re) =>{
+	  	getData(data){
+	  		//api.params.code = this.code;
+	  		api.touristOriginRanking(data).then( (re) =>{
 	  				let reData = re.data.data;
 	  				this.items = reData.splice(1);
-	  				console.log(reData)
+	  				//console.log(reData)
 					if(re.status===200){
 						this.isloading = false;
 					}

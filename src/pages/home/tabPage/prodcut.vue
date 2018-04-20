@@ -12,9 +12,7 @@
             </div>
             <div class="dateItem item">
                 <div class="border">
-                    <vdate
-                    	@pageDate='getDate'
-                    ></vdate>
+                    <clock></clock>
                 </div>
             </div>
             <div class="item"
@@ -28,6 +26,8 @@
                 <div class="border" v-if='item.show'>
                   <!--<keep-alive>-->
                     <componet
+                    :apiName='item.apiName'
+                    :isdate=true
                     :is='item.name'
                     :key="item.id"
                     :placeName = 'placeName'
@@ -164,7 +164,7 @@ export default {
                     {name:'B17',id:'one',index:1,time:100,show:false,title:'产业数据'},
                     {name:'A6',id:'two',index:2,time:600,show:false,title:'游客来源地'},
                     {name:'A5',id:'three',index:3,time:900,show:false,title:'实时客流'},
-                    {name:'A1',id:'four',index:4,time:1200,show:false,title:'历史客流'},
+                    {name:'A1',id:'four',index:4,time:1200,show:true,title:'历史客流',apiName:'passengers'},
 //                  {name:'B1',id:'five',index:5,time:1500,show:false,title:'富民指数'},
                     
                 ],
@@ -193,16 +193,12 @@ export default {
                     }
                 }
             }
-            this.barChartOption = Object.assign({}, this.barChartOption, )
+            this.barChartOption = Object.assign({}, this.barChartOption,)
         },
         catchMsg(data){
            this.updateData.turist = data
         },
-        getDate(val){
-        	console.log(val)
-        },
-        console(){
-        },
+        
         headerEnter(){
             this.headerStatus=true;
         },

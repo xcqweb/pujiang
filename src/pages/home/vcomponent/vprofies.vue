@@ -102,10 +102,7 @@ export default {
 									},
 			            hoverAnimation: false,
 
-			            data: [{
-			                    value: 0,
-			                    name: '客流占最大客流比率'
-			                },
+			            data: [
 			                {
 			                    value: 100,
 			                    name: '剩余占比',
@@ -117,6 +114,9 @@ export default {
 													        },
 													    },
 													}
+			                },{
+			                    value: 0,
+			                    name: '客流占最大客流比率'
 			                }
 
 			            ]
@@ -145,9 +145,9 @@ export default {
       this.profileData.yesterdaySum = data.yesterdaySum;
       
       //设置百分比
-      this.option.series[0].data[0].value = this.profileData.warnRate;
-      this.option.series[0].data[1].value = 100-this.profileData.warnRate;
-      let Ratio = 0.1;
+      this.option.series[0].data[1].value = this.profileData.warnRate;
+      this.option.series[0].data[0].value = 100-this.profileData.warnRate;
+      let Ratio = this.profileData.warnRate/100;
       let setColor = '';
       if(Ratio<0.3){
       	setColor='#0af94a'
@@ -199,12 +199,7 @@ export default {
 		},
 	},
 	created(){
-//		Bus.$on('itemtodo', target => {
-//          this.selectlist.title = target;
-//          this.currentPlace = target;
-//      });
 
-		this.getData();
 	},
 	mounted() {
     this.$nextTick(echarts_resize('vwarning',this));
@@ -319,11 +314,11 @@ export default {
 			color:#f5781f;
 			position: absolute;
 			display: inline-block;
-			top: 45%;
+			top: 43%;
 			transform: translateY(-50%);
 			left: 50%;
 			transform: translateX(-50%);
-		 	font-size:1.5rem;
+		 	font-size:2rem;
 		 	font-family:numberFont;
 		}
 	}

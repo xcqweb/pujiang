@@ -71,17 +71,21 @@ export default {
     }
     },
     watch:{
-    	code:function(){
-    		this.getData();
+    	code:function(val){
+    		 let data={};
+	  			  data.code = this.code;
+	  		    data.monthId = this.yearMonth;
+	  		    this.getData(data)
     	}
+    	
     },
     methods:{
     	
     	//请求数据
-	  	getData(){
-	  		api.params.code = this.code;
-	  		let data={code:0};
-	  		data.code = this.code;
+	  	getData(data){
+	  		//api.params.code = this.code;
+	  		//api.params.monthId = this.yearMonth;
+	  		
 	  		api.touristAttr(data).then( (re) =>{
 	  				let reData = re.data.data;
 	  				//console.log(reData)

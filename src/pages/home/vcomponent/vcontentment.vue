@@ -42,7 +42,6 @@ export default {
     }
   },
   created(){
-  	this.getData();
   },
   methods: {
   	//请求数据

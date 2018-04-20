@@ -6,6 +6,19 @@
     overflow-y: scroll;
     overflow-x: hidden;
     top: 5%;
+    
+    .date{
+    	width: 200px;
+    	height: 26px;
+		border: 1px solid #355bfa;
+		border-radius: 6px;
+		position: fixed;
+		top: 2.6%;
+		right: 8%;
+    }
+    .loading{
+    	height: 120%;
+    }
     h1{
         position:absolute;
         width:100%;
@@ -202,9 +215,9 @@
 </style>
 
 <template>
-    <div class="d3">
+    <div class="d3" @scroll.passive="loadMore($event)">
         <!--<vline :progressbar='oneprogressbar' class='progress'></vline>-->
-        <div class="msg">
+        <div class="msg" v-show='status'>
             <div class="comment" v-for="comment in commentList">
                 <span class="name">{{comment.uid}}</span>
                 <span class="place">{{comment.name}}</span>
@@ -217,22 +230,33 @@
                 </span>
             </div>
         </div>
-        <Loading v-show="isloading"></Loading>
+        <div class="date">
+        	<vdate
+        		@pageDate='getDate'
+        	></vdate>
+        </div>
+        <Loading v-show="isloading" class='loading'></Loading>
     </div>
 </template>
 
 <script>
 import Vue from 'vue'
 import optionProps from '@/common/js/mixin/optionProps.js'
+import vdate from '@/components/commonui/vueDate/apps.vue'
+import loadMore from '@/common/js/directives/loadMore.js'
+Vue.directive('loadMore',loadMore)
 export default {
     name: 'd3',
     mixins: [optionProps],
     props:['place'],
     data () {
         return {
+        	timeRange:{},
         	commentProp:{},
         	allData:{},
         	comments:[],
+        	status:true,
+        	pageNum:1,
             topStar:{
                 numb: 5,
                 width:'30%',
@@ -251,24 +275,76 @@ export default {
         }
     },
     watch:{
+    	timeRange:function(val){
+    		this.status = false;
+    		window.setTimeout( () => {
+    			this.status = true
+    		},100)
+    		this.comments = []
+    		let params = {}
+    		params.beginDate = val.begin.join("-");
+    		params.endDate = val.end.join("-");
+    		params.code = this.code;
+    		params.limit = 20;
+	  		params.curPage = 0;
+    		this.request(params)
+    	},
+    	code:function(val){
+    		this.comments = []
+    		this.status = false;
+    		window.setTimeout( () => {
+    			this.status = true
+    		},100)
+    		let params = {}
+    		//params.beginDate = this.timeRange.begin.join("-");
+    		//params.endDate = this.timeRange.end.join("-");
+    		params.code = this.code;
+    		params.limit = 20;
+	  		params.curPage = 0;
+	  		this.request(params)
+    	}
     },
     computed: { 
 		commentList(){
 			return this.comments
 		}
     },
+     created(){
+     	let params = {code:0,limit:20,curPage:0}
+     	this.request(params)
+    },
     methods: {
+		
+		loadMore(e){
+			var scrollT = Math.ceil(e.target.scrollTop+e.target.clientHeight),
+		    offsetT = e.target.getElementsByClassName('msg')[0].offsetHeight;
+        	if(offsetT-scrollT<=10){
+    				
+	       			let paramsObj = {
+		                code:this.code,
+		                limit:20,
+		                curPage:this.pageNum++,
+		            }
+		       		this.request(paramsObj)
+        	}
+		},
+		
+		getDate(val){
+			this.timeRange = val
+		},
+    	getData(){},
 		//请求数据
-	  	getData(){ 
-	  		let params = {}; 
-	  		params.code = this.code;
-	  		params.limit = 100;
-	  		params.curPage = 1;
-	  		api.getComments(params).then( (re) =>{
-	  				let reData = re.data.data;
-	  				this.comments = reData.comments;
-	  				
-	  				//console.log(this.comments)
+	  	request(data){ 
+	  		api.getComments(data).then( (re) =>{
+	  			
+	  				let reData = re.data.data.comments;
+	  				if(reData.length===0){
+		  				return
+		  			}
+	  				reData.forEach( (v,i) => {
+	  					this.comments.push(v)
+	  				})
+
 	  				this.oneprogressbar.leftProcess = reData.satisfyPercent;
 	  				this.oneprogressbar.rightProcess = 100-reData.satisfyPercent;
 					if(re.status===200){
@@ -280,12 +356,11 @@ export default {
 	  	},
 	  	
     },
-    created(){
-    	this.getData();
-    },
-    mounted(){
-    	
-    },
+     components:{
+        	vdate
+        },
+   
+    
 }
 Vue.component('vstar',{
         props:['star'],
@@ -304,6 +379,7 @@ Vue.component('vstar',{
                 return arrstar
             }
         },
+       
         methods:{
             chosen:function(){
             },

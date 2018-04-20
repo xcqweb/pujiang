@@ -11,12 +11,13 @@ import Set_arr_class from '@/common/js/set_arr_class.js'
 import api from '@/api/moudles/tanzhenData'
 import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
 export default  class Start_end_class extends  Set_arr_class {
-    constructor(apiName,differ,times,code) {
+    constructor(apiName,differ,times,code,timeRange) {
         //apiName 接口属性名，differ时间间隔，times分割成多少段
         super(differ,times);
         this.differ = differ;
         this.apiName = apiName;
         this.code = code;
+        this.timeRange = timeRange;
         return this;
     }
     getBeginTime(){
@@ -68,6 +69,10 @@ export default  class Start_end_class extends  Set_arr_class {
 	    params.append('token', token);
 	    params.append('code', this.code);
 	    params.append('timeStamp',timeing);
+	    if(this.timeRange){
+	    	params.append('beginDate',this.timeRange.begin.join("-"));
+	    	params.append('endDate',this.timeRange.end.join("-"));
+	    }
 	    return params;
 	}
     

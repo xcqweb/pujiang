@@ -15,6 +15,15 @@ function tansParm(data){
         if(data.range){
         	 params.append('range',data.range);
         }
+        if(data.monthId){
+        	 params.append('monthId',data.monthId);
+        }
+        if(data.beginDate){
+        	 params.append('beginDate',data.beginDate);
+        }
+        if(data.endDate){
+        	 params.append('endDate',data.endDate);
+        }
         if(data.limit){
         	data.limit = data.limit>100?5:data.limit
         	 params.append('limit',data.limit);

@@ -34,7 +34,6 @@ export default {
     }
   },
   created(){
-  	this.getData();
   },
   computed:{
   	itemData(){
