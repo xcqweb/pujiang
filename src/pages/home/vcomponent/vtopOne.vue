@@ -70,7 +70,7 @@ export default {
     watch:{
     	code:function(){
     		this.isloading = true;
-    		this.getData();
+    		this.request();
     	},
     	timeRange:function(val){
     		this.request(val)
