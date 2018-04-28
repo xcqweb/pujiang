@@ -12,6 +12,7 @@
             </div>
             <div class="dateItem item">
                 <div class="border">
+                	<span class='title'>时间筛选</span>
                     <dateSelect 
                     	:isStart=true
                     	@turistDate='getDate'

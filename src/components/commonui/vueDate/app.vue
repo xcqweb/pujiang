@@ -25,7 +25,7 @@
     </transition> -->
 
     <transition name="fade">
-    <div class="calendar-dialog" v-if="calendar4.show">
+    <div class="calendar-dialog" v-show="calendar4.show">
         <div class="calendar-dialog-mask" @click="closeByDialog"></div>
         
         <div class="calendar-dialog-body" @mouseleave="leave">
@@ -39,7 +39,7 @@
 
 <script>
  
-import calendar from './calendar.vue'
+import calendar from './calendars.vue'
 let date = new Date();
 let year = date.getFullYear();
 let month = date.getMonth()+1;
@@ -90,7 +90,7 @@ export default {
                 show:false,
                 range:true,
                 zero:true,
-                value:[[year,month,day],[year,month,day]] , //默认日期
+                value:[[year,month,day-7],[year,month,day-1]] , //默认日期
                 lunar:true, //显示农历
                 select:(begin,end)=>{
                     this.calendar4.show=false;
@@ -129,7 +129,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 /*demo*/
 .flex{
     box-sizing: border-box;
@@ -167,7 +167,6 @@ export default {
 .flex>div>input{
     box-sizing: border-box;
     background-color: #FFFFFF ;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
     width:86%;
     margin-top:2px;
     margin-left: -60px;
@@ -238,11 +237,11 @@ export default {
 }
 
 .calendar-dialog-body{
-	transform: scale(0.74) translate(-20px,-12px);
+	transform: scale(0.74) translate(-2px,-12px);
     background: #fff;
     position: absolute;
     right:-20%;
-    top:-110%;
+    top:-11%;
     padding:10px;
     border: 1px solid #eee;
     border-radius: 2px;

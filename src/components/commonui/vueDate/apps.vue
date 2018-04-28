@@ -25,7 +25,7 @@
     </transition> -->
 
     <transition name="fade">
-    <div class="calendar-dialog" v-if="calendar4.show">
+    <div class="calendar-dialog" v-show="calendar4.show">
         <div class="calendar-dialog-mask" @click="closeByDialog"></div>
         
         <div class="calendar-dialog-body" @mouseleave="leave">
@@ -129,7 +129,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 /*demo*/
 .flex{
     box-sizing: border-box;
@@ -167,7 +167,6 @@ export default {
 .flex>div>input{
     box-sizing: border-box;
     background-color: #FFFFFF ;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
     width:78%;
     margin-left: -84px;
     margin-top:0px;
@@ -234,15 +233,13 @@ export default {
     width:120%;
     height:100%;
     cursor: pointer;
-
 }
 
 .calendar-dialog-body{
-	/*transform: scale(0.7);*/
     background: #fff;
     position: absolute;
     right:-30%;
-    top:0%;
+    top:124%;
     padding:10px;
     border: 1px solid #eee;
     border-radius: 2px;

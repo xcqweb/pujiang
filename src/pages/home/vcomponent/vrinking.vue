@@ -5,13 +5,19 @@
             <span class="cell1">
                	 地区
             </span>
+            <span class="cell2">
+                	人数
+            </span>
             <span class="cell3">
                 	占比
             </span>
         </li>
         <li v-for='(item,index) in itemData'>
             <span class="cell1">
-                {{index+1}}、{{item._id}}
+                {{index+1}}. {{item._id}}
+            </span>
+            <span class="cell1">
+                {{item.num}}
             </span>
             <span class="cell3">
                <font>{{item.percent}}%</font>

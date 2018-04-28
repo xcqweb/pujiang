@@ -1,8 +1,10 @@
 <template>
   <div class="A5">
+  	  
       <div id="container"></div>
       <Loading v-show="isloading"></Loading>
-      <span>{{currentNums}}<font></font></span>
+      <span class="num">{{currentNums}}<font></font></span>
+      <span class="title">( 单位 : 人)</span>
   </div>
 </template>
 <script>
@@ -24,8 +26,7 @@ export default {
       	currentNum:0,
         reTimer:null,
         data_arr:{},
-        mins:60
-        ,
+        mins:60,
         btwsecends:5,
         option: {
             backgroundColor: 'rgba(0,0,0,0)',
@@ -74,7 +75,7 @@ export default {
            }],
            yAxis: {
                type: 'value',
-               name:'单位：人',
+               name:'',
                nameTextStyle:{
                    color:'#ffffff',
                    fontSize:'75%',
@@ -286,12 +287,19 @@ export default {
     width:100%;
     height:100%;
   	position: absolute;
+  	.title{
+			position: absolute;
+			color: #fff;
+			font-size: 12px;
+			top: 22px;
+			left: 6rem;
+		}
     #container{
         width:100%;
         height:92%;
         margin-top: 1.6rem;
     }
-    span{
+    .num{
     	position: absolute;
     	top: 8%;
     	right: 6%;

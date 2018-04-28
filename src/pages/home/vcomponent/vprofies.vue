@@ -136,7 +136,7 @@ export default {
     start_end_instance.get_response().then(re => {
     	
       let data = re.data.data;
-       //console.log(re)
+      //console.log(re)
       //初始化数据
       this.profileData.warnRate = data.warnRate;
       this.profileData.curSum = data.curSum;

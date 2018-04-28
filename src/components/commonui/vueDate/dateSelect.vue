@@ -169,7 +169,7 @@
 		min-width: 200px;
 		height: 36px;
 		position: relative;
-		margin-left: 80px;
+		margin-left: 100px;
 		margin-top: 14px;
 		background: none;
 		font-size: 0.9rem;

@@ -1,5 +1,6 @@
 <template>
   <div class="main_content" v-show='show' id="A1loding">
+  	<span class="title">( 单位 : 人)</span>
     <div id="righthz"></div>
     <!--<div class="week">-->
         <!--<span class="oneweek " v-bind:class="{ chose: isActive }" @click='redom7'>7日</span>-->
@@ -169,10 +170,10 @@ export default {
                         }
                     ],
                     yAxis:{
-                    		name:"单位 : 人",
+                    		name:"",
                     		nameTextStyle:{
                     			fontSize:'100%',
-                    			verticalAlign:'top',
+                    			verticalAlign:'bottom',
                     			align:'left',
                     			margin:[60,60,60,60]
                     		},
@@ -284,6 +285,13 @@ export default {
   position: relative;
 }
 
+.title{
+	position: absolute;
+	color: #fff;
+	font-size: 12px;
+	top: 1rem;
+	left: 6rem;
+}
 .clock{
 	width: 30%;
 	height: 26px;
@@ -291,8 +299,8 @@ export default {
 	border-radius: 6px;
 	font-size: 0.8rem;
 	position: absolute;
-	top: 2%;
-	left:15%;
+	top: 3%;
+	left:25%;
 	color: #fff;
 }
 .load{
