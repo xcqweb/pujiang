@@ -28,7 +28,7 @@
     <div class="calendar-dialog" v-show="calendar4.show">
         <div class="calendar-dialog-mask" @click="closeByDialog"></div>
         
-        <div class="calendar-dialog-body" @mouseleave="leave">
+        <div class="calendar-dialog-body" @click="leave($event)">
             <calendar :range="calendar4.range" :zero="calendar4.zero" :lunar="calendar4.lunar" :value="calendar4.value"  @select="calendar4.select"></calendar>
         </div>
         
@@ -116,8 +116,12 @@ export default {
                 },false);
             },100)
         },
-        leave(){
-        	this.calendar4.show=false;
+        leave(e){
+        	if(!this.$el.contains(e.target)){
+        		this.calendar4.show=false;
+        	}
+        	//this.calendar4.show=false;
+        	console.log(this.$el.contains(e.target))
         },
         openByDialog(){
             this.calendar4.show=true;
@@ -230,18 +234,21 @@ export default {
 
 .calendar-dialog-mask{
     background:rgba(0, 0, 0, 0);
-    width:120%;
-    height:100%;
+    width:100vw;
+    height:100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
     cursor: pointer;
 
 }
 
 .calendar-dialog-body{
-	transform: scale(0.74) translate(-2px,-12px);
+	transform: scale(0.6) translate(-2px,-12px);
     background: #fff;
     position: absolute;
-    right:-20%;
-    top:-11%;
+    right: -25%;
+    top:-112%;
     padding:10px;
     border: 1px solid #eee;
     border-radius: 2px;

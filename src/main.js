@@ -13,6 +13,7 @@ import api from '@/api/index.js'
 import Loading from '@/components/commonui/loading/loading.vue'
 
 import {API_HZ} from '@/api/env'
+
 //自适应字体
 //import '@/common/js/rem.js'
 Vue.directive('echarts', require('./common/js/directives/vDirechartsE.js'));

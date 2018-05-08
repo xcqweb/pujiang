@@ -3,7 +3,7 @@
     <ul>
         <li v-for="item in items">
             <p>{{item.title}}</p>
-            <div><p :style="{color:item.color}">{{item.nub}}</p></div>
+            <div><p>{{item.nub}}</p></div>
         </li>
     </ul>
     <Loading class='loading' v-show="isloading"></Loading>
@@ -75,7 +75,8 @@ ul{
                 display: table-cell;
                 vertical-align:middle;
                 text-align:center;
-                /*font-family:numberFont;*/
+                color: #00E5FF !important;
+                font-family:numberFont;
             }
         }
         p:nth-of-type(2){

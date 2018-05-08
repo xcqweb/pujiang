@@ -133,10 +133,10 @@
     }
     .msg{
         position:relative;
-        margin-top:3%;
+        margin-top:20px;
         margin-left: 5%;
         width:90%;
-        font-size: 0.7rem;
+        font-size: 13px;
         color:white;
         .title{
             display:block;
@@ -145,13 +145,14 @@
         }
         .comment{
             text-align:left;
-            margin-top: 0.8rem;
+            margin-top: 20px;
             .name{
-				font-size: 0.8rem;
+				font-size: 13px;
+				margin-top: 7px;
+				color: rgba(255,255,255,0.7);
             }
             .place{
-                margin-left:20px;
-                font-size: 0.8rem;
+                font-size: 15px;
             }
             .comment-star{
                 display:inline-block;
@@ -159,10 +160,9 @@
                 transform: translateY(10%);
             }
             .text{
-            	text-indent: 2em;
-            	font-size: 0.6rem;
+            	font-size: 13px;
                 display:block;
-                margin-top:5px;
+                margin: 7px 0;
                 line-height:1.5rem;
             }
         }
@@ -216,10 +216,8 @@
 
 <template>
     <div class="d3" @scroll.passive="loadMore($event)">
-        <!--<vline :progressbar='oneprogressbar' class='progress'></vline>-->
         <div class="msg" v-show='status'>
             <div class="comment" v-for="comment in commentList">
-                <span class="name">{{comment.uid}}</span>
                 <span class="place">{{comment.name}}</span>
                 <vstar 
                 class='comment-star'
@@ -228,6 +226,8 @@
                 <span class="text">
                     {{comment.con}}
                 </span>
+                <span class="name">{{comment.uid}}</span>
+                
             </div>
         </div>
         <div class="date">
