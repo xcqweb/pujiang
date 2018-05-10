@@ -238,14 +238,15 @@ export default {
 }
 .legend{
 	width: 36%;
-	height: 80%;
-	color: #fff;
+	height: 90%;
+	color: #eee;
 	font-size: 0.8rem;
 	position: absolute;
-	top: 10%;
+	top: 2%;
 	li{
 		width: 33%;
-		line-height: 0.8rem;
+		line-height: 0.3rem;
+		margin-top: 1.5rem;
 		float: left;
 		p:first-child{
 			font-size: 0.9rem;

@@ -1,15 +1,16 @@
 <template>
 	<div class="box">
-		<p class="title" @click="chose" @mouseleave="titleLeave"><span>{{ctime}}</span><i :class="icon"></i></p>
-		<ul class="list" v-show="showStatus" @mouseleave="leave" ref='list'>
+		<p class="title" @click="chose"><span>{{ctime}}</span><i :class="icon"></i></p>
+		<ul class="list" v-show="showStatus" ref='list'>
 			<li v-for="(item,index) in years" @mouseover="showMonth(item.year,$event)" ref='list'>{{item.year}}
 				
 			</li>
 		</ul>
-		<ul class="subMenu"  @mouseover="shows" @mouseleave="leaveM" v-show="comStatus">
+		<ul class="subMenu" v-show="status">
 			<li v-for="month in months" @click="choseDates(month)">{{month}}</li>
 			<span class="arrow"></span>
 		</ul>
+		<div class="toast" v-show="showStatus" @click="hide($event)"></div>
 	</div>
 </template>
 
@@ -59,16 +60,21 @@
 				}
 			},
 			comStatus(){
-				if(this.status){
-					return true
-				}else{
-					return false
-				}
+				
+				return false
 			}
 		},
 		methods:{
 			chose(){
 				this.showStatus = !this.showStatus;
+			},
+			hide(e){
+				console.log(this.$el)
+				//alert(21)
+//				if(!this.$el.contains(e.target)){
+					this.showStatus = false
+					this.status = false
+//				}
 			},
 			showMonth(val,e){
 				window.clearTimeout(this.timer)
@@ -84,28 +90,7 @@
 				})
 				e.target.className = "active"
 			},
-			titleLeave(){
-				this.timer = window.setTimeout( () => {
-					this.showStatus = false;
-				},300)
-			},
-			shows(){
-				window.clearTimeout(this.timer)
-				window.clearTimeout(this.timerM)
-				this.showStatus = true;
-			},
-			leaveM(){
-				this.status = false;
-				this.timer = window.setTimeout( () => {
-					this.showStatus = false;
-				},300)
-			},
-			leave(){
-				this.showStatus = false;
-				this.timerM = window.setTimeout( () => {
-					this.status = false
-				},300)
-			},
+			
 			choseDates(data){
 				
 				this.showStatus = false;
@@ -167,12 +152,20 @@
 	.box{
 		max-width: 260px;
 		min-width: 200px;
-		height: 36px;
+		height: 2rem;
 		position: relative;
 		margin-left: 100px;
 		margin-top: 14px;
 		background: none;
 		font-size: 0.9rem;
+		.toast{
+			position: fixed;
+			z-index: 100;
+			top: 0;
+			left: 0;
+			width: 100vw;
+			height: 100vh;
+		}
 			.subMenu{
 			transform: translate(90px,44px);
 			position: absolute;
@@ -197,14 +190,14 @@
 			}
 		}
 		.title{
-			width: 180px;
-			height: 26px;
-			line-height: 26px;
+			width: 10rem;
+			height: 1.5rem;
+			line-height: 1.5rem;
 			border: solid 1px #345bfa;
 			cursor: pointer;
 			font-size: 0.9rem;
 			position: absolute;
-			left: 0px;
+			left: 1rem;
 			span{
 				margin-left: -1rem;
 			}

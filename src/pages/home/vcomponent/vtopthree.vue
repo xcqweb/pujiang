@@ -59,7 +59,7 @@ ul{
         margin-top: 10%;
 
         p:nth-of-type(1){
-            font-size: 1rem;
+            font-size: 1.3rem;
             color: #fff;
         }
         div{

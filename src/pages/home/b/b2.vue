@@ -5,7 +5,7 @@
             <!--<img :src="imgacircle"/>-->
         </div>
         <span>{{percent}}%</span>
-        <div class="text"><font>预警客流</font><font></font></div>
+        <!--<div class="text"><font>预警客流</font><font></font></div>-->
         <p class="configBtn" @click="passagerConfig">设置</p>
       <Loading v-show="isloading"></Loading>
     </div>
@@ -242,10 +242,16 @@ export default {
     position:relative;
     span{
         position:absolute;
-        top:52%;
-        left:50%;
+        display: block;
+        width: 100%;
+        height: 2rem;
+        line-height: 2rem;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
         color:#fff;
-        transform: translate(-50%,-50%);
         font-size: 1.6rem;
         font-family: numberFont;
     }
@@ -261,12 +267,15 @@ export default {
     	cursor: pointer;
     }
     #pieB2{
-        height:200px;
-        width: 200px;
+        height:12rem;
+        width: 12rem;
         position:absolute;
         top: 0px;
         left: 0px;
-        transform: translate(30%,12%) scale(0.9);
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        //transform: translate(30%,12%) scale(0.9);
     }
     .circle{
         height: auto;

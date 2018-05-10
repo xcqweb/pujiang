@@ -1,11 +1,11 @@
 <template>
-  <div id="mainhome">
+  <div id="mainhome" @click="headerLeave($event)">
     <transition name="slide-fade">
-        <div class="header" v-show='headerStatus' v-on:mouseenter="headerEnter" v-on:mouseleave="headerLeave" @click="headerLeave">
+        <div class="header" v-show='headerStatus' @mouseleave="mouseLeave"   @click="headerLeave($event)">
             <headerBody></headerBody>
         </div>
     </transition>
-    <div class="headmock" v-on:mouseenter="headerEnter" v-on:click="headerEnter"></div>
+    <div class="headmock" v-on:mouseenter="headerEnter"></div>
     <router-view class='mockrouter'
     :placeName = 'placeName'
     :placeAttractions = 'placeAttractions'
@@ -69,11 +69,18 @@ export default {
             console(){
                 console.log(this.components)
             },
+            mouseLeave(){
+            	this.headerStatus=false;
+            },
             headerEnter(){
                 this.headerStatus=true;
             },
-            headerLeave(){
-                this.headerStatus=false;
+            headerLeave(e){
+            	//console.dir(this.$el.childNodes[0].contains(e.target))
+            	if(!this.$el.childNodes[0].contains(e.target)){
+            		this.headerStatus=false;
+            	}
+                
             },
 
         },

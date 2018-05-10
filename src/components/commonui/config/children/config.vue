@@ -116,7 +116,7 @@
 					},3000)
 					return;
 				}
-				if(confirm('确认要修改吗?')){
+//				if(confirm('确认要修改吗?')){
 					this.showEdit = false;
 					
 					//修改时间
@@ -133,9 +133,9 @@
 					
 					this.setData(this.editData);
 					
-				}else{
-					this.editIndex = '';
-				}
+//				}else{
+//					this.editIndex = '';
+//				}
 			},
 			cancel(){
 				this.editIndex = '';

@@ -60,6 +60,9 @@ import optionProps from '@/common/js/mixin/optionProps.js'
         }
     },
     watch:{
+    	code:function(val){
+    		this.getData()
+    	}
     },
     methods:{
         redom(id){

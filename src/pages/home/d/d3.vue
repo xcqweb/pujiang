@@ -8,13 +8,13 @@
     top: 5%;
     
     .date{
-    	width: 200px;
-    	height: 26px;
+    	width: 13rem;
+    	height: 1.5rem;
 		border: 1px solid #355bfa;
 		border-radius: 6px;
 		position: fixed;
-		top: 2.6%;
-		right: 8%;
+		top: 1.5rem;
+		right: 8rem;
     }
     .loading{
     	height: 120%;
@@ -148,7 +148,7 @@
             margin-top: 20px;
             .name{
 				font-size: 13px;
-				margin-top: 7px;
+				margin: 7px 7px 0 0 ;
 				color: rgba(255,255,255,0.7);
             }
             .place{
@@ -227,6 +227,7 @@
                     {{comment.con}}
                 </span>
                 <span class="name">{{comment.uid}}</span>
+                <span class="name">{{`${comment.date.substr(0,4)}-${comment.date.substring(4,6)}-${comment.date.substring(6,8)} ${comment.date.substring(8,10)}:${comment.date.substring(10,12)}`}}</span>
                 
             </div>
         </div>

@@ -369,9 +369,19 @@ import sciencePoints from './points.json'
                         heatmapOverlay.hide();
                     }
                    
+                    //监听地图缩放事件
+		            map.addEventListener('zoomend',function(){
+		            	let zoom = map.getZoom()
+		            	
+		            	if(zoom===14){//放大级别在14时关闭热力图
+		            		 closeHeatmap()
+		            	}
+		            })
+                   
                     function setGradient(){
                         /*格式如下所示:
                         {
+                        	
                             0:'rgb(102, 255, 0)',
                             .5:'rgb(255, 170, 0)',
                             1:'rgb(255, 0, 0)'
@@ -484,6 +494,9 @@ import sciencePoints from './points.json'
             map.addEventListener("mousedown",function(e){
                 _self.videoToast=false;
             },false)
+            
+           
+            
             // 初始化地图,设置中心点坐标和地图级别
             map.centerAndZoom(new BMap.Point(119.923671,29.506494),12);
             // 添加地图类型控件

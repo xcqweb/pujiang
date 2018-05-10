@@ -28,7 +28,7 @@
     <div class="calendar-dialog" v-show="calendar4.show">
         <div class="calendar-dialog-mask" @click="closeByDialog"></div>
         
-        <div class="calendar-dialog-body" @click="leave($event)">
+        <div class="calendar-dialog-body">
             <calendar :range="calendar4.range" :zero="calendar4.zero" :lunar="calendar4.lunar" :value="calendar4.value"  @select="calendar4.select"></calendar>
         </div>
         
@@ -39,7 +39,7 @@
 
 <script>
  
-import calendar from './calendars.vue'
+import calendar from './calendar.vue'
 let date = new Date();
 let year = date.getFullYear();
 let month = date.getMonth()+1;
@@ -116,18 +116,11 @@ export default {
                 },false);
             },100)
         },
-        leave(e){
-        	if(!this.$el.contains(e.target)){
-        		this.calendar4.show=false;
-        	}
-        	//this.calendar4.show=false;
-        	console.log(this.$el.contains(e.target))
-        },
         openByDialog(){
             this.calendar4.show=true;
         },
         closeByDialog(){
-            this.calendar4.show=false;
+              this.calendar4.show=false;
         }
     }
 }
