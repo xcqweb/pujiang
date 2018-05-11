@@ -2,10 +2,12 @@
 .d3{
     width:100%;
     height:92%;
-    position:relative;
+    position:absolute;
+    cursor: all-scroll;
+    -webkit-overflow-scrolling: auto;
     overflow-y: scroll;
     overflow-x: hidden;
-    top: 5%;
+    top: 8%;
     
     .date{
     	width: 13rem;
@@ -252,12 +254,13 @@ export default {
     props:['place'],
     data () {
         return {
-        	timeRange:{},
+        	timeRange:{begin:'',end:''},
         	commentProp:{},
         	allData:{},
         	comments:[],
         	status:true,
         	pageNum:1,
+        	isLoad:true,//滚动到无数据时禁止发请求
             topStar:{
                 numb: 5,
                 width:'30%',
@@ -297,8 +300,11 @@ export default {
     			this.status = true
     		},100)
     		let params = {}
-    		//params.beginDate = this.timeRange.begin.join("-");
-    		//params.endDate = this.timeRange.end.join("-");
+    		if(this.timeRange.begin && this.timeRange.end){
+    			params.beginDate = this.timeRange.begin.join("-");
+      			params.endDate = this.timeRange.end.join("-");
+    		}
+      		
     		params.code = this.code;
     		params.limit = 20;
 	  		params.curPage = 0;
@@ -311,7 +317,7 @@ export default {
 		}
     },
      created(){
-     	let params = {code:0,limit:20,curPage:0}
+     	let params = {code:0,limit:20,curPage:1}
      	this.request(params)
     },
     methods: {
@@ -319,35 +325,51 @@ export default {
 		loadMore(e){
 			var scrollT = Math.ceil(e.target.scrollTop+e.target.clientHeight),
 		    offsetT = e.target.getElementsByClassName('msg')[0].offsetHeight;
-        	if(offsetT-scrollT<=10){
-    				
-	       			let paramsObj = {
-		                code:this.code,
-		                limit:20,
-		                curPage:this.pageNum++,
-		            }
-		       		this.request(paramsObj)
+		    console.log(scrollT,offsetT)
+        	if(offsetT-scrollT<=0){
+        		let paramsObj = {}
+    				if(this.timeRange.begin && this.timeRange.end){
+		    			 paramsObj = {
+			                code:this.code,
+			                limit:20,
+			                curPage:this.pageNum++,
+			                beginDate : this.timeRange.begin.join("-"),
+	    					endDate : this.timeRange.end.join("-"),
+			            }
+		    		}else{
+		    			 paramsObj = {
+			                code:this.code,
+			                limit:20,
+			                curPage:this.pageNum++,
+			            }
+		    		}
+		       		if(this.isLoad){
+			  			this.request(paramsObj)
+			  		}
         	}
 		},
 		
 		getDate(val){
+			//console.log(val)
 			this.timeRange = val
 		},
     	getData(){},
 		//请求数据
 	  	request(data){ 
 	  		api.getComments(data).then( (re) =>{
-	  			
 	  				let reData = re.data.data.comments;
 	  				if(reData.length===0){
+	  					this.isLoad = false
 		  				return
 		  			}
+	  				
+	  				this.isLoad = true
 	  				reData.forEach( (v,i) => {
 	  					this.comments.push(v)
 	  				})
 
-	  				this.oneprogressbar.leftProcess = reData.satisfyPercent;
-	  				this.oneprogressbar.rightProcess = 100-reData.satisfyPercent;
+	  				//this.oneprogressbar.leftProcess = reData.satisfyPercent;
+	  				//this.oneprogressbar.rightProcess = 100-reData.satisfyPercent;
 					if(re.status===200){
 						this.isloading = false;
 					}

@@ -21,7 +21,7 @@
 	let curMonth = date.getMonth()+1;
 	let curDay = date.getDate();
 	let yearData=[];
-	for(let i=0; i<50; i++){
+	for(let i=0; i<7; i++){
 		yearData[i] = {year:year-i}
 	}
 	export default{

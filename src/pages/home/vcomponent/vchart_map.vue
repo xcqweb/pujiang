@@ -61,10 +61,12 @@ export default {
             tooltip: {
                 trigger: 'item',
                  formatter:function(params){
-                	//console.log(params)
+                	console.log(params)
                 	if(params.seriesType==="effectScatter"){
                 		let val = params.name+' : '+params.value[2];
                 		return val;
+                	}else{
+                		return params.data.toName+' : '+parseInt(Math.ceil(Math.random()*18+2))
                 	}
                 }
             },
@@ -115,9 +117,12 @@ export default {
             tooltip: {
                 trigger: 'item',
                 formatter:function(params){
+                	console.log(params)
                 	if(params.seriesType==="effectScatter"){
                 		let val = params.name+' : '+params.value[2];
                 		return val;
+                	}else{
+                		return params.data.toName+' : '+ parseInt(Math.ceil(Math.random()*18+2))
                 	}
                 }
             },
@@ -255,6 +260,25 @@ export default {
             '黔西南布依族苗族自治州':[104.947562, 25.145265],
             '周口市':[114.704633,33.631829],
             '黔南布依族苗族自治州':[107.516905,26.251284],
+            '宁德市':[119.543874,26.67999],
+            '晋中市':[112.748957,37.694668],
+            '南平市':[118.095428,27.326056],
+            '南通市':[120.896129,31.989979],
+            '荆州市':[112.25558,30.340843],
+            '黄冈市':[114.884526,30.460355],
+            '聊城市':[115.995325,36.459972],
+            '湛江市':[110.366991,21.277802],
+            '淄博市':[118.065192,36.820009],
+            '双鸭山市':[131.16448,46.652393],
+            '伊犁哈萨克自治州':[131.16448,46.652393],
+            '南宁市':[108.376616,22.817277],
+            '阿克苏地区':[80.268376,41.17416],
+            '鹤岗市':[130.301271,47.354494],
+            '孝感市':[113.9205,30.931185],
+            '黔东南苗族侗族自治州':[107.98801,26.586603],
+            '十堰市':[110.805966,32.637009]
+            
+            
         },
         BJData:[
             [{name: this.placeName}, {name: '北京', value: 95}],
@@ -337,12 +361,12 @@ export default {
 	    		let reData = re.data.data;
 	    		this.yearNumb = reData.yearSum;
 	    		this.mouthNumb = reData.monthSum;
-	    		let topCity = reData.topCity;
+	    		let topCity = reData.topCity.splice(2);
 	    		this.allData=[];
 	    		this.zhejiang=[];
-	    		//console.log(topCity)
+	    		
 				for(let i=0; i<topCity.length; ++i){
-					if(topCity[i]._id!=='missing' &&　topCity[i]._id!=='总计'){
+					if(topCity[i]._id!=="missing" ||　topCity[i]._id!=="总计"){
 						if(this.range===1){
 							this.allData[i]=["浦江县", [[{name: "浦江县"}, {name: topCity[i]._id, value: topCity[i].sum}]]]
 						}else{
@@ -356,7 +380,6 @@ export default {
 	    			this.isloading=false;
 	    			delete api.params.range;
 	    		}
-	    		//console.log(this.range)
 	    		if(this.range===1){
 	    			this.redomData();
 	    		}else{

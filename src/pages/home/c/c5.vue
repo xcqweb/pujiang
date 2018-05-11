@@ -68,8 +68,13 @@ export default {
 	  	getData(data){
 	  		//api.params.code = this.code;
 	  		api.touristOriginsource(data).then( (re) =>{
+	  			
 	  				let reData = re.data.data;
-	  				//console.log(reData)
+	  				if(!reData){
+		  				this.inItems=[]
+		  				this.outItems = []
+		  				return 
+		  			}
 	  				this.inItems = reData.shengnei;
 	  				this.outItems = reData.shengwai;
 					if(re.status===200){

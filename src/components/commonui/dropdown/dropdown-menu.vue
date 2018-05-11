@@ -172,7 +172,7 @@ import Vue from 'vue'
     top: 0;
     left: 0;
     background-color: rgba(0,0,0,0);
-    z-index:119;
+    z-index:100;
 }
 .v-dropdown-menu {
     height:1.8rem;
@@ -280,7 +280,7 @@ import Vue from 'vue'
     color: white;
     cursor: pointer;
     text-align: center;
-    z-index: 9;
+    z-index: -1;
     font-size: .9rem;
     line-height: 1.8rem;
     white-space: nowrap;
