@@ -284,6 +284,7 @@ import Vue from 'vue'
     font-size: .9rem;
     line-height: 1.8rem;
     white-space: nowrap;
+    letter-spacing: 1px;
     overflow: hidden;
 }
 .dropdown-fade-enter-active {

@@ -10,7 +10,7 @@
 			<li>{{i+1}}</li>
 			<li>{{data.warnDate}}</li>
 			<li>{{data.name}}</li>
-			<li>{{data.warnSet}}</li>
+			<li>{{data.warnNum}}</li>
 		</ul>
 	</div>
 </template>

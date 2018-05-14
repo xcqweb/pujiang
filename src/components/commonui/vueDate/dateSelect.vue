@@ -155,7 +155,7 @@
 		height: 2rem;
 		position: relative;
 		margin-left: 100px;
-		margin-top: 14px;
+		margin-top: 1rem;
 		background: none;
 		font-size: 0.9rem;
 		.toast{
@@ -172,10 +172,11 @@
 			height: 210px;
 			width: 90px;
 			left: 50px;
-			top: -16px;
+			top: -0.5rem;
 			background: #193583;
 			border: 1px solid #1b44ba;
-			overflow-y: scroll;
+			overflow-y: auto;
+			overflow-x: hidden;
 			display: block;
 			z-index: 123;
 			box-shadow: 1px 0 30px rgba(1, 1, 13, 0.4);
@@ -229,10 +230,11 @@
 			border: 1px solid #1b44ba;
 			height: 210px;
 			max-width: 200px;
-			overflow-y: scroll;
+			overflow-y: auto;
+			overflow-x: hidden;
 			z-index: 1000;
 			position: absolute;
-			top: 26px;
+			top: 1.8rem;
 			left: 26px;
 			box-shadow: 1px 0 30px rgba(1, 1, 13, 0.4);
 			li{
@@ -257,27 +259,27 @@
 	}
 	
 	
-		 .subMenu::-webkit-scrollbar,.list::-webkit-scrollbar{
+		  .subMenu::-webkit-scrollbar,.list::-webkit-scrollbar{
 			    width: 1px;
 			    height: 0rem;
 			}
 			/*定义滚动条的轨道，内阴影及圆角*/
 			.subMenu::-webkit-scrollbar-track,.list::-webkit-scrollbar-track{
-			    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.9);
+			    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.9);
 			    border-radius: 10px;
 			}
 			/*定义滑块，内阴影及圆角*/
 			.subMenu::-webkit-scrollbar-thumb,.list::-webkit-scrollbar-thumb{
-			    width: 10px;
-			    height: 3rem;
+			    width: 0px;
+			    height: 0rem;
 			    border-radius: 10px;
 			    -webkit-box-shadow: inset 0 0 6px #ccc;
 			    background-color: #0F2059;
 			}
 			
 			.subMenu::scrollbar,.list::scrollbar{
-			    width: 10px;
-			    height: 3rem;
+			    width: 0px;
+			    height: 0rem;
 			}
 			/*定义滚动条的轨道，内阴影及圆角*/
 			.subMenu::scrollbar-track,.list::scrollbar-track{
@@ -294,8 +296,8 @@
 			 
 			/*定义滑块，内阴影及圆角*/
 			.subMenu::scrollbar-thumb,.list::scrollbar-thumb{
-			    width: 10px;
-			    height: 10rem;
+			    width: 0px;
+			    height: 0rem;
 			    border-radius: 10px;
 			    -webkit-box-shadow: inset 0 0 6px #02275A;
 			    background-color: #0F2059;

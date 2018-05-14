@@ -4,7 +4,7 @@
         <div>
             <!-- <span>弹出框</span> -->
             <!-- <input type="text" @click="openByDrop($event)" v-model="calendar3.display" readonly> -->
-            <input type="text" @click="openByDialog" :value="calendar4.display" readonly>
+            <p @click="openByDialog">{{calendar4.display}}</p>
         </div>
 
 <!--         <div>
@@ -28,7 +28,7 @@
     <div class="calendar-dialog" v-show="calendar4.show">
         <div class="calendar-dialog-mask" @click="closeByDialog"></div>
         
-        <div class="calendar-dialog-body">
+        <div class="calendar-dialog-body" :class="comStyle">
             <calendar :range="calendar4.range" :zero="calendar4.zero" :lunar="calendar4.lunar" :value="calendar4.value"  @select="calendar4.select"></calendar>
         </div>
         
@@ -44,6 +44,8 @@ let date = new Date();
 let year = date.getFullYear();
 let month = date.getMonth()+1;
 let day = date.getDate();
+
+let isIE = window.navigator.userAgent.indexOf('Trident');
 export default {
     name: 'app',
     components: {
@@ -102,6 +104,15 @@ export default {
             timer:null
         }
     },
+    computed:{
+    	comStyle(){
+    		if(isIE>-1){ 
+		 		return 'ieStyle'
+			}else{ 
+				 return 'chromeStyle'
+			}
+    	}
+    },
     methods:{
         openByDrop(e){
             this.calendar3.show=true;
@@ -147,7 +158,7 @@ export default {
 }
 .flex>div{
     width:25%;
-    min-width:300px;
+    width: 100%;
     position: relative;
 
 }
@@ -161,12 +172,12 @@ export default {
     background:#ea6151;
     color:#fff;
 }
-.flex>div>input{
+.flex>div>p{
     box-sizing: border-box;
     background-color: #FFFFFF ;
-    width:86%;
+    width:100%;
+    text-align: center;
     margin-top:2px;
-    margin-left: -60px;
     border-radius: 2px;
     border:none;
     padding:3px 0 10px 0;
@@ -237,14 +248,24 @@ export default {
 }
 
 .calendar-dialog-body{
-	transform: scale(0.6) translate(-2px,-12px);
+	transform: scale(0.66) translate(-2px,-12px);
     background: #fff;
     position: absolute;
-    right: -25%;
-    top:-112%;
+    right: -23%;
+    top:-60%;
     padding:10px;
     border: 1px solid #eee;
     border-radius: 2px;
     z-index:999;
+}
+
+.ieStyle{
+	top:120%;
+	right:-1.5rem;
+	transform: scale(0.9) translate(-2px,-12px) !important;
+}
+
+.chromeStyle{
+	right:-3.6rem;
 }
 </style>

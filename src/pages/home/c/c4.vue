@@ -122,8 +122,8 @@ export default {
 		    // current data
 		    type: 'pictorialBar',
 		    symbol: spirit1,
-		    symbolRepeat: 'fixed',
-		    symbolMargin: '15%',
+		    symbolRepeat: 10,
+		    symbolMargin: '20%',
 		    symbolClip: true,
 		    symbolSize: [26,36],
 		    symbolBoundingData: maxData,
@@ -157,8 +157,8 @@ export default {
 		    },
 		    
 		    animationDuration: 0,
-		    symbolRepeat: 'fixed',
-		    symbolMargin: '15%',
+		    symbolRepeat: 10,
+		    symbolMargin: '20%',
 		        symbol: spirit1,
 		        symbolSize: [26,36],
 		        symbolBoundingData: maxData,
@@ -223,8 +223,8 @@ export default {
 		    // current data
 		    type: 'pictorialBar',
 		    symbol: spirit2,
-		    symbolRepeat: 'fixed',
-		    symbolMargin: '15%',
+		    symbolRepeat: 10,
+		    symbolMargin: '20%',
 		    symbolClip: true,
 		    symbolSize: [26,36],
 		    symbolBoundingData: maxData,
@@ -261,8 +261,9 @@ export default {
 		    },
 		    
 		    animationDuration: 0,
-		    symbolRepeat: 'fixed',
-		    symbolMargin: '15%',
+		    symbolRepeat: 10,
+		    symbolClip:false,
+		    symbolMargin: '20%',
 		        symbol: spirit2,
 		        symbolSize: [26,36],
 		        symbolBoundingData: maxData,
@@ -292,7 +293,6 @@ export default {
 .c4{
     height:100%;
     width:100%;
-    //padding-top: 10%;
     #c4{
     	position: absolute;
     	height:40%;

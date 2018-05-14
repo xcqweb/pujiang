@@ -14,7 +14,7 @@
              <span class="oneweek " v-bind:class="{ chose: isActive }" @click='redom7'>省内</span> 
              <span class="twoweek" v-bind:class="{ chose: !isActive }" @click='redom14'>国内</span> 
         </div>
-        <Loading v-show='isloading'></Loading>
+        <Loading v-show='isloading' class='loading'></Loading>
     </div>
 </template>
 
@@ -66,7 +66,7 @@ export default {
                 		let val = params.name+' : '+params.value[2];
                 		return val;
                 	}else{
-                		return params.data.toName+' : '+parseInt(Math.ceil(Math.random()*18+2))
+                		return params.data.toName+' : '+params.data.coords[2]
                 	}
                 }
             },
@@ -117,12 +117,11 @@ export default {
             tooltip: {
                 trigger: 'item',
                 formatter:function(params){
-                	console.log(params)
                 	if(params.seriesType==="effectScatter"){
                 		let val = params.name+' : '+params.value[2];
                 		return val;
                 	}else{
-                		return params.data.toName+' : '+ parseInt(Math.ceil(Math.random()*18+2))
+                		return params.data.toName+' : '+ params.data.coords[2]
                 	}
                 }
             },
@@ -376,7 +375,7 @@ export default {
 					
 				}
 				
-	    		if(re.status===200){
+	    		if(re.data.code===200 || re.data.code==='200'){
 	    			this.isloading=false;
 	    			delete api.params.range;
 	    		}
@@ -403,12 +402,13 @@ export default {
 	    for (var i = 0; i < data.length; i++) {
 	        var dataItem = data[i];
 	        var fromCoord = this.geoCoordMap[dataItem[0].name];
-	        var toCoord = this.geoCoordMap[dataItem[1].name];
+            var toCoord = this.geoCoordMap[dataItem[1].name];
+	        var val = dataItem[1].value;
 	        if (fromCoord && toCoord) {
 	            res.push({
 	                fromName: dataItem[0].name,
 	                toName: dataItem[1].name,
-	                coords: [fromCoord, toCoord]
+	                coords: [fromCoord, toCoord,val]
 	            });
 	        }
 	    }
@@ -718,6 +718,9 @@ export default {
   height: 100%;
   position: relative;
   top: 5%;
+  .loading{
+  	top: -5%;
+  }
   .topTitle{
             position: absolute;
             top:-6px;
@@ -755,6 +758,7 @@ export default {
 #fromEchart{
     width:100%;
     height:100%;
+    top: -5%;
 }
 .week{
     height: 1.5rem !important;

@@ -150,7 +150,7 @@
 	            	},
                     grid: {
                          show: true,
-                         left: '15%',
+                         left: '12%',
                          top: '18%',
                          right: '5%',
                          bottom: '15%',
@@ -188,6 +188,8 @@
                                  color: '#ffffff',//x坐标轴标签字体颜色
                                  fontSize: "80%",
                              },
+                             verticalAlign:'middle', 
+                             margin:15
                         },
                         axisTick:{
                                 show:false,
@@ -209,7 +211,12 @@
                           color:'#ffffff'
                         },
                         splitLine:{
-                          show:false,
+                                show:true,
+                                lineStyle:{
+                                    color:'#20549f',
+                                    width:1,
+                                    type:'solid'
+                                },
                         },
                         axisLabel:{
                             showMinLabel:true,
@@ -257,7 +264,7 @@
             }//option
             let isIE = window.navigator.userAgent.indexOf('Trident')
           if(isIE>-1){ 
-            	option.series[0].label.normal.distance = 10;
+            	option.series[0].label.normal.distance = 15;
 						}
         this.chart.setOption(option)
       }

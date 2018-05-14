@@ -4,7 +4,7 @@
       <div id="container"></div>
       <Loading v-show="isloading"></Loading>
       <span class="num">{{currentNums}}<font></font></span>
-      <span class="title">( 单位 : 人)</span>
+      <span class="title" :class='{t:classt}'>( 单位 : 人)</span>
   </div>
 </template>
 <script>
@@ -27,6 +27,7 @@ export default {
         reTimer:null,
         data_arr:{},
         mins:60,
+        isloading:false,
         btwsecends:5,
         option: {
             backgroundColor: 'rgba(0,0,0,0)',
@@ -34,17 +35,17 @@ export default {
             grid: {
                show: true,
                left: 66,
-               top: '16%',
+               top: '26%',
                right: '8%',
-               bottom: 36,
+               bottom: 30,
                borderWidth: 0,
                borderColor: 'rgba(170,172,178,0.33)',
                backgroundColor: 'rgba(0,0,0,0)'
            },
            calculable: true,
            xAxis: [{
-                 type: 'category',
-               //boundaryGap: ['0%','0%'],
+               type: 'category',
+               boundaryGap: ['10%','10%'],
                //在（type: 'category'）中设置data有效
                splitLine: { //坐标轴在 grid 区域中的分隔线；
                    show: false,
@@ -62,8 +63,9 @@ export default {
                    },
                },
                axisLabel: { 
-               		 margin: 5,
+               		 margin: 15,
                		 align:'left',
+               		 verticalAlign:'middle', 
                    textStyle: {
                        color: '#fff',//x坐标轴标签字体颜色
                        fontSize: '75%',
@@ -78,11 +80,11 @@ export default {
                name:'',
                nameTextStyle:{
                    color:'#ffffff',
-                   fontSize:'75%',
+                   fontSize:18,
                    padding:[0,20,0,0]
                 },
-               minInterval: 1,
-               splitNumber:5,
+               //minInterval: 1,
+               //splitNumber:5,
                splitLine: {
                    show: false,
                    lineStyle: {
@@ -140,6 +142,7 @@ export default {
          },
       }
     },
+    props:['classt','num'],
     computed:{
     	currentNums(){
 				return Rw.string_until.addPoint(this.currentNum)
@@ -163,7 +166,7 @@ export default {
             date.shift();
             data.shift();
             if(isIE>-1){ 
-            	this.currentNum = data[7];
+            	this.currentNum = data[this.num];
 						}else{ 
             	this.currentNum = data[31];
 							
@@ -174,7 +177,7 @@ export default {
             let _self=this;
             var i = 0;
             if(isIE>-1){ 
-            	i=7;
+            	i=this.num;
 						}else{ 
 							i=32;
 						}
@@ -187,8 +190,8 @@ export default {
             let date=[];
             let data=[];
             if(isIE>-1){ 
-							 date=_self.data_arr.date.slice(0,8);
-            	 data=_self.data_arr.data.slice(0,8);
+							 date=_self.data_arr.date.slice(0,this.num+1);
+            	 data=_self.data_arr.data.slice(0,this.num+1);
 						}else{ 
 							 date=_self.data_arr.date.slice(0,33);
             	 data=_self.data_arr.data.slice(0,33);
@@ -206,7 +209,7 @@ export default {
                             _self.data_arr = [];
                             _self.data_arr = re.arr;
                             if(isIE>-1){ 
-														 		i=7;
+														 		i=this.num;
 															}else{ 
 																 i=32;
 															}
@@ -251,10 +254,11 @@ export default {
                   //console.log(re);
               _self.option.xAxis.data=re.arr.date;
               _self.option.series.data=re.arr.data;
+              
               //_self.option.yAxis.max = Math.max(...re.arr.data);
                 Rw.judgment_until.typesof(_self.data_arr);
                 _self.redom('container');
-                if(re.code===200){
+                if(re.code===200 ||　re.code==='200'){
                 	setTimeout( () => {
                 		this.isloading = false;
                 	},5000)
@@ -291,13 +295,15 @@ export default {
 			position: absolute;
 			color: #fff;
 			font-size: 12px;
-			top: 22px;
+			top: 1.4rem;
 			left: 6rem;
 		}
+    .t{
+      top: 1.1rem;
+    }
     #container{
         width:100%;
-        height:92%;
-        margin-top: 1.6rem;
+        height:100%;
     }
     .num{
     	position: absolute;

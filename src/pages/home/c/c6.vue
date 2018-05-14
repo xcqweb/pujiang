@@ -124,11 +124,12 @@
 			            	},
                     grid: {
                          show: true,
-                         left: '15%',
-                         top: '24%',
+                         left: '3%',
+                         top: '28%',
                          right: '5%',
-                         bottom: '22%',
+                         bottom: '5%',
                          borderWidth: 0,
+                         containLabel: true,
                          backgroundColor: 'rgba(0,0,0,0)',
                      },
                     xAxis: [
@@ -158,11 +159,13 @@
                              },
                         },
                          axisLabel: {
-                         	//magin:50,
+                         		showMinLabel:true,
                              textStyle: {
                                  color: '#ffffff',//x坐标轴标签字体颜色
                                  fontSize: '80%',
                              },
+                             margin:15,
+                         		verticalAlign:'middle', 
                         },
                         axisTick:{
                                 show:false,
@@ -185,7 +188,12 @@
                           fontFamily:QuiverItalRegular,
                         },
                         splitLine:{
-                          show:false,
+                                show:true,
+                                lineStyle:{
+                                    color:'#20549f',
+                                    width:1,
+                                    type:'solid'
+                                },
                         },
                         axisLabel:{
                             showMinLabel:true,
@@ -222,7 +230,7 @@
                             position:'top',
                             textStyle:{
                                 color:'#2CC9E2',
-                                fontSize:"90%",
+                                fontSize:"70%",
                             },
                             formatter: '{c}%'
                         }
@@ -234,7 +242,8 @@
             option.series[0].label.normal.textStyle.fontFamily = require('../../../assets/style/QuiverItalRegular.ttf');
           let isIE = window.navigator.userAgent.indexOf('Trident')
           if(isIE>-1){ 
-            	option.series[0].label.normal.distance = 10;
+            	option.series[0].label.normal.distance = 15;
+            	option.grid.left = '13%';
 						}
         this.chart.setOption(option)
       }
@@ -254,7 +263,6 @@
     #c6{
         width: 100%;
         height: 100%;
-        margin-top: 3%;
     }
 }
 </style>

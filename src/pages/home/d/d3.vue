@@ -154,7 +154,8 @@
 				color: rgba(255,255,255,0.7);
             }
             .place{
-                font-size: 15px;
+                font-size: 16px;
+                font-weight: bold;
             }
             .comment-star{
                 display:inline-block;
@@ -162,7 +163,7 @@
                 transform: translateY(10%);
             }
             .text{
-            	font-size: 13px;
+            	font-size: 14px;
                 display:block;
                 margin: 7px 0;
                 line-height:1.5rem;

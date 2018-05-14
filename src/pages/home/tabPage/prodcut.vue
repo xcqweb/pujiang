@@ -24,17 +24,18 @@
                     <!--<img :src="cutoverImg"/>-->
                 </span>
                 <div class="border" v-if='item.show'>
-                  <!--<keep-alive>-->
                     <componet
                     :apiName='item.apiName'
                     :isdate=true
                     :is='item.name'
                     :key="item.id"
+                    :classo=true
+                    :classt=true
+                    :num='item.num'
                     :placeName = 'placeName'
                     :touristProp = "updateData.turist"
                     :istitle=true
                     ></componet>
-                  <!--</keep-alive>-->
                 </div>
             </div>
         </div>
@@ -163,7 +164,7 @@ export default {
                 leftComponents:[
                     {name:'B17',id:'one',index:1,time:100,show:false,title:'产业数据'},
                     {name:'A6',id:'two',index:2,time:600,show:false,title:'游客来源地'},
-                    {name:'A5',id:'three',index:3,time:900,show:false,title:'实时客流'},
+                    {name:'A5',id:'three',index:3,time:900,show:false,title:'实时客流',num:7},
                     {name:'A1',id:'four',index:4,time:1200,show:true,title:'历史客流',apiName:'passengers'},
 //                  {name:'B1',id:'five',index:5,time:1500,show:false,title:'富民指数'},
                     

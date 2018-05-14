@@ -1,6 +1,6 @@
 <template>
   <div class="main_content" v-show='show' id="A1loding">
-  	<span class="title">( 单位 : 人)</span>
+  	<span class="title" :class='{t:classo}'>( 单位 : 人)</span>
     <div id="righthz"></div>
     <!--<div class="week">-->
         <!--<span class="oneweek " v-bind:class="{ chose: isActive }" @click='redom7'>7日</span>-->
@@ -63,7 +63,7 @@ export default {
           ],
       }
     },
-    props:['isdate','apiName'],
+    props:['isdate','apiName','classo'],
     store:store,
     computed:{
 
@@ -113,7 +113,7 @@ export default {
                     grid: {
                          show: true,
                          left: 66,
-                         top: 66,
+                         top: '26%',
                          right: '6%',
                          bottom: 30,
                          borderWidth: 0,
@@ -151,9 +151,11 @@ export default {
                         },
                          axisLabel: {
                              textStyle: {
-                                 color: '#ffffff',//x坐标轴标签字体颜色
+                                 color: '#fff',//x坐标轴标签字体颜色
                                  fontSize: "75%",
                              },
+                             margin: 15,
+                             verticalAlign:'middle',
                         },
                         axisTick:{
                                 show:false,
@@ -172,7 +174,7 @@ export default {
                     yAxis:{
                     		name:"",
                     		nameTextStyle:{
-                    			fontSize:'100%',
+                    			fontSize: 20,
                     			verticalAlign:'bottom',
                     			align:'left',
                     			margin:[60,60,60,60]
@@ -236,7 +238,7 @@ export default {
                             distance:5,
                             textStyle:{
                                 color:'#2CC9E2',
-                                fontSize:"90%"
+                                fontSize:"70%"
                             }
                         }
                        },
@@ -291,6 +293,9 @@ export default {
 	font-size: 12px;
 	top: 1rem;
 	left: 6rem;
+}
+.t{
+  top: 1.1rem;
 }
 .clock{
 	width: 30%;
