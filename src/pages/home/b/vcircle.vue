@@ -1,5 +1,5 @@
 <template>
-    <div class="ta_c">
+    <div :class="comStyle">
         <div class='rotImg'>
             <div class="Rotation1 img ">
                 <img :src="circles"/>
@@ -14,6 +14,7 @@
                 <img :src="lines"/>
             </div>
             <font v-show='percents'>{{percents}}</font>
+            <span v-show='isVideo' class="title">拥堵指数</span>
         </div>
     </div>
 </template>
@@ -80,10 +81,18 @@ export default {
 		if(num>2&&num<=3)return this.line3;
 		if(num>3&&num<=4)return this.line4;
 		if(num>4&&num<=5)return this.line5;
+  	},
+  	comStyle(){
+  		if(this.isVideo){
+    			return 'ta_cv'
+    		}else{
+    			return 'ta_c'
+    		}
   	}
   },
   props:{
-  	percents:Number
+  	percents:Number,
+  	isVideo:Boolean
   }
 }
 </script>
@@ -103,19 +112,45 @@ export default {
         align-items: center;
         justify-content: center;
     }
+    img{                  
+	    max-width: 100%;
+	    max-height: 100%;
+	    width: auto;
+	    height: auto;
+	}
+	img:nth-child(1){                  
+	    min-width: 100%;
+	    min-height: 100%;
+	    width: auto;
+	    height: auto;
+	}
+	
+	.img{
+    height: auto;
+    text-align: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    position: absolute;
 }
-img{                  
-    max-width: 100%;
+
+.line{
     max-height: 100%;
-    width: auto;
-    height: auto;
+    max-width: 100%;
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
 }
-img:nth-child(1){                  
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
+font{
+    font-family: numberFont;
+    color: #fff;
+    align-content: center;
+    font-size:2rem;
 }
+}
+
 @keyframes rotation{
 from {
 	transform: rotate(0deg);
@@ -187,37 +222,139 @@ animation: rotation 3s linear infinite;
 -o-animation: rotation 3s linear infinite;
 }
 
-.img{
-    height: auto;
-    text-align: center;
-    top: 0;
-    left: 0;
-    width: 100%;
-    position: absolute;
-}
 
-.line{
-    max-height: 100%;
-    max-width: 100%;
-    text-align: center;
-    position: absolute;
-    width: 100%;
-    left: 0;
-    top: 0;
-}
-font{
-    font-family: numberFont;
-    color: #fff;
-    /*position: absolute;*/
-    /*display: inline-block;*/
-    /*top: 0;
-    transform: translateY(50%);
-    left: 0;
-    transform: translateX(-50%);
+
+
+
+.ta_cv{
     height: 100%;
     width: 100%;
-    text-align: center;*/
-    align-content: center;
-    font-size:2rem;
+    position: relative;
+    .rotImg{
+        height: 100%;
+        width: 100%;
+        top:0;
+        left: 0;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    img{                  
+	    max-width: 100%;
+	    max-height: 100%;
+	    width: auto;
+	    height: auto;
+	}
+	img:nth-child(1){                  
+	    min-width: 100%;
+	    min-height: 100%;
+	    width: auto;
+	    height: auto;
+	}
+	.img{
+	    height: auto;
+	    text-align: center;
+	    top: -20px;
+	    left: 0;
+	    min-width: 100%;
+	    position: absolute;
+	}
+	
+	.line{
+	    max-height: 100%;
+	    max-width: 120%;
+	    text-align: center;
+	    position: absolute;
+	    width: 100%;
+	    left: 0;
+	    top: -20px;
+	}
+	font{
+	    font-family: numberFont;
+	    color: #fff;
+	    transform: translateY(-8px);
+	    font-size:20px;
+	}
+	
+	.title{
+		color: #fff;
+	    position: absolute;
+	    bottom: -10px;
+	    font-size:16px;
+	}
 }
+
+@keyframes rotation{
+from {
+	transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	}
+to {
+	-webkit-transform: rotate(360deg);
+	-ms-transform: rotate(360deg);
+	-moz-transform: rotate(360deg);
+	-o-transform: rotate(360deg);
+}
+}
+@keyframes rotation2{
+from {
+	transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	}
+to {
+	transform: rotate(-360deg);
+	-webkit-transform: rotate(-360deg);
+	-ms-transform: rotate(-360deg);
+	-moz-transform: rotate(-360deg);
+	-o-transform: rotate(-360deg);
+	}
+}
+.Rotation1{
+transform: rotate(360deg);
+-webkit-transform: rotate(360deg);
+-ms-transform: rotate(360deg);
+-moz-transform: rotate(360deg);
+-o-transform: rotate(360deg);
+
+animation: rotation 3s linear infinite;
+-moz-animation: rotation 3s linear infinite;
+-webkit-animation: rotation 3s linear infinite;
+-ms-animation: rotation 3s linear infinite;
+-o-animation: rotation 3s linear infinite;
+}
+.Rotation2{
+transform: rotate(360deg);
+-webkit-transform: rotate(360deg);
+-ms-transform: rotate(360deg);
+-moz-transform: rotate(360deg);
+-o-transform: rotate(360deg);
+
+animation: rotation2 3s linear infinite;
+-moz-animation: rotation2 3s linear infinite;
+-ms-animation: rotation2 3s linear infinite;
+-webkit-animation: rotation2 3s linear infinite;
+-o-animation: rotation2 3s linear infinite;
+}
+.Rotation3{
+transform: rotate(360deg);
+-webkit-transform: rotate(360deg);
+-ms-transform: rotate(360deg);
+-moz-transform: rotate(360deg);
+-o-transform: rotate(360deg);
+
+animation: rotation 3s linear infinite;
+-moz-animation: rotation 3s linear infinite;
+-ms-animation: rotation 3s linear infinite;
+-webkit-animation: rotation 3s linear infinite;
+-o-animation: rotation 3s linear infinite;
+}
+
+
 </style>

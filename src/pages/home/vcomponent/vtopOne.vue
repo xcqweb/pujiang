@@ -291,11 +291,11 @@ export default {
 	position: absolute;
 	color: #fff;
 	font-size: 12px;
-	top: 1rem;
+	top: 1.1rem;
 	left: 6rem;
 }
 .t{
-  top: 1.1rem;
+  top: 1.2rem;
 }
 .clock{
 	width: 30%;

@@ -34,7 +34,6 @@ let optionProps =  {
     },
     data () {
         return {
-        	//scienceProps:'',
         	code:0,//景区编码
         	isloading: false,
             nameToCode:{
@@ -90,12 +89,12 @@ let optionProps =  {
     },
     methods:{
         watchTouristFn(val){
-            //console.log(val)
             this.code = val;
         },	
         
     },
     created(){
+    	this.isloading = true
       	this.getData({code:0});
     },
     mounted () {

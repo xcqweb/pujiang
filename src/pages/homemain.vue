@@ -119,6 +119,7 @@ export default {
     height: 100vh;
     position: relative;
     background-color: #0d1f6d;
+    overflow: hidden;
     .header{
         position:fixed;
         width: 100%;

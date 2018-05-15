@@ -16,6 +16,7 @@ const loginseven =resolve => require(['@/pages/login/loginseven.vue'], resolve);
 const homepage = resolve => {require.ensure(['@/pages/home/tabPage/homepage.vue'], () => {resolve(require('@/pages/home/tabPage/homepage.vue'))})}
 //const homepage2 = resolve => {require.ensure(['@/pages/home/tabPage/homepage2.vue'], () => {resolve(require('@/pages/home/tabPage/homepage2.vue'))})}
 
+const Video = resolve => {require.ensure(['@/pages/home/tabPage/video.vue'], () => {resolve(require('@/pages/home/tabPage/video.vue'))})}
 
 const Precision = resolve => {require.ensure(['@/pages/home/tabPage/precision.vue'], () => {resolve(require('@/pages/home/tabPage/precision.vue'))})}
 const prodcut = resolve => {require.ensure(['@/pages/home/tabPage/prodcut.vue'], () => {resolve(require('@/pages/home/tabPage/prodcut.vue'))})}
@@ -56,6 +57,7 @@ const router= new Router({
         iconCls: 'el-icon-message',//图标样式class
         children: [
             { path: '', component: homepage, name: 'homepage' },
+            { path: 'video', component: Video, name: 'video' },
             { path: 'prodcut', component: prodcut, name: 'prodcut' },
             { path: 'precision', component: Precision, name: 'Precision' },
             { path: 'souceShow', component: souceShow, name: 'souceShow' },

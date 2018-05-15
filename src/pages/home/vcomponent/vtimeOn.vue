@@ -295,11 +295,11 @@ export default {
 			position: absolute;
 			color: #fff;
 			font-size: 12px;
-			top: 1.4rem;
+			top: 1.5rem;
 			left: 6rem;
 		}
     .t{
-      top: 1.1rem;
+      top: 1.2rem;
     }
     #container{
         width:100%;

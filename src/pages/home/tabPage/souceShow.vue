@@ -26,6 +26,7 @@
                 <div class="border" v-if='item.show'>
                   <!--<keep-alive>-->
                     <componet
+                    :isVideo = 'item.isVideo'
                     :is='item.name'
                     :key="item.id"
                     :place='place'
@@ -164,7 +165,7 @@ export default {
                 topComponents:[
                     {name:'D1',id:'one',index:1,time:100,show:false,title:'景区客流热力图与视频监控'},
                     {name:'D6',id:'two',index:2,time:300,show:false,title:'景区客流'},
-                    {name:'D8',id:'three',index:3,time:600,show:false,title:'拥堵指数'},
+                    {name:'D8',id:'three',index:3,time:600,show:false,title:'拥堵指数',isVideo:false},
                     {name:'D3',id:'four',index:4,time:900,show:false,title:'游客评论'},
                 ],
                 bottomComponents:[

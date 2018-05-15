@@ -383,9 +383,9 @@ export default {
                     
                      let lev = new Date(end.join('/')).getTime()/1000-new Date(begin.join('/')).getTime()/1000
                     if(new Date(end)>new Date()||new Date(begin)>new Date() ){
-                           alert('所选时间不能大于当前时间')
                            this.rangeEnd=[]
 	                        this.rangeBegin=[]
+	                        alert('所选时间不能大于当前时间')
                            return;
                     }else{
 //                  	if(lev>950400){

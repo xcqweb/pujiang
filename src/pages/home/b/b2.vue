@@ -1,12 +1,12 @@
 <template>
-    <div class="b2">
+    <div :class="comStyle">
         <canvas id="pieB2"></canvas>
         <div class="circle">
             <!--<img :src="imgacircle"/>-->
         </div>
         <span>{{percent}}%</span>
-        <!--<div class="text"><font>预警客流</font><font></font></div>-->
-        <p class="configBtn" @click="passagerConfig">设置</p>
+        <div class="text" v-show="isVideo"><font>预警客流</font><font></font></div>
+        <p class="configBtn" @click="passagerConfig" v-show="!isVideo">设置</p>
       <Loading v-show="isloading"></Loading>
     </div>
 </template>
@@ -32,7 +32,15 @@ export default {
         configNumber:''
     }
   },
+  props:['isVideo'],
   computed: {
+  	comStyle(){
+  		if(this.isVideo){
+    			return 'b2v'
+    		}else{
+    			return 'b2'
+    		}
+  	}
   },
   watch:{
   	code:function(){
@@ -71,12 +79,10 @@ export default {
         //range控件信息
         var rangeValue = 30;
         var nowRange  //用于做一个临时的range
-        if(this.percent<5){
-        	nowRange = 15
-        }else{
-        	nowRange=this.percen*0.9
-        }
         
+    	nowRange=this.percent+10
+      	nowRange = nowRange<=11&&nowRange>0?11:nowRange
+		nowRange = nowRange>=100?100:nowRange
 
         //画布属性
         var mW = canvas.width = 250;
@@ -102,7 +108,7 @@ export default {
         var IsdrawCircled = false;
         var drawCircle = function(){
 			
-			  ctx.arc(126,126 ,95,0,2*Math.PI,false);  
+			  ctx.arc(126,126 ,98,0,2*Math.PI,false);  
 			  ctx.strokeStyle = 'transparent';
 		      ctx.stroke();  
 			  ctx.fillStyle = 'rgba(0, 218, 255,0.2)';
@@ -127,7 +133,7 @@ export default {
 			
 			
 			ctx.beginPath();
-            ctx.arc(r, r, cR, 0, 2 * Math.PI);
+            ctx.arc(r+1, r+1, cR+7, 0, 2 * Math.PI);
             ctx.clip();
         }
 
@@ -296,6 +302,77 @@ export default {
             margin-left:10%;
             color:#1da7fe;
             font-size:1rem;
+            /*font-family: numberFont;*/
+        }
+    }
+    img{
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+    }
+}
+
+
+.b2v{
+    height:100%;
+    width:100%;
+    position:relative;
+    span{
+        position:absolute;
+        display: block;
+        width: 100%;
+        height: 2rem;
+        line-height: 2rem;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        color:#fff;
+        font-size: 1.6rem;
+        font-family: numberFont;
+    }
+    .configBtn{
+    	position: absolute;
+    	right: 5%;
+    	top: 5%;
+    	color: #5798CC;
+    	font-weight: bold;
+    	border: 0.2rem solid #50A6D5;
+    	border-radius: 0.4rem;
+    	padding: 0.2rem 0.8rem;
+    	cursor: pointer;
+    }
+    #pieB2{
+        height:136px;
+        width: 136px;
+        position:absolute;
+        top: 0px;
+        left: 0px;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+    }
+    .circle{
+        height: auto;
+        width:110/223*100%;
+        text-align: center;
+        position:absolute;
+        top:55%;
+        left:50%;
+        transform: translate(-50%,-50%);
+    }
+    .text{
+        width:80%;
+        position:absolute;
+        bottom:0.6rem;
+        left:50%;
+        transform: translateX(-50%);
+        font{
+            margin-left:10%;
+            color:#fff;
+            font-size:16px;
             /*font-family: numberFont;*/
         }
     }

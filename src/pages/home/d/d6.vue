@@ -35,10 +35,49 @@
         height:40%;
     }
 }
+
+.b6v{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    span{
+        margin-bottom:5%;
+        display:block;
+        color:#ffd800;
+        font-size:32px;
+        font-family: numberFont;
+        font{
+            margin-left: .3rem;
+            display: inline-block;
+            color:#ffd800;
+            font-size: 1.2rem;
+        }   
+    }
+    font{
+        display:block;
+        color:#43dbff;
+        font-size: 22px;
+        letter-spacing: .2rem;
+    }
+    .b6__top{
+    	width: 250px;
+        position:absolute;
+        top:54px;
+        left: 0;
+        height:90px;
+    }
+    .b6__bottom{
+    	width: 250px;
+        position:absolute;
+        top: 54px;
+        right: 0;
+        height:90px;
+    }
+}
 </style>
 
 <template>
-    <div class="b6">
+    <div :class="comStyle">
         <div class="b6__top">
             <span>{{currentNums}}<font></font></span>
             <font>当前客流总人数</font>
@@ -65,7 +104,8 @@ export default {
         }
     },
     props:{
-    	place:String
+    	place:String,
+    	isVideo:Boolean
     },
     computed: { 
     	//给数据加上分隔符
@@ -74,6 +114,13 @@ export default {
 		},
 		currentNums(){
 			return until.string_until.addPoint(this.currentNum);
+		},
+		comStyle(){
+			if(this.isVideo){
+				return 'b6v'
+			}else{
+				return 'b6'
+			}
 		}
     },
     //观察景点的变化来响应数据

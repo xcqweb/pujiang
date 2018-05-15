@@ -31,12 +31,46 @@
     }
 
 }
+.d8v{
+    height: 100%;
+    width: 100%;
+    position: relative;
+    .box{
+        position: absolute;
+        width: 125px;
+        height: 132px;
+        top: 48px;
+        left: 80px;
+        
+    }
+    span{
+        position: absolute;
+        top: 68px;
+        left: 80px;
+        display: inline-block;
+        width: 50%;
+        height: 10%;
+        font-size: 20px;
+        color: #c7c8f9;
+        
+    }
+    .loading{
+    	position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0%;
+		left: 0%;
+    }
+
+}
+
+
 </style>
 <template>
-    <div class="d8">
+    <div :class="comStyle">
     	<div>
 	        <div class="box">
-	            <vcircle :percents="percent" class='item'></vcircle>     
+	            <vcircle :percents="percent" class='item' :class='isVideo' :isVideo='isVideo'></vcircle>     
 	        </div>
 	        <span :style="{color:colorCom}">{{txt}}</span>
 	    </div>
@@ -59,7 +93,7 @@ export default {
         text:'一般'
     }
     },
-    props:['place'],
+    props:['place','isVideo'],
     watch: { 
     },
     computed:{
@@ -78,6 +112,13 @@ export default {
     			if(num>2&&num<=3)return '#F2FF00';
     			if(num>3&&num<=4)return '#FFA200';
     			if(num>4&&num<=5)return "#FF0000";
+    	},
+    	comStyle(){
+    		if(this.isVideo){
+    			return 'd8v'
+    		}else{
+    			return 'd8'
+    		}
     	}
     },
     methods: {

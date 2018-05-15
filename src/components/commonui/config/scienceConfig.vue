@@ -167,9 +167,9 @@
 					margin-top: 1rem;
 					padding: 0.3rem 0.8rem;
 					border-radius: 1rem;
+					cursor: pointer;
 				}
 				.history{
-					
 					left: 38%;
 				}
 				.config{

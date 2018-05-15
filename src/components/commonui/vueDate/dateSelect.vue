@@ -6,10 +6,13 @@
 				
 			</li>
 		</ul>
-		<ul class="subMenu" v-show="status">
-			<li v-for="month in months" @click="choseDates(month)">{{month}}</li>
-			<span class="arrow"></span>
-		</ul>
+		<div class="subMenuBox">
+			<ul class="subMenu" v-show="status">
+				<li v-for="month in months" @click="choseDates(month)">{{month}}</li>
+				<span class="arrow"></span>
+			</ul>
+		</div>
+		
 		<div class="toast" v-show="showStatus" @click="hide($event)"></div>
 	</div>
 </template>
@@ -166,30 +169,39 @@
 			width: 100vw;
 			height: 100vh;
 		}
-			.subMenu{
-			transform: translate(90px,44px);
+		.subMenuBox{
+			width: 90px;
+			overflow: hidden;
 			position: absolute;
 			height: 210px;
-			width: 90px;
-			left: 50px;
 			top: -0.5rem;
-			background: #193583;
-			border: 1px solid #1b44ba;
-			overflow-y: auto;
-			overflow-x: hidden;
-			display: block;
-			z-index: 123;
-			box-shadow: 1px 0 30px rgba(1, 1, 13, 0.4);
-			li{
-				height: 30px;
+			left: 50px;
+			.subMenu{
+				transform: translate(90px,44px);
+				position: absolute;
+				height: 210px;
 				width: 100px;
-				line-height: 30px;
-				cursor: pointer;
-			}
-			li:hover{
-				background-color: #3B69BE;
+				left: 50px;
+				top: -0.5rem;
+				background: #193583;
+				border: 1px solid #1b44ba;
+				overflow-y: auto;
+				overflow-x: hidden;
+				display: block;
+				z-index: 123;
+				box-shadow: 1px 0 30px rgba(1, 1, 13, 0.4);
+				li{
+					height: 30px;
+					width: 100px;
+					line-height: 30px;
+					cursor: pointer;
+				}
+				li:hover{
+					background-color: #3B69BE;
+				}
 			}
 		}
+			
 		.title{
 			width: 10rem;
 			height: 1.5rem;

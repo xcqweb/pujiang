@@ -17,10 +17,10 @@
         <div class="login_group clearfix">
             <h1></h1>
             <div class="user">
-                <input id="username" autofocus="autofocus" checked="checked" v-model.trim="loginForm.username" placeholder="请输入账号" type="text"/>  
+                <input id="username" autofocus="autofocus" checked="checked" v-model.trim="loginForm.username" placeholder="请输入账号" type="text" autocomplete="off"/>  
             </div>
             <div class="password">
-                <input id='password' class="warning" v-model.trim="loginForm.password"  @keyup.enter="logisn" placeholder="请输入密码" type="password"/>  
+                <input id='password' class="warning" v-model.trim="loginForm.password"  @keyup.enter="logisn" placeholder="请输入密码" type="password" autocomplete="off"/>  
             </div>
             <!-- <div class="test">
                 <input id="trim" v-model.trim="loginForm.code" v-on:keyup.enter="login" placeholder="验证码" type="text"/>

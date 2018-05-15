@@ -45,12 +45,10 @@ import Vue from 'vue'
 import echarts_resize from '../../../common/js/echarts_resize.js'
 import echarts from 'echarts';
 import api from '@/api/moudles/tanzhenData'
-//import vSelect from '../../../components/commonui/dropdown/dropdown-menu.vue'
 import until from '@/common/js/until/index.js'
 import Start_end_class from '@/common/js/star_end_class.js'
 import {begindaytime} from '@/common/js/gtime.js'
 import optionProps from '@/common/js/mixin/optionProps.js'
-//import Bus from '@/common/js/bus.js'
 export default {
 	name: 'a2',
 	mixins: [optionProps],

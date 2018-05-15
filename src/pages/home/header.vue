@@ -26,8 +26,8 @@ export default {
   data () {
     return {
       items:[
-//      {name:'总览',link:'/',status:'unchose'},
-        {name:'总览',link:'/',status:'unchose'},
+        {name:'视频监控',link:'/video',status:'unchose'},
+        {name:'总览',link:'/',status:'chose'},
         {name:'产业监测平台',link:'/prodcut',status:'chose'},
         {name:'精准营销平台',link:'/precision',status:'chose'},
         {name:'应急指挥平台',link:'/souceShow',status:'chose'},
@@ -143,8 +143,8 @@ a:visited { text-decoration: none;}
         position: absolute;
         top: 32%;
         left: 2%;
-        font-size: 1.8rem;
-        color:#85e6ff;
+        font-size: 28px;
+        color:#00E5FF;
 
     }
     ul{
@@ -153,7 +153,7 @@ a:visited { text-decoration: none;}
         right: 1rem;
         li{
             float: left;
-            margin-left: 1rem;
+            width: 100px;
             cursor: pointer;
             a{
                 display:inline-block;
@@ -162,12 +162,12 @@ a:visited { text-decoration: none;}
             }
             span{
                 display:inline-block;
-                width: 30px;
-                height: 28px;
+                width: 22px;
+                height: 22px;
             }
             font{
                 display: block;
-                font-size: 1rem;
+                font-size: 14px;
                 margin-top:7px;
             }
             &.chose{
@@ -185,8 +185,18 @@ a:visited { text-decoration: none;}
         }
         
       
-        
         li:nth-of-type(1){
+            .unchose{
+                background-image:url('../../assets/images/home/video1.png');
+                background-size: 100% 100%;
+            }
+            .chose{
+                background-image:url('../../assets/images/home/video2.png');
+                background-size: 100% 100%;
+            }
+        }
+        
+        li:nth-of-type(2){
             .unchose{
                 background-image:url('../../assets/images/home/总览.png');
                 background-size: 100% 100%;
@@ -196,7 +206,7 @@ a:visited { text-decoration: none;}
                 background-size: 100% 100%;
             }
         }
-        li:nth-of-type(2){
+        li:nth-of-type(3){
             .unchose{
                 background-image:url('../../assets/images/home/产品监测平台.png');
                 background-size: 100% 100%;
@@ -206,7 +216,7 @@ a:visited { text-decoration: none;}
                 background-size: 100% 100%;
             }
         }
-        li:nth-of-type(3){
+        li:nth-of-type(4){
             .unchose{
                 background-image:url('../../assets/images/home/精准营销平台.png');
                 background-size: 100% 100%;
@@ -216,7 +226,7 @@ a:visited { text-decoration: none;}
                 background-size: 100% 100%;
             }
         }
-        li:nth-of-type(4){
+        li:nth-of-type(5){
             .unchose{
                 background-image:url('../../assets/images/home/资源展示平台.png');
                 background-size: 100% 100%;
@@ -226,7 +236,7 @@ a:visited { text-decoration: none;}
                 background-size: 100% 100%;
             }
         }
-        li:nth-of-type(5){
+        li:nth-of-type(6){
             .unchose{
                 background-image:url('../../assets/images/home/2171516605538.jpg');
                 background-size: 100% 100%;
