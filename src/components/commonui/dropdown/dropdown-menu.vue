@@ -19,7 +19,7 @@ selectlist:{
 !-->
 <template>
     <div class="v-dropdown-menu" 
-
+		style="border: none;"
         @click = 'showselect' 
         v-bind:style="{ width:selectList.width ,left:selectList.left,top:selectList.top}" 
         >
@@ -188,29 +188,28 @@ import Vue from 'vue'
     .up{
         display:inline-block;
         position: absolute;
-        height:9px;
-        width:14px;
+        height:30px;
+        width:30px;
         right:5%;
-        top:30%;
+        top: 0%;
         background-image: url('../../../assets/images/home/up.png');
-        background-size: 100% 100%;
+        background-size: cover;
     }
     .down{
         display:inline-block;
         position: absolute;
-        height:9px;
-        width:14px;
+        height:30px;
+        width:30px;
         right:5%;
-        top:35%;
+        top:0%;
         background-image: url('../../../assets/images/home/down.png');
-        background-size: 100% 100%;
+        background-size: cover;
     }
 }
 .listdiv{
     position: absolute;
     left:0;
     top:100%;
-    // max-height: 10.8rem;
     width: 100%;
     overflow: hidden;
     box-shadow: 1px 0 30px  rgba(1,1,13,0.4);
@@ -225,7 +224,7 @@ import Vue from 'vue'
                 position: absolute;
                 bottom: 10px;
                 left: 50%;
-                transform: translate(-50%,0);
+                transform: translate(-80%,0);
                 border-left: solid 10px transparent;
                 border-top:solid 5px white;
                 border-right: solid 10px transparent;
@@ -250,7 +249,7 @@ import Vue from 'vue'
             color: white;
             background-color: #193583;
             height: 1.8rem;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             line-height: 1.8rem;
             white-space: nowrap;
             overflow: hidden;
@@ -267,8 +266,8 @@ import Vue from 'vue'
     width:100%;
     text-align: center;
     color: white;
-
-
+	position: relative;
+	z-index: 1000000;
 }
 
 .dropdown-menu-p{
@@ -281,7 +280,7 @@ import Vue from 'vue'
     cursor: pointer;
     text-align: center;
     z-index: -1;
-    font-size: .9rem;
+    font-size: 0.8rem;
     line-height: 1.8rem;
     white-space: nowrap;
     letter-spacing: 1px;

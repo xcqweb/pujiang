@@ -94,7 +94,7 @@ export default {
 <style lang="less" scoped>
 .c5{
     position:absolute;
-    height:90%;
+    height:100%;
     width:100%;
     
     .title{
@@ -107,7 +107,8 @@ export default {
         font-size:.8rem;
         div{
             width:100%;
-            height:50%;
+            height:36%;
+            margin-top: 60%;
         }
         .top{
             background-color:#6792fb;
@@ -132,7 +133,7 @@ export default {
         left:5%;
         width:100%;
         height:24%;
-        top: 24%;
+        top: 18%;
         .line{
             position:absolute;
             width:80%;
@@ -177,9 +178,9 @@ export default {
     ul:nth-of-type(2){
         position:absolute;
         left:5%;
-        top:68%;
+        top:60%;
         width:100%;
-        height:29%;
+        height:25%;
         .title{
             background-color:#606bff;
         }

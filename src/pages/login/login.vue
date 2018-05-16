@@ -131,7 +131,8 @@ import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
               formData.append('password', this.loginForm.password);
               
              // console.log(formData)
-               axios.post('http://114.55.237.138/pj/api/user/login',formData)
+                 axios.post(API_HZ+'/pj/api/user/login',formData)
+               //axios.post('http://114.55.237.138/pj/api/user/login',formData)
                 .then((data ) => {
                 	//console.log(data);
                     this.logintext='登录中'; 
@@ -143,10 +144,10 @@ import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
 	                        }else{
 	                              let token = data.data.data.token;
 	                              setCookie('token', token);
-	                              this.$router.push({ path: '/' });
+	                              this.$router.replace({ path: '/' });
 	                              this.logintext='登录';
 	                              this.loginForm.password='';
-	                              window.location.href = API_HZ
+	                              //window.location.href = API_HZ
 	                              
 	                        }
 	                    }else{

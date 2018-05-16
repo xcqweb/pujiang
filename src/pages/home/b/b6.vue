@@ -55,7 +55,9 @@ export default {
       switchWea(s){
             if(s==='-1'){
                     return 'redom'
-                }else if(s==='0'||s==='2'){
+                }else if(s==='0'){
+                	return 'qing'
+                }else if(s==='2'){
                     return 'yejianqing'
                 }else if(s==='1'||s==='3'){
                     return 'yejianqing'
@@ -132,7 +134,7 @@ export default {
                       location : this.apiData.location,
                     },
                     success:function(res){
-						//console.log(res)
+						console.log(res)
                       _self.$nextTick(function () {
                         _self.nowRes = res.results[0].now;
                       });

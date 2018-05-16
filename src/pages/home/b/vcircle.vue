@@ -13,9 +13,9 @@
             <div class=" line">
                 <img :src="lines"/>
             </div>
-            <font v-show='percents'>{{percents}}</font>
-            <span v-show='isVideo' class="title">拥堵指数</span>
         </div>
+        <font v-show='percents'>{{percents}}</font>
+        <font v-show='isVideo' class="title">拥堵指数</font>
     </div>
 </template>
 
@@ -83,11 +83,16 @@ export default {
 		if(num>4&&num<=5)return this.line5;
   	},
   	comStyle(){
-  		if(this.isVideo){
-    			return 'ta_cv'
-    		}else{
-    			return 'ta_c'
-    		}
+  		let isIE = window.navigator.userAgent.indexOf('Trident')
+        if(isIE>-1&&this.isVideo){ 
+    		return 'ta_cvie'
+		}
+		if(this.isVideo){
+			return 'ta_cv'
+		}else{
+			return 'ta_c'
+		}
+  		
   	}
   },
   props:{
@@ -144,10 +149,14 @@ export default {
     top: 0;
 }
 font{
+	width: 50%;
     font-family: numberFont;
     color: #fff;
-    align-content: center;
+    text-align: left;
     font-size:2rem;
+    position: absolute;
+    bottom: 2.8rem;
+    left:1.78rem;
 }
 }
 
@@ -227,8 +236,8 @@ animation: rotation 3s linear infinite;
 
 
 .ta_cv{
-    height: 100%;
-    width: 100%;
+    height: 126px;
+    width: 126px;
     position: relative;
     .rotImg{
         height: 100%;
@@ -255,32 +264,39 @@ animation: rotation 3s linear infinite;
 	.img{
 	    height: auto;
 	    text-align: center;
-	    top: -20px;
 	    left: 0;
+	    top: -6px;
 	    min-width: 100%;
 	    position: absolute;
 	}
 	
 	.line{
 	    max-height: 100%;
-	    max-width: 120%;
+	    max-width: 100%;
 	    text-align: center;
 	    position: absolute;
 	    width: 100%;
 	    left: 0;
-	    top: -20px;
+	    top: -6px;
 	}
 	font{
+		width: 100%;
 	    font-family: numberFont;
 	    color: #fff;
-	    transform: translateY(-8px);
+	    position: absolute;
+	    left: 0;
+	    bottom: 36%;
 	    font-size:20px;
+	    text-align: center;
 	}
 	
 	.title{
+		width: 100%;
 		color: #fff;
 	    position: absolute;
-	    bottom: -10px;
+	    text-align: center;
+	    bottom: -24%;
+	    left: 0;
 	    font-size:16px;
 	}
 }
@@ -356,5 +372,140 @@ animation: rotation 3s linear infinite;
 -o-animation: rotation 3s linear infinite;
 }
 
+.ta_cvie{
+    height: 126px;
+    width: 126px;
+    position: relative;
+    .rotImg{
+        height: 100%;
+        width: 100%;
+        top:0;
+        left: 0;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    img{                  
+	    max-width: 100%;
+	    max-height: 100%;
+	    width: auto;
+	    height: auto;
+	}
+	img:nth-child(1){                  
+	    min-width: 100%;
+	    min-height: 100%;
+	    width: auto;
+	    height: auto;
+	}
+	.img{
+	    height: auto;
+	    text-align: center;
+	    left: 0;
+	    top: 10px;
+	    min-width: 100%;
+	    position: absolute;
+	}
+	
+	.line{
+	    max-height: 100%;
+	    max-width: 100%;
+	    text-align: center;
+	    position: absolute;
+	    width: 100%;
+	    left: 5%;
+	    bottom: -26%;
+	}
+	font{
+		width: 100%;
+	    font-family: numberFont;
+	    color: #fff;
+	    position: absolute;
+	    left: 6%;
+	    bottom: 4%;
+	    font-size:1.5rem;
+	    text-align: center;
+	}
+	
+	.title{
+		width: 100%;
+		color: #fff;
+	    position: absolute;
+	    text-align: center;
+	    bottom: -56%;
+	    left: 5%;
+	    font-size:16px;
+	}
+}
 
+@keyframes rotation{
+from {
+	transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	}
+to {
+	-webkit-transform: rotate(360deg);
+	-ms-transform: rotate(360deg);
+	-moz-transform: rotate(360deg);
+	-o-transform: rotate(360deg);
+}
+}
+@keyframes rotation2{
+from {
+	transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	}
+to {
+	transform: rotate(-360deg);
+	-webkit-transform: rotate(-360deg);
+	-ms-transform: rotate(-360deg);
+	-moz-transform: rotate(-360deg);
+	-o-transform: rotate(-360deg);
+	}
+}
+.Rotation1{
+transform: rotate(360deg);
+-webkit-transform: rotate(360deg);
+-ms-transform: rotate(360deg);
+-moz-transform: rotate(360deg);
+-o-transform: rotate(360deg);
+
+animation: rotation 3s linear infinite;
+-moz-animation: rotation 3s linear infinite;
+-webkit-animation: rotation 3s linear infinite;
+-ms-animation: rotation 3s linear infinite;
+-o-animation: rotation 3s linear infinite;
+}
+.Rotation2{
+transform: rotate(360deg);
+-webkit-transform: rotate(360deg);
+-ms-transform: rotate(360deg);
+-moz-transform: rotate(360deg);
+-o-transform: rotate(360deg);
+
+animation: rotation2 3s linear infinite;
+-moz-animation: rotation2 3s linear infinite;
+-ms-animation: rotation2 3s linear infinite;
+-webkit-animation: rotation2 3s linear infinite;
+-o-animation: rotation2 3s linear infinite;
+}
+.Rotation3{
+transform: rotate(360deg);
+-webkit-transform: rotate(360deg);
+-ms-transform: rotate(360deg);
+-moz-transform: rotate(360deg);
+-o-transform: rotate(360deg);
+
+animation: rotation 3s linear infinite;
+-moz-animation: rotation 3s linear infinite;
+-ms-animation: rotation 3s linear infinite;
+-webkit-animation: rotation 3s linear infinite;
+-o-animation: rotation 3s linear infinite;
+}
 </style>

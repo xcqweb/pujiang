@@ -102,6 +102,7 @@ let D8 = resolve => {require.ensure(['@/pages/home/d/d8.vue'], () => {resolve(re
 
 //视频监控客流预警和拥堵指数
 let D9 = resolve => {require.ensure(['@/pages/home/d/d9.vue'], () => {resolve(require('@/pages/home/d/d9.vue'))})}
+let D10 = resolve => {require.ensure(['@/pages/home/d/d10.vue'], () => {resolve(require('@/pages/home/d/d10.vue'))})}
 //旅游关键字
 let D11 = resolve => {require.ensure(['@/pages/home/d/d11.vue'], () => {resolve(require('@/pages/home/d/d11.vue'))})}
 
@@ -152,6 +153,7 @@ let status =[
     'D7',
     'D8',
     'D9',
+    'D10',
     'D11'
     ]
 let conponets={}

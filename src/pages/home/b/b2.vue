@@ -7,6 +7,7 @@
         <span>{{percent}}%</span>
         <div class="text" v-show="isVideo"><font>预警客流</font><font></font></div>
         <p class="configBtn" @click="passagerConfig" v-show="!isVideo">设置</p>
+        <img v-show="isVideo" class="line" src="../../../assets/images/circle/violet/line.png"/>
       <Loading v-show="isloading"></Loading>
     </div>
 </template>
@@ -35,11 +36,20 @@ export default {
   props:['isVideo'],
   computed: {
   	comStyle(){
-  		if(this.isVideo){
-    			return 'b2v'
-    		}else{
-    			return 'b2'
-    		}
+  		let isIE = window.navigator.userAgent.indexOf('Trident')
+       		if(isIE>-1){
+       			if(this.isVideo){
+		    			return 'b2vie'
+		    		}else{
+		    			return 'b2'
+		    		}
+       		}else{
+       			if(this.isVideo){
+		    			return 'b2v'
+		    		}else{
+		    			return 'b2'
+		    		}
+       		}
   	}
   },
   watch:{
@@ -292,6 +302,7 @@ export default {
         left:50%;
         transform: translate(-50%,-50%);
     }
+    
     .text{
         width:80%;
         position:absolute;
@@ -330,7 +341,7 @@ export default {
         bottom: 0;
         margin: auto;
         color:#fff;
-        font-size: 1.6rem;
+        font-size: 24px;
         font-family: numberFont;
     }
     .configBtn{
@@ -345,10 +356,10 @@ export default {
     	cursor: pointer;
     }
     #pieB2{
-        height:136px;
-        width: 136px;
+        height:142px;
+        width: 142px;
         position:absolute;
-        top: 0px;
+        top: -10px;
         left: 0px;
         right: 0;
         bottom: 0;
@@ -363,6 +374,9 @@ export default {
         left:50%;
         transform: translate(-50%,-50%);
     }
+    .line{
+    	margin-top: 10px !important;
+    }
     .text{
         width:80%;
         position:absolute;
@@ -373,6 +387,85 @@ export default {
             margin-left:10%;
             color:#fff;
             font-size:16px;
+            position: absolute;
+            right: 68px;
+            bottom: 2px;
+            /*font-family: numberFont;*/
+        }
+    }
+    img{
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+    }
+}
+
+.b2vie{
+    height:100%;
+    width:100%;
+    position:relative;
+    span{
+        position:absolute;
+        display: block;
+        width: 100%;
+        height: 2rem;
+        line-height: 2rem;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        color:#fff;
+        font-size: 24px;
+        font-family: numberFont;
+    }
+    .configBtn{
+    	position: absolute;
+    	right: 5%;
+    	top: 5%;
+    	color: #5798CC;
+    	font-weight: bold;
+    	border: 0.2rem solid #50A6D5;
+    	border-radius: 0.4rem;
+    	padding: 0.2rem 0.8rem;
+    	cursor: pointer;
+    }
+    #pieB2{
+        height:170px;
+        width: 170px;
+        position:absolute;
+        top: -10px;
+        left: 0px;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+    }
+    .circle{
+        height: auto;
+        width:110/223*100%;
+        text-align: center;
+        position:absolute;
+        top:55%;
+        left:50%;
+        transform: translate(-50%,-50%);
+    }
+    .line{
+    	margin-top: 50px !important;
+    }
+    .text{
+        width:80%;
+        position:absolute;
+        bottom:0.6rem;
+        left:42%;
+        transform: translateX(-50%);
+        font{
+            margin-left:10%;
+            color:#fff;
+            font-size:16px;
+            position: absolute;
+            right: 68px;
+            bottom: 8px;
             /*font-family: numberFont;*/
         }
     }

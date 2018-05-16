@@ -73,8 +73,11 @@ export default {
     		this.isloading = true;
     		this.request();
     	},
-    	timeRange:function(val){
-    		this.request(val)
+    	timeRange:{
+    		handler:function(val){
+    			this.request(val)
+    		},
+    		deep:true
     	}
     },
     methods: {
@@ -246,7 +249,7 @@ export default {
 
                 ]
             };
-            let isIE = window.navigator.userAgent.indexOf('Trident')
+           let isIE = window.navigator.userAgent.indexOf('Trident')
           if(isIE>-1){ 
             	option.series[0].label.normal.distance = 10;
 						}
@@ -276,8 +279,10 @@ export default {
     	vdate
     },
     mounted() {
-      
-    }
+      Bus.$on('timeRange',(val) => {
+      	this.timeRange = val
+      })
+    },
   }
 </script>
 <style lang="less" type="text/less" scoped>

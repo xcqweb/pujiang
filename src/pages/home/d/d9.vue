@@ -35,9 +35,11 @@
 	display: flex;
 	.left{
 		flex: 1;
+		position: relative;
 	}
 	.right{
 		flex: 1;
+		position: relative;
 	}
 }
 </style>

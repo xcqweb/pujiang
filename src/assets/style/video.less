@@ -17,7 +17,7 @@
     top: 50%;
     transform: translate(0,-50%);
     left: 10%;
-    font-size: 16px;
+    font-size: 0.8rem;
 }
 .fullScreen{
     height:100vh;
@@ -37,9 +37,11 @@
           border-top:2px solid @borderColor;
           border-left:2px solid @borderColor;
           content: " ";
+          z-index: 100;
           }
         &:after {
           position:absolute;
+          z-index: 100;
           bottom: 0;
           right: 0;
           width: @borderLen;
@@ -48,6 +50,8 @@
           border-right:2px solid @borderColor;
           content: " ";
         }
+        
+     }   
     .border{
         .date{
             width: 100%;
@@ -64,6 +68,7 @@
             border-bottom:2px solid @borderColor ;
             border-left:2px solid @borderColor ;
             content: " ";
+            z-index: 100;
         }
         &:after {
             position:absolute;
@@ -74,17 +79,25 @@
             border-top:2px solid @borderColor;
             border-right:2px solid @borderColor;
             content: " ";
+            z-index: 100;
         }
     }
-}
+    .border1{
+        .date{
+            width: 100%;
+            margin-top: 48/736*100%;
+        }
+        height: 100%;
+        width: 100%;
+    }
 h1{
     position:absolute;
     top: 0.8rem;
     left: 1rem;
     z-index: 2;
     color:#efeefd;
-    font-size: 16px;
-    font-weight: 590;
+    font-size: 1rem;
+    font-weight: bold;
     
 }
 
@@ -187,10 +200,28 @@ span{
                 left: 0;
             }
             .four{
-                height: 700/736*100%;
-                width: (488+488+12)/1536*100%;
+                height: 345/736*100%;
+                width: (488)/1536*100%;
                 top: 0;
-                left: (488+12+18)/1536*100%;
+                left: (488+12+12)/1536*100%;
+            }
+             .five{
+                height: 345/736*100%;
+                width: (488)/1536*100%;
+                top: 0;
+                left: (488+488+36)/1536*100%;
+            }
+             .six{
+                height: 345/736*100%;
+                width: (488)/1536*100%;
+                top: (345+10)/736*100%;
+                left: (488+12+12)/1536*100%;
+            }
+             .seven{
+                height: 345/736*100%;
+                width: (488)/1536*100%;
+                top: (345+10)/736*100%;
+                left: (488+488+36)/1536*100%;
             }
 
         }

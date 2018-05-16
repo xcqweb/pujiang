@@ -1,6 +1,6 @@
 import axios from '@/api/instance'
 import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
-
+import {API_HZ} from '@/api/env'
 export var params={};
 let timeStamp = new Date().getTime()+'';
 
@@ -48,7 +48,8 @@ function tansParm(data){
 //模拟数据公共地址
 let base1 = 'https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example';
 
-let base = 'http://114.55.237.138/pj/api'
+//let base = 'http://115.29.17.176:80/pj/api'
+let base = API_HZ+'/pj/api'
 
 
 //用户登录

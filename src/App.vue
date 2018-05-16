@@ -100,7 +100,6 @@ p,h1,span,font,a,li{
 
 }   
 html{
-  height: 200px;
   overflow-x: hidden;
   background: #F2F7FA;
   font-family:numberFont, "Microsoft YaHei","SF Pro SC","HanHei SC","PingFang SC",Arial,Helvetica,sans-serif,"SimSun",;

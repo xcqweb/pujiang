@@ -388,10 +388,10 @@ export default {
 	                        alert('所选时间不能大于当前时间')
                            return;
                     }else{
-                    		if(lev>950400){
+                    		if(lev>7*24*60*60){
 	                    		this.rangeEnd=[]
 		                        this.rangeBegin=[]
-	                            alert('时间跨度不能大于十二天')
+	                            alert('时间跨度不能大于七天')
 	                            return
                            }
                     }

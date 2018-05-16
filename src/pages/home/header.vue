@@ -27,7 +27,7 @@ export default {
     return {
       items:[
         {name:'视频监控',link:'/video',status:'unchose'},
-        {name:'总览',link:'/',status:'chose'},
+        {name:'总览',link:'/home',status:'chose'},
         {name:'产业监测平台',link:'/prodcut',status:'chose'},
         {name:'精准营销平台',link:'/precision',status:'chose'},
         {name:'应急指挥平台',link:'/souceShow',status:'chose'},
@@ -90,17 +90,23 @@ export default {
             case '#/login' :
             this.items[0].status = 'unchose'
             break; 
-            case '#/prodcut' :
+             case '#/home' :
             this.items[1].status = 'unchose'
-            break;
-            case '#/precision' :
+            break; 
+             case '#/video' :
+            this.items[0].status = 'unchose'
+            break; 
+            case '#/prodcut' :
             this.items[2].status = 'unchose'
             break;
-            case '#/souceShow' :
+            case '#/precision' :
             this.items[3].status = 'unchose'
             break;
-            case '#/iframeMap' :
+            case '#/souceShow' :
             this.items[4].status = 'unchose'
+            break;
+            case '#/iframeMap' :
+            this.items[5].status = 'unchose'
             break;
         }
 
@@ -143,7 +149,7 @@ a:visited { text-decoration: none;}
         position: absolute;
         top: 32%;
         left: 2%;
-        font-size: 28px;
+        font-size: 1.5rem;
         color:#00E5FF;
 
     }
@@ -153,7 +159,7 @@ a:visited { text-decoration: none;}
         right: 1rem;
         li{
             float: left;
-            width: 100px;
+            width: 6rem;
             cursor: pointer;
             a{
                 display:inline-block;
@@ -167,7 +173,7 @@ a:visited { text-decoration: none;}
             }
             font{
                 display: block;
-                font-size: 14px;
+                font-size: 0.9rem;
                 margin-top:7px;
             }
             &.chose{

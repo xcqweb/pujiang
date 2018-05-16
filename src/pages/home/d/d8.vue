@@ -34,22 +34,27 @@
 .d8v{
     height: 100%;
     width: 100%;
-    position: relative;
     .box{
-        position: absolute;
         width: 125px;
         height: 132px;
-        top: 48px;
+        top: 28px;
         left: 80px;
+        .item{
+        	top: 36px;
+        	left: 80px;
+        	position: absolute;
+        }
         
     }
     span{
         position: absolute;
-        top: 68px;
-        left: 80px;
+        left: 82px;
+        top: 12px;
+        text-align: center;
         display: inline-block;
-        width: 50%;
-        height: 10%;
+        width: 125px;
+        height: 132px;
+        line-height: 132px;
         font-size: 20px;
         color: #c7c8f9;
         
@@ -64,16 +69,50 @@
 
 }
 
+.d8vie{
+    height: 100%;
+    width: 100%;
+    .box{
+        width: 125px;
+        height: 132px;
+        top: 28px;
+        left: 80px;
+        .item{
+        	top: 36px;
+        	left: 80px;
+        	position: absolute;
+        }
+        
+    }
+    span{
+        position: absolute;
+        left: 90px;
+        top: 40px;
+        text-align: center;
+        display: inline-block;
+        width: 125px;
+        height: 132px;
+        line-height: 132px;
+        font-size: 1.3rem;
+        color: #c7c8f9;
+        
+    }
+    .loading{
+    	position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0%;
+		left: 0%;
+    }
 
+}
 </style>
 <template>
     <div :class="comStyle">
-    	<div>
-	        <div class="box">
-	            <vcircle :percents="percent" class='item' :class='isVideo' :isVideo='isVideo'></vcircle>     
-	        </div>
-	        <span :style="{color:colorCom}">{{txt}}</span>
-	    </div>
+        <div class="box">
+            <vcircle :percents="percent" class='item' :class='isVideo' :isVideo='isVideo'></vcircle>     
+        </div>
+        <span :style="{color:colorCom}">{{txt}}</span>
 	    <Loading v-show="isloading" class="loading"></Loading>
 	</div>
 </template>
@@ -114,7 +153,11 @@ export default {
     			if(num>4&&num<=5)return "#FF0000";
     	},
     	comStyle(){
-    		if(this.isVideo){
+    		let isIE = window.navigator.userAgent.indexOf('Trident')
+       		if(isIE>-1&&this.isVideo){
+	    		return 'd8vie'
+       		}
+   			if(this.isVideo){
     			return 'd8v'
     		}else{
     			return 'd8'
