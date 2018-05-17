@@ -29,8 +29,8 @@ export default {
                   nowurl:"http://api.seniverse.com/v3/weather/now.json",
                   lifeurl:"https://api.seniverse.com/v3/life/suggestion.json",
                   dailyurl:"https://api.seniverse.com/v3/weather/daily.json",
-                  uid:"U780C8ABAA",
-                  key:"s2iqikevs0vffmvy",
+                  uid:"UE435A3710",
+                  key:"sgqbslepggqd6dgg",
                   location:"jinhua",
                   curPage:1
                 },

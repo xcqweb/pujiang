@@ -1,17 +1,19 @@
 <template>
 	<div class="d10">
-		<sleckte
-			:selectList="qyselectlist" 
-            v-on:listenAtparent="catchMsg"
-		></sleckte>
+		
 		<div class="video" v-if="!isIE">
 			<!--[if !IE]><!-->  
-			    <object type='application/x-vlc-plugin' id='vlc' events='True' width="560" height="360" pluginspage="http://www.videolan.org" codebase="http://downloads.videolan.org/pub/videolan/vlc-webplugins/2.0.6/npapi-vlc-2.0.6.tar.xz">  
-			        <param name='mrl' value='rtsp://117.148.153.159:554/cam/realmonitor?channel=3&subtype=0' />  
+			    <!--<object type='application/x-vlc-plugin' id='vlc' events='True' width="560" height="360" pluginspage="http://www.videolan.org" codebase="../../common/js/plugin/npapi-vlc-2.0.6.tar.xz">-->  
+			    <object type='application/x-vlc-plugin' id='vlc' events='True' width="460" height="258" pluginspage="http://www.videolan.org" codebase="http://downloads.videolan.org/pub/videolan/vlc-webplugins/2.0.6/npapi-vlc-2.0.6.tar.xz">  
+0
+
+
+<param name='mrl' value='rtsp://117.148.153.159:554/cam/realmonitor?channel=3&subtype=0' />  
+			        <!--<param name='mrl' value='rtsp://117.148.153.159:554/cam/realmonitor?channel=3&subtype=0' />-->  
 			        <param name='volume' value='50' />  
 			        <param name='autoplay' value='true' />  
 			        <param name='loop' value='false' />  
-			        <param name='fullscreen' value='false' />  
+			        <param name='fullscreen' value='true' />  
 			    </object>  
 			<!--<![endif]-->  
 		</div>
@@ -21,9 +23,13 @@
 			        <param name='volume' value='50' />  
 			        <param name='autoplay' value='true' />  
 			        <param name='loop' value='false' />  
-			        <param name='fullscreen' value='false' />  
+			        <param name='fullscreen' value='true' />  
 			    </object>  
 		</div>
+		<sleckte
+			:selectList="qyselectlist" 
+            v-on:listenAtparent="catchMsg"
+		></sleckte>
 	</div>
 </template>
 
@@ -99,6 +105,10 @@
 		width: 460/488*100%;
 		height: 258/345*100%;
 		margin: 52px 0 0 20px;
+	}
+	object{
+		position: relative;
+		z-index: 1;
 	}
 }
 </style>

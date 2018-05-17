@@ -52,11 +52,14 @@
     z-index: 30;
   }
   .txt{
+  	width: 100%;
     text-align: center;
     position: absolute;
     top: 70%;
+    left: 0;
     color: rgba(250,250,250,0.8);
-    font-size: 1rem;
+    font-size: 0.8rem;
+    font-style: italic;
    }
   .spinner {
     position: absolute;

@@ -196,7 +196,7 @@
 					line-height: 30px;
 					cursor: pointer;
 				}
-				li:hover{
+				li::hover{
 					background-color: #3B69BE;
 				}
 			}
