@@ -145,6 +145,8 @@ export default {
 			ctx.beginPath();
             ctx.arc(r+1, r+1, cR+7, 0, 2 * Math.PI);
             ctx.clip();
+             ctx.closePath();
+            
         }
 
         //画sin 曲线函数
@@ -173,6 +175,10 @@ export default {
             ctx.fill();
 
             ctx.restore();
+            ctx.beginPath();
+            ctx.arc(r+1, r+1, cR+7, 0, 2 * Math.PI);
+            ctx.clip();
+            ctx.closePath();
         };
 
         //写百分比文本函数
@@ -219,26 +225,26 @@ export default {
       api.passengerwarning(api.params).then( (re) => {
 //  	axios.get('https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/passengerwarning').then( (re) => {
       //设置默认值
-      this.nub = re.data.data.count;
-      this.set_config = 100000;
+//    this.nub = re.data.data.count;
+//    this.set_config = 100000;
       this.percent = re.data.data.warnPercent;
-      this.configNumber = re.data.data.count;
+//    this.configNumber = re.data.data.count;
       this.isloading=false;
-      let nub = this.nub;
-  	  let setconfig = this.nub*100/this.percent;
-      	let Ratio = this.percent/100
-	      let setColor = '';
-	      if(Ratio<0.3){
-	      	setColor='#1da7fe'
-	      }else if(Ratio<0.5){
-	      	setColor='#7460EE'
-	      }else if(Ratio<0.7){
-	      	setColor='#eee716'
-	      }else if(Ratio<0.9){
-	      	setColor='#cb1f1f'
-	      }else{
-	      	setColor='#f00'
-	      }
+//    let nub = this.nub;
+//	  let setconfig = this.nub*100/this.percent;
+//    	let Ratio = this.percent/100
+//	      let setColor = '';
+//	      if(Ratio<0.3){
+//	      	setColor='#1da7fe'
+//	      }else if(Ratio<0.5){
+//	      	setColor='#7460EE'
+//	      }else if(Ratio<0.7){
+//	      	setColor='#eee716'
+//	      }else if(Ratio<0.9){
+//	      	setColor='#cb1f1f'
+//	      }else{
+//	      	setColor='#f00'
+//	      }
 		this.redom()
     }).catch( e =>{
       console.log(e);

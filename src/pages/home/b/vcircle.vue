@@ -87,7 +87,10 @@ export default {
         if(isIE>-1&&this.isVideo){ 
     		return 'ta_cvie'
 		}
-		if(this.isVideo){
+        if(isIE>-1&&!this.isVideo){ 
+    		return 'ta_cie'
+		}
+		if(isIE===-1&&this.isVideo){
 			return 'ta_cv'
 		}else{
 			return 'ta_c'
@@ -155,11 +158,68 @@ font{
     text-align: left;
     font-size:2rem;
     position: absolute;
-    bottom: 2.8rem;
-    left:1.78rem;
+    bottom: 48px;
+    left:2.2rem;
 }
 }
 
+
+.ta_cie{
+    height: 100%;
+    width: 100%;
+    position: relative;
+    .rotImg{
+        height: 100%;
+        width: 100%;
+        top:0;
+        left: 0;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    img{                  
+	    max-width: 100%;
+	    max-height: 100%;
+	    width: auto;
+	    height: auto;
+	}
+	img:nth-child(1){                  
+	    min-width: 100%;
+	    min-height: 100%;
+	    width: auto;
+	    height: auto;
+	}
+	
+	.img{
+    height: auto;
+    text-align: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    position: absolute;
+}
+
+.line{
+    max-height: 100%;
+    max-width: 100%;
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+font{
+	width: 50%;
+    font-family: numberFont;
+    color: #fff;
+    text-align: left;
+    font-size:2rem;
+    position: absolute;
+    bottom: 48px;
+    left:2rem;
+}
+}
 @keyframes rotation{
 from {
 	transform: rotate(0deg);

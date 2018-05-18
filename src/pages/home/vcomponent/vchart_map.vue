@@ -34,7 +34,7 @@ Vue.use(vAjax);
 let date = new Date()
 let nowYear = date.getFullYear()
 let mowMonth = date.getMonth()+1
-
+var planePath = 'path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z';
 export default {
     name: 'a6',
     mixins: [optionProps],
@@ -60,15 +60,15 @@ export default {
             backgroundColor: 'rgba(0,0,0,0)',
             tooltip: {
                 trigger: 'item',
-                 formatter:function(params){
-                	console.log(params)
-                	if(params.seriesType==="effectScatter"){
-                		let val = params.name+' : '+params.value[2];
-                		return val;
-                	}else{
-                		return params.data.toName+' : '+params.data.coords[2]
-                	}
-                }
+//               formatter:function(params){
+//              	console.log(params)
+//              	if(params.seriesType==="effectScatter"){
+//              		let val = params.name+' : '+params.value[2];
+//              		return val;
+//              	}else{
+//              		return params.data.toName+' : '+params.data.coords[2]
+//              	}
+//              }
             },
             geo: {
                 map: 'zhejiang',
@@ -116,14 +116,14 @@ export default {
             backgroundColor: 'rgba(0,0,0,0)',
             tooltip: {
                 trigger: 'item',
-                formatter:function(params){
-                	if(params.seriesType==="effectScatter"){
-                		let val = params.name+' : '+params.value[2];
-                		return val;
-                	}else{
-                		return params.data.toName+' : '+ params.data.coords[2]
-                	}
-                }
+//              formatter:function(params){
+//              	if(params.seriesType==="effectScatter"){
+//              		let val = params.name+' : '+params.value[2];
+//              		return val;
+//              	}else{
+//              		return params.data.toName+' : '+ params.data.coords[2]
+//              	}
+//              }
             },
             geo: {
                 map: 'china',
@@ -300,7 +300,6 @@ export default {
         FENGD:[
             [{name: this.placeName}, {name: '重庆', value: 20}]
         ],
-        planePath:'path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z',
 
     }
     },
@@ -401,13 +400,13 @@ export default {
          var res = [];
 	    for (var i = 0; i < data.length; i++) {
 	        var dataItem = data[i];
-	        var fromCoord = this.geoCoordMap[dataItem[0].name];
-            var toCoord = this.geoCoordMap[dataItem[1].name];
+	        var fromCoord = this.geoCoordMap[dataItem[1].name];
+            var toCoord = this.geoCoordMap[dataItem[0].name];
 	        var val = dataItem[1].value;
 	        if (fromCoord && toCoord) {
 	            res.push({
-	                fromName: dataItem[0].name,
-	                toName: dataItem[1].name,
+	                fromName: dataItem[1].name,
+	                toName: dataItem[0].name,
 	                coords: [fromCoord, toCoord,val]
 	            });
 	        }
@@ -466,7 +465,7 @@ export default {
         this.allData.forEach(function (item, i) {
             series.push(
                 {
-                    name: item[0],
+//                  name: item[0],
                     type: 'lines',
                     zlevel: 1,
                     symbol:'circle',
@@ -490,7 +489,7 @@ export default {
                     data: _self.convertData(item[1])
                 },
                 {
-                    //name: item[0],
+//                  name: item[0],
                     type: 'lines',
                     zlevel: 2,
                     largeThreshold:200,
@@ -503,9 +502,9 @@ export default {
                         period: 6,
                         trailLength: 0,
                         //小飞机
-                        //symbol: planePath,
+                        symbol: planePath,
                         //移动点大小
-                        symbolSize: 1
+                        symbolSize: 15
                     },
                     lineStyle: {
                         normal: {
@@ -589,11 +588,11 @@ export default {
         this.chart = echarts.init(dom);
         var color =['#5aa7fd', '#5aa7fd', '#5aa7fd','#5aa7fd','#5aa7fd','5aa7fd','5aa7fd'];
         var series = [];
-        var planePath = 'path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z';
+        
         this.zhejiang.forEach(function (item, i) {
             series.push(
                 {
-                    name: item[0],
+//                  name: item[0],
                     type: 'lines',
                     zlevel: 1,
                     symbol:'circle',
@@ -617,7 +616,7 @@ export default {
                     data: _self.convertData(item[1])
                 },
                 {
-                    name: item[0],
+//                  name: item[0],
                     type: 'lines',
                     zlevel: 2,
                     symbol: ['none', 'arrow'],
@@ -628,9 +627,9 @@ export default {
                         period: 6,
                         trailLength: 0,
                         //小飞机
-                        //symbol: planePath,
+                        symbol: planePath,
                         //移动点大小
-                        symbolSize: 5
+                        symbolSize: 15
                     },
                     progressiveThreshold: 500,
                     progressive: 200,

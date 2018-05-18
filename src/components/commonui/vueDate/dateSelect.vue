@@ -1,8 +1,8 @@
 <template>
 	<div class="box">
 		<p class="title" @click="chose"><span>{{ctime}}</span><i :class="icon"></i></p>
-		<ul class="list" v-show="showStatus" ref='list'>
-			<li v-for="(item,index) in years" @mouseover="showMonth(item.year,$event)" ref='list'>{{item.year}}
+		<ul class="list" v-show="showStatus" id='list'>
+			<li v-for="(item,index) in years" @mouseover="showMonth(item.year,$event)">{{item.year}}
 				
 			</li>
 		</ul>
@@ -13,7 +13,7 @@
 			</ul>
 		</div>
 		
-		<div class="toast" v-show="showStatus" @click="hide($event)"></div>
+		<div class="toast" v-show="showStatus" @click.self="hide($event)"></div>
 	</div>
 </template>
 
@@ -36,8 +36,6 @@
 				choseDate:[],
 				choseDateStart:[],
 				ctime:'年  ~ 月',
-				timer:null,
-				timerM:null,
 				status:false,
 			}
 		},
@@ -80,18 +78,21 @@
 //				}
 			},
 			showMonth(val,e){
-				window.clearTimeout(this.timer)
 				if(this.isStart){
 					this.choseDateStart[0] = val
 				}else{
 					this.choseDate[0] = val
 				}
-				this.status = true
-				let list = this.$refs.list.childNodes;
+				this.status = true;
+				
+				//将维数组转化为数组 // ie 不识别维数组
+				let list =Array.from(document.getElementById('list').childNodes);
+				console.log(list)
 				list.forEach( (v,i) => {
-					v.className = ""
+					//v.classList.remove('active')  //ie10
+					v.className = '';
 				})
-				e.target.className = "active"
+				e.target.className = 'active';
 			},
 			
 			choseDates(data){
@@ -170,19 +171,20 @@
 			height: 100vh;
 		}
 		.subMenuBox{
-			width: 90px;
-			overflow: hidden;
+			width: 100px;
 			position: absolute;
-			height: 210px;
-			top: -0.5rem;
-			left: 50px;
+			z-index: 120;
+			overflow: hidden;
+			height: 230px;
+			top: 1.8rem;
+			left: 138px;
 			.subMenu{
 				transform: translate(90px,44px);
 				position: absolute;
-				height: 210px;
+				height: 300px;
 				width: 100px;
-				left: 50px;
-				top: -0.5rem;
+				left: -88px;
+				top: -42px;
 				background: #193583;
 				border: 1px solid #1b44ba;
 				overflow-y: auto;
@@ -196,7 +198,7 @@
 					line-height: 30px;
 					cursor: pointer;
 				}
-				li::hover{
+				li:hover{
 					background-color: #3B69BE;
 				}
 			}
@@ -282,6 +284,24 @@
 			}
 			/*定义滑块，内阴影及圆角*/
 			.subMenu::-webkit-scrollbar-thumb,.list::-webkit-scrollbar-thumb{
+			    width: 0px;
+			    height: 0rem;
+			    border-radius: 10px;
+			    -webkit-box-shadow: inset 0 0 6px #ccc;
+			    background-color: #0F2059;
+			}
+			
+			.subMenu::-moz-scrollbar,.list::-webkit-scrollbar{
+			    width: 1px;
+			    height: 0rem;
+			}
+			/*定义滚动条的轨道，内阴影及圆角*/
+			.subMenu::-moz-scrollbar-track,.list::-webkit-scrollbar-track{
+			    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.9);
+			    border-radius: 10px;
+			}
+			/*定义滑块，内阴影及圆角*/
+			.subMenu::-moz-scrollbar-thumb,.list::-webkit-scrollbar-thumb{
 			    width: 0px;
 			    height: 0rem;
 			    border-radius: 10px;

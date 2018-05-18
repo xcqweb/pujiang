@@ -4,10 +4,7 @@
 		<div class="video" v-if="!isIE">
 			<!--[if !IE]><!-->  
 			    <!--<object type='application/x-vlc-plugin' id='vlc' events='True' width="560" height="360" pluginspage="http://www.videolan.org" codebase="../../common/js/plugin/npapi-vlc-2.0.6.tar.xz">-->  
-			    <object type='application/x-vlc-plugin' id='vlc' events='True' width="460" height="258" pluginspage="http://www.videolan.org" codebase="http://downloads.videolan.org/pub/videolan/vlc-webplugins/2.0.6/npapi-vlc-2.0.6.tar.xz">  
-0
-
-
+			    <object type='application/x-vlc-plugin' id='vlc' events='True' width="560" height="360" pluginspage="http://www.videolan.org" codebase="http://downloads.videolan.org/pub/videolan/vlc-webplugins/2.0.6/npapi-vlc-2.0.6.tar.xz">  
 <param name='mrl' value='rtsp://117.148.153.159:554/cam/realmonitor?channel=3&subtype=0' />  
 			        <!--<param name='mrl' value='rtsp://117.148.153.159:554/cam/realmonitor?channel=3&subtype=0' />-->  
 			        <param name='volume' value='50' />  
