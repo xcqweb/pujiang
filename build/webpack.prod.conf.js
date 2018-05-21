@@ -108,6 +108,7 @@ if (config.build.productionGzip) {
         ')$'
       ),
       threshold: 10240,
+      cache:true,
       minRatio: 0.8
     })
   )

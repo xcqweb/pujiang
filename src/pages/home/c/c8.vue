@@ -21,8 +21,6 @@
             </div>
             <div class="cell3">
                 <span class='footerCotext'>{{item.percent}}%</span>
-                <!--<span v-show="item.rise" class='footerRise up'></span>-->
-                <!--<span v-show="!item.rise" class='footerRise down'></span>-->
             </div>
         </li>
     </ul>

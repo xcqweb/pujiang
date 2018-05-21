@@ -137,8 +137,7 @@ export default {
     methods: {
     	
         catchmsg1(data){
-            //console.log(data)
-             this.updateData.turist = data
+            this.updateData.turist = data
         },
     },
     components:{

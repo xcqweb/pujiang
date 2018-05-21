@@ -59,10 +59,6 @@
 
 <template>
 <div class="c1">
-    <!--<div class="week">-->
-        <!--<span class="oneweek " v-bind:class="{ chose: isActive }" @click='redom("c1",0)'>7日</span>-->
-        <!--<span class="twoweek" v-bind:class="{ chose: !isActive }" @click='redom("c1",1)'>14日</span>-->
-    <!--</div>-->
     <div id="c1">
     </div>
     <Loading v-show="isloading"></Loading>

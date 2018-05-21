@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import store from '../vuex/index.js'
-import Axios from 'axios'
 import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
+
 const NotFound =resolve => require(['@/pages/404.vue'], resolve);
 const Login =resolve => require(['@/pages/login/login.vue'], resolve);
 const LoginTwo =resolve => require(['@/pages/login/logintwo.vue'], resolve);
@@ -11,21 +10,23 @@ const loginfour =resolve => require(['@/pages/login/loginfour.vue'], resolve);
 const loginfive =resolve => require(['@/pages/login/loginfive.vue'], resolve);
 const loginsix =resolve => require(['@/pages/login/loginsix.vue'], resolve);
 const loginseven =resolve => require(['@/pages/login/loginseven.vue'], resolve);
-// const homepage = resolve => {require.ensure(['@/pages/homepage.vue'], () => {resolve(require('@/pages/homepage.vue'))})}
 
 const homepage = resolve => {require.ensure(['@/pages/home/tabPage/homepage.vue'], () => {resolve(require('@/pages/home/tabPage/homepage.vue'))})}
-//const homepage2 = resolve => {require.ensure(['@/pages/home/tabPage/homepage2.vue'], () => {resolve(require('@/pages/home/tabPage/homepage2.vue'))})}
 
 const Video = resolve => {require.ensure(['@/pages/home/tabPage/video.vue'], () => {resolve(require('@/pages/home/tabPage/video.vue'))})}
 
 const Precision = resolve => {require.ensure(['@/pages/home/tabPage/precision.vue'], () => {resolve(require('@/pages/home/tabPage/precision.vue'))})}
+
 const prodcut = resolve => {require.ensure(['@/pages/home/tabPage/prodcut.vue'], () => {resolve(require('@/pages/home/tabPage/prodcut.vue'))})}
+
 const souceShow = resolve => {require.ensure(['@/pages/home/tabPage/souceShow.vue'], () => {resolve(require('@/pages/home/tabPage/souceShow.vue'))})}
+
 const iframeMap = resolve => {require.ensure(['@/pages/home/tabPage/iframeMap.vue'], () => {resolve(require('@/pages/home/tabPage/iframeMap.vue'))})}
+
 const homemain = resolve => {require.ensure(['@/pages/homemain.vue'], () => {resolve(require('@/pages/homemain.vue'))})}
+
 const loginmain = resolve => {require.ensure(['@/pages/loginmain.vue'], () => {resolve(require('@/pages/loginmain.vue'))})}
 
-const test =resolve => require(['@/pages/test.vue'], resolve);
 
 Vue.use(Router)
 const router= new Router({

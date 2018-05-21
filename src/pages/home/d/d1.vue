@@ -66,13 +66,13 @@ display:none !important;
 <template>
     <div class="d1">
         <div id="XSDFXPages" class="XSDFXPage"></div>
-        <canvas class="lineVideo" v-show='videoToast'></canvas>
-        <div class="toast-video" v-if='videoToast'>
+        <!--<canvas class="lineVideo" v-show='videoToast'></canvas>-->
+        <!--<div class="toast-video" v-if='videoToast'>
             <h2>{{videoName}}</h2>
             <video controls="controls" src="../../../assets/video/xhs.mp4" autoplay="autoplay"  loop="loop" style="">
                 您的浏览器不支持 video 标签。
             </video>
-        </div>
+        </div>-->
         <Loading v-show="isloading"></Loading>
     </div>
     
@@ -489,7 +489,7 @@ import sciencePoints from './points.json'
             	
             	
             //绘制牵引线
-            _self.addLineVideo();
+//          _self.addLineVideo();
             var map = new BMap.Map("XSDFXPages",{enableMapClick:true});
             map.addEventListener("mousedown",function(e){
                 _self.videoToast=false;

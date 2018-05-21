@@ -35,7 +35,7 @@
 				showStatus:false,
 				choseDate:[],
 				choseDateStart:[],
-				ctime:'年  ~ 月',
+				ctime:'全部',
 				status:false,
 			}
 		},
@@ -70,12 +70,8 @@
 				this.showStatus = !this.showStatus;
 			},
 			hide(e){
-				console.log(this.$el)
-				//alert(21)
-//				if(!this.$el.contains(e.target)){
 					this.showStatus = false
 					this.status = false
-//				}
 			},
 			showMonth(val,e){
 				if(this.isStart){
@@ -87,7 +83,6 @@
 				
 				//将维数组转化为数组 // ie 不识别维数组
 				let list =Array.from(document.getElementById('list').childNodes);
-				console.log(list)
 				list.forEach( (v,i) => {
 					//v.classList.remove('active')  //ie10
 					v.className = '';
@@ -161,10 +156,10 @@
 		margin-left: 100px;
 		margin-top: 1rem;
 		background: none;
-		font-size: 0.9rem;
+		font-size: 0.8rem;
 		.toast{
 			position: fixed;
-			z-index: 100;
+			z-index: 500;
 			top: 0;
 			left: 0;
 			width: 100vw;
@@ -173,7 +168,7 @@
 		.subMenuBox{
 			width: 100px;
 			position: absolute;
-			z-index: 120;
+			z-index: 600;
 			overflow: hidden;
 			height: 230px;
 			top: 1.8rem;
@@ -190,7 +185,7 @@
 				overflow-y: auto;
 				overflow-x: hidden;
 				display: block;
-				z-index: 123;
+				z-index: 600;
 				box-shadow: 1px 0 30px rgba(1, 1, 13, 0.4);
 				li{
 					height: 30px;
@@ -210,7 +205,7 @@
 			line-height: 1.5rem;
 			border: solid 1px #345bfa;
 			cursor: pointer;
-			font-size: 0.9rem;
+			font-size: 0.8rem;
 			position: absolute;
 			left: 1rem;
 			span{
@@ -248,6 +243,7 @@
 			overflow-x: hidden;
 			z-index: 1000;
 			position: absolute;
+			font-size: 0.8rem;
 			top: 1.8rem;
 			left: 26px;
 			box-shadow: 1px 0 30px rgba(1, 1, 13, 0.4);

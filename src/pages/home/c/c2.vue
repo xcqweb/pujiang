@@ -65,8 +65,6 @@ export default {
 	  				for(let i=0; i<this.series.length; ++i){
 	  					this.series[i].value = arrData[i]
 	  				}
-	  				//console.log(arrData)
-	  				//this.series = reData;
 					if(re.status===200){
 						this.isloading = false;
 					}

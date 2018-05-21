@@ -248,6 +248,7 @@ import Vue from 'vue'
 import optionProps from '@/common/js/mixin/optionProps.js'
 import vdate from '@/components/commonui/vueDate/apps.vue'
 import loadMore from '@/common/js/directives/loadMore.js'
+import {debounce} from 'lodash'
 Vue.directive('loadMore',loadMore)
 export default {
     name: 'd3',
@@ -323,10 +324,10 @@ export default {
     },
     methods: {
 		
-		loadMore(e){
+		loadMore: debounce(function(e){
 			var scrollT = Math.ceil(e.target.scrollTop+e.target.clientHeight),
 		    offsetT = e.target.getElementsByClassName('msg')[0].offsetHeight;
-		    console.log(scrollT,offsetT)
+		    //console.log(scrollT,offsetT)
         	if(offsetT-scrollT<=0){
         		let paramsObj = {}
     				if(this.timeRange.begin && this.timeRange.end){
@@ -348,7 +349,7 @@ export default {
 			  			this.request(paramsObj)
 			  		}
         	}
-		},
+		},500),
 		
 		getDate(val){
 			//console.log(val)

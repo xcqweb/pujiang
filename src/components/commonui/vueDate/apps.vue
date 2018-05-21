@@ -26,7 +26,7 @@
 
     <transition name="fade">
     <div class="calendar-dialog" v-show="calendar4.show">
-        <div class="calendar-dialog-mask" @click="closeByDialog"></div>
+        <div class="calendar-dialog-mask" @click.self="closeByDialog"></div>
         
         <div class="calendar-dialog-body" :class="comStyle">
             <calendar :range="calendar4.range" :zero="calendar4.zero" :lunar="calendar4.lunar" :value="calendar4.value"  @select="calendar4.select"></calendar>
@@ -92,7 +92,7 @@ export default {
                 show:false,
                 range:true,
                 zero:true,
-                value:[[year,month,day],[year,month,day]] , //默认日期
+                value:[] , //默认日期
                 lunar:true, //显示农历
                 select:(begin,end)=>{
                     this.calendar4.show=false;

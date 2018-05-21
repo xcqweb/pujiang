@@ -4,8 +4,6 @@
 	showToast:false,//控制预警设置蒙层
 	currentCode:0,//当前景区代码
 	setConfigData:{},
-	videoFull:false,//视频监控全屏
-	
 	editNum:0,//临时 传递修改的参数
 	
 	historyList:[

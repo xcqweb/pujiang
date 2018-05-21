@@ -6,69 +6,31 @@
         </div>
     </transition>
     <div class="headmock" v-on:mouseenter="headerEnter"></div>
-    <router-view class='mockrouter'
-    :placeName = 'placeName'
-    :placeAttractions = 'placeAttractions'
-    ></router-view>
+    <router-view class='mockrouter'></router-view>
     <!--使用if 每次重新渲染 并传递筛选景区-->
         <config v-if = "toast"></config>
-        <transition name="fade">	
-        	<div class="videoFull" v-show="videoFull"></div>
-        </transition>
+        
   </div>
 </template>
 <script type="text/javascript">
-import Vue from 'vue'
-import { mapGetters } from 'vuex'
 import headerBody from '@/pages/home/header.vue'
-import config from '@/components/commonui/config/scienceConfig.vue'
 export default {
         data() {
             return {
                 headerStatus:false,
-                allComponents: [],
-                componentName: '',
-		                topComponents:[
-		                    {name:'vtopOne',id:'one',title:'浦江客流人数分析'},
-		                    {name:'vprofies',id:'two',title:'景区概况'},
-		                    {name:'vtopThree',id:'three',title:''},
-		                    {name:'vcontentment',id:'four',title:'游客满意度'},
-		                ],
-		                bottomComponents:[
-		                    {name:'vtimeOn',id:'one',title:'客流实时监测'},
-		                    {name:'vchartMap',id:'two',title:'国内游客来源地'},
-		                    {name:'vrinking',id:'three',title:'游客来源排行榜'},
-		                    {name:'vpercenPie',id:'four',title:'营销推广'},
-		                    {name:'vvideo',id:'five',title:'视频监控'},
-		                ],
-		                text:'headerBody',
 		            }
         },
         components: {
-                headerBody,
-                config
+                headerBody
         },
         computed: {
-          ...mapGetters({
-              placeName: 'version/name',
-              placeAttractions:'version/placeAttractions',
-              comment:'version/comment',
-            }),
             //设置客流预警蒙层显示
 	          toast(){
 	          	let toast = this.$store.state.showToast;
 	          	return toast
-	          },
-	          videoFull(){
-	          	let toast = this.$store.state.videoFull;
-	          	return toast
 	          }
         },
         methods: {
-        	
-            console(){
-                console.log(this.components)
-            },
             mouseLeave(){
             	this.headerStatus=false;
             },
@@ -76,16 +38,12 @@ export default {
                 this.headerStatus=true;
             },
             headerLeave(e){
-            	//console.dir(this.$el.childNodes[0].contains(e.target))
             	if(!this.$el.childNodes[0].contains(e.target)){
             		this.headerStatus=false;
             	}
                 
             },
-
         },
-        mounted() {
-        }
     }
 </script>
 

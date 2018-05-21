@@ -7,7 +7,6 @@ import router from './router'
 import axios from 'axios'
 import store from './vuex/index.js'
 import sheet from './common/js/until.js'
-import Toast from './components/commonui/toast/index.js'
 import Rw from '@/common/js/until/index'
 import api from '@/api/index.js'
 import Loading from '@/components/commonui/loading/loading.vue'
@@ -21,9 +20,6 @@ api.getProductData(api.params).then( (re) =>{
 })
 			
 
-//自适应字体
-//import '@/common/js/rem.js'
-Vue.directive('echarts', require('./common/js/directives/vDirechartsE.js'));
 window.axios = axios; 
 Vue.prototype.$axios = axios; 
 window.api = api; 

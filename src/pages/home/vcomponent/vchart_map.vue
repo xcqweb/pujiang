@@ -25,7 +25,6 @@ import echarts from 'echarts';
 import Rw from '@/common/js/until/index'
 
 import echarts_resize from '../../../common/js/echarts_resize.js'
-//import 'echarts/lib/chart/map';
 import 'echarts/map/js/china.js';
 import zhejiangJson from 'echarts/map/json/province/zhejiang.json'
 import optionProps from '@/common/js/mixin/optionProps.js'
@@ -60,15 +59,6 @@ export default {
             backgroundColor: 'rgba(0,0,0,0)',
             tooltip: {
                 trigger: 'item',
-//               formatter:function(params){
-//              	console.log(params)
-//              	if(params.seriesType==="effectScatter"){
-//              		let val = params.name+' : '+params.value[2];
-//              		return val;
-//              	}else{
-//              		return params.data.toName+' : '+params.data.coords[2]
-//              	}
-//              }
             },
             geo: {
                 map: 'zhejiang',
@@ -116,14 +106,6 @@ export default {
             backgroundColor: 'rgba(0,0,0,0)',
             tooltip: {
                 trigger: 'item',
-//              formatter:function(params){
-//              	if(params.seriesType==="effectScatter"){
-//              		let val = params.name+' : '+params.value[2];
-//              		return val;
-//              	}else{
-//              		return params.data.toName+' : '+ params.data.coords[2]
-//              	}
-//              }
             },
             geo: {
                 map: 'china',

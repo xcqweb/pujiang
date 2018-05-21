@@ -26,7 +26,6 @@
 	import history from '@/components/commonui/config/children/history.vue'
 	import config from '@/components/commonui/config/children/config.vue'
 	
-	import { mapMutations,mapActions} from 'vuex'
 	
 	export default{
 		mixins: [optionProps],
@@ -112,9 +111,6 @@
         		this.code=0;
         	},
         	getData(){}
-		},
-		created(){
-			//console.log(this.nameToCode['仙华山'])
 		},
 		
 		mounted(){

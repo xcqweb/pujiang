@@ -51,7 +51,6 @@ export default {
                     {name:'A6',id:'two',index:2,time:1500,show:false,title:'游客来源地'},
                     {name:'A7',id:'three',index:3,time:1800,show:false,title:'游客来源排行'},
                 ],
-                text:'headerBody',
             }
         },
         components: {

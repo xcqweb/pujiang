@@ -31,7 +31,6 @@
 	import Rw from '@/common/js/until/index.js'
 	import optionProps from '@/common/js/mixin/optionProps.js'
 	
-	import { mapMutations,mapActions} from 'vuex'
 	import api from '@/api/index.js'
 	import axios from 'axios'
 	export default {
@@ -62,18 +61,11 @@
 			}
 		},
 		methods:{
-			//模拟数据
-			...mapMutations([
-				'SAVE_EDIT',
-				'SAVE_CONFIG',
-				'SAVE_EDIT'
-			]),
 			
 			//获取数据
 			getData(){
 				api.params.code= this.code;
 				api.getPassengerWarnSetList(api.params).then( (re) => {
-					//console.log(re)
 					let reData = re.data.data;
 					this.$store.state.dataList = reData;
 				}).catch( e =>{
@@ -86,7 +78,6 @@
 				api.params.setNum = data.loadNum;
 				api.params.warnNum = data.configNum;
 				api.modifyPassengerWarnSet(api.params).then( (re) => {
-					//console.log(re)
 					if(re && re.data.code===200){
 						this.getData();
 						alert('修改成功!')
@@ -116,7 +107,6 @@
 					},3000)
 					return;
 				}
-//				if(confirm('确认要修改吗?')){
 					this.showEdit = false;
 					
 					//修改时间
@@ -124,18 +114,8 @@
 					this.editData.index = i;
 					this.editData.loadNum =  Rw.string_until.transformNum(editEle[i].getElementsByClassName('load')[0].value);
 					this.editData.configNum = Rw.string_until.transformNum(editEle[i].getElementsByClassName('config')[0].value) ;
-					
 					this.editIndex = '';
-					
-					//this.$store.commit('SAVE_EDIT',this.editData);
-					//this.$store.commit('SAVE_CONFIG',this.editData);
-					//this.$store.commit('ADD_HISTORY',this.editData);
-					
 					this.setData(this.editData);
-					
-//				}else{
-//					this.editIndex = '';
-//				}
 			},
 			cancel(){
 				this.editIndex = '';

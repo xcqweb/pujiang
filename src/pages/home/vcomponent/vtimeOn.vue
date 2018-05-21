@@ -4,7 +4,7 @@
       <div id="container"></div>
       <Loading v-show="isloading"></Loading>
       <span class="num">{{currentNums}}<font></font></span>
-      <span class="title" :class='{t:classt}'>( 单位 : 人)</span>
+      <span class="title" :class='comStyle'>( 单位 : 人)</span>
   </div>
 </template>
 <script>
@@ -147,6 +147,20 @@ export default {
     	currentNums(){
 				return Rw.string_until.addPoint(this.currentNum)
 			},
+			comStyle(){
+       		if(isIE>-1){
+       			if(this.classt){
+       				return 'pieTitle';
+       			}else{
+       				return 'ieTitle';
+       			}
+       			
+       		}else{
+       			if(this.classt){
+       				return 't';
+       			}
+       		}
+    	}
     },
     methods: {
         //添加数据
@@ -300,6 +314,14 @@ export default {
 		}
     .t{
       top: 1.2rem;
+    }
+    .ieTitle{
+    	top: 1.55rem;
+    	font-size: 14px;
+    }
+    .pieTitle{
+    	top: 1.3rem;
+    	font-size: 14px;
     }
     #container{
         width:100%;

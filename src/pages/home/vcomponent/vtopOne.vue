@@ -1,6 +1,6 @@
 <template>
   <div class="main_content" v-show='show' id="A1loding">
-  	<span class="title" :class='{t:classo}'>( 单位 : 人)</span>
+  	<span class="title" :class='comStyle'>( 单位 : 人)</span>
     <div id="righthz"></div>
     <!--<div class="week">-->
         <!--<span class="oneweek " v-bind:class="{ chose: isActive }" @click='redom7'>7日</span>-->
@@ -66,7 +66,17 @@ export default {
     props:['isdate','apiName','classo'],
     store:store,
     computed:{
-
+    	comStyle(){
+    		let isIE = window.navigator.userAgent.indexOf('Trident')
+       		if(isIE>-1){
+       			return 'ieTitle';
+       		}else{
+       			if(this.classo){
+       				return 't';
+       			}
+       		}
+    	}
+			
     },
     watch:{
     	code:function(){
@@ -301,6 +311,10 @@ export default {
 }
 .t{
   top: 1.2rem;
+}
+.ieTitle{
+	top: 1.2rem;
+	font-size: 14px;
 }
 .clock{
 	width: 30%;

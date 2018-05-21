@@ -159,7 +159,7 @@ font{
     font-size:2rem;
     position: absolute;
     bottom: 48px;
-    left:2.2rem;
+    left:1.8rem;
 }
 }
 

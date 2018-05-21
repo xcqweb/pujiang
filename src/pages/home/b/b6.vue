@@ -112,7 +112,7 @@ export default {
                     },
                     success:function(res){
                       _self.$nextTick(function () {
-                          console.log(res)
+                          //console.log(res)
                         _self.lifeRes = res.results[0].suggestion;
                       });
                     },
