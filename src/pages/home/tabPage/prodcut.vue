@@ -43,9 +43,7 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import componetstatus from '@/pages/home/componentstatus.js'
-import Bus from '@/common/js/bus.js'
 export default {
     name: 'barChartOption',
     props:['placeName'],

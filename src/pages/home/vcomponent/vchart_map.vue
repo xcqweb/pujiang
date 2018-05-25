@@ -302,37 +302,6 @@ export default {
     	}
     },
     methods: {
-  	
-  	//根据城市名转换成经纬度坐标
-  	transformAddress(){
-//		var params = {
-//			address : '深圳市',
-//			output: 'json',
-//			ak:'ak=sBUiZ29QLHjchFcs4l75XmtQXbklPSRT',
-//			
-//		}
-//		this.$axios.get('http://api.map.baidu.com/geocoder/v2',params).then( (r) => {
-//			console.log(r)
-//		})
-//		
-  		
-//	     var _self= this
-//          this.$ajax({
-//              type:'GET',
-//              url:'http://api.map.baidu.com/geocoder/v2/ak=sBUiZ29QLHjchFcs4l75XmtQXbklPSRT&address=深圳市',
-//              dataType:'jsonp',
-//              success:function(res){
-//                _self.$nextTick(function () {
-//                    console.log(res)
-//                });
-//              },
-//              error:function(err){
-//                console.log(err);
-//              }
-//          })
-  		
-  	},
-  	
   	getData(){
 			api.params.code = this.code;
 			//console.log(this.code)
@@ -682,7 +651,6 @@ export default {
     }
     },
     created(){
-      	this.transformAddress()
     },
     mounted(){
         this.$nextTick(echarts_resize('fromEchart',this))

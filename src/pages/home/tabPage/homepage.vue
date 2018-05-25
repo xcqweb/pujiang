@@ -32,10 +32,7 @@
   </div>
 </template>
 <script type="text/javascript">
-import Vue from 'vue'
-import { mapGetters } from 'vuex'
 import componetstatus from '@/pages/home/componentstatus.js'
-import Bus from '@/common/js/bus.js'
 export default {
         props:['placeName',],
         data() {

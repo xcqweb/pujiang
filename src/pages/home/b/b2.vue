@@ -296,7 +296,6 @@ export default {
         right: 0;
         bottom: 0;
         margin: auto;
-        //transform: translate(30%,12%) scale(0.9);
     }
     .circle{
         height: auto;
@@ -391,11 +390,11 @@ export default {
         font{
             margin-left:10%;
             color:#fff;
-            font-size:16px;
+            font-size:1rem;
             position: absolute;
             right: 68px;
             bottom: 2px;
-            /*font-family: numberFont;*/
+            font-family: numberFont;
         }
     }
     img{
@@ -422,7 +421,7 @@ export default {
         bottom: 0;
         margin: auto;
         color:#fff;
-        font-size: 24px;
+        font-size: 30px;
         font-family: numberFont;
     }
     .configBtn{
@@ -467,11 +466,11 @@ export default {
         font{
             margin-left:10%;
             color:#fff;
-            font-size:16px;
+            font-size:1rem;
             position: absolute;
-            right: 68px;
-            bottom: 8px;
-            /*font-family: numberFont;*/
+            right: 60px;
+            bottom: 4px;
+            font-family: numberFont;
         }
     }
     img{

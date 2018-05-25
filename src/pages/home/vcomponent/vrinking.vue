@@ -29,7 +29,6 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
   name: 'a7',

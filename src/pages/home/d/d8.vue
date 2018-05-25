@@ -55,7 +55,7 @@
         width: 125px;
         height: 132px;
         line-height: 132px;
-        font-size: 20px;
+        font-size: 1.2rem;
         color: #c7c8f9;
         
     }
@@ -184,7 +184,7 @@ export default {
                     success:function(res){
                     	//console.log(res)
                       	let num = Number(res.data.detail.index) 
-                          _self.percent=num;
+                          _self.percent=num.toFixed(2);
                       if(res.status===0){
 							_self.isloading = false;
 						}

@@ -8,16 +8,12 @@ import axios from 'axios'
 import store from './vuex/index.js'
 import sheet from './common/js/until.js'
 import Rw from '@/common/js/until/index'
-import api from '@/api/index.js'
+import api from '@/api/index'
 import Loading from '@/components/commonui/loading/loading.vue'
-
 import {API_HZ} from '@/api/env'
+import rem from '@/common/js/rem'
+rem(document,window)
 
-api.params.code = this.code; 
-api.getProductData(api.params).then( (re) =>{
- }).catch( (e) => {
-	console.log(e);
-})
 			
 
 window.axios = axios; 

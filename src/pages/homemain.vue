@@ -14,6 +14,7 @@
 </template>
 <script type="text/javascript">
 import headerBody from '@/pages/home/header.vue'
+import config from '@/components/commonui/config/scienceConfig'
 export default {
         data() {
             return {
@@ -21,7 +22,8 @@ export default {
 		            }
         },
         components: {
-                headerBody
+                headerBody,
+                config
         },
         computed: {
             //设置客流预警蒙层显示

@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import Rw from '@/common/js/until/index.js'
 import optionProps from '@/common/js/mixin/optionProps.js'
 export default {

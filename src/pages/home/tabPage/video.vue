@@ -41,10 +41,9 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import componetstatus from '@/pages/home/componentstatus.js'
-import Bus from '@/common/js/bus.js'
 import vdate from '@/components/commonui/vueDate/appv.vue'
+import Bus from '@/common/js/bus'
 export default {
     name: 'barChartOption',
     props:['placeName','turistArr'],
@@ -153,7 +152,6 @@ export default {
     },
     methods: {
         getDate(val){
-        	console.log(val)
         	Bus.$emit('timeRange',val)
     	},
         catchMsg(data){

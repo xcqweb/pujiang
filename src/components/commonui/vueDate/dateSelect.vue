@@ -35,7 +35,7 @@
 				showStatus:false,
 				choseDate:[],
 				choseDateStart:[],
-				ctime:'全部',
+				ctime:`${year}  ~ ${curMonth>10?curMonth:'0'+curMonth}`,
 				status:false,
 			}
 		},
@@ -203,7 +203,7 @@
 			width: 10rem;
 			height: 1.5rem;
 			line-height: 1.5rem;
-			border: solid 1px #345bfa;
+			box-shadow: 1px 0 30px  rgba(1,1,13,0.4);
 			cursor: pointer;
 			font-size: 0.8rem;
 			position: absolute;

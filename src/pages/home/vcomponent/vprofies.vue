@@ -41,7 +41,6 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import echarts_resize from '../../../common/js/echarts_resize.js'
 import echarts from 'echarts';
 import api from '@/api/moudles/tanzhenData'
@@ -195,9 +194,6 @@ export default {
 		yesterdaySum(){
 			return until.string_until.addPoint(this.profileData.yesterdaySum)
 		},
-	},
-	created(){
-
 	},
 	mounted() {
     this.$nextTick(echarts_resize('vwarning',this));

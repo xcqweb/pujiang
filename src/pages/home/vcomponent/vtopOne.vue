@@ -16,14 +16,11 @@
 </template>
 <script>
 import echarts_resize from '../../../common/js/echarts_resize.js'
- import echarts from 'echarts';
-import { mapGetters,mapActions } from 'vuex'
-import store from '../../../vuex/index'
+import echarts from 'echarts';
+//import store from '../../../vuex/index'
 import timeMixin from '@/common/js/mixin/timeMixin.js'
-import Vue from 'vue'
 import Start_end_class from '@/common/js/star_end_class.js'
 import Bus from '@/common/js/bus.js'
-import axios from 'axios'
 import {begindaytime} from '@/common/js/gtime.js'
 import optionProps from '@/common/js/mixin/optionProps.js'
 import vdate from '@/components/commonui/vueDate/app.vue'
@@ -64,7 +61,7 @@ export default {
       }
     },
     props:['isdate','apiName','classo'],
-    store:store,
+//  store:store,
     computed:{
     	comStyle(){
     		let isIE = window.navigator.userAgent.indexOf('Trident')
@@ -319,7 +316,7 @@ export default {
 .clock{
 	width: 30%;
 	height: 26px;
-	border: 1px solid #355bfa;
+	box-shadow: 1px 0 30px  rgba(1,1,13,0.4);
 	border-radius: 6px;
 	font-size: 0.8rem;
 	position: absolute;

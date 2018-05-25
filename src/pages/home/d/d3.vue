@@ -12,11 +12,11 @@
     .date{
     	width: 13rem;
     	height: 1.5rem;
-		border: 1px solid #355bfa;
 		border-radius: 6px;
 		position: fixed;
 		top: 1.5rem;
 		right: 8rem;
+        box-shadow: 1px 0 30px  rgba(1,1,13,0.4);
     }
     .loading{
     	height: 120%;
@@ -218,14 +218,13 @@
 </style>
 
 <template>
-    <div class="d3" @scroll.passive="loadMore($event)">
+    <div class="d3" @scroll="loadMore($event)">
         <div class="msg" v-show='status'>
             <div class="comment" v-for="comment in commentList">
                 <span class="place">{{comment.name}}</span>
-                <vstar 
-                class='comment-star'
-                :star='comment.grade'>
-                </vstar>
+                <ul class='comment-star'>
+                	<li v-for='item in comment.grade'><img :src="imgStar"/></li>
+                </ul>
                 <span class="text">
                     {{comment.con}}
                 </span>
@@ -244,18 +243,17 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import optionProps from '@/common/js/mixin/optionProps.js'
 import vdate from '@/components/commonui/vueDate/apps.vue'
 import loadMore from '@/common/js/directives/loadMore.js'
 import {debounce} from 'lodash'
-Vue.directive('loadMore',loadMore)
 export default {
     name: 'd3',
     mixins: [optionProps],
     props:['place'],
     data () {
         return {
+        	imgStar:require('../../../assets/images/home/d/star.png'),
         	timeRange:{begin:'',end:''},
         	commentProp:{},
         	allData:{},
@@ -266,17 +264,6 @@ export default {
             topStar:{
                 numb: 5,
                 width:'30%',
-            },
-            oneprogressbar:{
-                title:'满意度',
-                leftimg:require('../../../assets/images/home/d/compoment.png'),
-                rightimg:null,
-                leftProcess:90,
-                rightProcess:10,
-                leftColor:'#6dffeb',
-                rightColor:'#4299b9',
-                leftTitle:'',
-                rightTitle:'',
             },
         }
     },
@@ -316,7 +303,7 @@ export default {
     computed: { 
 		commentList(){
 			return this.comments
-		}
+		},
     },
      created(){
      	let params = {code:0,limit:20,curPage:1}
@@ -352,7 +339,6 @@ export default {
 		},500),
 		
 		getDate(val){
-			//console.log(val)
 			this.timeRange = val
 		},
     	getData(){},
@@ -370,8 +356,6 @@ export default {
 	  					this.comments.push(v)
 	  				})
 
-	  				//this.oneprogressbar.leftProcess = reData.satisfyPercent;
-	  				//this.oneprogressbar.rightProcess = 100-reData.satisfyPercent;
 					if(re.status===200){
 						this.isloading = false;
 					}
@@ -384,75 +368,7 @@ export default {
      components:{
         	vdate
         },
-   
-    
 }
-Vue.component('vstar',{
-        props:['star'],
-        data(){
-            return{
-                 imgStar:require('../../../assets/images/home/d/star.png'),
-            }
-        },
-        template:`<ul><li v-for='item in arr'><img :src="imgStar"/></li></ul>`,
-        computed: { 
-            arr:function(){
-                let arrstar=[]
-                for (var i = 0; i < this.star; i++) {
-                    arrstar.push(i)
-                }
-                return arrstar
-            }
-        },
-       
-        methods:{
-            chosen:function(){
-            },
-                
-        },
-    }
-)
 
-Vue.component('vline',{
-        props:['progressbar'],
-        data(){
-            return{
-                 imgStar:require('../../../assets/images/home/d/star.png'),
-            }
-        },
-        template:`
-        <div class='linebox'>
-            <span class='title'>{{progressbar.title}}</span>
-            <div class='imgleft' 
-                :style="{left:progressbar.leftProcess-15+'%'}">
-                <span>{{progressbar.leftProcess}}%</span>
-                <img :src="progressbar.leftimg"/></div>
-            <div class='imgright' 
-                :style="{right:progressbar.rightProcess-10+'%'}">
-                <span v-show='progressbar.rightimg'>{{progressbar.rightProcess}}%</span>
-                <img :src="progressbar.rightimg"/></div>
-            <font class='titleleft' :style="{color:progressbar.leftColor}">{{progressbar.leftTitle}}</font>
-            <font class='titleright' :style="{color:progressbar.rightColor}">{{progressbar.rightTitle}}</font>
-            <div class='line'>
-                <div class='lineleft' :style="{width:progressbar.leftProcess+'%',backgroundColor:progressbar.leftColor}"></div>
-                <div class='lineright' :style="{width:progressbar.rightProcess+'%',backgroundColor:progressbar.rightColor}"></div>
-            </div>
-        </div>`,
-        computed: { 
-            arr:function(){
-                let arrstar=[]
-                for (var i = 0; i < this.star; i++) {
-                    arrstar.push(i)
-                }
-                return arrstar
-            }
-        },
-        methods:{
-            chosen:function(){
-            },
-                
-        },
-    }
-)
 </script>
 

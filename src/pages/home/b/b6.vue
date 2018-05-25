@@ -134,7 +134,7 @@ export default {
                       location : this.apiData.location,
                     },
                     success:function(res){
-						console.log(res)
+						//console.log(res)
                       _self.$nextTick(function () {
                         _self.nowRes = res.results[0].now;
                       });

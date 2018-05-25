@@ -12,7 +12,7 @@
             </div>
             <div class="dateItem item">
                 <div class="border">
-                	<span class='title'>时间筛选</span>
+                	<span class='title'>时间筛选 : </span>
                     <dateSelect 
                     	:isStart=true
                     	@turistDate='getDate'
@@ -55,10 +55,7 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import componetstatus from '@/pages/home/componentstatus.js'
-import { mapGetters } from 'vuex'
-import Bus from '@/common/js/bus.js'
 export default {
     props:['placeName','placeAttractions'],
     name: 'barChartOption',

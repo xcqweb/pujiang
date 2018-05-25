@@ -144,10 +144,10 @@ import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
 	                        }else{
 	                              let token = data.data.data.token;
 	                              setCookie('token', token);
-	                              this.$router.replace({ path: '/' });
+//	                              this.$router.replace({ path: '/' });
 	                              this.logintext='登录';
 	                              this.loginForm.password='';
-	                              //window.location.href = API_HZ
+	                              window.location.href = API_HZ
 	                              
 	                        }
 	                    }else{

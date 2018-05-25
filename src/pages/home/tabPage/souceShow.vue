@@ -25,7 +25,6 @@
                     :isVideo = 'item.isVideo'
                     :is='item.name'
                     :key="item.id"
-                    :place='place'
                     :touristProp = "updateData.turist"
                     ></componet>
                 </div>
@@ -41,7 +40,6 @@
                     <componet
                     :is='item.name'
                     :key="item.id"
-                    :place="place"
                     :touristProp = "updateData.turist"
                     ></componet>
                 </div>
@@ -52,19 +50,12 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import echarts from 'echarts'
 import componetstatus from '@/pages/home/componentstatus.js'
-import Bus from '@/common/js/bus.js'
-import _ from 'lodash'
-import { mapGetters } from 'vuex'
-
 export default {
     props:['placeName','placeAttractions'],
     name: 'souceShow',
         data () {
             return {
-                place:'江南第一家',
                 qyselectlist:{
                     width:'55%',
                     left:'30%',
@@ -135,7 +126,6 @@ export default {
             }
         },
     methods: {
-    	
         catchmsg1(data){
             this.updateData.turist = data
         },

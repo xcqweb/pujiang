@@ -8,7 +8,6 @@
   </div>
 </template>
 <script>
-import Vue from 'vue'
 import echarts_listen_resize from '@/common/js/echarts_listen_resize.js'
 import echarts from 'echarts';
 import Start_end_class from '@/common/js/star_end_class.js'

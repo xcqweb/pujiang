@@ -8,6 +8,7 @@
 		<div class="right">
 			<B2
 			:isVideo=true
+			:touristProp='touristProp'
 			></B2>
 		</div>
 	</div>
@@ -20,6 +21,9 @@
 			return{
 				
 			}
+		},
+		props:{
+			touristProp:String
 		},
 		components:{
 			...componetstatus

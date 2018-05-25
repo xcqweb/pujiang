@@ -98,10 +98,7 @@ export default {
   		
   	}
   },
-  props:{
-  	percents:Number,
-  	isVideo:Boolean
-  }
+  props:['percents','isVideo']
 }
 </script>
 
@@ -346,7 +343,7 @@ animation: rotation 3s linear infinite;
 	    position: absolute;
 	    left: 0;
 	    bottom: 36%;
-	    font-size:20px;
+	    font-size:1.3rem;
 	    text-align: center;
 	}
 	
@@ -355,9 +352,9 @@ animation: rotation 3s linear infinite;
 		color: #fff;
 	    position: absolute;
 	    text-align: center;
-	    bottom: -24%;
+	    bottom: -30%;
 	    left: 0;
-	    font-size:16px;
+	    font-size:1rem;
 	}
 }
 
@@ -482,8 +479,8 @@ animation: rotation 3s linear infinite;
 	    color: #fff;
 	    position: absolute;
 	    left: 6%;
-	    bottom: 4%;
-	    font-size:1.5rem;
+	    bottom: 6%;
+	    font-size:1.3rem;
 	    text-align: center;
 	}
 	
@@ -494,7 +491,7 @@ animation: rotation 3s linear infinite;
 	    text-align: center;
 	    bottom: -56%;
 	    left: 5%;
-	    font-size:16px;
+	    font-size:1rem;
 	}
 }
 

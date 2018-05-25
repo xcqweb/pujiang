@@ -26,7 +26,7 @@ export default {
   data () {
     return {
       items:[
-        {name:'视频监控',link:'/video',status:'unchose'},
+        {name:'首页',link:'/video',status:'unchose'},
         {name:'总览',link:'/home',status:'chose'},
         {name:'产业监测平台',link:'/prodcut',status:'chose'},
         {name:'精准营销平台',link:'/precision',status:'chose'},
@@ -193,11 +193,11 @@ a:visited { text-decoration: none;}
       
         li:nth-of-type(1){
             .unchose{
-                background-image:url('../../assets/images/home/video1.png');
+                background-image:url('../../assets/images/home/主页.png');
                 background-size: 100% 100%;
             }
             .chose{
-                background-image:url('../../assets/images/home/video2.png');
+                background-image:url('../../assets/images/home/主页2.png');
                 background-size: 100% 100%;
             }
         }
