@@ -184,7 +184,8 @@ export default {
                     success:function(res){
                     	//console.log(res)
                       	let num = Number(res.data.detail.index) 
-                          _self.percent=num.toFixed(2);
+                            _self.percent=num.toFixed(2);
+                          //_self.percent=Number(5).toFixed(2)
                       if(res.status===0){
 							_self.isloading = false;
 						}

@@ -5,7 +5,7 @@
             <!--<img :src="imgacircle"/>-->
         </div>
         <span>{{percent}}%</span>
-        <div class="text" v-show="isVideo"><font>预警客流</font><font></font></div>
+        <div class="text" v-show="isVideo"><font>客流预警</font><font></font></div>
         <p class="configBtn" @click="passagerConfig" v-show="!isVideo">设置</p>
         <img v-show="isVideo" class="line" src="../../../assets/images/circle/violet/line.png"/>
       <Loading v-show="isloading"></Loading>

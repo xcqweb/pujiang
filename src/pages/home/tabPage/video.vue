@@ -116,7 +116,7 @@ export default {
                     top:'18px',
                     title:'仙华山1',
                     selectStatus:false,
-                    place:['仙华山1','仙华山2','仙华山3','仙华山4','仙华山5']
+                    place:['仙华山1','仙华山2','神丽峡1','神丽峡2']
                 }},
                     {name:'D10',id:'five',index:4,time:1200,show:false,title:'',qyselectlist:{
                     width:'30%',
@@ -124,23 +124,23 @@ export default {
                     top:'18px',
                     title:'仙华山2',
                     selectStatus:false,
-                    place:['仙华山1','仙华山2','仙华山3','仙华山4','仙华山5']
+                    place:['仙华山1','仙华山2','神丽峡1','神丽峡2']
                 }},
                     {name:'D10',id:'six',index:4,time:1200,show:false,title:'',qyselectlist:{
                     width:'30%',
                     left:'2px',
                     top:'18px',
-                    title:'仙华山3',
+                    title:'神丽峡1',
                     selectStatus:false,
-                    place:['仙华山1','仙华山2','仙华山3','仙华山4','仙华山5']
+                    place:['仙华山1','仙华山2','神丽峡1','神丽峡2']
                 }},
                     {name:'D10',id:'seven',index:4,time:1200,show:false,title:'',qyselectlist:{
                     width:'30%',
                     left:'2px',
                     top:'18px',
-                    title:'仙华山4',
+                    title:'神丽峡2',
                     selectStatus:false,
-                    place:['仙华山1','仙华山2','仙华山3','仙华山4','仙华山5']
+                    place:['仙华山1','仙华山2','神丽峡1','神丽峡2']
                 }},
                     
                 ],

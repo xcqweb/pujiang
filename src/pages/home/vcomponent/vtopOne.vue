@@ -99,16 +99,10 @@ export default {
       let dataY=[];
       let dataX=[];
       for (var i = 0; i < this.oneweekMock.length; i++) {
-      	//console.log(this.oneweekMock[i]._id.indexOf(0))
-      	if(this.oneweekMock[i]._id.indexOf(0)){
-      		this.oneweekMock[i]._id = this.oneweekMock[i]._id.substring(5,6)+"/"+this.oneweekMock[i]._id.substr(6)
-          dataY.push(this.oneweekMock[i].total);
-          dataX.push(this.oneweekMock[i]._id)
-      	}else{
+      	//console.log(this.oneweekMock[i]._id)
       		this.oneweekMock[i]._id = this.oneweekMock[i]._id.substring(4,6)+"/"+this.oneweekMock[i]._id.substr(6)
           dataY.push(this.oneweekMock[i].total);
           dataX.push(this.oneweekMock[i]._id)
-      	}
       		
       }
       this.$nextTick(echarts_resize('righthz',this,dataX,dataY))
@@ -265,7 +259,6 @@ export default {
       getData(){},
     request(range){
         let _self = this;
-        // this.$router.push({ path: '/' });
       //请求数据
         let start_end_instance =  new Start_end_class(this.apiName,'','',this.code,range);
         start_end_instance.get_response(_self.$el).then(re => {

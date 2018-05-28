@@ -13,9 +13,6 @@ import Loading from '@/components/commonui/loading/loading.vue'
 import {API_HZ} from '@/api/env'
 import rem from '@/common/js/rem'
 rem(document,window)
-
-			
-
 window.axios = axios; 
 Vue.prototype.$axios = axios; 
 window.api = api; 

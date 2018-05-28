@@ -8,7 +8,7 @@
         position:absolute;
         top:1.3rem;
         font-size: 1.1rem;
-        color:white;
+        color:#fff;
     }
     .toast-video{
         position:absolute;
@@ -26,7 +26,7 @@
             width:100%;
             height: 8%;
             font-size:1.1rem;
-            color: white;
+            color: #fff;
             line-height: 1.5rem;
             text-align: left;
             letter-spacing:.2rem;
@@ -421,7 +421,7 @@ import sciencePoints from './points.json'
 		  	addScript(val){
                 let _self = this;
                 var oS=document.createElement('script');
-                oS.src='https://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js?'+Math.random();
+                oS.src='https://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js';
                 this.$el.appendChild(oS)
                 oS.onload=function(){
                     _self.rodomMap(val);
