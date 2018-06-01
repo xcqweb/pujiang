@@ -1,27 +1,31 @@
 <template>
 	<div class="d10">
-		
-		<div class="video" v-if="!isIE">
-			<!--[if !IE]><!-->  
-			    <!--<object type='application/x-vlc-plugin' id='vlc' events='True' width="560" height="360" pluginspage="http://www.videolan.org" codebase="../../common/js/plugin/npapi-vlc-2.0.6.tar.xz">-->  
-			    <object type='application/x-vlc-plugin' id='vlc' events='True' width="560" height="360" pluginspage="http://www.videolan.org" codebase="http://downloads.videolan.org/pub/videolan/vlc-webplugins/2.0.6/npapi-vlc-2.0.6.tar.xz">  
-<param name='mrl' value='rtsp://117.148.153.159:554/cam/realmonitor?channel=3&subtype=0' />  
-			        <!--<param name='mrl' value='rtsp://117.148.153.159:554/cam/realmonitor?channel=3&subtype=0' />-->  
-			        <param name='volume' value='50' />  
-			        <param name='autoplay' value='true' />  
-			        <param name='loop' value='false' />  
-			        <param name='fullscreen' value='true' />  
-			    </object>  
-			<!--<![endif]-->  
+		<div :class="comStyle" v-if="isIE">
+			<transition name='scales'>
+				<iframe :src="comSrc" width="460" height="256" scrolling="no" :class="comfullStyle" @mouseenter="showBtn" @mouseleave="hideBtn"></iframe> 
+			</transition>
+			 
+			 <transition name='fade'>
+			 	<span class="fullScreen" @click="fullScreen" v-show="hoverStatus"></span>
+			 </transition>
+			 
+			 <div class="close" v-show="status">
+       			<span class="closeBtn"  @click="closeFull" title="退出全屏"></span>
+       		</div>
 		</div>
-		<div class="video" v-else>
-			    <object type='application/x-vlc-plugin' id='vlc' events='True' width="460" height="258" pluginspage="http://www.videolan.org" codebase="http://downloads.videolan.org/pub/videolan/vlc-webplugins/2.0.6/npapi-vlc-2.0.6.tar.xz">  
-			        <param name='mrl' :value='vsrc' />  
-			        <param name='volume' value='50' />  
-			        <param name='autoplay' value='true' />  
-			        <param name='loop' value='false' />  
-			        <param name='fullscreen' value='true' />  
-			    </object>  
+		
+		<div :class="comStyle" v-else>
+			<transition name='scales'>
+				<iframe :src="comSrc" width="528" height="290" scrolling="no" :class="comfullStyle" @mouseenter="showBtn" @mouseleave="hideBtn"></iframe> 
+			</transition>
+			 
+			 <transition name='fade'>
+			 	<span class="fullScreen" @click="fullScreen" v-show="hoverStatus"></span>
+			 </transition>
+			 
+			 <div class="close" v-show="status">
+       			<span class="closeBtn"  @click="closeFull" title="退出全屏"></span>
+       		</div>
 		</div>
 		<sleckte
 			:selectList="qyselectlist" 
@@ -36,8 +40,12 @@
 	export default{
 		data(){
 			return{
-				isIE:isIE,
-				vsrc:'sp://117.148.153.159:554/cam/realmonitor?channel=1&subtype=0'
+				vsrc:'',
+				status:false,
+				hoverStatus:false,
+				scienceName:'',
+				isIE:isIE
+				
 			}
 		},
 		props:{
@@ -58,25 +66,65 @@
 		methods:{
 			catchMsg(val){
 				console.log(val)
-				switch(val){
-					case '仙华山1':
-					this.vsrc = 'sp://117.148.153.159:554/cam/realmonitor?channel=1&subtype=0'
-					break;
-					case '仙华山2':
-					this.vsrc = 'rtsp://117.148.153.159:554/cam/realmonitor?channel=3&subtype=0'
-					break;
-				}
+				this.scienceName = val
+			},
+			fullScreen(){
+				this.status = true
+			},
+			closeFull(){
+				this.status = false
+			},
+			showBtn(){
+				this.hoverStatus = true
+			},
+			hideBtn(){
+				this.timer = window.setTimeout( () => {
+					this.hoverStatus = false
+				},1500)
 			}
 		},
 	
 		computed:{
 	        comStyle(){
-	        	if(isIE>-1){ 
-		    		return 'd10v'
+	        	if(this.isIE){ 
+		    		return 'video'
 				}else{
-					return 'd10'
+					return 'videoie'
 				}
+	        },
+	        comfullStyle(){
+	        	return this.status?'fullStyle':''
+	        },
+	        comSrc(){
+	        	switch(this.scienceName){
+	        		case '仙华山1':
+	        		return 'http://114.55.237.138:10800/play.html?channel=1';
+	        		break;
+	        		
+	        		case '仙华山2':
+	        		return 'http://114.55.237.138:10800/play.html?channel=2';
+	        		break;
+	        		
+	        		case '新光村1':
+	        		return 'http://114.55.237.138:10800/play.html?channel=3';
+	        		break;
+	        		
+	        		case '新光村2':
+	        		return 'http://114.55.237.138:10800/play.html?channel=4';
+	        		break;
+	        		
+	        		case '前吴村1':
+	        		return 'http://114.55.237.138:10800/play.html?channel=5';
+	        		break;
+	        		
+	        		case '前吴村3':
+	        		return 'http://114.55.237.138:10800/play.html?channel=6';
+	        		break;
+	        	}
 	        }
+		},
+		mounted(){
+			this.scienceName = this.qyselectlist.title
 		},
 		components:{
 			sleckte
@@ -91,21 +139,136 @@
 	.video{
 		width: 460/488*100%;
 		height: 258/345*100%;
-		margin: 52px 0 0 15px;
+		margin: 66px 0 0 15px;
+		iframe{
+			
+		}
+		.fullScreen{
+			position: absolute;
+        	color: #fff;
+        	width: 1.5rem;
+        	height: 1.5rem;
+        	right: 1.3rem;
+        	bottom:2.6rem;
+        	background: url(../../../assets/images/video/fullscreen.png) no-repeat;
+        	background-size: contain;
+        	cursor: pointer;
+		}
+		.fullStyle{
+			width: 100vw;
+			height: 100vh;
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: 10000;
+			//animation: scaleS 0.5s ease;
+		}
+		
+		@keyframes scaleS{
+	    	from{
+	    		transform: scale(0);
+	    	}
+	    	to{
+	    		transform: scale(1);
+	    	}
+	    }
+		  .close{
+			position: fixed;
+			bottom: -4.5rem;
+			z-index: 3222222222;
+			color: #fff;
+			background-color: rgba(0,0,0,0.5);
+			width: 100%;
+			height: 15%;
+			right: 0;
+			cursor: pointer;
+			.closeBtn{
+				display: block;
+				width: 2rem;
+				height: 2rem;
+				position: absolute;
+				bottom: 75px;
+				right: 40px;
+				background: url(../../../assets/images/video/fullscreen.png) no-repeat;
+				background-size: contain;
+				
+			}
+		}
+	}
+	
+	.videoie{
+		width: 460/488*100%;
+		height: 258/345*100%;
+		margin: 66px 0 0 15px;
+		iframe{
+			
+		}
+		.fullScreen{
+			position: absolute;
+        	color: #fff;
+        	width: 1.5rem;
+        	height: 1.5rem;
+        	right: 2.5rem;
+        	bottom:3.6rem;
+        	background: url(../../../assets/images/video/fullscreen.png) no-repeat;
+        	background-size: contain;
+        	cursor: pointer;
+		}
+		.fullStyle{
+			width: 100vw;
+			height: 100vh;
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: 10000;
+			//animation: scaleS 0.5s ease;
+		}
+		
+		@keyframes scaleS{
+	    	from{
+	    		transform: scale(0);
+	    	}
+	    	to{
+	    		transform: scale(1);
+	    	}
+	    }
+		  .close{
+			position: fixed;
+			bottom: -4.5rem;
+			z-index: 3222222222;
+			color: #fff;
+			background-color: rgba(0,0,0,0.5);
+			width: 100%;
+			height: 15%;
+			right: 0;
+			cursor: pointer;
+			.closeBtn{
+				display: block;
+				width: 2rem;
+				height: 2rem;
+				position: absolute;
+				bottom: 75px;
+				right: 40px;
+				background: url(../../../assets/images/video/fullscreen.png) no-repeat;
+				background-size: contain;
+				
+			}
+		}
 	}
 }
 
-.d10v{
-	width: 100%;
-	height: 100%;
-	.video{
-		width: 460/488*100%;
-		height: 258/345*100%;
-		margin: 52px 0 0 20px;
-	}
-	object{
-		position: relative;
-		z-index: 1;
-	}
+
+
+
+
+.fade-enter-activee {
+  transition: opacity .1s;
+}
+
+.fade-leave-active {
+  transition: opacity 1s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>

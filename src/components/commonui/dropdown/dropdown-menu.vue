@@ -1,26 +1,9 @@
-<!--
-selectlist:{
-    width:'23%',
-    left:'20%',
-    title:'宝晶宫 ',
-    selectStatus:false,
-    place:[
-        {
-            name:'宝晶宫 ',value:'宝晶宫 '
-        },
-        {
-            name:'洞天仙境 ',value:'洞天仙境 '
-        },
-        {
-            name:'千年瑶寨',value:'千年瑶寨'
-        }
-    ]
-}
-!-->
+
 <template>
     <div class="v-dropdown-menu" 
 		style="border: none;"
         @click = 'showselect' 
+        v-clickOutside='hide'
         v-bind:style="{ width:selectList.width ,left:selectList.left,top:selectList.top}" 
         >
         <p @click='triggle' v-on:itemtodo2="sendMsgParent" class="dropdown-menu-p">{{selectList.title}}</p>
@@ -37,6 +20,7 @@ selectlist:{
 </template>
 <script >
 import Vue from 'vue'
+
     export default{
         data(){
             return{
@@ -65,7 +49,9 @@ import Vue from 'vue'
 
                 this.$emit('listenAtparent',selectList.title)
             },
-            
+            hide(){
+            	this.menueshow=false
+            },
             outcrement:function(message){
                 
                 if (message) {
@@ -165,6 +151,7 @@ import Vue from 'vue'
 </script>
 <style lang="less" >
 .overlay {
+	display: none;
     position: fixed;
     width: 400vw;
     height: 400vh;

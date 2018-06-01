@@ -25,7 +25,7 @@
     </transition> -->
 
     <transition name="fade">
-    <div class="calendar-dialog" v-show="calendar4.show">
+    <div class="calendar-dialog" v-if="calendar4.show">
         <div class="calendar-dialog-mask" @click="closeByDialog"></div>
         
         <div class="calendar-dialog-body" :class="comStyle">
@@ -178,7 +178,7 @@ export default {
     width:90%;
     box-shadow: 1px 0 30px  rgba(1,1,13,0.4);
     text-align: center;
-    margin-left:0.5rem;
+    margin-left:0.8rem;
     border-radius: 2px;
     padding:0.4rem 0 0.5rem 0.5rem;
     font-size: 0.8rem;

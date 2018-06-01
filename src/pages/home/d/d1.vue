@@ -204,19 +204,19 @@ import sciencePoints from './points.json'
                         //添加新图标的监听事件
                         marker.addEventListener("click",
                             function(event) {
-                            var p = marker.getPosition();       //获取marker的位置
-                            map.centerAndZoom(new BMap.Point(p.lng+lenY*0.25,p.lat+lenY*0.25), 16);
-                            _self.videoToast=true;
+                            var p = event.target.getPosition();       //获取marker的位置
+                              map.centerAndZoom(new BMap.Point(p.lng+lenY*0.25,p.lat+lenY*0.25), 15);
+                           // _self.videoToast=true;
                             
-                            let len = points.length;
-                            for(let i=0; i<len; ++i){
-                            	let point = points[i][0];
-                            	if(p.lng === point){
-                            		//console.log(_self.vsrc)
-                              		_self.vsrc = _self.videoSrc[i];
-                            		//console.log(_self.vsrc)
-                            	}
-                            }
+//                          let len = points.length;
+//                          for(let i=0; i<len; ++i){
+//                          	let point = points[i][0];
+//                          	if(p.lng === point){
+//                          		//console.log(_self.vsrc)
+//                            		_self.vsrc = _self.videoSrc[i];
+//                          		//console.log(_self.vsrc)
+//                          	}
+//                          }
                             window.event?window.event.cancelBubble=true:event.stopPropagation();
                         },false);
                     })(i);
@@ -374,7 +374,7 @@ import sciencePoints from './points.json'
 		            	let zoom = map.getZoom()
 		            	
 		            	if(zoom===14){//放大级别在14时关闭热力图
-		            		 closeHeatmap()
+		            		 //closeHeatmap()
 		            	}
 		            })
                    
@@ -400,8 +400,9 @@ import sciencePoints from './points.json'
                         return !!(elem.getContext && elem.getContext('2d'));
                     }
             },
+              getData(){},
             //请求数据
-		  	getData(){
+		  	getDatas(){
 		  		api.params.code = this.code;
 		  		api.scenicHot(api.params).then( (re) =>{
 	  				let reData = re.data.data;
@@ -554,17 +555,10 @@ import sciencePoints from './points.json'
             
             }
         },
-        created(){
-        },
-        mounted() {
-          	this.$nextTick( () => {
-            	//console.log(this.points)
-          		
-        	})
-        	
-        	
-            // 百度地图API功能
-            // 创建Map实例
-        },
+       mounted(){
+       	this.$nextTick( () => {
+       		this.getDatas()
+       	})
+       }
     }
 </script>

@@ -12,7 +12,7 @@
 
         <div class="week">
              <span class="oneweek " v-bind:class="{ chose: isActive }" @click='redom7'>省内</span> 
-             <span class="twoweek" v-bind:class="{ chose: !isActive }" @click='redom14'>国内</span> 
+             <span class="twoweek" v-bind:class="{ chose: !isActive }" @click='redom14'>省外</span> 
         </div>
         <Loading v-show='isloading' class='loading'></Loading>
     </div>
@@ -60,9 +60,10 @@ export default {
                 trigger: 'item',
                 formatter:function(params){
                 	if(params.seriesType==="effectScatter"){
-                    		return params.data.name+":"+params.data.value[2]
+                    		return params.data.name+" "+params.data.value[2]
                 	}else{
-                    		return params.data.fromName+":"+params.data.coords[2]
+                    		//return params.data.fromName+":"+params.data.coords[2]
+                    		return 
                 	}
                 }
             },
@@ -114,9 +115,10 @@ export default {
                 trigger: 'item',
                 formatter:function(params){
                 	if(params.seriesType==="effectScatter"){
-                    		return params.data.name+":"+params.data.value[2]
+                    		return params.data.name+" "+params.data.value[2]
                 	}else{
-                    		return params.data.fromName+":"+params.data.coords[2]
+                    		//return params.data.fromName+":"+params.data.coords[2]
+                    		return
                 	}
                 }
             },
@@ -310,10 +312,10 @@ export default {
             '运城市':[111.009935,35.033179],
             '忻州市':[112.731421,38.424644],
             '随州市':[113.400946,31.69455],
+            '濮阳市':[115.039042,35.769936]
         },
         BJData:[
             [{name: this.placeName}, {name: '北京', value: 95}],
-//          [{name: this.placeName}, {name: this.placeName, value: 95}],
         ],
         GUANG:[
             [{name: this.placeName}, {name: '长春', value: 40}],
@@ -360,12 +362,13 @@ export default {
 	    		let reData = re.data.data;
 	    		this.yearNumb = reData.yearSum;
 	    		this.mouthNumb = reData.monthSum;
-	    		let topCity = reData.topCity.splice(2);
+	    		let topCity = reData.topCity;
 	    		this.allData=[];
 	    		this.zhejiang=[];
 	    		
 				for(let i=0; i<topCity.length; ++i){
-					if(topCity[i]._id!=="missing" ||　topCity[i]._id!=="总计"){
+					if(topCity[i]._id!=="missing" &&　topCity[i]._id!=="总计"){
+						//alert(topCity[i]._id!=="missing")
 						if(this.range===1){
 							this.allData[i]=["浦江县", [[{name: "浦江县"}, {name: topCity[i]._id, value: topCity[i].sum}]]]
 						}else{
@@ -374,6 +377,9 @@ export default {
 					}
 					
 				}
+				
+				this.allData.push(["浦江县", [[{name: "浦江县"}, {name: "浦江县", value: ''}]]])
+				this.zhejiang.push(["浦江县", [[{name: "浦江县"}, {name: "浦江县", value: ''}]]])
 				
 	    		if(re.data.code===200 || re.data.code==='200'){
 	    			this.isloading=false;
@@ -466,7 +472,7 @@ export default {
         this.allData.forEach(function (item, i) {
             series.push(
                 {
-//                  name: item[0],
+                    name: item[0],
                     type: 'lines',
                     zlevel: 1,
                     symbol:'circle',
@@ -490,7 +496,7 @@ export default {
                     data: _self.convertData(item[1])
                 },
                 {
-//                  name: item[0],
+                    name: item[0],
                     type: 'lines',
                     zlevel: 2,
                     largeThreshold:200,
@@ -538,22 +544,7 @@ export default {
                         }
                     },
                     symbolSize: function (val) {
-                        //return val[2] / 200;
-                        if(val>=0&&val[2]<=20){
-                    		return val[2]
-                    	}else if(val[2]>20&&val[2]<=1000){
-                    		return val[2]/40
-                    	}else if(val[2]>1000 && val[2]<5000){
-                    		return val[2]/150
-                    	}else if(val[2]>=5000 && val[2]<10000){
-                    		return val[2]/200
-                    	}else if(val[2]>=10000&&val[2]<70000){
-                    		return val[2]/260
-                    	}else if(val[2]>=70000&&val[2]<100000){
-                    		return val[2]/360
-                    	}else{
-                    		return val[2]/660
-                    	}
+                        return 10;
                     },
                     itemStyle: {
                         normal: {
@@ -663,19 +654,20 @@ export default {
                         }
                     },
                     symbolSize: function (val) {
-                    	if(val>=0&&val[2]<=20){
-                    		return val[2]
-                    	}else if(val[2]>20&&val[2]<=1000){
-                    		return val[2]/50
-                    	}else if(val[2]>1000 && val[2]<10000){
-                    		return val[2]/600
-                    	}else if(val[2]>=10000&&val[2]<70000){
-                    		return val[2]/1800
-                    	}else if(val[2]>=70000&&val[2]<100000){
-                    		return val[2]/2600
-                    	}else{
-                    		return val[2]/3600
-                    	}
+                    	return 10
+//                  	if(val>=0&&val[2]<=20){
+//                  		return val[2]
+//                  	}else if(val[2]>20&&val[2]<=1000){
+//                  		return val[2]/50
+//                  	}else if(val[2]>1000 && val[2]<10000){
+//                  		return val[2]/600
+//                  	}else if(val[2]>=10000&&val[2]<70000){
+//                  		return val[2]/3000
+//                  	}else if(val[2]>=70000&&val[2]<100000){
+//                  		return val[2]/5000
+//                  	}else{
+//                  		return val[2]/8000
+//                  	}
                         
                     },
                     itemStyle: {

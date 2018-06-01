@@ -12,6 +12,7 @@ const loginsix =resolve => require(['@/pages/login/loginsix.vue'], resolve);
 const loginseven =resolve => require(['@/pages/login/loginseven.vue'], resolve);
 
 const homepage = resolve => {require.ensure(['@/pages/home/tabPage/homepage.vue'], () => {resolve(require('@/pages/home/tabPage/homepage.vue'))})}
+const homepage2 = resolve => {require.ensure(['@/pages/home/tabPage/homepage2.vue'], () => {resolve(require('@/pages/home/tabPage/homepage2.vue'))})}
 
 const Video = resolve => {require.ensure(['@/pages/home/tabPage/video.vue'], () => {resolve(require('@/pages/home/tabPage/video.vue'))})}
 

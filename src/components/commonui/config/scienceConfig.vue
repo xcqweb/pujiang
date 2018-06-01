@@ -161,7 +161,7 @@
 					position: absolute;
 					top: 0;
 					margin-top: 1rem;
-					padding: 0.3rem 0.8rem;
+					padding: 0.3rem 0.8rem 0.4rem 0.8rem;
 					border-radius: 1rem;
 					cursor: pointer;
 				}
@@ -198,7 +198,7 @@
 			padding: 0rem 1rem;
 			border-radius: 0.3rem 0 0 0.3rem;
 			background-color: #1E3382;
-			 height:1.8rem;
+			height:1.8rem;
     		line-height: 1.8rem;
 		    border: 1px solid #1b44ba;
 		    transform: translate(0,-50%);

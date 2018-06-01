@@ -21,7 +21,7 @@
 	import Bus from '@/common/js/bus'
 	let date = new Date();
 	let year = date.getFullYear();
-	let curMonth = date.getMonth()+1;
+	let curMonth = date.getMonth();
 	let curDay = date.getDate();
 	let yearData=[];
 	for(let i=0; i<7; i++){
@@ -51,6 +51,11 @@
 					this.ctime = data.end[0]+" ~ "+ data.end[1]
 				}
 			})
+		},
+		beforeDestroy(){
+			Bus.$off('reset')
+			Bus.$off('swap')
+			Bus.$off('turistDate')
 		},
 		computed:{
 			icon(){
@@ -176,7 +181,7 @@
 			.subMenu{
 				transform: translate(90px,44px);
 				position: absolute;
-				height: 300px;
+				height: 210px;
 				width: 100px;
 				left: -88px;
 				top: -42px;

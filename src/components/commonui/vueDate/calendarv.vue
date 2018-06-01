@@ -381,14 +381,15 @@ export default {
                         end=this.rangeEnd
                     }
                     
-                     let lev = new Date(end.join('/')).getTime()/1000-new Date(begin.join('/')).getTime()/1000
+                     let lev = new Date(end.join('/')).getTime()/1000-new Date(begin.join('/')).getTime()/1000;
                     if(new Date(end)>new Date()||new Date(begin)>new Date() ){
                             this.rangeEnd=[]
 	                        this.rangeBegin=[]
 	                        alert('所选时间不能大于当前时间')
                            return;
                     }else{
-                    		if(lev>7*24*60*60){
+                    	
+                    		if(lev>518400){
 	                    		this.rangeEnd=[]
 		                        this.rangeBegin=[]
 	                            alert('时间跨度不能大于七天')

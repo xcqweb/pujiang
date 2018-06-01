@@ -130,8 +130,48 @@
 		height: 90%;
 		background: linear-gradient(#2d449d 50%,#264095 50%);
 		background-size:  20%;
+		padding-top: 10%;
 		overflow-y: scroll;
-		.title,.content{
+		
+		.title{
+			position: absolute;
+			top: 10%;
+			z-index: 100;
+			color: #fff;
+			width: 100%;
+			height: 10%;
+			display:flex;
+			background-color: #1E3382;
+			align-items:center;
+			li{
+				
+				position: relative;
+				font-size: 0.9rem;
+				.edit{
+					font-size: 0.8rem;
+					padding: 0.2rem 0.8rem;
+					border-radius: 1rem;
+					background-color: #5E90D7;
+				}
+			}
+			
+			li:nth-child(1){
+				flex: 2;
+			}
+			li:nth-child(2){
+				flex: 2;
+			}
+			li:nth-child(3){
+				flex: 3;
+			}
+			li:nth-child(4){
+				flex: 3;
+			}
+			li:nth-child(5){
+				flex: 2;
+			}
+		}
+		.content{
 			color: #fff;
 			width: 100%;
 			height: 10%;

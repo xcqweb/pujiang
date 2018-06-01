@@ -17,7 +17,6 @@
 <script>
 import echarts_resize from '../../../common/js/echarts_resize.js'
 import echarts from 'echarts';
-//import store from '../../../vuex/index'
 import timeMixin from '@/common/js/mixin/timeMixin.js'
 import Start_end_class from '@/common/js/star_end_class.js'
 import Bus from '@/common/js/bus.js'
@@ -78,7 +77,11 @@ export default {
     watch:{
     	code:function(){
     		this.isloading = true;
-    		this.request();
+    		if(this.timeRange.begin ||this.timeRange.end){
+    			this.request(this.timeRange);
+    		}else{
+    			this.request();
+    		}
     	},
     	timeRange:{
     		handler:function(val){

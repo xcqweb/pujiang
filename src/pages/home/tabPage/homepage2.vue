@@ -112,9 +112,9 @@ export default {
                 ],
                 cutoverStatus:null,
                 leftComponents:[
-//                  {name:'A10',id:'one',index:1,time:100,show:false,title:'视频监控'},
-//                  {name:'D1',id:'two',index:2,time:600,show:false,title:'景区客流热力图与视频监控'},
-//                  {name:'A5',id:'five',index:3,time:900,show:false,title:'实时客流'},
+                    {name:'A10',id:'one',index:1,time:100,show:false,title:'视频监控'},
+                    {name:'D1',id:'two',index:2,time:600,show:false,title:'景区客流热力图与视频监控'},
+                    {name:'A5',id:'five',index:3,time:900,show:false,title:'实时客流'},
 //                  {name:'A1',id:'four',index:4,time:1200,show:false,title:'历史客流'},
 //                  {name:'B1',id:'five',index:5,time:1500,show:false,title:'富民指数'},
                     

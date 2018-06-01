@@ -15,7 +15,8 @@
             <li v-for='item in outItemsCom' v-bind:style="{ marginLeft: marginLeft +'%'}">
                 <span v-bind:style="{  bottom:18+item.percent +'%'}">{{item.percent}}%</span>
                 <div v-bind:style="{  height: item.percent+10+'%'}"></div>
-                <font>{{item._id}}</font>
+                <font :title="item._id" v-if='item._id.length>3'>{{item._id.substring(0,3)}}...</font>
+                <font :title="item._id" v-else>{{item._id.substring(0,3)}}</font>
             </li>
         </ul>
         <ul>
@@ -23,7 +24,8 @@
             <li v-for='item in inItems' v-bind:style="{ marginLeft: marginLeft +'%'}">
                 <span v-bind:style="{  bottom:18+item.percent +'%'}">{{item.percent}}%</span>
                 <div v-bind:style="{  height: item.percent+10 +'%'}"></div>
-                <font>{{item._id}}</font>
+                <font :title="item._id" v-if='item._id.length>3'>{{item._id.substring(0,3)}}...</font>
+                <font :title="item._id" v-else>{{item._id.substring(0,3)}}</font>
             </li>
         </ul>
         <Loading v-show="isloading"></Loading>
@@ -44,15 +46,9 @@ export default {
         inItems:[],
     }
     },
-    created(){
-    },
     computed: { 
     	outItemsCom(){
-//  		this.outItems.forEach( (v,i) => {
-//  			if(v._id==='missing'){this.outItems.splice(i,1)}
-//  			if(v._id==='总计'){this.outItems.splice(i,1)}
-//  		})
-    		return this.outItems.splice(2)
+      		return this.outItems.splice(2)
     	}
     },
     watch:{
@@ -68,7 +64,6 @@ export default {
 	  	getData(data){
 	  		//api.params.code = this.code;
 	  		api.touristOriginsource(data).then( (re) =>{
-	  			
 	  				let reData = re.data.data;
 	  				if(!reData){
 		  				this.inItems=[]
@@ -170,7 +165,7 @@ export default {
                 /*display:inline-block;*/
                 position:absolute;
                 top:106%;
-                left:-5%;
+                left:-12%;
                 font-size: 0.66rem;
             }
         }

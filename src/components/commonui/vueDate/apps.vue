@@ -25,7 +25,7 @@
     </transition> -->
 
     <transition name="fade">
-    <div class="calendar-dialog" v-show="calendar4.show">
+    <div class="calendar-dialog" v-if="calendar4.show">
         <div class="calendar-dialog-mask" @click.self="closeByDialog"></div>
         
         <div class="calendar-dialog-body" :class="comStyle">
