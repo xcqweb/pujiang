@@ -11,7 +11,7 @@
 			<div class="title">
 				<span class="history" @click="history" :class="{'active':tab}">预警历史</span>
 				<span class="config" @click="waringConfig" :class="{'active':!tab}">预警设置</span>
-				<span class="close" @click="close">x</span>
+				<span class="close" @click="close" title="关闭">x</span>
 			</div>
 			<history :scienceProp='scienceProps' v-show="tab"></history>
 			<config :scienceProp='scienceProps' v-show="!tab"></config>
@@ -107,7 +107,7 @@
         	},
         	//关闭蒙层
         	close(){
-        		this.$store.state.showToast = false;
+        		this.$emit('closeToast')
         		this.code=0;
         	},
         	getData(){}
@@ -132,7 +132,7 @@
 		width: 100%;
 		height: 100%;
 		background-color: rgba(10, 14, 39,0.8);
-		position: absolute;
+		position: fixed;
 		top: 0;
 		left: 0;
 		z-index: 10000;
@@ -182,6 +182,10 @@
 					right: 2%;
 					top: 8%;
 					cursor: pointer;
+					-webkit-user-select: none;
+		        	-ms-user-select: none;
+		        	-moz-user-select: none;
+		        	user-select: none;
 				}
 			}
 		}

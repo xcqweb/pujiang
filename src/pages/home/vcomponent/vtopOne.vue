@@ -1,11 +1,7 @@
 <template>
   <div class="main_content" v-show='show' id="A1loding">
-  	<span class="title" :class='comStyle'>( 单位 : 人)</span>
+  	<span class="title" :class='comStyle'>( 单位 : 人次 )</span>
     <div id="righthz"></div>
-    <!--<div class="week">-->
-        <!--<span class="oneweek " v-bind:class="{ chose: isActive }" @click='redom7'>7日</span>-->
-        <!--<span class="twoweek" v-bind:class="{ chose: !isActive }" @click='redom14'>14日</span>-->
-    <!--</div>-->
     <Loading v-if="isloading"></Loading>
     <div class="clock" v-if="isdate">
     	<vdate
@@ -24,6 +20,7 @@ import {begindaytime} from '@/common/js/gtime.js'
 import optionProps from '@/common/js/mixin/optionProps.js'
 import vdate from '@/components/commonui/vueDate/app.vue'
 
+let w = document.body.clientWidth/1920
 
 export default {
     name:'a1',
@@ -119,12 +116,21 @@ export default {
                     color: ['#1F6ABB','#3897C5','#A4C5E6'],
                     grid: {
                          show: true,
-                         left: 66,
+                         left: '13%',
                          top: '26%',
                          right: '6%',
-                         bottom: 30,
+                         bottom: '10%',
                          borderWidth: 0,
                          backgroundColor: 'rgba(0,0,0,0)',
+                     },
+                     tooltip:{
+                     	show:false,
+                     	textStyle:{
+				            		fontSize:'80%',
+				            	},
+				            	formatter:function(params){
+				            		console.log(params)
+				            	}
                      },
                     xAxis: [
                         {
@@ -133,6 +139,10 @@ export default {
                         },
                         axisPointer:{
                           show:true,
+                          label:{
+                          	fontSize:'70%',
+                          	padding:[10,10*w]
+                          },
 
                           lineStyle:{
                             type:"dashed"
@@ -161,11 +171,11 @@ export default {
                                  color: '#fff',//x坐标轴标签字体颜色
                                  fontSize: "75%",
                              },
-                             margin: 15,
+                             margin: 15*w,
                              verticalAlign:'middle',
                         },
                         axisTick:{
-                                show:false,
+                            show:false,
                         },
                         splitLine:{
                             //show:true,
@@ -181,7 +191,7 @@ export default {
                     yAxis:{
                     		name:"",
                     		nameTextStyle:{
-                    			fontSize: 20,
+                    			fontSize: '100%',
                     			verticalAlign:'bottom',
                     			align:'left',
                     			margin:[60,60,60,60]
@@ -200,6 +210,8 @@ export default {
                             type:"dashed"
                           },
                           label:{
+                          	fontSize:'70%', 
+                          	padding:[10,10*w],
                           	precision:0
                           }
                         },
@@ -298,7 +310,7 @@ export default {
 .title{
 	position: absolute;
 	color: #fff;
-	font-size: 12px;
+	font-size: 0.6rem;
 	top: 1.1rem;
 	left: 6rem;
 }
@@ -307,16 +319,16 @@ export default {
 }
 .ieTitle{
 	top: 1.2rem;
-	font-size: 14px;
+	font-size: 0.7rem;
 }
 .clock{
 	width: 30%;
-	height: 26px;
+	height: 1.5rem;
 	box-shadow: 1px 0 30px  rgba(1,1,13,0.4);
-	border-radius: 6px;
+	border-radius: 0.3rem;
 	font-size: 0.8rem;
 	position: absolute;
-	top: 3%;
+	top: 0.7rem;
 	left:25%;
 	color: #fff;
 }

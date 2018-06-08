@@ -20,7 +20,7 @@
         <div class="circle4"></div>
       </div>
     </div>
-    <p class="txt">loading...</p>
+    <p class="txt">正在加载...</p>
   </div>
 </template>
 

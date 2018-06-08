@@ -1,11 +1,7 @@
 
   const state={
-	
-	showToast:false,//控制预警设置蒙层
-	currentCode:0,//当前景区代码
 	setConfigData:{},
 	editNum:0,//临时 传递修改的参数
-	
 	historyList:[
 		
 	],//历史记录数组
@@ -59,8 +55,4 @@
 	editData:{} //修改后的数据
 }
 
-
-
-
-//console.log( JSON.parse(state.dataList))
 export default state

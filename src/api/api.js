@@ -1,3 +1,4 @@
+
 import axios from '@/api/instance'
 import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
 import {API_HZ} from '@/api/env'
@@ -34,6 +35,9 @@ function tansParm(data){
         if(data.setNum>=0 || data.warnNum>=0){
         	params.append('setNum', data.setNum);
         	params.append('warnNum', data.warnNum);
+        }
+        if(data.unitType){
+        	params.append('unitType', data.unitType);
         }
        
        let p = params;
@@ -75,6 +79,8 @@ export const touristSum = params => {return axios.post(`${base}/cyjc/getTouristC
 
 //产业数据
 export const getProductData = params => { return axios.post(`${base}/cyjc/getProductData`,tansParm(params));};
+//产业数据详情
+export const getProductDataDetial = params => { return axios.post(`${base}/cyjc/getProductDetailData`,tansParm(params));};
 //出行方式
 export const tripMode = params => { return axios.post(`${base}/jzyx/getTravelWay`,tansParm(params));};
 //年龄分析
@@ -150,9 +156,9 @@ export const editUser = params => { return axios.post(`${base1}/user/edit`, { pa
 //游客来源地排行榜
 export const originList = params => { return axios.post(`${base1}/originList`,tansParm(params));};
 //客流总数，经济分析，富民指数
-export const topThree = params => { return axios.get(`${base1}/topThree`,{ params: params });};
+export const topThree = params => { return axios.post(`${base}/cyjc/getRickIndexMark`,tansParm(params));};
 //游客满意度
-export const touristSatisfaction = params => { return axios.get(`${base1}/touristSatisfaction`,{ params: params });};
+export const touristSatisfaction = params => { return axios.post(`${base}/zl/getSatisfy`,tansParm(params));};
 //拥堵指数
 export const congestion = params => { return axios.get(`${base1}/congestion`,{params:params});};
 //天气

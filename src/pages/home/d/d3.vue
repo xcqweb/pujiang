@@ -31,11 +31,8 @@
         background-color: #163387;
         color:white;
     }
-    img{                  
-        max-width: 100%;
-        max-height: 100%;
-        width: auto;
-        height: auto;
+    img{      
+    	width: 0.7rem;            
     }
     ul{
         li{
@@ -147,14 +144,14 @@
         }
         .comment{
             text-align:left;
-            margin-top: 20px;
+            margin-top: 1rem;
             .name{
-				font-size: 13px;
-				margin: 7px 7px 0 0 ;
+				font-size: 0.65rem;
+				margin: 0.35rem 0.35rem 0 0 ;
 				color: rgba(255,255,255,0.7);
             }
             .place{
-                font-size: 16px;
+                font-size: 0.8rem;
                 font-weight: bold;
             }
             .comment-star{
@@ -163,9 +160,9 @@
                 transform: translateY(10%);
             }
             .text{
-            	font-size: 14px;
+            	font-size: 0.7rem;
                 display:block;
-                margin: 7px 0;
+                margin: 0.35rem 0;
                 line-height:1.5rem;
             }
         }

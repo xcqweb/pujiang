@@ -1,54 +1,36 @@
 <template>
-	<div class="d10">
-		<div :class="comStyle" v-if="isIE">
-			<transition name='scales'>
-				<iframe :src="comSrc" width="460" height="256" scrolling="no" :class="comfullStyle" @mouseenter="showBtn" @mouseleave="hideBtn"></iframe> 
-			</transition>
-			 
-			 <transition name='fade'>
-			 	<span class="fullScreen" @click="fullScreen" v-show="hoverStatus"></span>
-			 </transition>
-			 
-			 <div class="close" v-show="status">
-       			<span class="closeBtn"  @click="closeFull" title="退出全屏"></span>
-       		</div>
-		</div>
-		
-		<div :class="comStyle" v-else>
-			<transition name='scales'>
-				<iframe :src="comSrc" width="528" height="290" scrolling="no" :class="comfullStyle" @mouseenter="showBtn" @mouseleave="hideBtn"></iframe> 
-			</transition>
-			 
-			 <transition name='fade'>
-			 	<span class="fullScreen" @click="fullScreen" v-show="hoverStatus"></span>
-			 </transition>
-			 
-			 <div class="close" v-show="status">
-       			<span class="closeBtn"  @click="closeFull" title="退出全屏"></span>
-       		</div>
-		</div>
-		<sleckte
+      <div class="d10">
+        <div class="player">
+          <video-player
+          	 class="vjs-custom-skin" 
+          	 :options="playerOptions"
+          	 @ready="playerIsReady"
+             @changed="playerStateChanged($event)"
+             @playing='onPlayerPlaying'
+          	></video-player>
+        </div>
+        <sleckte
 			:selectList="qyselectlist" 
             v-on:listenAtparent="catchMsg"
 		></sleckte>
-	</div>
+		<Loading v-show='isloading' class='vloading'></Loading>
+      </div>
 </template>
 
 <script>
-	let isIE = window.navigator.userAgent.indexOf('Trident')===-1?true:false
 	import sleckte from '@/components/commonui/dropdown/dropdown-menu.vue'
+	import 'video.js/dist/video-js.css'
+    import { videoPlayer } from 'vue-video-player'
+	import 'videojs-flash'
+	import 'videojs-hotkeys'
 	export default{
-		data(){
-			return{
-				vsrc:'',
-				status:false,
-				hoverStatus:false,
-				scienceName:'',
-				isIE:isIE
-				
-			}
-		},
-		props:{
+		  data() {
+	      return {
+	      	isloading:true,
+	      	scienceName:'',
+	      }
+    },
+    props:{
 			qyselectlist:{
 				type:Object,
 				default:function(){
@@ -57,218 +39,163 @@
 		                    left:'30%',
 		                    title:'仙华山1',
 		                    selectStatus:false,
-		                    place:['仙华山1','仙华山2','神丽峡1','神丽峡2']
+		                    place:['仙华山1','仙华山2','新光村1','新光村2','前吴村1','前吴村2','民生村1','民生村2','潘周家村1','潘周家村2','冷坞村1','冷坞村2','上河村1','上河村2']
 		               }
+				}
+			},
+			playerOptions: {
+				type:Object,
+				default:function(){
+					return {
+			          height: '360',
+			          sources: [{
+			            type: "rtmp/mp4",
+			            src: "rtmp://114.55.237.138:10935/hls/stream_12"
+			          }],
+			          techOrder: ['flash'],
+			          autoplay: true,
+			          controls: true,
+			          poster: "http://114.55.237.138:10800//snap/2/channel_2.jpg"
+			        }
 				}
 			}
 			
 		},
-		methods:{
-			catchMsg(val){
-				console.log(val)
-				this.scienceName = val
-			},
-			fullScreen(){
-				this.status = true
-			},
-			closeFull(){
-				this.status = false
-			},
-			showBtn(){
-				this.hoverStatus = true
-			},
-			hideBtn(){
-				this.timer = window.setTimeout( () => {
-					this.hoverStatus = false
-				},1500)
-			}
-		},
-	
-		computed:{
-	        comStyle(){
-	        	if(this.isIE){ 
-		    		return 'video'
-				}else{
-					return 'videoie'
-				}
-	        },
-	        comfullStyle(){
-	        	return this.status?'fullStyle':''
-	        },
-	        comSrc(){
+    computed: {
+      player() {
+        return this.$refs.videoPlayer.player
+      }
+    },
+    watch:{
+    	scienceName:function(){
+    		
+    	}
+    },
+    mounted(){
+    },
+    methods: {
+      playerStateChanged(playerCurrentState) {
+//      console.log('example 2: state changed', playerCurrentState)
+      },
+      onPlayerPlaying(){
+      	this.isloading = false
+      },
+      playerIsReady(player) {
+//      console.log('example 2 ready!', player)
+        player.hotkeys({
+          volumeStep: 0.1,
+          seekStep: 5,
+          enableModifiersForNumbers: false,
+          fullscreenKey: function(event, player) {
+            // override fullscreen to trigger when pressing the F key or Ctrl+Enter
+            return ((event.which === 70) || (event.ctrlKey && event.which === 13));
+          }
+        })
+      },
+      catchMsg(data){
+      	this.isloading = true
+      	this.scienceName = data
+        this.playerOptions.sources[0].src = this.comSrc()
+      	
+      },
+      comSrc(){
 	        	switch(this.scienceName){
 	        		case '仙华山1':
-	        		return 'http://114.55.237.138:10800/play.html?channel=1';
+	        		this.playerOptions.poster = 'http://114.55.237.138:10800//snap/1/channel_1.jpg'
+	        		return 'rtmp://114.55.237.138:10935/hls/stream_1';
 	        		break;
 	        		
 	        		case '仙华山2':
-	        		return 'http://114.55.237.138:10800/play.html?channel=2';
+	        		this.playerOptions.poster = 'http://114.55.237.138:10800//snap/2/channel_2.jpg'
+	        		return 'rtmp://114.55.237.138:10935/hls/stream_2';
 	        		break;
 	        		
 	        		case '新光村1':
-	        		return 'http://114.55.237.138:10800/play.html?channel=3';
+	        		this.playerOptions.poster = 'http://114.55.237.138:10800//snap/3/channel_3.jpg'
+	        		return 'rtmp://114.55.237.138:10935/hls/stream_3';
 	        		break;
 	        		
 	        		case '新光村2':
-	        		return 'http://114.55.237.138:10800/play.html?channel=4';
+	        		this.playerOptions.poster = 'http://114.55.237.138:10800//snap/4/channel_4.jpg'
+	        		return 'rtmp://114.55.237.138:10935/hls/stream_4';
 	        		break;
 	        		
 	        		case '前吴村1':
-	        		return 'http://114.55.237.138:10800/play.html?channel=5';
+	        		this.playerOptions.poster = 'http://114.55.237.138:10800//snap/5/channel_5.jpg'
+	        		return 'rtmp://114.55.237.138:10935/hls/stream_5';
 	        		break;
 	        		
-	        		case '前吴村3':
-	        		return 'http://114.55.237.138:10800/play.html?channel=6';
+	        		case '前吴村2':
+	        		this.playerOptions.poster = 'http://114.55.237.138:10800//snap/6/channel_6.jpg'
+	        		return 'rtmp://114.55.237.138:10935/hls/stream_6';
+	        		break;
+	        		
+	        		case '民生村1':
+	        		this.playerOptions.poster = 'http://114.55.237.138:10800//snap/7/channel_7.jpg'
+	        		return 'rtmp://114.55.237.138:10935/hls/stream_7';
+	        		break;
+	        		
+	        		case '民生村2':
+	        		this.playerOptions.poster = 'http://114.55.237.138:10800//snap/8/channel_8.jpg'
+	        		return 'rtmp://114.55.237.138:10935/hls/stream_8';
+	        		break;
+	        		
+	        		case '潘周家村1':
+	        		this.playerOptions.poster = 'http://114.55.237.138:10800//snap/9/channel_9.jpg'
+	        		return 'rtmp://114.55.237.138:10935/hls/stream_9';
+	        		break;
+	        		
+	        		case '潘周家村2':
+	        		this.playerOptions.poster = 'http://114.55.237.138:10800//snap/10/channel_10.jpg'
+	        		return 'rtmp://114.55.237.138:10935/hls/stream_10';
+	        		break;
+	        		
+	        		case '冷坞村1':
+	        		this.playerOptions.poster = 'http://114.55.237.138:10800//snap/11/channel_11.jpg'
+	        		return 'rtmp://114.55.237.138:10935/hls/stream_11';
+	        		break;
+	        		
+	        		case '冷坞村2':
+	        		this.playerOptions.poster = 'http://114.55.237.138:10800//snap/12/channel_12.jpg'
+	        		return 'rtmp://114.55.237.138:10935/hls/stream_12';
+	        		break;
+	        		
+	        		case '上河村1':
+	        		this.playerOptions.poster = 'http://114.55.237.138:10800//snap/13/channel_13.jpg'
+	        		return 'rtmp://114.55.237.138:10935/hls/stream_13';
+	        		break;
+	        		
+	        		case '上河村2':
+	        		this.playerOptions.poster = 'http://114.55.237.138:10800//snap/14/channel_14.jpg'
+	        		return 'rtmp://114.55.237.138:10935/hls/stream_14';
 	        		break;
 	        	}
 	        }
-		},
-		mounted(){
-			this.scienceName = this.qyselectlist.title
-		},
-		components:{
-			sleckte
+		
+	},
+	components:{
+			sleckte,
+			Loading,
+			videoPlayer
 		}
-	}
+}
 </script>
 
 <style scoped="scoped" lang="less">
+
 .d10{
 	width: 100%;
 	height: 100%;
-	.video{
-		width: 460/488*100%;
-		height: 258/345*100%;
-		margin: 66px 0 0 15px;
-		iframe{
-			
-		}
-		.fullScreen{
-			position: absolute;
-        	color: #fff;
-        	width: 1.5rem;
-        	height: 1.5rem;
-        	right: 1.3rem;
-        	bottom:2.6rem;
-        	background: url(../../../assets/images/video/fullscreen.png) no-repeat;
-        	background-size: contain;
-        	cursor: pointer;
-		}
-		.fullStyle{
-			width: 100vw;
-			height: 100vh;
-			position: fixed;
-			top: 0;
-			left: 0;
-			z-index: 10000;
-			//animation: scaleS 0.5s ease;
-		}
-		
-		@keyframes scaleS{
-	    	from{
-	    		transform: scale(0);
-	    	}
-	    	to{
-	    		transform: scale(1);
-	    	}
-	    }
-		  .close{
-			position: fixed;
-			bottom: -4.5rem;
-			z-index: 3222222222;
-			color: #fff;
-			background-color: rgba(0,0,0,0.5);
-			width: 100%;
-			height: 15%;
-			right: 0;
-			cursor: pointer;
-			.closeBtn{
-				display: block;
-				width: 2rem;
-				height: 2rem;
-				position: absolute;
-				bottom: 75px;
-				right: 40px;
-				background: url(../../../assets/images/video/fullscreen.png) no-repeat;
-				background-size: contain;
-				
-			}
-		}
+	position: relative;
+	padding-top: 3.6rem;
+	padding-left: 1.2rem;
+	box-sizing: border-box;
+	.vjs-custom-skin{
+		top: 20px;
 	}
-	
-	.videoie{
-		width: 460/488*100%;
-		height: 258/345*100%;
-		margin: 66px 0 0 15px;
-		iframe{
-			
-		}
-		.fullScreen{
-			position: absolute;
-        	color: #fff;
-        	width: 1.5rem;
-        	height: 1.5rem;
-        	right: 2.5rem;
-        	bottom:3.6rem;
-        	background: url(../../../assets/images/video/fullscreen.png) no-repeat;
-        	background-size: contain;
-        	cursor: pointer;
-		}
-		.fullStyle{
-			width: 100vw;
-			height: 100vh;
-			position: fixed;
-			top: 0;
-			left: 0;
-			z-index: 10000;
-			//animation: scaleS 0.5s ease;
-		}
-		
-		@keyframes scaleS{
-	    	from{
-	    		transform: scale(0);
-	    	}
-	    	to{
-	    		transform: scale(1);
-	    	}
-	    }
-		  .close{
-			position: fixed;
-			bottom: -4.5rem;
-			z-index: 3222222222;
-			color: #fff;
-			background-color: rgba(0,0,0,0.5);
-			width: 100%;
-			height: 15%;
-			right: 0;
-			cursor: pointer;
-			.closeBtn{
-				display: block;
-				width: 2rem;
-				height: 2rem;
-				position: absolute;
-				bottom: 75px;
-				right: 40px;
-				background: url(../../../assets/images/video/fullscreen.png) no-repeat;
-				background-size: contain;
-				
-			}
-		}
+	.vloading{
+		top: -3rem;
+		padding-bottom: 3rem;
 	}
-}
-
-
-
-
-
-.fade-enter-activee {
-  transition: opacity .1s;
-}
-
-.fade-leave-active {
-  transition: opacity 1s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
 }
 </style>

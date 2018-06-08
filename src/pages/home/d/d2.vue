@@ -31,6 +31,8 @@
   import store from '../../../vuex/index'
   import Vue from 'vue'
   import optionProps from '@/common/js/mixin/optionProps.js'
+  
+  let w = document.body.clientWidth/1920
   export default {
     name:'d2',
     mixins: [optionProps],
@@ -142,11 +144,14 @@
                     backgroundColor: 'rgba(0,0,0,0)',
                     color: ['#1F6ABB','#3897C5','#A4C5E6'],
                     tooltip: {
-	                trigger: 'item',
-	                position: 'right',
-	                formatter:function(params){
-	                	return params.name+' : '+params.data+'%';
-	                }
+                    	textStyle:{
+		            		fontSize:'80%',
+		            	},
+	                	trigger: 'item',
+		                position: 'right',
+		                formatter:function(params){
+		                	return params.name+' : '+params.data+'%';
+		                }
 	            	},
                     grid: {
                          show: true,
@@ -189,7 +194,7 @@
                                  fontSize: "80%",
                              },
                              verticalAlign:'middle', 
-                             margin:15
+                             margin:20*w
                         },
                         axisTick:{
                                 show:false,

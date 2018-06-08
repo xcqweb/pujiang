@@ -24,13 +24,12 @@ export default {
   data () {
 
     return {
-        womenPercent:'40',
-        menPercent:'60',
+        womenPercent:'0',
+        menPercent:'0',
         option1:{},
-        option2:{}
+        option2:{},
+        symlolSize:[26,36]
     }
-  },
-  created(){
   },
   computed: {
   },
@@ -38,7 +37,7 @@ export default {
   	code:function(){
   		let data={};
 		  data.code = this.code;
-	    data.monthId = this.yearMonth;
+	      data.monthId = this.yearMonth;
 	    this.getData(data)
   	}
   },
@@ -46,20 +45,20 @@ export default {
   	
   	//请求数据
   	getData(data){
-  		//api.params.code = this.code;
   		api.touristSexRatio(data).then( (re) =>{
+  			if(re.data.code===200 || re.data.code==='200'){
+				this.isloading = false;
+			}
 			let reData = re.data.data;
+			if(!reData){
+				return
+			}
 			let maleRate = reData.maleRate||49;
 			let femaleRate = reData.femaleRate||51;
 			let sum = maleRate+femaleRate;
 			
 			this.menPercent = (reData.maleRate*100/sum).toFixed(2);
 			this.womenPercent = (reData.femaleRate*100/sum).toFixed(2);
-			
-			
-			if(re.status===200){
-				this.isloading = false;
-			}
 			this.redom(this.menPercent,this.womenPercent);
 	    }).catch( (e) => {
 	    	console.log(e);
@@ -78,6 +77,9 @@ export default {
 		let option1 = {
 			color:['#49D9FE','#FF71BB'],
 		    tooltip: {
+		    	textStyle:{
+            		fontSize:'80%',
+            	},
 		    	show:true,
 		    	trigger:'item',
 		    	formatter:function(params){
@@ -125,7 +127,7 @@ export default {
 		    symbolRepeat: 10,
 		    symbolMargin: '20%',
 		    symbolClip: true,
-		    symbolSize: [26,36],
+		    symbolSize: this.symlolSize,
 		    symbolBoundingData: maxData,
 		    data: [{
 		    	value:data1
@@ -160,7 +162,7 @@ export default {
 		    symbolRepeat: 10,
 		    symbolMargin: '20%',
 		        symbol: spirit1,
-		        symbolSize: [26,36],
+		        symbolSize: this.symlolSize,
 		        symbolBoundingData: maxData,
 		        data: [{
 		        	value:data1
@@ -226,7 +228,7 @@ export default {
 		    symbolRepeat: 10,
 		    symbolMargin: '20%',
 		    symbolClip: true,
-		    symbolSize: [26,36],
+		    symbolSize: this.symlolSize,
 		    symbolBoundingData: maxData,
 		    data: [{
 		    	value:data2
@@ -265,7 +267,7 @@ export default {
 		    symbolClip:false,
 		    symbolMargin: '20%',
 		        symbol: spirit2,
-		        symbolSize: [26,36],
+		        symbolSize: this.symlolSize,
 		        symbolBoundingData: maxData,
 		        data: [{
 		        	value:data2
@@ -283,8 +285,8 @@ export default {
   	}
   },
     mounted(){
-    	//this.$nextTick(echarts_resize('c4',this));
-    	//this.$nextTick(echarts_resize('c5',this));
+    	let w = document.body.clientWidth/1920
+    	this.symlolSize = [w*26,w*36]
     },
 }
 </script>

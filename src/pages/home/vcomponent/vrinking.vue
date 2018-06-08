@@ -6,7 +6,7 @@
                	 地区
             </span>
             <span class="cell2">
-                	人数
+                	人次
             </span>
             <span class="cell3">
                 	占比

@@ -70,6 +70,7 @@ import echarts_resize from '../../../common/js/echarts_resize.js'
 import echarts from 'echarts'
 import adaptation from '@/common/js/mixin/adaptation.js'
 import optionProps from '@/common/js/mixin/optionProps.js'
+let w = document.body.clientWidth/1920
 export default {
     mixins: [adaptation,optionProps],
     name:'c1',
@@ -142,6 +143,9 @@ export default {
             this.chart = echarts.init(document.getElementById(id));
             let option = {
             	tooltip: {
+            		textStyle:{
+	            		fontSize:'80%',
+	            	},
 	                trigger: 'item',
 	                position: 'right',
 	                formatter:function(params){
@@ -150,7 +154,7 @@ export default {
 	            },
                 color:['#FB7C7D','#7460EE','#6AEDD9','#438AFF ','#02C753','#FC6ACB '],
                 grid: {
-                      left: '3%',
+                      left: '10%',
                       right: '5%',
                    	  bottom: '5%',
                       top:'28%',
@@ -168,7 +172,7 @@ export default {
                                 },
                         },
                         axisLabel: {
-                        		margin:15,
+                        		margin:20*w,
                          		verticalAlign:'middle', 
                                  textStyle: {
                                      color: '#ffffff',//x坐标轴标签字体颜色
@@ -203,7 +207,7 @@ export default {
                                 fontSize: "80%",
                             },
                             verticalAlign:'middle', 
-                            margin:15,
+                            margin:20,
                             formatter: '{value}%'
                         },
                         splitLine:{

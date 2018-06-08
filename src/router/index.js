@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
+import {getCookie} from '@/common/js/cookie/cookie.js'
 
 const NotFound =resolve => require(['@/pages/404.vue'], resolve);
 const Login =resolve => require(['@/pages/login/login.vue'], resolve);
@@ -43,11 +43,11 @@ const router= new Router({
         component: loginmain,
         name: '',
         children: [
-            { path: '', component: Login, name: 'Login' },
-            { path: 'pagetwo', component: LoginTwo, name: 'LoginTwo' },
+            { path: '', component: Login, name: 'Login'},
+            { path: 'pagetwo', component: LoginTwo, name: 'LoginTwo'},
             { path: 'pagethree', component: loginthree, name: 'loginthree' },
             { path: 'pagefour', component: loginfour, name: 'loginfour' },
-            { path: 'pagefive', component: loginfive, name: 'loginfive' },
+            { path: 'pagefive', component: loginfive, name: 'loginfive'},
             { path: 'pagesix', component: loginsix, name: 'loginsix' },
             { path: 'pageseven', component: loginseven, name: 'loginseven' },
         ]
@@ -58,13 +58,13 @@ const router= new Router({
         name: '',
         iconCls: 'el-icon-message',//图标样式class
         children: [
-            { path: '', component: Video, name: 'homepage' },
-            { path: 'home', component: homepage, name: 'home' },
-            { path: 'video', component: Video, name: 'video' },
-            { path: 'prodcut', component: prodcut, name: 'prodcut' },
-            { path: 'precision', component: Precision, name: 'Precision' },
-            { path: 'souceShow', component: souceShow, name: 'souceShow' },
-            { path: 'iframeMap', component: iframeMap, name: 'iframeMap' },
+            { path: '', component: Video, name: 'homepage' ,meta:{requiresAuth:true}},
+            { path: 'home', component: homepage, name: 'home' ,meta:{requiresAuth:true}},
+            { path: 'video', component: Video, name: 'video' ,meta:{requiresAuth:true}},
+            { path: 'prodcut', component: prodcut, name: 'prodcut',meta:{requiresAuth:true} },
+            { path: 'precision', component: Precision, name: 'Precision',meta:{requiresAuth:true} },
+            { path: 'souceShow', component: souceShow, name: 'souceShow' ,meta:{requiresAuth:true}},
+            { path: 'iframeMap', component: iframeMap, name: 'iframeMap' ,meta:{requiresAuth:true}},
         ]
     },
   ]
@@ -73,15 +73,13 @@ const router= new Router({
 router.beforeEach((to, from, next) => {
   //获取store里面的token
   let token = getCookie('token');
-  
   //判断要去的路由有没有requiresAuth
   if(to.meta.requiresAuth){
     if(token){
       next();
     }else{
       next({
-        path: '/login',
-         query: {redirect: to.fullPath}  // 将跳转的路由path作为参数，登录成功后跳转到该路由
+        path: '/login',// 将跳转的路由path作为参数，登录成功后跳转到该路由
       });
     }
   }else{

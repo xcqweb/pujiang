@@ -14,6 +14,8 @@
   import Vue from 'vue'
   import optionProps from '@/common/js/mixin/optionProps.js'
   const QuiverItalRegular = require('../../../assets/style/QuiverItalRegular.ttf');
+  
+  let w = document.body.clientWidth/1920
   export default {
     name:'c6',
     mixins: [timeMixin,optionProps],
@@ -116,6 +118,9 @@
                     backgroundColor: 'rgba(0,0,0,0)',
                     color: ['#1F6ABB','#3897C5','#A4C5E6'],
                     tooltip: {
+                    	textStyle:{
+				            		fontSize:'80%',
+				            	},
 			                trigger: 'item',
 			                position: 'right',
 			                formatter:function(params){
@@ -124,7 +129,7 @@
 			            	},
                     grid: {
                          show: true,
-                         left: '3%',
+                         left: '10%',
                          top: '28%',
                          right: '5%',
                          bottom: '5%',
@@ -164,7 +169,7 @@
                                  color: '#ffffff',//x坐标轴标签字体颜色
                                  fontSize: '80%',
                              },
-                             margin:15,
+                             margin:20*w,
                          		verticalAlign:'middle', 
                         },
                         axisTick:{

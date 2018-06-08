@@ -23,7 +23,7 @@
                 <div class="calendar-info">
                     <!-- {{monthString}} -->
                     <div class="month">
-                        <div class="month-inner" :style="{'top':-(month*20)+'px'}">
+                        <div class="month-inner" :style="{'top':-(month)+'rem'}">
                             <span v-for="m in months">{{m}}</span>
                         </div>
                     </div>
@@ -198,7 +198,7 @@ export default {
                     for (let j = 0; j < firstDayOfMonth; j++) {
                         // console.log("第一行",lunarYear,lunarMonth,lunarValue,lunarInfo)
                         temp[line].push(Object.assign(
-                            {day: k,disabled: true},
+                            {day: k,disabled: false},
                             this.getLunarInfo(this.month==0?this.year-1:this.year,this.month==0?12:this.month,k),
                             this.getEvents(this.month==0?this.year-1:this.year,this.month==0?12:this.month,k),
                         ))
@@ -224,11 +224,11 @@ export default {
                     }
                     if (this.begin.length>0) {
                         let beginTime = Number(new Date(parseInt(this.begin[0]),parseInt(this.begin[1]) - 1,parseInt(this.begin[2])))
-                        if (beginTime > Number(new Date(this.year, this.month, i))) options.disabled = true
+                        if (beginTime > Number(new Date(this.year, this.month, i))) options.disabled = false
                     }
                     if (this.end.length>0){
                         let endTime = Number(new Date(parseInt(this.end[0]),parseInt(this.end[1]) - 1,parseInt(this.end[2])))
-                        if (endTime <  Number(new Date(this.year, this.month, i))) options.disabled = true
+                        if (endTime <  Number(new Date(this.year, this.month, i))) options.disabled = false
                     }
                     temp[line].push(options)
                 } else {
@@ -267,11 +267,11 @@ export default {
                         )
                         if (this.begin.length>0) {
                             let beginTime = Number(new Date(parseInt(this.begin[0]),parseInt(this.begin[1]) - 1,parseInt(this.begin[2])))
-                            if (beginTime > Number(new Date(this.year, this.month, i))) options.disabled = true
+                            if (beginTime > Number(new Date(this.year, this.month, i))) options.disabled = false
                         }
                         if (this.end.length>0){
                             let endTime = Number(new Date(parseInt(this.end[0]),parseInt(this.end[1]) - 1,parseInt(this.end[2])))
-                            if (endTime <  Number(new Date(this.year, this.month, i))) options.disabled = true
+                            if (endTime <  Number(new Date(this.year, this.month, i))) options.disabled = false
                         }
                         temp[line].push(options)
                     }
@@ -284,7 +284,7 @@ export default {
                     for (dow; dow < 6; dow++) {
                         // console.log("最后一行",lunarYear,lunarMonth,lunarValue,lunarInfo)
                         temp[line].push(Object.assign(
-                            {day: k,disabled: true},
+                            {day: k,disabled: false},
                             this.getLunarInfo(this.month+2>11?this.year+1:this.year,this.month+2>11?1:this.month+2,k),
                             this.getEvents(this.month+2>11?this.year+1:this.year,this.month+2>11?1:this.month+2,k),
                         ))
@@ -348,7 +348,36 @@ export default {
         },
         // 选中日期
         select(k1, k2, e) {
+            this.clicked = true
             if (e != undefined) e.stopPropagation()
+            let l =this.days[k1][k2].day //第一次选中
+			let s = l; //保存第一次选中
+            if ( l>=22 && l<=31 &&  k1 === 0){ //第一行
+            	this.month=this.month-1
+            }
+            
+            if ( l<=7 &&  k1 >= 4 ){ //第二行
+            	this.month=this.month+1
+            }
+            
+            if ( l>=22 &&  k1 >= 4 && s<=7){
+            	this.month=this.month+1
+            }
+            
+            if ( l<=7 &&  k1 === 0 && s>=28){
+            	this.month=this.month-1
+            }
+            
+            //跨年选取头部
+            if(this.month===-1 && k1===0 && l>=22){
+            	this.year = this.year-1
+            	this.month = 11
+            }
+            //跨年选取尾部
+             if(this.month===12 && k1>=4 && l<=7){
+            	this.year = this.year+1
+            	this.month = 0
+            }
                 // 日期范围
             if (this.range) {
                 if (this.rangeBegin.length == 0 || this.rangeEndTemp != 0) {
@@ -428,16 +457,16 @@ export default {
 .calendar {
     margin:auto;
     width: 100%;
-    min-width:300px;
+    min-width:15rem;
     background: #fff;
     font-family: "PingFang SC","Hiragino Sans GB","STHeiti","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
     user-select:none;
 }
 
 .calendar-tools{
-    height:40px;
-    font-size: 20px;
-    line-height: 40px;
+    height:2rem;
+    font-size: 1rem;
+    line-height: 2rem;
     color:#5e7a88;
 }
 .calendar-tools span{
@@ -449,15 +478,15 @@ export default {
     text-align: center;
 }
 .calendar-info{
-    padding-top: 3px;
-    font-size:16px;
+    padding-top: 0.15rem;
+    font-size: 0.8rem;
     line-height: 1.3;
     text-align: center;
 }
 .calendar-info>div.month{
     margin:auto;
-    height:20px;
-    width:100px;
+    height: 1rem;
+    width: 5rem;
     text-align: center;
     color:#5e7a88;
     overflow: hidden;
@@ -467,17 +496,17 @@ export default {
     position: absolute;
     left:0;
     top:0;
-    height:240px;
+    height: 12rem;
     transition:top .5s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 .calendar-info>div.month .month-inner>span{
     display: block;
-    height:20px;
-    width:100px;
+    height: 1rem;
+    width: 5rem;
     text-align: center;
 }
 .calendar-info>div.year{
-   font-size:10px;
+   font-size: 0.5rem;
    line-height: 1;
    color:#999;
 }
@@ -490,25 +519,25 @@ export default {
 .calendar table {
     clear: both;
     width: 100%;
-    margin-bottom:10px;
+    margin-bottom:0.5rem;
     border-collapse: collapse;
     color: #444444;
 }
 .calendar td {
-    margin:2px !important;
+    margin:0.1rem !important;
     padding:0px 0;
     width: 14.28571429%;
-    height:44px;
+    height:2.2rem;
     text-align: center;
     vertical-align: middle;
-    font-size:14px;
+    font-size:0.7rem;
     line-height: 125%;
     cursor: pointer;
     position: relative;
     vertical-align: top;
 }
 .calendar td.week{
-    font-size:10px;
+    font-size:0.5rem;
     pointer-events:none !important;
     cursor: default !important;    
 }
@@ -522,12 +551,12 @@ export default {
 }
 .calendar td span{
     display:block;
-    max-width:40px;
-    height:26px;
-    font-size: 16px;
-    line-height:26px;
+    max-width:2rem;
+    height:1.3rem;
+    font-size: 0.8rem;
+    line-height:1.3rem;
     margin:0px auto;
-    border-radius:2px;
+    border-radius:0.1rem;
 }
 .calendar td:not(.selected) span:not(.red):hover{
     background:#f3f8fa;
@@ -546,13 +575,13 @@ export default {
 }
 .calendar td .text{
     position: absolute;
-    top:28px;
+    top:1.4rem;
     left:0;
-    width:40px;
+    width:2rem;
     text-align: center;
-    border-radius: 2px;
-    padding:2px;
-    font-size:8px;
+    border-radius: 0.1rem;
+    padding:0.1rem;
+    font-size:0.6rem;
     line-height: 1.2;
     color:#444;
 }
@@ -570,7 +599,7 @@ export default {
 }
 .calendar thead td {
   text-transform: uppercase;
-  height:30px;
+  height:1.5rem;
   vertical-align: middle;
 }
 .calendar-button{

@@ -6,7 +6,7 @@
                 景区
             </div>
             <div class="cell2">
-                人数
+                	人次
             </div>
             <div class="cell3">
                 	占比

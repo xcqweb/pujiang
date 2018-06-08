@@ -62,8 +62,10 @@ export default {
     methods: {
     	//请求数据
 	  	getData(data){
-	  		//api.params.code = this.code;
 	  		api.touristOriginsource(data).then( (re) =>{
+	  			if(re.data.code===200 || re.data.code==='200'){
+						this.isloading = false;
+					}
 	  				let reData = re.data.data;
 	  				if(!reData){
 		  				this.inItems=[]
@@ -72,16 +74,11 @@ export default {
 		  			}
 	  				this.inItems = reData.shengnei;
 	  				this.outItems = reData.shengwai;
-					if(re.status===200){
-						this.isloading = false;
-					}
+					
 		    }).catch( (e) => {
 		    	console.log(e);
 		    })
 	  	},
-    },
-    mounted(){
-    	
     },
 }
 </script>
@@ -132,7 +129,7 @@ export default {
         .line{
             position:absolute;
             width:80%;
-            height:1px;
+            height:0.05rem;
             left:80/700*100%;
             bottom:0;
             background-color:#368df7;
@@ -158,7 +155,7 @@ export default {
                 background-color:#6792fb;
                 position:absolute;
                 bottom:0;
-                width:20px;
+                width:1rem;
 
             }
             font{

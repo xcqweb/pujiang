@@ -35,7 +35,8 @@
 				showStatus:false,
 				choseDate:[],
 				choseDateStart:[],
-				ctime:`${year}  ~ ${curMonth>10?curMonth:'0'+curMonth}`,
+				//ctime:`${year}  ~ ${curMonth>10?curMonth:'0'+curMonth}`,
+				ctime:'年  ~ 月',
 				status:false,
 			}
 		},
@@ -60,9 +61,9 @@
 		computed:{
 			icon(){
 				if(this.showStatus){
-					return 'up'
-				}else{
 					return 'down'
+				}else{
+					return 'up'
 				}
 			},
 			comStatus(){
@@ -154,12 +155,12 @@
 
 <style lang="less" scoped="scoped">
 	.box{
-		max-width: 260px;
-		min-width: 200px;
+		max-width: 13rem;
+		min-width: 10rem;
 		height: 2rem;
 		position: relative;
-		margin-left: 100px;
-		margin-top: 1rem;
+		margin-left: 5rem;
+		margin-top: 0rem;
 		background: none;
 		font-size: 0.8rem;
 		.toast{
@@ -171,31 +172,29 @@
 			height: 100vh;
 		}
 		.subMenuBox{
-			width: 100px;
+			width: 5rem;
 			position: absolute;
 			z-index: 600;
-			overflow: hidden;
-			height: 230px;
+			height: 11.5rem;
 			top: 1.8rem;
-			left: 138px;
+			left: 6.9rem;
 			.subMenu{
-				transform: translate(90px,44px);
 				position: absolute;
-				height: 210px;
-				width: 100px;
-				left: -88px;
-				top: -42px;
+				height: 10.5rem;
+				width: 5rem;
+				left: 0.1rem;
+				top: 1rem;
 				background: #193583;
 				border: 1px solid #1b44ba;
 				overflow-y: auto;
 				overflow-x: hidden;
 				display: block;
 				z-index: 600;
-				box-shadow: 1px 0 30px rgba(1, 1, 13, 0.4);
+				box-shadow: 0.1rem 0 1.5rem rgba(1, 1, 13, 0.4);
 				li{
-					height: 30px;
-					width: 100px;
-					line-height: 30px;
+					height: 1.5rem;
+					width: 5rem;
+					line-height: 1.5rem;
 					cursor: pointer;
 				}
 				li:hover{
@@ -205,36 +204,37 @@
 		}
 			
 		.title{
-			width: 10rem;
-			height: 1.5rem;
-			line-height: 1.5rem;
+			width: 11rem;
+			height: 1.8rem;
+			line-height: 1.8rem;
 			box-shadow: 1px 0 30px  rgba(1,1,13,0.4);
 			cursor: pointer;
 			font-size: 0.8rem;
 			position: absolute;
 			left: 1rem;
+			top: 0.9rem;
 			span{
 				margin-left: -1rem;
 			}
 			.up{
 	    			display: block;
 	    			position: absolute;
-	    			right: 10px;
-	    			top: 12px;
+	    			right: 0.5rem;
+	    			top: 0.8rem;
 	    			width: 0;
 	    			height: 0;
-	    			border-width: 6px;
+	    			border-width: 0.3rem;
 	    			border-color: #fff transparent transparent;
 	    			border-style: solid;
 	    		}
 	    		.down{
 	    			display: block;
 	    			position: absolute;
-	    			right: 10px;
-	    			top: 4px;
+	    			right: 0.5rem;
+	    			top: 0.5rem;
 	    			width: 0;
 	    			height: 0;
-	    			border-width: 6px;
+	    			border-width: 0.3rem;
 	    			border-color:  transparent transparent #fff;
 	    			border-style: solid;
 	    		}
@@ -242,20 +242,20 @@
 		.list{
 			background: #193583;
 			border: 1px solid #1b44ba;
-			height: 210px;
-			max-width: 200px;
+			height: 10.5rem;
+			max-width: 10rem;
 			overflow-y: auto;
 			overflow-x: hidden;
 			z-index: 1000;
 			position: absolute;
 			font-size: 0.8rem;
-			top: 1.8rem;
-			left: 26px;
-			box-shadow: 1px 0 30px rgba(1, 1, 13, 0.4);
+			top: 2.8rem;
+			left: 1.3rem;
+			box-shadow: 1px 0 1.5rem rgba(1, 1, 13, 0.4);
 			li{
-				height: 30px;
-				line-height: 30px;
-				min-width: 110px;
+				height: 1.5rem;
+				line-height: 1.5rem;
+				min-width: 5.5rem;
 				text-align: center;
 			
 			}

@@ -1,18 +1,18 @@
  <template>
     <div class="map_content">
     	<div class="topTitle" v-show='istitle'>
-            <span>{{nowYear}}年累计接待游客总人数</span>
+            <span>{{nowYear}}年累计接待游客总人次</span>
             <font>{{yearNumbs}}</font>
         </div>
         <div class='topTitle' v-show='istitle'>
-            <span>{{mowMonth}}月份持续接待游客总人数</span>
+            <span>{{mowMonth}}月份持续接待游客总人次</span>
             <font>{{mouthNumbs}}</font>
         </div>
         <div id="fromEchart"></div>
 
         <div class="week">
-             <span class="oneweek " v-bind:class="{ chose: isActive }" @click='redom7'>省内</span> 
-             <span class="twoweek" v-bind:class="{ chose: !isActive }" @click='redom14'>省外</span> 
+             <span class="oneweek " v-bind:class="{ chose: isActive }" @click='redom7' title="省内">省内</span> 
+             <span class="twoweek" v-bind:class="{ chose: !isActive }" @click='redom14' title="省外">省外</span> 
         </div>
         <Loading v-show='isloading' class='loading'></Loading>
     </div>
@@ -34,6 +34,7 @@ let date = new Date()
 let nowYear = date.getFullYear()
 let mowMonth = date.getMonth()+1
 var planePath = 'path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z';
+let w = document.body.clientWidth/1920;
 export default {
     name: 'a6',
     mixins: [optionProps],
@@ -511,7 +512,7 @@ export default {
                         //小飞机
                         symbol: planePath,
                         //移动点大小
-                        symbolSize: 15
+                        symbolSize: 15*w
                     },
                     lineStyle: {
                         normal: {
@@ -539,12 +540,12 @@ export default {
                             position: 'right',
                             formatter: '{b}',
                             textStyle: {
-                                fontSize: 12
+                                fontSize: '70%'
                             }
                         }
                     },
                     symbolSize: function (val) {
-                        return 10;
+                        return 10*w;
                     },
                     itemStyle: {
                         normal: {
@@ -621,7 +622,7 @@ export default {
                         //小飞机
                         symbol: planePath,
                         //移动点大小
-                        symbolSize: 15
+                        symbolSize: 15*w
                     },
                     progressiveThreshold: 500,
                     progressive: 200,
@@ -649,12 +650,12 @@ export default {
                             position: 'right',
                             formatter: '{b}',
                             textStyle: {
-                                fontSize: 12
+                                fontSize: '70%'
                             }
                         }
                     },
                     symbolSize: function (val) {
-                    	return 10
+                    	return 10*w
 //                  	if(val>=0&&val[2]<=20){
 //                  		return val[2]
 //                  	}else if(val[2]>20&&val[2]<=1000){

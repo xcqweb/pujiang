@@ -1,9 +1,13 @@
 <template>
   <div class="vtopThree">
     <ul>
-        <li v-for="item in items">
-            <p>{{item.title}}</p>
-            <div><p>{{item.nub}}</p></div>
+        <li>
+            <p>经济贡献</p>
+            <div><p>{{percent}}%</p></div>
+        </li>
+        <li>
+            <p>富民指数</p>
+            <div><p>{{curYear}}</p></div>
         </li>
     </ul>
     <Loading class='loading' v-show="isloading"></Loading>
@@ -18,19 +22,23 @@ export default {
   mixins: [optionProps],
   data () {
     return {
-        items:[]
+        curYear:0,
+        percent:0
     }
-  },
-  created(){
   },
   methods: {
   	//请求数据
   	getData(){
+  		api.params.code=0
   		api.topThree(api.params).then( (re) =>{
   			//console.log(re)
-    		let reData = re.data.data;
-      		this.items = reData;
-      		if(re.status===200){
+    		  if(!re){
+    		  	return
+    		  }
+      		if(re.data.code===200 || re.data.code==='200'){
+      			let reData = re.data.data;
+      			this.curYear = reData.curYear;
+      			this.percent = (reData.jjgx*100).toFixed(2);
       			this.isloading = false;
       		}
 	    }).catch( (e) => {
@@ -57,7 +65,6 @@ ul{
         width:198/464*100%;
         margin-left:4%;
         margin-top: 10%;
-
         p:nth-of-type(1){
             font-size: 1.3rem;
             color: #fff;

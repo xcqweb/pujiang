@@ -23,6 +23,10 @@ import echarts_resize from '../../../common/js/echarts_resize.js'
 import echarts from 'echarts'
 require('echarts-wordcloud');
 import optionProps from '@/common/js/mixin/optionProps.js'
+
+let w = document.body.clientWidth/1920
+let fsize=[w*12,w*50]
+
   export default {
     name:'d11',
     mixins: [optionProps],
@@ -36,7 +40,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                     name: '旅游关键词',
                     type: 'wordCloud',
                     gridSize: 20,
-                    sizeRange: [12, 50],
+                    sizeRange: fsize,
                     rotationRange: [0, 0],
                     shape: 'circle',
                     textStyle: {

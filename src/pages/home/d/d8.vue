@@ -35,27 +35,26 @@
     height: 100%;
     width: 100%;
     .box{
-        width: 125px;
-        height: 132px;
-        top: 28px;
-        left: 80px;
+        width: 6.25rem;
+        height: 6.6rem;
+        top: 2.4rem;
+        left: 4rem;
         .item{
-        	top: 36px;
-        	left: 80px;
+        	top: 1.8rem;
+        	left: 4rem;
         	position: absolute;
         }
         
     }
     span{
         position: absolute;
-        left: 82px;
-        top: 12px;
+        left: 4.5rem;
+        width: 6.6rem;
+        top: 1.2rem;
         text-align: center;
         display: inline-block;
-        width: 125px;
-        height: 132px;
-        line-height: 132px;
-        font-size: 1.2rem;
+        line-height: 6.6rem;
+        font-size: 1rem;
         color: #c7c8f9;
         
     }
@@ -73,27 +72,27 @@
     height: 100%;
     width: 100%;
     .box{
-        width: 125px;
-        height: 132px;
-        top: 28px;
-        left: 80px;
+        width: 6.25rem;
+        height: 6.6rem;
+        top: 1.4rem;
+        left: 4rem;
         .item{
-        	top: 36px;
-        	left: 80px;
+        	top: 1.8rem;
+        	left: 4rem;
         	position: absolute;
         }
         
     }
     span{
         position: absolute;
-        left: 90px;
-        top: 40px;
+        left: 4.5rem;
+        top: 4.8rem;
         text-align: center;
         display: inline-block;
-        width: 125px;
-        height: 132px;
-        line-height: 132px;
-        font-size: 1.3rem;
+        width: 6.25rem;
+        /*height: 6.6rem;*/
+        /*line-height: 6.6rem;*/
+        font-size: 1rem;
         color: #c7c8f9;
         
     }
@@ -110,7 +109,7 @@
 <template>
     <div :class="comStyle">
         <div class="box">
-            <vcircle :percents="percent" class='item' :class='isVideo' :isVideo='isVideo'></vcircle>     
+            <vcircle :percents="percent" class='item' :class='isVideo' :isVideo='isVideo' :colorCom='colorCom'></vcircle>     
         </div>
         <span :style="{color:colorCom}">{{txt}}</span>
 	    <Loading v-show="isloading" class="loading"></Loading>

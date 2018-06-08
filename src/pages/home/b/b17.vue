@@ -16,6 +16,7 @@
         margin-left: 3.1%;
         margin-top: 3%;
         border-radius: 5px;
+        cursor: pointer;
         div{
             transform: translate(0,30%)
         }
@@ -77,6 +78,8 @@
         <div 
         class="d17_item"
         v-for="item in items"
+        title="点击查看详情"
+        @click="showDetials(item)"
         >
             <div class="item_img">
                 <img :src="item.img"/>
@@ -85,17 +88,21 @@
             <div class="item_num"><font>{{item.value}}</font></div>
         </div>
         <Loading v-show="isloading"></Loading>
+        <detials v-show = 'status' @closeToast='closeToast' :currentItem='currentItem'></detials>
     </div>
 </template>
 
 <script>
 import Vue from 'vue'
 import optionProps from '@/common/js/mixin/optionProps.js'
+import detials from '@/components/commonui/detials/detials'
 export default {
     name: 'B17',
     mixins: [optionProps],
     data () {
         return {
+        	status:false,
+        	currentItem:'景点',
             items:[
                 {name:'景点',value:42,img:require('../../../assets/images/chanye/1.png')},
                 {name:'酒店',value:114,img:require('../../../assets/images/chanye/2.png')},
@@ -107,13 +114,6 @@ export default {
                 {name:'公共设施',value:120,img:require('../../../assets/images/chanye/8.png')},
             ],
         }
-    },
-    components:{
-
-    },
-    computed: { 
-    },
-    watch:{
     },
     methods: {
         //请求数据
@@ -133,9 +133,17 @@ export default {
 		    	console.log(e);
 		    })
 	  	},
+	  	showDetials(data){
+	  		this.status = true
+	  		this.currentItem = data.name
+	  	},
+	  	closeToast(){
+	  		this.status = false
+	  	}
     },
-    created(){
-    },
+    components:{
+    	detials
+    }
 }
 </script>
 

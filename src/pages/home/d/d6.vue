@@ -9,12 +9,6 @@
         color:#ffd800;
         font-size:2rem;
         font-family: numberFont;
-        font{
-            margin-left: .3rem;
-            display: inline-block;
-            color:#ffd800;
-            font-size: 1.2rem;
-        }   
     }
     font{
         display:block;
@@ -41,17 +35,11 @@
     height: 100%;
     width: 100%;
     span{
-        margin-bottom:5%;
+        margin-bottom:12%;
         display:block;
         color:#ffd800;
         font-size:2rem;
         font-family: numberFont;
-        font{
-            margin-left: .3rem;
-            display: inline-block;
-            color:#ffd800;
-            font-size: 1.2rem;
-        }   
     }
     font{
         display:block;
@@ -60,18 +48,17 @@
         letter-spacing: .2rem;
     }
     .b6__top{
-    	width: 250px;
+    	width: 12.5rem;
         position:absolute;
         top:32%;
         left: 0;
-        height:90px;
     }
     .b6__bottom{
-    	width: 250px;
+    	width: 12.5rem;
         position:absolute;
         top: 32%;
         right: 0;
-        height:90px;
+        height:4.5rem;
     }
 }
 </style>
@@ -80,11 +67,11 @@
     <div :class="comStyle">
         <div class="b6__top">
             <span>{{currentNums}}<font></font></span>
-            <font>当前客流总人数</font>
+            <font>当前客流总人次</font>
         </div>
         <div class="b6__bottom">
             <span>{{yestodayNums}}<font></font></span>
-            <font>昨日客流总人数</font>
+            <font>昨日客流总人次</font>
         </div>
         <Loading v-show="isloading"></Loading>
     </div>

@@ -5,15 +5,18 @@
             <!--<img :src="imgacircle"/>-->
         </div>
         <span>{{percent}}%</span>
-        <div class="text" v-show="isVideo"><font>客流预警</font><font></font></div>
+        <div class="text" v-show="isVideo"><font>客流预警</font></div>
         <p class="configBtn" @click="passagerConfig" v-show="!isVideo">设置</p>
         <img v-show="isVideo" class="line" src="../../../assets/images/circle/violet/line.png"/>
       <Loading v-show="isloading"></Loading>
+      <!--使用if 每次重新渲染 并传递筛选景区-->
+        <config v-show = "showToast" @closeToast='closeToast'></config>
     </div>
 </template>
 
 <script>
 import Vue from 'vue'
+import config from '@/components/commonui/config/scienceConfig'
 import echarts_resize from '../../../common/js/echarts_resize.js'
 import echarts from 'echarts';
 import {begindaytime} from '@/common/js/gtime.js'
@@ -29,7 +32,8 @@ export default {
         imgacircle:require('../../../assets/images/home/b/circle.png'),
         nub:'',
         set_config:'',
-        configNumber:''
+        configNumber:'',
+        showToast:false
     }
   },
   props:['isVideo'],
@@ -54,7 +58,6 @@ export default {
   watch:{
   	code:function(){
   		this.request();
-  		this.$store.state.currentCode = this.code;
   	}
   },
   methods:{
@@ -65,8 +68,6 @@ export default {
 		api.getPassengerWarnSetList(api.params).then( (re) => {
 			//console.log(re)
 			let reData = re.data.data;
-			//this.$store.state.dataList = reData;
-			
 		}).catch( e =>{
 		      console.log(e);
 		    })
@@ -74,16 +75,15 @@ export default {
   	
   	//客流设置
   	passagerConfig(){
-  		this.$store.state.showToast = true;
-  		this.$store.state.currentCode = this.code;
-  		
-  		//console.log(this.$store.state.currentCode,this.code);
+  		this.showToast = true;
+  	},
+  	closeToast(){
+  		this.showToast = false;
   	},
       redom(){
       	let _self = this;
      var canvas = document.getElementById('pieB2');
         var ctx = canvas.getContext('2d');
-        //var range = document.getElementById('r');
 
         //range控件信息
         var rangeValue = 30;
@@ -253,6 +253,9 @@ export default {
   mounted() {
   	this.$nextTick(this.request())
   },
+   components:{
+    	config
+    }
 }
 </script>
 
@@ -273,7 +276,7 @@ export default {
         bottom: 0;
         margin: auto;
         color:#fff;
-        font-size: 1.6rem;
+        font-size: 1.8rem;
         font-family: numberFont;
     }
     .configBtn{
@@ -291,8 +294,8 @@ export default {
         height:12rem;
         width: 12rem;
         position:absolute;
-        top: 0px;
-        left: 0px;
+        top: 0;
+        left: 0;
         right: 0;
         bottom: 0;
         margin: auto;
@@ -304,7 +307,6 @@ export default {
         position:absolute;
         top:55%;
         left:50%;
-        transform: translate(-50%,-50%);
     }
     
     .text{
@@ -312,7 +314,6 @@ export default {
         position:absolute;
         bottom:0.6rem;
         left:50%;
-        transform: translateX(-50%);
         font{
             margin-left:10%;
             color:#1da7fe;
@@ -337,15 +338,13 @@ export default {
         position:absolute;
         display: block;
         width: 100%;
-        height: 2rem;
-        line-height: 2rem;
         left: 0;
         right: 0;
         top: 0;
         bottom: 0;
-        margin: auto;
+        margin: 5rem auto;
         color:#fff;
-        font-size: 24px;
+        font-size: 1.5rem;
         font-family: numberFont;
     }
     .configBtn{
@@ -360,10 +359,10 @@ export default {
     	cursor: pointer;
     }
     #pieB2{
-        height:142px;
-        width: 142px;
+        height:8.5rem;
+        width: 8.5rem;
         position:absolute;
-        top: -10px;
+        top: -2.3rem;
         left: 0px;
         right: 0;
         bottom: 0;
@@ -376,32 +375,27 @@ export default {
         position:absolute;
         top:55%;
         left:50%;
-        transform: translate(-50%,-50%);
     }
     .line{
-    	margin-top: 10px !important;
+    	margin-top: 2.15rem !important;
     }
     .text{
         width:80%;
         position:absolute;
-        bottom:0.6rem;
-        left:50%;
-        transform: translateX(-50%);
+        bottom:1.5rem;
+        right: -3.8rem;
         font{
             margin-left:10%;
             color:#fff;
             font-size:1rem;
             position: absolute;
-            right: 68px;
-            bottom: 2px;
+            left: -2.2rem;
+            bottom: 0.1rem;
             font-family: numberFont;
         }
     }
     img{
-        max-width: 100%;
-        max-height: 100%;
-        width: auto;
-        height: auto;
+        width: 7.3rem;
     }
 }
 
@@ -413,15 +407,13 @@ export default {
         position:absolute;
         display: block;
         width: 100%;
-        height: 2rem;
-        line-height: 2rem;
         left: 0;
         right: 0;
         top: 0;
         bottom: 0;
-        margin: auto;
+        margin: 5.3rem auto;
         color:#fff;
-        font-size: 30px;
+        font-size: 1.8rem;
         font-family: numberFont;
     }
     .configBtn{
@@ -436,11 +428,11 @@ export default {
     	cursor: pointer;
     }
     #pieB2{
-        height:170px;
-        width: 170px;
+        height:8.5rem;
+        width: 8.5rem;
         position:absolute;
-        top: -10px;
-        left: 0px;
+        top: -1rem;
+        left: 0;
         right: 0;
         bottom: 0;
         margin: auto;
@@ -452,32 +444,27 @@ export default {
         position:absolute;
         top:55%;
         left:50%;
-        transform: translate(-50%,-50%);
     }
     .line{
-    	margin-top: 50px !important;
+    	margin-top: 2.5rem !important;
     }
     .text{
         width:80%;
         position:absolute;
         bottom:0.6rem;
-        left:42%;
-        transform: translateX(-50%);
+        right:-3.6rem;
         font{
             margin-left:10%;
             color:#fff;
             font-size:1rem;
             position: absolute;
-            right: 60px;
-            bottom: 4px;
+            left: -2rem;
+            bottom: 0.2rem;
             font-family: numberFont;
         }
     }
     img{
-        max-width: 100%;
-        max-height: 100%;
-        width: auto;
-        height: auto;
+        width: 7.3rem;
     }
 }
 

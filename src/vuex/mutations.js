@@ -42,7 +42,6 @@ const mutations={
 	[SAVE_EDIT] (state,editData){ //保存编辑后的数据
 		state.editData = editData;
 	},
-	
 }
 
 export default mutations

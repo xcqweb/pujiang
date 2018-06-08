@@ -4,7 +4,7 @@
       <div id="container"></div>
       <Loading v-show="isloading"></Loading>
       <span class="num">{{currentNums}}<font></font></span>
-      <span class="title" :class='comStyle'>( 单位 : 人)</span>
+      <span class="title" :class='comStyle'>( 单位 : 人次 )</span>
   </div>
 </template>
 <script>
@@ -15,8 +15,8 @@ import Rw from '@/common/js/until/index'
 import api from '@/api/moudles/tanzhenData'
 import optionProps from '@/common/js/mixin/optionProps.js'
 
-
-let isIE = window.navigator.userAgent.indexOf('Trident');
+let w = document.body.clientWidth/1920
+let isIE = !window.navigator.userAgent.indexOf('Chrome');
 export default {
     name: 'a5',
     mixins: [optionProps],
@@ -33,10 +33,10 @@ export default {
             color: ['#00ffff', '#00ffa2', '#f0e750'],
             grid: {
                show: true,
-               left: 66,
+               left: '13%',
                top: '26%',
                right: '8%',
-               bottom: 30,
+               bottom: '8%',
                borderWidth: 0,
                borderColor: 'rgba(170,172,178,0.33)',
                backgroundColor: 'rgba(0,0,0,0)'
@@ -62,7 +62,7 @@ export default {
                    },
                },
                axisLabel: { 
-               		 margin: 15,
+               		 margin: 15*w,
                		 align:'left',
                		 verticalAlign:'middle', 
                    textStyle: {
@@ -79,7 +79,7 @@ export default {
                name:'',
                nameTextStyle:{
                    color:'#ffffff',
-                   fontSize:18,
+                   fontSize:'100%',
                    padding:[0,20,0,0]
                 },
                //minInterval: 1,
@@ -117,7 +117,7 @@ export default {
                        smooth: true, //是否平滑曲线显示
                        lineStyle: { //线条样式
                            normal: {
-                               width: 2,
+                               width: 2*w,
                                color:'#2CC9E2',
                            }
                        },
@@ -307,7 +307,7 @@ export default {
   	.title{
 			position: absolute;
 			color: #fff;
-			font-size: 12px;
+			font-size: 0.6rem;
 			top: 1.5rem;
 			left: 6rem;
 		}
@@ -316,11 +316,11 @@ export default {
     }
     .ieTitle{
     	top: 1.55rem;
-    	font-size: 14px;
+    	font-size: 0.7rem;
     }
     .pieTitle{
     	top: 1.3rem;
-    	font-size: 14px;
+    	font-size: 0.7rem;
     }
     #container{
         width:100%;

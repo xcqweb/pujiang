@@ -19,15 +19,10 @@ export default {
   data () {
     return {
         value:'',
-        people:'',
         items:[],
     }
   },
   computed: {
-    nub:function(){
-    	//加上标点
-      return Rw.string_until.addPoint(this.people)
-    },
     bgCom(){
     	for(var	 i=0; i<20; i++){
     		let n = this.value/10
@@ -45,13 +40,13 @@ export default {
   methods: {
   	//请求数据
   	getData(){
+  		api.params.code=0
   		api.touristSatisfaction(api.params).then( (re) =>{
     		let reData = re.data.data;
 				if(re.status===200){
 					this.isloading = false;
 				}
-					this.value = reData.value;
-					this.people = reData.nub;
+					this.value = reData.satisfyPercent;
 	    }).catch( (e) => {
 	    	console.log(e);
 	    })

@@ -6,8 +6,8 @@
         v-clickOutside='hide'
         v-bind:style="{ width:selectList.width ,left:selectList.left,top:selectList.top}" 
         >
-        <p @click='triggle' v-on:itemtodo2="sendMsgParent" class="dropdown-menu-p">{{selectList.title}}</p>
-        <span :class="upDown"></span>
+        <p @click='triggle' v-on:itemtodo2="sendMsgParent" class="dropdown-menu-p" :title="selectList.title">{{selectList.title}}</p>
+        <span :class="upDown" @click='triggle'></span>
         <transition name="dropdown-fade">
             <dropdownList 
             :list='selectList.place'  
@@ -70,7 +70,7 @@ import Vue from 'vue'
                  
             },
             triggle:function(){
-                this.menueshow = true;
+                this.menueshow = !this.menueshow;
                 this.selectList.selectStatus = true;
                 if (this.upDown!='up') {
                     this.upDown='up';
@@ -83,7 +83,7 @@ import Vue from 'vue'
                 }
             },
             showselect(){
-                this.selectList.selectStatus=true;
+                //this.menueshow=!this.menueshow;
                 
             },
         }
@@ -165,7 +165,7 @@ import Vue from 'vue'
     height:1.8rem;
     line-height: 1.8rem;
     position: absolute;
-    border: 1px solid #1b44ba;
+    border: 0.05rem solid #1b44ba;
     top: 50%;
     transform: translate(0,-50%);
     color: white;
@@ -175,20 +175,20 @@ import Vue from 'vue'
     .up{
         display:inline-block;
         position: absolute;
-        height:30px;
-        width:30px;
+        height:1.5rem;
+        width:1.5rem;
         right:5%;
-        top: 0%;
+        top: 0.2rem;
         background-image: url('../../../assets/images/home/up.png');
         background-size: cover;
     }
     .down{
         display:inline-block;
         position: absolute;
-        height:30px;
-        width:30px;
+        height:1.5rem;
+        width:1.5rem;
         right:5%;
-        top:0%;
+        top:0.2rem;
         background-image: url('../../../assets/images/home/down.png');
         background-size: cover;
     }
@@ -203,30 +203,29 @@ import Vue from 'vue'
     border: 1px solid #1b44ba;
     background-color: #193583;
     z-index: 100002;
-    &.more{
+    /*&.more{
             &:after{
                 content: "";
                 width:0;
                 height: 0;
                 position: absolute;
-                bottom: 10px;
+                bottom: 0.5rem;
                 left: 50%;
                 transform: translate(-80%,0);
-                border-left: solid 10px transparent;
-                border-top:solid 5px white;
-                border-right: solid 10px transparent;
+                border-left: solid 0.5rem transparent;
+                border-top:solid 0.25rem white;
+                border-right: solid 0.5rem transparent;
             }
             li:nth-of-type(6){
                 margin-top: 1.8rem;
             }
-        }
+        }*/
     ul{
         position: absolute;
         left:0;
         top:0;
-        transform: translate(-15%,0);
         height: auto;
-        width: 150%;
+        width: 100%;
         margin-left: -1px;
         z-index:444;
         max-height: 10.8rem;
@@ -284,4 +283,30 @@ import Vue from 'vue'
   transform: translateY(0);
 
 }
+
+			ul::-webkit-scrollbar{
+			    width: 0.2rem;
+			    height: 5rem;
+			}
+			/*定义滚动条的轨道，内阴影及圆角*/
+			ul::-webkit-scrollbar-track{
+			    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.4);
+			    border-radius: 10px;
+			}
+			/*定义滑块，内阴影及圆角*/
+			ul::-webkit-scrollbar-thumb{
+			    width: 0.8rem;
+			    height: 5rem;
+			    border-radius: 10px;
+			    -webkit-box-shadow: inset 0 0 0.5rem #02275A;
+			    background-color: #eee
+			}
+			/*ie*/
+			ul{
+				scrollbar-face-color: #999;
+				scrollbar-highlight-color: #193684;
+				scrollbar-shadow-color: #193684;
+				scrollbar-track-color: #224299;
+				scrollbar-arrow-color:#0F2059;
+			}
 </style>

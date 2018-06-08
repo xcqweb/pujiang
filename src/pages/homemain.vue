@@ -7,14 +7,10 @@
     </transition>
     <div class="headmock" v-on:mouseenter="headerEnter"></div>
     <router-view class='mockrouter'></router-view>
-    <!--使用if 每次重新渲染 并传递筛选景区-->
-        <config v-if = "toast"></config>
-        
   </div>
 </template>
 <script type="text/javascript">
 import headerBody from '@/pages/home/header.vue'
-import config from '@/components/commonui/config/scienceConfig'
 export default {
         data() {
             return {
@@ -23,14 +19,6 @@ export default {
         },
         components: {
                 headerBody,
-                config
-        },
-        computed: {
-            //设置客流预警蒙层显示
-	          toast(){
-	          	let toast = this.$store.state.showToast;
-	          	return toast
-	          }
         },
         methods: {
             mouseLeave(){

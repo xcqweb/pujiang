@@ -62,7 +62,7 @@
 <style scoped="scoped" lang="less">
 	#history{
 		width: 100%;
-		height: 90%;
+		height: 82%;
 		background: linear-gradient(#1E3382 50%,#264095 50%);
 		background-size:  20%;
 		padding-top: 6%;
@@ -70,9 +70,10 @@
 		.title{
 			position: absolute;
 			top: 10%;
+			left: 0;
 			z-index: 100;
 			color: #fff;
-			width: 100%;
+			width: 98.1%;
 			height: 8%;
 			display:flex;
 			background-color: #1E3382;
@@ -106,7 +107,7 @@
 	}
 	
 		#history::-webkit-scrollbar{
-		    width: 0.45rem;
+		    width: 0.9rem;
 		    height: 5rem;
 		}
 		/*定义滚动条的轨道，内阴影及圆角*/
@@ -130,7 +131,7 @@
 			scrollbar-track-color: #263984;
 		}
 		#history::scrollbar{
-		    width: 0.45rem;
+		    width: 0.9rem;
 		    height: 5rem;
 		}
 		/*定义滚动条的轨道，内阴影及圆角*/

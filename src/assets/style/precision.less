@@ -1,6 +1,6 @@
 @screen-xs:                  480px;
 @screen-sm:                  768px;
-@screen-md:                  992px;
+@screen-md:                  990.1rem;
 @screen-lg:                  1200px;
 @screen-xl:                  1400px;
 /** item**/
@@ -9,13 +9,12 @@
 @headerBackColor:#133596;
 @topBottomColor:#163387;
 @borderColor:#49d9fe;
-@borderLen: 18px;
+@borderLen: 0.9rem;
 .qylable{
-    height:1.8rem;
-    line-height: 1.8rem;
+    height:2rem;
+    line-height: 2rem;
     position: absolute;
-    top: 50%;
-    transform: translate(0,-50%);
+    top: 0.8rem;
     left: 10%;
     font-size: 0.9rem;
 }
@@ -30,8 +29,8 @@
         left: 0;
         width: @borderLen;
         height: @borderLen;
-        border-top:2px solid @borderColor;
-        border-left:2px solid @borderColor;
+        border-top:0.1rem solid @borderColor;
+        border-left:0.1rem solid @borderColor;
         content: " ";
         }
       &:after {
@@ -40,8 +39,8 @@
         right: 0;
         width: @borderLen;
         height: @borderLen;
-        border-bottom:2px solid @borderColor;
-        border-right:2px solid @borderColor;
+        border-bottom:0.1rem solid @borderColor;
+        border-right:0.1rem solid @borderColor;
         content: " ";
       }
     .border{
@@ -54,8 +53,8 @@
         left: 0 ;
         width: @borderLen;
         height: @borderLen;
-        border-bottom:2px solid @borderColor ;
-        border-left:2px solid @borderColor ;
+        border-bottom:0.1rem solid @borderColor ;
+        border-left:0.1rem solid @borderColor ;
         content: " ";
     }
     &:after {
@@ -64,8 +63,8 @@
         right: 0;
         width: @borderLen;
         height: @borderLen;
-        border-top:2px solid @borderColor;
-        border-right:2px solid @borderColor;
+        border-top:0.1rem solid @borderColor;
+        border-right:0.1rem solid @borderColor;
         content: " ";
     }
     }
@@ -87,7 +86,7 @@ h1{
 }
 span{
     position:absolute;
-    top: 8px;
+    top: 0.4rem;
     display: inline-block;
     z-index: 2;
     cursor: pointer;
@@ -117,7 +116,7 @@ span{
         width:415/1352*100%;
         height: 80/1048*100%;
         left: 0;
-        top:2px;
+        top:0.1rem;
         font-size: 1.3rem;
         letter-spacing: 1px;
         color:white;
@@ -127,12 +126,12 @@ span{
         width:420/1352*100%;
         height: 80/1048*100%;
         left: 426/1352*100%;
-        top:2px;
+        top:0.1rem;
         font-size: 1.3rem;
         color:#fff;
         .title{
             position: absolute;
-            top: 1.2rem;
+            top: 1.4rem;
             left: 1rem;
             width: 5rem;          
             text-align: left;
@@ -250,7 +249,7 @@ span{
                 width:48%;
                 height: 5rem;
                 left: 0;
-                top:2px;
+                top:0.1rem;
                 font-size: 1.3rem;
                 color:white;
             }

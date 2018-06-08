@@ -1,6 +1,6 @@
 @screen-xs:                  480px;
 @screen-sm:                  768px;
-@screen-md:                  992px;
+@screen-md:                  990.1rem;
 @screen-lg:                  1200px;
 @screen-xl:                  1400px;
 /** item**/
@@ -9,7 +9,7 @@
 @headerBackColor:#133596;
 @topBottomColor:#163387;
 @borderColor:#49d9fe;
-@borderLen: 18px;    
+@borderLen: 0.9rem;    
 .qylable{
     height:1.8rem;
     line-height: 1.8rem;
@@ -34,8 +34,8 @@
           left: 0;
           width: @borderLen;
           height: @borderLen;
-          border-top:2px solid @borderColor;
-          border-left:2px solid @borderColor;
+          border-top:0.1rem solid @borderColor;
+          border-left:0.1rem solid @borderColor;
           content: " ";
           z-index: 100;
           }
@@ -46,8 +46,8 @@
           right: 0;
           width: @borderLen;
           height: @borderLen;
-          border-bottom:2px solid @borderColor;
-          border-right:2px solid @borderColor;
+          border-bottom:0.1rem solid @borderColor;
+          border-right:0.1rem solid @borderColor;
           content: " ";
         }
         
@@ -65,8 +65,8 @@
             left: 0 ;
             width: @borderLen;
             height: @borderLen;
-            border-bottom:2px solid @borderColor ;
-            border-left:2px solid @borderColor ;
+            border-bottom:0.1rem solid @borderColor ;
+            border-left:0.1rem solid @borderColor ;
             content: " ";
             z-index: 100;
         }
@@ -76,8 +76,8 @@
             right: 0;
             width: @borderLen;
             height: @borderLen;
-            border-top:2px solid @borderColor;
-            border-right:2px solid @borderColor;
+            border-top:0.1rem solid @borderColor;
+            border-right:0.1rem solid @borderColor;
             content: " ";
             z-index: 100;
         }
@@ -204,24 +204,28 @@ span{
                 width: (488)/1536*100%;
                 top: 0;
                 left: (488+12+12)/1536*100%;
+                overflow: hidden;
             }
              .five{
                 height: 345/736*100%;
                 width: (488)/1536*100%;
                 top: 0;
                 left: (488+488+36)/1536*100%;
+                overflow: hidden;
             }
              .six{
                 height: 345/736*100%;
                 width: (488)/1536*100%;
                 top: (345+10)/736*100%;
                 left: (488+12+12)/1536*100%;
+                overflow: hidden;
             }
              .seven{
                 height: 345/736*100%;
                 width: (488)/1536*100%;
                 top: (345+10)/736*100%;
                 left: (488+488+36)/1536*100%;
+                overflow: hidden;
             }
 
         }
@@ -250,7 +254,7 @@ span{
                 width:48%;
                 height: 5rem;
                 left: 0;
-                top:2px;
+                top:0.1rem;
                 font-size: 1.3rem;
                 color:white;
             }

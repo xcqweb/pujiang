@@ -14,7 +14,11 @@ import {API_HZ} from '@/api/env'
 import rem from '@/common/js/rem'
 import clickOutside from '@/common/js/directives/clickOutside'
 Vue.directive('clickOutside',clickOutside)
-rem(document,window)
+//rem(document,window)
+
+
+
+
 window.axios = axios; 
 Vue.prototype.$axios = axios; 
 window.api = api; 

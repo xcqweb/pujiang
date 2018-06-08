@@ -169,6 +169,8 @@ import sciencePoints from './points.json'
 //                      [119.912621,29.515494]
 //                  ];
                 var points = sciencePoints;
+                //let w = document.body.clientWidth/1920
+    			//this.symlolSize = [w*26,w*36]
                 //console.log(points)
                 // 向地图添加标注
                 for( let i = 0;i < points.length; i++){
@@ -190,9 +192,10 @@ import sciencePoints from './points.json'
 	                    label.setStyle({
 	                        color : "#153081",
 	                        border:"1px solid #153081",
-	                        fontSize : "12px",
-	                        height : "20px",
-	                        lineHeight : "20px",
+	                        fontSize : "0.6rem",
+	                        height : "1rem",
+	                        padding:'0 0.5rem',
+	                        lineHeight : "1rem",
 	                        fontFamily:"微软雅黑",
 	                        borderRadius:"4px",
 	                    });

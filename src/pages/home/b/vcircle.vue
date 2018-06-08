@@ -14,7 +14,7 @@
                 <img :src="lines"/>
             </div>
         </div>
-        <font v-show='percents'>{{percents}}</font>
+        <font v-show='percents' :style="{color:colorCom}">{{percents}}</font>
         <font v-show='isVideo' class="title">拥堵指数</font>
     </div>
 </template>
@@ -98,7 +98,7 @@ export default {
   		
   	}
   },
-  props:['percents','isVideo']
+  props:['percents','isVideo','colorCom']
 }
 </script>
 
@@ -118,10 +118,7 @@ export default {
         justify-content: center;
     }
     img{                  
-	    max-width: 100%;
-	    max-height: 100%;
-	    width: auto;
-	    height: auto;
+	   height: 7.3rem !important;
 	}
 	img:nth-child(1){                  
 	    min-width: 100%;
@@ -146,7 +143,7 @@ export default {
     position: absolute;
     width: 100%;
     left: 0;
-    top: 0;
+    top: 1rem;
 }
 font{
 	width: 50%;
@@ -155,7 +152,7 @@ font{
     text-align: left;
     font-size:2rem;
     position: absolute;
-    bottom: 48px;
+    bottom: 3.2rem;
     left:1.8rem;
 }
 }
@@ -176,10 +173,7 @@ font{
         justify-content: center;
     }
     img{                  
-	    max-width: 100%;
-	    max-height: 100%;
-	    width: auto;
-	    height: auto;
+	    height: 7.3rem !important;
 	}
 	img:nth-child(1){                  
 	    min-width: 100%;
@@ -189,11 +183,10 @@ font{
 	}
 	
 	.img{
-    height: auto;
+    height: 7.3rem !important;
     text-align: center;
     top: 0;
     left: 0;
-    width: 100%;
     position: absolute;
 }
 
@@ -204,7 +197,7 @@ font{
     position: absolute;
     width: 100%;
     left: 0;
-    top: 0;
+    top: 1rem;
 }
 font{
 	width: 50%;
@@ -213,8 +206,8 @@ font{
     text-align: left;
     font-size:2rem;
     position: absolute;
-    bottom: 48px;
-    left:2rem;
+    bottom: 2.9rem;
+    left:1.9rem;
 }
 }
 @keyframes rotation{
@@ -293,8 +286,8 @@ animation: rotation 3s linear infinite;
 
 
 .ta_cv{
-    height: 126px;
-    width: 126px;
+    height: 7.5rem;
+    width: 7.5rem;
     position: relative;
     .rotImg{
         height: 100%;
@@ -307,10 +300,7 @@ animation: rotation 3s linear infinite;
         justify-content: center;
     }
     img{                  
-	    max-width: 100%;
-	    max-height: 100%;
-	    width: auto;
-	    height: auto;
+	   height: 7.3rem !important;
 	}
 	img:nth-child(1){                  
 	    min-width: 100%;
@@ -323,7 +313,7 @@ animation: rotation 3s linear infinite;
 	    text-align: center;
 	    left: 0;
 	    top: -6px;
-	    min-width: 100%;
+	    width: 100%;
 	    position: absolute;
 	}
 	
@@ -334,7 +324,7 @@ animation: rotation 3s linear infinite;
 	    position: absolute;
 	    width: 100%;
 	    left: 0;
-	    top: -6px;
+	    top: 1rem;
 	}
 	font{
 		width: 100%;
@@ -342,7 +332,7 @@ animation: rotation 3s linear infinite;
 	    color: #fff;
 	    position: absolute;
 	    left: 0;
-	    bottom: 36%;
+	    bottom: 2.4rem;
 	    font-size:1.3rem;
 	    text-align: center;
 	}
@@ -352,7 +342,7 @@ animation: rotation 3s linear infinite;
 		color: #fff;
 	    position: absolute;
 	    text-align: center;
-	    bottom: -30%;
+	    bottom: -2.6rem;
 	    left: 0;
 	    font-size:1rem;
 	}
@@ -430,8 +420,8 @@ animation: rotation 3s linear infinite;
 }
 
 .ta_cvie{
-    height: 126px;
-    width: 126px;
+    height: 7rem;
+    width: 7rem;
     position: relative;
     .rotImg{
         height: 100%;
@@ -444,10 +434,7 @@ animation: rotation 3s linear infinite;
         justify-content: center;
     }
     img{                  
-	    max-width: 100%;
-	    max-height: 100%;
-	    width: auto;
-	    height: auto;
+	    height: 7.3rem !important;
 	}
 	img:nth-child(1){                  
 	    min-width: 100%;
@@ -459,7 +446,7 @@ animation: rotation 3s linear infinite;
 	    height: auto;
 	    text-align: center;
 	    left: 0;
-	    top: 10px;
+	    top: 0.5rem;
 	    min-width: 100%;
 	    position: absolute;
 	}
@@ -471,15 +458,15 @@ animation: rotation 3s linear infinite;
 	    position: absolute;
 	    width: 100%;
 	    left: 5%;
-	    bottom: -26%;
+	    bottom: -1.5rem;
 	}
 	font{
 		width: 100%;
 	    font-family: numberFont;
 	    color: #fff;
 	    position: absolute;
-	    left: 6%;
-	    bottom: 6%;
+	    left: 0;
+	    bottom: 1.3rem;
 	    font-size:1.3rem;
 	    text-align: center;
 	}
@@ -489,7 +476,7 @@ animation: rotation 3s linear infinite;
 		color: #fff;
 	    position: absolute;
 	    text-align: center;
-	    bottom: -56%;
+	    bottom: -3.3rem;
 	    left: 5%;
 	    font-size:1rem;
 	}

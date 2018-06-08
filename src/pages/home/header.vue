@@ -2,13 +2,13 @@
   <div class="headertext">
     <p v-show="showTitle">{{title}}</p>
     <ul>
-        <li v-for='(item, index) in items' :class='item.status' @click='toggle(item,index)'>
+        <li v-for='(item, index) in items' :class='item.status' @click='toggle(item,index)' :title="item.name">
             <router-link v-bind:to={path:item.link}>
                 <span :class='item.status'></span>
                 <font>{{item.name}}</font>
             </router-link>          
         </li>
-        <li @click='logout'>
+        <li @click='logout' title="退出登录">
             <span></span>
             <font>退出登录</font>
         </li>
@@ -70,7 +70,7 @@ export default {
     		//console.log(re.data)
     		if(re.data.code===200){
     			setCookie('token','',-1);
-        	this.$router.push({ path: '/login' });
+        	this.$router.replace({ path: '/login' });
         	alert('退出成功!')
     		}
     	}).catch( (e) => {
@@ -167,8 +167,8 @@ a:visited { text-decoration: none;}
             }
             span{
                 display:inline-block;
-                width: 22px;
-                height: 22px;
+                width: 1.1rem;
+                height: 1.1rem;
             }
             font{
                 display: block;
