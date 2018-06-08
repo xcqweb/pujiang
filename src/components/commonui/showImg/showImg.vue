@@ -1,7 +1,7 @@
 <template>
 	<div class="showImg" v-if="status">
 		<p @click="close" title="关闭">×</p>
-		<img :src="'http://txl.tourzj.gov.cn/sitepic/Imgbig/'+imgSrc"/>
+		<img :src="'http://txl.tourzj.gov.cn/sitepic/Imgbig/'+imgSrc" alt="暂无照片"/>
 	</div>
 </template>
 
@@ -35,10 +35,14 @@
 		line-height: 620/736*100vh;
 		img{
 			height: 360/736*100vh;
+			line-height: 360/736*100vh;
+			text-align: center;
 			position: absolute;
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%,-50%);
+			color: #fff;
+			font-size: 2rem;
 		}
 		p{
 			position: absolute;

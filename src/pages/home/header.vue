@@ -64,6 +64,7 @@ export default {
             this.items[i].status='chose'
         }
         item.status='unchose'
+        this.$emit('hide')
     },
     logout(){
     	api.loginOut(api.params).then( (re) => {

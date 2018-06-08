@@ -1,5 +1,5 @@
 <template>
-	<transition name='fade'>
+	<transition name='fades'>
 		<div class="detailas">
 			<div class="border">
 				<span class="close" @click="close" title="关闭">×</span>
@@ -11,11 +11,11 @@
 						<div class="right" v-if="currentItem==='景点'" @scroll="loadMore($event)">
 							<div class="titleBox">
 								<ul class="title" :style="{'min-width':titles.length*16+'rem'}">
-									<li v-for="item in titles" :class="{bigW:item==='简介'||item==='自驾车路线',smallW:item==='温馨提示'||item==='优惠政策'||item==='公共交通',}">{{item}}</li>
+									<li v-for="item in titles" :class="{bigW:item==='简介'||item==='自驾车路线',smallW:item==='温馨提示'||item==='优惠政策'||item==='公共交通',}" :key='item'>{{item}}</li>
 								</ul>
 							</div>
 							<div class="conBox">
-								<ul class="mainList" v-for="item in reData" :style="{'min-width':titles.length*16+'rem'}">
+								<ul class="mainList" v-for="item in reData" :style="{'min-width':titles.length*16+'rem'}" :key='item.AuditUnitID'>
 									<li><span>{{item.AuditUnitID}}</span></li>
 									<li><span>{{item.UnitName}}</span></li>
 									<li><span>{{item.AreaCode}}</span></li>
@@ -61,11 +61,11 @@
 						<div class="right" v-if="currentItem==='酒店'" @scroll="loadMore($event)">
 							<div class="titleBox">
 								<ul class="title" :style="{'min-width':titles.length*16+'rem'}">
-									<li v-for="item in titles" :class="{smallW2:item==='公共交通'||item==='简介'||item==='酒店政策'||item==='客房服务',}">{{item}}</li>
+									<li v-for="item in titles" :class="{smallW2:item==='公共交通'||item==='简介'||item==='酒店政策'||item==='客房服务',}" :key='item'>{{item}}</li>
 								</ul>
 							</div>
 							<div class="conBox">
-								<ul class="mainList" v-for="item in reData" :style="{'min-width':titles.length*16+'rem'}">
+								<ul class="mainList" v-for="item in reData" :style="{'min-width':titles.length*16+'rem'}" :key='item.AuditUnitID'>
 									<li><span>{{item.AuditUnitID}}</span></li>
 									<li><span>{{item.UnitName}}</span></li>
 									<li><span>{{item.AreaCode}}</span></li>
@@ -116,11 +116,11 @@
 						<div class="right" v-if="currentItem==='农家乐'" @scroll="loadMore($event)">
 							<div class="titleBox">
 								<ul class="title" :style="{'min-width':titles.length*16+'rem'}">
-									<li v-for="item in titles" :class="{smallW2:item==='公共交通'||item==='简介'||item==='自驾线路'}">{{item}}</li>
+									<li v-for="item in titles" :class="{smallW2:item==='公共交通'||item==='简介'||item==='自驾线路'}" :key='item'>{{item}}</li>
 								</ul>
 							</div>
 							<div class="conBox">
-								<ul class="mainList" v-for="item in reData" :style="{'min-width':titles.length*16+'rem'}">
+								<ul class="mainList" v-for="item in reData" :style="{'min-width':titles.length*16+'rem'}" :key='item.AuditUnitID'>
 									<li><span>{{item.AuditUnitID}}</span></li>
 									<li><span>{{item.UnitName}}</span></li>
 									<li><span>{{item.AreaCode}}</span></li>
@@ -178,11 +178,11 @@
 						<div class="right" v-if="currentItem==='餐饮'" @scroll="loadMore($event)">
 							<div class="titleBox">
 								<ul class="title" :style="{'min-width':titles.length*16+'rem'}">
-									<li v-for="item in titles" :class="{smallW2:item==='简介'}">{{item}}</li>
+									<li v-for="item in titles" :class="{smallW2:item==='简介'}" :key='item'>{{item}}</li>
 								</ul>
 							</div>
 							<div class="conBox">
-								<ul class="mainList" v-for="item in reData" :style="{'min-width':titles.length*16+'rem'}">
+								<ul class="mainList" v-for="item in reData" :style="{'min-width':titles.length*16+'rem'}" :key='item.AuditUnitID'>
 									<li><span>{{item.AuditUnitID}}</span></li>
 									<li><span>{{item.UnitName}}</span></li>
 									<li><span>{{item.AreaCode}}</span></li>
@@ -222,11 +222,11 @@
 						<div class="right" v-if="currentItem==='购物点'" @scroll="loadMore($event)">
 							<div class="titleBox">
 								<ul class="title" :style="{'min-width':titles.length*16+'rem'}">
-									<li v-for="item in titles">{{item}}</li>
+									<li v-for="item in titles" :key='item'>{{item}}</li>
 								</ul>
 							</div>
 							<div class="conBox">
-								<ul class="mainList" v-for="item in reData" :style="{'min-width':titles.length*16+'rem'}">
+								<ul class="mainList" v-for="item in reData" :style="{'min-width':titles.length*16+'rem'}" :key='item.AuditUnitID'>
 									<li><span>{{item.AuditUnitID}}</span></li>
 									<li><span>{{item.UnitName}}</span></li>
 									<li><span>{{item.AreaCode}}</span></li>
@@ -256,11 +256,11 @@
 						<div class="right" v-if="currentItem==='休闲娱乐'" @scroll="loadMore($event)">
 							<div class="titleBox">
 								<ul class="title" :style="{'min-width':titles.length*16+'rem'}">
-									<li v-for="item in titles">{{item}}</li>
+									<li v-for="item in titles" :key='item'>{{item}}</li>
 								</ul>
 							</div>
 							<div class="conBox">
-								<ul class="mainList" v-for="item in reData" :style="{'min-width':titles.length*16+'rem'}">
+								<ul class="mainList" v-for="item in reData" :style="{'min-width':titles.length*16+'rem'}" :key='item.AuditUnitID'>
 									<li><span>{{item.AuditUnitID}}</span></li>
 									<li><span>{{item.UnitName}}</span></li>
 									<li><span>{{item.AreaCode}}</span></li>
@@ -291,11 +291,11 @@
 						<div class="right" v-if="currentItem==='旅行社'" @scroll="loadMore($event)">
 							<div class="titleBox">
 								<ul class="title" :style="{'min-width':titles.length*16+'rem'}">
-									<li v-for="item in titles">{{item}}</li>
+									<li v-for="item in titles" :key='item'>{{item}}</li>
 								</ul>
 							</div>
 							<div class="conBox">
-								<ul class="mainList" v-for="item in reData" :style="{'min-width':titles.length*16+'rem'}">
+								<ul class="mainList" v-for="item in reData" :style="{'min-width':titles.length*16+'rem'}" :key='item.AuditUnitID'>
 									<li><span>{{item.AuditUnitID}}</span></li>
 									<li><span>{{item.UnitName}}</span></li>
 									<li><span>{{item.AreaCode}}</span></li>
@@ -326,11 +326,11 @@
 						<div class="right" v-if="currentItem==='公共设施'" @scroll="loadMore($event)">
 							<div class="titleBox">
 								<ul class="title" :style="{'min-width':titles.length*16+'rem'}">
-									<li v-for="item in titles">{{item}}</li>
+									<li v-for="item in titles" :key='item'>{{item}}</li>
 								</ul>
 							</div>
 							<div class="conBox">
-								<ul class="mainList" v-for="item in reData" :style="{'min-width':titles.length*16+'rem'}">
+								<ul class="mainList" v-for="item in reData" :style="{'min-width':titles.length*16+'rem'}" :key='item.AuditUnitID'>
 									<li><span>{{item.AuditUnitID}}</span></li>
 									<li><span>{{item.UnitName}}</span></li>
 									<li><span>{{item.AreaCode}}</span></li>
@@ -433,12 +433,12 @@
 			switchType(type){
 				switch(type){
 					case '景点':
-					this.titles=['景点ID', '全称', '行政区划编码', '街道地址', '等级', '景区类型', '门票价格', '简介', '公共交通', '自驾车路线', '开放时间', '优惠政策', '景区称号', '景区设施', '经度', '纬度', '邮编', '传真', '网址', '联系电话', '邮箱地址', '微博账号', '微信账号', '微信二维码', '标志图', '咨询电话', '投诉电话', '温馨提示', '信用卡', '有无停车场', '负责人', '负责人电话'];
+					this.titles=['景点ID', '全称', '行政区划编码', '街道地址', '等级', '景点类型', '门票价格', '简介', '公共交通', '自驾车路线', '开放时间', '优惠政策', '景点称号', '景点设施', '经度', '纬度', '邮编', '传真', '网址', '联系电话', '邮箱地址', '微博账号', '微信账号', '微信二维码', '标志图', '咨询电话', '投诉电话', '温馨提示', '信用卡', '有无停车场', '负责人', '负责人电话'];
 					return 'listScenic';
 					break;
 					
 					case '酒店':
-					this.titles=['酒店ID', '全称', '行政区划编码', '街道地址', '等级', '宾馆类型', '最低房价', '简介', '公共交通', '开业时间', '酒店政策', '宾馆服务', '房间总数', '客房服务', '邮箱地址', '经度', '纬度', '邮编', '传真', '网址', '联系电话', '微博账号', '微信账号', '微信二维码', '标志图', '咨询电话', '投诉电话', '装修时间', '信用卡', '有无停车场', '负责人', '负责人电话', '所获荣誉'];
+					this.titles=['酒店ID', '全称', '行政区划编码', '街道地址', '等级', '酒店类型', '最低房价', '简介', '公共交通', '开业时间', '酒店政策', '酒店服务', '房间总数', '客房服务', '邮箱地址', '经度', '纬度', '邮编', '传真', '网址', '联系电话', '微博账号', '微信账号', '微信二维码', '标志图', '咨询电话', '投诉电话', '装修时间', '信用卡', '有无停车场', '负责人', '负责人电话', '所获荣誉'];
 					return 'listHotel';
 					break;
 					
@@ -478,7 +478,7 @@
 			this.getData()
 		},
 		components:{
-			showImg
+			showImg,
 		}
 	}
 </script>
@@ -596,7 +596,6 @@
 			text-align: center;
 			background-color: #224299;
 			overflow-x: scroll;
-			/*overflow-y: hidden;*/
 			.bigW{
 				flex: 10 !important;	
 			}
@@ -659,84 +658,29 @@
 
 	@keyframes full{
 		from{
-			transform: scale(0.1);
+			transform: translateY(-100%);
 		}
 		to{
-			transform: scale(1);
+			transform: translateY(0);
 		}
 	}
 	
 	@keyframes out{
 		from{
-			transform: scale(1);
+			transform: translateY(0);
 		}
 		to{
-			transform: scale(0);
+			transform: translateY(-100%);
 		}
 	}
 	
-	.fade-enter-active,  {
-	  animation: full 0.2s ease-out;  
+	.fades-enter-active,  {
+	  animation: full 0.2s ease-in-out;  
 	}
-	.fade-leave-active{
+	.fades-leave-active{
 		animation: out 0.2s ease-out; 
 	}
 	
-	
-			.conFixed::-webkit-scrollbar{
-			    width: 0.3rem;
-			    height: 0;
-			}
-			/*定义滚动条的轨道，内阴影及圆角*/
-			.conFixed::-webkit-scrollbar-track{
-			    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,1);
-			    border-radius: 10px;
-			}
-			/*定义滑块，内阴影及圆角*/
-			.conFixed::-webkit-scrollbar-thumb{
-			    width: 0.5rem;
-			    height: 0.5rem;
-			    border-radius: 10px;
-			    -webkit-box-shadow: inset 0 0 6px #02275A;
-			    background-color: rgba(0,0,0,1);
-			}
-			
-			/*ie*/
-			.conFixed{
-				scrollbar-face-color: #193684;
-				scrollbar-highlight-color: #193684;
-				scrollbar-shadow-color: #193684;
-				scrollbar-track-color: #224299;
-				scrollbar-arrow-color:#224299;
-			}
-			
-			.conBox::-webkit-scrollbar{
-			    width: 0.5rem;
-			    height: 0.5rem;
-			}
-			/*定义滚动条的轨道，内阴影及圆角*/
-			.conBox::-webkit-scrollbar-track{
-			    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,1);
-			    border-radius: 10px;
-			}
-			/*定义滑块，内阴影及圆角*/
-			.conBox::-webkit-scrollbar-thumb{
-			    width: 0.5rem;
-			    height: 0.5rem;
-			    border-radius: 10px;
-			    -webkit-box-shadow: inset 0 0 6px #02275A;
-			    background-color: rgba(0,0,0,1);
-			}
-			
-			/*ie*/
-			.conBox{
-				scrollbar-face-color: #193684;
-				scrollbar-highlight-color: #193684;
-				scrollbar-shadow-color: #193684;
-				scrollbar-track-color: #224299;
-				scrollbar-arrow-color:#224299;
-			}
-			
 			.right::-webkit-scrollbar{
 			    width: 0.8rem;
 			    height: 0.8rem;

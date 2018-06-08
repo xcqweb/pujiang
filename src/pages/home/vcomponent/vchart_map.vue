@@ -1,11 +1,11 @@
  <template>
     <div class="map_content">
     	<div class="topTitle" v-show='istitle'>
-            <span>{{nowYear}}年累计接待游客总人次</span>
+            <span>{{nowYear}}年累计接待游客总人数</span>
             <font>{{yearNumbs}}</font>
         </div>
         <div class='topTitle' v-show='istitle'>
-            <span>{{mowMonth}}月份持续接待游客总人次</span>
+            <span>{{mowMonth}}月份持续接待游客总人数</span>
             <font>{{mouthNumbs}}</font>
         </div>
         <div id="fromEchart"></div>

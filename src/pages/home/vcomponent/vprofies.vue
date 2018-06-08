@@ -10,23 +10,23 @@
 	<div class="leftprofile">
 		<div class='top'>
 			<p>{{curSum}}<font></font></p>
-			<span>当前客流人次</span>
+			<span>当前客流人数</span>
 		</div>
 
 		<div class='bottom'>
 			<p>{{curMonthSum}}<font></font></p>
-			<span>本月客流总人次</span>
+			<span>本月客流总人数</span>
 		</div>
 
 	</div>
 	<div class="rightprofile">
 		<div class='top'>
 			<p>{{yesterdaySum}}<font></font></p>
-			<span>昨日客流总人次</span>
+			<span>昨日客流总人数</span>
 		</div>
 		<div class='bottom'>
 			<p>{{curYearSum}}<font></font></p>
-			<span>本年客流总人次</span>
+			<span>本年客流总人数</span>
 		</div>
 
 	</div>

@@ -2,7 +2,7 @@
   <div id="mainhome" @click="headerLeave($event)">
     <transition name="slide-fade">
         <div class="header" v-show='headerStatus' @mouseleave="mouseLeave"   @click="headerLeave($event)">
-            <headerBody></headerBody>
+            <headerBody @hide='hide'></headerBody>
         </div>
     </transition>
     <div class="headmock" v-on:mouseenter="headerEnter"></div>
@@ -21,17 +21,20 @@ export default {
                 headerBody,
         },
         methods: {
+	        	hide(){
+							this.headerStatus=false;	        		
+	        	},
             mouseLeave(){
-            	this.headerStatus=false;
+              	this.headerStatus=false;
             },
             headerEnter(){
                 this.headerStatus=true;
             },
             headerLeave(e){
-            	if(!this.$el.childNodes[0].contains(e.target)){
+//          	if(!this.$el.childNodes[0].contains(e.target)){
             		this.headerStatus=false;
-            	}
-                
+//          	}
+                //
             },
         },
     }

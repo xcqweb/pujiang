@@ -21,8 +21,11 @@
             transform: translate(0,30%)
         }
         .item_img{
-            height: 30%;
+           width: 2.7rem;
+           height: 2.7rem;
+           margin: auto;
         }
+       
         .item_name{
             height: 20%;
             display:flex;
@@ -46,28 +49,60 @@
         }
         &:nth-of-type(1){
             background: linear-gradient(75deg, #0084ec, #34caf7);
+             .item_img{
+	           background: url('../../../assets/images/chanye/1.png') no-repeat;
+	           background-size: contain;
+	        }
         }
         &:nth-of-type(2){
             background: linear-gradient(75deg, #2d4eca, #0f98ed);
+            .item_img{
+	           background: url('../../../assets/images/chanye/2.png') no-repeat;
+	           background-size: contain;
+	        }
         }
         &:nth-of-type(3){
             background: linear-gradient(75deg, #5947cf, #8d7bfe);
+            .item_img{
+	           background: url('../../../assets/images/chanye/3.png') no-repeat;
+	           background-size: contain;
+	        }
         }
         &:nth-of-type(4){
             background: linear-gradient(75deg, #ea446c, #ff7655);
+            .item_img{
+	           background: url('../../../assets/images/chanye/4.png') no-repeat;
+	           background-size: contain;
+	        }
         }
         &:nth-of-type(5){
             background: linear-gradient(75deg, #2bba75, #39e9d2);
+            .item_img{
+	           background: url('../../../assets/images/chanye/5.png') no-repeat;
+	           background-size: contain;
+	        }
         }
         
         &:nth-of-type(6){
             background: linear-gradient(75deg, #4751cf, #7ba0fe);
+            .item_img{
+	           background: url('../../../assets/images/chanye/6.png') no-repeat;
+	           background-size: contain;
+	        }
         } 
         &:nth-of-type(7){
             background: linear-gradient(75deg, #7447cf, #c87bfe);
+            .item_img{
+	           background: url('../../../assets/images/chanye/7.png') no-repeat;
+	           background-size: contain;
+	        }
         }
         &:nth-of-type(8){
             background: linear-gradient(75deg, #EB5F44, #FCA855);
+            .item_img{
+	           background: url('../../../assets/images/chanye/8.png') no-repeat;
+	           background-size: contain;
+	        }
         }
     }
 }
@@ -81,9 +116,7 @@
         title="点击查看详情"
         @click="showDetials(item)"
         >
-            <div class="item_img">
-                <img :src="item.img"/>
-            </div>
+            <div class="item_img"></div>
             <div class="item_name"><font>{{item.name}}</font></div>
             <div class="item_num"><font>{{item.value}}</font></div>
         </div>
@@ -94,8 +127,8 @@
 
 <script>
 import Vue from 'vue'
-import optionProps from '@/common/js/mixin/optionProps.js'
 import detials from '@/components/commonui/detials/detials'
+import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
     name: 'B17',
     mixins: [optionProps],
@@ -104,16 +137,19 @@ export default {
         	status:false,
         	currentItem:'景点',
             items:[
-                {name:'景点',value:42,img:require('../../../assets/images/chanye/1.png')},
-                {name:'酒店',value:114,img:require('../../../assets/images/chanye/2.png')},
-                {name:'农家乐',value:107,img:require('../../../assets/images/chanye/3.png')},
-                {name:'餐饮',value:343,img:require('../../../assets/images/chanye/4.png')},
-                {name:'购物点',value:242,img:require('../../../assets/images/chanye/5.png')},
-                {name:'休闲娱乐',value:198,img:require('../../../assets/images/chanye/6.png')},
-                {name:'旅行社',value:14,img:require('../../../assets/images/chanye/7.png')},
-                {name:'公共设施',value:120,img:require('../../../assets/images/chanye/8.png')},
+                {name:'景点',value:42},
+                {name:'酒店',value:114},
+                {name:'农家乐',value:107},
+                {name:'餐饮',value:343},
+                {name:'购物点',value:242},
+                {name:'休闲娱乐',value:198},
+                {name:'旅行社',value:14},
+                {name:'公共设施',value:120},
             ],
         }
+    },
+    created(){
+    
     },
     methods: {
         //请求数据

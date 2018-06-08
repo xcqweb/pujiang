@@ -190,9 +190,9 @@ export default {
             let _self=this;
             var i = 0;
             if(isIE>-1){ 
-            	i=this.num;
+            	i=22||this.num;
 						}else{ 
-							i=32;
+							i=30;
 						}
             let timerIndex = Math.round((_self.mins*60) / _self.btwsecends)-5;
             this.chart = echarts.init(document.getElementById(id));
@@ -203,11 +203,11 @@ export default {
             let date=[];
             let data=[];
             if(isIE>-1){ 
-							 date=_self.data_arr.date.slice(0,this.num+1);
-            	 data=_self.data_arr.data.slice(0,this.num+1);
+							 date=_self.data_arr.date.splice(22,this.num+1);
+            	 data=_self.data_arr.data.splice(22,this.num+1);
 						}else{ 
-							 date=_self.data_arr.date.slice(0,33);
-            	 data=_self.data_arr.data.slice(0,33);
+							 date=_self.data_arr.date.splice(42,58);
+            	 data=_self.data_arr.data.splice(42,58);
 						}
             
             this.reTimer=setInterval(function () {
@@ -264,7 +264,7 @@ export default {
             let start_end_instance =  new Start_end_class('timeline',_self.mins,Math.round((_self.mins*60) / _self.btwsecends),this.code);
             start_end_instance.get_timeline().then(re =>{
                 _self.data_arr = re.arr;
-                  //console.log(re);
+                    console.log(re);
               _self.option.xAxis.data=re.arr.date;
               _self.option.series.data=re.arr.data;
               

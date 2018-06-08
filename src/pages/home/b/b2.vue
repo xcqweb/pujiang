@@ -88,11 +88,10 @@ export default {
         //range控件信息
         var rangeValue = 30;
         var nowRange  //用于做一个临时的range
-        
+       
     	nowRange=this.percent+10
-      	nowRange = nowRange<=11&&nowRange>0?11:nowRange
+      	nowRange = nowRange<=11&&nowRange>10?11:nowRange
 		nowRange = nowRange>=100?100:nowRange
-
         //画布属性
         var mW = canvas.width = 250;
         var mH = canvas.height = 250;

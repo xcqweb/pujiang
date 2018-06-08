@@ -25,16 +25,18 @@
                 <span @click='cutover(item,leftComponents)'>
                 </span>
                 <div class="border" v-if='!item.show'>
-                    <componet
-                   	:qyselectlist='item.qyselectlist'
-                   	:playerOptions='item.playerOptions'
-                    :apiName='item.apiName'
-                    :isVideo=true
-                    :is='item.name'
-                    :key="item.id"
-                    :placeName = 'placeName'
-                    :touristProp = "updateData.turist"
-                    ></componet>
+                	<keepalive>
+	                    <componet
+	                   	:qyselectlist='item.qyselectlist'
+	                   	:playerOptions='item.playerOptions'
+	                    :apiName='item.apiName'
+	                    :isVideo=true
+	                    :is='item.name'
+	                    :key="item.id"
+	                    :placeName = 'placeName'
+	                    :touristProp = "updateData.turist"
+	                    ></componet>
+                    </keepalive>
                 </div>
             </div>
         </div>

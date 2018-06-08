@@ -187,6 +187,9 @@
 		        	-moz-user-select: none;
 		        	user-select: none;
 				}
+				.close:hover{
+					color: #fff;
+				}
 			}
 		}
 		.v-dropdown-menu{
@@ -213,7 +216,7 @@
 		}
 	}
 	
-	@keyframes full{
+	@keyframes fulls{
 		from{
 			transform: scale(0.1);
 		}
@@ -222,7 +225,7 @@
 		}
 	}
 	
-	@keyframes out{
+	@keyframes outs{
 		from{
 			transform: scale(1);
 		}
@@ -232,9 +235,9 @@
 	}
 	
 	.fade-enter-active,  {
-	  animation: full 0.2s ease-out;  
+	  animation: fulls 0.2s ease-out;  
 	}
 	.fade-leave-active{
-		animation: out 0.2s ease-out; 
+		animation: outs 0.2s ease-out; 
 	}
 </style>
