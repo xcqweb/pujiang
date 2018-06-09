@@ -11,7 +11,7 @@
 			<div class="title">
 				<span class="history" @click="history" :class="{'active':tab}">预警历史</span>
 				<span class="config" @click="waringConfig" :class="{'active':!tab}">预警设置</span>
-				<span class="close" @click="close">x</span>
+				<span class="close" @click="close" title="关闭">x</span>
 			</div>
 			<history :scienceProp='scienceProps' v-show="tab"></history>
 			<config :scienceProp='scienceProps' v-show="!tab"></config>
@@ -26,7 +26,6 @@
 	import history from '@/components/commonui/config/children/history.vue'
 	import config from '@/components/commonui/config/children/config.vue'
 	
-	import { mapMutations,mapActions} from 'vuex'
 	
 	export default{
 		mixins: [optionProps],
@@ -108,13 +107,10 @@
         	},
         	//关闭蒙层
         	close(){
-        		this.$store.state.showToast = false;
+        		this.$emit('closeToast')
         		this.code=0;
         	},
         	getData(){}
-		},
-		created(){
-			//console.log(this.nameToCode['仙华山'])
 		},
 		
 		mounted(){
@@ -136,7 +132,7 @@
 		width: 100%;
 		height: 100%;
 		background-color: rgba(10, 14, 39,0.8);
-		position: absolute;
+		position: fixed;
 		top: 0;
 		left: 0;
 		z-index: 10000;
@@ -165,11 +161,11 @@
 					position: absolute;
 					top: 0;
 					margin-top: 1rem;
-					padding: 0.3rem 0.8rem;
+					padding: 0.3rem 0.8rem 0.4rem 0.8rem;
 					border-radius: 1rem;
+					cursor: pointer;
 				}
 				.history{
-					
 					left: 38%;
 				}
 				.config{
@@ -186,6 +182,13 @@
 					right: 2%;
 					top: 8%;
 					cursor: pointer;
+					-webkit-user-select: none;
+		        	-ms-user-select: none;
+		        	-moz-user-select: none;
+		        	user-select: none;
+				}
+				.close:hover{
+					color: #fff;
 				}
 			}
 		}
@@ -202,7 +205,7 @@
 			padding: 0rem 1rem;
 			border-radius: 0.3rem 0 0 0.3rem;
 			background-color: #1E3382;
-			 height:1.8rem;
+			height:1.8rem;
     		line-height: 1.8rem;
 		    border: 1px solid #1b44ba;
 		    transform: translate(0,-50%);
@@ -213,7 +216,7 @@
 		}
 	}
 	
-	@keyframes full{
+	@keyframes fulls{
 		from{
 			transform: scale(0.1);
 		}
@@ -222,7 +225,7 @@
 		}
 	}
 	
-	@keyframes out{
+	@keyframes outs{
 		from{
 			transform: scale(1);
 		}
@@ -232,9 +235,9 @@
 	}
 	
 	.fade-enter-active,  {
-	  animation: full 0.2s ease-out;  
+	  animation: fulls 0.2s ease-out;  
 	}
 	.fade-leave-active{
-		animation: out 0.2s ease-out; 
+		animation: outs 0.2s ease-out; 
 	}
 </style>

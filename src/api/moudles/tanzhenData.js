@@ -9,21 +9,26 @@ export default {
     //登录
     userLogin:function(params){
     	
-          return instance.post(`http://114.55.237.138/pj/api/user/login`, params);
+          return instance.post(`/pj/api/user/login`, params);
 //      return instance.post(`https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/login`, params);
     },
-    //历史客流
+    //总览历史客流
     passenger:function(paramsObj){
-        return instance.post(`http://114.55.237.138/pj/api/zl/geHistoryDayData`,paramsObj);
+        return instance.post(API_HZ+`/pj/api/zl/geHistoryDayData`,paramsObj);
+    },
+    
+     //产业监测历史客流
+    passengers:function(paramsObj){
+        return instance.post(API_HZ+`/pj/api/cyjc/geHistoryDayData`,paramsObj);
     },
     //实时客流量
     timeline:function(paramsObj){
         //return instance.get(`https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/timeline`, {params:paramsObj});
-        return instance.post(`http://114.55.237.138/pj/api/cyjc/getPassengerCount`, paramsObj);
+        return instance.post(API_HZ+`/pj/api/cyjc/getPassengerCount`, paramsObj);
     },
     //概况
     profile:function(paramsObj){
-        return instance.post(`http://114.55.237.138/pj/api/zl/getScenicGereral`, paramsObj);
+        return instance.post(API_HZ+`/pj/api/zl/getScenicGereral`, paramsObj);
     },
     //客流预警
     passengerwarning:function(paramsObj){

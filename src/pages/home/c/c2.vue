@@ -10,11 +10,14 @@ import echarts_resize from '../../../common/js/echarts_resize.js'
 import echarts from 'echarts'
 import adaptation from '@/common/js/mixin/adaptation.js'
 import optionProps from '@/common/js/mixin/optionProps.js'
+let w = document.body.clientWidth/1920
 export default {
     name:'c2',
     mixins: [optionProps],
     data(){
     return{
+    	ws:40,
+    	lefts:'23%',
     	series: [{
 		      "value": 0,
 		      name: '19岁以下'
@@ -44,15 +47,23 @@ export default {
     },
     watch:{
     	code:function(){
-    		this.getData();
+    		let data={};
+	  			  data.code = this.code;
+	  		    data.monthId = this.yearMonth;
+	  		    this.getData(data)
     	}
     },
     methods:{
-    	
+    	init(){
+    		this.ws = w*20
+	    	if(w===2){
+	    		this.lefts='32%'
+	    	}
+    	},
     	//请求数据
-	  	getData(){
-	  		api.params.code = this.code;
-	  		api.ageAnalyse(api.params).then( (re) =>{
+	  	getData(data){
+	  		//api.params.code = this.code;
+	  		api.ageAnalyse(data).then( (re) =>{
 	  				let reData = re.data.data;
 	  				//console.log(reData)
 	  				let arrData = [];
@@ -62,8 +73,6 @@ export default {
 	  				for(let i=0; i<this.series.length; ++i){
 	  					this.series[i].value = arrData[i]
 	  				}
-	  				//console.log(arrData)
-	  				//this.series = reData;
 					if(re.status===200){
 						this.isloading = false;
 					}
@@ -80,6 +89,9 @@ export default {
           backgroundColor: 'rgba(0, 0, 0, 0)',
           color:['#FF8885','#57ABFE', '#368DF7', '#7E6AF6', '#E39A50','#FFCD38',  '#4EBBFC', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD'],
           tooltip : {
+          		textStyle:{
+            		fontSize:'80%',
+            	},
 		        trigger: 'item',
 		        formatter: function(params){
 		        	let text = params.seriesName+" : "+params.name+"<br>"+params.percent+"%";
@@ -89,17 +101,17 @@ export default {
           legend:{
                 show:true,
                 orient: 'vertical',
-                top:'30%' ,
-                right:'8%',
-                width:'26',
-                height:'50%',
-                itemGap:20,
+                top:'20%' ,
+                right:this.lefts,
+                width:'42%',
+                height:'60%',
+                itemGap:this.ws,
                 itemWidth:10,
                 itemHeight:10,
                 textStyle:{
                     color:'#fff',
                     fontSize:'75%',
-                    lineHeight:36
+                    lineHeight:20
                 },
                 data:[{
                     icon:'circle',
@@ -173,6 +185,7 @@ export default {
         }
     },
     created(){
+    	this.init()
     },
     mounted() {
         this.$nextTick($sheet.echartRL('c2',this))

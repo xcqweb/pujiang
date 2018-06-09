@@ -4,4 +4,5 @@ var config = require('../../config')
 //     console.log(process.env.NODE_ENV);
 // };
 
-export const API_HZ = process.env.NODE_ENV !== 'production' ? 'http://localhost:8008' : 'http://120.55.190.57/pujiang'
+export const API_HZ = process.env.NODE_ENV !== 'production' ? 'http://115.29.17.176' : 'http://115.29.17.176'
+//export const API_HZ = process.env.NODE_ENV !== 'production' ? 'http://localhost:8008' : 'http://120.57.190.55'

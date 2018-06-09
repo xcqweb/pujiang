@@ -5,7 +5,7 @@
 @headerBackColor:#133596;
 @topBottomColor:#163387;
 @borderColor:#49d9fe;
-@borderLen: 18px;
+@borderLen: 0.9rem;
 .border{
     position:absolute;
     width:100%;
@@ -16,8 +16,8 @@
         left: 0 ;
         width: @borderLen;
         height: @borderLen;
-        border-bottom:2px solid @borderColor ;
-        border-left:2px solid @borderColor ;
+        border-bottom:0.1rem solid @borderColor ;
+        border-left:0.1rem solid @borderColor ;
         content: " ";
         z-index: 333;
     }
@@ -27,8 +27,8 @@
         right: 0;
         width: @borderLen;
         height: @borderLen;
-        border-top:2px solid @borderColor;
-        border-right:2px solid @borderColor;
+        border-top:0.1rem solid @borderColor;
+        border-right:0.1rem solid @borderColor;
         content: " ";
         z-index: 333;
     }
@@ -65,7 +65,8 @@
             z-index: 2;
             color:@hColor;
             font-size: 1.1rem;
-            font-weight: 590;
+            font-weight: bold;
+            letter-spacing: 1px;
             }
             
         span{
@@ -99,8 +100,8 @@
               left: 0;
               width: @borderLen;
               height: @borderLen;
-              border-top:2px solid @borderColor;
-              border-left:2px solid @borderColor;
+              border-top:0.1rem solid @borderColor;
+              border-left:0.1rem solid @borderColor;
               content: " ";
               }
             &:after {
@@ -109,23 +110,23 @@
               right: 0;
               width: @borderLen;
               height: @borderLen;
-              border-bottom:2px solid @borderColor;
-              border-right:2px solid @borderColor;
+              border-bottom:0.1rem solid @borderColor;
+              border-right:0.1rem solid @borderColor;
               content: " ";
             }
 
         }
         .one{
-            width: 480/1920*100%;
+            width: 554/1920*100%;
             height: 100%;
             top:0;
             left:0;
         }
         .two{
-            width: 939/1920*100%;
+            width: (1009-144)/1920*100%;
             height: 100%;
             top:0;
-            left:496/1920*100%;
+            left:(496+74)/1920*100%;
         }
         .three{
             width: 469/1920*100%;
@@ -151,6 +152,8 @@
             z-index: 2;
             color:@hColor;
             font-size: 1.1rem;
+            font-weight: bold;
+            letter-spacing: 1px;
         }
        
         span{
@@ -185,8 +188,8 @@
               left: 0;
               width: @borderLen;
               height: @borderLen;
-              border-top:2px solid @borderColor;
-              border-left:2px solid @borderColor;
+              border-top:0.1rem solid @borderColor;
+              border-left:0.1rem solid @borderColor;
               content: " ";
               }
             &:after {
@@ -195,8 +198,8 @@
               right: 0;
               width: @borderLen;
               height: @borderLen;
-              border-bottom:2px solid @borderColor;
-              border-right:2px solid @borderColor;
+              border-bottom:0.1rem solid @borderColor;
+              border-right:0.1rem solid @borderColor;
               content: " ";
             }
 
@@ -208,13 +211,14 @@
         }
         .two{
             height: 100%;
-            width: 514/1920*100%;
+            width: (514+342)/1920*100%;
             left: 550/1920*100%+16/1920*100%;
         }
         .three{
             height: 488/488*100%;
-            width: 327/1920*100%;
-            left: 514/1920*100%+550/1920*100%+32/1920*100%;
+            width: 466/1920*100%;
+            right: 0;
+            overflow: hidden;
         }
         .four{
             height: 272/488*100%;

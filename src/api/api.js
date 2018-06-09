@@ -1,8 +1,7 @@
-//import axios from 'axios';
+
 import axios from '@/api/instance'
 import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
-//export {params} from '@/common/js/gtime.js';
-
+import {API_HZ} from '@/api/env'
 export var params={};
 let timeStamp = new Date().getTime()+'';
 
@@ -17,6 +16,15 @@ function tansParm(data){
         if(data.range){
         	 params.append('range',data.range);
         }
+        if(data.monthId){
+        	 params.append('monthId',data.monthId);
+        }
+        if(data.beginDate){
+        	 params.append('beginDate',data.beginDate);
+        }
+        if(data.endDate){
+        	 params.append('endDate',data.endDate);
+        }
         if(data.limit){
         	data.limit = data.limit>100?5:data.limit
         	 params.append('limit',data.limit);
@@ -27,6 +35,9 @@ function tansParm(data){
         if(data.setNum>=0 || data.warnNum>=0){
         	params.append('setNum', data.setNum);
         	params.append('warnNum', data.warnNum);
+        }
+        if(data.unitType){
+        	params.append('unitType', data.unitType);
         }
        
        let p = params;
@@ -41,7 +52,8 @@ function tansParm(data){
 //模拟数据公共地址
 let base1 = 'https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example';
 
-let base = 'http://114.55.237.138/pj/api'
+//let base = 'http://115.29.17.176:80/pj/api'
+let base = API_HZ+'/pj/api'
 
 
 //用户登录
@@ -67,6 +79,8 @@ export const touristSum = params => {return axios.post(`${base}/cyjc/getTouristC
 
 //产业数据
 export const getProductData = params => { return axios.post(`${base}/cyjc/getProductData`,tansParm(params));};
+//产业数据详情
+export const getProductDataDetial = params => { return axios.post(`${base}/cyjc/getProductDetailData`,tansParm(params));};
 //出行方式
 export const tripMode = params => { return axios.post(`${base}/jzyx/getTravelWay`,tansParm(params));};
 //年龄分析
@@ -142,9 +156,9 @@ export const editUser = params => { return axios.post(`${base1}/user/edit`, { pa
 //游客来源地排行榜
 export const originList = params => { return axios.post(`${base1}/originList`,tansParm(params));};
 //客流总数，经济分析，富民指数
-export const topThree = params => { return axios.post(`${base1}/topThree`,{ params: params });};
+export const topThree = params => { return axios.post(`${base}/cyjc/getRickIndexMark`,tansParm(params));};
 //游客满意度
-export const touristSatisfaction = params => { return axios.post(`${base1}/touristSatisfaction`,{ params: params });};
+export const touristSatisfaction = params => { return axios.post(`${base}/zl/getSatisfy`,tansParm(params));};
 //拥堵指数
 export const congestion = params => { return axios.get(`${base1}/congestion`,{params:params});};
 //天气

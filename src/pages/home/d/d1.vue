@@ -8,7 +8,7 @@
         position:absolute;
         top:1.3rem;
         font-size: 1.1rem;
-        color:white;
+        color:#fff;
     }
     .toast-video{
         position:absolute;
@@ -26,7 +26,7 @@
             width:100%;
             height: 8%;
             font-size:1.1rem;
-            color: white;
+            color: #fff;
             line-height: 1.5rem;
             text-align: left;
             letter-spacing:.2rem;
@@ -66,13 +66,13 @@ display:none !important;
 <template>
     <div class="d1">
         <div id="XSDFXPages" class="XSDFXPage"></div>
-        <canvas class="lineVideo" v-show='videoToast'></canvas>
-        <div class="toast-video" v-if='videoToast'>
+        <!--<canvas class="lineVideo" v-show='videoToast'></canvas>-->
+        <!--<div class="toast-video" v-if='videoToast'>
             <h2>{{videoName}}</h2>
             <video controls="controls" src="../../../assets/video/xhs.mp4" autoplay="autoplay"  loop="loop" style="">
                 您的浏览器不支持 video 标签。
             </video>
-        </div>
+        </div>-->
         <Loading v-show="isloading"></Loading>
     </div>
     
@@ -82,7 +82,7 @@ display:none !important;
 <script>
 import echarts from 'echarts'
 import optionProps from '@/common/js/mixin/optionProps.js'
-// import BMapLib from '../../../common/js/baidumap/Heatmap.min.js'
+import sciencePoints from './points.json'
    require('../../../common/js/baidumap/heatmap.js?fdwe')
     export default {
         name:'d1',
@@ -108,8 +108,8 @@ import optionProps from '@/common/js/mixin/optionProps.js'
             'place'
         ],
         watch:{
-        	code:function(){
-        		 //this.getData();
+        	touristProp:function(val){
+        		 this.addScript(val);
         	}
         },
         methods:{
@@ -147,7 +147,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 }
             },
             mapMoveSelf(map){
-                console.log(map)
+                //console.log(map)
                 setTimeout(function(){
                     map.panTo(new BMap.Point(119.906441,29.457793));
                 }, 1000);
@@ -159,47 +159,67 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 let _self = this
                 let lenY = 29.518155 - 29.510533;
                 let lenX = 119.913692 - 119.932808;
-                var points = [
-                        [119.923671,29.513494],
-                        [119.919621,29.516494],
-                        [119.930621,29.518494],
-                        [119.925621,29.512494],
-                        [119.931621,29.511494],
-                        [119.924621,29.514494],
-                        [119.912621,29.515494]
-                    ];
+//              var points = [
+//                      [119.923671,29.513494],
+//                      [119.919621,29.516494],
+//                      [119.930621,29.518494],
+//                      [119.925621,29.512494],
+//                      [119.931621,29.511494],
+//                      [119.924621,29.514494],
+//                      [119.912621,29.515494]
+//                  ];
+                var points = sciencePoints;
+                //let w = document.body.clientWidth/1920
+    			//this.symlolSize = [w*26,w*36]
+                //console.log(points)
                 // 向地图添加标注
                 for( let i = 0;i < points.length; i++){
                     //定义新图标
-                    var myIcon = new BMap.Icon(require("../../../assets/images/watch31.png"), new BMap.Size(30, 30), {
+                    var myIcon = new BMap.Icon(require("../../../assets/images/labler.png"), new BMap.Size(30, 30), {
                     // 指定定位位置
                     offset: new BMap.Size(10, 25),
                     // 当需要从一幅较大的图片中截取某部分作为标注图标时，需要指定大图的偏移位置 
                     //imageOffset: new BMap.Size(0, 0 - i * 25)  设置图片偏移 
                     });
-                    
-                    (function() {
-                        var point = new BMap.Point(points[i][0],points[i][1]);
+                    var point = new BMap.Point(points[i].points[0],points[i].points[1]);
                         // 创建标注对象并添加到地图 
                         var marker = new BMap.Marker(point,{icon: myIcon});
                         map.addOverlay(marker);
+                        //点跳动
+                    	marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+                    	//设置标签
+                     var label = new BMap.Label(points[i].label,{offset:new BMap.Size(20,-50)});
+	                    label.setStyle({
+	                        color : "#153081",
+	                        border:"1px solid #153081",
+	                        fontSize : "0.6rem",
+	                        height : "1rem",
+	                        padding:'0 0.5rem',
+	                        lineHeight : "1rem",
+	                        fontFamily:"微软雅黑",
+	                        borderRadius:"4px",
+	                    });
+		                marker.setLabel(label);
+		                
+		                
+                    (function() {
                         
                         //添加新图标的监听事件
                         marker.addEventListener("click",
                             function(event) {
-                            var p = marker.getPosition();       //获取marker的位置
-                            map.centerAndZoom(new BMap.Point(p.lng+lenY*0.25,p.lat+lenY*0.25), 16);
-                            _self.videoToast=true;
+                            var p = event.target.getPosition();       //获取marker的位置
+                              map.centerAndZoom(new BMap.Point(p.lng+lenY*0.25,p.lat+lenY*0.25), 15);
+                           // _self.videoToast=true;
                             
-                            let len = points.length;
-                            for(let i=0; i<len; ++i){
-                            	let point = points[i][0];
-                            	if(p.lng === point){
-                            		console.log(_self.vsrc)
-                              		_self.vsrc = _self.videoSrc[i];
-                            		console.log(_self.vsrc)
-                            	}
-                            }
+//                          let len = points.length;
+//                          for(let i=0; i<len; ++i){
+//                          	let point = points[i][0];
+//                          	if(p.lng === point){
+//                          		//console.log(_self.vsrc)
+//                            		_self.vsrc = _self.videoSrc[i];
+//                          		//console.log(_self.vsrc)
+//                          	}
+//                          }
                             window.event?window.event.cancelBubble=true:event.stopPropagation();
                         },false);
                     })(i);
@@ -339,11 +359,11 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                         其中 key 表示插值的位置, 0~1. 
                             value 为颜色值. 
                      */
-                      let heatmapOverlay = new BMapLib.HeatmapOverlay({"radius":20});
+                      let heatmapOverlay = new BMapLib.HeatmapOverlay({"radius":36});
                       map.addOverlay(heatmapOverlay);
                          points = this.points;
                       //设置热力图数据
-                      heatmapOverlay.setDataSet({data:points,max:100});
+                      heatmapOverlay.setDataSet({data:points,max:180});
                       
                       
                     //是否显示热力图
@@ -352,9 +372,19 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                         heatmapOverlay.hide();
                     }
                    
+                    //监听地图缩放事件
+		            map.addEventListener('zoomend',function(){
+		            	let zoom = map.getZoom()
+		            	
+		            	if(zoom===14){//放大级别在14时关闭热力图
+		            		 //closeHeatmap()
+		            	}
+		            })
+                   
                     function setGradient(){
                         /*格式如下所示:
                         {
+                        	
                             0:'rgb(102, 255, 0)',
                             .5:'rgb(255, 170, 0)',
                             1:'rgb(255, 0, 0)'
@@ -373,15 +403,16 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                         return !!(elem.getContext && elem.getContext('2d'));
                     }
             },
+              getData(){},
             //请求数据
-		  	getData(){
+		  	getDatas(){
 		  		api.params.code = this.code;
 		  		api.scenicHot(api.params).then( (re) =>{
 	  				let reData = re.data.data;
 	  				for(let i=0; i<reData.length; ++i){
 	  					this.points[i] = {"count":reData[i].count,"lat":reData[i].latitude,"lng":reData[i].longitude};
 	  				}
-	  				this.addScript();
+	  				this.addScript('全部');
 	  				//console.log(reData);
 					if(re.status===200){
 						this.isloading = false;
@@ -391,26 +422,87 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 			    })
 		  	},
 		  	//多个地方使用会造成冲突,需动态添加热力图,且需在地图构建前将热力图引入进来
-		  	addScript(){
+		  	addScript(val){
                 let _self = this;
                 var oS=document.createElement('script');
-                oS.src='https://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js?'+Math.random();
+                oS.src='https://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js';
                 this.$el.appendChild(oS)
                 oS.onload=function(){
-                    _self.rodomMap([119.923671,29.513494]);
+                    _self.rodomMap(val);
                 }
                 this.$el.removeChild(oS);
             },
-            rodomMap(){
+            moveTo(map,lon,lat,zoom,val,lenObj){
+                    if(lon){
+                         map.setZoom(zoom);
+                         map.centerAndZoom(new BMap.Point(lon,lat), zoom);
+                    }
+                   
+            },
+            rodomMap(val){
             	const _self= this;
+            	let lenObj = {
+            		 '全部':{lng:119.923671,lat:29.506494,zoom:12},
+		            '仙华山':{lng:119.923732,lat:29.514781,zoom:14},
+		            '前吴村':{lng:119.829429,lat:29.449887,zoom:14},
+		            '塘波村':{lng:119.752984,lat:29.454116,zoom:14},
+		            '民生村':{lng:119.850035,lat:29.426906,zoom:14},
+		            '罗源村':{lng:119.833439,lat:29.425386,zoom:14},
+		            '白石湾':{lng:119.922777,lat:29.41095,zoom:14},
+		            '江南第一家':{lng:120.018874,lat:29.48683,zoom:14},
+		            '嵩溪村':{lng:120.016897,lat:29.539369,zoom:14},
+		            '宝掌幽谷':{lng:119.92727,lat:29.505704,zoom:14},
+		            '登高村':{lng:119.916398,lat:29.534356,zoom:14},
+		            '神丽峡':{lng:119.964819,lat:29.403722,zoom:14},
+		            '礼张村':{lng:119.961903,lat:29.527846,zoom:14},
+		            '农批市场':{lng:119.894968,lat:29.439944,zoom:14},
+		            '檀溪镇':{lng:119.953443,lat:29.631301,zoom:14},
+		            '冷坞村':{lng:119.981621,lat:29.592997,zoom:14},
+		            '上河村':{lng:120.063783,lat:29.372501,zoom:14},
+		            '汽车客运站':{lng:119.905884,lat:29.451243,zoom:14},
+		            '翠湖':{lng:119.879563,lat:29.460438,zoom:14},
+		            '马岭':{lng:119.778974,lat:29.5674,zoom:14},
+		            '利民村':{lng:119.852974,lat:29.570912,zoom:14},
+		            '下湾村':{lng:119.842452,lat:29.569144,zoom:14},
+		            '新光村':{lng:119.826415,lat:29.571845,zoom:14},
+		            '西山村':{lng:119.884387,lat:29.463871,zoom:14},
+		            '田后蓬':{lng:119.797108,lat:29.617633,zoom:14},
+		            '薛下庄村':{lng:119.86882,lat:29.542146,zoom:14},
+		            '下薛宅':{lng:119.867063,lat:29.532904,zoom:14},
+		            '金狮湖':{lng:119.91158,lat:29.459057,zoom:14},
+		            '高速路':{lng:119.91158,lat:29.459057,zoom:14},
+		            '官岩寺':{lng:120.037393,lat:29.457562,zoom:14},
+		            '上山遗址':{lng:119.982268,lat:29.459398,zoom:14},
+		            '渠南村':{lng:119.981877,lat:29.454304,zoom:14},
+		            '温泉':{lng:119.904378,lat:29.496666,zoom:14},
+		            '水晶城':{lng:119.919845,lat:29.44109,zoom:14},
+		            '水竹湾':{lng:119.854398,lat:29.659571,zoom:14},
+		            '平湖森林果园':{lng:119.930433,lat:29.626957,zoom:14},
+		            '三角潭林场':{lng:119.87587,lat:29.462863,zoom:14},
+		            '罗家村':{lng:119.869459,lat:29.662849,zoom:14},
+		            '白岩山前滑草基地':{lng:119.882467,lat:29.59094,zoom:14},
+		            '里黄宅村':{lng:119.797415,lat:29.441304,zoom:14},
+		            '善庆村':{lng:119.855531,lat:29.498886,zoom:14},
+		            '文化馆':{lng:119.902428,lat:29.459172,zoom:14},
+		            '通济桥水库大坝':{lng:119.836162,lat:29.449859,zoom:14},
+		            '三城山农庄':{lng:120.00538,lat:29.477826,zoom:14},
+		            '塔山宾馆':{lng:119.902281,lat:29.460145,zoom:14},
+		            '月泉书院遗址公园':{lng:119.892902,lat:29.471208,zoom:14}
+            	}
+            	
+            	
+            	
             //绘制牵引线
-            _self.addLineVideo();
+//          _self.addLineVideo();
             var map = new BMap.Map("XSDFXPages",{enableMapClick:true});
             map.addEventListener("mousedown",function(e){
                 _self.videoToast=false;
             },false)
+            
+           
+            
             // 初始化地图,设置中心点坐标和地图级别
-                map.centerAndZoom(new BMap.Point(119.923671,29.506494),12);
+            map.centerAndZoom(new BMap.Point(119.923671,29.506494),12);
             // 添加地图类型控件
             // map.addControl(new BMap.MapTypeControl());  
             // 设置地图显示的城市 此项是必须设置的
@@ -457,19 +549,19 @@ import optionProps from '@/common/js/mixin/optionProps.js'
           	 _self.addHot(map);
            // _self.addLoad(map);
             //})
+            
+             if(!lenObj[val]){
+               	//alert(21212)
+               	return
+               }
+                _self.moveTo(map,lenObj[val  ===  undefined ?"全部": val].lng,lenObj[val  ===  undefined ?"全部": val].lat,lenObj[val  ===  undefined ?"全部": val].zoom,val,lenObj);
+            
             }
         },
-        created(){
-        },
-        mounted() {
-          	this.$nextTick( () => {
-            	//console.log(this.points)
-          		
-        	})
-        	
-        	
-            // 百度地图API功能
-            // 创建Map实例
-        },
+       mounted(){
+       	this.$nextTick( () => {
+       		this.getDatas()
+       	})
+       }
     }
 </script>

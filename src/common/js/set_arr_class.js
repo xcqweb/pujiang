@@ -34,6 +34,7 @@ export default class Set_arr_class  {
             //console.log(new Date().getTime()-new Date(endtDate).getTime())
         var interval = Math.round((this.differ*60) / this.times);
         if (endtimea) {
+        		
             for (var i = 0; i < this.times; i++) {
                 var t_s=dt.getTime()
                 dt.setTime(t_s+1000*5)
@@ -84,7 +85,7 @@ export default class Set_arr_class  {
                 }
                 arr.date[i] = '';
                 
-                let rangeNum = (currentNum*2/3+Math.random()*currentNum/3)
+                let rangeNum = (currentNum*7/8+Math.random()*currentNum/8)
                 
                 arr.data[i]= Math.ceil(rangeNum);
                 arr.contrast[i] =parseInt(h+''+m+''+s);
@@ -104,10 +105,8 @@ export default class Set_arr_class  {
      }
      //随机分配数据
      random(arr,nub,times){
-
+		var n=Math.round(Math.random()*times);
         for(var i = 0; i < nub; i++) {
-
-            var n=Math.round(Math.random()*times);
             if(n === times){
                 n = times - 1 ;
             }

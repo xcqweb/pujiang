@@ -1,7 +1,7 @@
 //封装设置cookie
 //cookie过期时间
 let date = new Date();
-date.setDate(date.getDate()+30)
+date.setDate(date.getDate()+1)
 
  export function setCookie(name,value,expires=date){
 var cookieName = encodeURIComponent(name)+"="+encodeURIComponent(value);

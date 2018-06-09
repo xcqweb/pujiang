@@ -9,29 +9,29 @@
 
 	<div class="leftprofile">
 		<div class='top'>
-			<p>{{profileData.curSum}}<font>人次</font></p>
+			<p>{{curSum}}<font></font></p>
 			<span>当前客流人数</span>
 		</div>
 
 		<div class='bottom'>
-			<p>{{profileData.curMonthSum}}<font>人次</font></p>
-			<span>本月客流总数</span>
+			<p>{{curMonthSum}}<font></font></p>
+			<span>本月客流总人数</span>
 		</div>
 
 	</div>
 	<div class="rightprofile">
 		<div class='top'>
-			<p>{{profileData.yesterdaySum}}<font>人次</font></p>
-			<span>昨日客流总数</span>
+			<p>{{yesterdaySum}}<font></font></p>
+			<span>昨日客流总人数</span>
 		</div>
 		<div class='bottom'>
-			<p>{{profileData.curYearSum}}<font>人次</font></p>
-			<span>本年客流总数</span>
+			<p>{{curYearSum}}<font></font></p>
+			<span>本年客流总人数</span>
 		</div>
 
 	</div>
 	<div class="lines"></div>
-	<span class="flowtourist">客流预警</span>
+	<span class="flowtourist"></span>
 	<div id="vwarning"></div>
 	<div class="vwarningImg">
 		<span>{{profileData.warnRate}}%</span>
@@ -41,16 +41,13 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import echarts_resize from '../../../common/js/echarts_resize.js'
 import echarts from 'echarts';
 import api from '@/api/moudles/tanzhenData'
-//import vSelect from '../../../components/commonui/dropdown/dropdown-menu.vue'
-import Rw from '@/common/js/until/index.js'
+import until from '@/common/js/until/index.js'
 import Start_end_class from '@/common/js/star_end_class.js'
 import {begindaytime} from '@/common/js/gtime.js'
 import optionProps from '@/common/js/mixin/optionProps.js'
-//import Bus from '@/common/js/bus.js'
 export default {
 	name: 'a2',
 	mixins: [optionProps],
@@ -102,10 +99,7 @@ export default {
 									},
 			            hoverAnimation: false,
 
-			            data: [{
-			                    value: 0,
-			                    name: '客流占最大客流比率'
-			                },
+			            data: [
 			                {
 			                    value: 100,
 			                    name: '剩余占比',
@@ -117,6 +111,9 @@ export default {
 													        },
 													    },
 													}
+			                },{
+			                    value: 0,
+			                    name: '客流占最大客流比率'
 			                }
 
 			            ]
@@ -131,12 +128,12 @@ export default {
   watch:{
   },
 	methods:{
-  get_response(){
+  getData(){
     let start_end_instance =  new Start_end_class('profile',begindaytime);
     start_end_instance.get_response().then(re => {
     	
       let data = re.data.data;
-       //console.log(re)
+      //console.log(re)
       //初始化数据
       this.profileData.warnRate = data.warnRate;
       this.profileData.curSum = data.curSum;
@@ -145,9 +142,9 @@ export default {
       this.profileData.yesterdaySum = data.yesterdaySum;
       
       //设置百分比
-      this.option.series[0].data[0].value = this.profileData.warnRate;
-      this.option.series[0].data[1].value = 100-this.profileData.warnRate;
-      let Ratio = 0.1;
+      this.option.series[0].data[1].value = this.profileData.warnRate;
+      this.option.series[0].data[0].value = 100-this.profileData.warnRate;
+      let Ratio = this.profileData.warnRate/100;
       let setColor = '';
       if(Ratio<0.3){
       	setColor='#0af94a'
@@ -184,15 +181,19 @@ export default {
 	computed:{
 		transformColor(){
 			return '#f00';
-		}
-	},
-	created(){
-//		Bus.$on('itemtodo', target => {
-//          this.selectlist.title = target;
-//          this.currentPlace = target;
-//      });
-
-		this.get_response();
+		},
+		curSum(){
+			return until.string_until.addPoint(this.profileData.curSum)
+		},
+		curMonthSum(){
+			return until.string_until.addPoint(this.profileData.curMonthSum)
+		},
+		curYearSum(){
+			return until.string_until.addPoint(this.profileData.curYearSum)
+		},
+		yesterdaySum(){
+			return until.string_until.addPoint(this.profileData.yesterdaySum)
+		},
 	},
 	mounted() {
     this.$nextTick(echarts_resize('vwarning',this));
@@ -307,11 +308,11 @@ export default {
 			color:#f5781f;
 			position: absolute;
 			display: inline-block;
-			top: 45%;
+			top: 43%;
 			transform: translateY(-50%);
 			left: 50%;
 			transform: translateX(-50%);
-		 	font-size:1.5rem;
+		 	font-size:2rem;
 		 	font-family:numberFont;
 		}
 	}

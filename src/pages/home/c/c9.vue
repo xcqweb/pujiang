@@ -71,17 +71,21 @@ export default {
     }
     },
     watch:{
-    	code:function(){
-    		this.getData();
+    	code:function(val){
+    		 let data={};
+	  			  data.code = this.code;
+	  		    data.monthId = this.yearMonth;
+	  		    this.getData(data)
     	}
+    	
     },
     methods:{
     	
     	//请求数据
-	  	getData(){
-	  		api.params.code = this.code;
-	  		let data={code:0};
-	  		data.code = this.code;
+	  	getData(data){
+	  		//api.params.code = this.code;
+	  		//api.params.monthId = this.yearMonth;
+	  		
 	  		api.touristAttr(data).then( (re) =>{
 	  				let reData = re.data.data;
 	  				//console.log(reData)
@@ -141,7 +145,6 @@ export default {
             	 formatter:function(name){
             	 	
 	        	var oa = option.series[0].data;
-	        	console.log(oa)
 	        	let num =0;
 	        	for(let i=0; i<oa.length; ++i){
 	        		num += oa[i].value
@@ -149,17 +152,21 @@ export default {
 	        	
 	        	for(var i = 0; i < option.series[0].data.length; i++){
                     if(name==oa[i].name){
-                    	let text = (oa[i].value/num * 100).toFixed(2) + '%'+ '\n\n' +  name ;
+                    	let text = (oa[i].value/num * 100).toFixed(2) + '%'+ '\n' +  name ;
                     	return text
                     }
 	        	}
 	        }
             },
             tooltip : {
-		        formatter: function(params){
-		        	let text = params.data.name+"<br>"+params.percent+"%";
-		        	return text
-		        }
+            	show:true,
+            	textStyle:{
+            		fontSize:'80%',
+            	},
+			        formatter: function(params){
+			        	let text = params.data.name+"<br>"+params.percent+"%";
+			        	return text
+			        }
 		        },
             grid: {
                 left: '15%',
@@ -175,34 +182,29 @@ export default {
                     radius : ['0%', '55%'],
                     center : ['26%', '55%'],
                     roseType : 'area',
-                    lableLine:{
-                    		show:false,
-                        normal:{
-                            show:false,
-                            length:1,
-                            length2:1,
-                        }
-                    },
-                    lable:{
-                        normal:{
-                            show:false,
-                            textStyle:{
-                                fontStyle:'italic',
-                                fontSize:"85%",
-                            }
-                        },
-                        emphasis:{
-                        	show:false,
-                            textStyle:{
-                                fontStyle:'italic',
-                                fontSize:"85%",
-                            }
-                        },
-                    },
-                    data: this.series,
-                } 
-            ]
-        };
+                 		 label: {
+			                normal: {
+			                    show: true,
+			                    fontSize:'80%',
+			                },
+			                emphasis: {
+			                    show: true,
+			                    fontSize:'80%',
+			                }
+			            },
+			            lableLine: {
+			                normal: {
+			                    show: true,
+			                    
+			                },
+			                emphasis: {
+			                    show: false
+			                }
+			            },
+			                    data: this.series,
+			                } 
+			            ]
+			        }
             this.chart.setOption(option);
         }
     },
@@ -234,14 +236,15 @@ export default {
 }
 .legend{
 	width: 36%;
-	height: 80%;
-	color: #fff;
+	height: 90%;
+	color: #eee;
 	font-size: 0.8rem;
 	position: absolute;
-	top: 10%;
+	top: 2%;
 	li{
 		width: 33%;
-		line-height: 0.8rem;
+		line-height: 0.3rem;
+		margin-top: 1.5rem;
 		float: left;
 		p:first-child{
 			font-size: 0.9rem;

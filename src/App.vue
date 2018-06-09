@@ -100,10 +100,8 @@ p,h1,span,font,a,li{
 
 }   
 html{
-  height: 200px;
   overflow-x: hidden;
   background: #F2F7FA;
-  //  font-family:;
   font-family:numberFont, "Microsoft YaHei","SF Pro SC","HanHei SC","PingFang SC",Arial,Helvetica,sans-serif,"SimSun",;
 }
 .clearfix:after {
@@ -114,12 +112,13 @@ html{
     clear: both;
     height: 0;
 }
-@media screen and (max-width: 1079px) {html{font-size:10px;}}
-@media screen and (min-width: 1080px) {html{font-size:12px;}}
-@media screen and (min-width: 1270px) {html{font-size:14px;}}
-@media screen and (min-width: 1460px) {html{font-size:16px;}}
-@media screen and (min-width: 1599px) {html{font-size:18px;}}
+@media screen and (max-width: 1079px) {html{font-size:11.25px;}}
+@media screen and (min-width: 1080px) {html{font-size:11.25px;}}
+@media screen and (min-width: 1270px) {html{font-size:13.5px;}}
+@media screen and (min-width: 1460px) {html{font-size:15.2px;}}
+@media screen and (min-width: 1599px) {html{font-size:16.8px;}}
 @media screen and (min-width: 1910px) {html{font-size:20px;}}
+@media screen and (min-width: 3810px) {html{font-size:40px;}}
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

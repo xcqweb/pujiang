@@ -1,20 +1,20 @@
  <template>
     <div class="map_content">
-    	<div class="topTitle">
-            <span>{{nowYear}}年累计接待游客(人)</span>
-            <font>{{yearNumb}}</font>
+    	<div class="topTitle" v-show='istitle'>
+            <span>{{nowYear}}年累计接待游客总人数</span>
+            <font>{{yearNumbs}}</font>
         </div>
-        <div class='topTitle'>
-            <span>{{mowMonth}}月份持续接待游客(人)</span>
-            <font>{{mouthNumb}}</font>
+        <div class='topTitle' v-show='istitle'>
+            <span>{{mowMonth}}月份持续接待游客总人数</span>
+            <font>{{mouthNumbs}}</font>
         </div>
         <div id="fromEchart"></div>
 
         <div class="week">
-             <span class="oneweek " v-bind:class="{ chose: isActive }" @click='redom7'>省内</span> 
-             <span class="twoweek" v-bind:class="{ chose: !isActive }" @click='redom14'>国内</span> 
+             <span class="oneweek " v-bind:class="{ chose: isActive }" @click='redom7' title="省内">省内</span> 
+             <span class="twoweek" v-bind:class="{ chose: !isActive }" @click='redom14' title="省外">省外</span> 
         </div>
-        <Loading v-show='isloading'></Loading>
+        <Loading v-show='isloading' class='loading'></Loading>
     </div>
 </template>
 
@@ -22,22 +22,23 @@
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import echarts from 'echarts';
-
+import Rw from '@/common/js/until/index'
 
 import echarts_resize from '../../../common/js/echarts_resize.js'
-//import 'echarts/lib/chart/map';
 import 'echarts/map/js/china.js';
 import zhejiangJson from 'echarts/map/json/province/zhejiang.json'
 import optionProps from '@/common/js/mixin/optionProps.js'
-
+import vAjax from '@/common/js/v-ajax.js'
+Vue.use(vAjax);
 let date = new Date()
 let nowYear = date.getFullYear()
 let mowMonth = date.getMonth()+1
-
+var planePath = 'path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z';
+let w = document.body.clientWidth/1920;
 export default {
     name: 'a6',
     mixins: [optionProps],
-    props:['placeName'],
+    props:['placeName','istitle'],
     
     data () {
     return {
@@ -54,16 +55,16 @@ export default {
         chart:null,
         isActive:false,
         color:['#f18790', '#75c774', '#5aa7fd','#f1c54b','#c184ff','6792fb', '#4BCEDD', '#FF8885','#FFCD38',  '#E39A50', '#58E5E1',],
-       //color:['#4EBBFC','#57ABFE', '#368DF7''#B8E986', '#86E9E8', '#58E5E1','#4BCEDD'],
         option : {
             backgroundColor: 'rgba(0,0,0,0)',
             tooltip: {
                 trigger: 'item',
-                 formatter:function(params){
-                	//console.log(params)
+                formatter:function(params){
                 	if(params.seriesType==="effectScatter"){
-                		let val = params.name+' : '+params.value[2];
-                		return val;
+                    		return params.data.name+" "+params.data.value[2]
+                	}else{
+                    		//return params.data.fromName+":"+params.data.coords[2]
+                    		return 
                 	}
                 }
             },
@@ -115,8 +116,10 @@ export default {
                 trigger: 'item',
                 formatter:function(params){
                 	if(params.seriesType==="effectScatter"){
-                		let val = params.name+' : '+params.value[2];
-                		return val;
+                    		return params.data.name+" "+params.data.value[2]
+                	}else{
+                    		//return params.data.fromName+":"+params.data.coords[2]
+                    		return
                 	}
                 }
             },
@@ -183,6 +186,7 @@ export default {
             '无锡市': [120.3442, 31.5527],
             '杭州市': [119.5313, 29.8773],
             '武汉市': [114.3896, 30.6628],
+            '南昌市': [116.0046,28.6633],  
             '汕头市': [117.1692, 23.3405],
             '江门市': [112.6318, 22.1484],
             '济南市': [117.1582, 36.8701],
@@ -251,10 +255,68 @@ export default {
             '襄阳市':[112.130262, 32.012348],
             '福州市':[119.302895, 26.077314],
             '黔西南布依族苗族自治州':[104.947562, 25.145265],
+            '周口市':[114.704633,33.631829],
+            '黔南布依族苗族自治州':[107.516905,26.251284],
+            '宁德市':[119.543874,26.67999],
+            '晋中市':[112.748957,37.694668],
+            '南平市':[118.095428,27.326056],
+            '南通市':[120.896129,31.989979],
+            '荆州市':[112.25558,30.340843],
+            '黄冈市':[114.884526,30.460355],
+            '聊城市':[115.995325,36.459972],
+            '湛江市':[110.366991,21.277802],
+            '淄博市':[118.065192,36.820009],
+            '双鸭山市':[131.16448,46.652393],
+            '伊犁哈萨克自治州':[131.16448,46.652393],
+            '南宁市':[108.376616,22.817277],
+            '阿克苏地区':[80.268376,41.17416],
+            '鹤岗市':[130.301271,47.354494],
+            '孝感市':[113.9205,30.931185],
+            '黔东南苗族侗族自治州':[107.98801,26.586603],
+            '十堰市':[110.805966,32.637009],
+            '晋城市':[112.859727,35.497694],
+            '铜仁市':[109.202186,27.739832],
+            '恩施土家族苗族自治州':[109.479645,30.351266],
+            '吉安市':[114.999939,27.118184],
+            '荆门市':[114.999939,27.118184],
+            '六盘水市':[104.841002,26.595733],
+            '文山壮族苗族自治州':[104.220273,23.409709],
+            '平顶山市':[104.220273,23.409709],
+            '许昌市':[113.898141,34.055312],
+            '乌海市':[106.817642,39.674447],
+            '怀化市':[109.988967,27.561327],
+            '海东市':[102.098368,36.513617],
+            '漯河市':[114.01652,33.586267],
+            '娄底市':[112.007827,27.707813],
+            '毕节市':[105.29514,27.290214],
+            '延安市':[109.634559,36.675447],
+            '遵义市':[106.929977,27.735282],
+            '泉州市':[118.621503,24.921379],
+            '六安市':[116.520663,31.740469],
+            '淮南市':[117.008686,32.629415],
+            '景德镇市':[117.222518,29.342781],
+            '广安市':[106.638404,30.463739],
+            '九江市':[116.015582,29.713849],
+            '岳阳市':[113.138363,29.365695],
+            '马鞍山市':[118.518755,31.679707],
+            '湘西土家族苗族自治州':[109.730632,28.297014],
+            '襄阳市':[112.129683,32.018226],
+            '陵水黎族自治县':[110.041015,18.542497],
+            '陇南市':[104.927428,33.405657],
+            '淮北市':[116.805111,33.960699],
+            '安庆市':[117.067058,30.533943],
+            '甘南藏族自治州':[102.911263,34.988666],
+            '赣州市':[114.949707,25.838298],
+            '鄂尔多斯市':[109.896675,39.627378],
+            '葫芦岛市':[120.849723,40.716926],
+            '乐山市':[103.786913,29.55794],
+            '运城市':[111.009935,35.033179],
+            '忻州市':[112.731421,38.424644],
+            '随州市':[113.400946,31.69455],
+            '濮阳市':[115.039042,35.769936]
         },
         BJData:[
             [{name: this.placeName}, {name: '北京', value: 95}],
-//          [{name: this.placeName}, {name: this.placeName, value: 95}],
         ],
         GUANG:[
             [{name: this.placeName}, {name: '长春', value: 40}],
@@ -273,11 +335,16 @@ export default {
         FENGD:[
             [{name: this.placeName}, {name: '重庆', value: 20}]
         ],
-        planePath:'path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z',
 
     }
     },
     computed: {
+    	yearNumbs(){
+			return Rw.string_until.addPoint(this.yearNumb)
+		},
+		mouthNumbs(){
+			return Rw.string_until.addPoint(this.mouthNumb)
+		},
     },
     watch:{
     	range:function(){
@@ -288,7 +355,6 @@ export default {
     	}
     },
     methods: {
-  	
   	getData(){
 			api.params.code = this.code;
 			//console.log(this.code)
@@ -300,20 +366,26 @@ export default {
 	    		let topCity = reData.topCity;
 	    		this.allData=[];
 	    		this.zhejiang=[];
-	    		//console.log(topCity)
+	    		
 				for(let i=0; i<topCity.length; ++i){
-					if(this.range===1){
-						this.allData[i]=["浦江县", [[{name: "浦江县"}, {name: topCity[i]._id, value: topCity[i].sum}]]]
-					}else{
-						this.zhejiang[i]=["浦江县", [[{name: "浦江县"}, {name: topCity[i]._id, value: topCity[i].sum}]]]
+					if(topCity[i]._id!=="missing" &&　topCity[i]._id!=="总计"){
+						//alert(topCity[i]._id!=="missing")
+						if(this.range===1){
+							this.allData[i]=["浦江县", [[{name: "浦江县"}, {name: topCity[i]._id, value: topCity[i].sum}]]]
+						}else{
+							this.zhejiang[i]=["浦江县", [[{name: "浦江县"}, {name: topCity[i]._id, value: topCity[i].sum}]]]
+						}
 					}
+					
 				}
 				
-	    		if(re.status===200){
+				this.allData.push(["浦江县", [[{name: "浦江县"}, {name: "浦江县", value: ''}]]])
+				this.zhejiang.push(["浦江县", [[{name: "浦江县"}, {name: "浦江县", value: ''}]]])
+				
+	    		if(re.data.code===200 || re.data.code==='200'){
 	    			this.isloading=false;
 	    			delete api.params.range;
 	    		}
-	    		//console.log(this.range)
 	    		if(this.range===1){
 	    			this.redomData();
 	    		}else{
@@ -336,13 +408,14 @@ export default {
          var res = [];
 	    for (var i = 0; i < data.length; i++) {
 	        var dataItem = data[i];
-	        var fromCoord = this.geoCoordMap[dataItem[0].name];
-	        var toCoord = this.geoCoordMap[dataItem[1].name];
+	        var fromCoord = this.geoCoordMap[dataItem[1].name];
+            var toCoord = this.geoCoordMap[dataItem[0].name];
+	        var val = dataItem[1].value;
 	        if (fromCoord && toCoord) {
 	            res.push({
-	                fromName: dataItem[0].name,
-	                toName: dataItem[1].name,
-	                coords: [fromCoord, toCoord]
+	                fromName: dataItem[1].name,
+	                toName: dataItem[0].name,
+	                coords: [fromCoord, toCoord,val]
 	            });
 	        }
 	    }
@@ -424,7 +497,7 @@ export default {
                     data: _self.convertData(item[1])
                 },
                 {
-                    //name: item[0],
+                    name: item[0],
                     type: 'lines',
                     zlevel: 2,
                     largeThreshold:200,
@@ -437,9 +510,9 @@ export default {
                         period: 6,
                         trailLength: 0,
                         //小飞机
-                        //symbol: planePath,
+                        symbol: planePath,
                         //移动点大小
-                        symbolSize: 1
+                        symbolSize: 15*w
                     },
                     lineStyle: {
                         normal: {
@@ -467,30 +540,12 @@ export default {
                             position: 'right',
                             formatter: '{b}',
                             textStyle: {
-                                fontSize: 12
+                                fontSize: '70%'
                             }
                         }
                     },
                     symbolSize: function (val) {
-                        //return val[2] / 200;
-                       
-                        
-                        
-                        if(val>=0&&val[2]<=20){
-                    		return val[2]
-                    	}else if(val[2]>20&&val[2]<=1000){
-                    		return val[2]/20
-                    	}else if(val[2]>1000 && val[2]<5000){
-                    		return val[2]/120
-                    	}else if(val[2]>=5000 && val[2]<10000){
-                    		return val[2]/160
-                    	}else if(val[2]>=10000&&val[2]<70000){
-                    		return val[2]/210
-                    	}else if(val[2]>=70000&&val[2]<100000){
-                    		return val[2]/200
-                    	}else{
-                    		return val[2]/300
-                    	}
+                        return 10*w;
                     },
                     itemStyle: {
                         normal: {
@@ -526,11 +581,11 @@ export default {
         this.chart = echarts.init(dom);
         var color =['#5aa7fd', '#5aa7fd', '#5aa7fd','#5aa7fd','#5aa7fd','5aa7fd','5aa7fd'];
         var series = [];
-        var planePath = 'path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z';
+        
         this.zhejiang.forEach(function (item, i) {
             series.push(
                 {
-                    name: item[0],
+//                  name: item[0],
                     type: 'lines',
                     zlevel: 1,
                     symbol:'circle',
@@ -554,7 +609,7 @@ export default {
                     data: _self.convertData(item[1])
                 },
                 {
-                    name: item[0],
+//                  name: item[0],
                     type: 'lines',
                     zlevel: 2,
                     symbol: ['none', 'arrow'],
@@ -565,9 +620,9 @@ export default {
                         period: 6,
                         trailLength: 0,
                         //小飞机
-                        //symbol: planePath,
+                        symbol: planePath,
                         //移动点大小
-                        symbolSize: 5
+                        symbolSize: 15*w
                     },
                     progressiveThreshold: 500,
                     progressive: 200,
@@ -595,24 +650,25 @@ export default {
                             position: 'right',
                             formatter: '{b}',
                             textStyle: {
-                                fontSize: 12
+                                fontSize: '70%'
                             }
                         }
                     },
                     symbolSize: function (val) {
-                    	if(val>=0&&val[2]<=20){
-                    		return val[2]
-                    	}else if(val[2]>20&&val[2]<=1000){
-                    		return val[2]/20
-                    	}else if(val[2]>1000 && val[2]<10000){
-                    		return val[2]/400
-                    	}else if(val[2]>=10000&&val[2]<70000){
-                    		return val[2]/800
-                    	}else if(val[2]>=70000&&val[2]<100000){
-                    		return val[2]/1200
-                    	}else{
-                    		return val[2]/1000
-                    	}
+                    	return 10*w
+//                  	if(val>=0&&val[2]<=20){
+//                  		return val[2]
+//                  	}else if(val[2]>20&&val[2]<=1000){
+//                  		return val[2]/50
+//                  	}else if(val[2]>1000 && val[2]<10000){
+//                  		return val[2]/600
+//                  	}else if(val[2]>=10000&&val[2]<70000){
+//                  		return val[2]/3000
+//                  	}else if(val[2]>=70000&&val[2]<100000){
+//                  		return val[2]/5000
+//                  	}else{
+//                  		return val[2]/8000
+//                  	}
                         
                     },
                     itemStyle: {
@@ -638,7 +694,6 @@ export default {
     }
     },
     created(){
-      	this.getData()
     },
     mounted(){
         this.$nextTick(echarts_resize('fromEchart',this))
@@ -655,10 +710,13 @@ export default {
   height: 100%;
   position: relative;
   top: 5%;
+  .loading{
+  	top: -5%;
+  }
   .topTitle{
             position: absolute;
+            top:-6px;
             span{
-                //display: block;
                 color: #43dbff;
                 font-size: .8rem;
             }
@@ -672,7 +730,7 @@ export default {
         }
         
         .topTitle:nth-child(2){
-        	right: 30%;
+        	right: 26%;
         	span{
                 color: #43dbff;
                 font-size: .8rem;
@@ -681,7 +739,7 @@ export default {
         }
         
         .topTitle:nth-child(1){
-        	left: 30%;
+        	left: 26%;
         	span{
                 color: #43dbff;
                 font-size: .8rem;
@@ -692,13 +750,13 @@ export default {
 #fromEchart{
     width:100%;
     height:100%;
-    transform: scale(0.8);
+    top: -5%;
 }
 .week{
     height: 1.5rem !important;
     width: 7rem !important;
     position: absolute;
-    bottom: 10%;
+    bottom: 8%;
     right: 40%;
     font-size:.8rem;
     &:after {

@@ -1,11 +1,26 @@
 <style lang="less">
 .d3{
     width:100%;
-    height:90%;
-    position:relative;
+    height:92%;
+    position:absolute;
+    cursor: all-scroll;
+    -webkit-overflow-scrolling: auto;
     overflow-y: scroll;
     overflow-x: hidden;
-    top: 10%;
+    top: 8%;
+    
+    .date{
+    	width: 13rem;
+    	height: 1.5rem;
+		border-radius: 6px;
+		position: fixed;
+		top: 1.5rem;
+		right: 8rem;
+        box-shadow: 1px 0 30px  rgba(1,1,13,0.4);
+    }
+    .loading{
+    	height: 120%;
+    }
     h1{
         position:absolute;
         width:100%;
@@ -16,11 +31,8 @@
         background-color: #163387;
         color:white;
     }
-    img{                  
-        max-width: 100%;
-        max-height: 100%;
-        width: auto;
-        height: auto;
+    img{      
+    	width: 0.7rem;            
     }
     ul{
         li{
@@ -120,10 +132,10 @@
     }
     .msg{
         position:relative;
-        margin-top:3%;
+        margin-top:20px;
         margin-left: 5%;
         width:90%;
-        font-size: 0.7rem;
+        font-size: 13px;
         color:white;
         .title{
             display:block;
@@ -132,13 +144,15 @@
         }
         .comment{
             text-align:left;
-            margin-top: 0.8rem;
+            margin-top: 1rem;
             .name{
-				font-size: 0.8rem;
+				font-size: 0.65rem;
+				margin: 0.35rem 0.35rem 0 0 ;
+				color: rgba(255,255,255,0.7);
             }
             .place{
-                margin-left:20px;
                 font-size: 0.8rem;
+                font-weight: bold;
             }
             .comment-star{
                 display:inline-block;
@@ -146,23 +160,22 @@
                 transform: translateY(10%);
             }
             .text{
-            	text-indent: 2em;
-            	font-size: 0.6rem;
+            	font-size: 0.7rem;
                 display:block;
-                margin-top:5px;
+                margin: 0.35rem 0;
                 line-height:1.5rem;
             }
         }
     }
 }
 
-	.d3::-webkit-scrollbar{
-			    width: 0.45rem;
+			.d3::-webkit-scrollbar{
+			    width: 0.3rem;
 			    height: 3rem;
 			}
 			/*定义滚动条的轨道，内阴影及圆角*/
 			.d3::-webkit-scrollbar-track{
-			    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.9);
+			    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.09);
 			    border-radius: 10px;
 			}
 			/*定义滑块，内阴影及圆角*/
@@ -171,7 +184,7 @@
 			    height: 10rem;
 			    border-radius: 10px;
 			    -webkit-box-shadow: inset 0 0 6px #02275A;
-			    background-color: #eee;
+			    background-color: rgba(255,255,255,0.5);
 			}
 			
 			.d3::scrollbar{
@@ -180,7 +193,7 @@
 			}
 			/*定义滚动条的轨道，内阴影及圆角*/
 			.d3::scrollbar-track{
-			    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+			    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.01);
 			    border-radius: 10px;
 			}
 			/*ie*/
@@ -202,75 +215,144 @@
 </style>
 
 <template>
-    <div class="d3">
-        <vline :progressbar='oneprogressbar' class='progress'></vline>
-        <div class="msg">
+    <div class="d3" @scroll="loadMore($event)">
+        <div class="msg" v-show='status'>
             <div class="comment" v-for="comment in commentList">
-                <span class="name">{{comment.uid}}</span>
                 <span class="place">{{comment.name}}</span>
-                <vstar 
-                class='comment-star'
-                :star='comment.grade'>
-                </vstar>
+                <ul class='comment-star'>
+                	<li v-for='item in comment.grade'><img :src="imgStar"/></li>
+                </ul>
                 <span class="text">
                     {{comment.con}}
                 </span>
+                <span class="name">{{comment.uid}}</span>
+                <span class="name">{{`${comment.date.substr(0,4)}-${comment.date.substring(4,6)}-${comment.date.substring(6,8)} ${comment.date.substring(8,10)}:${comment.date.substring(10,12)}`}}</span>
+                
             </div>
         </div>
-        <Loading v-show="isloading"></Loading>
+        <div class="date">
+        	<vdate
+        		@pageDate='getDate'
+        	></vdate>
+        </div>
+        <Loading v-show="isloading" class='loading'></Loading>
     </div>
 </template>
 
 <script>
-import Vue from 'vue'
 import optionProps from '@/common/js/mixin/optionProps.js'
+import vdate from '@/components/commonui/vueDate/apps.vue'
+import loadMore from '@/common/js/directives/loadMore.js'
+import {debounce} from 'lodash'
 export default {
     name: 'd3',
     mixins: [optionProps],
     props:['place'],
     data () {
         return {
+        	imgStar:require('../../../assets/images/home/d/star.png'),
+        	timeRange:{begin:'',end:''},
         	commentProp:{},
         	allData:{},
         	comments:[],
+        	status:true,
+        	pageNum:1,
+        	isLoad:true,//滚动到无数据时禁止发请求
             topStar:{
                 numb: 5,
                 width:'30%',
             },
-            oneprogressbar:{
-                title:'满意度',
-                leftimg:require('../../../assets/images/home/d/compoment.png'),
-                rightimg:null,
-                leftProcess:90,
-                rightProcess:10,
-                leftColor:'#6dffeb',
-                rightColor:'#4299b9',
-                leftTitle:'',
-                rightTitle:'',
-            },
         }
     },
     watch:{
+    	timeRange:function(val){
+    		this.status = false;
+    		window.setTimeout( () => {
+    			this.status = true
+    		},100)
+    		this.comments = []
+    		let params = {}
+    		params.beginDate = val.begin.join("-");
+    		params.endDate = val.end.join("-");
+    		params.code = this.code;
+    		params.limit = 20;
+	  		params.curPage = 0;
+    		this.request(params)
+    	},
+    	code:function(val){
+    		this.comments = []
+    		this.status = false;
+    		window.setTimeout( () => {
+    			this.status = true
+    		},100)
+    		let params = {}
+    		if(this.timeRange.begin && this.timeRange.end){
+    			params.beginDate = this.timeRange.begin.join("-");
+      			params.endDate = this.timeRange.end.join("-");
+    		}
+      		
+    		params.code = this.code;
+    		params.limit = 20;
+	  		params.curPage = 0;
+	  		this.request(params)
+    	}
     },
     computed: { 
 		commentList(){
 			return this.comments
-		}
+		},
+    },
+     created(){
+     	let params = {code:0,limit:20,curPage:1}
+     	this.request(params)
     },
     methods: {
+		
+		loadMore: debounce(function(e){
+			var scrollT = Math.ceil(e.target.scrollTop+e.target.clientHeight),
+		    offsetT = e.target.getElementsByClassName('msg')[0].offsetHeight;
+		    //console.log(scrollT,offsetT)
+        	if(offsetT-scrollT<=0){
+        		let paramsObj = {}
+    				if(this.timeRange.begin && this.timeRange.end){
+		    			 paramsObj = {
+			                code:this.code,
+			                limit:20,
+			                curPage:this.pageNum++,
+			                beginDate : this.timeRange.begin.join("-"),
+	    					endDate : this.timeRange.end.join("-"),
+			            }
+		    		}else{
+		    			 paramsObj = {
+			                code:this.code,
+			                limit:20,
+			                curPage:this.pageNum++,
+			            }
+		    		}
+		       		if(this.isLoad){
+			  			this.request(paramsObj)
+			  		}
+        	}
+		},500),
+		
+		getDate(val){
+			this.timeRange = val
+		},
+    	getData(){},
 		//请求数据
-	  	getData(){ 
-	  		let params = {}; 
-	  		params.code = this.code;
-	  		params.limit = 100;
-	  		params.curPage = 1;
-	  		api.getComments(params).then( (re) =>{
-	  				let reData = re.data.data;
-	  				this.comments = reData.comments;
+	  	request(data){ 
+	  		api.getComments(data).then( (re) =>{
+	  				let reData = re.data.data.comments;
+	  				if(reData.length===0){
+	  					this.isLoad = false
+		  				return
+		  			}
 	  				
-	  				//console.log(this.comments)
-	  				this.oneprogressbar.leftProcess = reData.satisfyPercent;
-	  				this.oneprogressbar.rightProcess = 100-reData.satisfyPercent;
+	  				this.isLoad = true
+	  				reData.forEach( (v,i) => {
+	  					this.comments.push(v)
+	  				})
+
 					if(re.status===200){
 						this.isloading = false;
 					}
@@ -280,78 +362,10 @@ export default {
 	  	},
 	  	
     },
-    created(){
-    	this.getData();
-    },
-    mounted(){
-    	
-    },
+     components:{
+        	vdate
+        },
 }
-Vue.component('vstar',{
-        props:['star'],
-        data(){
-            return{
-                 imgStar:require('../../../assets/images/home/d/star.png'),
-            }
-        },
-        template:`<ul><li v-for='item in arr'><img :src="imgStar"/></li></ul>`,
-        computed: { 
-            arr:function(){
-                let arrstar=[]
-                for (var i = 0; i < this.star; i++) {
-                    arrstar.push(i)
-                }
-                return arrstar
-            }
-        },
-        methods:{
-            chosen:function(){
-            },
-                
-        },
-    }
-)
 
-Vue.component('vline',{
-        props:['progressbar'],
-        data(){
-            return{
-                 imgStar:require('../../../assets/images/home/d/star.png'),
-            }
-        },
-        template:`
-        <div class='linebox'>
-            <span class='title'>{{progressbar.title}}</span>
-            <div class='imgleft' 
-                :style="{left:progressbar.leftProcess-15+'%'}">
-                <span>{{progressbar.leftProcess}}%</span>
-                <img :src="progressbar.leftimg"/></div>
-            <div class='imgright' 
-                :style="{right:progressbar.rightProcess-10+'%'}">
-                <span v-show='progressbar.rightimg'>{{progressbar.rightProcess}}%</span>
-                <img :src="progressbar.rightimg"/></div>
-            <font class='titleleft' :style="{color:progressbar.leftColor}">{{progressbar.leftTitle}}</font>
-            <font class='titleright' :style="{color:progressbar.rightColor}">{{progressbar.rightTitle}}</font>
-            <div class='line'>
-                <div class='lineleft' :style="{width:progressbar.leftProcess+'%',backgroundColor:progressbar.leftColor}"></div>
-                <div class='lineright' :style="{width:progressbar.rightProcess+'%',backgroundColor:progressbar.rightColor}"></div>
-            </div>
-        </div>`,
-        computed: { 
-            arr:function(){
-                let arrstar=[]
-                for (var i = 0; i < this.star; i++) {
-                    arrstar.push(i)
-                }
-                return arrstar
-            }
-        },
-        methods:{
-            chosen:function(){
-            },
-                
-        },
-    }
-)
 </script>
 

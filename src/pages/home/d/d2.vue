@@ -31,6 +31,8 @@
   import store from '../../../vuex/index'
   import Vue from 'vue'
   import optionProps from '@/common/js/mixin/optionProps.js'
+  
+  let w = document.body.clientWidth/1920
   export default {
     name:'d2',
     mixins: [optionProps],
@@ -84,7 +86,10 @@
     ],
     watch:{
     	code:function(){
-    		this.getData();
+    		let data={};
+			  data.code = this.code;
+		    data.monthId = this.yearMonth;
+		    this.getData(data)
     	}
     },
     computed:{
@@ -96,9 +101,9 @@
     },
     methods: {
     	//请求数据
-	  	getData(){
-	  		api.params.code = this.code;
-	  		api.touristCustom(api.params).then( (re) =>{
+	  	getData(data){
+	  		//api.params.code = this.code;
+	  		api.touristCustom(data).then( (re) =>{
 	  				let reData = re.data.data;
 	  				//this.allData = reData;
 	  				//console.log(reData)
@@ -139,18 +144,21 @@
                     backgroundColor: 'rgba(0,0,0,0)',
                     color: ['#1F6ABB','#3897C5','#A4C5E6'],
                     tooltip: {
-	                trigger: 'item',
-	                position: 'right',
-	                formatter:function(params){
-	                	return params.name+' : '+params.data+'%';
-	                }
+                    	textStyle:{
+		            		fontSize:'80%',
+		            	},
+	                	trigger: 'item',
+		                position: 'right',
+		                formatter:function(params){
+		                	return params.name+' : '+params.data+'%';
+		                }
 	            	},
                     grid: {
                          show: true,
-                         left: '15%',
-                         top: '20%',
+                         left: '12%',
+                         top: '18%',
                          right: '5%',
-                         bottom: '20%',
+                         bottom: '15%',
                          borderWidth: 0,
                          backgroundColor: 'rgba(0,0,0,0)',
                      },
@@ -165,7 +173,7 @@
                         boundaryGap: true,
 
                         padding:0,
-                        barMaxWidth:6,
+                        barMaxWidth:15,
                         type: 'category',
                         data: datax,
                         fontSize: 6,
@@ -185,6 +193,8 @@
                                  color: '#ffffff',//x坐标轴标签字体颜色
                                  fontSize: "80%",
                              },
+                             verticalAlign:'middle', 
+                             margin:20*w
                         },
                         axisTick:{
                                 show:false,
@@ -206,7 +216,12 @@
                           color:'#ffffff'
                         },
                         splitLine:{
-                          show:false,
+                                show:true,
+                                lineStyle:{
+                                    color:'#20549f',
+                                    width:1,
+                                    type:'solid'
+                                },
                         },
                         axisLabel:{
                             showMinLabel:true,
@@ -230,7 +245,7 @@
                     {
                         name:'计划',
                         type:'bar',
-                        barMaxWidth:'20%',
+                        barMaxWidth:'45%',
                         data:datay,
                         itemStyle:{
                             normal: {
@@ -254,7 +269,7 @@
             }//option
             let isIE = window.navigator.userAgent.indexOf('Trident')
           if(isIE>-1){ 
-            	option.series[0].label.normal.distance = 10;
+            	option.series[0].label.normal.distance = 15;
 						}
         this.chart.setOption(option)
       }

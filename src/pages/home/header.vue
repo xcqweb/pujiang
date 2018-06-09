@@ -2,13 +2,13 @@
   <div class="headertext">
     <p v-show="showTitle">{{title}}</p>
     <ul>
-        <li v-for='(item, index) in items' :class='item.status' @click='toggle(item,index)'>
+        <li v-for='(item, index) in items' :class='item.status' @click='toggle(item,index)' :title="item.name">
             <router-link v-bind:to={path:item.link}>
                 <span :class='item.status'></span>
                 <font>{{item.name}}</font>
             </router-link>          
         </li>
-        <li @click='logout'>
+        <li @click='logout' title="退出登录">
             <span></span>
             <font>退出登录</font>
         </li>
@@ -26,8 +26,8 @@ export default {
   data () {
     return {
       items:[
-//      {name:'总览',link:'/',status:'unchose'},
-        {name:'总览',link:'/',status:'unchose'},
+        {name:'首页',link:'/video',status:'unchose'},
+        {name:'总览',link:'/home',status:'chose'},
         {name:'产业监测平台',link:'/prodcut',status:'chose'},
         {name:'精准营销平台',link:'/precision',status:'chose'},
         {name:'应急指挥平台',link:'/souceShow',status:'chose'},
@@ -64,13 +64,14 @@ export default {
             this.items[i].status='chose'
         }
         item.status='unchose'
+        this.$emit('hide')
     },
     logout(){
     	api.loginOut(api.params).then( (re) => {
     		//console.log(re.data)
     		if(re.data.code===200){
     			setCookie('token','',-1);
-        	this.$router.push({ path: '/login' });
+        	this.$router.replace({ path: '/login' });
         	alert('退出成功!')
     		}
     	}).catch( (e) => {
@@ -90,17 +91,23 @@ export default {
             case '#/login' :
             this.items[0].status = 'unchose'
             break; 
-            case '#/prodcut' :
+             case '#/home' :
             this.items[1].status = 'unchose'
-            break;
-            case '#/precision' :
+            break; 
+             case '#/video' :
+            this.items[0].status = 'unchose'
+            break; 
+            case '#/prodcut' :
             this.items[2].status = 'unchose'
             break;
-            case '#/souceShow' :
+            case '#/precision' :
             this.items[3].status = 'unchose'
             break;
-            case '#/iframeMap' :
+            case '#/souceShow' :
             this.items[4].status = 'unchose'
+            break;
+            case '#/iframeMap' :
+            this.items[5].status = 'unchose'
             break;
         }
 
@@ -137,14 +144,13 @@ a:visited { text-decoration: none;}
     height:100%;
     position:relative;
     box-shadow: 0 2px 25px black;
-    padding-bottom: 1%;
     background-color: #133596;
     p{  
         position: absolute;
         top: 32%;
         left: 2%;
-        font-size: 1.8rem;
-        color:#85e6ff;
+        font-size: 1.5rem;
+        color:#00E5FF;
 
     }
     ul{
@@ -153,7 +159,7 @@ a:visited { text-decoration: none;}
         right: 1rem;
         li{
             float: left;
-            margin-left: 1rem;
+            padding: 0 0.8rem;
             cursor: pointer;
             a{
                 display:inline-block;
@@ -162,12 +168,12 @@ a:visited { text-decoration: none;}
             }
             span{
                 display:inline-block;
-                width: 30px;
-                height: 28px;
+                width: 1.1rem;
+                height: 1.1rem;
             }
             font{
                 display: block;
-                font-size: 1rem;
+                font-size: 0.9rem;
                 margin-top:7px;
             }
             &.chose{
@@ -185,8 +191,18 @@ a:visited { text-decoration: none;}
         }
         
       
-        
         li:nth-of-type(1){
+            .unchose{
+                background-image:url('../../assets/images/home/主页.png');
+                background-size: 100% 100%;
+            }
+            .chose{
+                background-image:url('../../assets/images/home/主页2.png');
+                background-size: 100% 100%;
+            }
+        }
+        
+        li:nth-of-type(2){
             .unchose{
                 background-image:url('../../assets/images/home/总览.png');
                 background-size: 100% 100%;
@@ -196,7 +212,7 @@ a:visited { text-decoration: none;}
                 background-size: 100% 100%;
             }
         }
-        li:nth-of-type(2){
+        li:nth-of-type(3){
             .unchose{
                 background-image:url('../../assets/images/home/产品监测平台.png');
                 background-size: 100% 100%;
@@ -206,7 +222,7 @@ a:visited { text-decoration: none;}
                 background-size: 100% 100%;
             }
         }
-        li:nth-of-type(3){
+        li:nth-of-type(4){
             .unchose{
                 background-image:url('../../assets/images/home/精准营销平台.png');
                 background-size: 100% 100%;
@@ -216,7 +232,7 @@ a:visited { text-decoration: none;}
                 background-size: 100% 100%;
             }
         }
-        li:nth-of-type(4){
+        li:nth-of-type(5){
             .unchose{
                 background-image:url('../../assets/images/home/资源展示平台.png');
                 background-size: 100% 100%;
@@ -226,7 +242,7 @@ a:visited { text-decoration: none;}
                 background-size: 100% 100%;
             }
         }
-        li:nth-of-type(5){
+        li:nth-of-type(6){
             .unchose{
                 background-image:url('../../assets/images/home/2171516605538.jpg');
                 background-size: 100% 100%;

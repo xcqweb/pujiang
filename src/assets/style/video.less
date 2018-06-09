@@ -1,0 +1,274 @@
+@screen-xs:                  480px;
+@screen-sm:                  768px;
+@screen-md:                  990.1rem;
+@screen-lg:                  1200px;
+@screen-xl:                  1400px;
+/** item**/
+    
+@textColor:#8687c0;
+@headerBackColor:#133596;
+@topBottomColor:#163387;
+@borderColor:#49d9fe;
+@borderLen: 0.9rem;    
+.qylable{
+    height:1.8rem;
+    line-height: 1.8rem;
+    position: absolute;
+    top: 50%;
+    transform: translate(0,-50%);
+    left: 10%;
+    font-size: 0.8rem;
+}
+.fullScreen{
+    height:100vh;
+    width:100vw;
+}
+.item{
+    height: auto;
+    text-align: center;
+    background-color: #163387;
+    position: relative;
+        &:before {
+          position:absolute;
+          top: 0;
+          left: 0;
+          width: @borderLen;
+          height: @borderLen;
+          border-top:0.1rem solid @borderColor;
+          border-left:0.1rem solid @borderColor;
+          content: " ";
+          z-index: 100;
+          }
+        &:after {
+          position:absolute;
+          z-index: 100;
+          bottom: 0;
+          right: 0;
+          width: @borderLen;
+          height: @borderLen;
+          border-bottom:0.1rem solid @borderColor;
+          border-right:0.1rem solid @borderColor;
+          content: " ";
+        }
+        
+     }   
+    .border{
+        .date{
+            width: 100%;
+            margin-top: 48/736*100%;
+        }
+        height: 100%;
+        width: 100%;
+            &:before {
+            position:absolute;
+            bottom: 0 ;
+            left: 0 ;
+            width: @borderLen;
+            height: @borderLen;
+            border-bottom:0.1rem solid @borderColor ;
+            border-left:0.1rem solid @borderColor ;
+            content: " ";
+            z-index: 100;
+        }
+        &:after {
+            position:absolute;
+            top: 0;
+            right: 0;
+            width: @borderLen;
+            height: @borderLen;
+            border-top:0.1rem solid @borderColor;
+            border-right:0.1rem solid @borderColor;
+            content: " ";
+            z-index: 100;
+        }
+    }
+    .border1{
+        .date{
+            width: 100%;
+            margin-top: 48/736*100%;
+        }
+        height: 100%;
+        width: 100%;
+    }
+h1{
+    position:absolute;
+    top: 0.8rem;
+    left: 1rem;
+    z-index: 2;
+    color:#efeefd;
+    font-size: 1rem;
+    font-weight: bold;
+    
+}
+
+span{
+    position:absolute;
+    top: 8px;
+    display: inline-block;
+    z-index: 2;
+    cursor: pointer;
+    width: 18/1920*100vw;
+    height: auto;
+    text-align: center;
+    img{                  
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+    }
+    @media screen and(min-width: 801px){
+        right:8px;
+    }
+    @media screen and(max-width: 800px){
+        right:5%;
+    }
+}
+.box{
+    background-color: #0a1e64;
+    position: relative;
+    display: flex;
+    .tabList{
+        position: absolute;
+        width:246/1536*100%;
+        height: 54/736*100%;
+        left: 0;
+        top:0;
+        font-size: 1.3rem;
+        color:white;
+    }
+    .dateItem{
+        position: absolute;
+        width:246/1536*100%;
+        height: 54/736*100%;
+        left: (10+246)/1536*100%;
+        top:0;
+        font-size: 1.3rem;
+        color:white;
+        .border{
+            
+        }
+    }
+    .leftSide{
+        position: relative;
+    }
+    .rightSide{
+        position: relative;
+        
+        .one{
+            position: absolute;
+            top:0;
+            width: 100%;
+            height: 668/1080*100%;
+        }
+        .two{
+            width: 100%;
+            height: 394/1080*100%;
+            position: absolute;
+            bottom: 0;
+        }
+}
+}
+@media screen and(min-width: 801px){
+    .box{
+        height: 101vh;
+        width: 100vw;
+        .leftSide{
+            // width: 1470/1920*100%;左右布局修改删除右边原有布局
+            width:100%;
+            height: 100%;
+            position: absolute;
+            left: 18/1536*100%;
+            div{
+               position: absolute; 
+            }
+            .one{
+                height: 179/736*100%;
+                width: 502/1536*100%;
+                top: 64/736*100%;
+                left: 0;
+            }
+            .two{
+                height: 202/736*100%;
+                width: 502/1536*100%;
+                top: (270-18)/736*100%;
+                left: 0;
+            }
+            .three{
+                height: 235/736*100%;
+                width: 502/1536*100%;
+                top: (483-18)/736*100%;
+                left: 0;
+            }
+            .four{
+                height: 345/736*100%;
+                width: (488)/1536*100%;
+                top: 0;
+                left: (488+12+12)/1536*100%;
+                overflow: hidden;
+            }
+             .five{
+                height: 345/736*100%;
+                width: (488)/1536*100%;
+                top: 0;
+                left: (488+488+36)/1536*100%;
+                overflow: hidden;
+            }
+             .six{
+                height: 345/736*100%;
+                width: (488)/1536*100%;
+                top: (345+10)/736*100%;
+                left: (488+12+12)/1536*100%;
+                overflow: hidden;
+            }
+             .seven{
+                height: 345/736*100%;
+                width: (488)/1536*100%;
+                top: (345+10)/736*100%;
+                left: (488+488+36)/1536*100%;
+                overflow: hidden;
+            }
+
+        }
+    }
+    
+}
+@media screen and(max-width: 800px){
+    .box{
+        height: auto;
+        width: 100vw;
+        flex-direction: column;
+        flex-wrap: wrap;
+        .leftSide{
+            width: 100%;
+            .item{
+                height: 300px;
+                width: auto;
+                margin-bottom: 10px;
+            }
+            .one{
+                height: 260px;
+                margin-top: 6rem;
+            }
+            .tabList{
+                position: absolute;
+                width:48%;
+                height: 5rem;
+                left: 0;
+                top:0.1rem;
+                font-size: 1.3rem;
+                color:white;
+            }
+            .dateItem{
+                position: absolute;
+                width:48%;
+                left: 52%;
+                height: 5rem;
+            }
+        }
+        .rightSide{
+            margin-top: 10px;
+            width: 100%;
+            height: auto;
+        }
+    }
+}

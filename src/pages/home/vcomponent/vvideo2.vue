@@ -10,26 +10,26 @@
             <source src="../../../assets/video/kaiyuan.mp4" type="audio/mp4"/>
         </video>-->
         <section :class="fullStyle1" @mouseover="showFullBtn(1)" @mouseleave="hideFullBtn(1)">
-        	<!--<iframe ref='v' src="http://120.55.190.57:10800/play.html?channel=1" width="100%" height="100%" frameborder="0" seamless="seamless" scrolling="no" allow-scripts='allow-same-origin allow-scripts'></iframe>-->
+        	<iframe ref='v' src="http://114.55.237.138:10800/play.html?channel=1" width="100%" height="100%" frameborder="0" seamless="seamless" scrolling="no" allow-scripts='allow-same-origin allow-scripts'></iframe>
         	<Loading class='video' v-show='false'></Loading>
         	<i class="fullScreen" @click.capture="fullScreen(1)" title="全屏" v-show="fullBtn1"></i>
         	<span>仙华山1</span>
         </section>
         
         <section :class="fullStyle2" @mouseover="showFullBtn(2)" @mouseleave="hideFullBtn(2)">
-        	<!--<iframe ref='v' src="http://120.55.190.57:10800/play.html?channel=2" width="100%" height="100%" frameborder="0" seamless="seamless" scrolling="no" allow-scripts='allow-same-origin allow-scripts'></iframe>-->
+        	<iframe ref='v' src="http://114.55.237.138:10800/play.html?channel=2" width="100%" height="100%" frameborder="0" seamless="seamless" scrolling="no" allow-scripts='allow-same-origin allow-scripts'></iframe>
         	<Loading class='video' v-show='false'></Loading>
         	<i class="fullScreen" @click.capture="fullScreen(2)" title="全屏" v-show="fullBtn2"></i>
         	<span>仙华山2</span>
         </section>
         <section :class="fullStyle3" @mouseover="showFullBtn(3)" @mouseleave="hideFullBtn(3)">
-        	<!--<iframe ref='v' src="http://120.55.190.57:10800/play.html?channel=3" width="100%" height="100%" frameborder="0" seamless="seamless" scrolling="no" allow-scripts='allow-same-origin allow-scripts'></iframe>-->
+        	<iframe ref='v' src="http://114.55.237.138:10800/play.html?channel=3" width="100%" height="100%" frameborder="0" seamless="seamless" scrolling="no" allow-scripts='allow-same-origin allow-scripts'></iframe>
         	<Loading class='video' v-show='false'></Loading>
         	<i class="fullScreen" @click.capture="fullScreen(3)" title="全屏" v-show="fullBtn3"></i>
         	<span>江南第一家1</span>
         </section>
         <section :class="fullStyle4" @mouseover="showFullBtn(4)" @mouseleave="hideFullBtn(4)">
-        	<!--<iframe ref='v' src="http://120.55.190.57:10800/play.html?channel=4" width="100%" height="100%" frameborder="0" seamless="seamless" scrolling="no" allow-scripts='allow-same-origin allow-scripts'></iframe>-->
+        	<iframe ref='v' src="http://114.55.237.138:10800/play.html?channel=4" width="100%" height="100%" frameborder="0" seamless="seamless" scrolling="no" allow-scripts='allow-same-origin allow-scripts'></iframe>
         	<Loading class='video' v-show='false'></Loading>
         	<i class="fullScreen" @click.capture="fullScreen(4)" title="全屏" v-show="fullBtn4"></i>
         	<span>江南第一家2</span>

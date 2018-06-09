@@ -31,7 +31,6 @@
 	import Rw from '@/common/js/until/index.js'
 	import optionProps from '@/common/js/mixin/optionProps.js'
 	
-	import { mapMutations,mapActions} from 'vuex'
 	import api from '@/api/index.js'
 	import axios from 'axios'
 	export default {
@@ -62,18 +61,11 @@
 			}
 		},
 		methods:{
-			//模拟数据
-			...mapMutations([
-				'SAVE_EDIT',
-				'SAVE_CONFIG',
-				'SAVE_EDIT'
-			]),
 			
 			//获取数据
 			getData(){
 				api.params.code= this.code;
 				api.getPassengerWarnSetList(api.params).then( (re) => {
-					//console.log(re)
 					let reData = re.data.data;
 					this.$store.state.dataList = reData;
 				}).catch( e =>{
@@ -86,7 +78,6 @@
 				api.params.setNum = data.loadNum;
 				api.params.warnNum = data.configNum;
 				api.modifyPassengerWarnSet(api.params).then( (re) => {
-					//console.log(re)
 					if(re && re.data.code===200){
 						this.getData();
 						alert('修改成功!')
@@ -116,7 +107,6 @@
 					},3000)
 					return;
 				}
-				if(confirm('确认要修改吗?')){
 					this.showEdit = false;
 					
 					//修改时间
@@ -124,18 +114,16 @@
 					this.editData.index = i;
 					this.editData.loadNum =  Rw.string_until.transformNum(editEle[i].getElementsByClassName('load')[0].value);
 					this.editData.configNum = Rw.string_until.transformNum(editEle[i].getElementsByClassName('config')[0].value) ;
-					
 					this.editIndex = '';
+<<<<<<< HEAD
 					
 //					this.SAVE_EDIT(this.editData);
 //					this.SAVE_CONFIG(this.editData);
 //					this.ADD_HISTORY(this.editData);
 					
+=======
+>>>>>>> 261d5371a71fcdf7cb3302c48be5b0a0be15e267
 					this.setData(this.editData);
-					
-				}else{
-					this.editIndex = '';
-				}
 			},
 			cancel(){
 				this.editIndex = '';
@@ -147,11 +135,51 @@
 <style scoped="scoped" lang="less">
 	#config{
 		width: 100%;
-		height: 90%;
+		height: 82%;
 		background: linear-gradient(#2d449d 50%,#264095 50%);
 		background-size:  20%;
+		padding-top: 6%;
 		overflow-y: scroll;
-		.title,.content{
+		
+		.title{
+			position: absolute;
+			top: 10%;
+			z-index: 100;
+			color: #fff;
+			width: 98.1%;
+			height: 8%;
+			display:flex;
+			background-color: #1E3382;
+			align-items:center;
+			li{
+				
+				position: relative;
+				font-size: 0.9rem;
+				.edit{
+					font-size: 0.8rem;
+					padding: 0.2rem 0.8rem;
+					border-radius: 1rem;
+					background-color: #5E90D7;
+				}
+			}
+			
+			li:nth-child(1){
+				flex: 2;
+			}
+			li:nth-child(2){
+				flex: 2;
+			}
+			li:nth-child(3){
+				flex: 3;
+			}
+			li:nth-child(4){
+				flex: 3;
+			}
+			li:nth-child(5){
+				flex: 2;
+			}
+		}
+		.content{
 			color: #fff;
 			width: 100%;
 			height: 10%;
@@ -224,7 +252,7 @@
 	}
 	
 			#config::-webkit-scrollbar{
-			    width: 0.45rem;
+			    width: 0.9rem;
 			    height: 3rem;
 			}
 			/*定义滚动条的轨道，内阴影及圆角*/
@@ -242,7 +270,7 @@
 			}
 			
 			#config::scrollbar{
-			    width: 0.45rem;
+			    width: 0.9rem;
 			    height: 3rem;
 			}
 			/*定义滚动条的轨道，内阴影及圆角*/

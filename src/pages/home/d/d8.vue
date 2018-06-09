@@ -31,15 +31,87 @@
     }
 
 }
+.d8v{
+    height: 100%;
+    width: 100%;
+    .box{
+        width: 6.25rem;
+        height: 6.6rem;
+        top: 2.4rem;
+        left: 4rem;
+        .item{
+        	top: 1.8rem;
+        	left: 4rem;
+        	position: absolute;
+        }
+        
+    }
+    span{
+        position: absolute;
+        left: 4.5rem;
+        width: 6.6rem;
+        top: 1.2rem;
+        text-align: center;
+        display: inline-block;
+        line-height: 6.6rem;
+        font-size: 1rem;
+        color: #c7c8f9;
+        
+    }
+    .loading{
+    	position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0%;
+		left: 0%;
+    }
+
+}
+
+.d8vie{
+    height: 100%;
+    width: 100%;
+    .box{
+        width: 6.25rem;
+        height: 6.6rem;
+        top: 1.4rem;
+        left: 4rem;
+        .item{
+        	top: 1.8rem;
+        	left: 4rem;
+        	position: absolute;
+        }
+        
+    }
+    span{
+        position: absolute;
+        left: 4.5rem;
+        top: 4.8rem;
+        text-align: center;
+        display: inline-block;
+        width: 6.25rem;
+        /*height: 6.6rem;*/
+        /*line-height: 6.6rem;*/
+        font-size: 1rem;
+        color: #c7c8f9;
+        
+    }
+    .loading{
+    	position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0%;
+		left: 0%;
+    }
+
+}
 </style>
 <template>
-    <div class="d8">
-    	<div>
-	        <div class="box">
-	            <vcircle :percents="percent" class='item'></vcircle>     
-	        </div>
-	        <span>{{txt}}</span>
-	    </div>
+    <div :class="comStyle">
+        <div class="box">
+            <vcircle :percents="percent" class='item' :class='isVideo' :isVideo='isVideo' :colorCom='colorCom'></vcircle>     
+        </div>
+        <span :style="{color:colorCom}">{{txt}}</span>
 	    <Loading v-show="isloading" class="loading"></Loading>
 	</div>
 </template>
@@ -59,7 +131,7 @@ export default {
         text:'一般'
     }
     },
-    props:['place'],
+    props:['place','isVideo'],
     watch: { 
     },
     computed:{
@@ -67,9 +139,28 @@ export default {
     		let num = this.percent;
     			if(num<=1)return '畅通';
     			if(num>1&&num<=2)return '良好';
-    			if(num>2&&num<=3)return '拥堵';
-    			if(num>3&&num<=4)return '较拥堵';
+    			if(num>2&&num<=3)return '较拥堵';
+    			if(num>3&&num<=4)return '拥堵';
     			if(num>4&&num<=5)return "严重拥堵";
+    	},
+    	colorCom(){
+    		let num = this.percent;
+    			if(num<=1)return '#00FFA2';
+    			if(num>1&&num<=2)return '#17FF00';
+    			if(num>2&&num<=3)return '#F2FF00';
+    			if(num>3&&num<=4)return '#FFA200';
+    			if(num>4&&num<=5)return "#FF0000";
+    	},
+    	comStyle(){
+    		let isIE = window.navigator.userAgent.indexOf('Trident')
+       		if(isIE>-1&&this.isVideo){
+	    		return 'd8vie'
+       		}
+   			if(this.isVideo){
+    			return 'd8v'
+    		}else{
+    			return 'd8'
+    		}
     	}
     },
     methods: {
@@ -92,7 +183,8 @@ export default {
                     success:function(res){
                     	//console.log(res)
                       	let num = Number(res.data.detail.index) 
-                          _self.percent=num;
+                            _self.percent=num.toFixed(2);
+                          //_self.percent=Number(5).toFixed(2)
                       if(res.status===0){
 							_self.isloading = false;
 						}

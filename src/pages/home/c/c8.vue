@@ -6,7 +6,7 @@
                 	地区
             </div>
             <div class="cell2">
-                人数
+                	人数
             </div>
             <div class="cell3">
               	  占比
@@ -14,15 +14,13 @@
         </li>
         <li v-for='(item,index) in items'>
             <div class="cell1">
-                {{item.sort}}、{{item._id}}
+                {{item.sort}}. {{item._id}}
             </div>
             <div class="cell2">
-                {{item.num}}<font>人</font>
+                {{item.num}}<font></font>
             </div>
             <div class="cell3">
                 <span class='footerCotext'>{{item.percent}}%</span>
-                <!--<span v-show="item.rise" class='footerRise up'></span>-->
-                <!--<span v-show="!item.rise" class='footerRise down'></span>-->
             </div>
         </li>
     </ul>
@@ -45,16 +43,20 @@ export default {
     },
     watch:{
     	code:function(){
-    		this.getData();
+    		let data={};
+			  data.code = this.code;
+		    data.monthId = this.yearMonth;
+		    this.getData(data)
     	}
     },
     methods:{
     	//请求数据
-	  	getData(){
-	  		api.params.code = this.code;
-	  		api.touristOriginRanking(api.params).then( (re) =>{
+	  	getData(data){
+	  		//api.params.code = this.code;
+	  		api.touristOriginRanking(data).then( (re) =>{
 	  				let reData = re.data.data;
 	  				this.items = reData;
+	  				//console.log(reData)
 					if(re.status===200){
 						this.isloading = false;
 					}
@@ -85,7 +87,8 @@ ul{
     height:90%;
     width:100%;
     li{
-        height:14%;
+        /*height:14%;*/
+        height:16%;
         display:flex;
         align-items:center;
         justify-content:center;

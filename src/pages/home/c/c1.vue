@@ -59,10 +59,6 @@
 
 <template>
 <div class="c1">
-    <!--<div class="week">-->
-        <!--<span class="oneweek " v-bind:class="{ chose: isActive }" @click='redom("c1",0)'>7日</span>-->
-        <!--<span class="twoweek" v-bind:class="{ chose: !isActive }" @click='redom("c1",1)'>14日</span>-->
-    <!--</div>-->
     <div id="c1">
     </div>
     <Loading v-show="isloading"></Loading>
@@ -74,6 +70,7 @@ import echarts_resize from '../../../common/js/echarts_resize.js'
 import echarts from 'echarts'
 import adaptation from '@/common/js/mixin/adaptation.js'
 import optionProps from '@/common/js/mixin/optionProps.js'
+let w = document.body.clientWidth/1920
 export default {
     mixins: [adaptation,optionProps],
     name:'c1',
@@ -102,15 +99,18 @@ export default {
       },
        watch:{
     	code:function(){
-    		this.getData();
+    		let data={};
+  			  data.code = this.code;
+  		    data.monthId = this.yearMonth;
+  		    this.getData(data)
     	}
     },
     methods:{
     	
     	//请求数据
-	  	getData(){
-	  		api.params.code = this.code;
-	  		api.tripMode(api.params).then( (re) =>{
+	  	getData(data){
+	  		//api.params.code = this.code;
+	  		api.tripMode(data).then( (re) =>{
 	  			//console.log(re)
 	    		let reData= re.data.data;
 	    		//console.log(reData)
@@ -143,6 +143,9 @@ export default {
             this.chart = echarts.init(document.getElementById(id));
             let option = {
             	tooltip: {
+            		textStyle:{
+	            		fontSize:'80%',
+	            	},
 	                trigger: 'item',
 	                position: 'right',
 	                formatter:function(params){
@@ -151,10 +154,11 @@ export default {
 	            },
                 color:['#FB7C7D','#7460EE','#6AEDD9','#438AFF ','#02C753','#FC6ACB '],
                 grid: {
-                      left: '3%',
+                      left: '10%',
                       right: '5%',
                    	  bottom: '5%',
                       top:'28%',
+                      borderWidth: 0,
                       containLabel: true
                 },
                 xAxis : [
@@ -168,10 +172,11 @@ export default {
                                 },
                         },
                         axisLabel: {
-                        	margin:10,
+                        		margin:20*w,
+                         		verticalAlign:'middle', 
                                  textStyle: {
                                      color: '#ffffff',//x坐标轴标签字体颜色
-                                     fontSize: '70%',
+                                     fontSize: '80%',
                                  },
                             },
                             
@@ -201,10 +206,12 @@ export default {
                                 color:'#ffffff',
                                 fontSize: "80%",
                             },
+                            verticalAlign:'middle', 
+                            margin:20,
                             formatter: '{value}%'
                         },
                         splitLine:{
-                                show:false,
+                                show:true,
                                 lineStyle:{
                                     color:'#20549f',
                                     width:1,
@@ -240,7 +247,7 @@ export default {
             };
             let isIE = window.navigator.userAgent.indexOf('Trident')
           if(isIE>-1){ 
-            	option.series[0].label.normal.distance = 10;
+            	option.series[0].label.normal.distance = 15;
             	option.grid.left = '13%';
 						}
             this.chart.setOption(option);

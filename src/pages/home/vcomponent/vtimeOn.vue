@@ -1,12 +1,13 @@
 <template>
   <div class="A5">
+  	  
       <div id="container"></div>
       <Loading v-show="isloading"></Loading>
-      <span>{{currentNum}}<font>人</font></span>
+      <span class="num">{{currentNums}}<font></font></span>
+      <span class="title" :class='comStyle'>( 单位 : 人次 )</span>
   </div>
 </template>
 <script>
-import Vue from 'vue'
 import echarts_listen_resize from '@/common/js/echarts_listen_resize.js'
 import echarts from 'echarts';
 import Start_end_class from '@/common/js/star_end_class.js'
@@ -14,7 +15,8 @@ import Rw from '@/common/js/until/index'
 import api from '@/api/moudles/tanzhenData'
 import optionProps from '@/common/js/mixin/optionProps.js'
 
-let isIE = window.navigator.userAgent.indexOf('Trident');
+let w = document.body.clientWidth/1920
+let isIE = !window.navigator.userAgent.indexOf('Chrome');
 export default {
     name: 'a5',
     mixins: [optionProps],
@@ -23,26 +25,26 @@ export default {
       	currentNum:0,
         reTimer:null,
         data_arr:{},
-        mins:60
-        ,
+        mins:60,
+        isloading:false,
         btwsecends:5,
         option: {
             backgroundColor: 'rgba(0,0,0,0)',
             color: ['#00ffff', '#00ffa2', '#f0e750'],
             grid: {
                show: true,
-               left: '10%',
-               top: '15%',
-               right: '5%',
-               bottom: '10%',
+               left: '13%',
+               top: '26%',
+               right: '8%',
+               bottom: '8%',
                borderWidth: 0,
                borderColor: 'rgba(170,172,178,0.33)',
                backgroundColor: 'rgba(0,0,0,0)'
            },
            calculable: true,
            xAxis: [{
-                 type: 'category',
-               //boundaryGap: ['0%','0%'],
+               type: 'category',
+               boundaryGap: ['10%','10%'],
                //在（type: 'category'）中设置data有效
                splitLine: { //坐标轴在 grid 区域中的分隔线；
                    show: false,
@@ -60,7 +62,9 @@ export default {
                    },
                },
                axisLabel: { 
-               		 margin: 5,
+               		 margin: 15*w,
+               		 align:'left',
+               		 verticalAlign:'middle', 
                    textStyle: {
                        color: '#fff',//x坐标轴标签字体颜色
                        fontSize: '75%',
@@ -72,14 +76,14 @@ export default {
            }],
            yAxis: {
                type: 'value',
-               name:'单位：人',
+               name:'',
                nameTextStyle:{
                    color:'#ffffff',
-                   fontSize:'75%',
+                   fontSize:'100%',
                    padding:[0,20,0,0]
                 },
-               minInterval: 1,
-               splitNumber:5,
+               //minInterval: 1,
+               //splitNumber:5,
                splitLine: {
                    show: false,
                    lineStyle: {
@@ -113,7 +117,7 @@ export default {
                        smooth: true, //是否平滑曲线显示
                        lineStyle: { //线条样式
                            normal: {
-                               width: 2,
+                               width: 2*w,
                                color:'#2CC9E2',
                            }
                        },
@@ -137,6 +141,26 @@ export default {
          },
       }
     },
+    props:['classt','num'],
+    computed:{
+    	currentNums(){
+				return Rw.string_until.addPoint(this.currentNum)
+			},
+			comStyle(){
+       		if(isIE>-1){
+       			if(this.classt){
+       				return 'pieTitle';
+       			}else{
+       				return 'ieTitle';
+       			}
+       			
+       		}else{
+       			if(this.classt){
+       				return 't';
+       			}
+       		}
+    	}
+    },
     methods: {
         //添加数据
         addData(i,date,data,bigDate,bigData) {
@@ -155,7 +179,7 @@ export default {
             date.shift();
             data.shift();
             if(isIE>-1){ 
-            	this.currentNum = data[7];
+            	this.currentNum = data[this.num];
 						}else{ 
             	this.currentNum = data[31];
 							
@@ -166,9 +190,9 @@ export default {
             let _self=this;
             var i = 0;
             if(isIE>-1){ 
-            	i=7;
+            	i=22||this.num;
 						}else{ 
-							i=32;
+							i=30;
 						}
             let timerIndex = Math.round((_self.mins*60) / _self.btwsecends)-5;
             this.chart = echarts.init(document.getElementById(id));
@@ -179,11 +203,11 @@ export default {
             let date=[];
             let data=[];
             if(isIE>-1){ 
-							 date=_self.data_arr.date.slice(0,8);
-            	 data=_self.data_arr.data.slice(0,8);
+							 date=_self.data_arr.date.splice(22,this.num+1);
+            	 data=_self.data_arr.data.splice(22,this.num+1);
 						}else{ 
-							 date=_self.data_arr.date.slice(0,33);
-            	 data=_self.data_arr.data.slice(0,33);
+							 date=_self.data_arr.date.splice(42,58);
+            	 data=_self.data_arr.data.splice(42,58);
 						}
             
             this.reTimer=setInterval(function () {
@@ -198,7 +222,7 @@ export default {
                             _self.data_arr = [];
                             _self.data_arr = re.arr;
                             if(isIE>-1){ 
-														 		i=7;
+														 		i=this.num;
 															}else{ 
 																 i=32;
 															}
@@ -240,13 +264,14 @@ export default {
             let start_end_instance =  new Start_end_class('timeline',_self.mins,Math.round((_self.mins*60) / _self.btwsecends),this.code);
             start_end_instance.get_timeline().then(re =>{
                 _self.data_arr = re.arr;
-                  //console.log(re);
+                    console.log(re);
               _self.option.xAxis.data=re.arr.date;
               _self.option.series.data=re.arr.data;
+              
               //_self.option.yAxis.max = Math.max(...re.arr.data);
                 Rw.judgment_until.typesof(_self.data_arr);
                 _self.redom('container');
-                if(re.code===200){
+                if(re.code===200 ||　re.code==='200'){
                 	setTimeout( () => {
                 		this.isloading = false;
                 	},5000)
@@ -279,12 +304,29 @@ export default {
     width:100%;
     height:100%;
   	position: absolute;
+  	.title{
+			position: absolute;
+			color: #fff;
+			font-size: 0.6rem;
+			top: 1.5rem;
+			left: 6rem;
+		}
+    .t{
+      top: 1.2rem;
+    }
+    .ieTitle{
+    	top: 1.55rem;
+    	font-size: 0.7rem;
+    }
+    .pieTitle{
+    	top: 1.3rem;
+    	font-size: 0.7rem;
+    }
     #container{
         width:100%;
-        height:92%;
-        margin-top: 1.6rem;
+        height:100%;
     }
-    span{
+    .num{
     	position: absolute;
     	top: 8%;
     	right: 6%;

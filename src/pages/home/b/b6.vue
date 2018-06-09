@@ -29,8 +29,8 @@ export default {
                   nowurl:"http://api.seniverse.com/v3/weather/now.json",
                   lifeurl:"https://api.seniverse.com/v3/life/suggestion.json",
                   dailyurl:"https://api.seniverse.com/v3/weather/daily.json",
-                  uid:"U780C8ABAA",
-                  key:"s2iqikevs0vffmvy",
+                  uid:"UE435A3710",
+                  key:"sgqbslepggqd6dgg",
                   location:"jinhua",
                   curPage:1
                 },
@@ -55,7 +55,9 @@ export default {
       switchWea(s){
             if(s==='-1'){
                     return 'redom'
-                }else if(s==='0'||s==='2'){
+                }else if(s==='0'){
+                	return 'qing'
+                }else if(s==='2'){
                     return 'yejianqing'
                 }else if(s==='1'||s==='3'){
                     return 'yejianqing'
@@ -110,7 +112,7 @@ export default {
                     },
                     success:function(res){
                       _self.$nextTick(function () {
-                          console.log(res)
+                          //console.log(res)
                         _self.lifeRes = res.results[0].suggestion;
                       });
                     },

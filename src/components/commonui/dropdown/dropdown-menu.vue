@@ -1,30 +1,13 @@
-<!--
-selectlist:{
-    width:'23%',
-    left:'20%',
-    title:'宝晶宫 ',
-    selectStatus:false,
-    place:[
-        {
-            name:'宝晶宫 ',value:'宝晶宫 '
-        },
-        {
-            name:'洞天仙境 ',value:'洞天仙境 '
-        },
-        {
-            name:'千年瑶寨',value:'千年瑶寨'
-        }
-    ]
-}
-!-->
+
 <template>
     <div class="v-dropdown-menu" 
-
+		style="border: none;"
         @click = 'showselect' 
+        v-clickOutside='hide'
         v-bind:style="{ width:selectList.width ,left:selectList.left,top:selectList.top}" 
         >
-        <p @click='triggle' v-on:itemtodo2="sendMsgParent" class="dropdown-menu-p">{{selectList.title}}</p>
-        <span :class="upDown"></span>
+        <p @click='triggle' v-on:itemtodo2="sendMsgParent" class="dropdown-menu-p" :title="selectList.title">{{selectList.title}}</p>
+        <span :class="upDown" @click='triggle'></span>
         <transition name="dropdown-fade">
             <dropdownList 
             :list='selectList.place'  
@@ -37,6 +20,7 @@ selectlist:{
 </template>
 <script >
 import Vue from 'vue'
+
     export default{
         data(){
             return{
@@ -58,10 +42,15 @@ import Vue from 'vue'
                 }
             },
         },
+        mounted(){
+        },
         methods:{
             sendMsgParent:function(){
 
                 this.$emit('listenAtparent',selectList.title)
+            },
+            hide(){
+            	this.menueshow=false
             },
             outcrement:function(message){
                 
@@ -81,7 +70,7 @@ import Vue from 'vue'
                  
             },
             triggle:function(){
-                this.menueshow = true;
+                this.menueshow = !this.menueshow;
                 this.selectList.selectStatus = true;
                 if (this.upDown!='up') {
                     this.upDown='up';
@@ -94,7 +83,7 @@ import Vue from 'vue'
                 }
             },
             showselect(){
-                this.selectList.selectStatus=true;
+                //this.menueshow=!this.menueshow;
                 
             },
         }
@@ -108,7 +97,7 @@ import Vue from 'vue'
                  isMore:true,
             }
         },
-        template:`<div class='listdiv'  v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }" v-bind:class="{ more: isMore }" v-if='status'><div class="overlay" v-if='status' @click.stop='hidelist'></div><ul @mousewheel='moreStatus'  v-if='status'><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
+        template:`<div class='listdiv' v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }" v-bind:class="{ more: isMore }" v-if='status'><div class="overlay" v-if='status' @click.stop='hidelist'></div><ul @mousewheel='moreStatus'><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
     </li></ul></div>`,
         computed:{
             maxHeight:function(){
@@ -134,6 +123,7 @@ import Vue from 'vue'
                 this.isMore = true;
                 this.$emit('itemtodo',item === undefined ? this.list[0] : item);
             },
+            
             test:function(){
 
             },
@@ -161,6 +151,7 @@ import Vue from 'vue'
 </script>
 <style lang="less" >
 .overlay {
+	display: none;
     position: fixed;
     width: 400vw;
     height: 400vh;
@@ -168,13 +159,13 @@ import Vue from 'vue'
     top: 0;
     left: 0;
     background-color: rgba(0,0,0,0);
-    z-index:119;
+    z-index:100;
 }
 .v-dropdown-menu {
     height:1.8rem;
     line-height: 1.8rem;
     position: absolute;
-    border: 1px solid #1b44ba;
+    border: 0.05rem solid #1b44ba;
     top: 50%;
     transform: translate(0,-50%);
     color: white;
@@ -184,70 +175,67 @@ import Vue from 'vue'
     .up{
         display:inline-block;
         position: absolute;
-        height:9px;
-        width:14px;
+        height:1.5rem;
+        width:1.5rem;
         right:5%;
-        top:30%;
+        top: 0.2rem;
         background-image: url('../../../assets/images/home/up.png');
-        background-size: 100% 100%;
+        background-size: cover;
     }
     .down{
         display:inline-block;
         position: absolute;
-        height:9px;
-        width:14px;
+        height:1.5rem;
+        width:1.5rem;
         right:5%;
-        top:35%;
+        top:0.2rem;
         background-image: url('../../../assets/images/home/down.png');
-        background-size: 100% 100%;
+        background-size: cover;
     }
 }
 .listdiv{
     position: absolute;
     left:0;
     top:100%;
-    // max-height: 10.8rem;
     width: 100%;
     overflow: hidden;
     box-shadow: 1px 0 30px  rgba(1,1,13,0.4);
     border: 1px solid #1b44ba;
     background-color: #193583;
     z-index: 100002;
-    &.more{
+    /*&.more{
             &:after{
                 content: "";
                 width:0;
                 height: 0;
                 position: absolute;
-                bottom: 10px;
+                bottom: 0.5rem;
                 left: 50%;
-                transform: translate(-50%,0);
-                border-left: solid 10px transparent;
-                border-top:solid 5px white;
-                border-right: solid 10px transparent;
+                transform: translate(-80%,0);
+                border-left: solid 0.5rem transparent;
+                border-top:solid 0.25rem white;
+                border-right: solid 0.5rem transparent;
             }
             li:nth-of-type(6){
                 margin-top: 1.8rem;
             }
-        }
+        }*/
     ul{
         position: absolute;
         left:0;
         top:0;
-        transform: translate(-15%,0);
         height: auto;
-        width: 150%;
+        width: 100%;
         margin-left: -1px;
         z-index:444;
         max-height: 10.8rem;
         overflow-y: auto;
         li {
-            // transform: translate(-20%,0);
             list-style: none;
             color: white;
             background-color: #193583;
             height: 1.8rem;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             line-height: 1.8rem;
             white-space: nowrap;
             overflow: hidden;
@@ -264,8 +252,8 @@ import Vue from 'vue'
     width:100%;
     text-align: center;
     color: white;
-
-
+	position: relative;
+	z-index: 1000000;
 }
 
 .dropdown-menu-p{
@@ -277,10 +265,11 @@ import Vue from 'vue'
     color: white;
     cursor: pointer;
     text-align: center;
-    z-index: 9;
-    font-size: .9rem;
+    z-index: -1;
+    font-size: 0.8rem;
     line-height: 1.8rem;
     white-space: nowrap;
+    letter-spacing: 1px;
     overflow: hidden;
 }
 .dropdown-fade-enter-active {
@@ -294,4 +283,30 @@ import Vue from 'vue'
   transform: translateY(0);
 
 }
+
+			ul::-webkit-scrollbar{
+			    width: 0.2rem;
+			    height: 5rem;
+			}
+			/*定义滚动条的轨道，内阴影及圆角*/
+			ul::-webkit-scrollbar-track{
+			    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.4);
+			    border-radius: 10px;
+			}
+			/*定义滑块，内阴影及圆角*/
+			ul::-webkit-scrollbar-thumb{
+			    width: 0.8rem;
+			    height: 5rem;
+			    border-radius: 10px;
+			    -webkit-box-shadow: inset 0 0 0.5rem #02275A;
+			    background-color: #eee
+			}
+			/*ie*/
+			ul{
+				scrollbar-face-color: #999;
+				scrollbar-highlight-color: #193684;
+				scrollbar-shadow-color: #193684;
+				scrollbar-track-color: #224299;
+				scrollbar-arrow-color:#0F2059;
+			}
 </style>

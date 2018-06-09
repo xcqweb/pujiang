@@ -70,8 +70,8 @@ export default {
   },
   methods: {
   	//请求数据
-  	getData(){
-  		api.thermalMap(api.params).then( (re) =>{
+  	getData(data){
+  		api.thermalMap(data).then( (re) =>{
   				let reData = re.data.data;
   				
   				this.BJData = reData.BJData;

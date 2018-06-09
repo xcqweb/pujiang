@@ -7,16 +7,20 @@ import router from './router'
 import axios from 'axios'
 import store from './vuex/index.js'
 import sheet from './common/js/until.js'
-import Toast from './components/commonui/toast/index.js'
 import Rw from '@/common/js/until/index'
-import api from '@/api/index.js'
+import api from '@/api/index'
 import Loading from '@/components/commonui/loading/loading.vue'
-
 import {API_HZ} from '@/api/env'
-//自适应字体
-//import '@/common/js/rem.js'
-Vue.directive('echarts', require('./common/js/directives/vDirechartsE.js'));
+import rem from '@/common/js/rem'
+import clickOutside from '@/common/js/directives/clickOutside'
+Vue.directive('clickOutside',clickOutside)
+//rem(document,window)
+
+
+
+
 window.axios = axios; 
+Vue.prototype.$axios = axios; 
 window.api = api; 
 window.$sheet=sheet;
 window.Loading=Loading;

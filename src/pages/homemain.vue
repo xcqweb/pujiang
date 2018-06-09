@@ -1,132 +1,42 @@
 <template>
-  <div id="mainhome">
+  <div id="mainhome" @click="headerLeave($event)">
     <transition name="slide-fade">
-        <div class="header" v-show='headerStatus' v-on:mouseenter="headerEnter" v-on:mouseleave="headerLeave" @click="headerLeave">
-            <headerBody></headerBody>
+        <div class="header" v-show='headerStatus' @mouseleave="mouseLeave"   @click="headerLeave($event)">
+            <headerBody @hide='hide'></headerBody>
         </div>
     </transition>
-    <div class="headmock" v-on:mouseenter="headerEnter" v-on:click="headerEnter"></div>
-    <router-view class='mockrouter'
-    :placeName = 'placeName'
-    :placeAttractions = 'placeAttractions'
-    :turistArr = 'turistArr'
-    ></router-view>
-    <!--使用if 每次重新渲染 并传递筛选景区-->
-        <config v-if = "toast"></config>
-        <transition name="fade">	
-        	<div class="videoFull" v-show="videoFull"></div>
-        </transition>
+    <div class="headmock" v-on:mouseenter="headerEnter"></div>
+    <router-view class='mockrouter'></router-view>
   </div>
 </template>
 <script type="text/javascript">
-import Vue from 'vue'
-import { mapGetters } from 'vuex'
 import headerBody from '@/pages/home/header.vue'
-import config from '@/components/commonui/config/scienceConfig.vue'
 export default {
         data() {
             return {
                 headerStatus:false,
-                allComponents: [],
-                componentName: '',
-         turistArr:[
-             '全部',
-            '仙华山',
-            '前吴村',
-            '塘波村',
-            '民生村',
-            '罗源村',
-            '白石湾',
-            '江南第一家',
-            '嵩溪村',
-            '宝掌幽谷',
-            '登高村',
-            '神丽峡',
-            '礼张村',
-            '农批市场',
-            '檀溪镇',
-            '冷坞村',
-            '上河村',
-            '汽车客运站',
-            '翠湖',
-            '马岭',
-            '利民村',
-            '下湾村',
-            '新光村',
-            '西山村',
-            '田后蓬',
-            '薛下庄村',
-            '下薛宅',
-            '金狮湖',
-            '高速路',
-            '官岩寺',
-            '上山遗址',
-            '渠南村',
-            '温泉',
-            '水晶城',
-            '水竹湾',
-            '平湖森林果园',
-            '三角潭林场',
-            '罗家村',
-            '白岩山前滑草基地',
-            '里黄宅村',
-            '善庆村',
-            '文化馆',
-            '通济桥水库大坝',
-            '三城山农庄',
-            '塔山宾馆',
-            '月泉书院遗址公园'],
-                topComponents:[
-                    {name:'vtopOne',id:'one',title:'浦江客流人数分析'},
-                    {name:'vprofies',id:'two',title:'景区概况'},
-                    {name:'vtopThree',id:'three',title:''},
-                    {name:'vcontentment',id:'four',title:'游客满意度'},
-                ],
-                bottomComponents:[
-                    {name:'vtimeOn',id:'one',title:'客流实时监测'},
-                    {name:'vchartMap',id:'two',title:'国内游客来源地'},
-                    {name:'vrinking',id:'three',title:'游客来源排行榜'},
-                    {name:'vpercenPie',id:'four',title:'营销推广'},
-                    {name:'vvideo',id:'five',title:'视频监控'},
-                ],
-                text:'headerBody',
-            }
+		            }
         },
         components: {
                 headerBody,
-                config
-        },
-        computed: {
-          ...mapGetters({
-              placeName: 'version/name',
-              placeAttractions:'version/placeAttractions',
-              comment:'version/comment',
-            }),
-            //设置客流预警蒙层显示
-	          toast(){
-	          	let toast = this.$store.state.showToast;
-	          	return toast
-	          },
-	          videoFull(){
-	          	let toast = this.$store.state.videoFull;
-	          	return toast
-	          }
         },
         methods: {
-        	
-            console(){
-                console.log(this.components)
+	        	hide(){
+							this.headerStatus=false;	        		
+	        	},
+            mouseLeave(){
+              	this.headerStatus=false;
             },
             headerEnter(){
                 this.headerStatus=true;
             },
-            headerLeave(){
-                this.headerStatus=false;
+            headerLeave(e){
+//          	if(!this.$el.childNodes[0].contains(e.target)){
+            		this.headerStatus=false;
+//          	}
+                //
             },
-
         },
-        mounted() {
-        }
     }
 </script>
 
@@ -160,6 +70,7 @@ export default {
     height: 100vh;
     position: relative;
     background-color: #0d1f6d;
+    overflow: hidden;
     .header{
         position:fixed;
         width: 100%;

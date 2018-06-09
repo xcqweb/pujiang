@@ -17,10 +17,10 @@
         <div class="login_group clearfix">
             <h1></h1>
             <div class="user">
-                <input id="username" autofocus="autofocus" checked="checked" v-model.trim="loginForm.username" placeholder="请输入账号" type="text"/>  
+                <input id="username" autofocus="autofocus" checked="checked" v-model.trim="loginForm.username" placeholder="请输入账号" type="text" autocomplete="off"/>  
             </div>
             <div class="password">
-                <input id='password' class="warning" v-model.trim="loginForm.password"  @keyup.enter="logisn" placeholder="请输入密码" type="password"/>  
+                <input id='password' class="warning" v-model.trim="loginForm.password"  @keyup.enter="logisn" placeholder="请输入密码" type="password" autocomplete="off"/>  
             </div>
             <!-- <div class="test">
                 <input id="trim" v-model.trim="loginForm.code" v-on:keyup.enter="login" placeholder="验证码" type="text"/>
@@ -131,7 +131,8 @@ import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
               formData.append('password', this.loginForm.password);
               
              // console.log(formData)
-               axios.post('http://114.55.237.138/pj/api/user/login',formData)
+                 axios.post(API_HZ+'/pj/api/user/login',formData)
+               //axios.post('http://114.55.237.138/pj/api/user/login',formData)
                 .then((data ) => {
                 	//console.log(data);
                     this.logintext='登录中'; 
@@ -143,11 +144,9 @@ import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
 	                        }else{
 	                              let token = data.data.data.token;
 	                              setCookie('token', token);
-	                              this.$router.push({ path: '/' });
 	                              this.logintext='登录';
 	                              this.loginForm.password='';
-	                              window.location.href = API_HZ
-	                              
+	                              this.$router.replace({ path: '/'});
 	                        }
 	                    }else{
 	                        alert(data.data.message);
@@ -216,8 +215,8 @@ import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
         top:20%;
         height:520/1080*100%;
         width:350/1920*100%;
-        min-height: 385px;
-        min-width: 315px;
+        min-height: 19.25rem;
+        min-width: 15.75rem;
     }
     @media screen and (max-width: 700px){
         left:0;
@@ -244,13 +243,13 @@ import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
     label{
         float:left;
         border:none;
-        margin-left: 15px;
+        margin-left: 0.75rem;
         background:none;
-        height:40px;
-        font-size: 12px;
-        line-height:40px;
-        width:80px; 
-        text-indent:32px;
+        height:2rem;
+        font-size: 0.8rem;
+        line-height:2rem;
+        width:4rem; 
+        text-indent:1.6rem;
         color:#fff;  
         &:after {
                     content: ".";
@@ -264,8 +263,8 @@ import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
         float:left;
         border:none;
         margin-left: 0;
-        height:40px;
-        line-height:40px;
+        height:2rem;
+        line-height:2rem;
         width:60%; 
         color:black;
         outline:medium;
@@ -278,32 +277,32 @@ import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
                 }
     }
     h1{
-        height:30px;
+        height:1.5rem;
     }
     .user{
         position: relative;
-        border-radius: 6px;
+        border-radius: 0.3rem;
         margin-top: 17/546*100%;
         width:100%;
-        height:40px;
+        height:2rem;
         margin-left: 11%;
         background-color:wihte;
         input{
-            padding-left:60px;
+            padding-left:3rem;
             background-color:none;
             background:url('../../assets/images/login/username.png') no-repeat  center;
             background-size: 100% 100%;
         }
 }  
 .password{
-        border-radius: 6px;
+        border-radius: 0.3rem;
         margin-top: 47/546*100%;
         width:100%;
         height:40px;
         margin-left: 11%;
         background-color:wihte;
         input{
-            padding-left:60px;
+            padding-left:3rem;
             background-color:none;
             background:url('../../assets/images/login/password_home.png') no-repeat  center;
             background-size: 100% 100%;
@@ -311,14 +310,14 @@ import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
 
 }
 .test{
-        border-radius: 6px;
+        border-radius: 0.3rem;
         margin-top: 47/546*100%;
         width:200/654*100%;
-        height:40px;
+        height:2rem;
         float: left;
         margin-left: 11%;
         input{
-            padding-left:20px;
+            padding-left:1rem;
             width:87% !important;
         }
         &:after {
@@ -331,11 +330,11 @@ import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
         
 } 
 .testimg{
-    height: 40px;
+    height: 2rem;
     width: 140/546*100%;
     float: left;
     margin-top: 47/546*100%;
-    margin-left:16px;
+    margin-left:0.8rem;
     img{
     cursor: pointer;
     height: 100%;
@@ -357,24 +356,24 @@ import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
         }
 }
 .changeImge{
-    height: 40px;
-    line-height:50px;
+    height: 2rem;
+    line-height:2.5rem;
     float:left;
     margin-top: 37/546*100%;
     font-size:0.8rem;
-    margin-left:12px;
+    margin-left:0.6rem;
     cursor: pointer;
     color:#ffffff;
 }
 .login{
     margin-left: 9%;
     width:83%;
-    height:50px;
+    height:2.5rem;
     margin-top: 160/546*100%;
     background:url('../../assets/images/login/button.png') no-repeat  center;
     background-size: 100% 100%;
     color:#988100;
-    line-height: 50px;
+    line-height: 2.5rem;
     font-weight: 700;
     cursor: pointer;
     text-decoration: none;
@@ -383,7 +382,7 @@ import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
 .change{
     float: right;
     color: white;
-    margin-right: 50px;
+    margin-right: 2.5rem;
     text-decoration: none;
 }
 }

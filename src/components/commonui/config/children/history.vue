@@ -4,13 +4,13 @@
 			<li>序号</li>
 			<li>预警时间</li>
 			<li>景区名称</li>
-			<li>预警人数</li>
+			<li>当前客流人数</li>
 		</ul>
 		<ul class="content" v-for="(data,i) in transformHisArr" :class="{'bc1':i%2===0,'bc2':i%2===1}" :key="i">
 			<li>{{i+1}}</li>
 			<li>{{data.warnDate}}</li>
 			<li>{{data.name}}</li>
-			<li>{{data.warnSet}}</li>
+			<li>{{data.curNum}}</li>
 		</ul>
 	</div>
 </template>
@@ -62,11 +62,29 @@
 <style scoped="scoped" lang="less">
 	#history{
 		width: 100%;
-		height: 90%;
+		height: 82%;
 		background: linear-gradient(#1E3382 50%,#264095 50%);
 		background-size:  20%;
+		padding-top: 6%;
 		overflow-y: scroll;
-		.title,.content{
+		.title{
+			position: absolute;
+			top: 10%;
+			left: 0;
+			z-index: 100;
+			color: #fff;
+			width: 98.1%;
+			height: 8%;
+			display:flex;
+			background-color: #1E3382;
+			align-items:center;
+			li{
+				flex: 1;
+				position: relative;
+				font-size: 0.9rem;
+			}
+		}
+		.content{
 			color: #fff;
 			width: 100%;
 			height: 10%;
@@ -79,6 +97,7 @@
 				font-size: 0.9rem;
 			}
 		}
+		
 		.bc1{
 			background-color: #264095;
 		}
@@ -88,7 +107,7 @@
 	}
 	
 		#history::-webkit-scrollbar{
-		    width: 0.45rem;
+		    width: 0.9rem;
 		    height: 5rem;
 		}
 		/*定义滚动条的轨道，内阴影及圆角*/
@@ -112,7 +131,7 @@
 			scrollbar-track-color: #263984;
 		}
 		#history::scrollbar{
-		    width: 0.45rem;
+		    width: 0.9rem;
 		    height: 5rem;
 		}
 		/*定义滚动条的轨道，内阴影及圆角*/

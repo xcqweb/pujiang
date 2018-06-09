@@ -14,6 +14,8 @@
   import Vue from 'vue'
   import optionProps from '@/common/js/mixin/optionProps.js'
   const QuiverItalRegular = require('../../../assets/style/QuiverItalRegular.ttf');
+  
+  let w = document.body.clientWidth/1920
   export default {
     name:'c6',
     mixins: [timeMixin,optionProps],
@@ -63,15 +65,18 @@
     },
     watch:{
     	code:function(){
-    		this.getData();
+    		let data={};
+		  data.code = this.code;
+	    data.monthId = this.yearMonth;
+	    this.getData(data)
     	}
     },
     methods: {
     	
     	//请求数据
-	  	getData(){
-	  		api.params.code = this.code;
-	  		api.touristFocus(api.params).then( (re) =>{
+	  	getData(data){
+	  		//api.params.code = this.code;
+	  		api.touristFocus(data).then( (re) =>{
 	  				let reData = re.data.data;
 	  				//console.log(reData)
 	  				//this.oneweekMock = reData;
@@ -113,6 +118,9 @@
                     backgroundColor: 'rgba(0,0,0,0)',
                     color: ['#1F6ABB','#3897C5','#A4C5E6'],
                     tooltip: {
+                    	textStyle:{
+				            		fontSize:'80%',
+				            	},
 			                trigger: 'item',
 			                position: 'right',
 			                formatter:function(params){
@@ -121,11 +129,12 @@
 			            	},
                     grid: {
                          show: true,
-                         left: '15%',
-                         top: '26%',
+                         left: '10%',
+                         top: '28%',
                          right: '5%',
-                         bottom: '20%',
+                         bottom: '5%',
                          borderWidth: 0,
+                         containLabel: true,
                          backgroundColor: 'rgba(0,0,0,0)',
                      },
                     xAxis: [
@@ -155,11 +164,13 @@
                              },
                         },
                          axisLabel: {
-                         	//magin:50,
+                         		showMinLabel:true,
                              textStyle: {
                                  color: '#ffffff',//x坐标轴标签字体颜色
-                                 fontSize: '70%',
+                                 fontSize: '80%',
                              },
+                             margin:20*w,
+                         		verticalAlign:'middle', 
                         },
                         axisTick:{
                                 show:false,
@@ -182,7 +193,12 @@
                           fontFamily:QuiverItalRegular,
                         },
                         splitLine:{
-                          show:false,
+                                show:true,
+                                lineStyle:{
+                                    color:'#20549f',
+                                    width:1,
+                                    type:'solid'
+                                },
                         },
                         axisLabel:{
                             showMinLabel:true,
@@ -219,7 +235,7 @@
                             position:'top',
                             textStyle:{
                                 color:'#2CC9E2',
-                                fontSize:"80%",
+                                fontSize:"70%",
                             },
                             formatter: '{c}%'
                         }
@@ -231,7 +247,8 @@
             option.series[0].label.normal.textStyle.fontFamily = require('../../../assets/style/QuiverItalRegular.ttf');
           let isIE = window.navigator.userAgent.indexOf('Trident')
           if(isIE>-1){ 
-            	option.series[0].label.normal.distance = 10;
+            	option.series[0].label.normal.distance = 15;
+            	option.grid.left = '13%';
 						}
         this.chart.setOption(option)
       }
@@ -251,7 +268,6 @@
     #c6{
         width: 100%;
         height: 100%;
-        margin-top: 3%;
     }
 }
 </style>

@@ -1,10 +1,12 @@
-<style lang="less" scoped>
+<style scoped>
     .clock_box{
         height: 100%;
         width:100%;
         display:flex;
         align-items:center;
         justify-content:center;
+        font-size: 1.2rem;
+        letter-spacing: 1px;
         font{
             font-family:numberFont;
         }

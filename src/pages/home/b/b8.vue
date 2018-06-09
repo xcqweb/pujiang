@@ -7,7 +7,6 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import vcircle from './vcircle.vue'
 import optionProps from '@/common/js/mixin/optionProps.js'
 export default {

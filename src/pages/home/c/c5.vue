@@ -12,10 +12,11 @@
         </div>
         <ul>
             <div class="line"></div>
-            <li v-for='item in outItems' v-bind:style="{ marginLeft: marginLeft +'%'}">
+            <li v-for='item in outItemsCom' v-bind:style="{ marginLeft: marginLeft +'%'}">
                 <span v-bind:style="{  bottom:18+item.percent +'%'}">{{item.percent}}%</span>
                 <div v-bind:style="{  height: item.percent+10+'%'}"></div>
-                <font>{{item._id}}</font>
+                <font :title="item._id" v-if='item._id.length>3'>{{item._id.substring(0,3)}}...</font>
+                <font :title="item._id" v-else>{{item._id.substring(0,3)}}</font>
             </li>
         </ul>
         <ul>
@@ -23,7 +24,8 @@
             <li v-for='item in inItems' v-bind:style="{ marginLeft: marginLeft +'%'}">
                 <span v-bind:style="{  bottom:18+item.percent +'%'}">{{item.percent}}%</span>
                 <div v-bind:style="{  height: item.percent+10 +'%'}"></div>
-                <font>{{item._id}}</font>
+                <font :title="item._id" v-if='item._id.length>3'>{{item._id.substring(0,3)}}...</font>
+                <font :title="item._id" v-else>{{item._id.substring(0,3)}}</font>
             </li>
         </ul>
         <Loading v-show="isloading"></Loading>
@@ -44,34 +46,39 @@ export default {
         inItems:[],
     }
     },
-    created(){
-    },
     computed: { 
+    	outItemsCom(){
+      		return this.outItems.splice(2)
+    	}
     },
     watch:{
     	code:function(){
-    		this.getData();
+    	let data={};
+		  data.code = this.code;
+	    data.monthId = this.yearMonth;
+	    this.getData(data)
     	}
     },
     methods: {
     	//请求数据
-	  	getData(){
-	  		api.params.code = this.code;
-	  		api.touristOriginsource(api.params).then( (re) =>{
-	  				let reData = re.data.data;
-	  				//console.log(reData)
-	  				this.inItems = reData.shengnei;
-	  				this.outItems = reData.shengwai;
-					if(re.status===200){
+	  	getData(data){
+	  		api.touristOriginsource(data).then( (re) =>{
+	  			if(re.data.code===200 || re.data.code==='200'){
 						this.isloading = false;
 					}
+	  				let reData = re.data.data;
+	  				if(!reData){
+		  				this.inItems=[]
+		  				this.outItems = []
+		  				return 
+		  			}
+	  				this.inItems = reData.shengnei;
+	  				this.outItems = reData.shengwai;
+					
 		    }).catch( (e) => {
 		    	console.log(e);
 		    })
 	  	},
-    },
-    mounted(){
-    	
     },
 }
 </script>
@@ -79,7 +86,7 @@ export default {
 <style lang="less" scoped>
 .c5{
     position:absolute;
-    height:90%;
+    height:100%;
     width:100%;
     
     .title{
@@ -92,7 +99,8 @@ export default {
         font-size:.8rem;
         div{
             width:100%;
-            height:50%;
+            height:36%;
+            margin-top: 60%;
         }
         .top{
             background-color:#6792fb;
@@ -117,11 +125,11 @@ export default {
         left:5%;
         width:100%;
         height:24%;
-        top: 24%;
+        top: 18%;
         .line{
             position:absolute;
             width:80%;
-            height:1px;
+            height:0.05rem;
             left:80/700*100%;
             bottom:0;
             background-color:#368df7;
@@ -147,14 +155,14 @@ export default {
                 background-color:#6792fb;
                 position:absolute;
                 bottom:0;
-                width:20px;
+                width:1rem;
 
             }
             font{
-                display:inline-block;
+                /*display:inline-block;*/
                 position:absolute;
-                bottom:-36%;
-                left:0%;
+                top:106%;
+                left:-12%;
                 font-size: 0.66rem;
             }
         }
@@ -162,9 +170,9 @@ export default {
     ul:nth-of-type(2){
         position:absolute;
         left:5%;
-        top:68%;
+        top:60%;
         width:100%;
-        height:29%;
+        height:25%;
         .title{
             background-color:#606bff;
         }
