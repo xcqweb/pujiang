@@ -1,9 +1,11 @@
+import Vue from 'vue'
 import axios from 'axios'
 import store from '@/vuex/index'
 import router from '@/router'
 import To_md5 from '@/common/js/md5.js'
 import {API_HZ} from '@/api/env.js'
 import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
+
 //设置全局axios默认值
 axios.defaults.timeout = 100000; //5000的超时验证
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';

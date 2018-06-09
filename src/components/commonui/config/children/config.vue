@@ -127,9 +127,9 @@
 					
 					this.editIndex = '';
 					
-					//this.$store.commit('SAVE_EDIT',this.editData);
-					//this.$store.commit('SAVE_CONFIG',this.editData);
-					//this.$store.commit('ADD_HISTORY',this.editData);
+//					this.SAVE_EDIT(this.editData);
+//					this.SAVE_CONFIG(this.editData);
+//					this.ADD_HISTORY(this.editData);
 					
 					this.setData(this.editData);
 					
