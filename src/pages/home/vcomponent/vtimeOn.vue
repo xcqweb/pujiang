@@ -38,7 +38,7 @@ export default {
                right: '8%',
                bottom: '8%',
                borderWidth: 0,
-               borderColor: 'rgba(170,172,178,0.33)',
+               borderColor: 'rgba(170,172,178,0.36)',
                backgroundColor: 'rgba(0,0,0,0)'
            },
            calculable: true,
@@ -82,8 +82,8 @@ export default {
                    fontSize:'100%',
                    padding:[0,20,0,0]
                 },
-               //minInterval: 1,
-               //splitNumber:5,
+                 minInterval: 1,
+                 splitNumber:5,
                splitLine: {
                    show: false,
                    lineStyle: {
@@ -129,12 +129,6 @@ export default {
                                opacity:0,
                            }
                        },
-//                      markLine: {
-//					                data: [
-//					                    {type: 'max', name: '最大值'},
-//					                    {type: 'min', name: '最小值'}
-//					                ]
-//					            },
                    }
 
                ] //series结束
@@ -165,36 +159,27 @@ export default {
         //添加数据
         addData(i,date,data,bigDate,bigData) {
         		function getTime(){
-        			let date = new Date();
-        			let h=date.getHours()< 10 ? '0'+date.getHours() : date.getHours(); //获取小时
-							let m=date.getMinutes()< 10 ? '0'+date.getMinutes() : date.getMinutes(); //获取分
-							let s=date.getSeconds()< 10 ? '0'+date.getSeconds() : date.getSeconds(); //获取秒
+        			let dates = new Date();
+        			let h=dates.getHours()< 10 ? '0'+dates.getHours() : dates.getHours(); //获取小时
+							let m=dates.getMinutes()< 10 ? '0'+dates.getMinutes() : dates.getMinutes(); //获取分
+							let s=dates.getSeconds()< 10 ? '0'+dates.getSeconds() : dates.getSeconds(); //获取秒
 							return h+":"+m+":"+s
         		}
         		
           		bigDate[i] = getTime();
-        		//console.log(i,bigDate[i],getTime())
-            date.push(bigDate[i]);
-            data.push(bigData[i]);
-            date.shift();
-            data.shift();
-            if(isIE>-1){ 
-            	this.currentNum = data[this.num];
-						}else{ 
-            	this.currentNum = data[31];
+	            date.push(bigDate[i]);
+	            data.push(bigData[i]);
+	            date.shift();
+	            data.shift();
+            	this.currentNum = data[this.num-1];
 							
-						}
             
         },
         redom(id){
             let _self=this;
             var i = 0;
-            if(isIE>-1){ 
-            	i=22||this.num;
-						}else{ 
-							i=30;
-						}
-            let timerIndex = Math.round((_self.mins*60) / _self.btwsecends)-5;
+            
+            let timerIndex = Math.round((_self.mins*60) / _self.btwsecends)-9;
             this.chart = echarts.init(document.getElementById(id));
             this.chart.setOption(this.option);
             if (this.reTimer) {
@@ -202,35 +187,22 @@ export default {
             }
             let date=[];
             let data=[];
-            if(isIE>-1){ 
-							 date=_self.data_arr.date.splice(22,this.num+1);
-            	 data=_self.data_arr.data.splice(22,this.num+1);
-						}else{ 
-							 date=_self.data_arr.date.splice(42,58);
-            	 data=_self.data_arr.data.splice(42,58);
-						}
+							 date=_self.data_arr.date.splice(8-this.num,this.num)
+            	 data=_self.data_arr.data.splice(8-this.num,this.num)
             
             this.reTimer=setInterval(function () {
                 i++;
-               // console.log(i,timerIndex,_self)
 		                if(i > timerIndex){
 		                	_self.isloading = true;
 		                	_self.chart.setOption({});
                         let start_end_instance1 =  new Start_end_class('timeline',_self.mins,Math.round((_self.mins*60) / _self.btwsecends),this.code);
                         start_end_instance1.get_timeline().then(re =>{
-                            //_self.data_arr = Rw.array_until.remove_common(_self.data_arr,re.arr);
                             _self.data_arr = [];
                             _self.data_arr = re.arr;
-                            if(isIE>-1){ 
-														 		i=this.num;
-															}else{ 
-																 i=32;
-															}
-							            	//console.log(re)
-                          _self.option.xAxis.data=re.arr.date;
+                            _self.data_arr.date = this.getDate()
+                           
+                          _self.option.xAxis.data=this.getDate();
                					 _self.option.series.data=re.arr.data;
-               					// _self.option.yAxis.max = Math.max(...re.arr.data);
-               					 //_self.chart = echarts.init(document.getElementById('container'));
               						_self.chart.setOption(_self.option);
               						if(re.code===200){
 					                	_self.isloading = false;
@@ -253,23 +225,81 @@ export default {
             _self.$nextTick(echarts_listen_resize('container',_self));
         },
         getData(){},
+        getDate(){
+        	let arrDate = []
+                    let dt = new Date()
+                    let ms = dt.getTime()
+                    let t_s = dt.setTime(ms-40*1000)
+                    for(var i=0; i<720; i++){
+                    	let t_s = dt.setTime(ms-40*1000+i*5000)
+			                dt.setTime(t_s+1000*5)
+			                var hm= '';
+			                var year=dt.getFullYear(); //获取当前年份
+			                var mon=dt.getMonth()+1; //获取当前月份
+			                var da=dt.getDate(); //获取当前日
+			                var day=dt.getDay(); //获取当前星期几
+			                var h=dt.getHours(); //获取小时
+			                var m=dt.getMinutes(); //获取分
+			                var s=dt.getSeconds(); //获取秒
+			                
+			                
+			                //处理时间格式00:00:01
+			                if (m>=5) {
+			                    var endm =m-5;
+			                    if (m<15) {
+			                        if(m<10){
+			                            m='0'+m;
+			                        }
+			                        if(h<10){
+			                            h='0'+h
+			                        }
+			                        hm= h+'0'+endm;
+			                    }else{
+			                        if(h<10){
+			                            h='0'+h
+			                        }
+			                        hm= h+''+endm;
+			                    }
+			                }else{
+			                    var beginh= h-1;
+			                    var beginm =55+m;
+			                    if(beginh<10){
+			                        beginh='0'+beginh
+			                        }
+			                    m='0'+m
+			                    hm= beginh+''+beginm;
+			                }
+			                if(mon<10){
+			                    mon='0'+mon
+			                }
+			                if(da<10){
+			                    da='0'+da
+			                }
+			                if(s<10){
+			                    s='0'+s
+			                }
+			                
+			                
+			                arrDate[i]= +h+':'+m+':'+s;
+                    }
+                    return arrDate
+        },
         getData1(){
             let _self = this;
             if(this.chart){
             	this.chart.dispose();
             }
             this.chart = echarts.init(document.getElementById('container'));
-            //_self.mins= 60;
-            //self.btwsecends = 5;
+              _self.mins= 60;
+              self.btwsecends = 5;
             let start_end_instance =  new Start_end_class('timeline',_self.mins,Math.round((_self.mins*60) / _self.btwsecends),this.code);
             start_end_instance.get_timeline().then(re =>{
                 _self.data_arr = re.arr;
                     console.log(re);
-              _self.option.xAxis.data=re.arr.date;
+                    
+              _self.data_arr.date = this.getDate()
+              _self.option.xAxis.data=this.getDate();
               _self.option.series.data=re.arr.data;
-              
-              //_self.option.yAxis.max = Math.max(...re.arr.data);
-                Rw.judgment_until.typesof(_self.data_arr);
                 _self.redom('container');
                 if(re.code===200 ||　re.code==='200'){
                 	setTimeout( () => {
@@ -292,8 +322,8 @@ export default {
     },
     mounted() {
         this.$nextTick( () => {
-            	this.getData1();
-            	echarts_listen_resize('container',this)
+          this.getData1();
+          echarts_listen_resize('container',this)
         });
       },
 }
