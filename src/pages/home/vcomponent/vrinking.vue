@@ -83,8 +83,8 @@ ul{
     height:90%;
     width:100%;
     li{
-        /*height:13.8%;*/
-        height:16%;
+        height:13.8%;
+        /*height:16%;*/
         display:flex;
         align-items:center;
         justify-content:center;

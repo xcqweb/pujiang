@@ -412,7 +412,7 @@ import sciencePoints from './points.json'
 	  				for(let i=0; i<reData.length; ++i){
 	  					this.points[i] = {"count":reData[i].count,"lat":reData[i].latitude,"lng":reData[i].longitude};
 	  				}
-	  				this.addScript('全部');
+	  				this.addScript('全部','https://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js');
 	  				//console.log(reData);
 					if(re.status===200){
 						this.isloading = false;
@@ -422,10 +422,11 @@ import sciencePoints from './points.json'
 			    })
 		  	},
 		  	//多个地方使用会造成冲突,需动态添加热力图,且需在地图构建前将热力图引入进来
-		  	addScript(val){
+		  	addScript(val,src){
                 let _self = this;
                 var oS=document.createElement('script');
-                oS.src='https://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js';
+                //oS.src='https://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js';
+                oS.src=src;
                 this.$el.appendChild(oS)
                 oS.onload=function(){
                     _self.rodomMap(val);

@@ -45,7 +45,7 @@
 									<li><span>{{item.weibo}}</span></li>
 									<li><span>{{item.weixin}}</span></li>
 									<li><span>{{item.WXQRCode}}</span></li>
-									<li style="cursor: pointer;" title="点击查看大图" @click="openBigImg(item.FlagPic)"><img :src="'http://txl.tourzj.gov.cn/sitepic/Imgbig/'+item.FlagPic"width="100%" alt="暂无图片"/></li>
+									<li><img style="cursor: pointer;" title="点击查看大图" @click="openBigImg(item.FlagPic)" :src="'http://txl.tourzj.gov.cn/sitepic/Imgbig/'+item.FlagPic"width="100%" alt="暂无图片" /></li>
 									<li><span>{{item.zxphone}}</span></li>
 									<li><span>{{item.tsphone}}</span></li>
 									<li class="smallW"><span>{{item.Remind}}</span></li>
@@ -97,7 +97,7 @@
 									<li><span>{{item.weibo}}</span></li>
 									<li><span>{{item.weixin}}</span></li>
 									<li><span>{{item.WXQRCode}}</span></li>
-									<li style="cursor: pointer;" title="点击查看大图" @click="openBigImg(item.FlagPic)"><img :src="'http://txl.tourzj.gov.cn/sitepic/Imgbig/'+item.FlagPic"width="100%" alt="暂无图片"/></li>
+									<li><img style="cursor: pointer;" title="点击查看大图" @click="openBigImg(item.FlagPic)" :src="'http://txl.tourzj.gov.cn/sitepic/Imgbig/'+item.FlagPic"width="100%" alt="暂无图片" /></li>
 									<li><span>{{item.zxphone}}</span></li>
 									<li><span>{{item.tsphone}}</span></li>
 									
@@ -138,7 +138,7 @@
 									<li><span>{{item.TrafficLevel}}</span></li>
 									<li class="smallW2"><span>{{item.TrafficSelf}}</span></li>
 									<li><span>{{item.SurroundEnvironment}}</span></li>
-									<li style="cursor: pointer;" title="点击查看大图" @click="openBigImg(item.describePic)"><img :src="'http://txl.tourzj.gov.cn/sitepic/Imgbig/'+item.describePic"width="100%" alt="暂无图片"/></li>
+									<li><img style="cursor: pointer;" title="点击查看大图" @click="openBigImg(item.describePic)" :src="'http://txl.tourzj.gov.cn/sitepic/Imgbig/'+item.describePic"width="100%" alt="暂无图片"/></li>
 									<li><span>{{item.Facilities}}</span></li>
 									<li><span>{{item.SurroundFacilities}}</span></li>
 									<li><span>{{item.AdditionalService}}</span></li>
@@ -160,7 +160,7 @@
 									<li><span>{{item.Tel}}</span></li>
 									<li><span>{{item.weixin}}</span></li>
 									<li><span>{{item.WXQRCode}}</span></li>
-									<li style="cursor: pointer;" title="点击查看大图" @click="openBigImg(item.FlagPic)"><img :src="'http://txl.tourzj.gov.cn/sitepic/Imgbig/'+item.FlagPic"width="100%" alt="暂无图片"/></li>
+									<li><img style="cursor: pointer;" title="点击查看大图" @click="openBigImg(item.FlagPic)" :src="'http://txl.tourzj.gov.cn/sitepic/Imgbig/'+item.FlagPic"width="100%" alt="暂无图片" /></li>
 									<li><span>{{item.zxphone}}</span></li>
 									<li><span>{{item.tsphone}}</span></li>
 									<li><span>{{item.Credit}}</span></li>
@@ -202,7 +202,7 @@
 									<li><span>{{item.Web}}</span></li>
 									<li><span>{{item.Tel}}</span></li>
 									<li><span>{{item.WXQRCode}}</span></li>
-									<li style="cursor: pointer;" title="点击查看大图" @click="openBigImg(item.FlagPic)"><img :src="'http://txl.tourzj.gov.cn/sitepic/Imgbig/'+item.FlagPic"width="100%" alt="暂无图片"/></li>
+									<li><img style="cursor: pointer;" title="点击查看大图" @click="openBigImg(item.FlagPic)" :src="'http://txl.tourzj.gov.cn/sitepic/Imgbig/'+item.FlagPic"width="100%" alt="暂无图片" /></li>
 									<li><span>{{item.zxphone}}</span></li>
 									<li><span>{{item.tsphone}}</span></li>
 									<li><span>{{item.OpenTime}}</span></li>
@@ -243,7 +243,7 @@
 									<li><span>{{item.Fax}}</span></li>
 									<li><span>{{item.Web}}</span></li>
 									<li><span>{{item.Tel}}</span></li>
-									<li style="cursor: pointer;" title="点击查看大图" @click="openBigImg(item.FlagPic)"><img :src="'http://txl.tourzj.gov.cn/sitepic/Imgbig/'+item.FlagPic"width="100%" alt="暂无图片"/></li>
+									<li><img style="cursor: pointer;" title="点击查看大图" @click="openBigImg(item.FlagPic)" :src="'http://txl.tourzj.gov.cn/sitepic/Imgbig/'+item.FlagPic"width="100%" alt="暂无图片" /></li>
 									<li><span>{{item.zxphone}}</span></li>
 									<li><span>{{item.tsphone}}</span></li>
 									<li><span>{{item.Credit}}</span></li>
@@ -278,7 +278,7 @@
 									<li><span>{{item.Web}}</span></li>
 									<li><span>{{item.Tel}}</span></li>
 									<li><span>{{item.WXQRCode}}</span></li>
-									<li style="cursor: pointer;" title="点击查看大图" @click="openBigImg(item.FlagPic)"><img :src="'http://txl.tourzj.gov.cn/sitepic/Imgbig/'+item.FlagPic"width="100%" alt="暂无图片"/></li>
+									<li><img style="cursor: pointer;" title="点击查看大图" @click="openBigImg(item.FlagPic)" :src="'http://txl.tourzj.gov.cn/sitepic/Imgbig/'+item.FlagPic"width="100%" alt="暂无图片" /></li>
 									<li><span>{{item.zxphone}}</span></li>
 									<li><span>{{item.tsphone}}</span></li>
 									<li><span>{{item.Credit}}</span></li>
@@ -340,7 +340,7 @@
 									<li><span>{{item.weibo}}</span></li>
 									<li><span>{{item.weixin}}</span></li>
 									<li><span>{{item.WXQRCode}}</span></li>
-									<li style="cursor: pointer;" title="点击查看大图" @click="openBigImg(item.FlagPic)"><img :src="'http://txl.tourzj.gov.cn/sitepic/Imgbig/'+item.FlagPic"width="100%" alt="暂无图片"/></li>
+									<li><img style="cursor: pointer;" title="点击查看大图" @click="openBigImg(item.FlagPic)" :src="'http://txl.tourzj.gov.cn/sitepic/Imgbig/'+item.FlagPic"width="100%" alt="暂无图片" /></li>
 									<li><span>{{item.lng}}</span></li>
 									<li><span>{{item.lat}}</span></li>
 									<li><span>{{item.PostCode}}</span></li>

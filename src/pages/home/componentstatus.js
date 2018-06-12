@@ -27,7 +27,6 @@ let A6 = resolve => {require.ensure(['@/pages/home/vcomponent/vchart_map.vue'], 
 
 //游客来源排行
 let A7 = resolve => {require.ensure(['@/pages/home/vcomponent/vrinking.vue'], () => {resolve(require('@/pages/home/vcomponent/vrinking.vue'))})}
-let A10 = resolve => {require.ensure(['@/pages/home/vcomponent/vvideo2.vue'], () => {resolve(require('@/pages/home/vcomponent/vvideo2.vue'))})}
 
 
 
@@ -98,7 +97,6 @@ let status =[
     'A5',
     'A6',
     'A7',
-    'A10',
     'B2',
     'B6',
     'B17',

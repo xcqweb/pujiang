@@ -295,7 +295,6 @@ export default {
             let start_end_instance =  new Start_end_class('timeline',_self.mins,Math.round((_self.mins*60) / _self.btwsecends),this.code);
             start_end_instance.get_timeline().then(re =>{
                 _self.data_arr = re.arr;
-                    console.log(re);
                     
               _self.data_arr.date = this.getDate()
               _self.option.xAxis.data=this.getDate();
