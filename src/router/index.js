@@ -43,7 +43,7 @@ const router= new Router({
         component: loginmain,
         name: '',
         children: [
-            { path: '', component: Login, name: 'Login'},
+            { path: '/', component: Login, name: 'Login'},
             { path: 'pagetwo', component: LoginTwo, name: 'LoginTwo'},
             { path: 'pagethree', component: loginthree, name: 'loginthree' },
             { path: 'pagefour', component: loginfour, name: 'loginfour' },
@@ -58,7 +58,7 @@ const router= new Router({
         name: '',
         iconCls: 'el-icon-message',//图标样式class
         children: [
-            { path: '', component: Video, name: 'homepage' ,meta:{requiresAuth:true}},
+            { path: '/', component: Video, name: 'homepage' ,meta:{requiresAuth:true}},
             { path: 'home', component: homepage, name: 'home' ,meta:{requiresAuth:true}},
             { path: 'video', component: Video, name: 'video' ,meta:{requiresAuth:true}},
             { path: 'prodcut', component: prodcut, name: 'prodcut',meta:{requiresAuth:true} },
@@ -78,9 +78,7 @@ router.beforeEach((to, from, next) => {
     if(token){
       next();
     }else{
-      next({
-        path: '/login',// 将跳转的路由path作为参数，登录成功后跳转到该路由
-      });
+    	router.replace('login')
     }
   }else{
     next();//如果无需token,那么随它去吧

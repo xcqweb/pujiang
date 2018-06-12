@@ -1,9 +1,7 @@
 <template>
   <div id="app" >
     <div class="content">
-     <keep-alive> 
         <router-view></router-view>
-     </keep-alive> 
     </div>
   </div>
 </template>
@@ -26,18 +24,10 @@ Vue.config.devtools = true;
 export default {
 
   data(){
-    return{
-      // img: require('./assets/images/bg.png')
-  }
+	    return{
+	  }
   },
-  components:{}
-  ,
   store:store,
-
-  methods:{},
-  created(){
-    
-  }
 }
 </script>
 <!--全局样式-->
@@ -133,7 +123,6 @@ html{
     height: auto;
   }
   
-  //background-image: url('./assets/images/bg.png') ;
   background-repeat: repeat-y;
   background-size:100vw auto;
 
@@ -162,8 +151,4 @@ html{
 font-family: numberFont;
 src: url('./assets/style/fonts/lcddd.ttf'),
 }
-
-/*div,font,span,p{
-	font-family: numberFont;
-}*/
 </style>

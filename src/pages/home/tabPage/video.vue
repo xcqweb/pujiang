@@ -25,7 +25,7 @@
                 <span @click='cutover(item,leftComponents)'>
                 </span>
                 <div class="border" v-if='!item.show'>
-                	<keepalive>
+                	<keep-alive>
 	                    <componet
 	                   	:qyselectlist='item.qyselectlist'
 	                   	:playerOptions='item.playerOptions'
@@ -36,7 +36,7 @@
 	                    :placeName = 'placeName'
 	                    :touristProp = "updateData.turist"
 	                    ></componet>
-                    </keepalive>
+                    </keep-alive>
                 </div>
             </div>
         </div>
@@ -127,12 +127,12 @@ export default {
 				          height: '360',
 				          sources: [{
 				            type: "rtmp/mp4",
-				            src: "rtmp://114.55.237.138:10935/hls/stream_1"
+				            src: "rtmp://115.29.13.132:10935/hls/stream_1"
 				          }],
 				          techOrder: ['flash'],
 				          autoplay: true,
 				          controls: true,
-				          poster: "http://114.55.237.138:10800//snap/1/channel_1.jpg"
+				          poster: "http://115.29.13.132:10800//snap/1/channel_1.jpg"
 				        }
                     },
                     
@@ -150,12 +150,12 @@ export default {
 				          height: '360',
 				          sources: [{
 				            type: "rtmp/mp4",
-				            src: "rtmp://114.55.237.138:10935/hls/stream_2"
+				            src: "rtmp://115.29.13.132:10935/hls/stream_2"
 				          }],
 				          techOrder: ['flash'],
 				          autoplay: true,
 				          controls: true,
-				          poster: "http://114.55.237.138:10800//snap/2/channel_2.jpg"
+				          poster: "http://115.29.13.132:10800//snap/2/channel_2.jpg"
 				        }},
 				        
 				        
@@ -172,12 +172,12 @@ export default {
 				          height: '360',
 				          sources: [{
 				            type: "rtmp/mp4",
-				            src: "rtmp://114.55.237.138:10935/hls/stream_3"
+				            src: "rtmp://115.29.13.132:10935/hls/stream_3"
 				          }],
 				          techOrder: ['flash'],
 				          autoplay: true,
 				          controls: true,
-				          poster: "http://114.55.237.138:10800//snap/3/channel_3.jpg"
+				          poster: "http://115.29.13.132:10800//snap/3/channel_3.jpg"
 				        }},
 				        
 				        
@@ -194,12 +194,12 @@ export default {
 				          height: '360',
 				          sources: [{
 				            type: "rtmp/mp4",
-				            src: "rtmp://114.55.237.138:10935/hls/stream_5"
+				            src: "rtmp://115.29.13.132:10935/hls/stream_5"
 				          }],
 				          techOrder: ['flash'],
 				          autoplay: true,
 				          controls: true,
-				          poster: "http://114.55.237.138:10800//snap/5/channel_5.jpg"
+				          poster: "http://115.29.13.132:10800//snap/5/channel_5.jpg"
 				        }},
                 ],
 

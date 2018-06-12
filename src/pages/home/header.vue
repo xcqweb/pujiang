@@ -3,10 +3,10 @@
     <p v-show="showTitle">{{title}}</p>
     <ul>
         <li v-for='(item, index) in items' :class='item.status' @click='toggle(item,index)' :title="item.name">
-            <router-link v-bind:to={path:item.link}>
+            <!--<router-link v-bind:to={path:item.link} replace>-->
                 <span :class='item.status'></span>
-                <font>{{item.name}}</font>
-            </router-link>          
+                <font >{{item.name}}</font>
+            <!--</router-link>-->          
         </li>
         <li @click='logout' title="退出登录">
             <span></span>
@@ -40,7 +40,7 @@ export default {
   },
   watch:{
       hash:function (val) {
-              this.changelink()
+            this.changelink()
           },
   },
   computed: { 
@@ -60,6 +60,7 @@ export default {
   },
   methods: {
     toggle(item,index){
+    	this.$router.replace(item.link)
         for (var i = 0; i < this.items.length; i++) {
             this.items[i].status='chose'
         }
@@ -68,7 +69,6 @@ export default {
     },
     logout(){
     	api.loginOut(api.params).then( (re) => {
-    		//console.log(re.data)
     		if(re.data.code===200){
     			setCookie('token','',-1);
         	this.$router.replace({ path: '/login' });
@@ -177,16 +177,10 @@ a:visited { text-decoration: none;}
                 margin-top:7px;
             }
             &.chose{
-                a{
                     color: #368df7 !important;  
-                }
-                
             }   
             &.unchose{
-                a{
                     color: #6dffeb !important;  
-                }
-                
             }
         }
         

@@ -5,7 +5,6 @@
           	 class="vjs-custom-skin" 
           	 :options="playerOptions"
           	 @ready="playerIsReady"
-             @changed="playerStateChanged($event)"
              @playing='onPlayerPlaying'
           	></video-player>
         </div>
@@ -20,7 +19,7 @@
 <script>
 	import sleckte from '@/components/commonui/dropdown/dropdown-menu.vue'
 	import 'video.js/dist/video-js.css'
-    import { videoPlayer } from 'vue-video-player'
+  import { videoPlayer } from 'vue-video-player'
 	import 'videojs-flash'
 	import 'videojs-hotkeys'
 	export default{
@@ -50,12 +49,12 @@
 			          height: '360',
 			          sources: [{
 			            type: "rtmp/mp4",
-			            src: "rtmp://114.55.237.138:10935/hls/stream_12"
+			            src: "rtmp://115.29.13.132:10935/hls/stream_12"
 			          }],
 			          techOrder: ['flash'],
 			          autoplay: true,
 			          controls: true,
-			          poster: "http://114.55.237.138:10800//snap/2/channel_2.jpg"
+			          poster: "http://115.29.13.132:10800/snap/2/channel_2.jpg"
 			        }
 				}
 			}
@@ -74,20 +73,17 @@
     mounted(){
     },
     methods: {
-      playerStateChanged(playerCurrentState) {
-//      console.log('example 2: state changed', playerCurrentState)
-      },
       onPlayerPlaying(){
       	this.isloading = false
       },
       playerIsReady(player) {
-//      console.log('example 2 ready!', player)
+      	//this.isloading = false
         player.hotkeys({
           volumeStep: 0.1,
           seekStep: 5,
           enableModifiersForNumbers: false,
           fullscreenKey: function(event, player) {
-            // override fullscreen to trigger when pressing the F key or Ctrl+Enter
+          // override fullscreen to trigger when pressing the F key or Ctrl+Enter
             return ((event.which === 70) || (event.ctrlKey && event.which === 13));
           }
         })
@@ -101,73 +97,73 @@
       comSrc(){
 	        	switch(this.scienceName){
 	        		case '仙华山1':
-	        		this.playerOptions.poster = 'http://114.55.237.138:10800//snap/1/channel_1.jpg'
-	        		return 'rtmp://114.55.237.138:10935/hls/stream_1';
+	        		this.playerOptions.poster = 'http://115.29.13.132:10800/snap/1/channel_1.jpg'
+	        		return 'rtmp://115.29.13.132:10935/hls/stream_1';
 	        		break;
 	        		
 	        		case '仙华山2':
-	        		this.playerOptions.poster = 'http://114.55.237.138:10800//snap/2/channel_2.jpg'
-	        		return 'rtmp://114.55.237.138:10935/hls/stream_2';
+	        		this.playerOptions.poster = 'http://115.29.13.132:10800/snap/2/channel_2.jpg'
+	        		return 'rtmp://115.29.13.132:10935/hls/stream_2';
 	        		break;
 	        		
 	        		case '新光村1':
-	        		this.playerOptions.poster = 'http://114.55.237.138:10800//snap/3/channel_3.jpg'
-	        		return 'rtmp://114.55.237.138:10935/hls/stream_3';
+	        		this.playerOptions.poster = 'http://115.29.13.132:10800/snap/3/channel_3.jpg'
+	        		return 'rtmp://115.29.13.132:10935/hls/stream_3';
 	        		break;
 	        		
 	        		case '新光村2':
-	        		this.playerOptions.poster = 'http://114.55.237.138:10800//snap/4/channel_4.jpg'
-	        		return 'rtmp://114.55.237.138:10935/hls/stream_4';
+	        		this.playerOptions.poster = 'http://115.29.13.132:10800/snap/4/channel_4.jpg'
+	        		return 'rtmp://115.29.13.132:10935/hls/stream_4';
 	        		break;
 	        		
 	        		case '前吴村1':
-	        		this.playerOptions.poster = 'http://114.55.237.138:10800//snap/5/channel_5.jpg'
-	        		return 'rtmp://114.55.237.138:10935/hls/stream_5';
+	        		this.playerOptions.poster = 'http://115.29.13.132:10800/snap/5/channel_5.jpg'
+	        		return 'rtmp://115.29.13.132:10935/hls/stream_5';
 	        		break;
 	        		
 	        		case '前吴村2':
-	        		this.playerOptions.poster = 'http://114.55.237.138:10800//snap/6/channel_6.jpg'
-	        		return 'rtmp://114.55.237.138:10935/hls/stream_6';
+	        		this.playerOptions.poster = 'http://115.29.13.132:10800/snap/6/channel_6.jpg'
+	        		return 'rtmp://115.29.13.132:10935/hls/stream_6';
 	        		break;
 	        		
 	        		case '民生村1':
-	        		this.playerOptions.poster = 'http://114.55.237.138:10800//snap/7/channel_7.jpg'
-	        		return 'rtmp://114.55.237.138:10935/hls/stream_7';
+	        		this.playerOptions.poster = 'http://115.29.13.132:10800/snap/7/channel_7.jpg'
+	        		return 'rtmp://115.29.13.132:10935/hls/stream_7';
 	        		break;
 	        		
 	        		case '民生村2':
-	        		this.playerOptions.poster = 'http://114.55.237.138:10800//snap/8/channel_8.jpg'
-	        		return 'rtmp://114.55.237.138:10935/hls/stream_8';
+	        		this.playerOptions.poster = 'http://115.29.13.132:10800/snap/8/channel_8.jpg'
+	        		return 'rtmp://115.29.13.132:10935/hls/stream_8';
 	        		break;
 	        		
 	        		case '潘周家村1':
-	        		this.playerOptions.poster = 'http://114.55.237.138:10800//snap/9/channel_9.jpg'
-	        		return 'rtmp://114.55.237.138:10935/hls/stream_9';
+	        		this.playerOptions.poster = 'http://115.29.13.132:10800/snap/9/channel_9.jpg'
+	        		return 'rtmp://115.29.13.132:10935/hls/stream_9';
 	        		break;
 	        		
 	        		case '潘周家村2':
-	        		this.playerOptions.poster = 'http://114.55.237.138:10800//snap/10/channel_10.jpg'
-	        		return 'rtmp://114.55.237.138:10935/hls/stream_10';
+	        		this.playerOptions.poster = 'http://115.29.13.132:10800//snap/10/channel_10.jpg'
+	        		return 'rtmp://115.29.13.132:10935/hls/stream_10';
 	        		break;
 	        		
 	        		case '冷坞村1':
-	        		this.playerOptions.poster = 'http://114.55.237.138:10800//snap/11/channel_11.jpg'
-	        		return 'rtmp://114.55.237.138:10935/hls/stream_11';
+	        		this.playerOptions.poster = 'http://115.29.13.132:10800/snap/11/channel_11.jpg'
+	        		return 'rtmp://115.29.13.132:10935/hls/stream_11';
 	        		break;
 	        		
 	        		case '冷坞村2':
-	        		this.playerOptions.poster = 'http://114.55.237.138:10800//snap/12/channel_12.jpg'
-	        		return 'rtmp://114.55.237.138:10935/hls/stream_12';
+	        		this.playerOptions.poster = 'http://115.29.13.132:10800/snap/12/channel_12.jpg'
+	        		return 'rtmp://115.29.13.132:10935/hls/stream_12';
 	        		break;
 	        		
 	        		case '上河村1':
-	        		this.playerOptions.poster = 'http://114.55.237.138:10800//snap/13/channel_13.jpg'
-	        		return 'rtmp://114.55.237.138:10935/hls/stream_13';
+	        		this.playerOptions.poster = 'http://115.29.13.132:10800/snap/13/channel_13.jpg'
+	        		return 'rtmp://115.29.13.132:10935/hls/stream_13';
 	        		break;
 	        		
 	        		case '上河村2':
-	        		this.playerOptions.poster = 'http://114.55.237.138:10800//snap/14/channel_14.jpg'
-	        		return 'rtmp://114.55.237.138:10935/hls/stream_14';
+	        		this.playerOptions.poster = 'http://115.29.13.132:10800/snap/14/channel_14.jpg'
+	        		return 'rtmp://115.29.13.132:10935/hls/stream_14';
 	        		break;
 	        	}
 	        }
