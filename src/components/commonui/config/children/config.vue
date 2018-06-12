@@ -115,14 +115,6 @@
 					this.editData.loadNum =  Rw.string_until.transformNum(editEle[i].getElementsByClassName('load')[0].value);
 					this.editData.configNum = Rw.string_until.transformNum(editEle[i].getElementsByClassName('config')[0].value) ;
 					this.editIndex = '';
-<<<<<<< HEAD
-					
-//					this.SAVE_EDIT(this.editData);
-//					this.SAVE_CONFIG(this.editData);
-//					this.ADD_HISTORY(this.editData);
-					
-=======
->>>>>>> 261d5371a71fcdf7cb3302c48be5b0a0be15e267
 					this.setData(this.editData);
 			},
 			cancel(){

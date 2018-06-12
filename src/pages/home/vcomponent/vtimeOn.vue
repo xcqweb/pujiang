@@ -192,7 +192,7 @@ export default {
             if(isIE>-1){ 
             	i=22||this.num;
 						}else{ 
-							i=30;
+							i=22;
 						}
             let timerIndex = Math.round((_self.mins*60) / _self.btwsecends)-5;
             this.chart = echarts.init(document.getElementById(id));
@@ -206,8 +206,8 @@ export default {
 							 date=_self.data_arr.date.splice(22,this.num+1);
             	 data=_self.data_arr.data.splice(22,this.num+1);
 						}else{ 
-							 date=_self.data_arr.date.splice(42,58);
-            	 data=_self.data_arr.data.splice(42,58);
+							 date=_self.data_arr.date.splice(22,28);
+            	 data=_self.data_arr.data.splice(22,28);
 						}
             
             this.reTimer=setInterval(function () {
