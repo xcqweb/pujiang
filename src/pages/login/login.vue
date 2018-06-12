@@ -45,6 +45,7 @@ import Bus from '@/common/js/bus.js'
 import Start_end_class from '@/common/js/star_end_class.js'
 import api from '@/api/moudles/tanzhenData'
 import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
+import $axios from '@/api/instance/index'
   export default {
     data(){
         return{
@@ -81,7 +82,6 @@ import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
     },
     methods:{
         getBack(){
-            // console.log(this.$route.path);
             this.$router.go(-1);
         },
         redom(){
@@ -107,7 +107,6 @@ import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
         },
         loginmock(){
             let _self = this;
-            // this.$router.push({ path: '/' });
             let start_end_instance =  new Start_end_class('timeline',20,10);
             start_end_instance.get_response().then(re =>{
                 _self.data_arr = re ;                
@@ -130,12 +129,10 @@ import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
               formData.append('username', this.loginForm.username);
               formData.append('password', this.loginForm.password);
               
-             // console.log(formData)
-                 axios.post(API_HZ+'/pj/api/user/login',formData)
-               //axios.post('http://114.55.237.138/pj/api/user/login',formData)
+                 $axios.post(API_HZ+'/pj/api/user/login',formData)
                 .then((data ) => {
                 	//console.log(data);
-                    this.logintext='登录中'; 
+                    this.logintext='登录中...'; 
                     if(data.data.code=200){
                         if(data.data.message==="用户名密码错误"){
                             this.logintext='登录';
@@ -154,8 +151,11 @@ import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
 	                    }
 	                })
 	                .catch(error => {
+	                	if(error.code===666){
+	                		alert('网络出错啦!')
+	                		this.logintext='登录';
+	                	}
 	                  this.reloading=true;
-	                  console.log(error)
 	                });
         },
     },
@@ -269,11 +269,11 @@ import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
         color:black;
         outline:medium;
         &:after {
-                    content: ".";
-                    display: block;
-                    height: 0;
-                    clear: both;
-                    visibility: hidden;
+	                content: ".";
+	                display: block;
+	                height: 0;
+	                clear: both;
+	                visibility: hidden;
                 }
     }
     h1{

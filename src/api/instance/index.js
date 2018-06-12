@@ -37,7 +37,7 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
 	
     response => {
-      	//console.log(response)
+      	console.log(response)
         if (response.data.code == 200 || response.data.code == '200') {
             return response;
             //拦截景区预警人数设置
@@ -53,14 +53,7 @@ instance.interceptors.response.use(
         
     },
     error => { //默认除了2XX之外的都是错误的，就会走这里
-        if(error.response ===-1){
-//             router.replace({ //跳转到登录页面
-//                 path: 'login',
-//                 query: { redirect: router.currentRoute.fullPath } // 将跳转的路由path作为参数，登录成功后跳转到该路由
-//             })
-        }
-         	// console.log(`error:${error.message},code:${error.status}`)
-        return Promise.reject(error.response.data);
+        return Promise.reject({code:666});
     }
 );
 export default instance

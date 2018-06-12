@@ -130,7 +130,6 @@ export default {
                            }
                        },
                    }
-
                ] //series结束
          },
       }
@@ -172,8 +171,6 @@ export default {
 	            date.shift();
 	            data.shift();
             	this.currentNum = data[this.num-1];
-							
-            
         },
         redom(id){
             let _self=this;
@@ -187,43 +184,29 @@ export default {
             }
             let date=[];
             let data=[];
-<<<<<<< .mine
-            if(isIE>-1){ 
-							 date=_self.data_arr.date.splice(22,this.num+1);
-            	 data=_self.data_arr.data.splice(22,this.num+1);
-						}else{ 
-							 date=_self.data_arr.date.splice(22,28);
-            	 data=_self.data_arr.data.splice(22,28);
-						}
-=======
+
 							 date=_self.data_arr.date.splice(8-this.num,this.num)
             	 data=_self.data_arr.data.splice(8-this.num,this.num)
-
-
-
-
-
->>>>>>> .theirs
             
             this.reTimer=setInterval(function () {
                 i++;
 		                if(i > timerIndex){
+		                	i=0
 		                	_self.isloading = true;
 		                	_self.chart.setOption({});
-                        let start_end_instance1 =  new Start_end_class('timeline',_self.mins,Math.round((_self.mins*60) / _self.btwsecends),this.code);
+                        let start_end_instance1 =  new Start_end_class('timeline',_self.mins,Math.round((_self.mins*60) / _self.btwsecends),_self.code);
                         start_end_instance1.get_timeline().then(re =>{
                             _self.data_arr = [];
                             _self.data_arr = re.arr;
-                            _self.data_arr.date = this.getDate()
+                            _self.data_arr.date = _self.getDate()
                            
-                          _self.option.xAxis.data=this.getDate();
+                          _self.option.xAxis.data=_self.getDate();
                					 _self.option.series.data=re.arr.data;
               						_self.chart.setOption(_self.option);
               						if(re.code===200){
 					                	_self.isloading = false;
 					                }
                       })
-								
                 };
                _self.addData(i,date,data,_self.data_arr.date,_self.data_arr.data);
 
@@ -293,8 +276,6 @@ export default {
 			                if(s<10){
 			                    s='0'+s
 			                }
-			                
-			                
 			                arrDate[i]= +h+':'+m+':'+s;
                     }
                     return arrDate
@@ -305,19 +286,17 @@ export default {
             	this.chart.dispose();
             }
             this.chart = echarts.init(document.getElementById('container'));
-              _self.mins= 60;
-              self.btwsecends = 5;
-            let start_end_instance =  new Start_end_class('timeline',_self.mins,Math.round((_self.mins*60) / _self.btwsecends),this.code);
+            let start_end_instance =  new Start_end_class('timeline',_self.mins,Math.round((_self.mins*60) / _self.btwsecends),_self.code);
             start_end_instance.get_timeline().then(re =>{
                 _self.data_arr = re.arr;
                     
-              _self.data_arr.date = this.getDate()
-              _self.option.xAxis.data=this.getDate();
+              _self.data_arr.date = _self.getDate()
+              _self.option.xAxis.data=_self.getDate();
               _self.option.series.data=re.arr.data;
                 _self.redom('container');
                 if(re.code===200 ||　re.code==='200'){
                 	setTimeout( () => {
-                		this.isloading = false;
+                		_self.isloading = false;
                 	},5000)
                 	
                 }

@@ -1,5 +1,5 @@
 
-import axios from '@/api/instance'
+import axios from '@/api/instance/index'
 import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
 import {API_HZ} from '@/api/env'
 export var params={};
