@@ -185,8 +185,8 @@ export default {
             let date=[];
             let data=[];
 
-							 date=_self.data_arr.date.splice(8-this.num,this.num)
-            	 data=_self.data_arr.data.splice(8-this.num,this.num)
+				date=_self.data_arr.date.splice(8-this.num,this.num)
+            	data=_self.data_arr.data.splice(8-this.num,this.num)
             
             this.reTimer=setInterval(function () {
                 i++;
