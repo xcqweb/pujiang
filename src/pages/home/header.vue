@@ -3,10 +3,8 @@
     <p v-show="showTitle">{{title}}</p>
     <ul>
         <li v-for='(item, index) in items' :class='item.status' @click='toggle(item,index)' :title="item.name">
-            <!--<router-link v-bind:to={path:item.link} replace>-->
                 <span :class='item.status'></span>
                 <font >{{item.name}}</font>
-            <!--</router-link>-->          
         </li>
         <li @click='logout' title="退出登录">
             <span></span>
@@ -177,10 +175,10 @@ a:visited { text-decoration: none;}
                 margin-top:7px;
             }
             &.chose{
-                    color: #368df7 !important;  
+                    color: #368df7;  
             }   
             &.unchose{
-                    color: #6dffeb !important;  
+                    color: #6dffeb;  
             }
         }
         

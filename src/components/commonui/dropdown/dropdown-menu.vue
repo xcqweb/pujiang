@@ -172,6 +172,9 @@ import Vue from 'vue'
     box-shadow: 1px 0 30px  rgba(1,1,13,0.4);
     z-index: 320;
     white-space: nowrap;
+    &:hover{
+    	box-shadow: 1px 0 30px  rgba(1,1,13,1);
+    }
     .up{
         display:inline-block;
         position: absolute;

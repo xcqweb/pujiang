@@ -240,14 +240,20 @@ export default {
                         data:datay,
                         itemStyle:{
                             normal: {
-                                color: new echarts.graphic.LinearGradient(
-                                    0, 0, 0, 1,
-                                    [
+                               
+                                 color: {
+															    type: 'linear',
+															    x: 0,
+															    y: 0,
+															    x2: 0,
+															    y2: 1,
+															    colorStops: [
                                     {offset: 0, color: '#86b6ff'},
                                     {offset: 0.5,color:'#6a95fe'},
-                                    {offset: 1, color: '#5d88f7'}
-                                    ]
-                                )
+                                    {offset: 1, color: '#8f88f7'}
+                                    ],
+															    globalCoord: false // 缺省为 false
+															},
                             }
                         },
                         label:{
@@ -331,6 +337,9 @@ export default {
 	top: 0.7rem;
 	left:25%;
 	color: #fff;
+}
+.clock:hover{
+	box-shadow: 1px 0 30px  rgba(1,1,13,1);
 }
 .load{
   width: 100%;

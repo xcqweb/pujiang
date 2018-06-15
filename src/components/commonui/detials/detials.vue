@@ -555,6 +555,7 @@
 		right: 0;
 		bottom: 0;
 		margin: auto;
+		box-shadow: 0 0 10rem #888;
 		&:before {
 	        position:absolute;
 	        top: -0.1rem;

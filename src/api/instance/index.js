@@ -37,7 +37,6 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
 	
     response => {
-      	console.log(response)
         if (response.data.code == 200 || response.data.code == '200') {
             return response;
             //拦截景区预警人数设置

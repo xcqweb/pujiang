@@ -336,14 +336,14 @@ export default {
     	color: #49D9FE;
     	font-size: 1rem;
     	position: absolute;
-    	top: 32%;
+    	top: 33%;
     	right: 2.5%;
     }
     .womenP{
     	color: #FF71BB;
     	font-size: 1rem;
     	position: absolute;
-    	bottom: 20%;
+    	bottom: 21%;
     	right: 2.5%;
     }
     

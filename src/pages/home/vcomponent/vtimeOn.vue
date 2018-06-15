@@ -117,13 +117,28 @@ export default {
                        smooth: true, //是否平滑曲线显示
                        lineStyle: { //线条样式
                            normal: {
-                               width: 2*w,
+                               width: 5*w,
                                color:'#2CC9E2',
+                               shadowColor: '#060f2f',
+                                shadowBlur: 4,
+                                shadowOffsetY:16,
                            }
                        },
                        itemStyle: { //折现拐点标志的样式
                            normal: {
-                               color: 'rgba(113,191,255,1)',
+                               color: {
+															    type: 'linear',
+															    x: 0,
+															    y: 0,
+															    x2: 0,
+															    y2: 1,
+															    colorStops: [{
+															        offset: 0, color: 'rgba(113,191,255,1)' // 0% 处的颜色
+															    }, {
+															        offset: 1, color: 'rgba(113,191,255,0.01)' // 100% 处的颜色
+															    }],
+															    globalCoord: false // 缺省为 false
+															},
                                borderColor:'rgba(113,191,255,1)',
                                borderWidth:10,
                                opacity:0,
@@ -358,6 +373,8 @@ export default {
     	padding: 0.3rem 0.6rem;
     	border-radius: 0.4rem;
     	font-family: numberFont;
+    	text-shadow: 0 0 0.1rem #ffe200;
+    	box-shadow: 0 0 0.8rem #375FFF inset;
     	font{
     		font-size: 0.6rem;
     		margin-left: 0.2rem;

@@ -95,7 +95,6 @@
 		watch:{
 		},
 		methods:{
-			
 			catchmsg1(data){
              	this.scienceProps = data;
         	},
@@ -136,7 +135,7 @@
 		top: 0;
 		left: 0;
 		z-index: 10000;
-		
+	}
 		.content{
 			width: 50%;
 			height: 80%;
@@ -150,30 +149,37 @@
 			left: 0;
 			z-index: 10001;
 			background: #264095;
+			box-shadow: 0 0 100rem #888;
+		}
 			.title{
 				color: #fff;
 				height: 10%;
 				position: relative;
 				background-color: #264095;
-				
+			}	
 				.history,.config{
-					background-color: #739CD6;
+					display: block;
+					background: linear-gradient(75deg, #739CD6, #758c98);
 					position: absolute;
 					top: 0;
 					margin-top: 1rem;
 					padding: 0.3rem 0.8rem 0.4rem 0.8rem;
 					border-radius: 1rem;
 					cursor: pointer;
+					overflow: hidden;
 				}
 				.history{
 					left: 38%;
 				}
 				.config{
 					left: 52%;
-					
 				}
+				
+				
+				
 				.active{
-					background-color: #EA484F;
+					background: linear-gradient(75deg, #f00, #e8e581);
+					box-shadow: 0 0 0.6rem #000;
 				}
 				.close{
 					position: absolute;
@@ -190,8 +196,8 @@
 				.close:hover{
 					color: #fff;
 				}
-			}
-		}
+			
+		
 		.v-dropdown-menu{
 			background-color: #1E3382;
 			border-radius: 0 0.3rem 0.3rem 0;
@@ -214,7 +220,7 @@
 		    z-index: 320;
 		    white-space: nowrap;
 		}
-	}
+	
 	
 	@keyframes fulls{
 		from{

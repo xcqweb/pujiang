@@ -105,7 +105,7 @@ export default {
 			                    name: '剩余占比',
 			                    itemStyle: {
 													    normal: {
-													        color: 'rgba(255,255,255,1)',//未完成的圆环的颜色
+													        color: 'rgba(255,255,255,0.9)',//未完成的圆环的颜色
 													        label: {
 													            show: false
 													        },
@@ -118,6 +118,54 @@ export default {
 
 			            ]
 			        },
+			         {
+			            name: '',
+			            type: 'pie',
+			            clockWise: false,
+			            radius: ['0', '54%'],
+			            itemStyle:  {
+									    normal: {
+									        label: {
+									            show: false
+									        },
+									        labelLine: {
+									            show: false
+									        },
+									        shadowBlur: 40,
+									        shadowColor: 'rgba(40, 40, 40, 0.5)',
+									    }
+									},
+			            hoverAnimation: true,
+			              data: [
+			                {
+			                    value: 100,
+			                    name: '剩余占比',
+			                    itemStyle: {
+													    normal: {
+													        color: {
+																	    type: 'radial',
+																	    x: 0.5,
+																	    y: 0.5,
+																	    r: 0.5,
+																	    colorStops: [{
+																	        offset: 0, color: 'rgba(22,51,135,0.01)' // 0% 处的颜色
+																	    }, {
+																	        offset: 1, color: 'rgba(255,255,255,0.1)' // 100% 处的颜色
+																	    }],
+																	    globalCoord: false // 缺省为 false
+																	},
+													        label: {
+													            show: false
+													        },
+													    },
+													}
+			                },{
+			                    value: 0,
+			                    name: '客流占最大客流比率'
+			                }
+
+			            ]
+			         }
 			    ]
 			},
 	      nub:0,
@@ -237,6 +285,7 @@ export default {
 		color:#ffd800;
 		font-size:1.8rem;
 		font-family:numberFont;
+		text-shadow: 0 0 0.5rem #ffd800;
 		font{
 			font-size: .9rem;
 		}
@@ -306,6 +355,7 @@ export default {
 		background-size: 100% 100%;
 		span{
 			color:#f5781f;
+			text-shadow: 0 0 0.5rem #f5781f;
 			position: absolute;
 			display: inline-block;
 			top: 43%;

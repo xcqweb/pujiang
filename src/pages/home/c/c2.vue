@@ -140,16 +140,14 @@ export default {
                 radius : '70%',
                 center: ['27%', '60%'],
                 center: ['27%', '52%'],
-                // selecteMode:'single',
-                // selectedOffset:30,
-//                 roseType:"area",
+                selecteMode:'single',
+                selectedOffset:30,
                 startAngle:90,
                 labelLine: {
                     normal: {
                         show: false,
                     }
                 },
-                // animation:false,
                 animationType:'expansion',
                 label:{
                     normal:{

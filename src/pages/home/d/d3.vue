@@ -18,6 +18,9 @@
 		right: 8rem;
         box-shadow: 1px 0 30px  rgba(1,1,13,0.4);
     }
+    .date:hover{
+    	box-shadow: 1px 0 30px  rgba(1,1,13,1);
+    }
     .loading{
     	height: 120%;
     }

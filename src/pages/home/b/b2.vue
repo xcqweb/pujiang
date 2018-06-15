@@ -8,8 +8,8 @@
         <div class="text" v-show="isVideo"><font>客流预警</font></div>
         <p class="configBtn" @click="passagerConfig" v-show="!isVideo">设置</p>
         <img v-show="isVideo" class="line" src="../../../assets/images/circle/violet/line.png"/>
-      <Loading v-show="isloading"></Loading>
-      <!--使用if 每次重新渲染 并传递筛选景区-->
+      	<Loading v-show="isloading"></Loading>
+      	<!--使用if 每次重新渲染 并传递筛选景区-->
         <config v-show = "showToast" @closeToast='closeToast'></config>
     </div>
 </template>
@@ -221,28 +221,8 @@ export default {
   request(){
 	  api.params.code= this.code;
       api.passengerwarning(api.params).then( (re) => {
-//  	axios.get('https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/passengerwarning').then( (re) => {
-      //设置默认值
-//    this.nub = re.data.data.count;
-//    this.set_config = 100000;
       this.percent = re.data.data.warnPercent;
-//    this.configNumber = re.data.data.count;
       this.isloading=false;
-//    let nub = this.nub;
-//	  let setconfig = this.nub*100/this.percent;
-//    	let Ratio = this.percent/100
-//	      let setColor = '';
-//	      if(Ratio<0.3){
-//	      	setColor='#1da7fe'
-//	      }else if(Ratio<0.5){
-//	      	setColor='#7460EE'
-//	      }else if(Ratio<0.7){
-//	      	setColor='#eee716'
-//	      }else if(Ratio<0.9){
-//	      	setColor='#cb1f1f'
-//	      }else{
-//	      	setColor='#f00'
-//	      }
 		this.redom()
     }).catch( e =>{
       console.log(e);
@@ -287,7 +267,12 @@ export default {
     	border: 0.2rem solid #50A6D5;
     	border-radius: 0.4rem;
     	padding: 0.2rem 0.8rem;
+    	text-shadow: 0 0 10rem #50A6D5;
     	cursor: pointer;
+    }
+    .configBtn:hover{
+    	color: #8bb2d2;
+    	border-color: #8bb2d2;
     }
     #pieB2{
         height:12rem;
@@ -317,7 +302,6 @@ export default {
             margin-left:10%;
             color:#1da7fe;
             font-size:1rem;
-            /*font-family: numberFont;*/
         }
     }
     img{

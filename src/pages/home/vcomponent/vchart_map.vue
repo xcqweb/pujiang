@@ -1110,6 +1110,9 @@ export default {
           background-size: 100% 100%;
           color:#d3ddf9;
       }
+      &:hover{
+		box-shadow: 0 0 1.5rem  rgba(1,1,13,0.6);
+      }
     }
     .twoweek{
       cursor: pointer;
@@ -1127,6 +1130,9 @@ export default {
         background-image:url('../../../assets/images/home/透明框—省内.png');
           background-size: 100% 100%;
           color:#d3ddf9;
+      }
+      &:hover{
+		box-shadow: 0 0 1.5rem  rgba(1,1,13,0.6);
       }
     }
   }

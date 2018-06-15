@@ -3,6 +3,7 @@
         <div v-bind:class='weaImg' class="weatherImg"></div>
         <div class="weather">{{nowRes.text}}</div>
         <div class="temperature">{{nowRes.temperature}}℃</div>
+        <Loading v-show="isloading"></Loading>
     </div>
 </template>
 
@@ -17,6 +18,7 @@ export default {
     return {
         currentIndex: 0,
                 timer:[],
+                isloading:true,
                 lifegroup:[
                     {part:'car_washing',text:'洗车',show:true},
                     {part:'dressing',text:'穿衣',show:true},
@@ -134,7 +136,7 @@ export default {
                       location : this.apiData.location,
                     },
                     success:function(res){
-						//console.log(res)
+						_self.isloading = false
                       _self.$nextTick(function () {
                         _self.nowRes = res.results[0].now;
                       });
@@ -169,6 +171,9 @@ export default {
   },
   mounted(){
      this.getNow()
+  },
+  components:{
+  	Loading
   }
 }
 </script>

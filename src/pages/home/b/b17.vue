@@ -17,6 +17,9 @@
         margin-top: 3%;
         border-radius: 5px;
         cursor: pointer;
+        &:hover{
+			box-shadow: 0 0 5rem  rgba(1,1,13,0.3) inset !important;
+	      }
         div{
             transform: translate(0,30%)
         }
@@ -48,6 +51,7 @@
             }
         }
         &:nth-of-type(1){
+        	box-shadow: 0 0 1rem #000;
             background: linear-gradient(75deg, #0084ec, #34caf7);
              .item_img{
 	           background: url('../../../assets/images/chanye/1.png') no-repeat;
@@ -55,6 +59,7 @@
 	        }
         }
         &:nth-of-type(2){
+        	box-shadow: 0 0 1rem #000;
             background: linear-gradient(75deg, #2d4eca, #0f98ed);
             .item_img{
 	           background: url('../../../assets/images/chanye/2.png') no-repeat;
@@ -62,6 +67,7 @@
 	        }
         }
         &:nth-of-type(3){
+        	box-shadow: 0 0 1rem #000;
             background: linear-gradient(75deg, #5947cf, #8d7bfe);
             .item_img{
 	           background: url('../../../assets/images/chanye/3.png') no-repeat;
@@ -69,6 +75,7 @@
 	        }
         }
         &:nth-of-type(4){
+        	box-shadow: 0 0 1rem #000;
             background: linear-gradient(75deg, #ea446c, #ff7655);
             .item_img{
 	           background: url('../../../assets/images/chanye/4.png') no-repeat;
@@ -76,6 +83,7 @@
 	        }
         }
         &:nth-of-type(5){
+        	box-shadow: 0 0 1rem #000;
             background: linear-gradient(75deg, #2bba75, #39e9d2);
             .item_img{
 	           background: url('../../../assets/images/chanye/5.png') no-repeat;
@@ -84,6 +92,7 @@
         }
         
         &:nth-of-type(6){
+        	box-shadow: 0 0 1rem #000;
             background: linear-gradient(75deg, #4751cf, #7ba0fe);
             .item_img{
 	           background: url('../../../assets/images/chanye/6.png') no-repeat;
@@ -91,6 +100,7 @@
 	        }
         } 
         &:nth-of-type(7){
+        	box-shadow: 0 0 1rem #000;
             background: linear-gradient(75deg, #7447cf, #c87bfe);
             .item_img{
 	           background: url('../../../assets/images/chanye/7.png') no-repeat;
@@ -98,6 +108,7 @@
 	        }
         }
         &:nth-of-type(8){
+        	box-shadow: 0 0 1rem #000;
             background: linear-gradient(75deg, #EB5F44, #FCA855);
             .item_img{
 	           background: url('../../../assets/images/chanye/8.png') no-repeat;

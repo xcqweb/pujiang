@@ -232,7 +232,6 @@
 			.tip{
 				color: #f00;
 				font-size: 0.8rem;
-				//background-color: #f00;
 				font-weight: bold;
 				padding: 0.3rem;
 				position: absolute;

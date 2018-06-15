@@ -191,6 +191,9 @@
 				display: block;
 				z-index: 600;
 				box-shadow: 0.1rem 0 1.5rem rgba(1, 1, 13, 0.4);
+				&:hover{
+					box-shadow: 1px 0 30px  rgba(1,1,13,1);
+				}
 				li{
 					height: 1.5rem;
 					width: 5rem;
@@ -213,6 +216,9 @@
 			position: absolute;
 			left: 1rem;
 			top: 0.9rem;
+			&:hover{
+					box-shadow: 1px 0 30px  rgba(1,1,13,1);
+				}
 			span{
 				margin-left: -1rem;
 			}
@@ -252,6 +258,9 @@
 			top: 2.8rem;
 			left: 1.3rem;
 			box-shadow: 1px 0 1.5rem rgba(1, 1, 13, 0.4);
+			&:hover{
+					box-shadow: 1px 0 30px  rgba(1,1,13,1);
+				}
 			li{
 				height: 1.5rem;
 				line-height: 1.5rem;
