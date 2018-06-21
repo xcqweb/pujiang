@@ -1,6 +1,6 @@
 <template>
   <div id="loginmain" :style="{backgroundImage: 'url(' + img + ')'}">
-        <h1>浦江县旅游大数据应用和应急管理指挥平台</h1>
+        <h1>浦江县全域旅游大数据中心</h1>
         <h2><span></span><font>国人智慧提供技术支持</font></h2>
         <router-link to="/login" v-show='homelogo' @click='changelink'>
             <div class='backlogin'>

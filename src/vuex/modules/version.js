@@ -8,7 +8,7 @@ const state = {
   token:'',
   //浦江
    stateB:{
-        title:'浦江县旅游大数据应用和应急管理指挥平台',
+        title:'浦江县全域旅游大数据中心',
         data:{
             name:'浦江县',
             inItems:[
