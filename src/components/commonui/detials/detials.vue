@@ -16,7 +16,7 @@
 							</div>
 							<div class="conBox">
 								<ul class="mainList" v-for="item in reData" :style="{'min-width':titles.length*16+'rem'}" :key='item.AuditUnitID'>
-									<li><span>{{item.AuditUnitID}}</span></li>
+									<li><img style="cursor: pointer;" title="点击查看大图" @click="openBigImg(item.FlagPic)" :src="'http://txl.tourzj.gov.cn/sitepic/Imgbig/'+item.FlagPic"width="100%" alt="暂无图片" /></li>
 									<li><span>{{item.UnitName}}</span></li>
 									<li><span>{{item.AreaCode}}</span></li>
 									<li><span>{{item.address}}</span></li>
@@ -41,17 +41,16 @@
 									<li><span>{{item.Fax}}</span></li>
 									<li><span>{{item.Web}}</span></li>
 									<li><span>{{item.tel}}</span></li>
-									<li><span>{{item.email}}</span></li>
+									<!--<li><span>{{item.email}}</span></li>
 									<li><span>{{item.weibo}}</span></li>
 									<li><span>{{item.weixin}}</span></li>
-									<li><span>{{item.WXQRCode}}</span></li>
-									<li><img style="cursor: pointer;" title="点击查看大图" @click="openBigImg(item.FlagPic)" :src="'http://txl.tourzj.gov.cn/sitepic/Imgbig/'+item.FlagPic"width="100%" alt="暂无图片" /></li>
+									<li><span>{{item.WXQRCode}}</span></li>-->
 									<li><span>{{item.zxphone}}</span></li>
 									<li><span>{{item.tsphone}}</span></li>
 									<li class="smallW"><span>{{item.Remind}}</span></li>
 									<li><span>{{item.Credit}}</span></li>
 									<li><span>{{item.CarPark}}</span></li>
-									<li><span>{{item.Leader}}</span></li>
+									<!--<li><span>{{item.Leader}}</span></li>-->
 									<li><span>{{item.LeaderPhone}}</span></li>
 								</ul>
 							</div>
@@ -66,7 +65,7 @@
 							</div>
 							<div class="conBox">
 								<ul class="mainList" v-for="item in reData" :style="{'min-width':titles.length*16+'rem'}" :key='item.AuditUnitID'>
-									<li><span>{{item.AuditUnitID}}</span></li>
+									<li><img style="cursor: pointer;" title="点击查看大图" @click="openBigImg(item.FlagPic)" :src="'http://txl.tourzj.gov.cn/sitepic/Imgbig/'+item.FlagPic"width="100%" alt="暂无图片" /></li>
 									<li><span>{{item.UnitName}}</span></li>
 									<li><span>{{item.AreaCode}}</span></li>
 									<li><span>{{item.address}}</span></li>
@@ -84,30 +83,30 @@
 									<li><span>{{item.Service}}</span></li>
 									<li><span>{{item.RoomCount}}</span></li>
 									<li class="smallW2"><span>{{item.RoomKind}}</span></li>
-									<li><span>{{item.email}}</span></li>
+									<!--<li><span>{{item.email}}</span></li>-->
 									
-									<li><span>{{item.lng}}</span></li>
+									<!--<li><span>{{item.lng}}</span></li>
 									<li><span>{{item.lat}}</span></li>
-									<li><span>{{item.PostCode}}</span></li>
+									<li><span>{{item.PostCode}}</span></li>-->
 									
 									<li><span>{{item.Fax}}</span></li>
-									<li><span>{{item.Web}}</span></li>
-									<li><span>{{item.Tel}}</span></li>
+									<!--<li><span>{{item.Web}}</span></li>-->
+									<!--<li><span>{{item.Tel}}</span></li>-->
 									
-									<li><span>{{item.weibo}}</span></li>
+									<!--<li><span>{{item.weibo}}</span></li>
 									<li><span>{{item.weixin}}</span></li>
-									<li><span>{{item.WXQRCode}}</span></li>
-									<li><img style="cursor: pointer;" title="点击查看大图" @click="openBigImg(item.FlagPic)" :src="'http://txl.tourzj.gov.cn/sitepic/Imgbig/'+item.FlagPic"width="100%" alt="暂无图片" /></li>
+									<li><span>{{item.WXQRCode}}</span></li>-->
+									
 									<li><span>{{item.zxphone}}</span></li>
 									<li><span>{{item.tsphone}}</span></li>
 									
 									<li><span>{{item.RenDate}}</span></li>
 									
-									<li><span>{{item.Credit}}</span></li>
-									<li><span>{{item.CarPark}}</span></li>
-									<li><span>{{item.Leader}}</span></li>
+									<!--<li><span>{{item.Credit}}</span></li>-->
+									<!--<li><span>{{item.CarPark}}</span></li>-->
+									<!--<li><span>{{item.Leader}}</span></li>-->
 									<li><span>{{item.LeaderPhone}}</span></li>
-									<li><span>{{item.Honor}}</span></li>
+									<!--<li><span>{{item.Honor}}</span></li>-->
 								</ul>
 							</div>
 						</div>
@@ -121,7 +120,7 @@
 							</div>
 							<div class="conBox">
 								<ul class="mainList" v-for="item in reData" :style="{'min-width':titles.length*16+'rem'}" :key='item.AuditUnitID'>
-									<li><span>{{item.AuditUnitID}}</span></li>
+									<li><img style="cursor: pointer;" title="点击查看大图" @click="openBigImg(item.FlagPic)" :src="'http://txl.tourzj.gov.cn/sitepic/Imgbig/'+item.FlagPic"width="100%" alt="暂无图片" /></li>
 									<li><span>{{item.UnitName}}</span></li>
 									<li><span>{{item.AreaCode}}</span></li>
 									<li><span>{{item.address}}</span></li>
@@ -140,36 +139,36 @@
 									<li><span>{{item.SurroundEnvironment}}</span></li>
 									<li><img style="cursor: pointer;" title="点击查看大图" @click="openBigImg(item.describePic)" :src="'http://txl.tourzj.gov.cn/sitepic/Imgbig/'+item.describePic"width="100%" alt="暂无图片"/></li>
 									<li><span>{{item.Facilities}}</span></li>
-									<li><span>{{item.SurroundFacilities}}</span></li>
-									<li><span>{{item.AdditionalService}}</span></li>
+									<!--<li><span>{{item.SurroundFacilities}}</span></li>-->
+									<!--<li><span>{{item.AdditionalService}}</span></li>-->
 									<li><span>{{item.ResStatistics}}</span></li>
 									<li><span>{{item.AccommodatePeople}}</span></li>
-									<li><span>{{item.TicketInfo}}</span></li>
-									<li><span>{{item.GuideInfo}}</span></li>
+									<!--<li><span>{{item.TicketInfo}}</span></li>-->
+									<!--<li><span>{{item.GuideInfo}}</span></li>-->
 									<li><span>{{item.formType}}</span></li>
 									<li><span>{{item.minPrice}}</span></li>
-									<li><span>{{item.Style}}</span></li>
-									<li><span>{{item.special}}</span></li>
-									<li><span>{{item.email}}</span></li>
-									<li><span>{{item.weibo}}</span></li>
+									<!--<li><span>{{item.Style}}</span></li>-->
+									<!--<li><span>{{item.special}}</span></li>-->
+									<!--<li><span>{{item.email}}</span></li>-->
+									<!--<li><span>{{item.weibo}}</span></li>-->
 									<li><span>{{item.lng}}</span></li>
 									<li><span>{{item.lat}}</span></li>
-									<li><span>{{item.PostCode}}</span></li>
+									<!--<li><span>{{item.PostCode}}</span></li>-->
 									<li><span>{{item.Fax}}</span></li>
-									<li><span>{{item.Web}}</span></li>
-									<li><span>{{item.Tel}}</span></li>
-									<li><span>{{item.weixin}}</span></li>
-									<li><span>{{item.WXQRCode}}</span></li>
-									<li><img style="cursor: pointer;" title="点击查看大图" @click="openBigImg(item.FlagPic)" :src="'http://txl.tourzj.gov.cn/sitepic/Imgbig/'+item.FlagPic"width="100%" alt="暂无图片" /></li>
+									<!--<li><span>{{item.Web}}</span></li>-->
+									<!--<li><span>{{item.Tel}}</span></li>-->
+									<!--<li><span>{{item.weixin}}</span></li>-->
+									<!--<li><span>{{item.WXQRCode}}</span></li>-->
+									
 									<li><span>{{item.zxphone}}</span></li>
 									<li><span>{{item.tsphone}}</span></li>
 									<li><span>{{item.Credit}}</span></li>
 									<li><span>{{item.CarPark}}</span></li>
 									<li><span>{{item.Mobile}}</span></li>
 									<li><span>{{item.roomNum}}</span></li>
-									<li><span>{{item.Honor}}</span></li>
+									<!--<li><span>{{item.Honor}}</span></li>-->
 									<li><span>{{item.OpenTime}}</span></li>
-									<li><span>{{item.RenovationDate}}</span></li>
+									<!--<li><span>{{item.RenovationDate}}</span></li>-->
 								</ul>
 							</div>
 						</div>
@@ -183,7 +182,7 @@
 							</div>
 							<div class="conBox">
 								<ul class="mainList" v-for="item in reData" :style="{'min-width':titles.length*16+'rem'}" :key='item.AuditUnitID'>
-									<li><span>{{item.AuditUnitID}}</span></li>
+									<li><img style="cursor: pointer;" title="点击查看大图" @click="openBigImg(item.FlagPic)" :src="'http://txl.tourzj.gov.cn/sitepic/Imgbig/'+item.FlagPic"width="100%" alt="暂无图片" /></li>
 									<li><span>{{item.UnitName}}</span></li>
 									<li><span>{{item.AreaCode}}</span></li>
 									<li><span>{{item.address}}</span></li>
@@ -192,27 +191,27 @@
 									<li><span>{{item.cuisine_name}}</span></li>
 									<li><span>{{item.eatway_name}}</span></li>
 									<li><span>{{item.room_num}}</span></li>
-									<li><span>{{item.email}}</span></li>
+									<!--<li><span>{{item.email}}</span></li>
 									<li><span>{{item.weibo}}</span></li>
-									<li><span>{{item.weixin}}</span></li>
+									<li><span>{{item.weixin}}</span></li>-->
 									<li><span>{{item.lng}}</span></li>
 									<li><span>{{item.lat}}</span></li>
 									<li><span>{{item.PostCode}}</span></li>
 									<li><span>{{item.Fax}}</span></li>
-									<li><span>{{item.Web}}</span></li>
+									<!--<li><span>{{item.Web}}</span></li>
 									<li><span>{{item.Tel}}</span></li>
-									<li><span>{{item.WXQRCode}}</span></li>
-									<li><img style="cursor: pointer;" title="点击查看大图" @click="openBigImg(item.FlagPic)" :src="'http://txl.tourzj.gov.cn/sitepic/Imgbig/'+item.FlagPic"width="100%" alt="暂无图片" /></li>
+									<li><span>{{item.WXQRCode}}</span></li>-->
+									
 									<li><span>{{item.zxphone}}</span></li>
 									<li><span>{{item.tsphone}}</span></li>
 									<li><span>{{item.OpenTime}}</span></li>
 									<li><span>{{item.Credit}}</span></li>
 									<li><span>{{item.CarPark}}</span></li>
-									<li><span>{{item.Leader}}</span></li>
+									<!--<li><span>{{item.Leader}}</span></li>-->
 									<li><span>{{item.LeaderPhone}}</span></li>
 									<li><span>{{item.DecorateTime}}</span></li>
 									<li class="smallW2"><span>{{item.Describe}}</span></li>
-									<li><span>{{item.Honor}}</span></li>
+									<!--<li><span>{{item.Honor}}</span></li>-->
 									<li><span>{{item.IsWifi}}</span></li>
 								</ul>
 							</div>
@@ -227,23 +226,23 @@
 							</div>
 							<div class="conBox">
 								<ul class="mainList" v-for="item in reData" :style="{'min-width':titles.length*16+'rem'}" :key='item.AuditUnitID'>
-									<li><span>{{item.AuditUnitID}}</span></li>
+									<li><img style="cursor: pointer;" title="点击查看大图" @click="openBigImg(item.FlagPic)" :src="'http://txl.tourzj.gov.cn/sitepic/Imgbig/'+item.FlagPic"width="100%" alt="暂无图片" /></li>
+									
 									<li><span>{{item.UnitName}}</span></li>
 									<li><span>{{item.AreaCode}}</span></li>
 									<li><span>{{item.address}}</span></li>
 									<li><span>{{item.transit}}</span></li>
 									<li><span>{{item.OpenTime}}</span></li>
-									<li><span>{{item.email}}</span></li>
+									<!--<li><span>{{item.email}}</span></li>
 									<li><span>{{item.weibo}}</span></li>
 									<li><span>{{item.weixin}}</span></li>
-									<li><span>{{item.WXQRCode}}</span></li>
+									<li><span>{{item.WXQRCode}}</span></li>-->
 									<li><span>{{item.lng}}</span></li>
 									<li><span>{{item.lat}}</span></li>
 									<li><span>{{item.PostCode}}</span></li>
 									<li><span>{{item.Fax}}</span></li>
 									<li><span>{{item.Web}}</span></li>
-									<li><span>{{item.Tel}}</span></li>
-									<li><img style="cursor: pointer;" title="点击查看大图" @click="openBigImg(item.FlagPic)" :src="'http://txl.tourzj.gov.cn/sitepic/Imgbig/'+item.FlagPic"width="100%" alt="暂无图片" /></li>
+									<!--<li><span>{{item.Tel}}</span></li>-->
 									<li><span>{{item.zxphone}}</span></li>
 									<li><span>{{item.tsphone}}</span></li>
 									<li><span>{{item.Credit}}</span></li>
@@ -261,24 +260,24 @@
 							</div>
 							<div class="conBox">
 								<ul class="mainList" v-for="item in reData" :style="{'min-width':titles.length*16+'rem'}" :key='item.AuditUnitID'>
-									<li><span>{{item.AuditUnitID}}</span></li>
+									<li><img style="cursor: pointer;" title="点击查看大图" @click="openBigImg(item.FlagPic)" :src="'http://txl.tourzj.gov.cn/sitepic/Imgbig/'+item.FlagPic"width="100%" alt="暂无图片" /></li>
 									<li><span>{{item.UnitName}}</span></li>
 									<li><span>{{item.AreaCode}}</span></li>
 									<li><span>{{item.address}}</span></li>
 									<li><span>{{item.transit}}</span></li>
 									<li><span>{{item.OpenTime}}</span></li>
 									<li><span>{{item.enter_type_name}}</span></li>
-									<li><span>{{item.email}}</span></li>
+									<!--<li><span>{{item.email}}</span></li>
 									<li><span>{{item.weibo}}</span></li>
-									<li><span>{{item.weixin}}</span></li>
+									<li><span>{{item.weixin}}</span></li>-->
 									<li><span>{{item.lng}}</span></li>
 									<li><span>{{item.lat}}</span></li>
 									<li><span>{{item.PostCode}}</span></li>
 									<li><span>{{item.Fax}}</span></li>
 									<li><span>{{item.Web}}</span></li>
-									<li><span>{{item.Tel}}</span></li>
-									<li><span>{{item.WXQRCode}}</span></li>
-									<li><img style="cursor: pointer;" title="点击查看大图" @click="openBigImg(item.FlagPic)" :src="'http://txl.tourzj.gov.cn/sitepic/Imgbig/'+item.FlagPic"width="100%" alt="暂无图片" /></li>
+									<!--<li><span>{{item.Tel}}</span></li>
+									<li><span>{{item.WXQRCode}}</span></li>-->
+									
 									<li><span>{{item.zxphone}}</span></li>
 									<li><span>{{item.tsphone}}</span></li>
 									<li><span>{{item.Credit}}</span></li>
@@ -296,7 +295,7 @@
 							</div>
 							<div class="conBox">
 								<ul class="mainList" v-for="item in reData" :style="{'min-width':titles.length*16+'rem'}" :key='item.AuditUnitID'>
-									<li><span>{{item.AuditUnitID}}</span></li>
+									<li><img style="cursor: pointer;" title="点击查看大图" @click="openBigImg(item.FlagPic)" :src="'http://txl.tourzj.gov.cn/sitepic/Imgbig/'+item.FlagPic"width="100%" alt="暂无图片" /></li>
 									<li><span>{{item.UnitName}}</span></li>
 									<li><span>{{item.AreaCode}}</span></li>
 									<li><span>{{item.address}}</span></li>
@@ -306,18 +305,18 @@
 									<li><span>{{item.PostCode}}</span></li>
 									<li><span>{{item.Fax}}</span></li>
 									<li><span>{{item.Web}}</span></li>
-									<li><span>{{item.Tel}}</span></li>
+									<!--<li><span>{{item.Tel}}</span></li>-->
 									<li><span>{{item.transit}}</span></li>
 									<li><span>{{item.LicenseNo}}</span></li>
-									<li><span>{{item.email}}</span></li>
-									<li><span>{{item.weibo}}</span></li>
+									<!--<li><span>{{item.email}}</span></li>-->
+									<!--<li><span>{{item.weibo}}</span></li>
 									<li><span>{{item.weixin}}</span></li>
-									<li><span>{{item.WXQRCode}}</span></li>
+									<li><span>{{item.WXQRCode}}</span></li>-->
 									<li><span>{{item.PlaceType}}</span></li>
 									<li><span>{{item.zxphone}}</span></li>
 									<li><span>{{item.tsphone}}</span></li>
 									<li><span>{{item.travel_type}}</span></li>
-									<li><span>{{item.travel_language}}</span></li>
+									<!--<li><span>{{item.travel_language}}</span></li>-->
 								</ul>
 							</div>
 						</div>
@@ -331,22 +330,22 @@
 							</div>
 							<div class="conBox">
 								<ul class="mainList" v-for="item in reData" :style="{'min-width':titles.length*16+'rem'}" :key='item.AuditUnitID'>
-									<li><span>{{item.AuditUnitID}}</span></li>
+									<li><img style="cursor: pointer;" title="点击查看大图" @click="openBigImg(item.FlagPic)" :src="'http://txl.tourzj.gov.cn/sitepic/Imgbig/'+item.FlagPic"width="100%" alt="暂无图片" /></li>
 									<li><span>{{item.UnitName}}</span></li>
 									<li><span>{{item.AreaCode}}</span></li>
 									<li><span>{{item.address}}</span></li>
 									<li><span>{{item.transit}}</span></li>
-									<li><span>{{item.email}}</span></li>
+									<!--<li><span>{{item.email}}</span></li>
 									<li><span>{{item.weibo}}</span></li>
 									<li><span>{{item.weixin}}</span></li>
-									<li><span>{{item.WXQRCode}}</span></li>
-									<li><img style="cursor: pointer;" title="点击查看大图" @click="openBigImg(item.FlagPic)" :src="'http://txl.tourzj.gov.cn/sitepic/Imgbig/'+item.FlagPic"width="100%" alt="暂无图片" /></li>
+									<li><span>{{item.WXQRCode}}</span></li>-->
+									
 									<li><span>{{item.lng}}</span></li>
 									<li><span>{{item.lat}}</span></li>
 									<li><span>{{item.PostCode}}</span></li>
 									<li><span>{{item.Fax}}</span></li>
 									<li><span>{{item.Web}}</span></li>
-									<li><span>{{item.Tel}}</span></li>
+									<!--<li><span>{{item.Tel}}</span></li>-->
 									<li><span>{{item.zxphone}}</span></li>
 									<li><span>{{item.tsphone}}</span></li>
 									<li><span>{{item.serve_time}}</span></li>
@@ -433,42 +432,42 @@
 			switchType(type){
 				switch(type){
 					case '景点':
-					this.titles=['景点ID', '全称', '行政区划编码', '街道地址', '等级', '景点类型', '门票价格', '简介', '公共交通', '自驾车路线', '开放时间', '优惠政策', '景点称号', '景点设施', '经度', '纬度', '邮编', '传真', '网址', '联系电话', '邮箱地址', '微博账号', '微信账号', '微信二维码', '标志图', '咨询电话', '投诉电话', '温馨提示', '信用卡', '有无停车场', '负责人', '负责人电话'];
+					this.titles=['标志图', '全称', '行政区划编码', '街道地址', '等级', '景点类型', '门票价格', '简介', '公共交通', '自驾车路线', '开放时间', '优惠政策', '景点称号', '景点设施', '经度', '纬度', '邮编', '传真', '网址', '联系电话', '咨询电话', '投诉电话', '温馨提示', '信用卡', '有无停车场', '负责人电话'];
 					return 'listScenic';
 					break;
 					
 					case '酒店':
-					this.titles=['酒店ID', '全称', '行政区划编码', '街道地址', '等级', '酒店类型', '最低房价', '简介', '公共交通', '开业时间', '酒店政策', '酒店服务', '房间总数', '客房服务', '邮箱地址', '经度', '纬度', '邮编', '传真', '网址', '联系电话', '微博账号', '微信账号', '微信二维码', '标志图', '咨询电话', '投诉电话', '装修时间', '信用卡', '有无停车场', '负责人', '负责人电话', '所获荣誉'];
+					this.titles=['标志图', '全称', '行政区划编码', '街道地址', '等级', '酒店类型', '最低房价', '简介', '公共交通', '开业时间', '酒店政策', '酒店服务', '房间总数', '客房服务', '传真', '咨询电话', '投诉电话', '装修时间', '负责人电话'];
 					return 'listHotel';
 					break;
 					
 					case '农家乐':
-					this.titles=['农家乐ID', '全称', '行政区划编码', '街道地址', '等级', '休闲娱乐', '餐饮均价', '简介', '客房设施', '床位数', '公共交通', '营业时间', '主营内容', '公路情况', '交通方便级别', '自驾线路', '周边环境评分', '简介图片', '配套设施', '周边配套设施', '附加服务', '餐厅统计', '餐厅可容纳人数', '乡村景点票价', '乡村景点导游信息', '农家乐类型', '房间起价', '风格', '农特产', '邮箱地址', '微博账号', '经度', '纬度', '邮编', '传真', '网址', '联系电话', '微信账号', '微信二维码', '标志图', '咨询电话', '投诉电话', '信用卡', '有无停车场', '移动电话', '客房数', '所获荣誉', '开业时间', '装修时间'];
+					this.titles=['标志图', '全称', '行政区划编码', '街道地址', '等级', '休闲娱乐', '餐饮均价', '简介', '客房设施', '床位数', '公共交通', '营业时间', '主营内容', '公路情况', '交通方便级别', '自驾线路',  '简介图片', '配套设施', '餐厅统计', '餐厅可容纳人数',  '农家乐类型', '房间起价', '经度', '纬度', '邮编', '传真', '咨询电话', '投诉电话', '信用卡', '有无停车场', '移动电话', '客房数',  '开业时间'];
 					return 'listFormHouse';
 					break;
 					
 					case '餐饮':
-					this.titles=['餐饮ID', '全称', '行政区划编码', '街道地址', '餐位数', '餐饮均价（元）', '主营菜系', '就餐方式', '包间数', '邮箱地址', '微博账号', '微信账号', '经度', '纬度', '邮编', '传真', '网址', '联系电话', '微信二维码', '标志图', '咨询电话', '投诉电话', '营业时间', '信用卡', '有无停车场', '负责人', '负责人电话', '装修时间', '简介', '所获荣誉', '是否有WIFI'];
+					this.titles=['标志图', '全称', '行政区划编码', '街道地址', '餐位数', '餐饮均价（元）', '主营菜系', '就餐方式', '包间数', '经度', '纬度', '邮编', '传真' , '咨询电话', '投诉电话', '营业时间', '信用卡', '有无停车场', '负责人电话', '装修时间', '简介', '是否有WIFI'];
 					return 'listrestaurant';
 					break;
 					
 					case '购物点':
-					this.titles=['购物点ID', '全称', '行政区划编码', '街道地址', '交通路线', '开放时间', '邮箱地址', '微博账号', '微信账号', '微信二维码', '经度', '纬度', '邮编', '传真', '网址', '联系电话', '标志图', '咨询电话', '投诉电话', '信用卡', '有无停车场']
+					this.titles=['标志图', '全称', '行政区划编码', '街道地址', '交通路线', '开放时间', '经度', '纬度', '邮编', '传真', '网址', '咨询电话', '投诉电话', '信用卡', '有无停车场']
 					return 'listshopping';
 					break;
 					
 					case '休闲娱乐':
-					this.titles=['休闲娱乐ID', '全称', '行政区划编码', '街道地址', '交通路线', '开放时间', '类型', '邮箱地址', '微博账号', '微信账号', '经度', '纬度', '邮编', '传真', '网址', '联系电话', '微信二维码', '标志图', '咨询电话', '投诉电话', '信用卡', '有无停车场'];
+					this.titles=['标志图', '全称', '行政区划编码', '街道地址', '交通路线', '开放时间', '类型', '经度', '纬度', '邮编', '传真', '网址', '咨询电话', '投诉电话', '信用卡', '有无停车场'];
 					return 'listentertainment';
 					break;
 					
 					case '旅行社':
-					this.titles=['旅行社ID', '全称', '行政区划编码', '街道地址', '等级', '经度', '纬度', '邮编', '传真', '网址', '联系电话', '公共交通', '许可证号', '邮箱地址', '微博账号', '微信账号', '微信二维码', '业务范围', '咨询电话', '投诉电话', '旅行社类型', '服务语种']
+					this.titles=['标志图', '全称', '行政区划编码', '街道地址', '等级', '经度', '纬度', '邮编', '传真', '网址', '公共交通', '许可证号', '业务范围', '咨询电话', '投诉电话', '旅行社类型']
 					return 'listTravel';
 					break;
 					
 					case '公共设施':
-					this.titles=['公共设施ID', '全称', '行政区划编码', '街道地址', '交通路线', '邮箱地址', '微博账号', '微信账号', '微信二维码', '标志图', '经度', '纬度', '邮编', '传真', '网址', '联系电话', '咨询电话', '投诉电话', '服务时间', '服务类型']
+					this.titles=['标志图', '全称', '行政区划编码', '街道地址', '交通路线', '经度', '纬度', '邮编', '传真', '网址', '咨询电话', '投诉电话', '服务时间', '服务类型']
 					return 'listpublicserve';
 					break;
 				}
