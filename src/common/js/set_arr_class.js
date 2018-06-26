@@ -28,7 +28,22 @@ export default class Set_arr_class  {
         		
             for (var i = 0; i < this.times; i++) {
                 
-                let rangeNum = (currentNum*9/10+Math.random()*currentNum/12)
+                let rangeNum
+                if(currentNum>=10){
+                	if(Math.random()>0.5){
+                		rangeNum = currentNum*9/10
+                	}else{
+                		rangeNum = (currentNum*9/10+Math.random()*currentNum/12)
+                	}
+                	
+                }else{
+                	if(Math.random()>0.2){
+                		rangeNum = currentNum
+                	}else{
+                		rangeNum = (currentNum-1+Math.random()*2)
+                	}
+                	
+                }
                 
                 arr.data[i]= Math.ceil(rangeNum);
 				
