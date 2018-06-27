@@ -200,6 +200,8 @@ export default {
                         nameTextStyle:{
                           color:'#ffffff'
                         },
+                        minInterval: 1,
+                 				splitNumber:5,
                         splitLine:{
                           show:false,
                         },

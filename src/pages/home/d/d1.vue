@@ -1,4 +1,4 @@
-<style lang="less" scoped>
+	<style lang="less" scoped>
     @import '../../../common/js/baidumap/TrafficControl_min.css';
 .d1{
     position:relative;
@@ -109,7 +109,7 @@ import sciencePoints from './points.json'
         ],
         watch:{
         	touristProp:function(val){
-        		 this.addScript(val);
+        		 this.getDatas(val);
         	}
         },
         methods:{
@@ -405,14 +405,14 @@ import sciencePoints from './points.json'
             },
               getData(){},
             //请求数据
-		  	getDatas(){
+		  	getDatas(val){
 		  		api.params.code = this.code;
 		  		api.scenicHot(api.params).then( (re) =>{
 	  				let reData = re.data.data;
 	  				for(let i=0; i<reData.length; ++i){
 	  					this.points[i] = {"count":reData[i].count,"lat":reData[i].latitude,"lng":reData[i].longitude};
 	  				}
-	  				this.addScript('全部','https://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js');
+	  				this.addScript(val,'https://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js');
 	  				//console.log(reData);
 					if(re.status===200){
 						this.isloading = false;
@@ -561,7 +561,7 @@ import sciencePoints from './points.json'
         },
        mounted(){
        	this.$nextTick( () => {
-       		this.getDatas()
+       		this.getDatas('全部')
        	})
        }
     }

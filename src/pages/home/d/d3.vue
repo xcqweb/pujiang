@@ -220,7 +220,7 @@
 <template>
     <div class="d3" @scroll="loadMore($event)">
         <div class="msg" v-show='status'>
-            <div class="comment" v-for="comment in commentList">
+            <div class="comment" v-for="(comment,index) in commentList" :key='index'>
                 <span class="place">{{comment.name}}</span>
                 <ul class='comment-star'>
                 	<li v-for='item in comment.grade'><img :src="imgStar"/></li>
@@ -315,7 +315,7 @@ export default {
 			var scrollT = Math.ceil(e.target.scrollTop+e.target.clientHeight),
 		    offsetT = e.target.getElementsByClassName('msg')[0].offsetHeight;
 		    //console.log(scrollT,offsetT)
-        	if(offsetT-scrollT<=0){
+        	if(offsetT-scrollT<=360){
         		let paramsObj = {}
     				if(this.timeRange.begin && this.timeRange.end){
 		    			 paramsObj = {
@@ -352,9 +352,9 @@ export default {
 		  			}
 	  				
 	  				this.isLoad = true
-	  				reData.forEach( (v,i) => {
+	  				for(var v of reData){
 	  					this.comments.push(v)
-	  				})
+	  				}
 
 					if(re.status===200){
 						this.isloading = false;

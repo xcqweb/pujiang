@@ -65,7 +65,6 @@ export default {
 	  		//api.params.code = this.code;
 	  		api.ageAnalyse(data).then( (re) =>{
 	  				let reData = re.data.data;
-	  				//console.log(reData)
 	  				let arrData = [];
 	  				for(let i in reData){
 	  					arrData.push(reData[i])
@@ -94,7 +93,7 @@ export default {
             	},
 		        trigger: 'item',
 		        formatter: function(params){
-		        	let text = params.seriesName+" : "+params.name+"<br>"+params.percent+"%";
+		        	let text = params.seriesName+" : "+params.name+"<br>"+params.percent.toFixed(0)+"%";
 		        	return text
 		        }
 		   },

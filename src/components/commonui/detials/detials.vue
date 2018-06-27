@@ -395,7 +395,7 @@
 		       		offsetT = 0;
 		       		var scrollT = Math.ceil(e.target.scrollTop+e.target.clientHeight),
 		       			offsetT = e.target.getElementsByClassName('conBox')[0].offsetHeight;
-		       		if(offsetT-scrollT<=20){
+		       		if(offsetT-scrollT<=200){
 		       			_self.page++
 		       			_self.getData()
 		       		}

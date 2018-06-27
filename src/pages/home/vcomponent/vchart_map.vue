@@ -55,16 +55,15 @@ export default {
         topCity:[],
         chart:null,
         isActive:false,
-        color:['#f18790', '#75c774', '#5aa7fd','#f1c54b','#c184ff','6792fb', '#4BCEDD', '#FF8885','#FFCD38',  '#E39A50', '#58E5E1',],
+        color:['#C184FF','#F95AFD','#5AA7FD','#555FFF','#5AFDD1','#58E5E1','#FFCD38','#FFFD85','#FF8885','#FF43A3'],
         option : {
             backgroundColor: 'rgba(0,0,0,0)',
             tooltip: {
                 trigger: 'item',
-                formatter:function(params){
+       formatter:function(params){
                 	if(params.seriesType==="effectScatter"){
-                    		return params.data.name+" "+params.data.value[2]
+                    		return params.data.name+" "+params.data.value[2]+' (人次) '
                 	}else{
-                    		//return params.data.fromName+":"+params.data.coords[2]
                     		return 
                 	}
                 }
@@ -117,9 +116,8 @@ export default {
                 trigger: 'item',
                 formatter:function(params){
                 	if(params.seriesType==="effectScatter"){
-                    		return params.data.name+" "+params.data.value[2]
+                    		return params.data.name+" "+params.data.value[2]+' (人次) '
                 	}else{
-                    		//return params.data.fromName+":"+params.data.coords[2]
                     		return
                 	}
                 }
@@ -713,16 +711,20 @@ export default {
 					if(topCity[i]._id!=="missing" &&　topCity[i]._id!=="总计"){
 						//alert(topCity[i]._id!=="missing")
 						if(this.range===1){
-							this.allData[i]=["浦江县", [[{name: "浦江县"}, {name: topCity[i]._id, value: topCity[i].sum}]]]
+							if(topCity[i].sum>0){
+								this.allData[i]=["浦江县", [[{name: "浦江县"}, {name: topCity[i]._id, value: topCity[i].sum}]]]
+							}
 						}else{
-							this.zhejiang[i]=["浦江县", [[{name: "浦江县"}, {name: topCity[i]._id, value: topCity[i].sum}]]]
+							if(topCity[i].sum>0){
+								this.zhejiang[i]=["浦江县", [[{name: "浦江县"}, {name: topCity[i]._id, value: topCity[i].sum}]]]
+							}
 						}
 					}
 					
 				}
 				
-				this.allData.push(["浦江县", [[{name: "浦江县"}, {name: "浦江县", value: ''}]]])
-				this.zhejiang.push(["浦江县", [[{name: "浦江县"}, {name: "浦江县", value: ''}]]])
+				this.allData.push(["浦江县", [[{name: "浦江县"}, {name: "浦江县", value: '来源'}]]])
+				this.zhejiang.push(["浦江县", [[{name: "浦江县"}, {name: "浦江县", value: '来源'}]]])
 				
 	    		if(re.data.code===200 || re.data.code==='200'){
 	    			this.isloading=false;
@@ -809,7 +811,7 @@ export default {
         }
         var dom = document.getElementById("fromEchart");
         this.chart = echarts.init(dom);
-        var color =['#f18790', '#75c774', '#5aa7fd','#f1c54b','#c184ff','6792fb'];
+        var color =['#C184FF','#F95AFD','#5AA7FD','#555FFF','#5AFDD1','#58E5E1','#FFCD38','#FFFD85','#FF8885','#FF43A3'];
         var series = [];
          
         this.allData.forEach(function (item, i) {
@@ -921,7 +923,7 @@ export default {
          echarts.registerMap('zhejiang', zhejiangJson);
         var dom = document.getElementById('fromEchart');
         this.chart = echarts.init(dom);
-        var color =['#5aa7fd', '#5aa7fd', '#5aa7fd','#5aa7fd','#5aa7fd','5aa7fd','5aa7fd'];
+        var color =['#C184FF','#F95AFD','#5AA7FD','#555FFF','#5AFDD1','#58E5E1','#FFCD38','#FFFD85','#FF8885','#FF43A3'];
         var series = [];
         
         this.zhejiang.forEach(function (item, i) {

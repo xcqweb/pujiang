@@ -9,6 +9,10 @@
         width: auto;
         height: auto;
     }
+    .loading{
+    	padding: 1.5rem 0 1rem 0;
+    	margin-top: -1.5rem;
+    }
     .d17_item{
         height: 43%;
         float: left;
@@ -131,7 +135,7 @@
             <div class="item_name"><font>{{item.name}}</font></div>
             <div class="item_num"><font>{{item.value}}</font></div>
         </div>
-        <Loading v-show="isloading"></Loading>
+        <Loading v-show="isloading" class='loading'></Loading>
         <detials v-show = 'status' @closeToast='closeToast' :currentItem='currentItem'></detials>
     </div>
 </template>
