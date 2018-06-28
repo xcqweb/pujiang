@@ -16,8 +16,9 @@ export default {
     mixins: [optionProps],
     data(){
     return{
-    	ws:40,
-    	lefts:'23%',
+    	ws:20,
+    	lefts:'15%',
+    	wd:20,
     	series: [{
 		      "value": 0,
 		      name: '19岁以下'
@@ -55,9 +56,15 @@ export default {
     },
     methods:{
     	init(){
-    		this.ws = w*20
+    		
+    		
 	    	if(w===2){
-	    		this.lefts='32%'
+	    		this.lefts='20%'
+	    		this.ws = w*22
+	    		this.wd = 20
+	    	}else{
+	    		this.ws = w*18
+	    		this.wd = 10
 	    	}
     	},
     	//请求数据
@@ -100,13 +107,13 @@ export default {
           legend:{
                 show:true,
                 orient: 'vertical',
-                top:'20%' ,
+                top:'25%' ,
                 right:this.lefts,
-                width:'42%',
+                width:'60%',
                 height:'60%',
-                itemGap:this.ws,
-                itemWidth:10,
-                itemHeight:10,
+                itemGap:this.ws*2,
+                itemWidth:this.wd,
+                itemHeight:this.wd,
                 textStyle:{
                     color:'#fff',
                     fontSize:'75%',
