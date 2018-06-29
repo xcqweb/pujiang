@@ -13,7 +13,7 @@
             </div>
         </li>
         <li v-for='(item,index) in items'>
-            <div class="cell1">
+            <div class="cell1" :title="item._id">
                 {{item.sort}}. {{item._id}}
             </div>
             <div class="cell2">
@@ -107,6 +107,9 @@ ul{
    	margin-left: 6%;
     text-align: left;
     box-sizing: border-box;
+    overflow: hidden;
+		text-overflow:ellipsis;
+		white-space: nowrap;
 }
 .cell2{
     float:left;

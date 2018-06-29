@@ -75,6 +75,9 @@ export const marketing = params => { return axios.post(`${base}/jzyx/getFensFocu
 
 export const touristSum = params => {return axios.post(`${base}/cyjc/getTouristCity`,tansParm(params))}
 
+//实时客流数据
+export const timeOn = params => {return axios.post(`${base}/cyjc/getPassengerCount`,tansParm(params))}
+
 
 
 //产业数据

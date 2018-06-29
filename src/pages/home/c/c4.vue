@@ -38,7 +38,7 @@ export default {
   		let data={};
 		  data.code = this.code;
 	      data.monthId = this.yearMonth;
-	    this.getData(data)
+	      this.getData(data)
   	}
   },
   methods: {

@@ -97,8 +97,6 @@ let optionProps =  {
     	this.isloading = true
       	this.getData({code:0});
     },
-    mounted () {
-    },
     components:{
     	Loading
     }

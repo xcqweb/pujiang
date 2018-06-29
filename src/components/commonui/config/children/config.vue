@@ -7,7 +7,7 @@
 			<li>预警人数</li>
 			<li></li>
 		</ul>
-		<ul class="content" v-for="(data,i) in dataConfigList" :class="{'bc1':i%2===0,'bc2':i%2===1}" :ref="i">
+		<ul class="content" v-for="(data,i) in dataConfigList" :class="{'bc1':i%2===0,'bc2':i%2===1}" :ref="i" :key='i'>
 			<template >
 				<li>{{i+1}}</li>
 				<li>{{data.name}}</li>

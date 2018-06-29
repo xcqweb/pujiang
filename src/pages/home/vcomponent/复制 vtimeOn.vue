@@ -12,7 +12,9 @@ import echarts_listen_resize from '@/common/js/echarts_listen_resize.js'
 import echarts from 'echarts';
 import Start_end_class from '@/common/js/star_end_class.js'
 import Rw from '@/common/js/until/index'
+import api from '@/api/moudles/tanzhenData'
 import optionProps from '@/common/js/mixin/optionProps.js'
+
 let w = document.body.clientWidth/1920
 let isIE = !window.navigator.userAgent.indexOf('Chrome');
 export default {
@@ -21,7 +23,6 @@ export default {
     data () {
       return {
       	currentNum:0,
-      	barNum:0,
         reTimer:null,
         data_arr:{},
         mins:10,
@@ -169,128 +170,169 @@ export default {
     	}
     },
     methods: {
-        addZero(now){
-            if(now.getMinutes() > 9){
-                
-                var minutes =now.getMinutes() 
-            }else{
-                var minutes ="0"+now.getMinutes()
-            }
-            if(now.getSeconds()>9){
-                var seconds =now.getSeconds() 
-            }else{
-                var seconds ="0"+now.getSeconds()
-            }
-            if(now.getHours()>9){
-                var hours =now.getHours() 
-            }else{
-                var hours ="0"+now.getHours()
-            }
-            return [ hours,minutes,seconds].join(':')
+        //添加数据
+        addData(i,date,data,bigDate,bigData) {
+        		function getTime(){
+        			let dates = new Date();
+        			let h=dates.getHours()< 10 ? '0'+dates.getHours() : dates.getHours(); //获取小时
+							let m=dates.getMinutes()< 10 ? '0'+dates.getMinutes() : dates.getMinutes(); //获取分
+							let s=dates.getSeconds()< 10 ? '0'+dates.getSeconds() : dates.getSeconds(); //获取秒
+							return h+":"+m+":"+s
+        		}
+        		
+          		bigDate[i] = getTime();
+	            date.push(bigDate[i]);
+	            data.push(bigData[i]);
+	            date.shift();
+	            data.shift();
+            	this.currentNum = data[this.num-1];
         },
-        redomData(val){
-                let _self=this
-                var date = [];
-                var data = [];
-                let  powAverage =2
-                let  average =1
+        redom(id){
+            let _self=this;
+            var i = 0;
+            
+            let timerIndex = Math.round((_self.mins*60) / _self.btwsecends)-9;
+            this.chart = echarts.init(document.getElementById(id));
+            this.chart.setOption(this.option);
+            if (this.reTimer) {
+                  window.clearInterval(this.reTimer)
+            }
+            let date=[];
+            let data=[];
 
-                if(val>1440){
-                     powAverage = val/2000 ;
-                     average = val/1440 ;
-                }else{
-                     powAverage = 2 ;
-                     average = 1 ;
-                }
-				function updateRandom() {
-					  var p = Math.random(), n = Math.random() / 20;
-					  if( p < 0.9 )
-					    return 0.9 + n;
-					  if( p < 1 )
-					    return 0.95 + n;
-					}
-                for(let xi = this.num+1; xi >1;xi--){
-                    date.push(this.addZero(new Date(new Date().getTime()+10*1000 - xi*5 * 1000)));
-                    data.push((val*updateRandom()).toFixed(0))
-                }
-                
-                function randomData() {
-                	 var nowDate = new Date();
-                   var now = +new Date(nowDate.getTime());
-                    var nows = new Date(+now);
-                    if(Math.random()>0.4 && powAverage>10){
-                        value =(1- (Math.random()-1)/2)*average;
-                    }else{
-                        var value = Math.pow(Math.random()*powAverage,2);
-                        
-                    }
-                    return {
-                            xData: _self.addZero(nows),
-                            sData: (val*updateRandom()).toFixed(0)
-                    }
-                }
-                _self.currentNum = data[_self.num-2]
-                _self.option.xAxis.data=date;
-                _self.option.series.data=data;
-                 _self.chart.setOption({
-                        xAxis: {
-                            data: date
-                        },
+				    date=_self.data_arr.date.splice(8-this.num,this.num)
+            data=_self.data_arr.data.splice(8-this.num,this.num)
+            
+            this.reTimer=setInterval(function () {
+                i++;
+		                if(i > timerIndex){
+		                	i=0
+		                	_self.isloading = true;
+		                	_self.chart.setOption({});
+                        let start_end_instance1 =  new Start_end_class('timeline',_self.mins,Math.round((_self.mins*60) / _self.btwsecends),_self.code);
+                        start_end_instance1.get_timeline().then(re =>{
+                            _self.data_arr = [];
+                            _self.data_arr = re.arr;
+                            _self.data_arr.date = _self.getDate()
+                           
+                          _self.option.xAxis.data=_self.getDate();
+               					 _self.option.series.data=re.arr.data;
+              						_self.chart.setOption(_self.option);
+              						if(re.code===200){
+					                	_self.isloading = false;
+					                }
+                      })
+                };
+               _self.addData(i,date,data,_self.data_arr.date,_self.data_arr.data);
+
+                _self.chart.setOption({
+                    xAxis: {
+                        data: date
+                    },
                     series: [{
-                        data: data
-                    }]})
-                
-                if (_self.reTimer) {
-                    window.clearInterval(_self.reTimer)
-                }
-                _self.reTimer=setInterval(function () {
-                    date.shift();
-                    data.shift();
-                    date.push(randomData().xData);
-                    data.push(randomData().sData);
-                    _self.option.xAxis.data=date;
-                    _self.option.series.data=data;
-                    _self.currentNum = data[_self.num-2]
-                    _self.chart.setOption({
-                        xAxis: {
-                            data: date
-                        },
-                    series: [{
+                        name:'成交',
                         data: data
                     }]
                 });
-            }, 5000);
-        },   
-        redom(){
-                let _self=this            
-                var dom = document.getElementById('container');
-                this.chart = echarts.init(dom);
-                if (this.option && typeof this.option === "object") {    
-                   this.chart.setOption(this.option, true);
-                } 
+            }, _self.btwsecends*1000);
+            _self.$nextTick(echarts_listen_resize('container',_self));
         },
-        getData(data){
-            api.timeOn(data).then( r => {
-                if(r.data.code ==="200"||r.data.code ===200){
-                    this.barNum = r.data.data.num+Math.random();
-                    this.redom()
-                    this.redomData(this.barNum)
-                    this.isloading = false
+        getData(){},
+        getDate(){
+        	let arrDate = []
+                    let dt = new Date()
+                    let ms = dt.getTime()
+                    let t_s = dt.setTime(ms-40*1000)
+                    for(var i=0; i<720; i++){
+                    	let t_s = dt.setTime(ms-40*1000+i*5000)
+			                dt.setTime(t_s+1000*5)
+			                var hm= '';
+			                var year=dt.getFullYear(); //获取当前年份
+			                var mon=dt.getMonth()+1; //获取当前月份
+			                var da=dt.getDate(); //获取当前日
+			                var day=dt.getDay(); //获取当前星期几
+			                var h=dt.getHours(); //获取小时
+			                var m=dt.getMinutes(); //获取分
+			                var s=dt.getSeconds(); //获取秒
+			                
+			                
+			                //处理时间格式00:00:01
+			                if (m>=5) {
+			                    var endm =m-5;
+			                    if (m<15) {
+			                        if(m<10){
+			                            m='0'+m;
+			                        }
+			                        if(h<10){
+			                            h='0'+h
+			                        }
+			                        hm= h+'0'+endm;
+			                    }else{
+			                        if(h<10){
+			                            h='0'+h
+			                        }
+			                        hm= h+''+endm;
+			                    }
+			                }else{
+			                    var beginh= h-1;
+			                    var beginm =55+m;
+			                    if(beginh<10){
+			                        beginh='0'+beginh
+			                        }
+			                    m='0'+m
+			                    hm= beginh+''+beginm;
+			                }
+			                if(mon<10){
+			                    mon='0'+mon
+			                }
+			                if(da<10){
+			                    da='0'+da
+			                }
+			                if(s<10){
+			                    s='0'+s
+			                }
+			                arrDate[i]= +h+':'+m+':'+s;
+                    }
+                    return arrDate
+        },
+        getData1(){
+            let _self = this;
+            if(this.chart){
+            	this.chart.dispose();
+            }
+            this.chart = echarts.init(document.getElementById('container'));
+            let start_end_instance =  new Start_end_class('timeline',_self.mins,Math.round((_self.mins*60) / _self.btwsecends),_self.code);
+            start_end_instance.get_timeline().then(re =>{
+                _self.data_arr = re.arr;
+              _self.data_arr.date = _self.getDate()
+              _self.option.xAxis.data=_self.getDate();
+              _self.option.series.data=re.arr.data;
+                _self.redom('container');
+                if(re.code===200 ||　re.code==='200'){
+                	setTimeout( () => {
+                		_self.isloading = false;
+                	},5000)
+                	
                 }
             })
-        }
-        
+            _self.$nextTick(echarts_listen_resize('container',_self));
+        },
     },
     watch:{
-    	code:function(data){
+    	code:function(){
     		this.isloading = true;
     		this.currentNum=0;
-    		this.getData({code:data})
+    		this.getData1();
     	}
     },
-    mounted(){
-    	
-    }
+    created(){
+    },
+    mounted() {
+        this.$nextTick( () => {
+          this.getData1();
+          echarts_listen_resize('container',this)
+        });
+      },
 }
 </script>
 
