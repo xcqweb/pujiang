@@ -100,7 +100,7 @@ export default {
             	},
 		        trigger: 'item',
 		        formatter: function(params){
-		        	let text = params.seriesName+" : "+params.name+"<br>"+params.percent.toFixed(0)+"%";
+		        	let text = params.seriesName+" : "+params.name+"<br>"+params.percent.toFixed(2)+"%";
 		        	return text
 		        }
 		   },
@@ -143,9 +143,8 @@ export default {
               {
                 name:'年龄段',
                 type:'pie',
-                radius : '70%',
-                center: ['27%', '60%'],
-                center: ['27%', '52%'],
+                radius : '55%',
+                center: ['27%', '55%'],
                 selecteMode:'single',
                 selectedOffset:30,
                 startAngle:90,
@@ -155,17 +154,19 @@ export default {
                     }
                 },
                 animationType:'expansion',
+                labelLine:{
+                	show:true,
+                	smmooth:1,
+                },
                 label:{
                     normal:{
                             show: true,
-                            position: 'inner',
                             textStyle:{
-                            	fontSize:"80%",
-                            	color:'#eee',
+                            	fontSize:"60%",
                             	fontFamily:'Courier New'
                             },
                             formatter: function(params){
-                                return Math.round(params.percent) === 0 ? '' : Math.round(params.percent)+"%"  ;
+                                return params.percent === 0 ? '' : params.percent+"%"  ;
                             },
                         },
                         emphasis:{

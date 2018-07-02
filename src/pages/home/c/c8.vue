@@ -103,7 +103,7 @@ ul{
 }
 .cell1{
     float:left;
-   	flex: 3;
+   	flex: 4;
    	margin-left: 6%;
     text-align: left;
     box-sizing: border-box;

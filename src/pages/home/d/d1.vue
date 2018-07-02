@@ -94,7 +94,6 @@ import sciencePoints from './points.json'
         	}
         },
         methods:{
-        	
         	addIconAnimation(map,lon,lat,val){
         		var myIcon = new BMap.Icon(require("../../../assets/images/labler.png"), new BMap.Size(30, 30), {
                     // 指定定位位置
@@ -159,7 +158,6 @@ import sciencePoints from './points.json'
 		                    });
 			                marker.setLabel(label);
 			                
-			                
 	                    (function() {
 	                        //添加新图标的监听事件
 	                        marker.addEventListener("click",
@@ -174,7 +172,6 @@ import sciencePoints from './points.json'
             },
             addMenu(map){
                 var menu = new BMap.ContextMenu();
-
                 var txtMenuItem = [
                     {
                         text:'放大',
@@ -267,52 +264,238 @@ import sciencePoints from './points.json'
                 map.addControl(myZoomCtrl)
             },
             
+            currentNum(map){ //热力图关联当前客流人数
+            	let _self = this
+            	let coords = sciencePoints;
+            	api.params.code = this.code;
+		  		api.getScenicKeliu(api.params).then( (re) =>{
+		  			let reData = re.data.data
+		  			let arr = reData.arr
+					if(re.data.code===200){
+						if(_self.code!==0){
+							for(let item of coords){
+								if(_self.transformScience(_self.code) === item.label){
+									item.num = reData.curSum
+								}
+							}
+						}else{
+							for(let item of coords){
+								for(let v of arr){
+									if(_self.transformScience(v.code) === item.label){
+										item.num = v.curSum 
+									}
+								}
+							}
+						}
+						this.initPoints(coords,map)
+						this.isloading = false;
+					}
+			    }).catch( (e) => {
+			    	console.log(e);
+			    })
+            },
+            transformScience(code){
+            	let place = ['全部','仙华山', '前吴村', '塘波村', '民生村','罗源村','白石湾','江南第一家','嵩溪村','宝掌幽谷','登高村','神丽峡','礼张村','农批市场','檀溪镇', '冷坞村','上河村','汽车客运站', '翠湖','马岭','利民村','下湾村','新光村','西山村','田后蓬','薛下庄村','下薛宅', '金狮湖','高速路','官岩寺','上山遗址','渠南村', '温泉','水晶城','水竹湾', '平湖森林果园', '三角潭林场','罗家村','白岩山前滑草基地','里黄宅村','善庆村',
+'文化馆','通济桥水库大坝','三城山农庄','塔山宾馆','月泉书院遗址公园']
+            	return place[code]
+            },
+            
+            initPoints(coords,map){
+            	
+            	//let coords = sciencePoints;
+            	for(let item of coords){
+                	if(item.label==='仙华山'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='前吴村'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='塘波村'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='民生村'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='罗源村'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='白石湾'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='江南第一家'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='嵩溪村'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='宝掌幽谷'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='登高村'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='神丽峡'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='礼张村'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='农批市场'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='檀溪镇'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='冷坞村'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='上河村'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='汽车客运站'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='翠湖'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='马岭'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='利民村'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='下湾村'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='新光村'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='西山村'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='田后蓬'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='薛下庄村'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='下薛宅'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='金狮湖'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='高速路'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='官岩寺'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='上山遗址'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='渠南村'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='温泉'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='水晶城'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='水竹湾'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='平湖森林果园'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='三角潭林场'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='罗家村'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='白岩山前滑草基地'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='里黄宅村'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='善庆村'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='文化馆'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='通济桥水库大坝'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='三城山农庄'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='塔山宾馆'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}else if(item.label==='月泉书院遗址公园'){
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                	}
+                }
+            	
+            	this.addHot(map);
+            },
+            calcCoord(map,lats,lngs,ny,sy,wx,ex,num){//lat ,lng 景点坐标 n,s,w,e 各个方向的延伸基值
+            	
+            	function fixed(n){
+            		return n.toFixed(9)
+            	}
+            	
+            	let points = [];
+            	for(let i=0; i<num; i++){
+            		let lat,
+	            		lng,
+	            		count,
+            			r = Math.random();
+            		if(r<0.25){
+            			if(Math.random()<0.5){
+            				lat = fixed(lngs+Math.random()*ny)
+            				lng = fixed(lats+Math.random()*wx)
+            			}else{
+            				lat = fixed(lngs+Math.random()*ny)
+            				lng = fixed(lats+Math.random()*ex)
+            			}
+            		}else if(r>=0.25 && r<0.5){
+            			if(Math.random()<0.5){
+            				lat = fixed(lngs+Math.random()*sy)
+            				lng = fixed(lats+Math.random()*wx)
+            			}else{
+            				lat = fixed(lngs+Math.random()*sy)
+            				lng = fixed(lats+Math.random()*ex)
+            			}
+            		}else if(r>=0.50 && r<0.75){
+            			if(Math.random()<0.5){
+            				lat = fixed(lngs+Math.random()*sy)
+            				lng = fixed(lats+Math.random()*wx)
+            			}else{
+            				lat = fixed(lngs+Math.random()*ny)
+            				lng = fixed(lats+Math.random()*wx)
+            			}
+            		}else{
+            			if(Math.random()<0.5){
+            				lat = fixed(lngs+Math.random()*sy)
+            				lng = fixed(lats+Math.random()*ex)
+            			}else{
+            				lat = fixed(lngs+Math.random()*ny)
+            				lng = fixed(lats+Math.random()*ex)
+            			}
+            		}
+            		//count = Math.round(Math.random()*1)
+            		count = 1
+            		
+            		points[i] = {'count':count,'lat':lat,'lng':lng}
+            	}
+            	return points
+            },
             addHot(map){
-                     var points =[];
-					 
-                    map.enableScrollWheelZoom(); // 允许滚轮缩放
+				let points = this.points;   
+                map.enableScrollWheelZoom(); // 允许滚轮缩放
+               
+                if(!isSupportCanvas()){
+                    alert('热力图目前只支持有canvas支持的浏览器,您所使用的浏览器不能使用热力图功能~')
+                }
+                
+                let heatmapOverlay = new BMapLib.HeatmapOverlay({"radius":36});
+                map.addOverlay(heatmapOverlay);
+                 
+                //设置热力图数据
+                heatmapOverlay.setDataSet({data:points,max:36});
+                  
+                  
+                //是否显示热力图
+                heatmapOverlay.show();
+                function closeHeatmap(){
+                    heatmapOverlay.hide();
+                }
+               
+                //监听地图缩放事件
+	            map.addEventListener('zoomend',function(){
+	            	let zoom = map.getZoom()
+	            	
+	            	if(zoom===14){//放大级别在14时关闭热力图
+	            		 //closeHeatmap()
+	            	}
+	            })
+               
+                function setGradient(){
                    
-                    if(!isSupportCanvas()){
-                        alert('热力图目前只支持有canvas支持的浏览器,您所使用的浏览器不能使用热力图功能~')
-                    }
-                    
-                      let heatmapOverlay = new BMapLib.HeatmapOverlay({"radius":36});
-                      map.addOverlay(heatmapOverlay);
-                         points = this.points;
-                      //设置热力图数据
-                      heatmapOverlay.setDataSet({data:points,max:180});
-                      
-                      
-                    //是否显示热力图
-                       heatmapOverlay.show();
-                    function closeHeatmap(){
-                        heatmapOverlay.hide();
-                    }
-                   
-                    //监听地图缩放事件
-		            map.addEventListener('zoomend',function(){
-		            	let zoom = map.getZoom()
-		            	
-		            	if(zoom===14){//放大级别在14时关闭热力图
-		            		 //closeHeatmap()
-		            	}
-		            })
-                   
-                    function setGradient(){
-                       
-                        var gradient = {};
-                        var colors = document.querySelectorAll("input[type='color']");
-                        colors = [].slice.call(colors,0);
-                        colors.forEach(function(ele){
-                            gradient[ele.getAttribute("data-key")] = ele.value; 
-                        });
-                        heatmapOverlay.setOptions({"gradient":gradient});
-                    }
-                    //判断浏览区是否支持canvas
-                    function isSupportCanvas(){
-                        var elem = document.createElement('canvas');
-                        return !!(elem.getContext && elem.getContext('2d'));
-                    }
+                    var gradient = {};
+                    var colors = document.querySelectorAll("input[type='color']");
+                    colors = [].slice.call(colors,0);
+                    colors.forEach(function(ele){
+                        gradient[ele.getAttribute("data-key")] = ele.value; 
+                    });
+                    heatmapOverlay.setOptions({"gradient":gradient});
+                }
+                //判断浏览区是否支持canvas
+                function isSupportCanvas(){
+                    var elem = document.createElement('canvas');
+                    return !!(elem.getContext && elem.getContext('2d'));
+                }
             },
             getData(){},
             //请求数据
@@ -321,11 +504,11 @@ import sciencePoints from './points.json'
 		  		api.scenicHot(api.params).then( (re) =>{
 	  				let reData = re.data.data;
 	  				for(let i=0; i<reData.length; ++i){
-	  					this.points[i] = {"count":reData[i].count,"lat":reData[i].latitude,"lng":reData[i].longitude};
+	  					//this.points[i] = {"count":reData[i].count,"lat":reData[i].latitude,"lng":reData[i].longitude};
 	  				}
 	  				this.addScript(val,'https://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js');
 	  				//console.log(reData);
-					if(re.status===200){
+					if(re.data.code===200){
 						this.isloading = false;
 					}
 			    }).catch( (e) => {
@@ -354,9 +537,9 @@ import sciencePoints from './points.json'
             rodomMap(val){
             	const _self= this;
             	let lenObj = {
-            		 '全部':{lng:119.923671,lat:29.506494,zoom:12},
+            		 '全部':{lng:119.923671,lat:29.506494,zoom:13},
 		            '仙华山':{lng:119.923732,lat:29.514781,zoom:14},
-		            '前吴村':{lng:119.829429,lat:29.449887,zoom:15},
+		            '前吴村':{lng:119.831585,lat:29.461901,zoom:15},
 		            '塘波村':{lng:119.752984,lat:29.454116,zoom:14},
 		            '民生村':{lng:119.850035,lat:29.426906,zoom:14},
 		            '罗源村':{lng:119.833439,lat:29.425386,zoom:14},
@@ -371,9 +554,9 @@ import sciencePoints from './points.json'
 		            '檀溪镇':{lng:119.953443,lat:29.631301,zoom:14},
 		            '冷坞村':{lng:119.981621,lat:29.592997,zoom:14},
 		            '上河村':{lng:120.063783,lat:29.372501,zoom:14},
-		            '汽车客运站':{lng:119.905884,lat:29.451243,zoom:14},
+		            '汽车客运站':{lng:119.905884,lat:29.451243,zoom:16},
 		            '翠湖':{lng:119.879563,lat:29.460438,zoom:17},
-		            '马岭':{lng:119.778974,lat:29.5674,zoom:14},
+		            '马岭':{lng:119.778974,lat:29.5674,zoom:15},
 		            '利民村':{lng:119.852974,lat:29.570912,zoom:15},
 		            '下湾村':{lng:119.842452,lat:29.569144,zoom:15},
 		            '新光村':{lng:119.826415,lat:29.571845,zoom:15},
@@ -421,7 +604,9 @@ import sciencePoints from './points.json'
              _self.addControl(map);
             _self.addIcon(map,lenObj[val  ===  undefined ?"全部": val].lng,lenObj[val  ===  undefined ?"全部": val].lat,val);
           	 _self.addMenu(map);
-          	 _self.addHot(map);
+          	
+          	
+          	_self.currentNum(map);
             
              if(!lenObj[val]){
                	return
