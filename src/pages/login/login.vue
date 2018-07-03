@@ -80,6 +80,9 @@ import $axios from '@/api/instance/index'
             }
         }
     },
+    beforeDestroy(){
+		this.$off()
+	},
     methods:{
         getBack(){
             this.$router.go(-1);

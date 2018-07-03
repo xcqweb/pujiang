@@ -149,6 +149,9 @@ export default {
     mounted() {
         this.init()
     },
+    beforeDestroy(){
+		this.$off()
+	},
     methods: {
         // 初始化一些东西
         init(){

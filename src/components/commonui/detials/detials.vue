@@ -385,6 +385,9 @@
 				this.getData()
 			}
 		},
+		beforeDestroy(){
+	    	this.$off()
+	    },
 		methods:{
 			loadMore:_.debounce( function(e){//去抖函数 
 				if(!this.flag){

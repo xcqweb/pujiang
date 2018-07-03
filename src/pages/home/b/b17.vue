@@ -136,7 +136,7 @@
             <div class="item_num"><font>{{item.value}}</font></div>
         </div>
         <Loading v-show="isloading" class='loading'></Loading>
-        <detials v-show = 'status' @closeToast='closeToast' :currentItem='currentItem'></detials>
+        <detials v-if = 'status' @closeToast='closeToast' :currentItem='currentItem'></detials>
     </div>
 </template>
 
@@ -163,8 +163,8 @@ export default {
             ],
         }
     },
-    created(){
-    
+    beforeDestroy(){
+    	this.$off()
     },
     methods: {
         //请求数据

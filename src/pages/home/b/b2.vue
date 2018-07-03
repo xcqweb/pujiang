@@ -10,7 +10,7 @@
         <img v-show="isVideo" class="line" src="../../../assets/images/circle/violet/line.png"/>
       	<Loading v-show="isloading"></Loading>
       	<!--使用if 每次重新渲染 并传递筛选景区-->
-        <config v-show = "showToast" @closeToast='closeToast'></config>
+        <config v-if = "showToast" @closeToast='closeToast'></config>
     </div>
 </template>
 
@@ -231,6 +231,9 @@ export default {
   },
   mounted() {
   	this.$nextTick(this.request())
+  },
+  beforeDestroy(){
+  	this.$off()
   },
    components:{
     	config

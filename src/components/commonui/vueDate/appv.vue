@@ -114,6 +114,9 @@ export default {
 			}
     	}
     },
+    beforeDestroy(){
+		this.$off()
+	},
     methods:{
         openByDrop(e){
             this.calendar3.show=true;

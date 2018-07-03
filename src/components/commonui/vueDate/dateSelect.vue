@@ -54,9 +54,8 @@
 			})
 		},
 		beforeDestroy(){
-			Bus.$off('reset')
-			Bus.$off('swap')
-			Bus.$off('turistDate')
+			Bus.$off()
+			this.$off()
 		},
 		computed:{
 			icon(){

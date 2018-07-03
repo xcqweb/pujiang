@@ -55,6 +55,9 @@
 		created(){
 			this.getData();
 		},
+		beforeDestroy(){
+			this.$off()
+		},
 		computed:{
 			dataConfigList(){
 				return this.$store.state.dataList 

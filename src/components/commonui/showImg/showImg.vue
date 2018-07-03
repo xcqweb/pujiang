@@ -11,6 +11,9 @@
 			return{
 			}
 		},
+		beforeDestroy(){
+			this.$off()
+		},
 		props:['status','imgSrc'],
 		methods:{
 			close(){

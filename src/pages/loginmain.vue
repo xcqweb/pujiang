@@ -66,6 +66,9 @@ export default {
                     this.changelink()
                 },
         },
+        beforeDestroy(){
+					this.$off()
+				},
         methods: {
             chosse(item){
                 for (var i = 0; i < this.items.length; i++) {

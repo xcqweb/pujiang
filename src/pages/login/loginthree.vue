@@ -45,8 +45,9 @@ export default {
         initialized:false,
     }
   },
-  computed: { 
-  },
+  beforeDestroy(){
+		this.$off()
+	},
   methods: {
     scroll(event){
         let _self=this

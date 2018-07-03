@@ -92,8 +92,6 @@
                 },
 			}
 		},
-		watch:{
-		},
 		methods:{
 			catchmsg1(data){
              	this.scienceProps = data;
@@ -111,12 +109,8 @@
         	},
         	getData(){}
 		},
-		
-		mounted(){
-			
-		},
-		computed:{
-			
+		beforeDestroy(){
+			this.$off()
 		},
 		components:{
 			...componetstatus,

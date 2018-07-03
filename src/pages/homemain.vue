@@ -1,7 +1,7 @@
 <template>
   <div id="mainhome" @click="headerLeave($event)">
     <transition name="slide-fade">
-        <div class="header" v-show='headerStatus' @mouseleave="mouseLeave"   @click="headerLeave($event)">
+        <div class="header" v-show='headerStatus' @mouseleave="mouseLeave" @click="headerLeave($event)">
             <headerBody @hide='hide'></headerBody>
         </div>
     </transition>
@@ -20,6 +20,9 @@ export default {
         components: {
                 headerBody,
         },
+        beforeDestroy(){
+        	this.$off()
+        },
         methods: {
 	        	hide(){
 							this.headerStatus=false;	        		
@@ -31,10 +34,7 @@ export default {
                 this.headerStatus=true;
             },
             headerLeave(e){
-//          	if(!this.$el.childNodes[0].contains(e.target)){
             		this.headerStatus=false;
-//          	}
-                //
             },
         },
     }
@@ -51,15 +51,18 @@ export default {
 @borderLen: 18px;
 
 .slide-fade-enter-active {
-  transition: all .11s linear;
+  transition: all 0.36s linear;
 }
 .slide-fade-leave-active {
-  transition: all 0.1s linear;
+  transition: all 0.5s linear;
 }
-.slide-fade-enter, .slide-fade-leave-to {
-  transform: translateY(0px);
+.slide-fade-enter {
+	transform: translateY(-100%);
 }
-
+.slide-fade-leave-to{
+	transform: translateY(-100%);
+	opacity: 0;
+}
 
 #mainhome{
     -webkit-transform: translate3d(0, 0, 0);

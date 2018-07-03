@@ -104,6 +104,9 @@ export default {
             timer:null
         }
     },
+    beforeDestroy(){
+			this.$off()
+	},
     computed:{
     	comStyle(){
     		if(isIE>-1){ 

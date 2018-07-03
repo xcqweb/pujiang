@@ -55,7 +55,10 @@
 		},
 		created(){
 			this.getData();
-		}
+		},
+		beforeDestroy(){
+			this.$off()
+		},
 	}
 </script>
 

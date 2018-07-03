@@ -2,7 +2,6 @@
 <template>
     <div class="v-dropdown-menu" 
 		style="border: none;"
-        @click = 'showselect' 
         v-clickOutside='hide'
         v-bind:style="{ width:selectList.width ,left:selectList.left,top:selectList.top}" 
         >
@@ -13,7 +12,7 @@
             :list='selectList.place'  
             :status='menueshow' 
             v-on:itemtodo='outcrement'
-            v-if='selectList.selectStatus'>        
+            v-show='selectList.selectStatus'>        
             </dropdownList>
         </transition>
     </div>
@@ -31,7 +30,8 @@ import Vue from 'vue'
         props: [
             'selectList',
         ],
-        computed:{    
+        beforeDestroy(){
+        	this.$off()
         },
         watch:{
             menueshow:function (val){
@@ -42,11 +42,8 @@ import Vue from 'vue'
                 }
             },
         },
-        mounted(){
-        },
         methods:{
             sendMsgParent:function(){
-
                 this.$emit('listenAtparent',selectList.title)
             },
             hide(){
@@ -82,10 +79,6 @@ import Vue from 'vue'
                     this.upDown='down';
                 }
             },
-            showselect(){
-                //this.menueshow=!this.menueshow;
-                
-            },
         }
     }
     Vue.component('dropdownList',{
@@ -97,7 +90,7 @@ import Vue from 'vue'
                  isMore:true,
             }
         },
-        template:`<div class='listdiv' v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }" v-bind:class="{ more: isMore }" v-if='status'><div class="overlay" v-if='status' @click.stop='hidelist'></div><ul @mousewheel='moreStatus'><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
+        template:`<div class='listdiv' v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }" v-bind:class="{ more: isMore }" v-show='status'><div class="overlay" v-show='status' @click.stop='hidelist'></div><ul @mousewheel='moreStatus'><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
     </li></ul></div>`,
         computed:{
             maxHeight:function(){
@@ -110,6 +103,10 @@ import Vue from 'vue'
             listDivHeight:function(){
                 return (this.list.length)*1.8
             }
+        },
+        beforeDestroy(){
+        	this.$off('increment')
+        	this.$off('hidelist')
         },
         methods:{
             chosen:function(){
@@ -124,9 +121,6 @@ import Vue from 'vue'
                 this.$emit('itemtodo',item === undefined ? this.list[0] : item);
             },
             
-            test:function(){
-
-            },
             moreStatus(event){
                 this.isMore = false;
             },

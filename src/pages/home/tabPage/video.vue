@@ -176,8 +176,9 @@ export default {
         ...componetstatus,
         vdate
     },
-    mounted(){
-    }
+    beforeDestroy(){
+  	    this.$off()
+ 	},
 }
 </script>
 

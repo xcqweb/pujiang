@@ -255,8 +255,6 @@ export default {
         return {
         	imgStar:require('../../../assets/images/home/d/star.png'),
         	timeRange:{begin:'',end:''},
-        	commentProp:{},
-        	allData:{},
         	comments:[],
         	status:true,
         	pageNum:1,

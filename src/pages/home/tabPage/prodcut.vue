@@ -80,6 +80,9 @@ export default {
     components:{
         ...componetstatus,
     },
+    beforeDestroy(){
+  		this.$off()
+    },
 }
 </script>
 
