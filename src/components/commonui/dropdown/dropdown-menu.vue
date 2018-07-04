@@ -85,7 +85,6 @@ import Vue from 'vue'
         props:['list','status'],
         data(){
             return{
-                 msg:'jfdksjfk',
                  showstatus:true,
                  isMore:true,
             }
@@ -132,7 +131,6 @@ import Vue from 'vue'
                 
         },
         mounted(){
-            
             if(this.list.length>6){
                 this.isMore =  true
             }else{

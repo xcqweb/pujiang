@@ -6,7 +6,7 @@
                	 地区
             </span>
             <span class="cell2">
-                	人数
+                	人次
             </span>
             <span class="cell3">
                 	占比
@@ -54,7 +54,7 @@ export default {
   	
   },
   methods: {
-  	//请求数据
+  	//请求次据
   	getData(){
   		api.touristOriginRanking(api.params).then( (re) =>{
     		let reData = re.data.data;

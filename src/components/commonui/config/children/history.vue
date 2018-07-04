@@ -4,7 +4,7 @@
 			<li>序号</li>
 			<li>预警时间</li>
 			<li>景区名称</li>
-			<li>当前客流人数</li>
+			<li>当前客流人次</li>
 		</ul>
 		<ul class="content" v-for="(data,i) in transformHisArr" :class="{'bc1':i%2===0,'bc2':i%2===1}" :key="i">
 			<li>{{i+1}}</li>

@@ -56,8 +56,10 @@ export default {
           ],
       }
     },
+    beforeDestroy(){
+    	ECharts = null
+    },
     props:['isdate','apiName','classo'],
-//  store:store,
     computed:{
     	comStyle(){
     		let isIE = window.navigator.userAgent.indexOf('Trident')

@@ -1,11 +1,11 @@
  <template>
     <div class="map_content">
     	<div class="topTitle" v-show='istitle'>
-            <span>{{nowYear}}年累计接待游客总人数</span>
+            <span>{{nowYear}}年累计接待游客总人次</span>
             <font>{{yearNumbs}}</font>
         </div>
         <div class='topTitle' v-show='istitle'>
-            <span>{{mowMonth}}月份持续接待游客总人数</span>
+            <span>{{mowMonth}}月份持续接待游客总人次</span>
             <font>{{mouthNumbs}}</font>
         </div>
         <div id="fromEchart"></div>
@@ -28,9 +28,7 @@ import echarts_resize from '../../../common/js/echarts_resize.js'
 import 'echarts/map/js/china.js';
 import zhejiangJson from 'echarts/map/json/province/zhejiang.json'
 import optionProps from '@/common/js/mixin/optionProps.js'
-import vAjax from '@/common/js/v-ajax.js'
 import coords from './coords.json'
-Vue.use(vAjax);
 let date = new Date()
 let nowYear = date.getFullYear()
 let mowMonth = date.getMonth()+1
@@ -836,7 +834,7 @@ export default {
                             curveness: 0.2
                         }
                     },
-                    progressiveThreshold: 500,
+                    progressiveThreshold: 300,
                     progressive: 200,
                     data: _self.convertData(item[1])
                 },
@@ -876,7 +874,9 @@ export default {
                     coordinateSystem: 'geo',
                     zlevel: 2,
                     rippleEffect: {
-                        brushType: 'stroke'
+                        period: 4,
+						scale: 5,
+						brushType: 'stroke',
                     },
                     label: {
                         normal: {
@@ -936,7 +936,7 @@ export default {
                     effect: {
                         show: true,
                         period: 6,
-                        trailLength: 0.7,
+                        trailLength: 0,
                         color: '#0d1f6d',
                         symbolSize: 3
                     },
@@ -958,10 +958,10 @@ export default {
                     zlevel: 2,
                     symbol: ['none', 'arrow'],
                     //箭头大小
-                    symbolSize: 2,
+                    symbolSize: 12,
                     effect: {
                         show: true,
-                        period: 6,
+                        period: 5,
                         trailLength: 0,
                         //小飞机
                         symbol: planePath,
@@ -986,7 +986,9 @@ export default {
                     coordinateSystem: 'geo',
                     zlevel: 2,
                     rippleEffect: {
-                        brushType: 'stroke'
+                        period: 4,
+						scale: 5,
+						brushType: 'stroke',
                     },
                     label: {
                         normal: {

@@ -1,8 +1,8 @@
 <template>
   <div id="mainhome" @click="headerLeave($event)">
     <transition name="slide-fade">
-        <div class="header" v-show='headerStatus' @mouseleave="mouseLeave" @click="headerLeave($event)">
-            <headerBody @hide='hide'></headerBody>
+        <div class="header" v-show='headerStatus' @mouseleave="mouseLeave" @mouseover="mouseOver" @click="headerLeave($event)">
+            <headerBody v-clickOutside='hide'></headerBody>
         </div>
     </transition>
     <div class="headmock" v-on:mouseenter="headerEnter"></div>
@@ -15,6 +15,7 @@ export default {
         data() {
             return {
                 headerStatus:false,
+                timer:null
 		            }
         },
         components: {
@@ -25,10 +26,15 @@ export default {
         },
         methods: {
 	        	hide(){
-							this.headerStatus=false;	        		
+	        		this.headerStatus=false;
+	        	},
+	        	mouseOver(){
+	        		window.clearTimeout(this.timer)
 	        	},
             mouseLeave(){
-              	this.headerStatus=false;
+              	this.timer = window.setTimeout( () => {
+            			this.headerStatus=false;
+            		},1000)
             },
             headerEnter(){
                 this.headerStatus=true;

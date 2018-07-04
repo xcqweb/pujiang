@@ -289,35 +289,34 @@ import sciencePoints from './points.json'
 						}
 						this.initPoints(coords,map)
 						this.isloading = false;
+						console.log(coords)
 					}
 			    }).catch( (e) => {
 			    	console.log(e);
 			    })
             },
             transformScience(code){
-            	let place = ['全部','仙华山', '前吴村', '塘波村', '民生村','罗源村','白石湾','江南第一家','嵩溪村','宝掌幽谷','登高村','神丽峡','礼张村','农批市场','檀溪镇', '冷坞村','上河村','汽车客运站', '翠湖','马岭','利民村','下湾村','新光村','西山村','田后蓬','薛下庄村','下薛宅', '金狮湖','高速路','官岩寺','上山遗址','渠南村', '温泉','水晶城','水竹湾', '平湖森林果园', '三角潭林场','罗家村','白岩山前滑草基地','里黄宅村','善庆村',
-'文化馆','通济桥水库大坝','三城山农庄','塔山宾馆','月泉书院遗址公园']
+            	let place = ['全部','仙华山','前吴村', '塘波村','民生村','罗源村','白石湾','江南第一家','嵩溪村','宝掌幽谷','登高村','神丽峡','礼张村','农批市场','檀溪镇','冷坞村','上河村','汽车客运站','翠湖','马岭','利民村',	'下湾村', '新光村','西山村','田后蓬','薛下庄村','金狮湖','高速路','官岩寺','上山遗址',	'渠南村','温泉','下薛宅','水晶城','水竹湾','平湖森林果园',	'三角潭林场','罗家村','白岩山前滑草基地',	'里黄宅村','善庆村','文化馆','通济桥水库大坝','三城山农庄','','塔山宾馆','月泉书院遗址公园']
             	return place[code]
             },
             
             initPoints(coords,map){
-            	
-            	//let coords = sciencePoints;
+            	this.points = []
             	for(let item of coords){
                 	if(item.label==='仙华山'){
                 		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
                 	}else if(item.label==='前吴村'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.010445,0.012313,0.020131,-0.012862,item.num))
                 	}else if(item.label==='塘波村'){
                 		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
                 	}else if(item.label==='民生村'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.010445,0.012313,0.020131,-0.012862,item.num))
                 	}else if(item.label==='罗源村'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.010445,0.012313,0.020131,-0.012862,item.num))
                 	}else if(item.label==='白石湾'){
                 		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
                 	}else if(item.label==='江南第一家'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.000445,0.000313,0.000131,-0.000862,item.num))
                 	}else if(item.label==='嵩溪村'){
                 		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
                 	}else if(item.label==='宝掌幽谷'){
@@ -325,11 +324,11 @@ import sciencePoints from './points.json'
                 	}else if(item.label==='登高村'){
                 		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
                 	}else if(item.label==='神丽峡'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.010445,0.012313,0.020131,-0.012862,item.num))
                 	}else if(item.label==='礼张村'){
                 		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
                 	}else if(item.label==='农批市场'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.000445,0.000313,0.000131,-0.000862,item.num))
                 	}else if(item.label==='檀溪镇'){
                 		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
                 	}else if(item.label==='冷坞村'){
@@ -337,9 +336,9 @@ import sciencePoints from './points.json'
                 	}else if(item.label==='上河村'){
                 		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
                 	}else if(item.label==='汽车客运站'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.000045,0.000013,0.000031,-0.000062,item.num))
                 	}else if(item.label==='翠湖'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.010445,0.009313,0.017131,-0.008862,item.num))
                 	}else if(item.label==='马岭'){
                 		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
                 	}else if(item.label==='利民村'){
@@ -349,25 +348,25 @@ import sciencePoints from './points.json'
                 	}else if(item.label==='新光村'){
                 		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
                 	}else if(item.label==='西山村'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.001445,0.011313,0.010001,-0.012862,item.num))
                 	}else if(item.label==='田后蓬'){
                 		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
                 	}else if(item.label==='薛下庄村'){
                 		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
                 	}else if(item.label==='下薛宅'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.000445,0.000313,0.000131,-0.000862,item.num))
                 	}else if(item.label==='金狮湖'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.010445,0.012313,0.020131,-0.012862,item.num))
                 	}else if(item.label==='高速路'){
                 		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
                 	}else if(item.label==='官岩寺'){
                 		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
                 	}else if(item.label==='上山遗址'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.010445,0.012313,0.020131,-0.012862,item.num))
                 	}else if(item.label==='渠南村'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.010445,0.012313,0.020131,-0.012862,item.num))
                 	}else if(item.label==='温泉'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.000445,0.000313,0.000131,-0.000862,item.num))
                 	}else if(item.label==='水晶城'){
                 		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
                 	}else if(item.label==='水竹湾'){
@@ -375,38 +374,38 @@ import sciencePoints from './points.json'
                 	}else if(item.label==='平湖森林果园'){
                 		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
                 	}else if(item.label==='三角潭林场'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.010445,0.009313,0.017131,-0.008862,item.num))
                 	}else if(item.label==='罗家村'){
                 		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
                 	}else if(item.label==='白岩山前滑草基地'){
                 		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
                 	}else if(item.label==='里黄宅村'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.010445,0.012313,0.020131,-0.012862,item.num))
                 	}else if(item.label==='善庆村'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.010445,0.012313,0.020131,-0.012862,item.num))
                 	}else if(item.label==='文化馆'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.00045,0.000013,0.000031,-0.000062,item.num))
                 	}else if(item.label==='通济桥水库大坝'){
                 		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
                 	}else if(item.label==='三城山农庄'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.00445,0.000313,0.000131,-0.000862,item.num))
                 	}else if(item.label==='塔山宾馆'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		
+               		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.00045,0.000013,0.000031,-0.000062,item.num))
                 	}else if(item.label==='月泉书院遗址公园'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.000445,0.000313,0.000131,-0.000862,item.num))
                 	}
                 }
             	
             	this.addHot(map);
             },
-            calcCoord(map,lats,lngs,ny,sy,wx,ex,num){//lat ,lng 景点坐标 n,s,w,e 各个方向的延伸基值
-            	
+            calcCoord(map,lats,lngs,ny,sy,wx,ex,num=0){//lat ,lng 景点坐标 n,s,w,e 各个方向的延伸基值
             	function fixed(n){
             		return n.toFixed(9)
             	}
             	
             	let points = [];
-            	for(let i=0; i<num; i++){
+            	for(let i=0; i<num*3; i++){
             		let lat,
 	            		lng,
 	            		count,
@@ -444,8 +443,8 @@ import sciencePoints from './points.json'
             				lng = fixed(lats+Math.random()*ex)
             			}
             		}
-            		//count = Math.round(Math.random()*1)
-            		count = 1
+            		count = Math.round(Math.random()*1)
+            		//count = 1
             		
             		points[i] = {'count':count,'lat':lat,'lng':lng}
             	}
@@ -539,50 +538,50 @@ import sciencePoints from './points.json'
             	let lenObj = {
             		 '全部':{lng:119.923671,lat:29.506494,zoom:13},
 		            '仙华山':{lng:119.923732,lat:29.514781,zoom:14},
-		            '前吴村':{lng:119.831585,lat:29.461901,zoom:15},
+		            '前吴村':{lng:119.831585,lat:29.461901,zoom:14},
 		            '塘波村':{lng:119.752984,lat:29.454116,zoom:14},
 		            '民生村':{lng:119.850035,lat:29.426906,zoom:14},
 		            '罗源村':{lng:119.833439,lat:29.425386,zoom:14},
 		            '白石湾':{lng:119.922777,lat:29.41095,zoom:14},
-		            '江南第一家':{lng:120.018874,lat:29.48683,zoom:15},
+		            '江南第一家':{lng:120.018874,lat:29.48683,zoom:14},
 		            '嵩溪村':{lng:120.016897,lat:29.539369,zoom:14},
 		            '宝掌幽谷':{lng:119.92727,lat:29.505704,zoom:14},
 		            '登高村':{lng:119.916398,lat:29.534356,zoom:14},
 		            '神丽峡':{lng:119.964819,lat:29.403722,zoom:14},
 		            '礼张村':{lng:119.961903,lat:29.527846,zoom:14},
-		            '农批市场':{lng:119.894968,lat:29.439944,zoom:16},
+		            '农批市场':{lng:119.894968,lat:29.439944,zoom:14},
 		            '檀溪镇':{lng:119.953443,lat:29.631301,zoom:14},
 		            '冷坞村':{lng:119.981621,lat:29.592997,zoom:14},
 		            '上河村':{lng:120.063783,lat:29.372501,zoom:14},
-		            '汽车客运站':{lng:119.905884,lat:29.451243,zoom:16},
-		            '翠湖':{lng:119.879563,lat:29.460438,zoom:17},
-		            '马岭':{lng:119.778974,lat:29.5674,zoom:15},
-		            '利民村':{lng:119.852974,lat:29.570912,zoom:15},
-		            '下湾村':{lng:119.842452,lat:29.569144,zoom:15},
-		            '新光村':{lng:119.826415,lat:29.571845,zoom:15},
-		            '西山村':{lng:119.884387,lat:29.463871,zoom:16},
+		            '汽车客运站':{lng:119.905884,lat:29.451243,zoom:14},
+		            '翠湖':{lng:119.879563,lat:29.460438,zoom:15},
+		            '马岭':{lng:119.778974,lat:29.5674,zoom:14},
+		            '利民村':{lng:119.852974,lat:29.570912,zoom:14},
+		            '下湾村':{lng:119.842452,lat:29.569144,zoom:14},
+		            '新光村':{lng:119.826415,lat:29.571845,zoom:14},
+		            '西山村':{lng:119.884387,lat:29.463871,zoom:14},
 		            '田后蓬':{lng:119.797108,lat:29.617633,zoom:14},
-		            '薛下庄村':{lng:119.86882,lat:29.542146,zoom:15},
-		            '下薛宅':{lng:119.867063,lat:29.532904,zoom:15},
-		            '金狮湖':{lng:119.91158,lat:29.459057,zoom:16},
-		            '高速路':{lng:119.91158,lat:29.459057,zoom:16},
-		            '官岩寺':{lng:120.037393,lat:29.457562,zoom:15},
-		            '上山遗址':{lng:119.982268,lat:29.459398,zoom:15},
-		            '渠南村':{lng:119.981877,lat:29.454304,zoom:15},
-		            '温泉':{lng:119.904378,lat:29.496666,zoom:16},
-		            '水晶城':{lng:119.919845,lat:29.44109,zoom:16},
+		            '薛下庄村':{lng:119.86882,lat:29.542146,zoom:14},
+		            '下薛宅':{lng:119.867063,lat:29.532904,zoom:14},
+		            '金狮湖':{lng:119.91158,lat:29.459057,zoom:14},
+		            '高速路':{lng:120.035609,lat:29.445624,zoom:14},
+		            '官岩寺':{lng:120.037393,lat:29.457562,zoom:14},
+		            '上山遗址':{lng:119.982268,lat:29.459398,zoom:14},
+		            '渠南村':{lng:119.981877,lat:29.454304,zoom:14},
+		            '温泉':{lng:119.904378,lat:29.496666,zoom:14},
+		            '水晶城':{lng:119.919845,lat:29.44109,zoom:14},
 		            '水竹湾':{lng:119.854398,lat:29.659571,zoom:14},
 		            '平湖森林果园':{lng:119.930433,lat:29.626957,zoom:14},
-		            '三角潭林场':{lng:119.87587,lat:29.462863,zoom:17},
+		            '三角潭林场':{lng:119.87587,lat:29.462863,zoom:15},
 		            '罗家村':{lng:119.869459,lat:29.662849,zoom:14},
 		            '白岩山前滑草基地':{lng:119.882467,lat:29.59094,zoom:14},
 		            '里黄宅村':{lng:119.797415,lat:29.441304,zoom:14},
 		            '善庆村':{lng:119.855531,lat:29.498886,zoom:14},
-		            '文化馆':{lng:119.902428,lat:29.459172,zoom:17},
-		            '通济桥水库大坝':{lng:119.836162,lat:29.449859,zoom:15},
-		            '三城山农庄':{lng:120.00538,lat:29.477826,zoom:17},
-		            '塔山宾馆':{lng:119.902281,lat:29.460145,zoom:17},
-		            '月泉书院遗址公园':{lng:119.892902,lat:29.471208,zoom:17}
+		            '文化馆':{lng:119.902428,lat:29.459172,zoom:15},
+		            '通济桥水库大坝':{lng:119.848248,lat:29.44639,zoom:14},
+		            '三城山农庄':{lng:120.00538,lat:29.477826,zoom:15},
+		            '塔山宾馆':{lng:119.902281,lat:29.460145,zoom:15},
+		            '月泉书院遗址公园':{lng:119.892902,lat:29.471208,zoom:15}
             	}
             	
             	
@@ -604,10 +603,7 @@ import sciencePoints from './points.json'
              _self.addControl(map);
             _self.addIcon(map,lenObj[val  ===  undefined ?"全部": val].lng,lenObj[val  ===  undefined ?"全部": val].lat,val);
           	 _self.addMenu(map);
-          	
-          	
           	_self.currentNum(map);
-            
              if(!lenObj[val]){
                	return
                }

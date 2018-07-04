@@ -67,11 +67,11 @@
     <div :class="comStyle">
         <div class="b6__top">
             <span>{{currentNums}}<font></font></span>
-            <font>当前客流总人数</font>
+            <font>当前客流总人次</font>
         </div>
         <div class="b6__bottom">
             <span>{{yestodayNums}}<font></font></span>
-            <font>昨日客流总人数</font>
+            <font>昨日客流总人次</font>
         </div>
         <Loading v-show="isloading"></Loading>
     </div>
@@ -95,7 +95,7 @@ export default {
     	isVideo:Boolean
     },
     computed: { 
-    	//给数据加上分隔符
+    	//给次据加上分隔符
 		yestodayNums(){
 			return until.string_until.addPoint(this.yestodayNum);
 		},
@@ -110,14 +110,14 @@ export default {
 			}
 		}
     },
-    //观察景点的变化来响应数据
+    //观察景点的变化来响应次据
     watch:{
     	code:function(){
 	  		 this.getData();
     	}
     },
     methods: {
-		//请求数据
+		//请求次据
 	  	getData(){
 	  		api.params.code = this.code;
 	  		api.getScenicKeliu(api.params).then( (re) =>{

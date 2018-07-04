@@ -9,9 +9,9 @@
           	></video-player>
         </div>
         <sleckte
-			:selectList="qyselectlist" 
-            v-on:listenAtparent="catchMsg"
-		></sleckte>
+					:selectList="qyselectlist" 
+          v-on:listenAtparent="catchMsg"
+				></sleckte>
 		<Loading v-show='isloading' class='vloading'></Loading>
       </div>
 </template>

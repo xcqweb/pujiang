@@ -6,7 +6,7 @@
                 景区
             </div>
             <div class="cell2">
-                	人数
+                	人次
             </div>
             <div class="cell3">
                 	占比
@@ -45,7 +45,7 @@ export default {
     watch:{
     },
     methods:{
-    	//请求数据
+    	//请求次据
 	  	getData(data){
 	  		//api.params.code = this.code;
 	  		api.scenicRanking(data).then( (re) =>{

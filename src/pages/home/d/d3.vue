@@ -245,7 +245,6 @@
 <script>
 import optionProps from '@/common/js/mixin/optionProps.js'
 import vdate from '@/components/commonui/vueDate/apps.vue'
-import loadMore from '@/common/js/directives/loadMore.js'
 import {debounce} from 'lodash'
 export default {
     name: 'd3',

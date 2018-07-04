@@ -4,7 +4,7 @@
 			<li>序号</li>
 			<li>景区名称</li>
 			<li>游客承载量</li>
-			<li>预警人数</li>
+			<li>预警人次</li>
 			<li></li>
 		</ul>
 		<ul class="content" v-for="(data,i) in dataConfigList" :class="{'bc1':i%2===0,'bc2':i%2===1}" :ref="i" :key='i'>
@@ -65,7 +65,7 @@
 		},
 		methods:{
 			
-			//获取数据
+			//获取次据
 			getData(){
 				api.params.code= this.code;
 				api.getPassengerWarnSetList(api.params).then( (re) => {

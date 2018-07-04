@@ -89,7 +89,7 @@ export default {
         var rangeValue = 30;
         var nowRange  //用于做一个临时的range
        
-    	nowRange=this.percent+10
+    	nowRange = this.percent+10
       	nowRange = nowRange<=11&&nowRange>10?11:nowRange
 		nowRange = nowRange>=100?100:nowRange
         //画布属性
@@ -116,7 +116,7 @@ export default {
         var IsdrawCircled = false;
         var drawCircle = function(){
 			
-			  ctx.arc(126,126 ,98,0,2*Math.PI,false);  
+			  ctx.arc(126,126,105,0,2*Math.PI,false);  
 			  ctx.strokeStyle = 'transparent';
 		      ctx.stroke();  
 			  ctx.fillStyle = 'rgba(0, 218, 255,0.2)';
@@ -125,7 +125,7 @@ export default {
 		      ctx.closePath();
 		      ctx.beginPath();
 		      ctx.strokeStyle="#00DAFF";
-		      ctx.arc(126,231,2,0,2*Math.PI); 
+		      ctx.arc(126,242,2,0,2*Math.PI); 
 		      ctx.stroke();
 		      ctx.fillStyle = 'rgb(99, 188, 241)';
 			  ctx.fill();
@@ -134,17 +134,13 @@ export default {
             	let s1 = 1-i/360
         		ctx.beginPath()
 	            ctx.strokeStyle=`rgba(0, 218, 255,${s1})`;
-	            ctx.arc(126,126,105,2*Math.PI*(90-i)/360,2*Math.PI*(90-i+1)/360);  
+	            ctx.arc(126,126,116,2*Math.PI*(90-i)/360,2*Math.PI*(90-i+1)/360);  
 	            ctx.stroke();
             }
-            
-			
-			
 			ctx.beginPath();
-            ctx.arc(r+1, r+1, cR+7, 0, 2 * Math.PI);
+            ctx.arc(r+1, r+1, cR+12, 0, 2 * Math.PI);
             ctx.clip();
-             ctx.closePath();
-            
+            ctx.closePath();
         }
 
         //画sin 曲线函数
@@ -174,7 +170,6 @@ export default {
 
             ctx.restore();
             ctx.beginPath();
-            ctx.arc(r+1, r+1, cR+7, 0, 2 * Math.PI);
             ctx.clip();
             ctx.closePath();
         };

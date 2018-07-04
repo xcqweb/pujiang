@@ -27,6 +27,8 @@ export default {
 		       		vnode.context.request(paramsObj)
         	}
        },300)
+    },
+    unbind:function(el){
     }
     
 }
