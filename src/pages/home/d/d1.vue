@@ -289,7 +289,7 @@ import sciencePoints from './points.json'
 						}
 						this.initPoints(coords,map)
 						this.isloading = false;
-						console.log(coords)
+						//console.log(coords)
 					}
 			    }).catch( (e) => {
 			    	console.log(e);
@@ -358,7 +358,7 @@ import sciencePoints from './points.json'
                 	}else if(item.label==='金狮湖'){
                 		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.010445,0.012313,0.020131,-0.012862,item.num))
                 	}else if(item.label==='高速路'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.000445,0.000313,0.007131,-0.008862,item.num))
                 	}else if(item.label==='官岩寺'){
                 		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
                 	}else if(item.label==='上山遗址'){
@@ -405,7 +405,7 @@ import sciencePoints from './points.json'
             	}
             	
             	let points = [];
-            	for(let i=0; i<num*3; i++){
+            	for(let i=0; i<num; i++){
             		let lat,
 	            		lng,
 	            		count,

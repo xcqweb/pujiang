@@ -158,6 +158,10 @@ a:visited { text-decoration: none;}
         li{
             float: left;
             padding: 0 0.8rem;
+            -webkit-user-select: none;
+            user-select: none;
+            -moz-user-select: none;
+            -o-user-select: none;
             cursor: pointer;
             a{
                 display:inline-block;

@@ -1,7 +1,7 @@
 <style lang="less" scoped>
 div{
-    width: 100%;
-        height: 100%;
+	width: 100%;
+    height: 100%;
     iframe{
         width: 100%;
         height: 100%;
@@ -18,25 +18,12 @@ div{
 
 <script>
 import Vue from 'vue'
-parent.window.close();
 export default {
     name: 'iframeMap',
     data () {
         return {
 
         }
-    },
-    components:{
-
-    },
-    computed: { 
-
-    },
-    methods: {
-
-    },
-    mounted(){
-    
     },
 }
 </script>

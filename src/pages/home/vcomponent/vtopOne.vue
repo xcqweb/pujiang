@@ -56,9 +56,6 @@ export default {
           ],
       }
     },
-    beforeDestroy(){
-    	ECharts = null
-    },
     props:['isdate','apiName','classo'],
     computed:{
     	comStyle(){

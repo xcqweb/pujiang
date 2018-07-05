@@ -103,8 +103,11 @@ let optionProps =  {
     	Loading
     },
     beforeDestroy(){
-  		this.$off()
-  		Bus.$off()
+  		this.$nextTick( () => {
+    		if(Bus){
+    			Bus.$off()
+    		}
+    	})
     },
 }
 export default optionProps
