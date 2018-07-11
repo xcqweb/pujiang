@@ -295,7 +295,7 @@
 							</div>
 							<div class="conBox">
 								<ul class="mainList" v-for="item in reData" :style="{'min-width':titles.length*16+'rem'}" :key='item.AuditUnitID'>
-									<!--<li><img style="cursor: pointer;" title="点击查看大图" @click="openBigImg(item.FlagPic)" :src="'http://txl.tourzj.gov.cn/sitepic/Imgbig/'+item.FlagPic"width="100%" alt="暂无图片" /></li>-->
+									<li><img style="cursor: pointer;" title="点击查看大图" @click="openBigImg(item.FlagPic)" :src="'http://txl.tourzj.gov.cn/sitepic/Imgbig/'+item.FlagPic"width="100%" alt="暂无图片" /></li>
 									<li><span>{{item.UnitName}}</span></li>
 									<li><span>{{item.AreaCode}}</span></li>
 									<li><span>{{item.address}}</span></li>
@@ -387,6 +387,36 @@
 		},
 		beforeDestroy(){
 	    	this.$off()
+	    	if(window.removeEventListener){
+	    		window.removeEventListener('error', (msg, url, row, col, error) => {
+				  if(msg.target.tagName==='IMG'){
+				  	msg.target.src = 'http://115.29.17.176/img/noImg.jpg'
+				  }
+				}, true);
+	    	}else{
+	    		window.detachEvent('onerror', (msg, url, row, col, error) => {
+				  if(msg.target.tagName==='IMG'){
+				  	msg.target.src = 'http://115.29.17.176/img/noImg.jpg'
+				  }
+				}, true)
+	    	}
+	    },
+	    mounted(){
+	    	this.$nextTick( () => {
+	    		if(window.attachEvent){
+	    			window.attachEvent('error', (msg, url, row, col, error) => {
+					  if(msg.target.tagName==='IMG'){
+					  	msg.target.src = 'http://115.29.17.176/img/noImg.jpg'
+					  }
+					}, true);
+	    		}else{
+	    			window.addEventListener('error', (msg, url, row, col, error) => {
+					  if(msg.target.tagName==='IMG'){
+					  	msg.target.src = 'http://115.29.17.176/img/noImg.jpg'
+					  }
+					}, true);
+	    		}
+	    	})
 	    },
 		methods:{
 			loadMore:_.debounce( function(e){//去抖函数 
@@ -465,7 +495,7 @@
 					break;
 					
 					case '旅行社':
-					this.titles=['全称', '行政区划编码', '街道地址', '等级', '经度', '纬度', '邮编', '传真', '网址', '公共交通', '许可证号', '业务范围', '咨询电话', '投诉电话', '旅行社类型']
+					this.titles=['标志图','全称', '行政区划编码', '街道地址', '等级', '经度', '纬度', '邮编', '传真', '网址', '公共交通', '许可证号', '业务范围', '咨询电话', '投诉电话', '旅行社类型']
 					return 'listTravel';
 					break;
 					

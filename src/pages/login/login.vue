@@ -27,7 +27,7 @@
             </div>
             <div class="testimg" ><img v-if='redome' @click='redom' v-bind:src="src" alt="验证码" /></div>
             <div class="changeImge" @click='redom'>换一张</div> -->
-            <div class="login" @click='logisn($event)'>{{logintext}}</div>
+            <div class="login" @click='logisn($event)'>{{logintext}} <p class="ball_line" v-show='loading'></p></div>
         </div>
 
     </div>
@@ -55,6 +55,7 @@ import $axios from '@/api/instance/index'
             atbs:false,
             oneStation:false,
             ciytfade:false,
+            loading:false,
             data_arr:{},
             logintext:'登录',
             loginForm: {
@@ -125,7 +126,7 @@ import $axios from '@/api/instance/index'
         			alert('用户名和密码不能为空!')
         			return;
         		}
-        		
+        		this.loading = true
             	this.logintext='登录中';
               
               const formData = new FormData()//post 传值需将传递的对象转换成字符串
@@ -146,16 +147,19 @@ import $axios from '@/api/instance/index'
 	                              setCookie('token', token);
 	                              this.logintext='登录';
 	                              this.loginForm.password='';
+	                              this.loading = false;
 	                              this.$router.replace({ path: '/'});
 	                        }
 	                    }else{
 	                        alert(data.data.message);
+	                        this.loading = false;
 	                        this.logintext='登录';
 	                    }
 	                })
 	                .catch(error => {
 	                	if(error.code===666){
 	                		alert('网络出错啦!')
+	                		this.loading = false;
 	                		this.logintext='登录';
 	                	}
 	                  this.reloading=true;
@@ -381,6 +385,45 @@ import $axios from '@/api/instance/index'
     cursor: pointer;
     text-decoration: none;
     font-size: 1.1rem;
+    position: relative;
+    .ball_line {
+    	position: absolute;
+    	top: 0.7rem;
+    	left: 4rem;
+	    width: 0.8rem;
+	    height: 0.8rem;
+	    border: 0.1rem solid #FF8401;
+	    border-right-color: transparent;
+	    border-radius: 50%;
+	    background-color: transparent;
+	    -webkit-animation-fill-mode: both;
+	            animation-fill-mode: both;
+	    -webkit-animation: ball_line 1s linear infinite;
+	            animation: ball_line 1s linear infinite;
+	}
+			
+	@keyframes ball_line {
+	    0%{
+	        -webkit-transform: rotate(0) scale(1);
+	                transform: rotate(0) scale(1);
+	    }
+	    25%{
+	        -webkit-transform: rotate(90DEG) scale(1.1);
+	        transform: rotate(90DEG) scale(1.1);
+	    }
+	    50%{
+	        -webkit-transform: rotate(180DEG) scale(1.2);
+	        transform: rotate(180DEG) scale(1.2);
+	    }
+	    75%{
+	        -webkit-transform: rotate(270DEG) scale(1.1);
+	        transform: rotate(270DEG) scale(1.1);
+	    }
+	    100%{
+	        -webkit-transform: rotate(360DEG) scale(1);
+	        transform: rotate(360DEG) scale(1);
+	    }
+	}
 }
 .change{
     float: right;

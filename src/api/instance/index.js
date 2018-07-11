@@ -42,7 +42,7 @@ instance.interceptors.response.use(
             //拦截景区预警人数设置
           }else if(response.data.code===201 || response.data.code==='201'){
           	alert(response.data.message)
-          }else if(response.data.code===-1 || response.data.code==='-1'){
+          }else if(response.data.code===-1 || response.data.code==='-1'){//未登录
           	router.replace({ //跳转到登录页面
                  path: 'login',
                   query: { redirect: router.currentRoute.fullPath } // 将跳转的路由path作为参数，登录成功后跳转到该路由
@@ -52,8 +52,8 @@ instance.interceptors.response.use(
         
     },
     error => { //默认除了2XX之外的都是错误的，就会走这里
-        return Promise.reject({code:666});
+        return Promise.reject({code:666}); //求情出错 如超时  返回状态码 方便判断
     }
 );
-export default instance
+export default instance //输出到 api.js 页面
 

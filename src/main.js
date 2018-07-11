@@ -8,12 +8,12 @@ import axios from 'axios'
 import store from './vuex/index.js'
 import sheet from './common/js/until.js'
 import Rw from '@/common/js/until/index'
-import api from '@/api/index'
+import api from '@/api/index' //接口对象
 import Loading from '@/components/commonui/loading/loading.vue'
 import {API_HZ} from '@/api/env'
 import rem from '@/common/js/rem'
 import clickOutside from '@/common/js/directives/clickOutside'
-Vue.directive('clickOutside',clickOutside)
+Vue.directive('clickOutside',clickOutside) //点击区域外隐藏
 
 
 

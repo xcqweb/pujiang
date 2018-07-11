@@ -100,7 +100,7 @@
 				this.showStatus = false;
 				this.status = false;
 				if(this.isStart){//开始日期
-					if(this.choseDateStart[0]===year && data>curMonth){
+					if(this.choseDateStart[0]===year && data>curMonth+1){
 						alert('选择时间不能大于当前月份!');
 						this.ctime='年  ~ 月';
 						return;

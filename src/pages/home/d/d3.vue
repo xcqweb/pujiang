@@ -219,7 +219,7 @@
 
 <template>
     <div class="d3" @scroll="loadMore($event)">
-        <div class="msg" v-show='status'>
+        <div class="msg" v-show='status' ref='lists'>
             <div class="comment" v-for="(comment,index) in commentList" :key='index'>
                 <span class="place">{{comment.name}}</span>
                 <ul class='comment-star'>
@@ -300,6 +300,7 @@ export default {
     computed: { 
 		commentList(){
 			return this.comments
+			
 		},
     },
      created(){
@@ -309,6 +310,7 @@ export default {
     methods: {
 		
 		loadMore: debounce(function(e){
+			
 			var scrollT = Math.ceil(e.target.scrollTop+e.target.clientHeight),
 		    offsetT = e.target.getElementsByClassName('msg')[0].offsetHeight;
 		    //console.log(scrollT,offsetT)

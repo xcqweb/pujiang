@@ -1,4 +1,8 @@
 
+
+//统一封装请求接口  组件引入该文件后 api.name().then( (re) => {} ).catch( (err) => {})来调用
+
+
 import axios from '@/api/instance/index'
 import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
 import {API_HZ} from '@/api/env'
@@ -8,31 +12,31 @@ let timeStamp = new Date().getTime()+'';
 //转换post 请求参数
 function tansParm(data){
 	var params = new FormData();
-        params.append('token', getCookie('token'));
-        params.append('timeStamp',timeStamp);
-        if(data.code!=='undefined'){
+        params.append('token', getCookie('token'));//token 必须
+        params.append('timeStamp',timeStamp); //时间戳 必须
+        if(data.code!=='undefined'){ //景区代码
         	params.append('code', data.code);
         }
-        if(data.range){
+        if(data.range){//请求数据时是省内或者省外
         	 params.append('range',data.range);
         }
-        if(data.monthId){
+        if(data.monthId){//月份
         	 params.append('monthId',data.monthId);
         }
-        if(data.beginDate){
+        if(data.beginDate){//开始时间
         	 params.append('beginDate',data.beginDate);
         }
-        if(data.endDate){
+        if(data.endDate){//结束时间
         	 params.append('endDate',data.endDate);
         }
-        if(data.limit){
+        if(data.limit){//请求评论详情返回的数据量
         	data.limit = data.limit>100?5:data.limit
         	 params.append('limit',data.limit);
         }
-        if(data.curPage){
+        if(data.curPage){//评论详情分页
         	 params.append('curPage',data.curPage);
         }
-        if(data.setNum>=0 || data.warnNum>=0){
+        if(data.setNum>=0 || data.warnNum>=0){//提交设置预警值
         	params.append('setNum', data.setNum);
         	params.append('warnNum', data.warnNum);
         }
