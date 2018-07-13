@@ -31,6 +31,7 @@ const loginmain = resolve => {require.ensure(['@/pages/loginmain.vue'], () => {r
 
 Vue.use(Router)
 const router= new Router({
+  //mode:'history',
   routes: [
     {
         path: '/404',
@@ -58,7 +59,7 @@ const router= new Router({
         name: '',
         iconCls: 'el-icon-message',//图标样式class
         children: [
-            { path: '/', component: Video, name: 'homepage' ,meta:{requiresAuth:true}},
+            { path: '/', redirect:'video' ,meta:{requiresAuth:true}},
             { path: 'home', component: homepage, name: 'home' ,meta:{requiresAuth:true}},
             { path: 'video', component: Video, name: 'video' ,meta:{requiresAuth:true}},
             { path: 'prodcut', component: prodcut, name: 'prodcut',meta:{requiresAuth:true} },

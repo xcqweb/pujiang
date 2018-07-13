@@ -89,10 +89,10 @@ export default {
             case '#/login' :
             this.items[0].status = 'unchose'
             break; 
-             case '#/home' :
+            case '#/home' :
             this.items[1].status = 'unchose'
             break; 
-             case '#/video' :
+            case '#/video' :
             this.items[0].status = 'unchose'
             break; 
             case '#/prodcut' :
@@ -120,13 +120,7 @@ export default {
         }
     },
   },
-  components:{
-  },
   mounted(){
-    let _self= this
-    window.addEventListener('hashchange', function(e) {
-        _self.hash=location.hash;
-    }, false);
     this.keepStatus()
   }
 }

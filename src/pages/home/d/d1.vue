@@ -68,7 +68,6 @@ display:none !important;
         <div id="XSDFXPages" class="XSDFXPage"></div>
         <Loading v-show="isloading"></Loading>
     </div>
-    
 </template>
 
  

@@ -21,7 +21,7 @@ instance.interceptors.request.use(
     	
         if (token) {  // 判断是否存在token，如果存在的话，则每个http header都加上token
             // config.headers.token = token;
-             //config.headers.timeStamp = new Date().getTime();
+//             config.headers.timeStamp = new Date().getTime();
              //config.data={
 	    	//	code:6
 	    	//	}
@@ -45,7 +45,7 @@ instance.interceptors.response.use(
           }else if(response.data.code===-1 || response.data.code==='-1'){//未登录
           	router.replace({ //跳转到登录页面
                  path: 'login',
-                  query: { redirect: router.currentRoute.fullPath } // 将跳转的路由path作为参数，登录成功后跳转到该路由
+                 query: { redirect: router.currentRoute.fullPath } // 将跳转的路由path作为参数，登录成功后跳转到该路由
                })
           	return response;
           }
