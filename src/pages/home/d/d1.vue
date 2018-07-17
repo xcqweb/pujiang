@@ -305,7 +305,7 @@ import sciencePoints from './points.json'
                 	if(item.label==='仙华山'){
                 		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
                 	}else if(item.label==='前吴村'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.010445,0.012313,0.020131,-0.012862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.005445,0.006313,0.010131,-0.006862,item.num))
                 	}else if(item.label==='塘波村'){
                 		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
                 	}else if(item.label==='民生村'){
@@ -313,79 +313,79 @@ import sciencePoints from './points.json'
                 	}else if(item.label==='罗源村'){
                 		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.010445,0.012313,0.020131,-0.012862,item.num))
                 	}else if(item.label==='白石湾'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.000445,0.009313,0.007131,-0.004862,item.num))
                 	}else if(item.label==='江南第一家'){
                 		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.000445,0.000313,0.000131,-0.000862,item.num))
                 	}else if(item.label==='嵩溪村'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.010445,0.012313,0.020131,-0.012862,item.num))
                 	}else if(item.label==='宝掌幽谷'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.000445,0.009313,0.007131,-0.008862,item.num))
                 	}else if(item.label==='登高村'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.000445,0.009313,0.007131,-0.008862,item.num))
                 	}else if(item.label==='神丽峡'){
                 		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.010445,0.012313,0.020131,-0.012862,item.num))
                 	}else if(item.label==='礼张村'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.000445,0.009313,0.007131,-0.008862,item.num))
                 	}else if(item.label==='农批市场'){
                 		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.000445,0.000313,0.000131,-0.000862,item.num))
                 	}else if(item.label==='檀溪镇'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.010445,0.012313,0.020131,-0.012862,item.num))
                 	}else if(item.label==='冷坞村'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.010445,0.012313,0.020131,-0.012862,item.num))
                 	}else if(item.label==='上河村'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.010445,0.012313,0.020131,-0.012862,item.num))
                 	}else if(item.label==='汽车客运站'){
                 		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.000045,0.000013,0.000031,-0.000062,item.num))
                 	}else if(item.label==='翠湖'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.010445,0.009313,0.017131,-0.008862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.001445,0.000513,0.001931,-0.000862,item.num))
                 	}else if(item.label==='马岭'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.008445,0.010313,0.015131,-0.010862,item.num))
                 	}else if(item.label==='利民村'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.000445,0.009313,0.007131,-0.008862,item.num))
                 	}else if(item.label==='下湾村'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.000445,0.009313,0.007131,-0.008862,item.num))
                 	}else if(item.label==='新光村'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.000445,0.009313,0.007131,-0.008862,item.num))
                 	}else if(item.label==='西山村'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.001445,0.011313,0.010001,-0.012862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.000645,0.003213,0.005001,-0.003862,item.num))
                 	}else if(item.label==='田后蓬'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.000445,0.009313,0.007131,-0.008862,item.num))
                 	}else if(item.label==='薛下庄村'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.000445,0.009313,0.007131,-0.008862,item.num))
                 	}else if(item.label==='下薛宅'){
                 		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.000445,0.000313,0.000131,-0.000862,item.num))
                 	}else if(item.label==='金狮湖'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.010445,0.012313,0.020131,-0.012862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.003445,0.004313,0.006131,-0.006862,item.num))
                 	}else if(item.label==='高速路'){
                 		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.000445,0.000313,0.007131,-0.008862,item.num))
                 	}else if(item.label==='官岩寺'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.000445,0.009313,0.007131,-0.008862,item.num))
                 	}else if(item.label==='上山遗址'){
                 		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.010445,0.012313,0.020131,-0.012862,item.num))
                 	}else if(item.label==='渠南村'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.010445,0.012313,0.020131,-0.012862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.006445,0.008313,0.012131,-0.006862,item.num))
                 	}else if(item.label==='温泉'){
                 		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.000445,0.000313,0.000131,-0.000862,item.num))
                 	}else if(item.label==='水晶城'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.000445,0.002313,0.003131,-0.003862,item.num))
                 	}else if(item.label==='水竹湾'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.000445,0.009313,0.007131,-0.008862,item.num))
                 	}else if(item.label==='平湖森林果园'){
                 		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
                 	}else if(item.label==='三角潭林场'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.010445,0.009313,0.017131,-0.008862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.000445,0.002313,0.003131,-0.002862,item.num))
                 	}else if(item.label==='罗家村'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.000445,0.009313,0.007131,-0.008862,item.num))
                 	}else if(item.label==='白岩山前滑草基地'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.000445,0.009313,0.007131,-0.008862,item.num))
                 	}else if(item.label==='里黄宅村'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.010445,0.012313,0.020131,-0.012862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.006445,0.006313,0.012131,-0.006862,item.num))
                 	}else if(item.label==='善庆村'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.010445,0.012313,0.020131,-0.012862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.006445,0.006313,0.012131,-0.006862,item.num))
                 	}else if(item.label==='文化馆'){
                 		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.00045,0.000013,0.000031,-0.000062,item.num))
                 	}else if(item.label==='通济桥水库大坝'){
-                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.020445,0.019313,0.027131,-0.018862,item.num))
+                		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.000445,0.009313,0.007131,-0.008862,item.num))
                 	}else if(item.label==='三城山农庄'){
                 		this.points.push.apply(this.points,this.calcCoord(map,item.points[0],item.points[1],-0.00445,0.000313,0.000131,-0.000862,item.num))
                 	}else if(item.label==='塔山宾馆'){
