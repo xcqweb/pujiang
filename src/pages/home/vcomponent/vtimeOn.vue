@@ -243,7 +243,12 @@ export default {
                 if (_self.reTimer) {
                     window.clearInterval(_self.reTimer)
                 }
+                let count = 0;
                 _self.reTimer=setInterval(function () {
+                		count++
+                		if(count>120){ //15分钟跟新一次接口数据
+                			_self.getData({code:_self.code})
+                		}
                     date.shift();
                     data.shift();
                     date.push(randomData().xData);
@@ -288,8 +293,9 @@ export default {
     		this.getData({code:data})
     	}
     },
-    mounted(){
-    	
+    beforeDestroy(){
+    	window.clearInterval(this.reTimer)
+    	this.reTimer = null
     }
 }
 </script>

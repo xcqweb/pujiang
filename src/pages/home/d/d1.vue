@@ -107,7 +107,7 @@ import sciencePoints from './points.json'
                         //点跳动
                         marker.setAnimation(BMAP_ANIMATION_BOUNCE);
                       		//设置标签
-	                     var label = new BMap.Label(val,{offset:new BMap.Size(20,-50)});
+	                     var label = new BMap.Label(val,{offset:new BMap.Size(30,-20)});
 		                    label.setStyle({
 		                        color : "#153081",
 		                        border:"1px solid #153081",
@@ -144,7 +144,7 @@ import sciencePoints from './points.json'
 	                        }
 	                    	
 	                    	//设置标签
-	                     var label = new BMap.Label(points[i].label,{offset:new BMap.Size(20,-50)});
+	                     var label = new BMap.Label(points[i].label,{offset:new BMap.Size(30,-20)});
 		                    label.setStyle({
 		                        color : "#153081",
 		                        border:"1px solid #153081",
@@ -161,8 +161,8 @@ import sciencePoints from './points.json'
 	                        //添加新图标的监听事件
 	                        marker.addEventListener("click",
 	                            function(event) {
-	                            var p = event.target.getPosition();       //获取marker的位置
-	                              map.centerAndZoom(new BMap.Point(p.lng,p.lat), 15);
+	                            var p = event.target.getPosition();     //获取marker的位置
+	                              map.centerAndZoom(new BMap.Point(p.lng,p.lat), 16);
 	                            window.event?window.event.cancelBubble=true:event.stopPropagation();
 	                        },false);
 	                    })(i);
@@ -558,7 +558,7 @@ import sciencePoints from './points.json'
 		            '利民村':{lng:119.852974,lat:29.570912,zoom:14},
 		            '下湾村':{lng:119.842452,lat:29.569144,zoom:14},
 		            '新光村':{lng:119.826415,lat:29.571845,zoom:14},
-		            '西山村':{lng:119.884387,lat:29.463871,zoom:14},
+		            '西山村':{lng:119.884387,lat:29.463871,zoom:15},
 		            '田后蓬':{lng:119.797108,lat:29.617633,zoom:14},
 		            '薛下庄村':{lng:119.86882,lat:29.542146,zoom:14},
 		            '下薛宅':{lng:119.867063,lat:29.532904,zoom:14},
@@ -576,10 +576,10 @@ import sciencePoints from './points.json'
 		            '白岩山前滑草基地':{lng:119.882467,lat:29.59094,zoom:14},
 		            '里黄宅村':{lng:119.797415,lat:29.441304,zoom:14},
 		            '善庆村':{lng:119.855531,lat:29.498886,zoom:14},
-		            '文化馆':{lng:119.902428,lat:29.459172,zoom:15},
+		            '文化馆':{lng:119.902428,lat:29.459172,zoom:18},
 		            '通济桥水库大坝':{lng:119.848248,lat:29.44639,zoom:14},
 		            '三城山农庄':{lng:120.00538,lat:29.477826,zoom:15},
-		            '塔山宾馆':{lng:119.902281,lat:29.460145,zoom:15},
+		            '塔山宾馆':{lng:119.902281,lat:29.460145,zoom:18},
 		            '月泉书院遗址公园':{lng:119.892902,lat:29.471208,zoom:15}
             	}
             	
