@@ -8,9 +8,7 @@
   </div>
 </template>
 <script>
-import echarts_listen_resize from '@/common/js/echarts_listen_resize.js'
 import echarts from 'echarts';
-import Start_end_class from '@/common/js/star_end_class.js'
 import Rw from '@/common/js/until/index'
 import optionProps from '@/common/js/mixin/optionProps.js'
 let w = document.body.clientWidth/1920

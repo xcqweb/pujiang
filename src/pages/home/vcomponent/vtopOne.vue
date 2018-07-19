@@ -1,5 +1,5 @@
 <template>
-  <div class="main_content" v-show='show' id="A1loding">
+  <div class="main_content" id="A1loding">
   	<span class="title" :class='comStyle'>( 单位 : 人次 )</span>
     <div id="righthz"></div>
     <Loading v-if="isloading"></Loading>
@@ -13,7 +13,6 @@
 <script>
 import echarts_resize from '../../../common/js/echarts_resize.js'
 import echarts from 'echarts';
-import timeMixin from '@/common/js/mixin/timeMixin.js'
 import Start_end_class from '@/common/js/star_end_class.js'
 import Bus from '@/common/js/bus.js'
 import {begindaytime} from '@/common/js/gtime.js'
@@ -24,7 +23,7 @@ let w = document.body.clientWidth/1920
 
 export default {
     name:'a1',
-    mixins: [timeMixin,optionProps],
+    mixins: [optionProps],
     data() {
       return {
       	timeRange:{begin:[],end:[]},
@@ -299,6 +298,9 @@ export default {
     },
     components:{
     	vdate
+    },
+    beforeDestroy(){
+    	echarts_resize()
     },
     mounted() {
       Bus.$on('timeRange',(val) => {

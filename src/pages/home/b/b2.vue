@@ -72,7 +72,16 @@ export default {
 		      console.log(e);
 		    })
 	},
-  	
+  	//设置预警颜色
+  	changColor(p){
+  		if(p<=50&&p>=0){
+    		return '#6dffeb'
+        }else if(p>50 && p<70){
+    		return '#fda925'
+        }else{
+    		return '#ff0600'
+        }
+  	},
   	//客流设置
   	passagerConfig(){
   		this.showToast = true;
@@ -165,7 +174,8 @@ export default {
             ctx.lineTo(axisLength, mH);
             ctx.lineTo(sX, mH);
             ctx.lineTo(points[0][0],points[0][1]);
-            ctx.fillStyle = '#6dffeb';
+            //ctx.fillStyle = '#6dffeb';
+            ctx.fillStyle = _self.changColor(_self.percent);
             ctx.fill();
 
             ctx.restore();
@@ -200,15 +210,13 @@ export default {
             }
 
             if(nowRange >= rangeValue){
-                var tmp = 1;
-                nowRange -= tmp;
+                  var tmp = 1;
+                  nowRange -= tmp;
             }
 
             drawSin(xOffset);
               // drawText();
-
             xOffset += speed;
-            requestAnimationFrame(render);
         }
 
         render();
@@ -226,9 +234,6 @@ export default {
   },
   mounted() {
   	this.$nextTick(this.request())
-  },
-  beforeDestroy(){
-  	this.$off()
   },
    components:{
     	config

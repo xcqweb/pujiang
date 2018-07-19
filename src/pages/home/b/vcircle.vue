@@ -104,8 +104,8 @@ export default {
 
 <style lang="less" scoped>
 .ta_c{
-    height: 100%;
-    width: 100%;
+    height: 96%;
+    width: 98%;
     position: relative;
     .rotImg{
         height: 100%;
@@ -153,7 +153,7 @@ font{
     font-size:2rem;
     position: absolute;
     bottom: 3.2rem;
-    left:1.8rem;
+    left:1.6rem;
 }
 }
 
@@ -286,8 +286,8 @@ animation: rotation 3s linear infinite;
 
 
 .ta_cv{
-    height: 7.5rem;
-    width: 7.5rem;
+    height: 7rem;
+    width: 7.2rem;
     position: relative;
     .rotImg{
         height: 100%;
@@ -332,7 +332,7 @@ animation: rotation 3s linear infinite;
 	    color: #fff;
 	    position: absolute;
 	    left: 0;
-	    bottom: 2.4rem;
+	    bottom: 2.2rem;
 	    font-size:1.3rem;
 	    text-align: center;
 	}

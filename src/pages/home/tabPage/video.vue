@@ -177,7 +177,7 @@ export default {
         vdate
     },
     beforeDestroy(){
-  	    this.$off()
+  	    Bus.$off('timeRange')
  	},
 }
 </script>

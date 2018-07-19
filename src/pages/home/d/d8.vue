@@ -50,7 +50,7 @@
         position: absolute;
         left: 4.5rem;
         width: 6.6rem;
-        top: 1.2rem;
+        top: 1.1rem;
         text-align: center;
         display: inline-block;
         line-height: 6.6rem;
