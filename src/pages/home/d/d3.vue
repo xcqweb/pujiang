@@ -136,6 +136,7 @@
     .msg{
         position:relative;
         margin-top:20px;
+        margin-bottom: 1rem;
         margin-left: 5%;
         width:90%;
         font-size: 13px;

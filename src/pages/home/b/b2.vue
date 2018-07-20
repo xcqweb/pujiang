@@ -97,9 +97,20 @@ export default {
         //range控件信息
         var rangeValue = 30;
         var nowRange  //用于做一个临时的range
-       
-    	nowRange = this.percent+8
-      	//nowRange = nowRange<=11&&nowRange>10?11:nowRange
+//      if(this.percent<50){
+        	if(this.percent<8){
+        		if(this.percent===0){
+        			nowRange = 0
+        		}else{
+        			nowRange = this.percent+8
+        		}
+        		
+        	}else{
+        		nowRange = this.percent
+        	}
+        	
+
+    	
 		nowRange = nowRange>=100?100:nowRange
         //画布属性
         var mW = canvas.width = 250;
@@ -198,7 +209,7 @@ export default {
         var render = function(){
             ctx.clearRect(0, 0, mW, mH);
 
-            rangeValue = _self.value-10;
+            rangeValue = _self.value;
 
             if(IsdrawCircled == false){
                 drawCircle();
