@@ -24,8 +24,8 @@ window.api = api;
 window.$sheet=sheet;
 window.Loading=Loading;
 window.Rw = Rw;
-Vue.config.productionTip = false
-Vue.config.devtools = true
+Vue.config.productionTip = false;
+Vue.config.devtools = true;
 
 /* eslint-disable no-new */
 new Vue({

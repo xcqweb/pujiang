@@ -69,6 +69,14 @@ export default {
     	api.loginOut(api.params).then( (re) => {
     		if(re.data.code===200){
     			setCookie('token','',-1);
+    			for (var i = 0; i < this.items.length; i++) {
+    				if(i===0){
+    					this.items[i].status='unchose'
+    				}else{
+    					this.items[i].status='chose'
+    				}
+            
+        	}
         	this.$router.replace({ path: '/login' });
         	alert('退出成功!')
     		}
@@ -120,6 +128,7 @@ export default {
         }
     },
   },
+  
   mounted(){
     this.keepStatus()
   }

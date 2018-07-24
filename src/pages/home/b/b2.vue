@@ -33,7 +33,8 @@ export default {
         nub:'',
         set_config:'',
         configNumber:'',
-        showToast:false
+        showToast:false,
+        requestAnimation:null
     }
   },
   props:['isVideo'],
@@ -91,14 +92,46 @@ export default {
   	},
       redom(){
       	let _self = this;
-     var canvas = document.getElementById('pieB2');
+     	var canvas = document.getElementById('pieB2');
         var ctx = canvas.getContext('2d');
+        
+        var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+                            window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
 
+		var cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
+        
+        cancelAnimationFrame(this.requestAnimation)
+		//画布属性
+        var mW = canvas.width = 250;
+        var mH = canvas.height = 250;
+        var lineWidth = 2;
+
+        //圆属性
+        var r = mH / 2; //圆心
+        var cR = r - 16 * lineWidth; //圆半径
+
+        //Sin 曲线属性
+        var sX = 0;
+        var sY = mH / 2;
+        var axisLength = mW; //轴长
+        var waveWidth = 0.05 ;   //波浪宽度,数越小越宽
+        var waveHeight = 5; //波浪高度,数越大越高
+        var speed = 0.1; //波浪速度，数越大速度越快
+        var xOffset = 0; //波浪x偏移量
+
+        ctx.lineWidth = lineWidth;
+
+        //画圈函数
+        var IsdrawCircled = false;
+        
+        
         //range控件信息
         var rangeValue = 30;
         var nowRange  //用于做一个临时的range
-//      if(this.percent<50){
         	if(this.percent<8){
+        		speed = 0;
+        		waveWidth = 0;
+        		waveHeight = 0;
         		if(this.percent===0){
         			nowRange = 0
         		}else{
@@ -112,28 +145,7 @@ export default {
 
     	
 		nowRange = nowRange>=100?100:nowRange
-        //画布属性
-        var mW = canvas.width = 250;
-        var mH = canvas.height = 250;
-        var lineWidth = 2;
-
-        //圆属性
-        var r = mH / 2; //圆心
-        var cR = r - 16 * lineWidth; //圆半径
-
-        //Sin 曲线属性
-        var sX = 0;
-        var sY = mH / 2;
-        var axisLength = mW; //轴长
-        var waveWidth = 0.015 ;   //波浪宽度,数越小越宽
-        var waveHeight = 0; //波浪高度,数越大越高
-        var speed = 0.1; //波浪速度，数越大速度越快
-        var xOffset = 0; //波浪x偏移量
-
-        ctx.lineWidth = lineWidth;
-
-        //画圈函数
-        var IsdrawCircled = false;
+        
         var drawCircle = function(){
 			
 			  ctx.arc(126,126,105,0,2*Math.PI,false);  
@@ -161,14 +173,14 @@ export default {
             ctx.arc(r+1, r+1, cR+12, 0, 2 * Math.PI);
             ctx.clip();
             ctx.closePath();
+            
+           
         }
 
         //画sin 曲线函数
-        var drawSin = function(xOffset){
+        function drawSin(xOffset){
             ctx.save();
-
             var points=[];  //用于存放绘制Sin曲线的点
-
             ctx.beginPath();
             //在整个轴长上取点
             for(var x = sX; x < sX + axisLength; x += 20 / axisLength){
@@ -180,18 +192,18 @@ export default {
                 points.push([x, dY + y * waveHeight]);
                 ctx.lineTo(x, dY + y * waveHeight);
             }
-
+ 			  
             //封闭路径
             ctx.lineTo(axisLength, mH);
             ctx.lineTo(sX, mH);
             ctx.lineTo(points[0][0],points[0][1]);
-            //ctx.fillStyle = '#6dffeb';
+            
             ctx.fillStyle = _self.changColor(_self.percent);
             ctx.fill();
-
-            ctx.restore();
+            
             ctx.beginPath();
             ctx.clip();
+            ctx.restore();
             ctx.closePath();
         };
 
@@ -206,31 +218,19 @@ export default {
             ctx.restore();
         };
 
-        var render = function(){
+        function render(){
             ctx.clearRect(0, 0, mW, mH);
-
-            rangeValue = _self.value;
-
             if(IsdrawCircled == false){
                 drawCircle();
             }
-
-            if(nowRange <= rangeValue){
-                var tmp = 1;
-                nowRange += tmp;
-            }
-
-            if(nowRange >= rangeValue){
-                  var tmp = 1;
-                  nowRange -= tmp;
-            }
-
             drawSin(xOffset);
-              // drawText();
-            xOffset += speed;
+			xOffset += speed;
+			xOffset>100?xOffset=0:xOffset
+			if(speed>0){
+				_self.requestAnimation = requestAnimationFrame(render)
+			}
         }
-
-        render();
+		render()
       },
   request(){
 	  api.params.code= this.code;
@@ -242,6 +242,9 @@ export default {
       console.log(e);
     })
   }
+  },
+  beforeDestroy(){
+  	cancelAnimationFrame(this.requestAnimation)
   },
   mounted() {
   	this.$nextTick(this.request())

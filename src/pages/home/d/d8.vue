@@ -90,8 +90,6 @@
         text-align: center;
         display: inline-block;
         width: 6.25rem;
-        /*height: 6.6rem;*/
-        /*line-height: 6.6rem;*/
         font-size: 1rem;
         color: #c7c8f9;
         
@@ -132,8 +130,6 @@ export default {
     }
     },
     props:['place','isVideo'],
-    watch: { 
-    },
     computed:{
     	txt(){
     		let num = this.percent;
@@ -163,11 +159,6 @@ export default {
     		}
     	}
     },
-    methods: {
-    	
-    },
-    created(){
-    },
     methods:{
     	//请求数据
 	  	getData(){
@@ -191,13 +182,12 @@ export default {
 						}
 		           },
                     error:function(err){
-                      console.log(err);
+                      _self.getData()
                     }
                 })
     	}
     },
-    mounted(){
-    },
+   
     components:{
     	vcircle,
     }

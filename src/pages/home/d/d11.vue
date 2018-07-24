@@ -70,6 +70,9 @@ let fsize=[w*12,w*50]
     },
     methods:{
         redom(id){
+        	if(this.chart){
+        		this.chart.dispose()
+        	}
             this.chart = echarts.init(document.getElementById(id));
             var JosnList = [];
             JosnList.push(...this.yunData);
@@ -81,10 +84,9 @@ let fsize=[w*12,w*50]
         	api.params.code = this.code;
             api.getKeywords(api.params).then(re => {
             	let reData = re.data.data;
-				//console.log(reData)
 				let _self = this;
+				_self.yunData = []
 				reData.forEach( (item,index) => {
-					
 					_self.yunData[index]={name:item.word,value:item.num};
 				})
 				this.redom('chartId');

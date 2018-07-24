@@ -31,8 +31,7 @@ const loginmain = resolve => {require.ensure(['@/pages/loginmain.vue'], () => {r
 
 Vue.use(Router)
 const router= new Router({
-  //mode:'history',
-  routes: [
+      routes: [
     {
         path: '/404',
         component: NotFound,
@@ -42,6 +41,7 @@ const router= new Router({
     {
         path: '/login',
         component: loginmain,
+        meta:{keepAlive:true},
         name: '',
         children: [
             { path: '/', component: Login, name: 'Login'},
@@ -59,13 +59,13 @@ const router= new Router({
         name: '',
         iconCls: 'el-icon-message',//图标样式class
         children: [
-            { path: '/', redirect:'video' ,meta:{requiresAuth:true}},
-            { path: 'home', component: homepage, name: 'home' ,meta:{requiresAuth:true}},
-            { path: 'video', component: Video, name: 'video' ,meta:{requiresAuth:true}},
-            { path: 'prodcut', component: prodcut, name: 'prodcut',meta:{requiresAuth:true} },
-            { path: 'precision', component: Precision, name: 'Precision',meta:{requiresAuth:true} },
-            { path: 'souceShow', component: souceShow, name: 'souceShow' ,meta:{requiresAuth:true}},
-            { path: 'iframeMap', component: iframeMap, name: 'iframeMap' ,meta:{requiresAuth:true}},
+            { path: '/', redirect:'video' ,meta:{requiresAuth:true,keepAlive:false}},
+            { path: 'home', component: homepage, name: 'home' ,meta:{requiresAuth:true,keepAlive:true}},
+            { path: 'video', component: Video, name: 'video' ,meta:{requiresAuth:true,keepAlive:true}},
+            { path: 'prodcut', component: prodcut, name: 'prodcut',meta:{requiresAuth:true,keepAlive:true} },
+            { path: 'precision', component: Precision, name: 'Precision',meta:{requiresAuth:true,keepAlive:true} },
+            { path: 'souceShow', component: souceShow, name: 'souceShow' ,meta:{requiresAuth:true,keepAlive:true}},
+            { path: 'iframeMap', component: iframeMap, name: 'iframeMap' ,meta:{requiresAuth:true,keepAlive:true}},
         ]
     },
   ]
@@ -79,7 +79,7 @@ router.beforeEach((to, from, next) => {
     if(token){
       next();
     }else{
-    	router.replace('login')
+    	router.replace('login');
     }
   }else{
     next();//如果无需token,那么随它去吧

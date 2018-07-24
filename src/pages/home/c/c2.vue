@@ -6,9 +6,9 @@
 </template>
 
 <script type="text/javascript">
-import echarts_resize from '../../../common/js/echarts_resize.js'
+import echarts_resize from '@/common/js/echarts_resize.js'
 import echarts from 'echarts'
-import adaptation from '@/common/js/mixin/adaptation.js'
+//import adaptation from '@/common/js/mixin/adaptation.js'
 import optionProps from '@/common/js/mixin/optionProps.js'
 let w = document.body.clientWidth/1920
 export default {

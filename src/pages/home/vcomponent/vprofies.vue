@@ -10,7 +10,7 @@
 	<div class="leftprofile">
 		<div class='top'>
 			<p>{{curSum}}<font></font></p>
-			<span>当前客流人次</span>
+			<span>今日客流总人次</span>
 		</div>
 
 		<div class='bottom'>

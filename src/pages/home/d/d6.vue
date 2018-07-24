@@ -13,7 +13,7 @@
     font{
         display:block;
         color:#43dbff;
-        font-size:1.5rem;
+        font-size:1.3rem;
         letter-spacing: .2rem;
     }
     .b6__top{
@@ -48,13 +48,13 @@
         letter-spacing: .2rem;
     }
     .b6__top{
-    	width: 12.5rem;
+    	width: 15.5rem;
         position:absolute;
         top:32%;
         left: 0;
     }
     .b6__bottom{
-    	width: 12.5rem;
+    	width: 15.5rem;
         position:absolute;
         top: 32%;
         right: 0;
@@ -67,7 +67,9 @@
     <div :class="comStyle">
         <div class="b6__top">
             <span>{{currentNums}}<font></font></span>
-            <font>当前客流总人次</font>
+            <font v-if='isVideo'>今日客流总人次</font>
+            <font v-else>近一小时客流总人次</font>
+            
         </div>
         <div class="b6__bottom">
             <span>{{yestodayNums}}<font></font></span>
@@ -118,22 +120,34 @@ export default {
     },
     methods: {
 		//请求次据
-	  	getData(){
-	  		api.params.code = this.code;
-	  		api.getScenicKeliu(api.params).then( (re) =>{
-	  			//console.log(re.data.data)
-  				let reData = re.data.data;
-  				this.currentNum = reData.curSum;
-				this.yestodayNum = reData.yesterdaySum;
-				if(re.data.code===200){
-					this.isloading = false;
-				}
-		    }).catch( (e) => {
-		    	console.log(e);
-		    })
-	  	}
-    },
-    created(){
+			getData(){
+		  		api.params.code = this.code;
+		  		if(!this.isVideo){
+		  			api.getScenicKeliu(api.params).then( (re) =>{
+		  				let reData = re.data.data;
+		  				this.currentNum = reData.curSum;
+						this.yestodayNum = reData.yesterdaySum;
+						if(re.data.code===200){
+							this.isloading = false;
+						}
+				    }).catch( (e) => {
+				    	console.log(e);
+				    })
+		  		}else{
+		  			api.currentTourist(api.params).then( (re) =>{
+		  				let reData = re.data.data;
+		  				this.currentNum = reData.curSum;
+						this.yestodayNum = reData.yesterdaySum;
+						if(re.data.code===200){
+							this.isloading = false;
+						}
+				    }).catch( (e) => {
+				    	console.log(e);
+				    })
+		  		}
+		  		
+		  	}
+	  	
     },
 }
 </script>

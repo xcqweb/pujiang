@@ -161,6 +161,11 @@
 					border-radius: 1rem;
 					cursor: pointer;
 					overflow: hidden;
+					-webkit-user-select: none;
+					-ms-user-select: none;
+					-moz-user-select: none;
+					-o-user-select: none;
+					user-select: none;
 				}
 				.history{
 					left: 38%;

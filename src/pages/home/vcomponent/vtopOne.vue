@@ -103,7 +103,7 @@ export default {
           dataX.push(this.oneweekMock[i]._id)
       		
       }
-      this.$nextTick(echarts_resize('righthz',this,dataX,dataY))
+      echarts_resize('righthz',this,dataX,dataY)
     },
       redom (id,xyfonsiz,datax,datay) {
         var _self= this;

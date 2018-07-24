@@ -83,9 +83,6 @@ export default {
     	
     	//请求数据
 	  	getData(data){
-	  		//api.params.code = this.code;
-	  		//api.params.monthId = this.yearMonth;
-	  		
 	  		api.touristAttr(data).then( (re) =>{
 	  				let reData = re.data.data;
 	  				//console.log(reData)
@@ -100,7 +97,7 @@ export default {
 					if(re.status===200){
 						this.isloading = false;
 					}
-					this.redom("c9");
+					echarts_resize('c9',this)
 		    }).catch( (e) => {
 		    	console.log(e);
 		    })
@@ -208,15 +205,10 @@ export default {
             this.chart.setOption(option);
         }
     },
-    created(){
-    },
+    
     computed:{
     	percents(){
     		let arr=[];
-    		//let sum=0;
-    		//for(let i=0; i<this.series.length; ++i){
-    			//sum += this.series[i].value;
-    		//}
     		for(let i=0; i<this.series.length; ++i){
     			arr[i] = this.series[i].value;
     		}
@@ -224,6 +216,7 @@ export default {
     	}
     },
     mounted() {
+    	console.log(666)
       this.$nextTick(echarts_resize('c9',this))
     },
 }

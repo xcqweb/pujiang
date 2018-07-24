@@ -66,7 +66,7 @@
 </template>
 
 <script type="text/javascript">
-import echarts_resize from '../../../common/js/echarts_resize.js'
+import echarts_resize from '@/common/js/echarts_resize.js'
 import echarts from 'echarts'
 import adaptation from '@/common/js/mixin/adaptation.js'
 import optionProps from '@/common/js/mixin/optionProps.js'
@@ -92,17 +92,12 @@ export default {
 	   	 ],
         }
       },
-      computed: {
-		
-      },
-      created(){
-      },
        watch:{
     	code:function(){
     		let data={};
   			  data.code = this.code;
-  		    data.monthId = this.yearMonth;
-  		    this.getData(data)
+  		      data.monthId = this.yearMonth;
+  		      this.getData(data)
     	}
     },
     methods:{
@@ -111,7 +106,6 @@ export default {
 	  	getData(data){
 	  		//api.params.code = this.code;
 	  		api.tripMode(data).then( (re) =>{
-	  			//console.log(re)
 	    		let reData= re.data.data;
 	    		//console.log(reData)
 	    			let arrData = [];

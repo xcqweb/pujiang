@@ -21,7 +21,7 @@
 	import 'video.js/dist/video-js.css'
   import { videoPlayer } from 'vue-video-player'
 	import 'videojs-flash'
-	import 'videojs-hotkeys'
+//	import 'videojs-hotkeys'
 	export default{
 		  data() {
 	      return {
@@ -70,23 +70,20 @@
     		
     	}
     },
-    mounted(){
-    },
     methods: {
       onPlayerPlaying(){
       	this.isloading = false
       },
       playerIsReady(player) {
       	//this.isloading = false
-        player.hotkeys({
-          volumeStep: 0.1,
-          seekStep: 5,
-          enableModifiersForNumbers: false,
-          fullscreenKey: function(event, player) {
-          // override fullscreen to trigger when pressing the F key or Ctrl+Enter
-            return ((event.which === 70) || (event.ctrlKey && event.which === 13));
-          }
-        })
+//      player.hotkeys({
+//        volumeStep: 0.1,
+//        seekStep: 5,
+//        enableModifiersForNumbers: false,
+//        fullscreenKey: function(event, player) {
+//          return ((event.which === 70) || (event.ctrlKey && event.which === 13));
+//        }
+//      })
       },
       catchMsg(data){
       	this.isloading = true

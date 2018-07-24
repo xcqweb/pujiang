@@ -2,42 +2,13 @@
  const echarts_id= '';
  const _self =null;
  const echarts_listen_resize=function a(echart_id,_self) {
- 	if(!echart_id && !_self){
- 		window.removeEventListener('resize',function() {
-            //解决resize,触发两次，使用setTimeout
-          if (resizeTimer) clearTimeout(resizeTimer);
-          resizeTimer = window.setTimeout(function() {
-//        	if(_self.chrat){
-//        		_self.chrat.dispose();
-//        	}
-			if(echart_id==='container'){
-				_self.isloading = true;
-          		_self.currentNum=0;
-			}else{
-				_self.redom(echart_id);
-			}
-          	
-          }, 330);
-        },false)
- 		clearTimeout(resizeTimer)
- 		resizeTimer = null;
- 	}
         var resizeTimer = null;
         //同一页面多个resize事件，如果用window.resize容易冲突
         window.addEventListener('resize',function() {
             //解决resize,触发两次，使用setTimeout
           if (resizeTimer) clearTimeout(resizeTimer);
           resizeTimer = window.setTimeout(function() {
-//        	if(_self.chrat){
-//        		_self.chrat.dispose();
-//        	}
-			if(echart_id==='container'){
-				_self.isloading = true;
-          		_self.currentNum=0;
-			}else{
-				_self.redom(echart_id);
-			}
-          	
+            _self.redom(echart_id);
           }, 330);
         },false);
       }

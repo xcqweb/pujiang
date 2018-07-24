@@ -101,7 +101,7 @@ var Nest = function () {
         return {
             l: script_len, //长度，用于生成id用
             z: get_attribute(script, "zIndex", 22), //z-index
-            o: get_attribute(script, "opacity", 0.5), //opacity
+            o: get_attribute(script, "opacity", 0.8), //opacity
             c: get_attribute(script, "color", "255,255,255"), //color
             n: get_attribute(script, "count", 99) //count
         };
@@ -187,8 +187,9 @@ var Nest = function () {
     }
     all_array = random_lines.concat([current_point]);
     //0.1秒后绘制
-    setTimeout(function() {
+    var timer = setTimeout(function() {
         draw_canvas();
+        window.clearTimeout(timer)
     }, 100);
 }
 export default Nest

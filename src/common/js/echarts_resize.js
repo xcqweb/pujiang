@@ -2,24 +2,7 @@
  const echarts_id= '';
  const _self =null;
  const echarts_resize=function a(echart_id,_self,datax,datay) {
-	if(!echart_id && !_self){
- 		window.removeEventListener('resize',function() {
-	//解决resize,触发两次，使用setTimeout
-	if (resizeTimer) clearTimeout(resizeTimer);
-		resizeTimer = window.setTimeout(function() {
-			//销毁已挂载的echart实例
-			if(_self.chart){
-				_self.chart.dispose();
-			}
-				_self.redom(echart_id,12,datax,datay);
-		}, 330);
-	},false)
- 		clearTimeout(resizeTimer)
- 		resizeTimer = null;
- 		return
- 	}
-	
-	
+
 	if (document.body.clientWidth < 420) {
 		_self.redom(echart_id,12,datax,datay);
 	} else {

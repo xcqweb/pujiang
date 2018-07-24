@@ -136,10 +136,11 @@ import $axios from '@/api/instance/index'
                  $axios.post(API_HZ+'/pj/api/user/login',formData)
                 .then((data ) => {
                 	//console.log(data);
-                    this.logintext='登录中...'; 
+                    //this.logintext='登录中...'; 
                     if(data.data.code=200){
                         if(data.data.message==="用户名密码错误"){
                             this.logintext='登录';
+                            this.loading = false;
                             this.loginForm.password='';
                             alert(data.data.message)
 	                        }else{
