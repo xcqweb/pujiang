@@ -18,10 +18,10 @@
 
 <script>
 	import sleckte from '@/components/commonui/dropdown/dropdown-menu.vue'
-	import 'video.js/dist/video-js.css'
+	import './video-js.css'
   import { videoPlayer } from 'vue-video-player'
 	import 'videojs-flash'
-//	import 'videojs-hotkeys'
+	import 'videojs-hotkeys'
 	export default{
 		  data() {
 	      return {
@@ -75,15 +75,15 @@
       	this.isloading = false
       },
       playerIsReady(player) {
-      	//this.isloading = false
-//      player.hotkeys({
-//        volumeStep: 0.1,
-//        seekStep: 5,
-//        enableModifiersForNumbers: false,
-//        fullscreenKey: function(event, player) {
-//          return ((event.which === 70) || (event.ctrlKey && event.which === 13));
-//        }
-//      })
+        	this.isloading = false
+        player.hotkeys({
+          volumeStep: 0.1,
+          seekStep: 5,
+          enableModifiersForNumbers: false,
+          fullscreenKey: function(event, player) {
+            return ((event.which === 70) || (event.ctrlKey && event.which === 13));
+          }
+        })
       },
       catchMsg(data){
       	this.isloading = true
