@@ -80,13 +80,16 @@ div{
     position:relative;
 }
 
+.loading{
+	top: -2.7rem;
+}
+
 ul{
     margin-top:12%;
     height:90%;
     width:100%;
     li{
         height:13.8%;
-        /*height:16%;*/
         display:flex;
         align-items:center;
         justify-content:center;
@@ -97,12 +100,6 @@ ul{
             height: 0;
             clear: both;
             visibility: hidden;
-        }
-        div{
-            
-        }
-        font{
-             /*font-family:numberFont;*/
         }
     }
 }

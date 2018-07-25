@@ -101,10 +101,13 @@ export default {
 					}
 					echarts_resize('c9',this)
 		    }).catch( (e) => {
-		    	console.log(e);
+		    	
 		    })
 	  	},
         redom(id){
+        	if(this.chart){
+        		this.chart.dispose()
+        	}
             this.chart = echarts.init(document.getElementById(id));
             let option = {
             color:['#4EBBFC','#57ABFE', '#368DF7', '#7E6AF6', '#FF8885','#FFCD38',  '#E39A50', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD'],

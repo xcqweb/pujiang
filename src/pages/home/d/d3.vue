@@ -1,12 +1,14 @@
 <style lang="less">
+.isScroll{
+	overflow-y: scroll !important;
+}
 .d3{
     width:100%;
     height:92%;
     position:absolute;
     cursor: all-scroll;
     -webkit-overflow-scrolling: auto;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    overflow: hidden;
     top: 8%;
     
     .date{
@@ -22,7 +24,7 @@
     	box-shadow: 1px 0 30px  rgba(1,1,13,1);
     }
     .loading{
-    	height: 120%;
+    	height: 100%;
     }
     h1{
         position:absolute;
@@ -130,9 +132,6 @@
             }
         }
     }
-    .progress{
-        /*margin-top:16%;*/
-    }
     .msg{
         position:relative;
         margin-top:20px;
@@ -219,7 +218,7 @@
 </style>
 
 <template>
-    <div class="d3" @scroll="loadMore($event)">
+    <div class="d3" @scroll="loadMore($event)" :class='{isScroll:!isloading}'>
         <div class="msg" v-show='status' ref='lists'>
             <div class="comment" v-for="(comment,index) in commentList" :key='index'>
                 <span class="place">{{comment.name}}</span>

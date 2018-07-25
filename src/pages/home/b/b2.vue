@@ -1,9 +1,7 @@
 <template>
     <div :class="comStyle">
         <canvas id="pieB2"></canvas>
-        <div class="circle">
-            <!--<img :src="imgacircle"/>-->
-        </div>
+       
         <span>{{percent}}%</span>
         <div class="text" v-show="isVideo"><font>客流预警</font></div>
         <p class="configBtn" @click="passagerConfig" v-show="!isVideo">设置</p>
@@ -303,14 +301,6 @@ export default {
         bottom: 0;
         margin: auto;
     }
-    .circle{
-        height: auto;
-        width:110/223*100%;
-        text-align: center;
-        position:absolute;
-        top:55%;
-        left:50%;
-    }
     
     .text{
         width:80%;
@@ -369,14 +359,6 @@ export default {
         right: 0;
         bottom: 0;
         margin: auto;
-    }
-    .circle{
-        height: auto;
-        width:110/223*100%;
-        text-align: center;
-        position:absolute;
-        top:55%;
-        left:50%;
     }
     .line{
     	margin-top: 2.15rem !important;
@@ -438,14 +420,6 @@ export default {
         right: 0;
         bottom: 0;
         margin: auto;
-    }
-    .circle{
-        height: auto;
-        width:110/223*100%;
-        text-align: center;
-        position:absolute;
-        top:55%;
-        left:50%;
     }
     .line{
     	margin-top: 2.5rem !important;

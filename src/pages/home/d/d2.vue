@@ -120,8 +120,8 @@
 					}
 					this.redom7();
 		    }).catch( (e) => {
-		    	console.log(e);
-		    })
+		    	
+ 		    })
 	  	},
 	    redom7(){
 	        if(this.chart){
