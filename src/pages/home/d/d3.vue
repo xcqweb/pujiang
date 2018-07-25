@@ -257,7 +257,7 @@ export default {
         	timeRange:{begin:'',end:''},
         	comments:[],
         	status:true,
-        	pageNum:1,
+        	pageNum:0,
         	isLoad:true,//滚动到无数据时禁止发请求
             topStar:{
                 numb: 5,
@@ -305,7 +305,7 @@ export default {
 		},
     },
      created(){
-     	let params = {code:0,limit:20,curPage:1}
+     	let params = {code:0,limit:20,curPage:0}
      	this.request(params)
     },
     methods: {

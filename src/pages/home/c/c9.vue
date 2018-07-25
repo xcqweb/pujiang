@@ -1,3 +1,6 @@
+
+
+<!--消费偏好-->
 <template>
 <div class="content">
   <div id="c9"></div>
@@ -93,7 +96,6 @@ export default {
 	  				for(let i=0; i<this.series.length; ++i){
 	  					this.series[i].value = arrData[i]
 	  				}
-	  				//console.log(this.series)
 					if(re.status===200){
 						this.isloading = false;
 					}
@@ -216,7 +218,6 @@ export default {
     	}
     },
     mounted() {
-    	console.log(666)
       this.$nextTick(echarts_resize('c9',this))
     },
 }
@@ -271,7 +272,7 @@ export default {
         }
     }
 
-}
+	}
 }
 @media screen and (max-width: 1400px){
   ul{

@@ -1,12 +1,8 @@
+
+
+<!--景区概况-->
 <template>
   <div class="v-profile">
-	<!--<vSelect class='vSelect'-->
-			<!--:selectList="selectlist"-->
-			<!--&gt;-->
-	<!--</vSelect>-->
-	<!--刷新-->
-	<!--<div class='shuaxin'></div>-->
-
 	<div class="leftprofile">
 		<div class='top'>
 			<p>{{curSum}}<font></font></p>
@@ -269,17 +265,6 @@ export default {
 		height:2px;
 		left:5%;
 		background-color:#20549f;
-	}
-	.shuaxin{
-		display: inline-block;
-		position:absolute;
-		top: 8px;
-		right: 38px;
-		height: 18px;
-		width: 18px;
-		background-image: url('../../../assets/刷新.png');
-		z-index: 1;
-		cursor: pointer;
 	}
 	p{
 		color:#ffd800;

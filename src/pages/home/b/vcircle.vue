@@ -342,7 +342,7 @@ animation: rotation 3s linear infinite;
 		color: #fff;
 	    position: absolute;
 	    text-align: center;
-	    bottom: -2.6rem;
+	    bottom: -3.2rem;
 	    left: 0;
 	    font-size:1rem;
 	}

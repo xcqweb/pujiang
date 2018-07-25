@@ -1,3 +1,6 @@
+	
+	
+	<!--热力图-->
 	<style lang="less" scoped>
     @import '../../../common/js/baidumap/TrafficControl_min.css';
 .d1{
@@ -74,7 +77,7 @@ display:none !important;
 <script>
 import echarts from 'echarts'
 import optionProps from '@/common/js/mixin/optionProps.js'
-import sciencePoints from './points.json'
+import sciencePoints from './points.json' //各个景区的经纬度坐标
    require('../../../common/js/baidumap/heatmap.js?fdwe')
     export default {
         name:'d1',
@@ -93,6 +96,7 @@ import sciencePoints from './points.json'
         	}
         },
         methods:{
+        	//帅选景点后,当前景点图标跳动,其他停止跳动
         	addIconAnimation(map,lon,lat,val){
         		var myIcon = new BMap.Icon(require("../../../assets/images/labler.png"), new BMap.Size(30, 30), {
                     // 指定定位位置
@@ -299,7 +303,7 @@ import sciencePoints from './points.json'
             	return place[code]
             },
             
-            initPoints(coords,map){
+            initPoints(coords,map){//将当前客流人数转换成热力图点的个数
             	this.points = []
             	for(let item of coords){
                 	if(item.label==='仙华山'){
@@ -398,6 +402,7 @@ import sciencePoints from './points.json'
             	
             	this.addHot(map);
             },
+            //根据预警客流的百分比调整热力图显示,预警值越高,热力图颜色越红
             calcCoord(map,lats,lngs,ny,sy,wx,ex,num=0){//lat ,lng 景点坐标 n,s,w,e 各个方向的延伸基值
             	function fixed(n){
             		return n.toFixed(9)
@@ -449,7 +454,7 @@ import sciencePoints from './points.json'
             	}
             	return points
             },
-            addHot(map){
+            addHot(map){//添加热力图
 				let points = this.points;   
                 map.enableScrollWheelZoom(); // 允许滚轮缩放
                

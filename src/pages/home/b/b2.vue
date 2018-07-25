@@ -39,7 +39,7 @@ export default {
   },
   props:['isVideo'],
   computed: {
-  	comStyle(){
+  	comStyle(){ //兼容IE样式
   		let isIE = window.navigator.userAgent.indexOf('Trident')
        		if(isIE>-1){
        			if(this.isVideo){
@@ -128,7 +128,7 @@ export default {
         //range控件信息
         var rangeValue = 30;
         var nowRange  //用于做一个临时的range
-        	if(this.percent<8){
+        	if(this.percent<15){
         		speed = 0;
         		waveWidth = 0;
         		waveHeight = 0;
@@ -138,6 +138,8 @@ export default {
         			nowRange = this.percent+8
         		}
         		
+        	}else if(this.percent>=70){
+        		nowRange = this.percent-8
         	}else{
         		nowRange = this.percent
         	}
@@ -226,7 +228,7 @@ export default {
             drawSin(xOffset);
 			xOffset += speed;
 			xOffset>100?xOffset=0:xOffset
-			if(speed>0){
+			if(speed>0){ //水位低时不产生波浪
 				_self.requestAnimation = requestAnimationFrame(render)
 			}
         }
@@ -244,7 +246,7 @@ export default {
   }
   },
   beforeDestroy(){
-  	cancelAnimationFrame(this.requestAnimation)
+  	cancelAnimationFrame(this.requestAnimation) //解除监听
   },
   mounted() {
   	this.$nextTick(this.request())

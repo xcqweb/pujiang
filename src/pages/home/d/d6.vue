@@ -68,7 +68,7 @@
         <div class="b6__top">
             <span>{{currentNums}}<font></font></span>
             <font v-if='isVideo'>今日客流总人次</font>
-            <font v-else>近一小时客流总人次</font>
+            <font v-else>今日客流总人次</font>
             
         </div>
         <div class="b6__bottom">
@@ -124,8 +124,9 @@ export default {
 		  		api.params.code = this.code;
 		  		if(!this.isVideo){
 		  			api.getScenicKeliu(api.params).then( (re) =>{
+					//api.currentTourist(api.params).then( (re) =>{
 		  				let reData = re.data.data;
-		  				this.currentNum = reData.curSum;
+		  				this.currentNum = reData.curdaySum;
 						this.yestodayNum = reData.yesterdaySum;
 						if(re.data.code===200){
 							this.isloading = false;
@@ -134,9 +135,9 @@ export default {
 				    	console.log(e);
 				    })
 		  		}else{
-		  			api.currentTourist(api.params).then( (re) =>{
+		  			api.getScenicKeliu(api.params).then( (re) =>{
 		  				let reData = re.data.data;
-		  				this.currentNum = reData.curSum;
+		  				this.currentNum = reData.curdaySum;
 						this.yestodayNum = reData.yesterdaySum;
 						if(re.data.code===200){
 							this.isloading = false;

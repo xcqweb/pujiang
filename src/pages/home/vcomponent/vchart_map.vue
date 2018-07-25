@@ -706,7 +706,7 @@ export default {
 	    		this.zhejiang=[];
 	    		
 				for(let i=0; i<topCity.length; ++i){
-					if(topCity[i]._id!=="missing" &&　topCity[i]._id!=="总计"){
+					if(topCity[i]._id!=="Missing" &&　topCity[i]._id!=="总计"){
 						//alert(topCity[i]._id!=="missing")
 						if(this.range===1){
 							if(topCity[i].sum>0){
@@ -720,7 +720,6 @@ export default {
 					}
 					
 				}
-				
 				this.allData.push(["浦江县", [[{name: "浦江县"}, {name: "浦江县", value: '来源'}]]])
 				this.zhejiang.push(["浦江县", [[{name: "浦江县"}, {name: "浦江县", value: '来源'}]]])
 				

@@ -1,3 +1,5 @@
+
+<!--历史客流-->
 <template>
   <div class="main_content" id="A1loding">
   	<span class="title" :class='comStyle'>( 单位 : 人次 )</span>
@@ -103,7 +105,8 @@ export default {
           dataX.push(this.oneweekMock[i]._id)
       		
       }
-      echarts_resize('righthz',this,dataX,dataY)
+      this.$nextTick(echarts_resize('righthz',this,dataX,dataY))
+      
     },
       redom (id,xyfonsiz,datax,datay) {
         var _self= this;
@@ -298,9 +301,6 @@ export default {
     },
     components:{
     	vdate
-    },
-    beforeDestroy(){
-    	echarts_resize()
     },
     mounted() {
       Bus.$on('timeRange',(val) => {

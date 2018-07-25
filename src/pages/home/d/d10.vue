@@ -18,8 +18,8 @@
 
 <script>
 	import sleckte from '@/components/commonui/dropdown/dropdown-menu.vue'
-	import './video-js.css'
-  import { videoPlayer } from 'vue-video-player'
+	import 'video.js/dist/video-js.css'  //文件目录D:\svn\pujiang\pujiang\node_modules\_video.js@7.0.5@video.js\dist
+  import { videoPlayer } from 'vue-video-player'  //控制条中英文在video.cjs.js文件配置
 	import 'videojs-flash'
 	import 'videojs-hotkeys'
 	export default{
