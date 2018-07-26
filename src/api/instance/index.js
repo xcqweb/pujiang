@@ -7,7 +7,7 @@ import {API_HZ} from '@/api/env.js'
 import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
 
 //设置全局axios默认值
-axios.defaults.timeout = 100000; //5000的超时验证
+axios.defaults.timeout = 10000000; //5000的超时验证
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 //创建一个axios实例
 const instance = axios.create();

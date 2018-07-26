@@ -22,11 +22,11 @@ export default {
       return {
       	currentNum:0,
       	barNum:0,
-        reTimer:null,
-        data_arr:{},
-        mins:10,
         isloading:false,
-        btwsecends:5,
+        websocket:null,
+        token:'',
+        data:[],
+        date:[],
         option: {
             backgroundColor: 'rgba(0,0,0,0)',
             color: ['#00ffff', '#00ffa2', '#f0e750'],
@@ -169,93 +169,10 @@ export default {
     	}
     },
     methods: {
-        addZero(now){
-            if(now.getMinutes() > 9){
-                
-                var minutes =now.getMinutes() 
-            }else{
-                var minutes ="0"+now.getMinutes()
-            }
-            if(now.getSeconds()>9){
-                var seconds =now.getSeconds() 
-            }else{
-                var seconds ="0"+now.getSeconds()
-            }
-            if(now.getHours()>9){
-                var hours =now.getHours() 
-            }else{
-                var hours ="0"+now.getHours()
-            }
-            return [ hours,minutes,seconds].join(':')
-        },
-        redomData(val){
-                let _self=this
-                var date = [];
-                var data = [];
-                let  powAverage =2
-                let  average =1
-
-                if(val>1440){
-                     powAverage = val/2000 ;
-                     average = val/1440 ;
-                }else{
-                     powAverage = 2 ;
-                     average = 1 ;
-                }
-				function updateRandom() {
-					  var p = Math.random(), n = Math.random() / 20;
-					  if( p < 0.9 )
-					    return 0.9 + n;
-					  if( p < 1 )
-					    return 0.95 + n;
-					}
-                for(let xi = this.num+1; xi >1;xi--){
-                    date.push(this.addZero(new Date(new Date().getTime()+10*1000 - xi*5 * 1000)));
-                    data.push((val*updateRandom()).toFixed(0))
-                }
-                
-                function randomData() {
-                	 var nowDate = new Date();
-                   var now = +new Date(nowDate.getTime());
-                    var nows = new Date(+now);
-                    if(Math.random()>0.4 && powAverage>10){
-                        value =(1- (Math.random()-1)/2)*average;
-                    }else{
-                        var value = Math.pow(Math.random()*powAverage,2);
-                        
-                    }
-                    return {
-                            xData: _self.addZero(nows),
-                            sData: (val*updateRandom()).toFixed(0)
-                    }
-                }
-                _self.currentNum = data[_self.num-2]
-                _self.option.xAxis.data=date;
-                _self.option.series.data=data;
-                 _self.chart.setOption({
-                        xAxis: {
-                            data: date
-                        },
-                    series: [{
-                        data: data
-                    }]})
-                
-                if (_self.reTimer) {
-                    window.clearInterval(_self.reTimer)
-                }
-                let count = 0;
-                _self.reTimer=setInterval(function () {
-                		count++
-                		if(count>120){ //15分钟跟新一次接口数据
-                			_self.getData({code:_self.code})
-                		}
-                    date.shift();
-                    data.shift();
-                    date.push(randomData().xData);
-                    data.push(randomData().sData);
-                    _self.option.xAxis.data=date;
-                    _self.option.series.data=data;
-                    _self.currentNum = data[_self.num-2]
+        
+        redomData(data,date){
+                    let _self = this
+                    _self.currentNum = data[data.length-1]||0
                     _self.chart.setOption({
                         xAxis: {
                             data: date
@@ -264,9 +181,11 @@ export default {
                         data: data
                     }]
                 });
-            }, 5000);
         },   
         redom(){
+        				if(this.chart){
+        					this.chart.dispose()
+        				}
                 let _self=this            
                 var dom = document.getElementById('container');
                 this.chart = echarts.init(dom);
@@ -274,28 +193,69 @@ export default {
                    this.chart.setOption(this.option, true);
                 } 
         },
-        getData(data){
-            api.timeOn(data).then( r => {
-                if(r.data.code ==="200"||r.data.code ===200){
-                    this.barNum = r.data.data.num+Math.random();
-                    this.redom()
-                    this.redomData(this.barNum)
-                    this.isloading = false
-                }
-            })
-        }
+        //转换日期格式
+        transformDate(str){
+        	let re = ''
+        	re = `${str.substring(0,2)}:${str.substring(2,4)}:${str.substring(4,6)}`
+        	return re
+        },
+        getData(){},
+        //建立websocket连接
+        connectWebsocket(){
+        	let _self = this;
+			    this.redom()
+        	if ('WebSocket' in window) {  
+			        this.websocket = new WebSocket("ws://115.29.17.176/pjsocket/websocket");  
+			    }  
+			    else {  
+			        alert('Not support websocket')  
+			    }  
         
+         //连接成功建立的回调方法  
+			    this.websocket.onopen = function (event) {  
+			      console.log('websocket连接成功...')
+			      this.token = "dghg6767ghyyy76yt5r"+Math.random()
+			      this.send("{'code':'"+_self.code+"',token:'"+this.token+"'}");
+			      
+			    }  
+			    //接收到消息的回调方法  
+			    this.websocket.onmessage = function (event) {  
+			    	_self.isloading = false
+			    	if(_self.data.length>=_self.num){
+			    		_self.data.shift()
+			    		_self.date.shift()
+			    	}
+			    	let re = JSON.parse(event.data)
+			    	let curTime = _self.transformDate(re.inTime)
+			    	
+			    	_self.date.push(curTime)
+			    	_self.data.push(re.curSum)
+			    	_self.redomData(_self.data,_self.date)
+			    }  
+			    
+			    //连接关闭的回调方法  
+			    this.websocket.onclose = function () {  
+			        console.log('websocket连接关闭...')
+			    }  
+        }
     },
     watch:{
     	code:function(data){
+    		let _self = this
     		this.isloading = true;
     		this.currentNum=0;
-    		this.getData({code:data})
+    		this.data = []
+    		this.date = []
+    		this.redom()
+    		this.websocket.send("{'code':'"+data+"',token:'"+this.token+"'}");
     	}
     },
+    mounted(){
+    	this.$nextTick(this.connectWebsocket())
+    },
     beforeDestroy(){
-    	window.clearInterval(this.reTimer)
-    	this.reTimer = null
+    	this.token = ''
+    	this.websocket.close();
     }
 }
 </script>

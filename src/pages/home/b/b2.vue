@@ -2,7 +2,7 @@
     <div :class="comStyle">
         <canvas id="pieB2"></canvas>
        
-        <span>{{percent}}%</span>
+        <!--<span>{{percent}}%</span>-->
         <div class="text" v-show="isVideo"><font>客流预警</font></div>
         <p class="configBtn" @click="passagerConfig" v-show="!isVideo">设置</p>
         <img v-show="isVideo" class="line" src="../../../assets/images/circle/violet/line.png"/>
@@ -28,11 +28,9 @@ export default {
     	code:0,
     	percent:0,
         imgacircle:require('../../../assets/images/home/b/circle.png'),
-        nub:'',
-        set_config:'',
-        configNumber:'',
         showToast:false,
-        requestAnimation:null
+        requestAnimation:null,
+        scienName:''
     }
   },
   props:['isVideo'],
@@ -211,10 +209,19 @@ export default {
         var drawText = function(){
             ctx.save();
             var size = 0.4*cR;
-            ctx.font = size + 'px Microsoft Yahei';
             ctx.textAlign = 'center';
-            ctx.fillStyle = "rgba(255,255,255,0)";
-            ctx.fillText(~~_self.value + '%', r, r + size / 2);
+            ctx.fillStyle = "rgba(255,255,255,1)";
+            if(_self.code===0){
+            	ctx.font = size*2/3.3 + 'px Microsoft Yahei';
+            	ctx.textBaseline="bottom";
+            	ctx.fillText(_self.scienName, r, r -size/3);
+            	ctx.textBaseline="top";
+            	ctx.font = size + 'px Microsoft Yahei';
+            	ctx.fillText(_self.percent+'%', r, r+size/5);
+            }else{
+            	ctx.font = size + 'px Microsoft Yahei';
+            	ctx.fillText(_self.percent+'%', r, r+size/2);
+            }
             ctx.restore();
         };
 
@@ -224,6 +231,7 @@ export default {
                 drawCircle();
             }
             drawSin(xOffset);
+            drawText()
 			xOffset += speed;
 			xOffset>100?xOffset=0:xOffset
 			if(speed>0){ //水位低时不产生波浪
@@ -236,6 +244,7 @@ export default {
 	  api.params.code= this.code;
       api.passengerwarning(api.params).then( (re) => {
       this.percent = re.data.data.warnPercent;
+      this.scienName = re.data.data.scienName;
       this.isloading=false;
 		this.redom()
     }).catch( e =>{

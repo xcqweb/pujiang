@@ -64,7 +64,7 @@ export default {
                 leftComponents:[
                     {name:'B17',id:'one',index:1,time:100,show:false,title:'产业数据'},
                     {name:'A6',id:'two',index:2,time:600,show:false,title:'游客来源地'},
-                    {name:'A5',id:'three',index:3,time:900,show:false,title:'实时客流',num:8},
+                    {name:'A5',id:'three',index:3,time:900,show:false,title:'实时客流',num:7},
                     {name:'A1',id:'four',index:4,time:1200,show:false,title:'历史客流',apiName:'passengers'},
                 ],
 

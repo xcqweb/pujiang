@@ -1,7 +1,7 @@
 <template>
   <div id="mainhome" @click="headerLeave($event)">
     <transition name="slide-fade">
-        <div class="header" v-show='headerStatus' @mouseleave="mouseLeave" @mouseover="mouseOver" @click="headerLeave($event)">
+        <div class="header" v-show='headerStatus' @mouseout="mouseLeave" @mouseover="mouseOver" @click="headerLeave($event)">
             <headerBody v-clickOutside='hide'></headerBody>
         </div>
     </transition>
