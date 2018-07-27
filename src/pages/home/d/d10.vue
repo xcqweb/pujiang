@@ -1,3 +1,9 @@
+
+<!--
+	引用库---
+	https://github.com/surmon-china/vue-video-player  
+-->
+
 <template>
       <div class="d10">
         <div class="player">
@@ -30,7 +36,7 @@
 	      }
     },
     props:{
-			qyselectlist:{
+			qyselectlist:{//下拉框数据
 				type:Object,
 				default:function(){
 					return {
@@ -42,7 +48,7 @@
 		               }
 				}
 			},
-			playerOptions: {
+			playerOptions: {//视频页面配置数据
 				type:Object,
 				default:function(){
 					return {
@@ -54,44 +60,34 @@
 			          techOrder: ['flash'],
 			          autoplay: true,
 			          controls: true,
-			          poster: "http://115.29.13.132:10800/snap/2/channel_2.jpg"
+			          poster: "http://115.29.13.132:10800/snap/2/channel_2.jpg"//视频未加载时的首页图片
 			        }
 				}
 			}
 			
 		},
-    computed: {
-      player() {
-        return this.$refs.videoPlayer.player
-      }
-    },
-    watch:{
-    	scienceName:function(){
-    		
-    	}
-    },
     methods: {
       onPlayerPlaying(){
       	this.isloading = false
       },
       playerIsReady(player) {
-        	this.isloading = false
+        	this.isloading = false//视频准备播放时,关闭loading效果
         player.hotkeys({
           volumeStep: 0.1,
           seekStep: 5,
           enableModifiersForNumbers: false,
-          fullscreenKey: function(event, player) {
+          fullscreenKey: function(event, player) {//配置热键
             return ((event.which === 70) || (event.ctrlKey && event.which === 13));
           }
         })
       },
-      catchMsg(data){
+      catchMsg(data){//获取切换的景区名称
       	this.isloading = true
       	this.scienceName = data
         this.playerOptions.sources[0].src = this.comSrc()
       	
       },
-      comSrc(){
+      comSrc(){//切换视频,即改变流视频地址
 	        	switch(this.scienceName){
 	        		case '仙华山1':
 	        		this.playerOptions.poster = 'http://115.29.13.132:10800/snap/1/channel_1.jpg'

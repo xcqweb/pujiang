@@ -1,6 +1,6 @@
 
 
-//统一模块入口
+//统一模块入口(懒加载)
 
 let sleckte = resolve => {require.ensure(['@/components/commonui/dropdown/dropdown-menu.vue'], () => {resolve(require('@/components/commonui/dropdown/dropdown-menu.vue'))})}
 
@@ -81,8 +81,9 @@ let D6 = resolve => {require.ensure(['@/pages/home/d/d6.vue'], () => {resolve(re
 //景区周边交通拥堵指数
 let D8 = resolve => {require.ensure(['@/pages/home/d/d8.vue'], () => {resolve(require('@/pages/home/d/d8.vue'))})}
 
-//视频监控客流预警和拥堵指数
+//客流预警和拥堵指数
 let D9 = resolve => {require.ensure(['@/pages/home/d/d9.vue'], () => {resolve(require('@/pages/home/d/d9.vue'))})}
+//视频监控
 let D10 = resolve => {require.ensure(['@/pages/home/d/d10.vue'], () => {resolve(require('@/pages/home/d/d10.vue'))})}
 //旅游关键字
 let D11 = resolve => {require.ensure(['@/pages/home/d/d11.vue'], () => {resolve(require('@/pages/home/d/d11.vue'))})}
@@ -128,4 +129,7 @@ for (var i = 0; i < status.length; i++) {
 let index=status[i]
 conponets[index]=eval(index)
 }
-export default conponets;
+export default conponets; //对象变量 在组件中的components中注册组件  components:{...conponets}(es6的对象混入) 
+						  //或者全局混入注册组件 Vue.minix({ components:{...conponets} })
+	
+

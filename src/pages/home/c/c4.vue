@@ -51,6 +51,9 @@ export default {
 			}
 			let reData = re.data.data;
 			if(!reData){
+				 this.womenPercent = 0
+       			 this.menPercent = 0
+       			 this.redom(0,0)
 				return
 			}
 			let maleRate = reData.maleRate||49;

@@ -98,8 +98,6 @@ let fsize=[w*12,w*50]
 		    })
         }
     },
-    created () {
-    },
     mounted(){
        this.$nextTick(echarts_resize('chartId',this))
     }

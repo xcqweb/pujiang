@@ -68,8 +68,9 @@ export default {
                 
                 leftComponents:[
                     {name:'D6',id:'one',index:3,time:900,show:false,title:'景区客流'},
-                    {name:'D9',id:'two',index:3,time:900,show:false,title:''},
+                    {name:'D9',id:'two',index:3,time:900,show:false,title:''},//拥堵指数和客流预警
                     {name:'A1',id:'three',index:3,time:900,show:false,title:'历史客流',apiName:'passengers'},
+                    //视频1
                     {name:'D10',id:'four',index:4,time:1200,show:false,title:'',qyselectlist:{
 	                    width:'30%',
 	                    left:'0.1rem',
@@ -92,7 +93,7 @@ export default {
                     },
                     
                     
-                    
+                    //视频2
                     {name:'D10',id:'five',index:4,time:1200,show:false,title:'',qyselectlist:{
 	                    width:'30%',
 	                    left:'0.1rem',
@@ -114,7 +115,7 @@ export default {
 				        }},
 				        
 				        
-				        
+				     //视频3  
                     {name:'D10',id:'six',index:4,time:1200,show:false,title:'',qyselectlist:{
 	                    width:'30%',
 	                    left:'0.1rem',
@@ -136,7 +137,7 @@ export default {
 				        }},
 				        
 				        
-				        
+				    //视频4   
                     {name:'D10',id:'seven',index:4,time:1200,show:false,title:'',qyselectlist:{
 	                    width:'30%',
 	                    left:'0.1rem',
