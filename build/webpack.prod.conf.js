@@ -34,7 +34,7 @@ var webpackConfig = merge(baseWebpackConfig, {
       compress: {
         warnings: false
       },
-      cache: 'cache',
+      cache: true,
       sourceMap: true
     }),
     // extract css into its own file
